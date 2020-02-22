@@ -1,0 +1,6 @@
+# Computing {#computing}
+
+## R markdown 
+
+## R 
+

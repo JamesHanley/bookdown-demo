@@ -1,0 +1,42 @@
+# (PART) Part I {-}
+
+# Statistical Parameters {#paras} 
+
+## 3 parameters [rows] in 3 simplest settings [columns]
+
+See the grid below. 
+
+**Rows** 
+
+* $\mu$ Level(s): e.g.,  mean depth of ocean or height of land
+
+* $\pi$ Prevalence or risk (proportion): e.g.,  proportion covered by water
+
+* $\lambda$ Speed with which events occur: e.g., earthquakes per earth-day
+
+**Columns** 
+
+* Single (global) e.g. entire surface of the earth, or entire oceans 
+
+* Parameter contrast: e.g Southern hemisphere [reference category] vs Northern hemisphere [index category]; categories are represented by (say) North = 0 (i.e. Southern, i.e., not Northern) vs. North=1 (i.e. Northern)
+
+* Parameter gradient: over (quantitative) levels of X 
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=3, fig.width=4, warning=FALSE, message=F}
+
+
+knitr::include_graphics("images/Grid.png")
+
+
+```
+
+
+**Notes**
+
+* In setting 1: there is just 1 parameter (dot)
+
+* In setting 2, there are 2 parameters, one for the reference category and one for the index category. How they relate to each other can be can be expressed in a number of different ways. A common and useful way is via a **parameter equation** that contains a parameter for the reference category and a comparative parameter (some measure of the difference between the two parameters) -- the latter is often of most interest
+
+* In setting 3, the **parameter equation** traces the parameter over a continuum, using as many coefficients as are needed
+

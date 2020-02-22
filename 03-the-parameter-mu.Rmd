@@ -1,0 +1,13 @@
+# The parameter $\mu$  {#paraMu}
+
+[and other location (and spread and shape) parameters]
+
+## Two genres
+
+* Constants of Nature, not easily measured on a single try
+
+* Centers of  (infinite sized) biological (population) distributions
+
+## Fitting these to data / Estimating them from data
+
+* Metrics (criteria) for measuring (best) fit

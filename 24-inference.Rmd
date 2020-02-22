@@ -1,0 +1,9 @@
+# Statistical Inference {#inference}
+
+## 2 schools 
+
+### Bayesian
+
+### Frequentist 
+
+

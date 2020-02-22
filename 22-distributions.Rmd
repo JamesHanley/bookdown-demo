@@ -1,0 +1,9 @@
+# Distributions /Random Variables {#Distributions}
+
+## Gaussian Bernoulli-Binomial  Poisson 
+
+## Expectation and Variance
+
+## Functions/combinations of random variables
+
+

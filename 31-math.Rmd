@@ -1,0 +1,29 @@
+# (PART) Part III {-}
+
+# Mathematics {#math}
+
+## Notation 
+
+* **Variables and Subscripts**  
+Variable $Y$ with $n$ sample values denoted $y_1, y_2, ..., y_n$ in order of entry; The "1", "2", ... are called subscripts or indices. We use the letter i (or j) and the range "1 to n" to denote the n different $y$ values and refer to the value of the ith $y$ as "$y_i$".
+
+* **Summation**  
+The term $\Sigma y$ (spoken: "sigma y" or "sum of y's") is used as a shorthand for the sum $y_1 + y_2 + \dots  + y_n$.
+
+
+## Powers, Logarithms and Anti–logarithms 
+
+* The term $y^{1/2}$ is shorthand for the square root of $y$ or $\sqrt{y}$. Likewise, $y^{1/n}$ denotes the n-th root of $y$.    
+
+* $\ln (y)$ denotes the "natural log of $y$" or "log of $y$ to
+the base e" i.e. log$_e(x)$, where e is 2.718.  
+Note: y must be positive; ln ($y$) ranges from -$\inf$ to +$\inf$.  
+&nbsp;  
+ln (0.1) = -2.30; ln (1) = 0; ln (2) = 0.69; ln (10) =2.30
+
+* $\ln(A \times B) =  \ln(A) + \ln(B); \ \ \ \ln(\frac{A}{B}) =  \ln(A) - \ln(B)$
+
+* exp($y$) is shorthand for $e^y$ or "exponential of $y$" or the natural anti-log of $y$. $y$ ranges from -$\infty$ to +$\infty$. and exp($y$) yields a positive value. eg. exp(-1) = 0.36; exp(0) =1; exp(.5) =1.64; exp(1) = 2.71...
+
+ 
+
