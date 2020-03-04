@@ -1,0 +1,8 @@
+
+# Contrast: 2 $\lambda$ parameters {#contrast2Lambdaparas}
+
+
+
+## Estimand, estimator, estimate
+
+

@@ -1,0 +1,8 @@
+
+# Contrast: 2 $\pi$ parameters {#contrast2Piparas}
+
+
+
+## Estimand, estimator, estimate
+
+

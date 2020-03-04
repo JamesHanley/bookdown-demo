@@ -2,28 +2,35 @@
 
 # Statistical Parameters {#paras} 
 
-## 3 parameters [rows] in 3 simplest settings [columns]
+## Parameters
 
-See the grid below. 
+>**Parameter** – A constant (of unknown magnitude) in a (statistical) model. [OSM2011, p60]
 
-**Rows** 
+**The parameters we will be concerned with** 
 
-* $\mu$ Level(s): e.g.,  mean depth of ocean or height of land
+* $\mu$ Level(s): e.g.,  mean depth of ocean or height of land, or mean height / BMI / blood pressure of a human population
 
-* $\pi$ Prevalence or risk (proportion): e.g.,  proportion covered by water
+* $\pi$ Prevalence or risk (proportion): e.g.,  proportion of the earth's surface that is covered by water, or of a human population that has untreated hypertension, or lacks internet access, or will develop a new health condition over the next x years.
 
-* $\lambda$ Speed with which events occur: e.g., earthquakes per earth-day
+* $\lambda$ Speed with which events occur: e.g., earthquakes per earth-day, or heart attacks or traffic fatalities per (population)-year
 
-**Columns** 
+These are shown in the leftmost column, and refer to a characteristic of the overall domain, such as entire surface of the earth, or the entire ocean, or population. There are no indicators for distinguishing among subdomains, so they refer to locations / persons not otherwise specified.
 
-* Single (global) e.g. entire surface of the earth, or entire oceans 
-
-* Parameter contrast: e.g Southern hemisphere [reference category] vs Northern hemisphere [index category]; categories are represented by (say) North = 0 (i.e. Southern, i.e., not Northern) vs. North=1 (i.e. Northern)
-
-* Parameter gradient: over (quantitative) levels of X 
+## Contrasts involving these
 
 
-```{r,eval=T, echo=T, fig.align="center", fig.height=3, fig.width=4, warning=FALSE, message=F}
+* Parameter **contrast**:    
+.  
+e.g., Northern hemisphere vs Southern hemisphere. If we take Northern to be the index category, and Southern to be the reference category, then these categories are represented/indicated by the indicator  North=1 (i.e. Northern) and North = 0 (i.e. Southern, i.e., not Northern).  
+.  
+In a Males versus Females contrast, say we take Males to be the index category, and Females to be the reference category. Then these are  represented/indicated by  Male = 1 (i.e. males) vs. Male = 0 (i.e. not-males, i.e., females);  
+.  
+Instead of placing the 2 category-specific parameters over top of 2 nominal labels (Reference and Index, generically), suppose we place them over top of the 2 values (0 and 1) of the indicator variate. 
+
+* Parameter **gradient**: over (quantitative) levels of a variate. 
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=4, warning=FALSE, message=F, out.width = "98%", fig.pos="h"}
 
 
 knitr::include_graphics("images/Grid.png")
@@ -34,9 +41,27 @@ knitr::include_graphics("images/Grid.png")
 
 **Notes**
 
-* In setting 1: there is just 1 parameter (dot)
+* In setting (column) 1: there is just 1 parameter (dot)
 
-* In setting 2, there are 2 parameters, one for the reference category and one for the index category. How they relate to each other can be can be expressed in a number of different ways. A common and useful way is via a **parameter equation** that contains a parameter for the reference category and a comparative parameter (some measure of the difference between the two parameters) -- the latter is often of most interest
+* In setting (column) 2, there are 2 parameters, one for the reference category and one for the index category. How they relate to each other can be can be expressed in a number of different ways. A common and useful way is via a **parameter equation** that contains a parameter for the reference category and a comparative parameter (some measure of the difference between the two parameters) -- the latter is often of most interest
 
-* In setting 3, the **parameter equation** traces the parameter over a continuum, using as many coefficients as are needed
+* In setting (column) 3, the **parameter equation** traces the parameter over a continuum, using as many coefficients as are needed
+
+
+>**Linear model**: Formulation of the mean/‘expectation’ of (the distribution of) a random variate (Y) as a linear compound of a set $B_0 , B_1  , B_2   , \dots$ of parameters: as $B_0 + B_1  X_1 + B_2  X_2 + \dots$  [OSM2011, p54]
+
+
+>**The meaning of ‘linear’** in the appellation of this model has nothing to do with straight lines; it refers to the mathematical concept of ‘linear compound’: given quantities Q$_1$, Q$_2$, etc., a linear compound of these is the sum C$_1$Q$_1$ + C$_2$Q$_2$ + ..., where C$_1$ etc. are the ‘coefficients’ that define a particular linear compound of the set of quantities constituted by the Qs.
+So, the ‘general linear model’ is linear in the sense that the dependent parameter, M, is formulated as a linear compound of the independent parameters B0, B1, etc., the coefficients in this linear compound being 1, X1, etc. The model is, in this way, ‘linear in the parameters.’ [MSH2018, p65]
+
+The form of the ‘analysis-of-variance’ model in this simple example is: M = B0 + B1X1 + B2 X2 ,
+7.1 The Precursors of the General Linear Model 63
+where M is the mean of Y and the two independent variates are indicators of two particular ones of the three ethnic categories. One possibility in this framework is to take X1 and X2 to be indicators of Category 2 and Category 3, respectively – an indicator variate being one that takes on the value 1 for the category it indicates, 0 otherwise.
+In terms of this model, B0 is the value of M when X1 = X2 = 0, that is, for Category 1 (i.e., B0 = M1); and for Category 2 and Category 3 the values of M are represented byB0 +B1 andB0 +B2,respectively(i.e.,M2 =B0 +B1,andM3 =B0 +B2).Thus,the difference between M1 and M2 is represented by B1; B2 represents the difference between M1 and M3; and the difference between M2 and M3 is the difference between B1 and B2.
+In this ‘analysis-of-variance’ framework it is feasible to accommodate, jointly, whatever number of nominal-scale determinants of the magnitude of the mean of the dependent variate. A simple example of this is the addition of the two categories of gender for consideration jointly with the three categories of ethnicity. These two determinants jointly imply a single nominal-scale determinant with six categories (as each of the three categories of ethnicity is split into two subcategories based on gender).
+When involved in the definition of the independent variates is only a single deter- minant, the model is said to be for ‘one-way analysis of variance’; with two deter- minants the corresponding term (naturally) is ‘two-way analysis of variance’; etc.
+
+
+A **limiting** – ‘degenerate’ – **case** [...] is, naturally, of the form of M = B, involving no indicators for distinguishing among subdomains of the referent domain of the distribution, say adults not otherwise specified. [MSH2018, p63]
+
 

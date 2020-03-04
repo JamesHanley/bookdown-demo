@@ -9,3 +9,6 @@
 ## Conditional -- reverse
 
 * Application: medical diagnostic tests
+
+Exercises: Efron, Monty Hall, Economist, 
+Wald : CF screening    

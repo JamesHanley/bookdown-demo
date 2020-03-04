@@ -12,8 +12,92 @@ github-repo: rstudio/bookdown-demo
 description: "A regression-from-the-outset based approach"
 ---
 
-# Preface
+# Preface {-}
 
-## Why we take this approach   2020
+## Target
 
-blah blah blah
+The target is graduate students in population health sciences in their first  year. Concurrently, they take their first courses on epidemiologic methods. The department is known for its emphasis on quantitative methods, and students' ability to carry out their own quantitative work. Since most of the data they will deal with are non-experimental, there is a strong emphasis on multivariable regression. While some students will have had some statistical courses as  undergraduates, the courses start at the beginning, and are pitched at the Master's level.
+
+In the last decade, the incoming classes  have become more diverse, both in their backgrounds, and in  their career plans. Some of those in the recently begun MScPH program  plan to me consumers rather than producers of research; previously, the majority of students pursued a thesis-based Masters that involved considerable statistical analyses to produce new statistical evidence.
+
+## Topics/textbooks
+
+For the **first term** course 607, recent choices have been _The Practice of Statistics in the Life Sciences_ by Baldi and Moore, and _Stats_ by de Veaux, Velleman and Bock. Others that have been recommended are the older texts by Pagano and Gauvreau, and by Rosner. Some of us have also drawn on material in _Statistics_ by Freedman, Pisani, Purves and Adkikari, and
+_Statistical Methods in Medical Research_, 4th Edition_ by
+Armitage,Berry, and Matthews.
+
+The newer books have tried to teach the topic more engagingly, by starting with where data come from, and (descriptively) displaying single distributions, or relationships between variables. They and the many others then typically move on to Probability; Random Variables; Sampling Distributions; Confidence intervals and Tests of Hypotheses; Inference about/for a single Mean/Proportion/Rate and a difference of two Means/Proportions/Rates; Chi-square Tests for 2 way frequency tables; Simple Correlation and Regression. Most include a (or point to an online) chapter on Non-Parametric Tests. They typically end with  tables of probability tail areas, and critical values. 
+
+Bradford Hill's  _Principles of Medical Statistics_ followed the same sequence 80 years ago, but in black type in a book that measured 6 inches by 9 inches by 1 inch, and weighed less than a pound. Today's multi-colour texts are 50% longer, 50% wider, and twice as thick, and weigh 5 pounds or more.
+
+The topics to be covered in the **second term** course include multiple regression involving 
+Gaussian, Binomial, and Poisson variation, as well
+as (possibly censored) time-durations -- or their reciprocals, event rates.
+
+Here is is more difficult to point to one modern comprehensive textbook.
+There is pressure to add even more topics, such as correlated data, missing data, measurement error etc. top the second statistics course.
+
+### Challenges
+
+It is important to balance the desire to cover more of these regression-based topics with having a good grounding, from the first term, in the basic concepts that underlie all statistical analyses.
+
+The first term _epidemiology_ course deals with proportions and rates (risks and hazards) and -- at the core of epidemiology -- comparisons involving these. Control for confounding is typically via  odds/risk/rate differences/ratios obtained by standardization or Mantel-Haenszel-type summary measures. Teachers are reluctant to spend the time to teach the classical confidence intervals for these, as they are not that intuitive and -- once students have covered multiple regression -- superceded by model-based intervals.    
+
+
+One way to synchronize with epidemiology, is to teach the six separate topics Mean/Proportion/Rate and differences of two Means/Proportions/Rates in a more unified way by embedding all 6 in a regression format right from the outset, to use generalized linear models, and to focus on  all-or-none contrasts, represented by binary 'X' values.  
+
+This would have other benefits. As of now, a lot of time in 607 is spent on 1-sample and 2-sample methods (and chi-square tests) that don't lead anywhere (generalize). Ironically, the first-term concerns with equal and unequal variance tests  are no longer raised, or obsessed about, in the multiple regression framework in second term. 
+
+The teaching/learning of statistical concepts/techiques is greatly enriched by  real-world applications from published reports of  public health and epidemiology research. In 1980, a first course in statistics provided access to 80% of the articles in NEJM articles. This large dividend is no longer the case -- and even less so for journals that report on non-experimental research. The 1-sample and 2-sample methods, and chi-square tests that have been the core of first statistics courses are no longer the techniques that underlie the reported summaries in the abstracts and in the full text. The statistical analysis sections of 
+many of these articles do still start off with descriptive statistics and a perfunctory list of parametric and non-parametric 1 and 2 sample tests, but most then describe the multivariable techniques used to produce the reported summaries. [Laboratory sciences can still get by with t-tests and 'anova's -- and the occasional ancova'; studies involving  intact human  beings in free-living populations can not.]   Thus, if the first statistical course is to to get the same 'understanding' dividend from research articles as the introductory epidemiology course does, that first statistical course needs to teach the techniques that produce the results in the abstracts. Even if it can only go so far, such an approachcan promote a regression approach right from week one, and build on it each week, rather than introduce it for the first time at week 9 or 10, when the course is already beginning to wind down, and assignments from other courses are piling up.  
+
+no longer wait until second term to use a computer.
+
+Free
+
+reproducible research
+
+
+
+
+The access to computing over the last years
+means that students can
+
+### Adjustments
+
+parameter
+
+xbar ybar 
+C&H Rothmab
+
+specialized  
+
+
+
+
+Changing attitudes to teaching statistics – Horton 
+
+Rothman and C&H
+
+Computing -- in parallel and co-ordinated.
+
+Descriptive statistics
+
+just like epi has 602 and 602
+
+not that hard... just ahve to be dragged through it, but easy conceptually. 
+
+
+## [Still rough] History of current introductory biostatistics courses
+
+The senior author first taught a 2-course sequence for first year graduate students in epidemiology in 1980, using Colton’s Statistics in Medicine as the text for the introductory course (607). He developed his own notes for the second course, which covered multiple regression for quantitative responses. Over the next 10 years, he continued to teach the first course – first  from Colton, but  latterly from Moore and McCabe (and undergraduate text) and with epi statistics from Armitage and Berry and some other fundamentals from Freedman
+(Statistics). Stan S taught the second (621 Data Analysis in the Health Sciences), mostly from Kleinbaum’s Applied Regression Analysis and Other Multivariable Methods.
+
+In the 1990s, Lawrence J taught 607, and Michal A 621. Neither used a required textbook. LJ developed an extensive set of written notes (still available on his website) (and contributed a chapter Introduction to Biostatistics: Describing and Drawing Inferences from Data 
+book on Surgical Arithmetic) while MA used transparencies that were widely photocopied. 2000s Robert P 621?  LJ 621 
+
+Meanwhile JH taught to summer students (mostly medical residents and fellows): 607 and a second course (678, Analysis of Multivariable Data). Both sets of content are available on JH's website.  He last taught the Fall version of 607 in 2001, when LJ was on sabbatical.
+
+607: Tina    2006 -  201x Erica M; 20xx -  Paramita SC.  2018, 2019 Sahir B 
+621:   Aurelie Alexandra     2020 Shirin
+
