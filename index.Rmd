@@ -32,12 +32,10 @@ Bradford Hill's  _Principles of Medical Statistics_ followed the same sequence 8
 
 The topics to be covered in the **second term** course include multiple regression involving 
 Gaussian, Binomial, and Poisson variation, as well
-as (possibly censored) time-durations -- or their reciprocals, event rates.
-
-Here is is more difficult to point to one modern comprehensive textbook.
+as (possibly censored) time-durations -- or their reciprocals, event rates. Here is is more difficult to point to one modern comprehensive textbook.
 There is pressure to add even more topics, such as correlated data, missing data, measurement error etc. top the second statistics course.
 
-### Challenges
+## Regression from the outset
 
 It is important to balance the desire to cover more of these regression-based topics with having a good grounding, from the first term, in the basic concepts that underlie all statistical analyses.
 
@@ -49,46 +47,49 @@ One way to synchronize with epidemiology, is to teach the six separate topics Me
 This would have other benefits. As of now, a lot of time in 607 is spent on 1-sample and 2-sample methods (and chi-square tests) that don't lead anywhere (generalize). Ironically, the first-term concerns with equal and unequal variance tests  are no longer raised, or obsessed about, in the multiple regression framework in second term. 
 
 The teaching/learning of statistical concepts/techiques is greatly enriched by  real-world applications from published reports of  public health and epidemiology research. In 1980, a first course in statistics provided access to 80% of the articles in NEJM articles. This large dividend is no longer the case -- and even less so for journals that report on non-experimental research. The 1-sample and 2-sample methods, and chi-square tests that have been the core of first statistics courses are no longer the techniques that underlie the reported summaries in the abstracts and in the full text. The statistical analysis sections of 
-many of these articles do still start off with descriptive statistics and a perfunctory list of parametric and non-parametric 1 and 2 sample tests, but most then describe the multivariable techniques used to produce the reported summaries. [Laboratory sciences can still get by with t-tests and 'anova's -- and the occasional ancova'; studies involving  intact human  beings in free-living populations can not.]   Thus, if the first statistical course is to to get the same 'understanding' dividend from research articles as the introductory epidemiology course does, that first statistical course needs to teach the techniques that produce the results in the abstracts. Even if it can only go so far, such an approachcan promote a regression approach right from week one, and build on it each week, rather than introduce it for the first time at week 9 or 10, when the course is already beginning to wind down, and assignments from other courses are piling up.  
+many of these articles do still start off with descriptive statistics and a perfunctory list of parametric and non-parametric 1 and 2 sample tests, but most then describe the multivariable techniques used to produce the reported summaries. [Laboratory sciences can still get by with t-tests and 'anova's -- and the occasional ancova'; studies involving  intact human  beings in free-living populations can not.]   Thus, if the first statistical course is to to get the same 'understanding' dividend from research articles as the introductory epidemiology course does, that first statistical course needs to teach the techniques that produce the results in the abstracts. Even if it can only go so far, such an approach can promote a regression approach right from week one, and build on it each week, rather than introduce it for the first time at week 9 or 10, when the course is already beginning to wind down, and assignments from other courses are piling up. 
 
-no longer wait until second term to use a computer.
+## Parameters first, data later
 
-Free
+When many teachers and students think of regression, they imagine  a cloud of points in x-y space, and the least squares fitting of a regression line. They start with thinking about the data. 
 
-reproducible research
+A few teachers, when they introduce regression, do so by describing/teaching it as **an equation that connects parameters**,   constructed in such a way that the parameter-constrast of interest is easily and directly visible. Three such teachers are Clayton and Hills 1995, Miettinen1985, and Rothman 2012. In each case, their first chapter on regression is limited to the parameters and to undersatnding what they mean; data only appear in the next chapter.
+
+There is a lot to commend this approach. It reminds epidemiologists -- and even statisticians -- that statistical inference is about parameters. Before addressing  data and data-summaries, we need to specify what the estimands are -- i.e, what parameter(s) is(are) we pursuing.
+
+It is  easy and tempting to start with data, since the form of the summary statistic is usually easy to write down directly. It can also be used to motivate a definition: for example, we could define an odds ratio by its empirical computational form ad/bc. However, this 'give me the answer first, and the question later' approach comes up short as soon as one asks how statistically stable this estimate is. To derive a standard error or confidence interval, one has to appeal to a sampling distribution. To do this, one needs to identify the random variables involvced, and the parameters that determine/modulate their statistical distributions.
+
+Once students master the big picture (the parameter(s) being pursued), the task of estimating them by fitting these equations to data is considerably simplified, and becomes more generic. In this approach more upfront thinking is devoted to the parameters -- to what Miettinen calls the design of the study object -- with the focus on a pre-specified 'deliverable.'  
+
+## Let's switch to "y-bar", and drop  "x-bar".
+
+The prevailing practice, when introducing descriptive statistics, and even  to 1 and two sample procedures, is to use the term x-bar ($\bar{x}$) for an arithmetic mean (one notable execption is de Veaux at al.) This misses the chance to prepare students for regression, where E[Y|X] is the object of interest, and the X-conditional Y's are the random variables. Technically speaking, the X's are not even considered random variables. Elevating the status of the Y's and explaining the  role of the X's, and the impact of the X distributions on precision might also cut down on the practice of checking the normality of the X's, even though the X's are not random variables. They are merely the X locations/profiles at which Y was measured/recorded. When possible, the X distribution should be determined by the investigators, so as to give more precise and less correlated estimates of the  parameters being pursued. Switching from $\bar{x}$ to $\bar{y}$ is a simple yet meaningful step in this direction. JH made this switch about 10 years ago.
+
+## Computing from the outset
+
+In 1980, most calculations in the first part of 607 were by hand calculator.  Computing summary statistics by hand was seen as a way to help students understand the concepts involved, and the absence of automated rapid computation was not considered a drawback. However, 
+doing so did not always help students understand the concept of a standard deviation or a regression slope, since these formulae were designed to minimize the number of keystrokes, rather than to illuminate the construct involved. For example, it was common to rescale and relocate data to cut down on the numbers of digits entered, to group values into bins, and use midpoints and frequencies. It was also common to use the computationally-economical 1-pass-through-the-data formula for the sample variance 
+$$s^2 =   \frac{ \sum y^2 - \frac{(\sum y)^2}{n}}{n-1},$$  
+even though the definitional formula is
+
+$$s^2 = \frac{\sum(y - \bar{y})^2}{n-1}.$$
+
+The latter (definitional) one was considered too long, even though having to first have to compute $\bar{y}$ and then go back and compute (and square) each $y - \bar{y}$ would have helped students to internalize what a sample variance is.  
+
+When spreadsheets arrived in the early 1980s, students could use the built-in mean formula  to  compute and display $\bar{y}$, another formula to compute and display a new column of the deviations from $\bar{y}$, another to compute and display a new column of the squares of these deviations, another to count the number of deviations, and a final formula to arrives at $s^2.$ The understanding comes from coding the definitional formula, and the spreadsheet simply and speedily carries them out, allowing to user to see all of the relevant components, and from noticing if each one looks reasonable.  Ultimately, once students master the concept, they could move on to built-in formulae that hide (or themselves avoid) the intermediate quantities. 
+
+Few teachers actually encouraged the use of spreadsheets, and instead promoted commercial statistical packages such as SAS, SPSS and Stata. 
+Thus, the opportunity to learn to `walk first, run later' afforded by spreadsheets was not fully exploited. 
+
+RStudio is an integrated environment for R, a free software environment for statistical computing and graphics that runs on a wide variety of platforms. Just like spreadsheet software, one can use R not just as a calculator, but as a _programmable_  calculator, and by programming them, learn the concepts before moving on to the built-in functions. There is a large user-community and a tradition of sharing information and ways of doing things. The graphics language contains primitive functions that allow customization, as well as higher-level functions, and is tighly integrated with the statistical routines amd data frame functions. R Markdown helps to foster reproducible research. Shiny apps allow interactivity and visualization, a bit like 'what-ifs' with a spreadsheet.
+
+It takes practice to become comfortable with R. Gor those less mathematical, it is somewhat more cryptic than, and not quite as intuitive as, other packages. For the last several years, the department has offered a 13 hour  course introduction to R in first term. Initially the aim was to prepare students for using it in course 621 in second term, but in the Fall 2018 and 2019 offerings of course 607, computing with R and use of R Studio became mandatory. Just as the epidemiology material in the Fall is shared between 2 courses (601 and 602), the aim will be to also spread the statistics material over 607 and 613, and to integrate the two more tightly. As an example, the material on 'descriptive' (i.e., not model-based) statistics and graphical displays will be covered in 613, while 607 will begin with parameters and models. Rather than treat computing as a separate activity, exercises based on 607 material will be carried out as part of 613 classes/tutorials. The statistical material will be used to motivate the computer tasks.
 
 
 
+## Appendix:
 
-The access to computing over the last years
-means that students can
-
-### Adjustments
-
-parameter
-
-xbar ybar 
-C&H Rothmab
-
-specialized  
-
-
-
-
-Changing attitudes to teaching statistics – Horton 
-
-Rothman and C&H
-
-Computing -- in parallel and co-ordinated.
-
-Descriptive statistics
-
-just like epi has 602 and 602
-
-not that hard... just ahve to be dragged through it, but easy conceptually. 
-
-
-## [Still rough] History of current introductory biostatistics courses
+**[Still rough] History of current introductory biostatistics courses**
 
 The senior author first taught a 2-course sequence for first year graduate students in epidemiology in 1980, using Colton’s Statistics in Medicine as the text for the introductory course (607). He developed his own notes for the second course, which covered multiple regression for quantitative responses. Over the next 10 years, he continued to teach the first course – first  from Colton, but  latterly from Moore and McCabe (and undergraduate text) and with epi statistics from Armitage and Berry and some other fundamentals from Freedman
 (Statistics). Stan S taught the second (621 Data Analysis in the Health Sciences), mostly from Kleinbaum’s Applied Regression Analysis and Other Multivariable Methods.
