@@ -1,6 +1,16 @@
 # Computing {#computing}
 
-## R markdown 
+## R Studio - orientation  
 
-## R 
+## R Basics     
+
+Best site UCLA   videos...  
+
+### Calculations
+
+### Graphics
+
+### Data frames
+
+### Exercises  (weekly)
 
