@@ -1,5 +1,11 @@
 # Computing Week2 {#computing02}
 
+
+## Ages of books
+
+## ngrams
+
+
 ## Ice Breakup Dates
 
 
@@ -333,7 +339,7 @@ DATA: For the purposes of this exercise, the data [see http://www.epi.mcgill.ca/
 * The data on eight families are deliberately omitted, to entice the scholar in you to get into the habit of looking at (and even double checking) the original data. Since here we are more interested in the computing part in this course, and because time is short, ignore this invitation to inspect the data -- we already had a look at them in class. In practice, we often add in 'missing data' later, as there are always some problem cases, or lab tests that have to be repeated, or values that need to be checked, or subjects who didn't get measured at the same time as others etc.. JH's habit is to make the additions in the 'source' file (.txt or .xls or whatever) and re-run the entire SAS DATA step(s) to create the updated SAS dataset (temporary or permanent). If the existing SAS datset is already large, and took a lot of time to create, you might consider creating a small dataset with the new observations, and then stacking (using SE) the new one under the existing one -- in a new file. SAS has fancier ways too, and others may do things differently!
 
 
-# If your connection is too slow to view the photo of the first page of the Notebook, the title reads
+ If your connection is too slow to view the photo of the first page of the Notebook, the title reads
 
 FAMILY HEIGHTS 
 (add 60 inches to every entry in the Table)

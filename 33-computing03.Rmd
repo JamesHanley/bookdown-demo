@@ -1,0 +1,23 @@
+# Computing Week3 {#computing03}
+
+(Probabilities, evaluated by simulation)
+  
+
+## Epidemics
+
+## Duplicate Birthdays
+
+## Lottery payoffs
+
+## Chevalier de Méré
+
+## Detecting a fake Bernoulli sequenece
+
+## Cell occupancy
+
+## Life Tables
+
+## Carrier Status (genetics)
+
+## Diagnostic and statistical tests
+
