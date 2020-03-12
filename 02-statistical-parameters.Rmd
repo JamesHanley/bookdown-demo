@@ -8,26 +8,72 @@
 
 **The parameters we will be concerned with** 
 
-* $\mu$ Level(s): e.g.,  mean depth of ocean or height of land, or mean height / BMI / blood pressure of a human population
+* $\mu$ The mean level of a quantitative characteristic, e.g. the depth of the earth's ocean or height of the land, or the height / BMI / blood pressure levels of a human population. [One could also think of mathematical and physical constants as parameters, even though their values are effectively 'known.' Examples where there is agreement to many many decimal places include the mathematical constant pi, the speed of light(c), and the gravitational constant G. The speed of sound depends on the medium it is travelling through, and the temperature of the medium. The freezing and boiling points of substances such as water and milk depend on altitude and barometric pressure]. At  a lower level, we might be interested in personal characters, such as the size of a person's vocabulary, or a person's mean (or minimum, or typical) reaction time. The  target could be a person's 'true score' on some test -- the  value one would get if one (could, but not realistically) be tested on each of the (very large) number of test items in the test bank, or observed/measured continously over the period of interest.  
+\ \ \ \ Later on we will address sitautions where the mean $\mu$ is not the best 'centre' of a distribution, and why we might want to take some other feature, such as the median, or some other quantile, instead.  
 
-* $\pi$ Prevalence or risk (proportion): e.g.,  proportion of the earth's surface that is covered by water, or of a human population that has untreated hypertension, or lacks internet access, or will develop a new health condition over the next x years.
+* $\pi$ Prevalence or risk (proportion): e.g.,  proportion of the earth's surface that is covered by water, or of a human population that has untreated hypertension, or lacks internet access, or will develop a new health condition over the next x years. At a lower level, we might be interested in personal proportions, such as what proportion of the calories a person consumes come from fat, or the proportion of the year 2020 the person spent on the internet, or indoors, or asleep, or sedentary.
 
-* $\lambda$ Speed with which events occur: e.g., earthquakes per earth-day, or heart attacks or traffic fatalities per (population)-year
+* $\lambda$ The speed with which events occur: e.g., earthquakes per earth-day, or heart attacks or traffic fatalities per (population)-year. At a lower level, we might be interested in personal intensities, such as the mean number of tweets/waking-hour  a person issued during the year 2020, or the mean number of times per 100 hours of use a person's laptop froze and needed to be re-booted.
 
-These are shown in the leftmost column, and refer to a characteristic of the overall domain, such as entire surface of the earth, or the entire ocean, or population. There are no indicators for distinguishing among subdomains, so they refer to locations / persons not otherwise specified.
+These three parameters are shown in the leftmost column, and refer to a characteristic of the overall domain, such as entire surface of the earth, or the entire ocean, or population. There are no indicators for distinguishing among subdomains, so they refer to locations / persons not otherwise specified.
 
-## Contrasts involving these
+Especially for epidemiologic research, and also more generally, one can think  of $\pi$ and $\lambda$ as  _parameters of occurrence_. [Although the word occurrence usually has a time element, it can also be timeless: how frequently a word occurs in a static text, or a mineral in a rock.] Prevalence is the proportion in a current state, and the 5-year risk is the expected proportion or probability of being in a new state 5 years from now. The  parameter $\lambda$ measures the speed with which the  elements in question move from the original to the other state.
+
+Even though the depths of the ocean, and blood pressures, are measured on a _quantitative_ (rather than on all or none) scale, one can divide the scale into a finite number of bins/caterories, and speak of the prevalence (proportion) in each category. Conversely, one can use a set of descriptive parameters called quantiles, i.e, landmarks such that selected proportions, e.g., 0.05 or 5%, 25%, 50%, 75%, 95% of the distribution are to the left of ('below') these quantiles.
 
 
-* Parameter **contrast**:    
-.  
+**Occurence Parameters are not constants of nature** [OSM1995]
+
+
+>It has been noted in the philosophy of science that any science is concerned with functional relations of its objects (Friend and Feibleman, 1937). This proposition is quite evidently tenable for epidemiologic objects of research. Parameters of occurrence, such as the incidence rate for a particular illness, are not constants of nature. Rather, their magnitudes generally depend on — are functions of — a variety of characteristics of individuals — constitutional, behavioral, and/or environmental. Such relations, even if only remotely credible, are generally the objects of medical occurrence research. For example, one is quite usually interested in learning whether the rate of occurrence of some particular illness depends on (is related to or is a function of) gender — regardless of whether there is any express reason to surmise that it might be.
+
+>EXAMPLE 1.5 The prevalence of any given blood type based on the ABO antigen system,, while constant over gender and essentially constant over age, is not a constant of nature. It varies by ethnic groupings, for example. Thus the prevalence must be quantified in relation to—as a function of—ethnic group.
+
+>EXAMPLE 1.6. For the occurrence of various values of blood pressure among people, one descriptive parameter is the median of the pressure. (This is a value such that the prevalence of its exceedance is 50%.) This parameter, again, is not a constant of nature but depends on age and other characteristics  of individuals. For the quantitative nature of the age relation of systolic blood pressure, a rule of thumb used to be that it is, in mm Hg, 100 plus age in years." This rule expresses a regression model - a **regression function** - of the form P=A + B x Age. In this example, P, the occurrence parameter, is the median of systolic blood pressure, A = 100 mm Hg, and B = 1 mm Hg/yr.
+
+>The characteristics on which the magnitude of an occurrence parameter depends (causally or otherwise) are **determinants** of the parameter. Thus, in the examples given above, ethnic grouping is a determinant of prevalence of any given blood type, and age is a determinant of the median of systolic blood pressure.
+
+>"Determinant" has no implication as to causality in science — any more than in everyday locution: the current age of a person is "determined" by his/her year of birth (noncausally), just as the expected outcome of a disease is "determined" by the treatment that is used (causally). The relation of an occurrence measure to a determinant, or a set of determinants, is naturally termed an occurrence relation or an occurrence function. These relations are in general the objects of epidemiologic research. [Even though the general inconstancy of occurrence parameters leads to the consideration of occurrence relations, this latter outlook affords only a partial accommodation of the inconstancy, because occurrence relations the degree also vary according to the type of individual. In particular, measures of a relation (Appendix 2) have determinants of their own.]
+
+
+
+We now move on to the parameter relations we will be concerned with, beginning with the simplest type.
+
+## Contrasts involving parameters
+
+In applied research, we are seldom interested in a single constant. Much more often we are interested in the contrast (difference) between the parameter values in  different contexts/locations (Northern hemisphere vs Southern hemisphere), conditions/times (reaction times using the right versus left hand, or  behaviour on weekdays versus weekends), or sub-domains or sub-populations (females vs males).  Contrasts involving 'persons, places, and times' have a long history in epidemiology.
+
+In this section, we will limit our attention to 'contrasts': a  compariosn of the parameter values between 2 contexts/locations/sub-populations. Thus (unlike in OSM's example 1.6) the parameter  function has just 2  possible 'input' values. The next section will address more general parameter functions. 
+
+
+### 'Reference' and 'Index' categories
+
+In many research contexts, the choice of 'reference' category (starting point, the category against which the other category is compared)  will be obvious: it is the status quo (standard care, prevailing condition or usual situation, dominant hand, better known category). The 'index' category is the  category one is curious about and wishes to learn more about, by contrasting its parameter value with the parameter value for the reference category.  
+\ \ \ \ In other contexts, it is less obvious which category should serve as the reference and the index categories, and the choice may be merely a matter of persepctive. If one is more famiar with the Northern hemisphere, it serves as a natural starting point (or 'corner' to use the terminology of Clayton and Hills, or reference category). The choice of reference category in a longevity contrast between males and females, or in-hospital mortality rates or motor vehicle fatality rates during weekends versus weekdays, might depend on what mechanism one wishes to bring out. Or one might close as the reference category the one with the larger amount of experience, or maybe the one with the lower parameter value, so that the 'index minus reference' difference would be a positive quantity, or the 'index: reference ratio'  exceeds 1.
+
+### Terminology
+
+Before we go on, we need to adopt sensible terminology for referring generically to the states, traits, conditions or behaviours  whose category-specific parameter values are being compared. Following OSM (see above) we will use the term  `**determinant**'. It has several advantages over the many other terms used in different disciplines, such as exposure, agent,  independent/explanatory variable, experimental condition, treatment, intervention, factor, risk factor, predictor.
+
+The main advantage is that it is broader, and closer to  causally neutral in its connotaion. _Exposure_ has environmental connotations, and technically refers to an opportity to injest or mentally take on board a substance or message.  _Agent_ has causal connotations. The term _independent variable_ suggests the investigator has control over it in a laboratory setting. The term _explanatory_ is  ambiguous as to the mechanism by which the parameter value in the index category got to be different from the value in the index category. Not all contrasts are experimentally formed. The term _factor_, and thus the term _risk factor_, are to be avoided because the word factor derives from the Latin _facere_, (the action of) doing, making, creating. _Predictor_ makes one think of the future. The term _regressor_ (or its shorthand, the 'X' ) won't be understood by lay people.
+
+While the word 'determine' can suggest causality (e.g., demand determines the price), it also refers to 'fixing the form, position, or character of beforehand': two points determine a straight line; the area of a circle is determined by its radius.
+There is considerable philosophical debate as to whether something 'causes' something else. Some would argue that the extent to which genetics determines one's personality is a causal concept. Others argue that since one cannot cannot consider the alternative, ones biological sex or age can not be considered a causal determinant or a risk factor (in the strict causal meaning of the word). They prefer to refer to them as risk _indicators_. 
+
+
+### Expressing parameter contrasts in math: 
+
+### Expressing parameter contrasts in math: 
+
 e.g., Northern hemisphere vs Southern hemisphere. If we take Northern to be the index category, and Southern to be the reference category, then these categories are represented/indicated by the indicator  North=1 (i.e. Northern) and North = 0 (i.e. Southern, i.e., not Northern).  
 .  
 In a Males versus Females contrast, say we take Males to be the index category, and Females to be the reference category. Then these are  represented/indicated by  Male = 1 (i.e. males) vs. Male = 0 (i.e. not-males, i.e., females);  
 .  
 Instead of placing the 2 category-specific parameters over top of 2 nominal labels (Reference and Index, generically), suppose we place them over top of the 2 values (0 and 1) of the indicator variate. 
 
-* Parameter **gradient**: over (quantitative) levels of a variate. 
+## Parameter **gradients** 
+
+over (quantitative) levels of a determinant variate. 
 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=4, warning=FALSE, message=F, out.width = "98%", fig.pos="h"}
@@ -38,6 +84,7 @@ knitr::include_graphics("images/Grid.png")
 
 ```
 
+as X increasesa 
 
 **Notes**
 
@@ -45,8 +92,7 @@ knitr::include_graphics("images/Grid.png")
 
 * In setting (column) 2, there are 2 parameters, one for the reference category and one for the index category. How they relate to each other can be can be expressed in a number of different ways. A common and useful way is via a **parameter equation** that contains a parameter for the reference category and a comparative parameter (some measure of the difference between the two parameters) -- the latter is often of most interest
 
-* In setting (column) 3, the **parameter equation** traces the parameter over a continuum, using as many coefficients as are needed
-
+* In setting (column) 3, the **parameter equation** traces the parameter over a continuum, using as many coefficients as are needed.
 
 >**Linear model**: Formulation of the mean/‘expectation’ of (the distribution of) a random variate (Y) as a linear compound of a set $B_0 , B_1  , B_2   , \dots$ of parameters: as $B_0 + B_1  X_1 + B_2  X_2 + \dots$  [OSM2011, p54]
 
@@ -55,11 +101,16 @@ knitr::include_graphics("images/Grid.png")
 So, the ‘general linear model’ is linear in the sense that the dependent parameter, M, is formulated as a linear compound of the independent parameters B0, B1, etc., the coefficients in this linear compound being 1, X1, etc. The model is, in this way, ‘linear in the parameters.’ [MSH2018, p65]
 
 The form of the ‘analysis-of-variance’ model in this simple example is: M = B0 + B1X1 + B2 X2 ,
+
 7.1 The Precursors of the General Linear Model 63
+
 where M is the mean of Y and the two independent variates are indicators of two particular ones of the three ethnic categories. One possibility in this framework is to take X1 and X2 to be indicators of Category 2 and Category 3, respectively – an indicator variate being one that takes on the value 1 for the category it indicates, 0 otherwise.
-In terms of this model, B0 is the value of M when X1 = X2 = 0, that is, for Category 1 (i.e., B0 = M1); and for Category 2 and Category 3 the values of M are represented byB0 +B1 andB0 +B2,respectively(i.e.,M2 =B0 +B1,andM3 =B0 +B2).Thus,the difference between M1 and M2 is represented by B1; B2 represents the difference between M1 and M3; and the difference between M2 and M3 is the difference between B1 and B2.
+
+In terms of this model, B0 is the value of M when X1 = X2 = 0, that is, for Category 1 (i.e., B0 = M1); and for Category 2 and Category 3 the values of M are represented by B0 +B1 and B0 +B2,respectively(i.e.,M2 =B0 +B1,andM3 =B0 +B2).Thus,the difference between M1 and M2 is represented by B1; B2 represents the difference between M1 and M3; and the difference between M2 and M3 is the difference between B1 and B2.
+
 In this ‘analysis-of-variance’ framework it is feasible to accommodate, jointly, whatever number of nominal-scale determinants of the magnitude of the mean of the dependent variate. A simple example of this is the addition of the two categories of gender for consideration jointly with the three categories of ethnicity. These two determinants jointly imply a single nominal-scale determinant with six categories (as each of the three categories of ethnicity is split into two subcategories based on gender).
-When involved in the definition of the independent variates is only a single deter- minant, the model is said to be for ‘one-way analysis of variance’; with two deter- minants the corresponding term (naturally) is ‘two-way analysis of variance’; etc.
+
+When involved in the definition of the independent variates is only a single determinant, the model is said to be for ‘one-way analysis of variance’; with two determinants the corresponding term (naturally) is ‘two-way analysis of variance’; etc.
 
 
 A **limiting** – ‘degenerate’ – **case** [...] is, naturally, of the form of M = B, involving no indicators for distinguishing among subdomains of the referent domain of the distribution, say adults not otherwise specified. [MSH2018, p63]

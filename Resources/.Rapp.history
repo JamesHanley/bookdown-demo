@@ -1,0 +1,1270 @@
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          as.numeric(#
+           year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],2,5) )#
+         }#
+    } # #
+} # page
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = as.numeric(#
+                    substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],2,5) )#
+         }#
+    } # #
+} # page
+year
+warnings
+warnings()
+substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],2,5)
+for(i in 1:L){#
+          year = as.numeric(#
+                    substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],2,5) )#
+         }
+year
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],2,5) #
+         }#
+    } # #
+} # page
+year
+Year=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],2,5) #
+          Year = c(Year,year)#
+         }#
+    } # #
+} # page
+Year
+Year=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          Year = c(Year,year)#
+         }#
+    } # #
+} # page
+Year
+Year=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" year = substr(year,2,5)#
+          Year = c(Year,year)#
+         }#
+    } # #
+} # page
+Year=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©") year = substr(year,2,5)#
+          Year = c(Year,year)#
+         }#
+    } # #
+} # page
+Year
+Year=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          Year = c(Year,year)#
+         }#
+    } # #
+} # page
+Year
+Year=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©") year = substr(year,2,5)#
+          if(substr(year,1,1)=="[]") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          Year = c(Year,year)#
+         }#
+    } # #
+} # page#
+Year
+Year=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          if(substr(year,1,1)=="[]") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          Year = c(Year,year)#
+         }#
+    } # #
+} # page#
+Year
+Year=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          if(substr(year,1,1)=="[") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          Year = c(Year,year)#
+         }#
+    } # #
+} # page#
+Year
+Year=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          if(substr(year,1,1)=="[") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          Year = c(Year,year)#
+         }#
+    } # #
+} # page#
+Year
+Year=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          if(substr(year,1,1)=="[") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          Year = c(Year,year)#
+         }#
+    } # #
+} # page#
+Year
+url0="https://mcgill.on.worldcat.org/search?queryString=kw:(biostatistics)&databaseList=638,283&sortKey=LIBRARY&clusterResults=true&scope=wz:12129&format=Book&subformat=Book::book_thsis&subformat=Book::book_digital&subformat=Book::book_printbook&page="#
+library(RCurl)
+tag="\t\t\t<td>"#
+tag.k=nchar(tag)#
+#
+Year=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          if(substr(year,1,1)=="[") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          Year = c(Year,year)#
+         }#
+    } # #
+} # page#
+Year
+txt
+title = substr(strsplit(txt[i],#
+           ""title=\"")[[1]]
+txt[i]
+substr(strsplit(txt[i],"title=")
+strsplit(txt[i],"title=")
+TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];
+page
+url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];
+L = length(txt)
+txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)
+i=1
+year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          if(substr(year,1,1)=="[") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)
+txt[i]
+strsplit(txt[i],"<a     class=\"record-title\"")
+title = strsplit(txt[i],"<a     class=\"record-title\"") [[1]][2]
+title
+title = strsplit(txt[i],"</a>")[[1]]
+title
+title = strsplit(txt[i],"<a     class=\"record-title\"") [[1]][2]
+title
+title = strsplit(txt[i],"<a     class=\"record-title\"") [[1]][2]
+title
+title = strsplit(txt[i],"<a     class=\"record-title\"") [[1]]
+title
+txt = txt[ grepl("Explore all editions",txt) ]
+txt
+i
+year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          if(substr(year,1,1)=="[") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)
+year
+title = strsplit(txt[i],"<a     class=\"record-title\"") [[1]]
+title
+title = strsplit(txt[i],"detailed-record") [[1]]
+title
+title = strsplit(txt[i],"detailed-record") [[1]][2]
+title
+title = strsplit(txt[i],"title=")[[1]]
+title
+title = strsplit(txt[i],"detailed-record") [[1]][2]#
+          title = strsplit(txt[i],"title=")[[1]][3]
+title
+title = strsplit(txt[i],"detailed-record") [[1]][2]#
+          title = strsplit(txt[i],"title=")[[1]][3]
+title = strsplit(txt[i],">")[[1]]
+title
+title = strsplit(txt[i],"detailed-record") [[1]][2]
+title = strsplit(txt[i],"<a     class=\"record-title\")
+title
+title = strsplit(txt[i],"detailed-record") [[1]][2]
+title = strsplit(txt[i],"<a     class=\"record-title\")
+title = strsplit(txt[i],"detailed-record") [[1]][2]
+title
+title = strsplit(title,"<a     class=\"record-title\")
+title
+title = strsplit(txt[i],"detailed-record") [[1]][2]
+title
+title = strsplit(txt[i],"detailed-record") [[1]][2]
+title = strsplit(title,"</a}")
+title
+title = strsplit(txt[i],"detailed-record") [[1]][2]
+title = strsplit(title,"</a>")
+title
+title = strsplit(title,"</a>")[[1]]
+title
+tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]
+strsplit(tx[1],">")
+strsplit(tx[1],">") [[1]]
+title = strsplit(tx[1],">") [[1]] [2]
+title
+au = strsplit(tx[2],">") [[1]] [2]
+au
+tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]
+tx[2]
+strsplit(tx[2],">") [[1]]
+au = strsplit(tx[2],"">") [[1]] [2]
+au = strsplit(tx[2],"">""") [[1]] [2]
+au = strsplit(tx[2],"">"") [[1]] [2]
+au
+au = strsplit(tx[2],">") [[1]]
+tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]
+au
+au = au[length(au)]
+au
+Year=NULL#
+AU=NULL#
+Title=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          if(substr(year,1,1)=="[") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          Year = c(Year,year)#
+          Au   = c(Au,au)#
+          Title   = c(Title,title)#
+         }#
+    } # #
+} # page#
+cbind(Year,Title,Au)
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          if(substr(year,1,1)=="[") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          Year = c(Year,year)#
+          Au   = c(Au,au)#
+          Title   = c(Title,title)#
+         }#
+    } # #
+} # page#
+cbind(Year,Title,Au)
+seq(11,1210,10)
+pre="\makebox[\linewidth]{\includegraphics[page="
+for(page in seq(11,1210,10)) {#
+	x = paste(pre,toString(page),post,sep="")#
+	print(noquote(x))#
+}
+pre="\makebox[\linewidth]{\includegraphics[page="#
+post=",width=0.29\paperwidth,trim=0.2cm 33.31cm 0.4cm 0.127cm,clip]{2018Book.pdf}}"#
+#
+for(page in seq(11,1210,10)) {#
+	x = paste(pre,toString(page),post,sep="")#
+	print(noquote(x))#
+}
+page
+x = paste(pre,toString(page),post,sep="")
+pre="\makebox[\linewidth]{\includegraphics[page="
+pre="\\makebox[\linewidth]{\includegraphics[page="
+pre="makebox[\linewidth]{\includegraphics[page="
+s="\"
+s
+s="\\"
+s
+s="\"
+s='\'
+s='\\'
+s="\\"
+s
+"\"
+"\\"
+"\\\"
+pre="$makebox[$linewidth]{$includegraphics[page="#
+post=",width=0.29\paperwidth,trim=0.2cm 33.31cm 0.4cm 0.127cm,clip]{2018Book.pdf}}"#
+#
+for(page in seq(11,1210,10)) {#
+	x = paste(pre,toString(page),post,sep="")#
+	print(noquote(x))#
+}
+pre="$makebox[$linewidth]{$includegraphics[page="#
+post=",width=0.29$paperwidth,trim=0.2cm 33.31cm 0.4cm 0.127cm,clip]{2018Book.pdf}}"#
+#
+for(page in seq(11,1210,10)) {#
+	x = paste(pre,toString(page),post,sep="")#
+	print(noquote(x))#
+}
+pre="$makebox[$linewidth]{$includegraphics[page="#
+post="width=0.10\paperwidth,trim=3cm 33.3cm  15.3cm 1.8cm,clip]{2018Book.pdf}}"#
+#
+for(page in seq(11,1210,10)) {#
+	x = paste(pre,toString(page),post,sep="")#
+	print(noquote(x))#
+}
+for(page in seq(11,1210,10)) {#
+	x = paste("Page",toString(page),#
+	pre,toString(page),post,sep="")#
+	print(noquote(x))#
+}
+for(page in seq(11,1210,10)) {#
+	x = paste("Page ",toString(page)," "#
+	pre,toString(page),post,sep="")#
+	print(noquote(x))#
+}
+for(page in seq(11,1210,10)) {#
+	x = paste("Page ",toString(page)," ",#
+	pre,toString(page),post,sep="")#
+	print(noquote(x))#
+}
+for(page in seq(11,1210,50)) {#
+	x = paste("Page ",toString(page)," ",#
+	pre,toString(page),post,sep="")#
+	print(noquote(x))#
+}
+?print
+for(page in seq(11,1210,50)) {#
+	x = paste("Page ",toString(page)," ",#
+	pre,toString(page),post,sep="")#
+	cat(noquote(x))#
+}
+for(page in seq(11,1210,50)) {#
+	x = paste("Page ",toString(page)," ",#
+	pre,toString(page),post,"\n",sep="")#
+	cat(noquote(x))#
+}
+pre="$makebox[$linewidth]{$includegraphics[page="#
+post="width=0.10\paperwidth,trim=3cm 33.3cm 15.3cm 1.8cm,clip]{2018Book.pdf}}"#
+#
+for(page in seq(11,1210,50)) {#
+	x = paste("Page ",toString(page)," ",#
+	pre,toString(page),post,"\n",sep="")#
+	cat(noquote(x))#
+}
+post="width=0.10$paperwidth,trim=3cm 33.3cm 15.3cm 1.8cm,clip]{2018Book.pdf}}"
+for(page in seq(11,1210,50)) {#
+	x = paste("Page ",toString(page)," ",#
+	pre,toString(page),post,"\n",sep="")#
+	cat(noquote(x))#
+}
+pre="$makebox[$linewidth]{$includegraphics[page="#
+post=",width=0.10$paperwidth,trim=3cm 33.3cm 15.3cm 1.8cm,clip]{2018Book.pdf}}"#
+#
+for(page in seq(11,1210,50)) {#
+	x = paste("Page ",toString(page)," ",#
+	pre,toString(page),post,"\n",sep="")#
+	cat(noquote(x))#
+}
+pre="$makebox[$linewidth]{$hspace*{-20cm}$includegraphics[page="#
+post=",width=0.10$paperwidth,trim=3cm 33.3cm 15.3cm 1.8cm,clip]{2018Book.pdf}}"#
+#
+for(page in seq(11,1210,10)) {#
+	x = paste("Page ",toString(page)," ",#
+	pre,toString(page),post,"\n",sep="")#
+	cat(noquote(x))#
+}
+241929*(1:4)/100
+round(241929*(1:4)/100)
+url0="https://mcgill.on.worldcat.org/search?queryString=kw:(biostatistics)&databaseList=638,283&sortKey=LIBRARY&clusterResults=true&scope=wz:12129&format=Book&subformat=Book::book_thsis&subformat=Book::book_digital&subformat=Book::book_printbook&page="#
+library(RCurl)#
+tag="\t\t\t<td>"#
+tag.k=nchar(tag)#
+#
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          if(substr(year,1,1)=="[") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          Year = c(Year,year)#
+          Au   = c(Au,au)#
+          Title   = c(Title,title)#
+         }#
+    } # #
+} # page#
+cbind(Year,Title,Au)
+tag="\t\t\t<td>"#
+tag.k=nchar(tag)#
+#
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:1 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5) #
+          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
+             substr(year,2,5)#
+          if(substr(year,1,1)=="[") year = substr(year,2,5)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          Year = c(Year,year)#
+          Au   = c(Au,au)#
+          Title   = c(Title,title)#
+         }#
+    } # #
+} # page#
+cbind(Year,Title,Au)
+i=1
+year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,5)
+year
+year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,10)
+txt[i]
+strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2]
+substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,10)
+year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,9)
+if(substr(year,4,4)==".") year =  substr(year,6,9)
+year
+year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,9)
+year
+if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)
+year
+year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,9)
+year
+if(substr(year,4,4)==".") year =  substr(year,6,9)
+year
+tag="\t\t\t<td>"#
+tag.k=nchar(tag)#
+#
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:1 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,9) #
+          if(substr(year,4,4)==".") year =  substr(year,6,9)#
+          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          Year = c(Year,year)#
+          Au   = c(Au,au)#
+          Title   = c(Title,title)#
+         }#
+    } # #
+} # page#
+cbind(Year,Title,Au)
+tag="\t\t\t<td>"#
+tag.k=nchar(tag)#
+#
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,9) #
+          if(substr(year,4,4)==".") year =  substr(year,6,9)#
+          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          Year = c(Year,year)#
+          Au   = c(Au,au)#
+          Title   = c(Title,title)#
+         }#
+    } # #
+} # page#
+cbind(Year,Title,Au)
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:5 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(L)#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,9) #
+          if(substr(year,4,4)==".") year =  substr(year,6,9)#
+          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          Year = c(Year,year)#
+          Au   = c(Au,au)#
+          Title   = c(Title,title)#
+         }#
+    } # #
+} # page#
+cbind(Year,Title,Au)
+hist(as.numeric(Year))
+url0="https://mcgill.on.worldcat.org/search?queryString=kw:(biostatistics)&databaseList=638,283&sortKey=LIBRARY&clusterResults=true&scope=wz:12129&subformat=Book::book_digital&subformat=Book::book_printbook&page="
+url0="https://mcgill.on.worldcat.org/search?queryString=kw:(biostatistics)&databaseList=638,283&sortKey=LIBRARY&clusterResults=true&scope=wz:12129&subformat=Book::book_digital&subformat=Book::book_printbook&page="
+library(RCurl)#
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:10 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(c(page,L))#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,9) #
+          if(substr(year,4,4)==".") year =  substr(year,6,9)#
+          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          Year = c(Year,year)#
+          Au   = c(Au,au)#
+          Title   = c(Title,title)#
+         }#
+    } # #
+} # page#
+cbind(Year,Title,Au)
+843/5
+ceiling(843/5)
+library(RCurl)#
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:169 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(c(page,L))#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,9) #
+          if(substr(year,4,4)==".") year =  substr(year,6,9)#
+          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+          if(substr(year,5,5)=="<") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          Year = c(Year,year)#
+          Au   = c(Au,au)#
+          Title   = c(Title,title)#
+         }#
+    } # #
+} # page
+ceiling(843/10)
+hist(as.numeric(Year))
+hist(as.numeric(Year),breaks=100)
+ds = data.frame(Year=as.numeric(Year),Title=Title,Author=Author)
+hist(ds$Year,breaks=100)
+hist(ds$Year,breaks=100)
+str(ds)
+ds = data.frame(Year=as.numeric(Year),Title=Title,Author=Author)
+Year=as.numeric(Year
+as.numeric(Year)
+Year
+ceiling(843/10)
+library(RCurl)#
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:85 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(c(page,L))#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,10) #
+          if(substr(year,4,4)==".") year =  substr(year,6,9)#
+          if(substr(year,5,5)==".") year =  substr(year,7,10)#
+          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+          if(substr(year,5,5) %in% c("<","?"," ","]","-") year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          Year = c(Year,year)#
+          Au   = c(Au,au)#
+          Title   = c(Title,title)#
+         }#
+    } # #
+} # page
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:85 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(c(page,L))#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,10) #
+          if(substr(year,4,4)==".") year =  substr(year,6,9)#
+          if(substr(year,5,5)==".") year =  substr(year,7,10)#
+          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+          if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          Year = c(Year,year)#
+          Au   = c(Au,au)#
+          Title   = c(Title,title)#
+         }#
+    } # #
+} # page
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Author)
+str(ds)
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Author)
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au)
+str(ds)
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,as.is=TRUE)
+str(ds)
+?data.frame
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)
+str(ds)
+as.numeric(Year)
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
+ds=ds[ !is.na(ds$Year), ]
+str(ds)
+summary(ds)
+hist(ds$Year,breaks=100)
+ds[ds$Year<1950,]
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
+ds=ds[ !is.na(ds$Year) , ]#
+ds=ds[ds$Year >= 1950 , ]#
+str(ds)#
+summary(ds)
+hist(ds$Year,breaks=100)
+summary(ds)
+hist(ds$Year,breaks=70)
+ds[ds$Year<1960,]
+ds[ds$Year<1960,2]
+ds[ds$Year<1980,2]
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
+ds=ds[ !is.na(ds$Year) , ]#
+ds=ds[ds$Year >= 1960 , ]#
+str(ds)#
+summary(ds)#
+hist(ds$Year,breaks=60)
+ds[ds$Year<1980,2]
+grepl("iostatistic",Title)
+ds[ds$Year<1980,2]
+Title[1]
+grepl("iostatistic", Title[1] )
+Title[110]
+grepl("iostatistic", Title[210] )
+Title[210]
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:85 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(c(page,L))#
+         for(i in 1:L){#
+          year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,10) #
+          if(substr(year,4,4)==".") year =  substr(year,6,9)#
+          if(substr(year,5,5)==".") year =  substr(year,7,10)#
+          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+          if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
+          if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+          tx = strsplit(tx,"</a>")[[1]]#
+          title = strsplit(tx[1],">") [[1]] [2]#
+          au = strsplit(tx[2],">") [[1]]#
+          au = au[length(au)] #
+          if( grepl("iostatistic", Title[210] ) {#
+              Year = c(Year,year)#
+              Au   = c(Au,au)#
+              Title   = c(Title,title)#
+          }              #
+          }#
+         }#
+    } # #
+} # page
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:85 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(c(page,L))#
+         for(i in 1:L){#
+           year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,10) #
+           if(substr(year,4,4)==".") year =  substr(year,6,9)#
+           if(substr(year,5,5)==".") year =  substr(year,7,10)#
+           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
+           if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+           tx = strsplit(tx,"</a>")[[1]]#
+           title = strsplit(tx[1],">") [[1]] [2]#
+           au = strsplit(tx[2],">") [[1]]#
+           au = au[length(au)] #
+           if( grepl("iostatistic", Title[210] ) {#
+              Year = c(Year,year)#
+              Au   = c(Au,au)#
+              Title   = c(Title,title)#
+           }              #
+         } # i#
+    } # L > 0#
+} # page
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:85 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(c(page,L))#
+         for(i in 1:L){#
+           year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,10) #
+           if(substr(year,4,4)==".") year =  substr(year,6,9)#
+           if(substr(year,5,5)==".") year =  substr(year,7,10)#
+           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
+           if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+           tx = strsplit(tx,"</a>")[[1]]#
+           title = strsplit(tx[1],">") [[1]] [2]#
+           au = strsplit(tx[2],">") [[1]]#
+           au = au[length(au)] #
+           if( grepl("iostatistic", Title[210] ) ) {#
+              Year = c(Year,year)#
+              Au   = c(Au,au)#
+              Title   = c(Title,title)#
+           }              #
+         } # i#
+    } # L > 0#
+} # page
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:85 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(c(page,L))#
+         for(i in 1:L){#
+           year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,10) #
+           if(substr(year,4,4)==".") year =  substr(year,6,9)#
+           if(substr(year,5,5)==".") year =  substr(year,7,10)#
+           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
+           if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+           tx = strsplit(tx,"</a>")[[1]]#
+           title = strsplit(tx[1],">") [[1]] [2]#
+           au = strsplit(tx[2],">") [[1]]#
+           au = au[length(au)] #
+           if( grepl("iostatistic", title ) ) {#
+              Year = c(Year,year)#
+              Au   = c(Au,au)#
+              Title   = c(Title,title)#
+           }              #
+         } # i#
+    } # L > 0#
+} # page
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
+ds=ds[ !is.na(ds$Year) , ]
+str(ds)
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
+ds=ds[ !is.na(ds$Year) , ]#
+str(ds)#
+summary(ds)
+hist(ds$Year,breaks=77)
+ds[ds$Year<1980,2]
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:85 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(c(page,L))#
+         for(i in 1:L){#
+           year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,10) #
+           if(substr(year,4,4)==".") year =  substr(year,6,9)#
+           if(substr(year,5,5)==".") year =  substr(year,7,10)#
+           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
+           if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+           tx = strsplit(tx,"</a>")[[1]]#
+           title = strsplit(tx[1],">") [[1]] [2]#
+           au = strsplit(tx[2],">") [[1]]#
+           au = au[length(au)] #
+           if(  grepl("iostatistic", title   ) &#
+               !grepl("iostatistic", summary ) ) {#
+              Year = c(Year,year)#
+              Au   = c(Au,au)#
+              Title   = c(Title,title)#
+           }              #
+         } # i#
+    } # L > 0#
+} # page
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:85 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(c(page,L))#
+         for(i in 1:L){#
+           year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,10) #
+           if(substr(year,4,4)==".") year =  substr(year,6,9)#
+           if(substr(year,5,5)==".") year =  substr(year,7,10)#
+           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
+           if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+           tx = strsplit(tx,"</a>")[[1]]#
+           title = strsplit(tx[1],">") [[1]] [2]#
+           au = strsplit(tx[2],">") [[1]]#
+           au = au[length(au)] #
+           if(  grepl("iostatistic", title   ) &#
+               !grepl("summary", title ) ) {#
+              Year = c(Year,year)#
+              Au   = c(Au,au)#
+              Title   = c(Title,title)#
+           }              #
+         } # i#
+    } # L > 0#
+} # page
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
+ds=ds[ !is.na(ds$Year) , ]#
+str(ds)#
+summary(ds)
+hist(ds$Year,breaks=70)
+ds[ds$Year<1980,2]
+ds[ds$Year<2020,2]
+Year=NULL#
+Au=NULL#
+Title=NULL#
+for (page in 1:85 ){#
+	url=paste(url0,toString(page), sep="")#
+	TXT = getURL(url)#
+    txt=strsplit(TXT,"\n")[[1]];   #
+    L = length(txt)#
+    if(L > 0){ 	#
+         txt = txt[ grepl("Explore all editions",txt) ]#
+         L = length(txt)#
+         print(c(page,L))#
+         for(i in 1:L){#
+           year = substr(strsplit(txt[i],#
+           "<dd class=\"publication-year\">")[[1]][2],1,10) #
+           if(substr(year,4,4)==".") year =  substr(year,6,9)#
+           if(substr(year,5,5)==".") year =  substr(year,7,10)#
+           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
+           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
+           if(substr(year,1,1)=="©" ) year = #
+             substr(year,2,5)#
+           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
+           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
+           tx = strsplit(tx,"</a>")[[1]]#
+           title = strsplit(tx[1],">") [[1]] [2]#
+           au = strsplit(tx[2],">") [[1]]#
+           au = au[length(au)] #
+           if(  grepl("iostatistic", title   ) &#
+               !grepl("summary", title ) &#
+               !grepl("eport",   title ) &#
+               !grepl("fishery", title ) &#
+               !grepl("animal", title  ) &#
+               !grepl("aging", title   ) &#
+               !grepl("&amp", title    ) &#
+               !grepl("roceed", title  ) &#
+               !grepl("eeting", title  ) &#
+               !grepl("Writing", title ) &#
+               !grepl("ocompu", title  ) &#
+               !grepl("dvances", title ) &#
+               !grepl("rontier", title ) &#
+               !grepl("mposium", title )   ) {#
+              Year = c(Year,year)#
+              Au   = c(Au,au)#
+              Title   = c(Title,title)#
+           }              #
+         } # i#
+    } # L > 0#
+} # page
+ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
+ds=ds[ !is.na(ds$Year) , ]#
+str(ds)#
+summary(ds)#
+hist(ds$Year,breaks=70)
+ds[ds$Year<2020,2]
+summary(ds)
+hist(ds$Year,breaks=56)
+write.table(ds,"BiostatisticsTextsMcGillLibrary.txt")
+getwd()
+setwd("/Users/jameshanley/git-repos/bookdown-demo/Resources/")
+setwd("/Users/jameshanley/git_repos/bookdown-demo/Resources/")
+lib()
+dir()
+write.table(ds,"BiostatisticsTextsMcGillLibrary.txt")
+dir()

@@ -1,16 +1,161 @@
-# Computing Week1 {#computing01}
+# Computing Week 1 {#computing01}
 
-## R Studio - orientation  
+The **'computing' objectives** are to learn how to use `R` to put series of observations into vectors, and how to plot one series against another.
 
-## R Basics     
+The **'statistical' objective** of this exercise is to understand the concept of a distribution of a numerical characteristic (here an amount of elapsed time), and the various numbers describing its 'central' location and spread, and other 'landmarks'. You will also be introduced (in the next section) to 2 functions that give a more complete description of a distribution.
 
-Best site UCLA   videos...  
+## Biological background
 
-### Calculations
+Later on we will examine climate trends using unusual datasets, which suggest that over the last few centuries, winter tends to end earlier, and plants tend to flower earlier.
 
-### Graphics
+One such dataset arose as part of a long-running contest, the [Nenana Ice Classic](http://www.nenanaakiceclassic.com)
+More [here](http://www.john-daly.com/nenana.htm)
 
-### Data frames
+## Statistical Task
 
-### Exercises  (weekly)
+You are asked to approximate and carefully examine the distribution of guesses in 2018, contained in the Book of Guesses for that year. 
+
+For now, we will measure the guesses (and eventually the actual time) as the numbers of days since the beginning of 2018. Thus a guess of Tuesday April 17 5:20 p.m. would be measured as 31 + 28 + 31 + 16 + (16 + 20/60)/24 = 106.6806 days since the beginning of 2018.
+
+It would be tedious to try to apply optical character recognition (OCR) to each of the  1210 pages in order to be able to computerize all of the almost 242,000 guesses. Instead, you are asked to reconstruct the distribution of the guesses in two more economical ways: 
+
+1. By determining, for  each  of the 36 days from April 10 to May 15 inclusive, the proportion, p, of guesses that are earlier than midnight on that date. [ In `R`, if p = 39.6% of the guesses were below xy.z days, we would write this as pGuessDistribution(xy.z) = 0.396. Thus, if we were dealing with the location  of a  value in a Gaussian ('normal') distribution, we would write `pnorm(q=110, mean = , sd = )` ] Once you have determined these 36 proportions (p's), plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
+
+2. By determining the 1st, 2nd, ... , 98th, 99th percentiles. These are specific examples of 'quantiles', or q's. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all guesses are below this value, and 1-q are above it. [ In `R`, if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a  Gaussian distribution with mean 130 and standard deviation 15, we would write `qnorm(p=0.4, mean = 130, sd = 15)`. ] Once you have determined them, plot the 99 p's (on the vertical axis) against the 99 (elapsed) times on the horizontal axis.
+
+### The p and q functions: an orientation
+
+The '**p**' function  tells us, for a given value of the characteristic, what **p**roportion of the distribution lies to the left of this specified value.
+
+The '**q**' (or quantile) function  tells us, for a given proportion p, what is the value of the characteristic such that that specified proportion p of the distribution lies to the left of this 'q' value.
+
+In the plot below, the values of the **p** function are shown on the vertical axis, in red, against the (in this case, equally-spaced) values of the characteristic, shown on the horizontal axis. You enter on the horizontal axis, and exit with an answer on the vertical axis.
+
+The **q** function (in blue) goes into the opposite direction. You enter at some proportion on the vertical axis, and exit with a value of the characteristic (a quantile) on the horizontal axis. In our plot, the proportions on the vertical axis are  equally-spaced. Percentiles and quartiles are a very specific sets of quantiles: they are obtained by finding the values that divide the distribution into 100 or into 4.  
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
+
+SHAPE = 5; SCALE=1.4
+values.of.characteristic = seq(0,25,1)
+p = pgamma(values.of.characteristic,shape=SHAPE,scale=SCALE)
+par(mfrow=c(1,1),mar = c(5,5,2,0.1))
+plot(values.of.characteristic,p,type="l",
+     cex.lab=2,
+     xlab="Value of characteristic",
+     ylab="p: proportion < indicated value",
+     ylim=c(-0.015,1), xlim=c(-1,25),
+     cex.axis=1.5)
+points(values.of.characteristic,p,pch=19,
+       col="red",cex=0.5)
+points(values.of.characteristic,rep(0,26),
+       pch=19,cex=0.5,col="red")
+for(x in c(5,8,12)){
+ arrows(x,0, x,p[x+1],col="red",length=0.08,angle=25 )
+ arrows(x,p[x+1],0, p[x+1],col="red",
+       length=0.08,angle=25)
+ text(0,p[x+1], toString(round(p[x+1],2)),
+     adj=c(1.05,0.5), cex=0.85 )
+ text(x,0, toString(x),
+     adj=c(0.5,1.3) )
+}
+
+p = seq(0.10,0.90,0.10) 
+q = qgamma(p,shape=SHAPE,scale=SCALE)
+points(q,p,pch=19,cex=0.5,col="blue")
+points(rep(0,9),p,pch=19,cex=0.5,col="blue")
+
+for(y in c(1,5,8)){
+arrows(0,p[y], q[y],p[y],
+       col="blue",length=0.08,angle=25 )
+arrows(q[y],p[y], q[y],0,  
+       col="blue",length=0.08,angle=25 )
+text(q[y],0, toString(round(q[y],1)),
+     adj=c(0.5,1.3) )
+text(0,p[y], sprintf("%.2f", p[y]),
+     adj=c(1.05,0.5), cex=0.85 )
+}
+
+x0=13 ; dx=1/2
+y0=0.1; dy = 4
+
+values=seq(0,25,0.01)
+d = dgamma(values,shape=SHAPE,scale=SCALE)
+lines(x0+values*dx,y0+d*dy,col="grey55")
+segments(x0,y0,x0+dx*max(values.of.characteristic),y0)
+for(x in c(0,5,12,20,25)) text(x0+x*dx,0.95*y0,toString(x),adj=c(0.5,1.1))
+x=seq(0,12,0.1)
+d = dgamma(x,shape=SHAPE,scale=SCALE)
+polygon(x0+dx*c(x,max(x),0),y0+dy*c(d,0,0),col="red",border=NA)
+P = pgamma(max(x),shape=SHAPE,scale=SCALE)
+text(x0+dx*max(x)/2,y0+dy*max(d)/3,sprintf("%.2f",round(P,2)),
+     adj=c(0.5,0.5), cex=1 )
+
+```
+
+### Exercises
+
+1. Once you have determined the 36 (cumulative) proportions (p's) adssociated with the 36 days, plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
+
+2. The 1st, 2nd, ... , 98th, 99th percentiles are not so easy to determine since you  have  to locate the 2419th, 4839th, 7258t, ... entries in the 1201-page Book of Guesses and  plot the 99 p's (on the vertical axis) against the 99 (elapsed) times (q's) on the horizontal axis.  Instead, use the first entry on each of pages 11, 21, ... in [this excerpt]. Using a different colour, plot these  slightly-more-dense quantiles on the horizontal axix against the following percentages:
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
+
+entries = 200*seq(10,1200,10) + 1
+percent = 100 * entries/241929
+noquote( paste(head(round(percent,1),10),collapse="%, ") )
+tail(round(percent,1),10)
+```
+
+3. Compare the Q$_{25}$, Q$_{50}$, and Q$_{75}$ obtained directly with the ones obtained by interpolation of the curve showing the results of the other method.
+
+4. Compare the directly-obtained proportions of guesses that are before April 20, April 30, and May 10  with the ones obtained by interpolation of the curve showing the results of  the other method.
+
+5. By successive subtractions, calculate the numbers of guesses in each 1-day bin, and make a histogram of them. From them, calculate the mean, the mode, and the standard deviation.
+
+6. (For a future assignment, but you can start thinking about how) From a random sample of 100 guesses from the book, estimate how many guesses in the entire book are PM.
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
+
+my.id = 800606
+set.seed(my.id)
+n = 50
+sample.entry.numbers = sample(x = 1:241929, size=n)
+sorted.sample.entry.numbers = sort(sample.entry.numbers)
+head(sorted.sample.entry.numbers,10)
+page.number = ceiling(sorted.sample.entry.numbers/200)
+within.page = sorted.sample.entry.numbers-200*(page.number-1)
+column.number = ceiling(within.page/100)
+row.number = within.page - 100*(column.number-1)
+
+dataset = data.frame(page.number,column.number,row.number)
+head(dataset)
+tail(dataset)
+
+```
+
+
+* How far off was the median guess in 2018 from the actual time? Answer in days, and (with reservations stated) as a percentage? {see the 2020 brochure }
+
+* Why did the experts at the country fair do so much better?
+
+* Where were the punters in 2019 with respect to the actual time?
+
+* Instead of measuring the guessed times from the beginning of the year, suppose that, as Fonseca et al did,  we  measure the guessed times from the spring equinox in Alaska, i.e. from 8:15 a.m. on Tuesday, March 20, 2018, Alaska time. In this scale, compute the mean guess, and the SD of the guesses.
+
+* Suppose, again, we  measure the guessed times from the spring equinox, but in weeks. In this scale, compute the mean guess, and the SD of the guesses.
+
+
+Some links on the 'Wisdom of Crowds'
+
+https://www.technologyreview.com/s/528941/forget-the-wisdom-of-crowds-neurobiologists-reveal-the-wisdom-of-the-confident/
+
+
+https://www.all-about-psychology.com/the-wisdom-of-crowds.html
+
+
+http://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf
+
+* How much warmer/colder in Nov-April is Monreal than Nenana?
+
 
