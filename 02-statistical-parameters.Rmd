@@ -47,7 +47,7 @@ There is considerable philosophical debate as to whether something 'causes' some
 
 We now move on to the parameter relations we will be concerned with, beginning with the simplest type.
 
-## Parameters Contrasts
+## Parameter Contrasts
 
 In applied research, we are seldom interested in a single constant. Much more often we are interested in the contrast (difference) between the parameter values in  different contexts/locations (Northern hemisphere vs Southern hemisphere), conditions/times (reaction times using the right versus left hand, or  behaviour on weekdays versus weekends), or sub-domains or sub-populations (females vs males).  Contrasts involving 'persons, places, and times' have a long history in epidemiology.
 
@@ -63,13 +63,13 @@ In many research contexts, the choice of 'reference' category (starting point, t
 ### Parameter relations in numbers and words
 
 To make this concrete, we will use hypothetical (and very round) numbers and pretend we 'know' the true parameter values -- in our example
-of the mean depth of the ocean in the Northern hemisphere (reference category) and Southern hemisphere (index category) -- to be 3,600 metres (3.6Km) and 4,400 metres (4.4Km) respectively. Thus, the difference (South minus North) is 800 metres or 0.8Km.
+of the mean depth of the ocean in the Northern hemisphere (reference category) and Southern hemisphere (index category) -- to be 3,600 metres (3.6Km) and 4,500 metres (4.5Km) respectively. Thus, the difference (South minus North) is 900 metres or 0.9Km.
 
 If we wished to show the two parameter values graphically, we might do so using the format in panel (a), which shows the 2 hemisphere-specific parameter values -- but forces the reader to calculate the difference.
 
 Panel (b) follows a more reader-friendy format, where the difference (the quantity of interest) is isolated:  the original 2 parameters are converted to 2 new, more relevant ones. 
 
-Panel (c) encodes the relation displayed in panel (b) in a single phrase that applies to both categories: Onto the 'starting value' of 3.8Km, one adds 0.8Km only if the  resulting parameter pertains to the Southern hemisphere. The 0.8Km is toggled off/on as one moves from North to South.    
+Panel (c) encodes the relation displayed in panel (b) in a **single phrase** that applies to **both** categories: Onto the 'starting value' of 3.8Km, one **adds** $\Delta \mu$ = 0.9 Km **only if** the  resulting parameter pertains to the Southern hemisphere. The 0.9 Km is toggled off/on as one moves from North to South.    
 
 
 
@@ -79,8 +79,8 @@ Panel (c) encodes the relation displayed in panel (b) in a single phrase that ap
 plot3 = function(row){
      par(mfrow=c(1,3),mar = c(0,0,0,0.5) )
      TOP="Mean Ocean\ndepth (Km)"
-     x=c(0.225,0.775)
-     mu = c(3.6,4.4)
+     x=c(0.225,0.775);; dx=0.025
+     mu = c(3.6,4.5)
      
      LABEL=c("North", "South")
      delta.mu = mu[2]-mu[1]
@@ -93,9 +93,47 @@ plot3 = function(row){
         rep(paste(toString(mu[1]),
                   " + ",toString(delta.mu),
                   " if South",sep=""),2)
-                  ),2,3) ) 
+                  ),2,3) )
+     
+     PARA.S = c( expression(mu[North]), 
+                 expression(mu[South]),
+                 expression(mu[North]),
+                 expression(mu[North] + Delta * mu),
+        expression(mu[S] == paste(mu[0] + Delta * mu ,
+	                                " ",textstyle(x)," S")),
+        expression(mu[S] == paste(mu[0] + Delta * mu ,
+	                                " ",textstyle(x)," S")),
         
-     SRT=35 
+        expression(mu[North]), 
+        expression(mu[South]),
+        expression(mu[North]),
+                 expression(mu[North] %*% Delta * mu),
+        
+        expression(mu[S] == paste(mu[0] %*% Delta * mu ,
+	                                " ",textstyle(x)," S")),
+        expression(mu[S] == paste(mu[0] %*% Delta * mu ,
+	                                " ",textstyle(x)," S"))
+        
+	            )
+        
+     PARA.R = c( toString(mu[1]),
+                 toString(mu[2]),
+                 toString(mu[1]),
+                 expression(3.6 %*% frac(4.5, 3.6) ),
+      rep(expression(
+         paste(3.6 %*% frac(4.5, 3.6)," if South")
+                    ), 2)
+               )
+     
+     PARA.RS = c(  expression(mu[North]), 
+                   expression(mu[South]),
+                   expression(mu[North]),
+  expression(mu[North] %*% frac(mu[South], mu[North]) ),
+  rep(expression(mu[S] == mu[0]
+                 %*% Ratio^s), 2)
+                )
+     
+     SRT=38 
      
      dy= 1
      for(co in 1:3){
@@ -104,6 +142,14 @@ plot3 = function(row){
          text(0, ceiling(mu[2]),
 	          c("(a)","(b)","(c)")[co],
 	          adj=c(0,0), cex=2)
+         
+         rect(x-dx,0,x+dx,mu,
+              col="lightblue",border=NA)
+         if(co>=2){
+           points(x[2],mu[1],cex=1)
+           polygon( c(x,x[2]), c(mu[1],mu),
+                    col=NA,border="grey50",lwd=0.75)
+         }
        
 	       if(co==1){
        arrows(x[1]-0.1,0,
@@ -114,10 +160,10 @@ plot3 = function(row){
 	          adj=c(1.25,0), srt=90, cex=2.0)
      }
 	     for( y in seq(0,ceiling(mu[2]),dy)){
-	     	segments(x[1], y, x[2],y, col="lightblue")
-	     	text(x[1]-0.015, y,toString(y),
+	     	segments(x[1], y, x[2],y, col="grey50",lty="dotted")
+	     	if (co == 1 & y %in% c(0,1,2,3,5) ) text(x[1]-dx, y,toString(y),
 	     	     adj=c(1,0.5),cex=1.5)
-	     	text(x[2]+0.015, y,toString(y), 
+	     	if(co == 3 & y %in% c(0,1,2,3,4)  ) text(x[2]+dx, y,toString(y), 
 	     	     adj=c(0,0.5), cex=1.5)
 	     	
 	     } 
@@ -125,30 +171,30 @@ plot3 = function(row){
 	     points(x,mu,pch=19,cex=0.75)
 	     for(j in 1:2){
 	       txt = PARA[co,j]
-	       if(row==2 & co == 1 & j==1) txt = 
-	           expression(mu[N])
-	       if(row==2 & co == 1 & j==2) txt = 
-	           expression(mu[S])
+	       if(row==2) txt = PARA.S[(co-1)*2+j]
+	       if(row==3) txt = PARA.R[(co-1)*2+j]
+	       if(row==4) txt = PARA.RS[(co-1)*2+j]
 	       
-	       if(row==2 & co == 2 & j==1) txt = 
-	           expression(mu[N])
-	       if(row==2 & co == 2 & j==2) txt = 
-	           expression(mu[S] + Delta * mu)
+	       xx = x[j]  - 0.00*(j==1) + 0.00*(j==2)
+	       if(co==3) xx = mean(x)
 	       
-	       if(row==2 & co == 3 ) txt = 
-	          expression(mu[S] == paste(mu[0] + Delta * mu ,
-	                                 " ",textstyle(x)," S"))
-	       
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), 
-	     	     mu[j] - 0.15,
-	     	     txt, 
-	                        adj=c(0.5, 0.5),
-	                        cex=1.75,srt=SRT)
-	     	  LAB = LABEL[j]
-	     	  if(row==2 & co == 3 ) LAB=c("0","1")[j]
+	       yy = mu[j] + 0.15 + 0.05*(row >= 3)
+	       if(co==3) yy =  mean(mu) +  0.15 + 
+	                       0.15*(row >= 3)
+	         
+	     	 text(xx, yy, txt,  adj=c(0.6, 0.5),
+	     	       cex=1.75,srt=SRT) 
+	     	 
+	     	 if(row==4 & co==3 & j==1) text(
+	     	      mean(x), 2.5,
+	     	      expression(Ratio == frac(mu[South], mu[North] ) ),
+	     	      cex=1.75)
+	     	 
+	     	 LAB = LABEL[j]
+	     	  if(row %in% c(2,4) & co == 3 ) LAB=c("0","1")[j]
 	        text(x[j],-0.15,LAB, adj=c(0.5,1),
 	             cex=1.5)
-	        if(row==2 & co == 3 & j==1 ) text( 
+	        if(row %in% c(2,4) & co == 3 & j==1 ) text( 
 	              mean(x),-0.25,"S", adj=c(0.5,1),cex=1.5)
 	     	
 	     } 
@@ -162,7 +208,7 @@ plot3(1)
 
 ### Parameter relations in symbols, and with the help of an  index-category indicator
 
-Panels (a) and (b) in the following Figure repeat the information in panels (a) and (b) in the preceding Figure, but using Greek letters to symbolically represent the parameters. Just to keep the graphics uncluttered, the labels North and South are abbreviated to N and S and used as subscripts. 
+Panels (a) and (b) in the following figure repeat the information in panels (a) and (b) in the preceding Figure, but using Greek letters to symbolically represent the parameters. Just to keep the graphics uncluttered, the labels North and South are abbreviated to N and S and used as subscripts. Also, for brevity, the expression $\Delta \mu$ denotes $\mu_S - \mu_N$. 
 
 The relation encoded in a single phrase shown in the previous panel (c) has a compact form suitable for verbal communication. The representation can be adapted to be more suitable for computer calculations. (The benefit of doing this will become obvious as soon as you try to learn the parameter values by fiiting these models to actual data.) Depending on whether the hemisphere in question is the northern or southern hemisphere, the expression/statement 'the specified hemisphere is the SOUTHERN hemisphere' evaluates to a (logical) FALSE or TRUE. In the binary coding used in computers, it evaluates to 0 or 1, and we call such a 0/1 variable an 'indicator' variable.^ 
 
@@ -170,9 +216,9 @@ The relation encoded in a single phrase shown in the previous panel (c) has a co
 >^ In ‘better families’ we speak of INDICATOR variables, not DUMMY variables.  
 The International Statistical Institute’s Dictionary of Statistical Terms objects to the name: the term is ‘used, rather laxly, to denote an artificial variable expressing qualitative characteristics …. [The] word ’dummy’ should be avoided.’  
 Miettinen’s Epidemiological Research: Terms and Concepts:- Indicator variate – A variate with 0 and 1 as its (only) realizations, with realization 1 indicating something particular. (Examples: Y = 1 indicating membership in the case series of person-moments and X1 = 1 indicating index category of the etio-genetic determinant in an etiogenetic study – in the logistic model for the object of study.) Dummy variate (synonym: indicator variate) – See ‘Indicator variate’ in section II – 2. Note: This term is a misnomer: there is nothing dummy about an indicator variate.  
-We encourage you  to use, in your coding,  **meaningful variable names** such as `i.South` or `i.Southern` (where stands for indicator of) or `i.Male`. Don't use the name `sex` or `gender`, where the coding is not self evident. If you think `i.Male` is over doing it, then use `Male`. 
+We encourage you  to use, in your coding,  **meaningful variable names** such as `i.South` or `i.Southern` (where `i` stands for indicator of) or `i.Male.` Don't use the name `sex` or `gender`, where the coding is not self evident. If you think `i.Male` is over doing it, then use `Male`. 
 
-In panel (c) in the following figure, just to keep the graphics uncluttered, the name of the indicator variable SOUTHERN is abbreviated to S.
+In panel (c) in the following figure, just to keep the graphics uncluttered, the name of the indicator variable SOUTHERN is abbreviated to S, and $\mu_S$ is shorthand for the $\mu$ cooresponding to whichever value (0 or 1) of $S$ is specified (we could also write it as $\mu | S$, or $\mu$ 'given' $S$. ) Thus, the symbol $\mu_0$ refers to the $\mu$ when $S=0$, or in longerhand, to $\mu \ | \ S = 0$. 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
 
@@ -205,17 +251,150 @@ In addition, it is easier to learn the fundamental concepts and principles of re
 Once we see how to represent parameter values in two determinant-categories, we can easily extend it to more than two, such as the  ethnic groups in example 1.5 above.  
 As we will see later on, when we have a value for a dental health parameter (eg the mean number of decayed, missing and filled DMF teeth) at X = 0 parts per million of fluoride in the drinking water, and another parameter value at X = 1 parts per million, we can only look at these 2 parameter values. If this is not enough, we would need to have (obtain) parameter values at the intermediate fluoride levels, or levels beyond 1 ppm, to trace out the full parameter relation, namely  how the mean-DMF varies as a function of fluoride levels. If we have large numbers of observations at each level, then the DMF means will trace out a smooth curve. If data are limited, and the trace is jumpy/wobbly, we will probably resort to a sensible smooth function, the coefficients of which will have to be estimated from (fitted to) data. 
  
-This discussion leads on naturally to the next topic, where the parameter varies over quantitative levels of a determinant.  
+This discussion leads on naturally to situations where the parameter varies over quantitative levels of a determinant - a topic considered in the next section. 
+
+But meantime, we need to answer this question: why limit ourselves to subtraction? why not consider the ratio of the two parameters, rather than their difference?
+
+**Relative differences (ratios)** -- _in numbers first_
+
+A ratio can be more helpful than a difference, especially if you are don't have a sense of how large the parameter value is even in the reference category. As an example, on average, how many more red blood cells do men have than women? or how much faster  are gamers' reaction times compared with nongamers?
+
+Recall our hypothetical mean ocean depths, 3.6 Km  in the 
+oceans in the Northern hemisphere (reference category) and 4.5Km in the oceans of the Southern hemisphere (index category). Thus, the S:N (South divided by North) ratio is 4.5/3.6 or 1.25.
+ 
+Panel (a) leaves it to the reader to calculate the ratio of the parameter values. In panel (b)  the ratio (the quantity of interest) is isolated:  again, the original 2 parameters are converted to 2 new, more relevant ones. 
+
+Again, panel (c) shows a single master-equation that applies to both hemispheres by togging off/on the ratio of 4.5/3.6.
+
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
+
+plot3(3)
+```
+
+
+
+
+**Relative differences (ratios)** -- expressed in _symbols_ and with the help of the _index-category indicator_
+
+To rewrite these numbers in a symbolic equation suitable for a computer, we  again convert the logical 'if South' to a numerical Southern-hemisphere-indicator, using the binary variate $S$ (short for Southern) that takes the value 0 if the Northern hemisphere, and  1 if the Southern hemisphere.
+
+But go back to  some long-forgotten mathematics from high school to be able to tell the computer to toggle the ratio off and on. Recall '**powers**' of numbers, where, for example, 
+'$y$ to the power 2', or $y^2$ is the square of $y$. The two powers we exploit are 0 and 1.
+'$y$ to the power 1', or $y^1$ is just $y$ and '$y$ to the power 0', or $y^0$ is 1.
+
+We take advantage of these to write
+$$\mu_S = \mu \ | \ S  \ = \mu_0 \ \times \  \Big\{ \frac{\mu_{South}}{\mu_{North}}\Big\}^S = \mu_0 \ \times Ratio \ ^ S.$$ 
+
+You can check that it works for each hemisphere by setting $S=0$ and $S=1$ in turn.
+
+
+
+Thus, $$\log(y^S) = S \times \log(y)$$  
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
+
+plot3(4)
+```
+
+Although this is a compact and direct way to express the
+parameter relation, it is not well suited for fitting these equations to data. 
+
+However, in those same  high school mathematics courses, you also learned about **logarithms**. For example, that 
+$$\log(A \times B) = \log(A) + \log(B); \ \  \log(y^x) = x \times \log(y).$$
+
+Thus, we can rewrite the equation in panel (c) as
+
+$$\log(\mu_S) = \log(\mu \ | \ S)  \ = \underbrace{\log(\mu_0)} \ +  \underbrace{\log(Ratio)} \times \ S.$$
+This has the same `linear in the two parameters' form as the one for the parameter difference: the parameters are
+$\underbrace{\log(\mu_0)}$ and $\underbrace{\log(Ratio)}$ and they are made into the following 'linear compound' or 'linear predictor' (see Remarks below) :
+$$\log(\mu_S) = \log(\mu \ | \ S)  \ = \underbrace{\log(\mu_0)} \times \ 1 \ + \underbrace{\log(Ratio)} \times \ S.$$
+
+The course is concerned with using 'regression' software to  'fit'/'estimate' these 2 parameters from $n$ depth measurements indexed by $S$.
+
 
 ## Parameter functions 
 
-A very simple example of a function that describes how  parameter values vary over quantitative levels of a determinant is the straight line shown in the upper right panel of the next figure. Here the determinant has the generic name X, and the equation is of the $A + B \times X$ or $B_0 + B_1 \times X$ or $\beta_0 + \beta1 \times X$ straight line form. Miettinen used the convention that the upper case letters $A$ and $B$ are used to denote the (true but unknown) coefficient values, whereas the lower case leters $a$ and $b$ are used to denote their empirical counterparts, sometimes called estimated coefficients or fitted coefficients.  This sensible and simple convention also avoids the need, if one uses Greek letters for the theoretical coefficient values, to put 'hats' on them when we refer to their empirical counterparts, or 'estimate/fit' them. Fortunately, journals don't usually allow investigators to use 'beta-hats'; but this means that the investigators have to be more careful with their words and terms.
+A very simple example of a function that describes how  parameter values vary over quantitative levels of a determinant is the straight line shown in the upper right panel of the next figure. Here the determinant has the generic name X, and the equation is of the $A + B \times X$ or $B_0 + B_1 \times X$ or $\beta_0 + \beta_1 \times X$ straight line form. Miettinen used the convention that the upper case letters $A$ and $B$ are used to denote the (true but unknown) coefficient values, whereas the lower case leters $a$ and $b$ are used to denote their empirical counterparts, sometimes called estimated coefficients or fitted coefficients.  This sensible and simple convention also avoids the need, if one uses Greek letters for the theoretical coefficient values, to put 'hats' on them when we refer to their empirical counterparts, or 'estimate/fit' them. Fortunately, journals don't usually allow investigators to use 'beta-hats'; but this means that the investigators have to be more careful with their words and terms.
+
+As we go left to right in the following grid, the models become more complex. The simplest  is the one of the left, in column 1, the one  JH refers to as 'the mother of all regression models.  It refers to a _single_ or _overall_ situation/population/domain, so $X \equiv 1$, it takes on the value 1 in/for every instance/member. So the parameter equation is $\mu_X = \mu \ | \ X \ = \mu \times 1.$ In column 2, there are 2 subdomains of the determinant () 
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
+
+expit = function(x) exp(x)/(1+exp(x)) # antilogit
+
+par(mfrow=c(1,1),mar = rep(0.01,4))
+
+plot(c(-0.75,4),c(1,4.5),col="white",axes=FALSE,frame=FALSE)
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=4, warning=FALSE, message=F, out.width = "98%", fig.pos="h"}
+segments(0.5,1:4,4,1:4,col="blue",lwd=2)
+segments(1:4,1,1:4,4,col="blue",lwd=2)
 
+CEX=1.25
 
-knitr::include_graphics("images/Grid.png")
+x=0.5
+dy=0.2
+dx=0.25
+for(row in 3:1) {
+	if(row==3) {txt = expression(mu);TXT="MEAN"}
+	if(row==2) {txt = expression(pi);TXT="PROPORTION"}
+	if(row==1) {txt = expression(lambda);TXT="RATE"}
+	text(x-0.1,row+.5,txt,cex=2*CEX,adj=c(0,.5))
+	text(x-0.25-0.05,row+.5,TXT,adj=c(1,0.5),cex=CEX)
+	if(row==1)text(x-0.25-0.05,row+.35,"(Number of events
+per unit time)",
+	  adj=c(1,1),cex=0.8*CEX)
+	arrows(x+dx, row+dy, x+dx,row+1-dy,angle=30,
+	length=0.07-0.07*(row==2),code=2+(row==3))
+	if(row<3) text(x+dx,row+dy,"0",adj=c(1.5,0.5))
+	if(row==2)text(x+dx,row+1-dy,"1",adj=c(1.5,0.5))
+}
+
+dy=0.2
+text( 2+0.5,4.45, "Number of Parameters",cex=1.75,adj=c(0.5,1))
+
+text( 0,4.3, "Parameter\nGenre", cex=1.75,adj=c(0.5,0))
+arrows(0,4.25,0,3.9,length=0.07,angle=30,lwd=3)
+for(col in 1:3) {
+	x=col+0.5; 
+	text(col+0.5, 4.15, c("1","2","?")[col],
+	     adj=c(0.5,1),cex=1.5)
+	if(col==1) dx=0.05
+	if(col==2) dx=0.3
+	for(row in 3:1){
+		segments(col+0.5-dx,row+dy,col+0.5+dx,row+dy)
+		if(col>1)text(col+0.5-dx,row+dy,"0",adj=c(0.5,1.75))
+		if(col==2) text(col+0.5+dx,row+dy,"1",adj=c(0.5,1.75))
+		if(col==3) {
+			xx=seq(col+0.5-dx,col+0.5+dx,dx/10)
+			segments(xx,row+dy,xx,row+dy-0.03)       
+		}
+		text(col+0.5,row+dy/3,"X",font=2)
+		if(col==1) { m= (2/3)*(1-2*dy)
+		    points(col+0.5,row+dy+m,pch=19,cex=0.6)
+		}
+		if(col==2) { m= ((1:2)/3)*(1-2*dy)
+		    points(col+0.5+c(-dx,dx),row+dy+m,pch=19,cex=0.6)
+		}
+		if(col==3) { m= ((3:12)/14)*(1-2*dy)
+			        xx=seq(-dx,dx,length.out=10)
+		    points(col+0.5+xx,row+dy+m,pch=19,cex=0.6-0.3*(row<3))
+		    if(row==2){
+		    	  logit = seq(-3,3,length.out=10)
+		      m=expit(logit)*(1-2*dy)
+		      points(col+0.5+xx,row+dy+m,pch=19,cex=0.6)
+		    }
+		    if(row==1){
+		     log.rate = seq(-1.7,0.1,length.out=10)
+		      m=exp(log.rate)*(1-2*dy)
+		      points(col+0.5+xx,row+dy+m,pch=19,cex=0.6)
+		    }
+		}
+	} 
+}
+
 
 
 ```
@@ -277,10 +456,29 @@ We pick up this terminology very early, maybe even back in high school, and from
 
 But, in interpreting the B = 1 mm Hg/yr in Miettenen's example (100 plus age in years), should we use such phrases?
 
-Or, since you don't know the source of, or the data behind this rule, maybe take a look at the distributions of some anthropometric chacteristics (height, forced expiratory volume, skinfold thicknesses, etc ) measured cross-sectionally, in  different populations in different calendar decades.  [link]
-By eye, try to estimate the slope you would get if you regressed the age-and sex-specific means or medians 
+Or, since you don't know the source of, or the data behind this rule, maybe take a look at the distributions of some anthropometric chacacteristics (height, weight, forced expiratory volume) measured cross-sectionally, in  different populations -- [Busselton, Australia and rural Southwest Ethiopia](http://www.biostat.mcgill.ca/hanley/c678/index.html#anthropometricData) -- in 1972 and 1992. By eye, try to estimate the slope you would get if you regressed the age-and sex-specific means or medians 
 on the ages. 
 
 as X increasesa **
 
+## SUMMARY
 
+## Exercises
+
+So far, we have only dealt with equations involving a difference and the ratio of two $\mu$ parameters.
+
+1. Extend the graphs and the equations (for the difference of means and the ratio of means) to the $\pi$ parameter. Use as an example the proportions of the surfaces of the Northern (reference category) and Southern hemisphere (index category) covered by water, i.e, $\pi_{North}$ and $\pi_{South}.$  Use the hypothetical values $\pi_{North} = 0.65$ and $\pi_{South} = 0.75.$ 
+
+2. Instead of focusing on the proportions  covered by _water_, focus on the proportions  covered by _land_. 
+
+    + How does the **difference** of the two proportions relate to the difference calculated in 1?
+
+    + How does the **ratio** of the two proportions relate to the ratio calculated in part 1? i.e., is one the reciprocal of the other?
+
+    + Can you think of different scale, where the ratio when the focus is _land_  IS  just the reciprocal of the ratio when the focus is _water_.?
+
+    + If you can, show that the log of the ratio when the focus is _land_ IS  just the negative of the log of the ratio when the focus is _water_.?
+
+3. Extend the graphs and the equations (for the difference of means and the ratio of means) to the $\lambda$ parameter. Use as an example the mean number of earthquakes per year  in the Northern (reference category) and Southern hemisphere (index category) , i.e, $\lambda_{North}$ and $\lambda_{South}.$  Use the hypothetical values $\lambda_{North} = 5.0$ and $\lambda_{South} = 7.5$ 
+
+## References  - Rothman , Clayton and Hills, OSM
