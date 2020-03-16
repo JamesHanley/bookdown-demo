@@ -19,7 +19,7 @@ For now, we will measure the guesses (and eventually the actual time) as the num
 
 It would be tedious to try to apply optical character recognition (OCR) to each of the  1210 pages in order to be able to computerize all of the almost 242,000 guesses. Instead, you are asked to reconstruct the distribution of the guesses in two more economical ways: 
 
-1. By determining, for  each  of the 36 days from April 10 to May 15 inclusive, the proportion, p, of guesses that are earlier than midnight on that date. [ In `R`, if p = 39.6% of the guesses were below xy.z days, we would write this as pGuessDistribution(xy.z) = 0.396. Thus, if we were dealing with the location  of a  value in a Gaussian ('normal') distribution, we would write `pnorm(q=110, mean = , sd = )` ] Once you have determined these 36 proportions (p's), plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
+1. By determining, for  each  of the 36 x 2 = 72 half-days days from April 10 to May 15 inclusive, the proportion, p, of guesses that are earlier than midnight on that date. [ In `R`, if p = 39.6% of the guesses were below xy.z days, we would write this as pGuessDistribution(xy.z) = 0.396. Thus, if we were dealing with the location  of a  value in a Gaussian ('normal') distribution, we would write `pnorm(q=110, mean = , sd = )` ] Once you have determined these 72 proportions (p's), plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
 
 2. By determining the 1st, 2nd, ... , 98th, 99th percentiles. These are specific examples of 'quantiles', or q's. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all guesses are below this value, and 1-q are above it. [ In `R`, if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a  Gaussian distribution with mean 130 and standard deviation 15, we would write `qnorm(p=0.4, mean = 130, sd = 15)`. ] Once you have determined them, plot the 99 p's (on the vertical axis) against the 99 (elapsed) times on the horizontal axis.
 
@@ -75,9 +75,14 @@ text(0,p[y], sprintf("%.2f", p[y]),
      adj=c(1.05,0.5), cex=0.85 )
 }
 
-x0=13 ; dx=1/2
-y0=0.1; dy = 4
+x0=13.5 ; dx=0.45
+y0=0.15; dy = 4
 
+segments(x0,y0,x0,y0+0.15*dy)
+for(d in seq(0,0.15,0.025)){
+  text(x0-dx/3, y0+dy*d, toString(d), cex=0.65,adj=c(1,0.5))
+  segments(x0, y0+dy*d, x0-dx/4,y0+dy*d) 
+}
 values=seq(0,25,0.01)
 d = dgamma(values,shape=SHAPE,scale=SCALE)
 lines(x0+values*dx,y0+d*dy,col="grey55")
@@ -90,13 +95,25 @@ P = pgamma(max(x),shape=SHAPE,scale=SCALE)
 text(x0+dx*max(x)/2,y0+dy*max(d)/3,sprintf("%.2f",round(P,2)),
      adj=c(0.5,0.5), cex=1 )
 
+
+xx = x0+dx*20
+yy = y0+dy*0.055
+
+arrows(xx-3*dx,yy,xx-5*dx,yy/2,length=0.07,angle=30)
+
+text(xx,yy,"probability\ndensity\nfunction") 
+
+text(xx,yy/0.8,"(dDistribution)", family="mono")
+
+
 ```
 
 ### Exercises
 
-1. Once you have determined the 36 (cumulative) proportions (p's) adssociated with the 36 days, plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
+1. Once you have determined the 72 (cumulative) proportions (p's) associated with the 72 half-days, plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
 
-2. The 1st, 2nd, ... , 98th, 99th percentiles are not so easy to determine since you  have  to locate the 2419th, 4839th, 7258t, ... entries in the 1201-page Book of Guesses and  plot the 99 p's (on the vertical axis) against the 99 (elapsed) times (q's) on the horizontal axis.  Instead, use the first entry on each of pages 11, 21, ... in [this excerpt]. Using a different colour, plot these  slightly-more-dense quantiles on the horizontal axix against the following percentages:
+2. The 1st, 2nd, ... , 98th, 99th percentiles are not so easy to determine since you  have  to locate the 2419th, 4839th, 7258t, ... entries in the 1201-page Book of Guesses and  plot the 99 p's (on the vertical axis) against the 99 (elapsed) times (q's) on the horizontal axis.  Instead, use the first entry on each of pages 11, 21, ... in 
+[this excerpt](http://www.biostat.mcgill.ca/hanley/bios691/SampledPages.pdf). Using a different colour, plot these  slightly-more-dense quantiles on the horizontal axix against the following percentages:
 
 ```{r,eval=T, echo=T, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
 
@@ -108,9 +125,9 @@ tail(round(percent,1),10)
 
 3. Compare the Q$_{25}$, Q$_{50}$, and Q$_{75}$ obtained directly with the ones obtained by interpolation of the curve showing the results of the other method.
 
-4. Compare the directly-obtained proportions of guesses that are before April 20, April 30, and May 10  with the ones obtained by interpolation of the curve showing the results of  the other method.
+4. Compare the directly-obtained proportions of guesses that are before (the end of) April 20, April 30, and May 10  with the ones obtained by interpolation of the curve showing the results of  the other method.
 
-5. By successive subtractions, calculate the numbers of guesses in each 1-day bin, and make a histogram of them. From them, calculate the mean, the mode, and the standard deviation.
+5. By successive subtractions, calculate the numbers of guesses in each 1/2 day bin, and make a histogram of them. From them, calculate the mean, the mode, and the standard deviation.
 
 6. (For a future assignment, but you can start thinking about how) From a random sample of 100 guesses from the book, estimate how many guesses in the entire book are PM.
 
