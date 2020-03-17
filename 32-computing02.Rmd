@@ -21,48 +21,6 @@ Table 2 in the article by Hughes shows 'Values suggested for the mean density of
 Five of the 24 estimates are accompanied by a $\pm$ value, but what this values signifies is left unexplained. One of the 24s is Cavendish's 1798 estimate, which he obtained by taking the mean of 29 density measurements derived using a torsion balance on  17 days in the months of August and  September, and the following April and May. Cavendish's 'point estimate'  was 5.48. Since his'extreme results do not differ from the mean by more than 0.38,or $\frac{1}{14}$ of the whole' [...] Therefore, it seems very unlikely that the density of the earth should differ from the 5.48 by so much as $\frac{1}{14}$ of the whole.'
 
 
-install.packages("usethis")
-
-
-usethis::browse_github_token()
-
-
-devtools::install_github("ropenscilabs/travis")
-
-
-travis::browse_travis_token()
-
-
-
-
-via  
-
-Type a message
-
-
-
-
-
-via  
-
-Type a message
-
-
-
-
-
-via  
-
-Type a message
-
-
-
-
-
-via  
-
-Type a message
-
 ## Statistical Tasks
 
 ## Orientation to random variation in the form of measurement errors

@@ -1,0 +1,5 @@
+install.packages("usethis")
+usethis::browse_github_token()
+devtools::install_github("ropenscilabs/travis")
+travis::browse_travis_token()
+travis::use_travis_deploy()

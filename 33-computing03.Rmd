@@ -2,13 +2,6 @@
 
 (Probabilities, evaluated by simulation)
 
-
-
-
-
-
-
-
 ## Ages of books
 
 ## ngrams
