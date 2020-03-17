@@ -1,0 +1,88 @@
+\contentsline {chapter}{Preface}{7}{chapter*.2}% 
+\contentsline {section}{\numberline {0.1}Target}{7}{section.0.1}% 
+\contentsline {section}{\numberline {0.2}Topics/textbooks}{7}{section.0.2}% 
+\contentsline {section}{\numberline {0.3}Regression from the outset}{8}{section.0.3}% 
+\contentsline {section}{\numberline {0.4}Parameters first, data later}{9}{section.0.4}% 
+\contentsline {section}{\numberline {0.5}Let's switch to ``y-bar'', and drop ``x-bar''.}{10}{section.0.5}% 
+\contentsline {section}{\numberline {0.6}Computing from the outset}{10}{section.0.6}% 
+\contentsline {section}{\numberline {0.7}Appendix:}{11}{section.0.7}% 
+\contentsline {chapter}{\numberline {1}Introduction}{13}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Goals}{13}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}Structure}{13}{section.1.2}% 
+\contentsline {section}{\numberline {1.3}Attitudes, etc\ldots {}.}{13}{section.1.3}% 
+\contentsline {part}{I\hspace {1em}Part I}{15}{part.1}% 
+\contentsline {chapter}{\numberline {2}Statistical Parameters}{17}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Parameters}{17}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}Parameter Contrasts}{21}{section.2.2}% 
+\contentsline {subsection}{\numberline {2.2.1}Parameter relations in numbers and words}{21}{subsection.2.2.1}% 
+\contentsline {subsection}{\numberline {2.2.2}Parameter relations in symbols, and with the help of an index-category indicator}{22}{subsection.2.2.2}% 
+\contentsline {section}{\numberline {2.3}Parameter functions}{28}{section.2.3}% 
+\contentsline {section}{\numberline {2.4}Phraseology to avoid}{32}{section.2.4}% 
+\contentsline {section}{\numberline {2.5}SUMMARY}{33}{section.2.5}% 
+\contentsline {section}{\numberline {2.6}Exercises}{33}{section.2.6}% 
+\contentsline {section}{\numberline {2.7}References}{34}{section.2.7}% 
+\contentsline {chapter}{\numberline {3}The parameter \(\mitmu \)}{35}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Two genres}{35}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}Fitting these to data / Estimating them from data}{36}{section.3.2}% 
+\contentsline {chapter}{\numberline {4}The (proportion) parameter \(\mitpi \)}{39}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Example one}{39}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}Example two}{39}{section.4.2}% 
+\contentsline {chapter}{\numberline {5}The (event rate) parameter \(\mitlambda \)}{41}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Etc}{41}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}ETC}{41}{section.5.2}% 
+\contentsline {chapter}{\numberline {6}Contrast: 2 \(\mitmu \) parameters}{43}{chapter.6}% 
+\contentsline {section}{\numberline {6.1}Estimand, estimator, estimate}{43}{section.6.1}% 
+\contentsline {chapter}{\numberline {7}Contrast: 2 \(\mitpi \) parameters}{45}{chapter.7}% 
+\contentsline {section}{\numberline {7.1}Estimand, estimator, estimate}{45}{section.7.1}% 
+\contentsline {chapter}{\numberline {8}Contrast: 2 \(\mitlambda \) parameters}{47}{chapter.8}% 
+\contentsline {section}{\numberline {8.1}Estimand, estimator, estimate}{47}{section.8.1}% 
+\contentsline {part}{II\hspace {1em}Part II}{49}{part.2}% 
+\contentsline {chapter}{\numberline {9}Probability}{51}{chapter.9}% 
+\contentsline {section}{\numberline {9.1}Conditional -- forwards}{51}{section.9.1}% 
+\contentsline {section}{\numberline {9.2}Conditional -- reverse}{51}{section.9.2}% 
+\contentsline {chapter}{\numberline {10}Distributions /Random Variables}{53}{chapter.10}% 
+\contentsline {section}{\numberline {10.1}Gaussian Bernoulli-Binomial Poisson}{53}{section.10.1}% 
+\contentsline {section}{\numberline {10.2}Expectation and Variance}{53}{section.10.2}% 
+\contentsline {section}{\numberline {10.3}Functions/combinations of random variables}{53}{section.10.3}% 
+\contentsline {chapter}{\numberline {11}Statistical Inference}{55}{chapter.11}% 
+\contentsline {section}{\numberline {11.1}2 schools}{55}{section.11.1}% 
+\contentsline {subsection}{\numberline {11.1.1}Bayesian}{55}{subsection.11.1.1}% 
+\contentsline {subsection}{\numberline {11.1.2}Frequentist}{55}{subsection.11.1.2}% 
+\contentsline {part}{III\hspace {1em}Part III}{57}{part.3}% 
+\contentsline {chapter}{\numberline {12}Mathematics}{59}{chapter.12}% 
+\contentsline {section}{\numberline {12.1}Notation}{59}{section.12.1}% 
+\contentsline {section}{\numberline {12.2}Powers, Logarithms and Anti--logarithms}{59}{section.12.2}% 
+\contentsline {chapter}{\numberline {13}Computing Week 1}{61}{chapter.13}% 
+\contentsline {section}{\numberline {13.1}Biological background}{61}{section.13.1}% 
+\contentsline {section}{\numberline {13.2}Statistical Task}{61}{section.13.2}% 
+\contentsline {subsection}{\numberline {13.2.1}The p and q functions: an orientation}{62}{subsection.13.2.1}% 
+\contentsline {subsection}{\numberline {13.2.2}Exercises}{63}{subsection.13.2.2}% 
+\contentsline {chapter}{\numberline {14}Computing Week2}{67}{chapter.14}% 
+\contentsline {section}{\numberline {14.1}Scientific background {[}from Hughes*{]}}{67}{section.14.1}% 
+\contentsline {section}{\numberline {14.2}Statistical Tasks}{68}{section.14.2}% 
+\contentsline {section}{\numberline {14.3}Orientation to random variation in the form of measurement errors}{68}{section.14.3}% 
+\contentsline {chapter}{\numberline {15}Computing Week3}{69}{chapter.15}% 
+\contentsline {section}{\numberline {15.1}Ages of books}{69}{section.15.1}% 
+\contentsline {section}{\numberline {15.2}ngrams}{69}{section.15.2}% 
+\contentsline {section}{\numberline {15.3}Ice Breakup Dates}{69}{section.15.3}% 
+\contentsline {subsection}{\numberline {15.3.1}The 2018 Book of Guesses}{69}{subsection.15.3.1}% 
+\contentsline {subsection}{\numberline {15.3.2}Trends over the last 100 years}{71}{subsection.15.3.2}% 
+\contentsline {section}{\numberline {15.4}Galton's data on family heights}{72}{section.15.4}% 
+\contentsline {section}{\numberline {15.5}Temperature perceptions}{72}{section.15.5}% 
+\contentsline {section}{\numberline {15.6}Natural history of prostate cancer}{75}{section.15.6}% 
+\contentsline {section}{\numberline {15.7}Serial PSA values}{76}{section.15.7}% 
+\contentsline {section}{\numberline {15.8}Graphics}{76}{section.15.8}% 
+\contentsline {section}{\numberline {15.9}Possible Body Mass Indices}{78}{section.15.9}% 
+\contentsline {section}{\numberline {15.10}Galton}{79}{section.15.10}% 
+\contentsline {section}{\numberline {15.11}Epidemics}{83}{section.15.11}% 
+\contentsline {section}{\numberline {15.12}Duplicate Birthdays}{83}{section.15.12}% 
+\contentsline {section}{\numberline {15.13}Lottery payoffs}{83}{section.15.13}% 
+\contentsline {section}{\numberline {15.14}Chevalier de Méré}{83}{section.15.14}% 
+\contentsline {section}{\numberline {15.15}Detecting a fake Bernoulli sequenece}{83}{section.15.15}% 
+\contentsline {section}{\numberline {15.16}Cell occupancy}{83}{section.15.16}% 
+\contentsline {section}{\numberline {15.17}Life Tables}{83}{section.15.17}% 
+\contentsline {section}{\numberline {15.18}Carrier Status (genetics)}{83}{section.15.18}% 
+\contentsline {section}{\numberline {15.19}Diagnostic and statistical tests}{83}{section.15.19}% 
+\contentsline {chapter}{\numberline {16}DALITE}{85}{chapter.16}% 
+\contentsline {section}{\numberline {16.1}Aim}{85}{section.16.1}% 
+\contentsline {section}{\numberline {16.2}How it works}{85}{section.16.2}% 
