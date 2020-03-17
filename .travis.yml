@@ -2,6 +2,10 @@ language: r
 cache: packages
 pandoc_version: 1.19.2.1
 
+install:
+  - Rscript -e "install.packages('mosaic')"
+
+
 before_script:
   - chmod +x ./_build.sh
   - chmod +x ./_deploy.sh
@@ -9,3 +13,4 @@ before_script:
 script:
   - ./_build.sh
   - ./_deploy.sh
+
