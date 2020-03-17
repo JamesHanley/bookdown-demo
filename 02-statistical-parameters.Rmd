@@ -4,9 +4,36 @@
 
 ## Parameters
 
+The **objectives** of this chapter are  to
+
+* Define what a parameter is in a statistical context
+
+* See examples of such parameters
+
+* Understand the concept of a parameter relation or a parameter equation
+
+* Be able to set up parameter equations that isolate and directly pinpoint parameter differences in both the absolute and relative scales, using a regression equation framework.
+
+* Do so **before** fitting any such (regression) equations to data, so that we can focus on the research objects without having data get in the way.
+
+
+* See the unity (generality) in what we will be doing in the course, by seeing the big picture, i.e., the forests, not the trees.
+
+
+We begin by defining is meant  by the term parameter **in a statistical context** 
+
+
 >**Parameter** – A constant (of unknown magnitude) in a (statistical) model. [OSM2011, p60]
 
-**The parameters we will be concerned with** 
+> In Statistics. A numerical characteristic of a population, as distinguished from a statistic obtained by sampling.[OED]
+
+
+
+Note that the term can mean other things in other contexts. For example, in **clinical medicine**,
+
+>Parameter – any quantitative aspect/dimension of the client’s (patient's) health, subject to measurement (by means of a test). (Example: systolic blood-pressure.)[OSM, Terms and Concepts of Medicine]
+
+**The (statistical) parameters we will be concerned with** 
 
 * $\mu$ The mean level of a quantitative characteristic, e.g. the depth of the earth's ocean or height of the land, or the height / BMI / blood pressure levels of a human population. [One could also think of mathematical and physical constants as parameters, even though their values are effectively 'known.' Examples where there is agreement to many many decimal places include the mathematical constant pi, the speed of light(c), and the gravitational constant G. The speed of sound depends on the medium it is travelling through, and the temperature of the medium. The freezing and boiling points of substances such as water and milk depend on altitude and barometric pressure]. At  a lower level, we might be interested in personal characters, such as the size of a person's vocabulary, or a person's mean (or minimum, or typical) reaction time. The  target could be a person's 'true score' on some test -- the  value one would get if one (could, but not realistically) be tested on each of the (very large) number of test items in the test bank, or observed/measured continously over the period of interest.  
 \ \ \ \ Later on we will address sitautions where the mean $\mu$ is not the best 'centre' of a distribution, and why we might want to take some other feature, such as the median, or some other quantile, instead.  
@@ -43,6 +70,7 @@ Before we go on, we need to adopt sensible terminology for referring generically
 The main advantage is that it is broader, and closer to  causally neutral in its connotaion. _Exposure_ has environmental connotations, and technically refers to an opportity to injest or mentally take on board a substance or message.  _Agent_ has causal connotations. The term _independent variable_ suggests the investigator has control over it in a laboratory setting. The term _explanatory_ is  ambiguous as to the mechanism by which the parameter value in the index category got to be different from the value in the index category. Not all contrasts are experimentally formed. The term _factor_, and thus the term _risk factor_, are to be avoided because the word factor derives from the Latin _facere_, (the action of) doing, making, creating. _Predictor_ makes one think of the future. The term _regressor_ (or its shorthand, the 'X' ) won't be understood by lay people.
 
 While the word 'determine' can suggest causality (e.g., demand determines the price), it also refers to 'fixing the form, position, or character of beforehand': two points determine a straight line; the area of a circle is determined by its radius.
+
 There is considerable philosophical debate as to whether something 'causes' something else. Some would argue that the extent to which genetics determines one's personality is a causal concept. Others argue that since one cannot cannot consider the alternative, ones biological sex or age can not be considered a causal determinant or a risk factor (in the strict causal meaning of the word). They prefer to refer to them as risk _indicators_. 
 
 We now move on to the parameter relations we will be concerned with, beginning with the simplest type.

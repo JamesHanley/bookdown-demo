@@ -1,6 +1,386 @@
 # Computing Week3 {#computing03}
 
 (Probabilities, evaluated by simulation)
+
+
+
+
+
+
+
+
+## Ages of books
+
+## ngrams
+
+
+## Ice Breakup Dates
+
+
+Here are some details on the 
+[Nenana Ice Classic](http://www.nenanaakiceclassic.com)
+More [here](http://www.john-daly.com/nenana.htm)
+
+### The 2018 Book of Guesses
+
+We are keen to establish the distribution of guesses, with the guessed times measured from midnight on December 31, 2017. Thus a guess of April 06, at 5:15 p.m. would be measured as 31 + 28 + 31 + 5 + 12/24 + (5+ 15/60)/24 = 95.71875 days into the year 2018.
+
+It would be tedious to apply optical character recognition (OCR) to each of the  1210 pages in order to be able to computerize all 240,000 guesses. Instead, you are asked to reconstruct the distribution of the guesses in two more economical ways: 
+
+* By determining, for (the beginning of) each  day, from April 01 to June 01 inclusive, the proportion, p, of guesses that predede that date. [ In `R', if p = 39.6% of the guesses were below 110 days, we would write this as pGuessDistribution(110) = 0.396. Thus, if we were dealing with the location  of a  value in a Gaussian ('normal') distribution, we would write `pnorm(q=110, mean = , sd = )` ] Once you have determined them, plot these 62 p's (on the vertical axis) against the numbers of elapsed days (90-152) on the horizontal axis.
+
+
+* By determining the 1st, 2nd, ... , 98th, 99th percentiles. These are specific examples of 'quantiles', or q's. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all values are below this value, and 1-q are above it. [ In `R', if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a  Gaussian distribution with mean 130 and standard deviation 15, we would write `qnorm(p=0.4, mean = 130, sd = 15)`. ] Once you have determined them, plot the 99 p's (on the vertical axis) against the 99 (elapsed) times on the horizontal axis.
+
+* Compare the Q$_{25}$, Q$_{50}$, and Q$_{75}$ obtained directly with the ones obtained by interpolation of the curve showing the results of the other method.
+
+* Compare the directly-obtained proportions of guesses that are before April 15, April 30, and May 15  with the ones obtained by interpolation of the curve showing the results of  the other method.
+
+* By successive subtractions, calculate the numbers of guesses in each 1-day bin, and make a histogram of them. From them, calculate the mean, the mode, and the standard deviation.
+
+
+To measure the spread of guesses, Galton, in his vox populi (wisdom of crowds) article, began with the interquartile range (IQR), i.e. the distance between Q75 and Q25, the 3rd and 1st quartiles. In any distribution, 1/2 the values are within what was called the 'probable error (PE) of the mean; i.e., it is equally probable that a randomly selected value would be inside or outside this middle-50 interval. Today, we use standard deviation (SD) instead of probable error. In a _Gaussian_ distribution, some 68% of values are within 1 SD of the mean, whereas  50% of values are within 1 PE of the mean. We can use `R` to figure out how big a PE is in a Gaussian distribution compared with a SD. By setting the SD to 1, and the eman to 0, we have
+```{r}
+Q75 = qnorm(p = 0.75, mean=0, sd=1)
+round(Q75,2)
+```
+i.e, a PE is roughtly 2/3rds of a SD.
+
+
+* Galton -- convert to SD.
+
+* Geometric mean Amsterdam study
+
+* How far off was the median guess in 2018 from the actual time? Answer in days, and (with reservations stated) as a percentage?
+
+* Why did the experts at the country fair do so much better?
+
+* Where were the punters in 2019 wrt the actual ?
+
+
+
+https://www.technologyreview.com/s/528941/forget-the-wisdom-of-crowds-neurobiologists-reveal-the-wisdom-of-the-confident/
+
+
+
+https://www.all-about-psychology.com/the-wisdom-of-crowds.html
+
+
+http://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf
+
+
+[Nenana Ice Classic]
+
+Tanana River
+
+### Trends over the last 100 years
+
+
+fill in the data since 200x.
+
+cbind with ...
+
+
+
+https://www.adn.com/alaska-news/2019/04/14/nenana-ice-classic-tripod-goes-down-setting-record-for-earliest-river-break-up/
+
+
+
+
+
+time trends
+
+
+morning vs afternoon ?
+
+2019 extreme... how many SD's from the line?
+
+* Where were the punters in 2019 wrt the actual ?
+
+
+Sources: 
+
+
+1917-2003 data in textfile on course website;
+
+http://www.nenanaakiceclassic.com/ for data past 2003
+
+ascii (txt) and excel files with data to 2003
+
+
+Working in teams of two ...
+
+*Create a dataframe containing the breakup data for the years 1917-2007. Possible ways to do so include: directly from the ascii (txt) file; from the Excel file
+
+*From the decimal portion of the Julian time, use `R` to create a frequency table of the hour of the day at which the breakup occurred. 
+
+*From the month and day, use `R` to calculate your own version of the Julian day (and the decimal portion if you want to go further and use the hour and minute)
+
+*Is there visual evidence that over the last 91 years, the breakup is occurring at an earlier date?
+
+*Extract the date and ice thickness measurements for the years 1989-2007 from the website and use `your software of choice`R` to create a single dataset with the 3 variable, year, day and thickness. From this, fit a separate trendline for each year, and calculate the variability of these within-year slopes.
+
+## Galton’s data on family heights
+
+These data were gathered to examine the relation between heights of parents and heights of their (adult) children. They have been recently 'uncovered' from the Galton archives. As a first issue, for this exercise, you are also asked to see whether the parent data suggest that stature plays "a sensible part in marriage selection”.
+
+For the purposes of this exercise, the parent data [see http://www.epi.mcgill.ca/hanley/galton ] are in a file called parents.txt , with families numbered 1-135, 136A, 136-204 ( {the heights of the adult offspring will be used in a future exercise)
+
+Do the following tasks using  `R`
+
+1. Categorize each father's height into one of 3 bins (shortest 1/4, middle 1/2, tallest 1/4). Do likewise for mothers. Then, as Galton did [ Table III ], obtain the 2-way frequency distribution and assess whether "we may regard the married folk as picked out of the general population at haphazard".
+
+2. Calculate the variance Var[F] and Var[M] of the fathers' [F] and mothers' [M] heights respectively. Then create a new variable consisting of the sum of F and M, and calculate Var[F+M]. Comment.  Galton called this a "shrewder" test than the "ruder" one he used in 1.
+
+3. When Galton first anayzed these data in 1885-1886, Galton and Pearson hadn't yet invented the correlation coefficient. Calculate this coefficient and see how it compares with your impressions in 1 and 2.
+
+## Temperature perceptions
+
+
+
+Create 5 datasets from the questionnaire data on temperature perceptions etc. 
+
+(i) by importing directly from the Excel file applied to .csv version of Excel file);
+
+(ii) by first removing the first row (of variable names) and exporting the Excel file into a 'comma-separated-values" (.csv) text file, then ...
+
+reading the data in this .csv file via the INFILE and INPUT statements in a SAS DATA step, 
+
+[SAS]
+INFILE 'path' DELIMITER =",";
+INPUT ID MALE $ MD $ EXAM TEMPOUTC TEMPINC TEMPOUTF TEMPINF TEMPFEEL TIME PLACE $ ;
+
+(iii) by reading the data in the text file temps_1.txt into 
+
+the SAS dataset via the INFILE and INPUT statements. Notice that the 'missing' values use the SAS representation (.) for missing values. 
+
+or the Stata dataset using the 'infile' command
+
+(iv) by reading the data in the text file temps_2.txt via [in SAS] the INFILE and INPUT statements in a DATA step or [in Stata] the 'infix' command.
+
+Here you will need to be careful, since 'free-format' will not work correctly (it is worth trying free format with this file, just to see what goes wrong!). When using the INFILE method, you can control some of the damage by using the 'MISSOVER' option in the INFILE statement: this keeps the INPUT statement from continuing on into the next data line in order to find the (in our example) 11 values implied by the variable list. JH uses this 'defensive' option in ALL of his INFILE statements.
+
+(v) by cutting and pasting the contents of the text file temps_2.txt directly into the SAS or Stata program - in SASthe lines of data go immediately after the DATALINES statement, and there needs to be a line containing a semicolon to indicate the end of the data stream. In Stata, the lines of data go immediately after the infile or infix statement, and there needs to be a line containing the word 'end' to indicate the end of the data stream
+
+This Cut and Paste Method is NOT RECOMMENDED when the number of observations is large, as it is too all too easy to inadvertently alter the data, and the SAS/Stata porogram becomes quite long and unwieldy. It is Good Data Management Practice to separate the program statements from the data. 
+
+
+[Run [in SAS] PROC MEANS [in Stata] the 'describe' command, on the numerical variables, and [in SAS] PROC FREQ or [in Stata] the 'tabulate' command, on the non-numerical variables, to check that the 5 datasets you created contain the same information. Also, get in the habit of viewing or printing several observations and checking the entries against the 'source'. 
+
+When using (i), have SAS show you the SAS statements generated by the wizard. Store these, and the DATA steps for (ii) to (v) in a single SAS program file (with suffix .sas).
+
+Annotate liberally using comments:
+
+in SAS, either begin with * ; or enclose with /* ... */ 
+
+in Stata ..begin the line with * or place the comment between /* and */ delimiters or begin the comment with // or begin the comment with ///
+ 
+
+ 	
+Q2
+
+ 	Use one of these 5 datasets, and the appropriate [in SAS, PROCs (see Exploring Data under UCLA SAS Class Notes 2.0)], or [in Stata, the list comamnd, and the analyses from the Statistics menu] to
+
+(i) list the names and characteristics of the variables
+
+(ii) list the first 5 observations in the dataset
+
+(iii) list the id # and the responses just to q3, w5 and q6, for all respondents, with respondents in the order: female MDs, male MDs, female non-MDs, male non-MDs. Indicate the [sub-]statement that is required to reverse this order.
+
+(iii) create a 2-way frequency table, showing the frequencies of respondents in each of the 2 (MD nonMD) x 2 (male female) = 4 'cells' (one defintion of an epidemiologist is 'an MD broken down by age and sex'). Turn off all the extra printed output, so that the table just has the cell frequencies and the row and column totals.
+
+(iv) compare the mean and median attitude to exams in MDs vs. non-MDs (hint: in SAS, the CLASS statement may help). Get SAS/Stata to limit the output to just the 'n', the min, the max, the mean and the median for each subgroup. And try to also get it to limit the number of decimal places of output (in SAS the MAXDEC option is implememnted in some procedures, but as far as JH can determine not in all)
+
+(v) compare the mean temperature perceptions (q6) of male and female respondents
+
+(vi) [in SAS] create a low-res ('typewriter' resolution) scatterplot of the responses to q5 (vertical axis) vs. q4 (horizonatal axis), using a plotting symbol that shows whether the responsdent is a male or a female. If we have not covered how to show this '3rd dimension', look at the ONLINE Documentation file {the guide for most of the procedures covered in this set of exercises is in the Base SAS Procedures Guide; other procedures are in sthe more advanced 'STAT' module}. You can specify the variable whose values are to mark each point on the plot. See PLOT statement in PROC PLOT, and the example with variables height weight and gender.
+[in Stata] use the (automatically hi-res) graphics capabilities available from the 'Graphics' menu
+
+[if SAS] Put all of the programs for Q1, and all of these program steps and output for Q2 in a single .txt file (JH will use a mono-spaced font such as Courier to view it -- that way the alignment should be OK), with PROC statements interleaved with output, and a helpful 2-line title (produced by SAS, but to your specifications) over top of each output. Get SAS to set up the output so that there are no more that 65 horizontal characters per line (that way, lines won't wrap-around when JH views the material).
+
+[if Stata] paste the results and graphics into Word.
+
+
+
+NOTE: To be fair to SAS, it CAN produce decent (and even some publication-quality) graphics. See http://www.ats.ucla.edu/stat/sas/topics/graphics.htm
+ 
+Then submit the text file electronically (i.e., by email) to JH by 9 am on Monday October 2.
+
+
+## Natural history of prostate cancer
+ 
+Q1
+
+The following data items are from an investigation into the natural history of (untreated) prostate cancer [ report (.pdf) by Albertsen Hanley Gleason and Barry in JAMA in September 1998 ].
+
+id, dates of birth and diagnosis, Gleason score, date of last contact, status (1=dead, 0=alive), and -- if dead -- cause of death (see 2b below). data file (.txt) for a random 1/2 of the 767 patients
+
+1. Compute the distribution of age at diagnosis (5-year intervals) and year of diagnosis (5 year intervals). Also compute the mean and median ages at diagnosis.
+
+2. For each of the 20 cells in Table 2 (5 Gleason score categories x 4 age-at-dx categories), compute the
+
+a. number of man-years (M-Y) of observation
+
+b. number of deaths from prostate cancer(1), other causes(2), unknown causes(3)
+
+c. prostate cancer(1) death rate [ deaths per 100 M-Y ]
+
+d. proportion who survived at least 15 years.
+
+For a and b you can use the 'sum' option in PROC means;
+ie PROC MEANS data = ... SUM; VAR vars you want to sum;
+BY the 2 variables that form the cross-classification.
+Also think of a count as a sum of 0s and 1s.
+For c (to avoid having to compute 20 rates by hand), you can 'pipe' i.e. re-direct the sums to a new sas datafile, where you can then divide one by other to get (20) rates. Use OUTPUT OUT = .... SUM= ...names for two sums;
+
+3. On a single graph, plot the 5 Kaplan-Meier survival curves, one for each of the 5 Gleason score categories (PROC LIFETEST .. Online help is under the SAS STAT module, or see http://www.ats.ucla.edu/stat/sas/seminars/sas_survival/default.htm. For Stata, see http://www.ats.ucla.edu/stat/stata/seminars/stata_survival/default.htm.
+
+4. [OPTIONAL] In order to compare the death rates with those of U.S. men of the same age, for each combination of calendar year period (1970-1974, 1975-1979, ..., 1994-1999) and 5 year age-interval (55-59, 60-64, ... obtain
+
+a. the number of man-years of follow-up and
+
+b. the number of deaths.
+
+Do so by creating, from the record for each man, as many separate observations as the number of 5yr x 5yr "squares" that the man traverses diagonally through the Lexis diagram [ use the OUTPUT statement within the DATA step]. Then use PROC MEANS to aggregate the M-Y and deaths in each square. If you get stuck, here is some SAS code that does this, or see the algorithm given in Breslow and Day, Volume II, page ___
+
+ 
+
+ 	
+Put all of the program steps and output into a single .txt file. JH will use a mono-spaced font such as Courier to view it -- that way the alignment should be ok. Interleave DATA and PROC statements with output and conclusions, and use helpful titles (produced by SAS, but to your specifications) over top of each output. Get SAS to set up the output so that there are no more that 65 horizontal characters per line -- that way, lines won't wrap-around even when the font used to view your file is increased. Show relevant excerpts rather than entire listings of datafiles. Annotate liberally. Submit the text file electronically (i.e., by email) to JH by 9 am on Monday Nov 7.
+
+
+## Serial PSA values
+ 
+Q1
+
+These two files contain PSA values [pre-] and [post-] treatment of prostate cancer *.
+
+(a) Create a 'wide' PSA file of 25 log-base-2 PSA values per man (some will be missing, if PSA not measured 25 times). Print some excerpts.
+
+(b)From the dataset created in (a), create a long file, with just the observations containing the non-missing log-base-2 PSA values [OUTPUT statement in DATA step]. Print and plot some excerpts.
+
+(c) From the dataset created in (b), create a wide file [ RETAIN, first. and last. helpful here; or use PROC TRANSPOSE ]. Print some excerpts.
+
+
+
+* The order of the variables is given in this sas program . Some of the code in the program may also be of help.
+ 
+
+ 	
+Put all of the program steps and output into a single .txt file. JH will use a mono-spaced font such as Courier to view it -- that way the alignment should be ok. Interleave DATA and PROC statements with output and conclusions, and use helpful titles (produced by SAS, but to your specifications) over top of each output. Get SAS to set up the output so that there are no more that 65 horizontal characters per line -- that way, lines won't wrap-around even when the font used to view your file is increased. Show relevant excerpts rather than entire listings of datafiles. Annotate liberally. Submit the text file electronically (i.e., by email) to JH by 9 am on Monday Nov 14.
+
+## Graphics
+ 
+1a
+
+Re-produce (or if you think you can, improve on) three of the graphs shown in "Examples of graphs from Medical Journals." These examples are in a pdf file on the main page. Use Excel for at least one of them, and R/Stata/SAS for at least one other. Do not go to extraordinary lengths to make them exactly like those shown -- the authors, or the journals themselves, may have used more specialized graphics software. You may wish to annotate them by making (and sharing with us) notes on those steps/options that were not immediately obvious and that took you some effort to figure out. Insert all three into a single electronic document.
+ 
+
+1b
+
+Browse some medical and epidemiologic journals and some magazines and newspapers published in the last 12 months, Identify the statistical graph you think is the worst, and the one you think is the best. Tell us how many graphs you looked at, and why you chose the two you did. If you find a helpful online guide or textbook on how to make good statistical graphs, please share the reference with us. [The bios601 site 
+http://www.epi.mcgill.ca/hanley/bios601/DescriptiveStatistics/ has a link to the Textbook by Cleveland and the book "R Graphics" by Paul Murrell. 
+
+If possible, electronically paste the graphs into the same electronic file you are using for 1a.
+ 	 
+2
+
+[OPTIONAL] The main page has a link to a lifetable workbook containing three sheets. Note that the 'lifetable' sheet in this workbook is used to calculate an abridged current life table based on the 1960 U.S. data. Use this sheet as a guideline, and create a current life-table ('complete', i.e., with 1-year age-intervals) for Canadian males, using the male population sizes, and numbers of deaths, by age, Canada 2001. [The calculations in columns O to W of the lifetable sheet are not relevant for this exercise]. Details on the elements of, and the construction of current lifetables can be found in the chapters (on website) from the textbooks by Bradford Hill and Selvin, and in the technical notes provided by the US National Center for Health Statistics in connection with US Lifetable 2000. See also the FAQ for 613 from 2005. The fact that the template is for an abridged life table, with mostly 5-year intervals, whereas the task is to construct a full lifetable with 1 year intervals, caused some people problems last year.. they realized something was wrong when the life expectancy values were way off!
+
+Since this is an exercise, and not a calculation for an insurance company that wants to have 4 sig. decimal places, don't overly fuss about what values of 'a' you use for the early years.. they don't influence the calculations THAT much: If you try different sets of values (such as 0.1 in first year and 0.5 thereafter) you will not find a big impact. But don't take my word for it .. the beauty of a spreadsheet is that you can quickly see the consequences of different assumptions or 'what ifs'. 
+
+[In practice, in order not to be unduly influenced by mortality rates in a single calendar year (e.g. one that had a very bad influenza season), current lifetables are usually based on several years of mortality data. Otherwise, or if they are based on a small population, the quantities derived from them will exhibit considerable random fluctuations from year to year ]
+
+Once you have completed the table, use the charting facilities in Excel to plot the survival curve for the hypothetical (fictitious) male 'cohort' represented by the current lifetable.
+
+On a separate graph, use two histograms to show the distributions of the ages at death (i) for this hypothetical male 'cohort' and (ii) those males who died in 2001. To make it easy to compare them, superimpose the histograms or put them 'side by side' or 'back to back' within the same graph. Explain why the two differ in shape and location. Calculate/derive (and include them somewhere on the spreadsheet) the median and mean age at death in the hypothetical cohort and the corresponding statistics for the actual deaths in 2001.
+
+
+## Possible Body Mass Indices
+
+This exercise investigates different definitions of Body Mass Index (BMI).
+
+BACKGROUND: With weight measured in Kilograms, and height in metres, BMI is usually defined as weight divided by the SQUARE of height, i.e., BMI = Wt / (Height*Height), or BMI = Wt/(height**2) using, as SAS and several other programming languages do, the symbol ** for 'raised to the power of'. [ NB: Excel uses ^ to denote this ]
+
+What's special about the power of 2? Why not a power of 1 i.e., Weight/height?
+
+Why not 3, i.e., Weight/*(height**3) ? Why not 2.5 i.e. Weight/(height**2.5)?
+
+One of the statistical aims of a transformation of weight and height to BMI is that BMI be statistically less correlated with height, thereby separating height and height into two more useful components height and BMI. For example in predicting lung function (e.g. FEV1), it makes more sense to use height and BMI than height and weight, since weight has 2 components in it -- it is partly height and partly BMI. Presumably, one would choose the power which minimizes the correlation.
+
+The task in this project is to investigate the influence of the power of height used in the ratio, and to see if the pattern of correlations with power is stable over different settings (datasets).
+
+DATA: To do this, use 2 of the 6 datasets on the 678 webpage: 
+[usernane is c678 and p w is H***J*44 ] 
+
+- Children aged 11-16 Alberta 1985 (under 'Datasets')
+- 18 year olds in Berkeley longitudinal study, born 1928/29 (under 'Datasets')
+- Dataset on bodyfat -- 252 men (see documentation) (under 'Datasets')
+- Pulse Rates before and after Exercise -- Australian undergraduates in 1990's (under 'Projects')
+- Miss America dataset 1921-2000 (under 'Resources')
+- Playboy dataset 1929-2000 (under 'Resources')
+
+METHODS: First create each of the two SAS datasets, and if height and weight are not already in metres and Kg, convert them to these units. Drop any irrelevant variables. Inside each dataset, create a variable giving the source of the data (we will merge the two -- and eventually all six-- datasets, so we need to be able to tell which one each observation came from). 
+
+Combine the two datasets, i.e. 'stack' them one above the other in a single dataset. Print out some excerpts.
+
+For each subject in the combined dataset, create 5 versions of <<BMI> using the powers 1, 1.5, 2, 2.5 and 3.
+
+Calculate the correlation between the 'BMI' obtained with each of these powers, and height. Do this separately for the observations from the two different sources (the BY statement should help here).
+
+Report your CONCLUSIONS.
+ 
+
+ 	
+## Galton
+
+ 	
+The objective of this exercise is to examine the relation between heights of parents and heights of their (adult) children, using recently 'uncovered' data from the Galton archives, You are asked to assess if Galton's way of dealing with the fact that heights of males and females are quite different produces sharper correlations than we would obtain using 'modern' methods of dealing with this fact. As side issues, you are also asked to see whether the data suggest that stature plays "a sensible part in marriage selection" and to comment on the correlations of the heights in the 4 {father,son}, {father,daughter}, {mother,son} and {mother,daughter} pairings. 
+
+BACKGROUND: Galton 'transmuted' female heights into their 'male-equivalents' by multiplying them by 1.08, and then using a single combined 'uni-sex' dataset of 900-something offspring and their parents. While some modern-day anayysts would simply calculate separate correlations for the male and female offspring (and then average the two correlations, as in a meta-analysis), most would use the combined dataset but 'partial out' the male-females differences using a multivariable analysis procedure. The various multivariable procedures in effect create a unisex dataset by adding a fixed number of inches to each female's height (or, equivalently, in the words of one of our female PhD students, by 'cutting the men down to size'). JH was impressed by the more elegant 'proportional scaling' in the 'multiplicative model' used by Galton, compared with the 'just use the additive models most readiliy available in the software' attitude that is common today. In 2001, he located the raw (untransmuted) data that allows us to compare the two approaches.
+
+DATA: For the purposes of this exercise, the data [see http://www.epi.mcgill.ca/hanley/galton ] are in two separate files:
+
+- the heights# of 205 sets of parents ( parents.txt ) with families numbered 1-135, 136A, 136-204
+- the heights# of their 900-something* children ( offspring.txt ) with families numbered as above
+
+* The data on eight families are deliberately omitted, to entice the scholar in you to get into the habit of looking at (and even double checking) the original data. Since here we are more interested in the computing part in this course, and because time is short, ignore this invitation to inspect the data -- we already had a look at them in class. In practice, we often add in 'missing data' later, as there are always some problem cases, or lab tests that have to be repeated, or values that need to be checked, or subjects who didn't get measured at the same time as others etc.. JH's habit is to make the additions in the 'source' file (.txt or .xls or whatever) and re-run the entire SAS DATA step(s) to create the updated SAS dataset (temporary or permanent). If the existing SAS datset is already large, and took a lot of time to create, you might consider creating a small dataset with the new observations, and then stacking (using SE) the new one under the existing one -- in a new file. SAS has fancier ways too, and others may do things differently!
+
+
+ If your connection is too slow to view the photo of the first page of the Notebook, the title reads
+
+FAMILY HEIGHTS 
+(add 60 inches to every entry in the Table)
+
+
+METHODS/RESULTS/COMMENTS:
+
+1. Categorize each father's height into one of 3 subgroups (shortest 1/4, middle 1/2, tallest 1/4). Do likewise for mothers. Then, as Galton did [ Table III ], obtain the 2-way frequency distribution and assess whether "we may regard the married fold as picked out of the general population at haphazard".
+
+2. Calculate the variance Var[F] and Var[M] of the fathers' [F] and mothers' [M] heights respectively. Then create a new variable consisting of the sum of F and M, and calculate Var[F+M]. Comment. Galton called this a "shrewder" test than the "ruder" one he used in 1. ( statistic-keyword VAR in PROC MEANS)
+
+3. When Galton first anayzed these data in 1885-1886, Galton and Pearson hadn't yet invented the CORRelation coefficient. Calculate this coefficient and see how it compares with your impressions in 1 and 2.
+
+4. Create two versions of the transmuted mother's heights, one using Galton's and one using the modern-day (lazy-person's, blackbox?) additive scaling [for the latter, use the observed difference in the average heights of fathers and mothers, which you can get by e.g., running PROC MEANS on the offspring dataset, either BY gender, or using gender as a CLASS variable]. In which version of the transmuted mothers' heights is their SD more simlar to the SD of the fathers? ( statistic-keyword STD in PROC MEANS)
+
+5. Create the two corresponding versions of what Galton called the 'mid-parent' (ie the average of the height of the father and the height of the transmuted mother). Take mid-point to mean the half-way point (so in this case the average of the two)
+
+6. Create the corresponding two versions (additive and multiplicative scaling) of the offspring heights (note than sons' heights remain 'as is'). Address again, but now for daughters vs sons, the question raised at the end of 4. 
+
+7. Merge the parental and offspring datasets created in steps 4 and 6, taking care to have the correct parents matched with each offspring (this is called a 1:many merge).
+
+8. Using the versions based on 1.08, round the offspring and mid-parent heighs to the nearest inch (or use the FLOOR function to just keep the integer part of the mid-parent height --you need not be as fussy as Galton was about the groupings of the mid-parent heights), and obtain a 2-way frequency distribution similar to that obtained by Galton [ Table I ]. Note that, opposite to we might do today, Galton put the parents on the vertical, and the offspring on the horizontal axis. ( The MOD INT FLOOR CEIL and ROUND functions can help you map observations into 'bins' ; we will later see a way to do so using loops)
+
+9. Galton called the offspring in the same row of his table a 'filial array'. Find the median height for each filial array, and plot it, as Galton did, against the midpoint of the interval containing their midparent -- you should have one datapoint for each array*. Put the mid-parent values on the vertical, and the offspring on the horizontal axis. By eye, estimate the slope of the line of best fit to the datapoints. Mark your fitted line by 'manually' inserting two markers at the opposite corners of the plot. Does the slope of your fitted line agree with Galton's summary of the degree of "regression to mediocrity"? [ Plate IX ] *Note that Galton used datapoints for just 9 filial arrays, choosing to omit those in the bottom and top rows (those with the very shortest and the very tallest parents) because the data in these arrays were sparse. ( By using the binned parental height in the CLASS statement in PROC MEANS or PROC UNIVARIATE, directing the output to a new SAS dataset, and applying PROC PLOT to this new dataset, you can avoid having to do the plotting manually See more on this in the FAQ)
+
+10. Plot the individual unisex offspring heights (daughters additively transmuted) versus the mid-parent height (mothers transmuted). OVERLAY on it, with a different plotting symbol, the corresponding plot involving the multiplicatively transmuted offspring values (on the parent-axis, stay with Galton's definition of a midparent). (see FAQ) Compare the two, and have a look at Galton's fitted ellipse, corresponding to a bivariate normal distribution [ Plate X ]) {here, again, we would be more likely to plot the parents' heights on the horizontal, and the offspring heights on the vertical axis}.
+
+11. For each of the following 'offspring vs. mid-parent' correlations, use the 'mid-parent' obtained using Galton's multiplicative method. Calculate (a) the 2 correlations for the 2 unisex versions of the offspring data (b) the sex-specific correlations (i.e., daughters and sons separately) and (c) the single parent-offspring correlation, based on all offspring combined, and their untransmuted heights, ignoring the sex of the offspring. Comment on the correlations obtained, and on the instances where there are big disparities between them. [ a PLOT, with separate plotting symbols for sons and daughters, might help in the case of (c) ] 
+
+12. Calculate the 4 correlations (i) father,son (ii) father,daughter, (iii) mother,son and (iv) mother,daughter. Comment on the pattern, and on why you think it turned out this way. 
+ 
+
+Put all of the program steps and output into a single .txt file. JH will use a mono-spaced font such as Courier to view it -- that way the alignment should be ok. Interleave DATA and PROC statements with output and conclusions, and use helpful titles (produced by SAS, but to your specifications) over top of each output. Get SAS to set up the output so that there are no more that 65 horizontal characters per line -- that way, lines won't wrap-around even when the font used to view your file is increased. Show relevant excerpts rather than entire listings of datafiles. Annotate liberally. Submit the text file electronically (i.e., by email) to JH by 9 am on Monday October 30.
   
 
 ## Epidemics

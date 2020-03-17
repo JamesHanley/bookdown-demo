@@ -2,12 +2,56 @@
 
 [and other location (and spread and shape) parameters]
 
+The **objectives** of this chapter are to
+
+*
+
+*
+
+Although few textbooks do so, we think it is worth distinguishing two contexts.
+
+
 ## Two genres
 
-* Constants of Nature, not easily measured on a single try
+* The _first_ is where, _if_ there were no measurement issues, we would 'see' / 'get' / 'observe' the same constant every time we made a determination, but where, because of unavoidable measurement variations, there is a statistical distribution of 'measurements' around that constant. Examples include measurements of constants such as the speed of light, or of physical constants, such as a standard weight (e.g. 1 Kg) or of a fixed distance measured by a smart phone app or
+a fixed number of steps measured by a step-counter.  Examples of 'personal' constants that are constant -- at least in the short term -- but not easily or reproducibly measured  might be the size of a person’s vocabulary, or a person’s mean (or minimum, or typical) reaction time. Or, the target could be a person’s ‘true score’ on some test – the value one would get if one (could, but not realistically) be tested on each of the (very large) number of test items in the test bank, or observed/measured continously over the period of interest.  
+\ \ \ \ Starting with this simpler 'measurement variation only' context makes it easier to master the statistical laws that govern the variation of values  derived from a combination of measurements, the variation of _statistics_.
 
-* Centers of  (infinite sized) biological (population) distributions
+* The _second_ is where the variation is primarily (or in a few deluxe cases where there are no measurement issues, entirely) due to genuine -- e.g., biological -- variation. 
+Examples of such (often effectively infinite in size) biological distributions include the depths of the ocean, or the heights or weights or blood pressures of a specific population.  
+\ \ \ \ In this context, the distribution is less likely to display the symmetry observed  when the variation is entirely due to measurement variations around some constant. Thus, there may be several possible choices of the 'centre' of the distribution. So, in addition to pursuing the 'mean' parameter $\mu$ we will also pursue other numerical parameters for the centre.
+
+No matter which of the two genres we are dealing with, it may be important to quantify the spread (and maybe the shape) of the distribution. Even if this aspect may be of secondary interest, it has a bearing on what we can say about how far off the target (off the parametr) our estimators might be.
+
+We will begin with the first genre, where, _if_ there were no measurement issues, we would 'see' / 'get' / 'observe' the same constant every time we made a determination, but where, because of unavoidable measurement variations, there is a statistical distribution of 'measurements' around that constant. Because its estimation involves the same statistical laws as when the distribution/variation is biological, we will refer to this elusive 'constant' as $\mu.$
 
 ## Fitting these to data / Estimating them from data
+
+Experiments to Determine the Density of the Earth. By Henry Cavendish, Esq. F.R.S. and A.S. Philosophical Transactions of the Royal Society of London, Vol. 88. (1798), pp. 469-526.
+
+http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Mean-Quantile/Cavendish1798.pdf
+
+The following Table contains the Results of the Experiments
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
+
+density = c(
+5.50, 5.61, 4.88, 5.07, 5.26, 5.55, 5.36, 5.29, 5.58, 5.65,
+5.57, 5.53, 5.62, 5.29, 5.44, 5.34, 5.79, 5.10, 5.27, 5.39,
+5.42, 5.47, 5.63, 5.34, 5.46, 5.30, 5.75, 5.68, 5.85)
+
+round(mean(density),2)
+
+lm.fit =  lm(density ~ 1)
+print(summary(lm.fit),digits=1)
+round(confint(lm.fit),2)
+
+library(mosaic)
+bootstrap.fits <- do(1000) * lm( resample(density) ~1)
+round(confint(bootstrap.fits$Intercept),2)
+round(sd(bootstrap.fits$Intercept),2)
+
+
+```
 
 * Metrics (criteria) for measuring (best) fit
