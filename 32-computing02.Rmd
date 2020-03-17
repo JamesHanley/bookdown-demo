@@ -20,7 +20,7 @@ error distribution
 Table 2 in the article by Hughes shows 'Values suggested for the mean density of the Earth, as a function of the date of publication' starts with Newton's 1687 guesstimate, and ends, (23 estimates later) with Heyl and Chrzanowski's 1942 value.
 Five of the 24 estimates are accompanied by a $\pm$ value, but what this values signifies is left unexplained. One of the 24s is Cavendish's 1798 estimate, which he obtained by taking the mean of 29 density measurements derived using a torsion balance on  17 days in the months of August and  September, and the following April and May. Cavendish's 'point estimate'  was 5.48. Since his'extreme results do not differ from the mean by more than 0.38,or $\frac{1}{14}$ of the whole' [...] Therefore, it seems very unlikely that the density of the earth should differ from the 5.48 by so much as $\frac{1}{14}$ of the whole.'
 
-## Statistical Task
+## Statistical Tasks
 
 ## Orientation to random variation in the form of measurement errors
 
