@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
+  <title>Chapter 13 Computing Week 1 | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
   <meta name="description" content="A regression-from-the-outset based approach" />
   <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta property="og:title" content="Chapter 13 Computing Week 1 | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta name="twitter:title" content="Chapter 13 Computing Week 1 | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   
   <meta name="twitter:description" content="A regression-from-the-outset based approach" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction.html"/>
+<link rel="prev" href="math.html"/>
+<link rel="next" href="computing02.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -239,64 +239,95 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Introduction to Statistical Analysis: a regression-from-the-outset approach</h1>
-<p class="author"><em>Sahir, Shirin and Jim</em></p>
-<p class="date"><em>2020-03-18</em></p>
+<div id="computing01" class="section level1">
+<h1><span class="header-section-number">Chapter 13</span> Computing Week 1</h1>
+<p>The <strong>‘computing’ objectives</strong> are to learn how to use <code>R</code> to put series of observations into vectors, and how to plot one series against another.</p>
+<p>The <strong>‘statistical’ objective</strong> of this exercise is to understand the concept of a distribution of a numerical characteristic (here an amount of elapsed time), and the various numbers describing its ‘central’ location and spread, and other ‘landmarks’. You will also be introduced (in the next section) to 2 functions that give a more complete description of a distribution.</p>
+<div id="biological-background" class="section level2">
+<h2><span class="header-section-number">13.1</span> Biological background</h2>
+<p>Later on we will examine climate trends using unusual datasets, which suggest that over the last few centuries, winter tends to end earlier, and plants tend to flower earlier.</p>
+<p>One such dataset arose as part of a long-running contest, the <a href="http://www.nenanaakiceclassic.com">Nenana Ice Classic</a> More <a href="http://www.john-daly.com/nenana.htm">here</a></p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<div id="target" class="section level2">
-<h2><span class="header-section-number">0.1</span> Target</h2>
-<p>The target is graduate students in population health sciences in their first year. Concurrently, they take their first courses on epidemiologic methods. The department is known for its emphasis on quantitative methods, and students’ ability to carry out their own quantitative work. Since most of the data they will deal with are non-experimental, there is a strong emphasis on multivariable regression. While some students will have had some statistical courses as undergraduates, the courses start at the beginning, and are pitched at the Master’s level.</p>
-<p>In the last decade, the incoming classes have become more diverse, both in their backgrounds, and in their career plans. Some of those in the recently begun MScPH program plan to me consumers rather than producers of research; previously, the majority of students pursued a thesis-based Masters that involved considerable statistical analyses to produce new statistical evidence.</p>
+<div id="statistical-task" class="section level2">
+<h2><span class="header-section-number">13.2</span> Statistical Task</h2>
+<p>You are asked to approximate and carefully examine the distribution of guesses in 2018, contained in the Book of Guesses for that year.</p>
+<p>For now, we will measure the guesses (and eventually the actual time) as the numbers of days since the beginning of 2018. Thus a guess of Tuesday April 17 5:20 p.m. would be measured as 31 + 28 + 31 + 16 + (16 + 20/60)/24 = 106.6806 days since the beginning of 2018.</p>
+<p>It would be tedious to try to apply optical character recognition (OCR) to each of the 1210 pages in order to be able to computerize all of the almost 242,000 guesses. Instead, you are asked to reconstruct the distribution of the guesses in two more economical ways:</p>
+<ol style="list-style-type: decimal">
+<li><p>By determining, for each of the 36 x 2 = 72 half-days days from April 10 to May 15 inclusive, the proportion, p, of guesses that are earlier than midnight on that date. [ In <code>R</code>, if p = 39.6% of the guesses were below xy.z days, we would write this as pGuessDistribution(xy.z) = 0.396. Thus, if we were dealing with the location of a value in a Gaussian (‘normal’) distribution, we would write <code>pnorm(q=110, mean = , sd = )</code> ] Once you have determined these 72 proportions (p’s), plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.</p></li>
+<li><p>By determining the 1st, 2nd, … , 98th, 99th percentiles. These are specific examples of ‘quantiles’, or q’s. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all guesses are below this value, and 1-q are above it. [ In <code>R</code>, if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a Gaussian distribution with mean 130 and standard deviation 15, we would write <code>qnorm(p=0.4, mean = 130, sd = 15)</code>. ] Once you have determined them, plot the 99 p’s (on the vertical axis) against the 99 (elapsed) times on the horizontal axis.</p></li>
+</ol>
+<div id="the-p-and-q-functions-an-orientation" class="section level3">
+<h3><span class="header-section-number">13.2.1</span> The p and q functions: an orientation</h3>
+<p>The ‘<strong>p</strong>’ function tells us, for a given value of the characteristic, what <strong>p</strong>roportion of the distribution lies to the left of this specified value.</p>
+<p>The ‘<strong>q</strong>’ (or quantile) function tells us, for a given proportion p, what is the value of the characteristic such that that specified proportion p of the distribution lies to the left of this ‘q’ value.</p>
+<p>In the plot below, the values of the <strong>p</strong> function are shown on the vertical axis, in red, against the (in this case, equally-spaced) values of the characteristic, shown on the horizontal axis. You enter on the horizontal axis, and exit with an answer on the vertical axis.</p>
+<p>The <strong>q</strong> function (in blue) goes into the opposite direction. You enter at some proportion on the vertical axis, and exit with a value of the characteristic (a quantile) on the horizontal axis. In our plot, the proportions on the vertical axis are equally-spaced. Percentiles and quartiles are a very specific sets of quantiles: they are obtained by finding the values that divide the distribution into 100 or into 4.</p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-7-1.png" width="864" style="display: block; margin: auto;" /></p>
 </div>
-<div id="topicstextbooks" class="section level2">
-<h2><span class="header-section-number">0.2</span> Topics/textbooks</h2>
-<p>For the <strong>first term</strong> course 607, recent choices have been <em>The Practice of Statistics in the Life Sciences</em> by Baldi and Moore, and <em>Stats</em> by de Veaux, Velleman and Bock. Others that have been recommended are the older texts by Pagano and Gauvreau, and by Rosner. Some of us have also drawn on material in <em>Statistics</em> by Freedman, Pisani, Purves and Adkikari, and <em>Statistical Methods in Medical Research</em>, 4th Edition_ by Armitage,Berry, and Matthews.</p>
-<p>The newer books have tried to teach the topic more engagingly, by starting with where data come from, and (descriptively) displaying single distributions, or relationships between variables. They and the many others then typically move on to Probability; Random Variables; Sampling Distributions; Confidence intervals and Tests of Hypotheses; Inference about/for a single Mean/Proportion/Rate and a difference of two Means/Proportions/Rates; Chi-square Tests for 2 way frequency tables; Simple Correlation and Regression. Most include a (or point to an online) chapter on Non-Parametric Tests. They typically end with tables of probability tail areas, and critical values.</p>
-<p>Bradford Hill’s <em>Principles of Medical Statistics</em> followed the same sequence 80 years ago, but in black type in a book that measured 6 inches by 9 inches by 1 inch, and weighed less than a pound. Today’s multi-colour texts are 50% longer, 50% wider, and twice as thick, and weigh 5 pounds or more.</p>
-<p>The topics to be covered in the <strong>second term</strong> course include multiple regression involving Gaussian, Binomial, and Poisson variation, as well as (possibly censored) time-durations – or their reciprocals, event rates. Here is is more difficult to point to one modern comprehensive textbook. There is pressure to add even more topics, such as correlated data, missing data, measurement error etc. top the second statistics course.</p>
-</div>
-<div id="regression-from-the-outset" class="section level2">
-<h2><span class="header-section-number">0.3</span> Regression from the outset</h2>
-<p>It is important to balance the desire to cover more of these regression-based topics with having a good grounding, from the first term, in the basic concepts that underlie all statistical analyses.</p>
-<p>The first term <em>epidemiology</em> course deals with proportions and rates (risks and hazards) and – at the core of epidemiology – comparisons involving these. Control for confounding is typically via odds/risk/rate differences/ratios obtained by standardization or Mantel-Haenszel-type summary measures. Teachers are reluctant to spend the time to teach the classical confidence intervals for these, as they are not that intuitive and – once students have covered multiple regression – superceded by model-based intervals.</p>
-<p>One way to synchronize with epidemiology, is to teach the six separate topics Mean/Proportion/Rate and differences of two Means/Proportions/Rates in a more unified way by embedding all 6 in a regression format right from the outset, to use generalized linear models, and to focus on all-or-none contrasts, represented by binary ‘X’ values.</p>
-<p>This would have other benefits. As of now, a lot of time in 607 is spent on 1-sample and 2-sample methods (and chi-square tests) that don’t lead anywhere (generalize). Ironically, the first-term concerns with equal and unequal variance tests are no longer raised, or obsessed about, in the multiple regression framework in second term.</p>
-<p>The teaching/learning of statistical concepts/techiques is greatly enriched by real-world applications from published reports of public health and epidemiology research. In 1980, a first course in statistics provided access to 80% of the articles in NEJM articles. This large dividend is no longer the case – and even less so for journals that report on non-experimental research. The 1-sample and 2-sample methods, and chi-square tests that have been the core of first statistics courses are no longer the techniques that underlie the reported summaries in the abstracts and in the full text. The statistical analysis sections of many of these articles do still start off with descriptive statistics and a perfunctory list of parametric and non-parametric 1 and 2 sample tests, but most then describe the multivariable techniques used to produce the reported summaries. [Laboratory sciences can still get by with t-tests and ‘anova’s – and the occasional ancova’; studies involving intact human beings in free-living populations can not.] Thus, if the first statistical course is to to get the same ‘understanding’ dividend from research articles as the introductory epidemiology course does, that first statistical course needs to teach the techniques that produce the results in the abstracts. Even if it can only go so far, such an approach can promote a regression approach right from week one, and build on it each week, rather than introduce it for the first time at week 9 or 10, when the course is already beginning to wind down, and assignments from other courses are piling up.</p>
-</div>
-<div id="parameters-first-data-later" class="section level2">
-<h2><span class="header-section-number">0.4</span> Parameters first, data later</h2>
-<p>When many teachers and students think of regression, they imagine a cloud of points in x-y space, and the least squares fitting of a regression line. They start with thinking about the data.</p>
-<p>A few teachers, when they introduce regression, do so by describing/teaching it as <strong>an equation that connects parameters</strong>, constructed in such a way that the parameter-constrast of interest is easily and directly visible. Three such teachers are Clayton and Hills 1995, Miettinen1985, and Rothman 2012. In each case, their first chapter on regression is limited to the parameters and to undersatnding what they mean; data only appear in the next chapter.</p>
-<p>There is a lot to commend this approach. It reminds epidemiologists – and even statisticians – that statistical inference is about parameters. Before addressing data and data-summaries, we need to specify what the estimands are – i.e, what parameter(s) is(are) we pursuing.</p>
-<p>It is easy and tempting to start with data, since the form of the summary statistic is usually easy to write down directly. It can also be used to motivate a definition: for example, we could define an odds ratio by its empirical computational form ad/bc. However, this ‘give me the answer first, and the question later’ approach comes up short as soon as one asks how statistically stable this estimate is. To derive a standard error or confidence interval, one has to appeal to a sampling distribution. To do this, one needs to identify the random variables involvced, and the parameters that determine/modulate their statistical distributions.</p>
-<p>Once students master the big picture (the parameter(s) being pursued), the task of estimating them by fitting these equations to data is considerably simplified, and becomes more generic. In this approach more upfront thinking is devoted to the parameters – to what Miettinen calls the design of the study object – with the focus on a pre-specified ‘deliverable.’</p>
-</div>
-<div id="lets-switch-to-y-bar-and-drop-x-bar." class="section level2">
-<h2><span class="header-section-number">0.5</span> Let’s switch to “y-bar”, and drop “x-bar”.</h2>
-<p>The prevailing practice, when introducing descriptive statistics, and even to 1 and two sample procedures, is to use the term x-bar (<span class="math inline">\(\bar{x}\)</span>) for an arithmetic mean (one notable execption is de Veaux at al.) This misses the chance to prepare students for regression, where E[Y|X] is the object of interest, and the X-conditional Y’s are the random variables. Technically speaking, the X’s are not even considered random variables. Elevating the status of the Y’s and explaining the role of the X’s, and the impact of the X distributions on precision might also cut down on the practice of checking the normality of the X’s, even though the X’s are not random variables. They are merely the X locations/profiles at which Y was measured/recorded. When possible, the X distribution should be determined by the investigators, so as to give more precise and less correlated estimates of the parameters being pursued. Switching from <span class="math inline">\(\bar{x}\)</span> to <span class="math inline">\(\bar{y}\)</span> is a simple yet meaningful step in this direction. JH made this switch about 10 years ago.</p>
-</div>
-<div id="computing-from-the-outset" class="section level2">
-<h2><span class="header-section-number">0.6</span> Computing from the outset</h2>
-<p>In 1980, most calculations in the first part of 607 were by hand calculator. Computing summary statistics by hand was seen as a way to help students understand the concepts involved, and the absence of automated rapid computation was not considered a drawback. However, doing so did not always help students understand the concept of a standard deviation or a regression slope, since these formulae were designed to minimize the number of keystrokes, rather than to illuminate the construct involved. For example, it was common to rescale and relocate data to cut down on the numbers of digits entered, to group values into bins, and use midpoints and frequencies. It was also common to use the computationally-economical 1-pass-through-the-data formula for the sample variance <span class="math display">\[s^2 =   \frac{ \sum y^2 - \frac{(\sum y)^2}{n}}{n-1},\]</span><br />
-even though the definitional formula is</p>
-<p><span class="math display">\[s^2 = \frac{\sum(y - \bar{y})^2}{n-1}.\]</span></p>
-<p>The latter (definitional) one was considered too long, even though having to first have to compute <span class="math inline">\(\bar{y}\)</span> and then go back and compute (and square) each <span class="math inline">\(y - \bar{y}\)</span> would have helped students to internalize what a sample variance is.</p>
-<p>When spreadsheets arrived in the early 1980s, students could use the built-in mean formula to compute and display <span class="math inline">\(\bar{y}\)</span>, another formula to compute and display a new column of the deviations from <span class="math inline">\(\bar{y}\)</span>, another to compute and display a new column of the squares of these deviations, another to count the number of deviations, and a final formula to arrives at <span class="math inline">\(s^2.\)</span> The understanding comes from coding the definitional formula, and the spreadsheet simply and speedily carries them out, allowing to user to see all of the relevant components, and from noticing if each one looks reasonable. Ultimately, once students master the concept, they could move on to built-in formulae that hide (or themselves avoid) the intermediate quantities.</p>
-<p>Few teachers actually encouraged the use of spreadsheets, and instead promoted commercial statistical packages such as SAS, SPSS and Stata. Thus, the opportunity to learn to `walk first, run later’ afforded by spreadsheets was not fully exploited.</p>
-<p>RStudio is an integrated environment for R, a free software environment for statistical computing and graphics that runs on a wide variety of platforms. Just like spreadsheet software, one can use R not just as a calculator, but as a <em>programmable</em> calculator, and by programming them, learn the concepts before moving on to the built-in functions. There is a large user-community and a tradition of sharing information and ways of doing things. The graphics language contains primitive functions that allow customization, as well as higher-level functions, and is tighly integrated with the statistical routines amd data frame functions. R Markdown helps to foster reproducible research. Shiny apps allow interactivity and visualization, a bit like ‘what-ifs’ with a spreadsheet.</p>
-<p>It takes practice to become comfortable with R. Gor those less mathematical, it is somewhat more cryptic than, and not quite as intuitive as, other packages. For the last several years, the department has offered a 13 hour course introduction to R in first term. Initially the aim was to prepare students for using it in course 621 in second term, but in the Fall 2018 and 2019 offerings of course 607, computing with R and use of R Studio became mandatory. Just as the epidemiology material in the Fall is shared between 2 courses (601 and 602), the aim will be to also spread the statistics material over 607 and 613, and to integrate the two more tightly. As an example, the material on ‘descriptive’ (i.e., not model-based) statistics and graphical displays will be covered in 613, while 607 will begin with parameters and models. Rather than treat computing as a separate activity, exercises based on 607 material will be carried out as part of 613 classes/tutorials. The statistical material will be used to motivate the computer tasks.</p>
-</div>
-<div id="appendix" class="section level2">
-<h2><span class="header-section-number">0.7</span> Appendix:</h2>
-<p><strong>[Still rough] History of current introductory biostatistics courses</strong></p>
-<p>The senior author first taught a 2-course sequence for first year graduate students in epidemiology in 1980, using Colton’s Statistics in Medicine as the text for the introductory course (607). He developed his own notes for the second course, which covered multiple regression for quantitative responses. Over the next 10 years, he continued to teach the first course – first from Colton, but latterly from Moore and McCabe (and undergraduate text) and with epi statistics from Armitage and Berry and some other fundamentals from Freedman (Statistics). Stan S taught the second (621 Data Analysis in the Health Sciences), mostly from Kleinbaum’s Applied Regression Analysis and Other Multivariable Methods.</p>
-<p>In the 1990s, Lawrence J taught 607, and Michal A 621. Neither used a required textbook. LJ developed an extensive set of written notes (still available on his website) (and contributed a chapter Introduction to Biostatistics: Describing and Drawing Inferences from Data book on Surgical Arithmetic) while MA used transparencies that were widely photocopied. 2000s Robert P 621? LJ 621</p>
-<p>Meanwhile JH taught to summer students (mostly medical residents and fellows): 607 and a second course (678, Analysis of Multivariable Data). Both sets of content are available on JH’s website. He last taught the Fall version of 607 in 2001, when LJ was on sabbatical.</p>
-<p>607: Tina 2006 - 201x Erica M; 20xx - Paramita SC. 2018, 2019 Sahir B 621: Aurelie Alexandra 2020 Shirin</p>
+<div id="exercises-1" class="section level3">
+<h3><span class="header-section-number">13.2.2</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Once you have determined the 72 (cumulative) proportions (p’s) associated with the 72 half-days, plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.</p></li>
+<li><p>The 1st, 2nd, … , 98th, 99th percentiles are not so easy to determine since you have to locate the 2419th, 4839th, 7258t, … entries in the 1201-page Book of Guesses and plot the 99 p’s (on the vertical axis) against the 99 (elapsed) times (q’s) on the horizontal axis. Instead, use the first entry on each of pages 11, 21, … in <a href="http://www.biostat.mcgill.ca/hanley/bios691/SampledPages.pdf">this excerpt</a>. Using a different colour, plot these slightly-more-dense quantiles on the horizontal axix against the following percentages:</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">entries =<span class="st"> </span><span class="dv">200</span><span class="op">*</span><span class="kw">seq</span>(<span class="dv">10</span>,<span class="dv">1200</span>,<span class="dv">10</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+percent =<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span>entries<span class="op">/</span><span class="dv">241929</span>
+<span class="kw">noquote</span>( <span class="kw">paste</span>(<span class="kw">head</span>(<span class="kw">round</span>(percent,<span class="dv">1</span>),<span class="dv">10</span>),<span class="dt">collapse=</span><span class="st">&quot;%, &quot;</span>) )</code></pre></div>
+<pre><code>## [1] 0.8%, 1.7%, 2.5%, 3.3%, 4.1%, 5%, 5.8%, 6.6%, 7.4%, 8.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(<span class="kw">round</span>(percent,<span class="dv">1</span>),<span class="dv">10</span>)</code></pre></div>
+<pre><code>##  [1] 91.8 92.6 93.4 94.2 95.1 95.9 96.7 97.5 98.4 99.2</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Compare the Q<span class="math inline">\(_{25}\)</span>, Q<span class="math inline">\(_{50}\)</span>, and Q<span class="math inline">\(_{75}\)</span> obtained directly with the ones obtained by interpolation of the curve showing the results of the other method.</p></li>
+<li><p>Compare the directly-obtained proportions of guesses that are before (the end of) April 20, April 30, and May 10 with the ones obtained by interpolation of the curve showing the results of the other method.</p></li>
+<li><p>By successive subtractions, calculate the numbers of guesses in each 1/2 day bin, and make a histogram of them. From them, calculate the mean, the mode, and the standard deviation.</p></li>
+<li><p>(For a future assignment, but you can start thinking about how) From a random sample of 100 guesses from the book, estimate how many guesses in the entire book are PM.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my.id =<span class="st"> </span><span class="dv">800606</span>
+<span class="kw">set.seed</span>(my.id)
+n =<span class="st"> </span><span class="dv">50</span>
+sample.entry.numbers =<span class="st"> </span><span class="kw">sample</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">241929</span>, <span class="dt">size=</span>n)
+sorted.sample.entry.numbers =<span class="st"> </span><span class="kw">sort</span>(sample.entry.numbers)
+<span class="kw">head</span>(sorted.sample.entry.numbers,<span class="dv">10</span>)</code></pre></div>
+<pre><code>##  [1] 10542 17437 18351 21113 24086 28782 30055 32220 33162 36443</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">page.number =<span class="st"> </span><span class="kw">ceiling</span>(sorted.sample.entry.numbers<span class="op">/</span><span class="dv">200</span>)
+within.page =<span class="st"> </span>sorted.sample.entry.numbers<span class="op">-</span><span class="dv">200</span><span class="op">*</span>(page.number<span class="op">-</span><span class="dv">1</span>)
+column.number =<span class="st"> </span><span class="kw">ceiling</span>(within.page<span class="op">/</span><span class="dv">100</span>)
+row.number =<span class="st"> </span>within.page <span class="op">-</span><span class="st"> </span><span class="dv">100</span><span class="op">*</span>(column.number<span class="op">-</span><span class="dv">1</span>)
 
+dataset =<span class="st"> </span><span class="kw">data.frame</span>(page.number,column.number,row.number)
+<span class="kw">head</span>(dataset)</code></pre></div>
+<pre><code>##   page.number column.number row.number
+## 1          53             2         42
+## 2          88             1         37
+## 3          92             2         51
+## 4         106             2         13
+## 5         121             1         86
+## 6         144             2         82</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(dataset)</code></pre></div>
+<pre><code>##    page.number column.number row.number
+## 45        1087             1         80
+## 46        1097             2          3
+## 47        1121             1         16
+## 48        1131             1         55
+## 49        1175             2         52
+## 50        1181             2         30</code></pre>
+<ul>
+<li><p>How far off was the median guess in 2018 from the actual time? Answer in days, and (with reservations stated) as a percentage? {see the 2020 brochure }</p></li>
+<li><p>Why did the experts at the country fair do so much better?</p></li>
+<li><p>Where were the punters in 2019 with respect to the actual time?</p></li>
+<li><p>Instead of measuring the guessed times from the beginning of the year, suppose that, as Fonseca et al did, we measure the guessed times from the spring equinox in Alaska, i.e. from 8:15 a.m. on Tuesday, March 20, 2018, Alaska time. In this scale, compute the mean guess, and the SD of the guesses.</p></li>
+<li><p>Suppose, again, we measure the guessed times from the spring equinox, but in weeks. In this scale, compute the mean guess, and the SD of the guesses.</p></li>
+</ul>
+<p>Some links on the ‘Wisdom of Crowds’</p>
+<p><a href="https://www.technologyreview.com/s/528941/forget-the-wisdom-of-crowds-neurobiologists-reveal-the-wisdom-of-the-confident/" class="uri">https://www.technologyreview.com/s/528941/forget-the-wisdom-of-crowds-neurobiologists-reveal-the-wisdom-of-the-confident/</a></p>
+<p><a href="https://www.all-about-psychology.com/the-wisdom-of-crowds.html" class="uri">https://www.all-about-psychology.com/the-wisdom-of-crowds.html</a></p>
+<p><a href="http://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf" class="uri">http://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf</a></p>
+<ul>
+<li>How much warmer/colder in Nov-April is Monreal than Nenana?</li>
+</ul>
+
+</div>
 </div>
 </div>
             </section>
@@ -304,8 +335,8 @@ even though the definitional formula is</p>
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="math.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="computing02.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -336,7 +367,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/31-computing01.Rmd",
 "text": "Edit"
 },
 "history": {
