@@ -285,9 +285,75 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>Use the <code>sqrt()</code> function (or the <code>^0.5</code> power) to compute the standard deviation of the errors.</p></li>
 <li><p>Change the errors from -1cm and +1cm to say -5cm and +5cm, and repeat steps 1 and 2. From this, what did you learn about the variance and the standard deviation?</p></li>
 <li><p>Add the errors onto 100cm to make 2 measurements (imperfect copies) of the meter bar, and calculate the mean, variance and standard deviation of the 2 measurements. From this, and by varying the sizes of the 2 errors, what did you learn about the mean the variance and the standard deviation of a shifted (re-located) random variable? {Hint: be careful to use your own variance and standard deviation functions, not the inbuilt <code>var</code> and <code>sd</code> functions. The reason is that whereas we say there are just 2 errors, in reality there are as many as there are copiers – effectively an infinite number, about half of whom will make an error of +1cm, and about half of whome will an error of -1cm. Or you can say that the probabilities of errors of -1cm and +1cm are 0.5, and 0.5.</p></li>
-<li><p>Set up a long vector to contain the sample means of many simulated random <strong>pairs</strong> of measurements of (possibly imperfect copies) of the meter bar. For example, you might specify <code>no.of.pairs = 10000</code> and then <code>means.of.samples.of.size.2 = rep(NA,no.of.pairs)</code>. This would set up a vector of length 10000, with all entries inially set to <code>NA</code>.</p></li>
+<li><p>In order to see the laws in action, and figure them out (with the aid of the <code>R</code> code below)</p></li>
 </ol>
-<p>Using the 2-point (-1cm, +1cm) error distribution shown in the first Figure, simulate a large number (enough so that the shapes of the histograms are reproducible) of possible random <strong>pairs</strong> of measurements (possibly imperfect) of the meter bar. For each of these simulated samples of size <span class="math inline">\(n\)</span> = 2, calculate the sample mean, and insert it into the location if</p>
+<ul>
+<li><p>Begin with many simulated random <strong>pairs</strong> of measurements of (possibly imperfect copies) of the meter bar. For example, you might specify <code>no.of.pairs = 10000</code>.</p>
+<ul>
+<li><p>Then, using the 2-point (-1cm, +1cm) error distribution shown in the first Figure, simulate this large number of pairs of measurements. There are almost as many ways to do this as there are <code>R</code> programmers. One way (looking ahead to when we want to generalize and simulate larger samples) would be to use a matrix, i.e. a 2-way array, with as many rows as there are pairs (sets), and as many columns as the number of measurements per sample (here 2, but adjustable as you go along). See below.</p></li>
+<li><p>For each of these simulated samples of size <span class="math inline">\(n\)</span> = 2, calculate the sample sum and sample mean. The <code>apply</code> function is very helpful here: you tell it to apply the desired function (FUN) separately for each <strong>row</strong> of the matrix by specifying <code>MARGIN = 1</code>. (Specifying <code>MARGIN = 2</code> would give you a separate result for each column.)</p></li>
+<li><p>Now (finally) calculate the spread of the sample sums and sample means. Do so suing both the standard deviation, and its square (the variance). The latter is not a natural quantity for non-statistians,</p></li>
+</ul></li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Repeat 5. for samples of size <span class="math inline">\(n\)</span> = 1, 3, 4, 5, 6, 7 , 8, 9, and 10. and plot the variances and sd’s against <span class="math inline">\(n.\)</span> What laws do these plots suggest?</li>
+</ol>
+<p>According to Stephen Stigler, a historian of statistics, understanding of this law is one of the things that separates statisticians from mathematicains and computer scientists. Indeed, it is the second of what he calls the Seven Pillars od Statistics:</p>
+<blockquote>
+<p>The first recognition that the variation of sums did not increase proportionately with the number of independent terms added (and that the standard deviation of means did not decrease inversely with the number of terms) dates to the 1700s. This novel insight, that information on accuracy did not accumulate linearly with added data, came in the 1720s to Abraham de Moivre as he began to seek a way to accurately compute binomial probabilities with a large number of trials. In 1733 this would lead to his famous result, which we now call the normal approximation to the binomial, but by 1730 he already noticed that a crucial aspect of the distribution was tied to … [Stigler The Seven Pillars of Statistical Wisdom. Chapter 2. Its Measurement and Rate of Change.]</p>
+</blockquote>
+<p>His story of The Trial of the Pyx dramatically illustrates the early and continued blindness to the correct form of the laws. But he doesn’t think that Newtom, who was Master of the Mint for many years, took advantage of this blindness to become rich.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ERRORS =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)
+
+no.of.pairs =<span class="st"> </span><span class="dv">10000</span> 
+means.samples.of.size.<span class="dv">2</span> =<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>,no.of.pairs)
+
+measurements =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">100</span><span class="op">+</span><span class="kw">sample</span>(ERRORS,<span class="dt">size =</span> <span class="dv">2</span><span class="op">*</span>no.of.pairs, <span class="dt">replace =</span> <span class="ot">TRUE</span>),
+                      <span class="dt">nrow =</span> no.of.pairs, <span class="dt">ncol=</span><span class="dv">2</span>)
+<span class="kw">str</span>(measurements)</code></pre></div>
+<pre><code>##  num [1:10000, 1:2] 99 101 99 99 99 99 101 99 101 99 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(measurements,<span class="dv">4</span>)</code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]   99   99
+## [2,]  101   99
+## [3,]   99  101
+## [4,]   99   99</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(measurements,<span class="dv">4</span>)</code></pre></div>
+<pre><code>##          [,1] [,2]
+##  [9997,]  101   99
+##  [9998,]  101  101
+##  [9999,]   99   99
+## [10000,]  101   99</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sums.samples.of.size.<span class="dv">2</span> =<span class="st"> </span><span class="kw">apply</span>(measurements,<span class="dt">MARGIN=</span><span class="dv">1</span>,<span class="dt">FUN=</span>sum)
+<span class="kw">str</span>(sums.samples.of.size.<span class="dv">2</span>)</code></pre></div>
+<pre><code>##  num [1:10000] 198 200 200 198 198 200 200 198 202 198 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">means.samples.of.size.<span class="dv">2</span> =<span class="st"> </span><span class="kw">apply</span>(measurements,<span class="dt">MARGIN=</span><span class="dv">1</span>,<span class="dt">FUN=</span>mean)
+
+<span class="kw">tail</span>(sums.samples.of.size.<span class="dv">2</span>,<span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 200 202 198 200</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(means.samples.of.size.<span class="dv">2</span>,<span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 100 101  99 100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(sums.samples.of.size.<span class="dv">2</span>)</code></pre></div>
+<pre><code>## sums.samples.of.size.2
+##  198  200  202 
+## 2529 4941 2530</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>( <span class="kw">mean</span>(sums.samples.of.size.<span class="dv">2</span>), <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 200</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>( <span class="kw">var</span>(sums.samples.of.size.<span class="dv">2</span>), <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 2.02</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>( <span class="kw">sd</span>(sums.samples.of.size.<span class="dv">2</span>) , <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 1.42</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(means.samples.of.size.<span class="dv">2</span>)</code></pre></div>
+<pre><code>## means.samples.of.size.2
+##   99  100  101 
+## 2529 4941 2530</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>( <span class="kw">mean</span>(means.samples.of.size.<span class="dv">2</span>), <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 100</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>( <span class="kw">var</span>(means.samples.of.size.<span class="dv">2</span>), <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 0.51</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>( <span class="kw">sd</span>(means.samples.of.size.<span class="dv">2</span>) , <span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 0.71</code></pre>
+<p>Elevators</p>
 </div>
 </div>
 <div id="biological-variation" class="section level2">

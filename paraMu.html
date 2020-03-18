@@ -295,7 +295,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 bootstrap.fits &lt;-<span class="st"> </span><span class="kw">do</span>(<span class="dv">1000</span>) <span class="op">*</span><span class="st"> </span><span class="kw">lm</span>( <span class="kw">resample</span>(density) <span class="op">~</span><span class="dv">1</span>)
 <span class="kw">round</span>(<span class="kw">confint</span>(bootstrap.fits<span class="op">$</span>Intercept),<span class="dv">2</span>)</code></pre></div>
 <pre><code>##            2.5% 97.5%
-## percentile 5.37  5.52</code></pre>
+## percentile 5.37  5.53</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">sd</span>(bootstrap.fits<span class="op">$</span>Intercept),<span class="dv">2</span>)</code></pre></div>
 <pre><code>## [1] 0.04</code></pre>
 <ul>
