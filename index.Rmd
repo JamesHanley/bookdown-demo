@@ -9,12 +9,10 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: rstudio/bookdown-demo
-header:includes: \usepackage{graphicx}
 description: "A regression-from-the-outset based approach"
 ---
 
 # Preface {-}
-
 
 
 ## Target
