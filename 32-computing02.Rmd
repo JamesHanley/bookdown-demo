@@ -124,12 +124,62 @@ More important than this are the statistical laws governing how widely the sums 
 
 4. Add the errors onto 100cm to make 2 measurements (imperfect copies) of the meter bar, and calculate the mean, variance and standard deviation of the  2 measurements. From this, and by varying the sizes of the 2 errors, what did you learn about the mean the variance and the standard deviation of a shifted (re-located) random variable? {Hint: be careful to use your own variance and standard deviation functions, not the inbuilt `var` and `sd` functions. The reason is that whereas we say there are just 2 errors, in reality there are as many as there are copiers -- effectively an infinite number, about half of whom will make an error of +1cm, and about half of whome will an error of -1cm. Or you can say that the probabilities of  errors of -1cm and +1cm are 0.5, and 0.5.
 
-5. Set up a long vector to contain the sample means of many simulated random **pairs** of measurements of (possibly imperfect copies) of the meter bar. For example, you might specify `no.of.pairs = 10000` and then `means.of.samples.of.size.2 = rep(NA,no.of.pairs)`. This would set up a vector of length 10000, with all entries inially set to `NA`.
+5. In order to see the laws in action, and figure them out (with the aid of the `R` code below)
 
-Using the 2-point (-1cm, +1cm) error distribution shown in the first Figure, simulate a large number (enough so that the shapes of the histograms are reproducible) of possible random **pairs** of measurements (possibly imperfect) of the meter bar. For each of these simulated samples of size $n$ = 2, calculate the sample mean, and insert it into the location if  
+   + Begin with many simulated random **pairs** of measurements of (possibly imperfect copies) of the meter bar. For example, you might specify `no.of.pairs = 10000`. 
+
+    + Then, using the 2-point (-1cm, +1cm) error distribution shown in the first Figure, simulate this large number of pairs of measurements. There are almost as many ways to do this as there are `R` programmers. One way (looking ahead to when we want to generalize and simulate larger samples) would be to use a matrix, i.e. a 2-way array, with as many rows as there are pairs (sets), and as many columns as the number of measurements per sample (here 2, but adjustable as you go along). See below.
+
+    + For each of these simulated samples of size $n$ = 2, calculate the sample sum and sample mean. The `apply` function is very helpful here: you tell it to apply the desired function (FUN) separately for each **row** of the matrix by specifying `MARGIN = 1`. (Specifying `MARGIN = 2` would give you a separate result for each column.)
+    
+    + Now (finally) calculate the spread of the sample sums and sample means. Do so suing both the standard deviation, and its square (the variance). The latter is not a natural quantity for non-statistians,
+    
+6. Repeat 5. for samples of size $n$ = 1, 3, 4, 5, 6, 7 , 8, 9, and 10. and plot the variances and sd's against $n.$ What laws do these plots suggest?
+
+According to Stephen Stigler, a historian of statistics, understanding of this law is one of the things that separates statisticians from mathematicains and computer scientists. Indeed, it is the second of what he calls the Seven Pillars od Statistics:
+
+>The first recognition that the variation of sums did not increase proportionately with the number of independent terms added (and that the standard deviation of means did not decrease inversely with the number of terms) dates to the 1700s. This novel insight, that information on accuracy did not accumulate linearly with added data, came in the 1720s to Abraham de Moivre as he began to seek a way to accurately compute binomial probabilities with a large number of trials. In 1733 this would lead to his famous result, which we now call the normal approximation to the binomial, but by 1730 he already noticed that a crucial aspect of the distribution was tied to ... [Stigler The Seven Pillars of Statistical Wisdom. Chapter 2. Its Measurement and Rate of Change.]
+
+His story of The Trial of the Pyx dramatically illustrates the early and continued blindness to the correct form of the laws. But he doesn't think that Newtom, who was Master of the Mint for many years, took advantage of this blindness to become rich.  
+
+    
+
+```{r,eval=T, echo=TRUE, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
+
+ERRORS = c(-1,1)
+
+no.of.pairs = 10000 
+means.samples.of.size.2 = rep(NA,no.of.pairs)
+
+measurements = matrix(100+sample(ERRORS,size = 2*no.of.pairs, replace = TRUE),
+                      nrow = no.of.pairs, ncol=2)
+str(measurements)
+head(measurements,4)
+tail(measurements,4)
+
+sums.samples.of.size.2 = apply(measurements,MARGIN=1,FUN=sum)
+str(sums.samples.of.size.2)
+means.samples.of.size.2 = apply(measurements,MARGIN=1,FUN=mean)
+
+tail(sums.samples.of.size.2,4)
+tail(means.samples.of.size.2,4)
+
+table(sums.samples.of.size.2)
+round( mean(sums.samples.of.size.2), 2)
+round( var(sums.samples.of.size.2), 2)
+round( sd(sums.samples.of.size.2) , 2)
 
 
+table(means.samples.of.size.2)
+round( mean(means.samples.of.size.2), 2)
+round( var(means.samples.of.size.2), 2)
+round( sd(means.samples.of.size.2) , 2)
 
+  
+```
+
+
+Elevators
 
 ## Biological variation
 
