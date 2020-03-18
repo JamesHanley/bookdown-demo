@@ -10,7 +10,6 @@ The **objectives** of this chapter are to
 
 Although few textbooks do so, we think it is worth distinguishing two contexts.
 
-
 ## Two genres
 
 * The _first_ is where, _if_ there were no measurement issues, we would 'see' / 'get' / 'observe' the same constant every time we made a determination, but where, because of unavoidable measurement variations, there is a statistical distribution of 'measurements' around that constant. Examples include measurements of constants such as the speed of light, or of physical constants, such as a standard weight (e.g. 1 Kg) or of a fixed distance measured by a smart phone app or
