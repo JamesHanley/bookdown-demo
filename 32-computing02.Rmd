@@ -4,13 +4,13 @@ The **'computing' objectives** are to learn how to use `R` to simulate random va
 
 The **'statistical' objectives** of this exercise are to
 
-* be introduced to parameters that measure the spread of the distribution of a random variable. 
+* be introduced to parameters that measure the spread of the distribution of a random variable, whether it be an error distribution, or a biological one.
 
-* learn the statistical laws that govern how the spread of a linear combination (e.g, the sum, or the mean) of several (generically, n) independent random variates is related to the spread of the individual random variables.
+* learn the statistical laws that govern how the spread of a linear combination (e.g, the sum, or the mean) of several (generically, $n$) independent random variates is related to the spread of the individual random variables.
 
-Ultimate application: to be able to quantify 
+The ultimate objective is to be able to use these laws to help  investigators, such as Henry Cavendish, to (probabilistically) quantify how far off their parameter estimates might be.
 
-error distribution
+
 
 ## Scientific background [from Hughes*]
 
@@ -20,16 +20,91 @@ error distribution
 Table 2 in the article by Hughes shows 'Values suggested for the mean density of the Earth, as a function of the date of publication' starts with Newton's 1687 guesstimate, and ends, (23 estimates later) with Heyl and Chrzanowski's 1942 value.
 Five of the 24 estimates are accompanied by a $\pm$ value, but what this values signifies is left unexplained. One of the 24s is Cavendish's 1798 estimate, which he obtained by taking the mean of 29 density measurements derived using a torsion balance on  17 days in the months of August and  September, and the following April and May. Cavendish's 'point estimate'  was 5.48. Since his'extreme results do not differ from the mean by more than 0.38,or $\frac{1}{14}$ of the whole' [...] Therefore, it seems very unlikely that the density of the earth should differ from the 5.48 by so much as $\frac{1}{14}$ of the whole.'
 
+Here we have an effort, by no less than Isaac Newton, to give a numerical interval within which the true parameter value is likely to lie. Cavendish it seems very unlikely that the density of the earth should differ from the 5.48 by so much as $\frac{1}{14}$ of the whole.'  bounds on the amounts by which the 'likely'  
+
 
 ## Statistical Tasks
 
 ## Orientation to random variation in the form of measurement errors
 
-Imagine that every copy made of of the official [1 meter bar] (https://en.wikipedia.org/wiki/History_of_the_metre) platimun bar that used to be stored in Paris had a measurement error of plus or minus 1 centimeter, and that the same errors applied to very copy of a copy. 
+The 'standard' since been replaced by fancier methods, but for now let's imagine that every family in the world make their own independent physical copy (using say string or paper or cardboard) of the official [1 meter](https://en.wikipedia.org/wiki/History_of_the_metre) platimun bar that used to be stored in Paris. Suppose these copies had a measurement error of either +1 centimeter or -1 centimeter (with  plus errors and  minus errors being equally likely). Thus, these errors, or  'deviations' from the 100cm,  average out to 0. Each squared deviation is 1, so the mean squared deviation (called the error **variance**) is also 1. Its square root, also 1 in this instance, is called the **standard deviation** of the errors, or $\sigma_{e}$ for short.
+
+Now imagine taking a random sample of $n$ of these copies, and computing the sum and  the mean of the $n$ lengths.
+
+Although it is possible to mathematically enumerate/calculate the exact probalities that the sum or mean takes on the various possible values,  we will instead use `R` to approximate the probabilities by simulation. The probabilities in the following Figure are based on large enough numbers of  simulations that -- while they don't show the _perfect_ symmetry they would exhibit if we worked them out mathematically -- they give quite close approximations. 
+
+The uppermost panel in the following figure shows the probability of obtaining various sums and various sample means.  
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
+
+plotMeterMeasurements = function(error){
+  
+    possible.n = c(1,2,5,10)
+    n.sampled.possibilities = 100000
+    nr = length(possible.n)
+    par(mfrow=c(nr,1),mar = c(0.1,1,0.1,1) )
+
+    for(r in 1:nr){
+       n = possible.n[r]
+       lengths = rep(0,n.sampled.possibilities)
+       for (i in 1:n) { lengths = lengths + 
+                        100 +
+                sample(errors,n.sampled.possibilities,replace=TRUE)
+        }
+        f = table(lengths)
+        max.e = 10
+
+        XLIM=n*100 + c(-max.e,max.e)
+        plot(f,yaxt="n", xaxt="n",
+           xlim=c(XLIM[1]-4,XLIM[2]),
+           ylim=c(-0.25,1/1.8)*n.sampled.possibilities)
+        segments(XLIM[1], 0, XLIM[2], 0)
+    
+        segments(XLIM[1],0,XLIM[1],n.sampled.possibilities/1.95)
+        for(pct in seq(25,50,25)){
+    	     text(XLIM[1],n.sampled.possibilities*pct/100,
+    	         paste(toString(pct),"%",sep=""),adj=c(1,0.5),cex=1.1)
+        }
+    
+       dy = n.sampled.possibilities/8
+       for(l in seq(XLIM[1],XLIM[2],2) ){
+          text(l,0,toString(l),cex=1.75,adj=c(0.5,1.25))
+          if(l == XLIM[1]) text(XLIM[1]-1,0,
+                  paste("Sum of ",toString(n),":",sep=""),
+                  cex=1.75,adj=c(1,1.25))
+        }
+      for(l in seq(XLIM[1],XLIM[2],n) ){
+         text(l,-dy,toString(l/n),cex=1.75,adj=c(0.5,1.25),font=4)
+         if(l == XLIM[1]) text(XLIM[1]-1,-dy,
+                  paste("Mean of ",toString(n),":",sep=""),
+                        cex=1.75,adj=c(1,1.25),font=4)
+       }
+    
+  }
+
+}
+
+errors = c(-1,1)
+plotMeterMeasurements(errors)
+``` 
+
+Instead of a 2-point error distribution, the next Figure shows how variable the sample totals and sample means would be if the errors were distributed as in the first row below. There, a quarter of the measurements have errors of +$\sqrt{2} \approx$  +1.4cm, half have no error, and a quarter have errors of -$\sqrt{2} \approx$  -1.4cm. Thus the error variance, the average of the squared deviations, is 
+$$\sigma_e^2 = \frac{1}{4} \times (-1.4)^2  +  \frac{1}{2} \times (0)^2 +  \frac{1}{4} \times (1.4)^2 = 1,$$  so that the standard deviation is again $\sigma_e =  1.$
+
+The row- (n-) specific distributions in the two Figures are  not exactly the same. For example, the possible means in samples of size $n$ = 2  have a 3-point distribution in the first one, but a 5-point distribution in the second one. But, as you will be asked to verify in the exercises below, the row-specific variances ate the same in the two figures.
 
 
 
-It has since been replaced by fancier methods.
+```{r,eval=T, echo=F, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
+
+errors = sqrt(2)*c(-1,0,0,1)
+plotMeterMeasurements(errors)
+   
+```
+
+More important than this are the statistical laws governing how widely the sums (and the means) deviate from the 100cm. Clearly, the possible **sums** of 5 copies have a **wider** spread than the possible sums of 2, and the sums of 10  a wider spread than the sums of 5. Conversely, the **means** of 5 copies have a **narrower** spread than the means of 2, and the means of 10  a narrower spread than the means of 5. 
+
 
 Title: The mean density of the Earth
 Authors: Hughes, D.
