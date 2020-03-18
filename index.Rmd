@@ -15,6 +15,8 @@ description: "A regression-from-the-outset based approach"
 
 # Preface {-}
 
+
+
 ## Target
 
 The target is graduate students in population health sciences in their first  year. Concurrently, they take their first courses on epidemiologic methods. The department is known for its emphasis on quantitative methods, and students' ability to carry out their own quantitative work. Since most of the data they will deal with are non-experimental, there is a strong emphasis on multivariable regression. While some students will have had some statistical courses as  undergraduates, the courses start at the beginning, and are pitched at the Master's level.
