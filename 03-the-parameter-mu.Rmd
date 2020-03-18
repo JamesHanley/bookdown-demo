@@ -1,4 +1,4 @@
-# The parameter $\mu$  {#paraMu}
+# The parameter mu  {#paraMu}
 
 [and other location (and spread and shape) parameters]
 
