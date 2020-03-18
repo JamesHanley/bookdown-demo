@@ -1,12 +1,19 @@
 # Computing Week2 {#computing02}
 
-The **'computing' objectives** are to learn how to use `R` to simulate random variation, and study its consequences.
+The **'computing' objectives** are to learn how to use `R` to 
+
+* simulate random variation, and random variables
+
+* visualize the consequences of aggregating independent random variables  
+
+* discover the statistical laws that govern the variability of combinations of observations
+
 
 The **'statistical' objectives** of this exercise are to
 
 * be introduced to parameters that measure the spread of the distribution of a random variable, whether it be an error distribution, or a biological one.
 
-* learn the statistical laws that govern how the spread of a linear combination (e.g, the sum, or the mean) of several (generically, $n$) independent random variates is related to the spread of the individual random variables.
+* learn (empirically) the statistical laws that govern how the spread of a linear combination (e.g, the sum, or the mean) of several (generically, $n$) independent random variates is related to the spread of the individual random variables.
 
 The ultimate objective is to be able to use these laws to help  investigators, such as Henry Cavendish, to (probabilistically) quantify how far off their parameter estimates might be.
 
@@ -23,9 +30,9 @@ Five of the 24 estimates are accompanied by a $\pm$ value, but what this values 
 Here we have an effort, by no less than Isaac Newton, to give a numerical interval within which the true parameter value is likely to lie. Cavendish it seems very unlikely that the density of the earth should differ from the 5.48 by so much as $\frac{1}{14}$ of the whole.'  bounds on the amounts by which the 'likely'  
 
 
-## Statistical Tasks
+## Random Variation
 
-## Orientation to random variation in the form of measurement errors
+### Measurement errors
 
 The 'standard' since been replaced by fancier methods, but for now let's imagine that every family in the world make their own independent physical copy (using say string or paper or cardboard) of the official [1 meter](https://en.wikipedia.org/wiki/History_of_the_metre) platimun bar that used to be stored in Paris. Suppose these copies had a measurement error of either +1 centimeter or -1 centimeter (with  plus errors and  minus errors being equally likely). Thus, these errors, or  'deviations' from the 100cm,  average out to 0. Each squared deviation is 1, so the mean squared deviation (called the error **variance**) is also 1. Its square root, also 1 in this instance, is called the **standard deviation** of the errors, or $\sigma_{e}$ for short.
 
@@ -103,8 +110,15 @@ plotMeterMeasurements(errors)
    
 ```
 
-More important than this are the statistical laws governing how widely the sums (and the means) deviate from the 100cm. Clearly, the possible **sums** of 5 copies have a **wider** spread than the possible sums of 2, and the sums of 10  a wider spread than the sums of 5. Conversely, the **means** of 5 copies have a **narrower** spread than the means of 2, and the means of 10  a narrower spread than the means of 5. 
+More important than this are the statistical laws governing how widely the sums (and the means) deviate from the 100cm. Clearly, the possible **sums** of 5 copies have a **wider** spread than the possible sums of 2, and the sums of 10  a wider spread than the sums of 5. Conversely, the **means** of 5 copies have a **narrower** spread than the means of 2, and the means of 10  a narrower spread than the means of 5.
 
+**Instead of just telling you what the laws are, we ask you to use `R` to discover them yourself. 
+
+### Discovering the Laws [via this computing exercise]
+
+
+
+## Biological variation
 
 Title: The mean density of the Earth
 Authors: Hughes, D.
