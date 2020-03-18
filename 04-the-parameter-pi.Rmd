@@ -1,4 +1,4 @@
-# The (proportion) parameter $\pi$ {#paraPi}
+# The (proportion) parameter {#paraPi}
 
 
 ## Example one

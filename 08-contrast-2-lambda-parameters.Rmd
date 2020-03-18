@@ -1,5 +1,5 @@
 
-# Contrast: 2 $\lambda$ parameters {#contrast2Lambdaparas}
+# Contrast: 2 speed parameters {#contrast2Lambdaparas}
 
 
 

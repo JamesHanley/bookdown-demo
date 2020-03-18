@@ -1,4 +1,4 @@
-# Contrast: 2 $\mu$ parameters {#contrast2Muparas}
+# Contrast: 2 mean parameters {#contrast2Muparas}
 
 
 

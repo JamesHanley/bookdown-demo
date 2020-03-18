@@ -1,5 +1,5 @@
 
-# Contrast: 2 $\pi$ parameters {#contrast2Piparas}
+# Contrast: 2 proportion parameters {#contrast2Piparas}
 
 
 

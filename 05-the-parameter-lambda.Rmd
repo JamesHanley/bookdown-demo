@@ -1,4 +1,4 @@
-# The (event rate) parameter $\lambda$ {#paraLambda}
+# The (event rate) parameter {#paraLambda}
 
 ## Etc
 
