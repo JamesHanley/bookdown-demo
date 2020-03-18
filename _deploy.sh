@@ -1,8 +1,8 @@
 #!/bin/sh
 
-set -e
+#set -e
 
-[ -z "${TRAVIS_DEPLOY_KEY}" ] && exit 0
+#[ -z "${TRAVIS_DEPLOY_KEY}" ] && exit 0
 [ "${TRAVIS_BRANCH}" != "master" ] && exit 0
 
 git config --global user.email "james.hanley@mcgill.ca"
