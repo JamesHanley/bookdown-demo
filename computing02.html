@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-03-18" />
+<meta name="date" content="2020-03-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -285,24 +285,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>Use the <code>sqrt()</code> function (or the <code>^0.5</code> power) to compute the standard deviation of the errors.</p></li>
 <li><p>Change the errors from -1cm and +1cm to say -5cm and +5cm, and repeat steps 1 and 2. From this, what did you learn about the variance and the standard deviation?</p></li>
 <li><p>Add the errors onto 100cm to make 2 measurements (imperfect copies) of the meter bar, and calculate the mean, variance and standard deviation of the 2 measurements. From this, and by varying the sizes of the 2 errors, what did you learn about the mean the variance and the standard deviation of a shifted (re-located) random variable? {Hint: be careful to use your own variance and standard deviation functions, not the inbuilt <code>var</code> and <code>sd</code> functions. The reason is that whereas we say there are just 2 errors, in reality there are as many as there are copiers – effectively an infinite number, about half of whom will make an error of +1cm, and about half of whome will an error of -1cm. Or you can say that the probabilities of errors of -1cm and +1cm are 0.5, and 0.5.</p></li>
-<li><p>In order to see the laws in action, and figure them out (with the aid of the <code>R</code> code below)</p></li>
+<li><p>In order to see the laws in action, and figure them out (with the aid of the <code>R</code> <strong>code below</strong>)</p></li>
 </ol>
 <ul>
 <li><p>Begin with many simulated random <strong>pairs</strong> of measurements of (possibly imperfect copies) of the meter bar. For example, you might specify <code>no.of.pairs = 10000</code>.</p>
 <ul>
 <li><p>Then, using the 2-point (-1cm, +1cm) error distribution shown in the first Figure, simulate this large number of pairs of measurements. There are almost as many ways to do this as there are <code>R</code> programmers. One way (looking ahead to when we want to generalize and simulate larger samples) would be to use a matrix, i.e. a 2-way array, with as many rows as there are pairs (sets), and as many columns as the number of measurements per sample (here 2, but adjustable as you go along). See below.</p></li>
 <li><p>For each of these simulated samples of size <span class="math inline">\(n\)</span> = 2, calculate the sample sum and sample mean. The <code>apply</code> function is very helpful here: you tell it to apply the desired function (FUN) separately for each <strong>row</strong> of the matrix by specifying <code>MARGIN = 1</code>. (Specifying <code>MARGIN = 2</code> would give you a separate result for each column.)</p></li>
-<li><p>Now (finally) calculate the spread of the sample sums and sample means. Do so suing both the standard deviation, and its square (the variance). The latter is not a natural quantity for non-statistians,</p></li>
+<li><p>Now (finally) calculate the spread of the sample sums and sample means. Do so using both the standard deviation, and its square (the variance). The latter is not a natural quantity for non-statistians, but, as you will deduce, it is variances that scale with <span class="math inline">\(n\)</span>.</p></li>
+<li><p>Repeat these steps for samples of size <span class="math inline">\(n\)</span> = 1, 3, 4, 5, 6, 7 , 8, 9, and 10. and plot the variances and sd’s against <span class="math inline">\(n.\)</span> What laws do these plots suggest?</p></li>
 </ul></li>
 </ul>
-<ol start="6" style="list-style-type: decimal">
-<li>Repeat 5. for samples of size <span class="math inline">\(n\)</span> = 1, 3, 4, 5, 6, 7 , 8, 9, and 10. and plot the variances and sd’s against <span class="math inline">\(n.\)</span> What laws do these plots suggest?</li>
-</ol>
 <p>According to Stephen Stigler, a historian of statistics, understanding of this law is one of the things that separates statisticians from mathematicains and computer scientists. Indeed, it is the second of what he calls the Seven Pillars od Statistics:</p>
 <blockquote>
 <p>The first recognition that the variation of sums did not increase proportionately with the number of independent terms added (and that the standard deviation of means did not decrease inversely with the number of terms) dates to the 1700s. This novel insight, that information on accuracy did not accumulate linearly with added data, came in the 1720s to Abraham de Moivre as he began to seek a way to accurately compute binomial probabilities with a large number of trials. In 1733 this would lead to his famous result, which we now call the normal approximation to the binomial, but by 1730 he already noticed that a crucial aspect of the distribution was tied to … [Stigler The Seven Pillars of Statistical Wisdom. Chapter 2. Its Measurement and Rate of Change.]</p>
 </blockquote>
-<p>His story of The Trial of the Pyx dramatically illustrates the early and continued blindness to the correct form of the laws. But he doesn’t think that Newtom, who was Master of the Mint for many years, took advantage of this blindness to become rich.</p>
+<p>His story of <a href="http://www.biostat.mcgill.ca/hanley/c323/pyx.pdf">The Trial of the Pyx</a> dramatically illustrates the early and continued blindness to the correct form of the laws. But he doesn’t think that Newtom, who was Master of the Mint for many years, took advantage of this blindness to become rich.</p>
+<p><strong>possible R code:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ERRORS =<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)
 
 no.of.pairs =<span class="st"> </span><span class="dv">10000</span> 
@@ -353,13 +352,92 @@ measurements =<span class="st"> </span><span class="kw">matrix</span>(<span clas
 <pre><code>## [1] 0.51</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>( <span class="kw">sd</span>(means.samples.of.size.<span class="dv">2</span>) , <span class="dv">2</span>)</code></pre></div>
 <pre><code>## [1] 0.71</code></pre>
-<p>Elevators</p>
+<p>References</p>
+<p>David Hughes. The mean density of the Earth. Journal of the British Astronomical Association, Vol. 116, No. 1, p.21. 2006</p>
 </div>
 </div>
 <div id="biological-variation" class="section level2">
 <h2><span class="header-section-number">14.3</span> Biological variation</h2>
-<p>References</p>
-<p>David Hughes. The mean density of the Earth. Journal of the British Astronomical Association, Vol. 116, No. 1, p.21. 2006</p>
+<p>Ages</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ds=<span class="kw">read.table</span>(
+<span class="st">&quot;http://www.biostat.mcgill.ca/hanley/bios601/AgeFrequencies.txt&quot;</span>,
+<span class="dt">as.is=</span><span class="ot">TRUE</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
+
+AGES =<span class="st"> </span>ds<span class="op">$</span>Age
+Proportions =<span class="st"> </span>ds<span class="op">$</span>Freq<span class="op">/</span><span class="kw">sum</span>(ds<span class="op">$</span>Freq)
+mu =<span class="st"> </span><span class="kw">sum</span>(AGES<span class="op">*</span>Proportions)
+
+no.of.sims =<span class="st"> </span><span class="dv">100000</span>
+
+sample.sizes =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">25</span>)
+
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="kw">length</span>(sample.sizes),<span class="dv">1</span>),<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="fl">0.5</span>,<span class="dv">1</span>) )
+
+<span class="cf">for</span> (n <span class="cf">in</span> sample.sizes ){
+   ages =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(AGES,
+                    <span class="dt">size =</span> n<span class="op">*</span>no.of.sims, 
+                    <span class="dt">replace =</span> <span class="ot">TRUE</span>,
+                    <span class="dt">prob =</span> Proportions),
+                 <span class="dt">nrow =</span> no.of.sims, <span class="dt">ncol=</span>n)
+   <span class="kw">print</span>(<span class="kw">head</span>(ages,<span class="dv">3</span>))
+
+   sums.samples.of.size.n =<span class="st"> </span><span class="kw">apply</span>(ages,<span class="dt">MARGIN=</span><span class="dv">1</span>,<span class="dt">FUN=</span>sum)
+   means.samples.of.size.n =<span class="st"> </span><span class="kw">apply</span>(ages,<span class="dt">MARGIN=</span><span class="dv">1</span>,<span class="dt">FUN=</span>mean)
+
+   <span class="kw">tail</span>(sums.samples.of.size.n,<span class="dv">4</span>)
+   <span class="kw">tail</span>(means.samples.of.size.n,<span class="dv">4</span>)
+
+   fr =<span class="st"> </span><span class="kw">table</span>(sums.samples.of.size.n)
+   Y =<span class="st"> </span><span class="kw">max</span>(Proportions<span class="op">*</span>no.of.sims)<span class="op">/</span><span class="kw">sqrt</span>(<span class="fl">0.8</span><span class="op">*</span>n)
+   <span class="kw">plot</span>(fr,<span class="dt">lw=</span><span class="fl">0.4</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,n<span class="op">*</span>(<span class="kw">max</span>(AGES)<span class="op">+</span><span class="dv">12</span>) ),
+                  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.25</span>,<span class="dv">1</span>)<span class="op">*</span>Y,
+        <span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>)
+   <span class="kw">text</span>(n<span class="op">*</span><span class="dv">105</span>,<span class="fl">0.55</span><span class="op">*</span>Y,<span class="kw">paste</span>(<span class="st">&quot;n =&quot;</span>,<span class="kw">toString</span>(n)),<span class="dt">cex=</span><span class="dv">2</span>,<span class="dt">font=</span><span class="dv">3</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))
+   <span class="cf">for</span>(a <span class="cf">in</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">5</span>)) {
+     <span class="kw">text</span>(n<span class="op">*</span>a, <span class="op">-</span><span class="fl">0.01</span><span class="op">*</span>Y, <span class="kw">toString</span>(n<span class="op">*</span>a),<span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>),<span class="dt">cex=</span><span class="fl">1.5</span>)
+     <span class="cf">if</span>(a<span class="op">==</span><span class="dv">100</span>) <span class="kw">text</span>(n<span class="op">*</span><span class="dv">105</span>, <span class="op">-</span><span class="fl">0.01</span><span class="op">*</span>Y,
+          <span class="kw">paste</span>(<span class="st">&quot;Sum of&quot;</span>,<span class="kw">toString</span>(n),<span class="st">&quot;Ages&quot;</span>),<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">cex=</span><span class="fl">1.5</span>)
+     <span class="kw">text</span>(n<span class="op">*</span>a, <span class="op">-</span><span class="fl">0.15</span><span class="op">*</span>Y, <span class="kw">toString</span>(a),<span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>),<span class="dt">font=</span><span class="dv">4</span>,<span class="dt">cex=</span><span class="fl">1.5</span>)
+     <span class="cf">if</span>(a<span class="op">==</span><span class="dv">100</span>) <span class="kw">text</span>(n<span class="op">*</span><span class="dv">105</span>, <span class="op">-</span><span class="fl">0.15</span><span class="op">*</span>Y,
+          <span class="kw">paste</span>(<span class="st">&quot;Mean of&quot;</span>,<span class="kw">toString</span>(n),<span class="st">&quot; Ages&quot;</span>),<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">font=</span><span class="dv">4</span>,<span class="dt">cex=</span><span class="fl">1.5</span>)
+   }
+   sd.sums =<span class="st"> </span><span class="kw">round</span>(<span class="kw">sd</span>(sums.samples.of.size.n),<span class="dv">1</span>)
+   sd.means =<span class="st"> </span><span class="kw">round</span>(<span class="kw">sd</span>(means.samples.of.size.n),<span class="dv">1</span>)
+   <span class="kw">text</span>(n<span class="op">*</span><span class="dv">30</span> <span class="op">+</span><span class="st">  </span>sd.sums,Y<span class="op">*</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>,
+        <span class="kw">paste</span>(<span class="st">&quot;SD of Sum:&quot;</span>,
+              <span class="kw">toString</span>(sd.sums),<span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span>,
+              <span class="st">&quot;SD of Mean:&quot;</span>,
+              <span class="kw">toString</span>(sd.means)
+              ),
+        <span class="dt">cex=</span><span class="fl">1.5</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>))
+   <span class="kw">points</span>(n<span class="op">*</span>mu,<span class="dv">0</span>,<span class="dt">pch=</span><span class="dv">19</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">cex=</span><span class="fl">1.5</span>)
+}</code></pre></div>
+<pre><code>##      [,1]
+## [1,]   43
+## [2,]   40
+## [3,]   37</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]   58   14
+## [2,]   69   41
+## [3,]   15   22</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    5    6   38   33
+## [2,]   73   12   36    3
+## [3,]   30   16   60    9</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+## [1,]   34    9   36   21   43   44   69   27   20    29
+## [2,]    9   12   48    3    4   38   23   23   40    25
+## [3,]    2   44   24   23   76   14    4   14   24    28</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13] [,14]
+## [1,]   38    4   22   41   26   12   30    6   72     3     7    43    18     9
+## [2,]   36   30   26   12   34   32   38   35   38    62    40    12    35    44
+## [3,]   26   45   70    3   12   37   38   29    3    15    32    20     2     4
+##      [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24] [,25]
+## [1,]     0    56    43    28    36    31    14    20     3     7    40
+## [2,]    18    30    41    59     4    16    23    21    26    35     6
+## [3,]    27    45    16    16    68    19    65    22     7     6    20</code></pre>
+<p><img src="statbook_files/figure-html/unnamed-chunk-13-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>Elevators</p>
 
 </div>
 </div>
