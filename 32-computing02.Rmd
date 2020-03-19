@@ -124,7 +124,7 @@ More important than this are the statistical laws governing how widely the sums 
 
 4. Add the errors onto 100cm to make 2 measurements (imperfect copies) of the meter bar, and calculate the mean, variance and standard deviation of the  2 measurements. From this, and by varying the sizes of the 2 errors, what did you learn about the mean the variance and the standard deviation of a shifted (re-located) random variable? {Hint: be careful to use your own variance and standard deviation functions, not the inbuilt `var` and `sd` functions. The reason is that whereas we say there are just 2 errors, in reality there are as many as there are copiers -- effectively an infinite number, about half of whom will make an error of +1cm, and about half of whome will an error of -1cm. Or you can say that the probabilities of  errors of -1cm and +1cm are 0.5, and 0.5.
 
-5. In order to see the laws in action, and figure them out (with the aid of the `R` code below)
+5. In order to see the laws in action, and figure them out (with the aid of the `R` **code below**)
 
    + Begin with many simulated random **pairs** of measurements of (possibly imperfect copies) of the meter bar. For example, you might specify `no.of.pairs = 10000`. 
 
@@ -132,17 +132,17 @@ More important than this are the statistical laws governing how widely the sums 
 
     + For each of these simulated samples of size $n$ = 2, calculate the sample sum and sample mean. The `apply` function is very helpful here: you tell it to apply the desired function (FUN) separately for each **row** of the matrix by specifying `MARGIN = 1`. (Specifying `MARGIN = 2` would give you a separate result for each column.)
     
-    + Now (finally) calculate the spread of the sample sums and sample means. Do so suing both the standard deviation, and its square (the variance). The latter is not a natural quantity for non-statistians,
+    + Now (finally) calculate the spread of the sample sums and sample means. Do so using both the standard deviation, and its square (the variance). The latter is not a natural quantity for non-statistians, but, as you will deduce, it is variances that scale with $n$.
     
-6. Repeat 5. for samples of size $n$ = 1, 3, 4, 5, 6, 7 , 8, 9, and 10. and plot the variances and sd's against $n.$ What laws do these plots suggest?
+    + Repeat these steps for samples of size $n$ = 1, 3, 4, 5, 6, 7 , 8, 9, and 10. and plot the variances and sd's against $n.$ What laws do these plots suggest?
 
 According to Stephen Stigler, a historian of statistics, understanding of this law is one of the things that separates statisticians from mathematicains and computer scientists. Indeed, it is the second of what he calls the Seven Pillars od Statistics:
 
 >The first recognition that the variation of sums did not increase proportionately with the number of independent terms added (and that the standard deviation of means did not decrease inversely with the number of terms) dates to the 1700s. This novel insight, that information on accuracy did not accumulate linearly with added data, came in the 1720s to Abraham de Moivre as he began to seek a way to accurately compute binomial probabilities with a large number of trials. In 1733 this would lead to his famous result, which we now call the normal approximation to the binomial, but by 1730 he already noticed that a crucial aspect of the distribution was tied to ... [Stigler The Seven Pillars of Statistical Wisdom. Chapter 2. Its Measurement and Rate of Change.]
 
-His story of The Trial of the Pyx dramatically illustrates the early and continued blindness to the correct form of the laws. But he doesn't think that Newtom, who was Master of the Mint for many years, took advantage of this blindness to become rich.  
+His story of [The Trial of the Pyx](http://www.biostat.mcgill.ca/hanley/c323/pyx.pdf) dramatically illustrates the early and continued blindness to the correct form of the laws. But he doesn't think that Newtom, who was Master of the Mint for many years, took advantage of this blindness to become rich.  
 
-    
+**possible R code:** 
 
 ```{r,eval=T, echo=TRUE, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
 
@@ -179,11 +179,73 @@ round( sd(means.samples.of.size.2) , 2)
 ```
 
 
-Elevators
-
-## Biological variation
 
 References
 
 David Hughes. The mean density of the Earth.
 Journal of the British Astronomical Association, Vol. 116, No. 1, p.21. 2006
+
+## Biological variation
+
+Ages
+
+
+```{r,eval=T, echo=TRUE, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
+
+ds=read.table(
+"http://www.biostat.mcgill.ca/hanley/bios601/AgeFrequencies.txt",
+as.is=TRUE,header=TRUE)
+
+AGES = ds$Age
+Proportions = ds$Freq/sum(ds$Freq)
+mu = sum(AGES*Proportions)
+
+no.of.sims = 100000
+
+sample.sizes = c(1,2,4,10,25)
+
+par(mfrow=c(length(sample.sizes),1),mar = c(0.5,1,0.5,1) )
+
+for (n in sample.sizes ){
+   ages = matrix(sample(AGES,
+                    size = n*no.of.sims, 
+                    replace = TRUE,
+                    prob = Proportions),
+                 nrow = no.of.sims, ncol=n)
+   print(head(ages,3))
+
+   sums.samples.of.size.n = apply(ages,MARGIN=1,FUN=sum)
+   means.samples.of.size.n = apply(ages,MARGIN=1,FUN=mean)
+
+   tail(sums.samples.of.size.n,4)
+   tail(means.samples.of.size.n,4)
+
+   fr = table(sums.samples.of.size.n)
+   Y = max(Proportions*no.of.sims)/sqrt(0.8*n)
+   plot(fr,lw=0.4,xlim=c(0,n*(max(AGES)+12) ),
+                  ylim=c(-0.25,1)*Y,
+        xaxt="n")
+   text(n*105,0.55*Y,paste("n =",toString(n)),cex=2,font=3,adj=c(0,1))
+   for(a in seq(0,100,5)) {
+     text(n*a, -0.01*Y, toString(n*a),adj=c(0.5,1),cex=1.5)
+     if(a==100) text(n*105, -0.01*Y,
+          paste("Sum of",toString(n),"Ages"),adj=c(0,1),cex=1.5)
+     text(n*a, -0.15*Y, toString(a),adj=c(0.5,1),font=4,cex=1.5)
+     if(a==100) text(n*105, -0.15*Y,
+          paste("Mean of",toString(n)," Ages"),adj=c(0,1),font=4,cex=1.5)
+   }
+   sd.sums = round(sd(sums.samples.of.size.n),1)
+   sd.means = round(sd(means.samples.of.size.n),1)
+   text(n*30 +  sd.sums,Y*1/2,
+        paste("SD of Sum:",
+              toString(sd.sums),"\n\n",
+              "SD of Mean:",
+              toString(sd.means)
+              ),
+        cex=1.5,adj=c(0,0))
+   points(n*mu,0,pch=19,col="red",cex=1.5)
+}
+
+```
+
+Elevators
