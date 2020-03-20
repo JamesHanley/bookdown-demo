@@ -34,9 +34,9 @@ Here we have an effort, by no less than Isaac Newton, to give a numerical interv
 
 ### Measurement errors
 
-The 'standard' since been replaced by fancier methods, but for now let's imagine that every family in the world make their own independent physical copy (using say string or paper or cardboard) of the official [1 meter](https://en.wikipedia.org/wiki/History_of_the_metre) platimun bar that used to be stored in Paris. Suppose these copies had a measurement error of either +1 centimeter or -1 centimeter (with  plus errors and  minus errors being equally likely). Thus, these errors, or  'deviations' from the 100cm,  average out to 0. Each squared deviation is 1, so the mean squared deviation (called the error **variance**) is also 1. Its square root, also 1 in this instance, is called the **standard deviation** of the errors, or $\sigma_{e}$ for short.
+The 'standard' has since been replaced by fancier methods, but for now let's imagine that every family in the world make their own independent physical copy (using say string or paper or cardboard) of the official [1 meter](https://en.wikipedia.org/wiki/History_of_the_metre) platimun bar that used to be stored in Paris. Suppose these copies had a measurement error of either +1 centimeter or -1 centimeter (with  plus errors and  minus errors being equally likely). Thus, these errors, or  'deviations' from the 100cm,  average out to 0. Each squared deviation is 1, so the mean squared deviation (called the error **variance**) is also 1. Its square root, also 1 in this instance, is called the **standard deviation** of the errors, or $\sigma_{e}$ for short.
 
-Now imagine taking a random sample of $n$ of these copies, and computing the sum and  the mean of the $n$ lengths.
+**Now imagine taking a random sample of $n$ of these copies, and computing the sum and  the mean of the $n$ lengths.**
 
 Although it is possible to mathematically enumerate/calculate the exact probalities that the sum or mean takes on the various possible values,  we will instead use `R` to approximate the probabilities by simulation. The probabilities in the following Figure are based on large enough numbers of  simulations that -- while they don't show the _perfect_ symmetry they would exhibit if we worked them out mathematically -- they give quite close approximations. 
 
@@ -187,10 +187,59 @@ Journal of the British Astronomical Association, Vol. 116, No. 1, p.21. 2006
 
 ## Biological variation
 
-Ages
+### Example
+
+We move now to contexts where the variation is primarily (or in a few deluxe cases where there are no measurement issues, entirely) due to genuine -- e.g., biological or geographical  -- variation. 
+Below, you will address one such example, the weights of a specific  population where we have good national-level data to help us to set up simulations that demonstate and let us discover the statistical laws governing the (sampling) variability of various statistics derived from samples. For for now, we will consider a demographic characteristic, namely **age**, in a setting where it was documented for an entire population.  The ages were gathered on the night of Sunday April 2nd in the [1911 Census of Ireland,](http://www.census.nationalarchives.ie/help/about19011911census.html) the last one to be carried out under British rule. 
+Here are the returns of one famous statistician, whose important work, published under the pen-name ['Student,'](http://www.census.nationalarchives.ie/reels/nai000230598/) we will meet shortly.
+
+We will limit our attention to the county of Dublin, which at the time has a population of about half a million people, mostly urban. The male age-distribution [displayed here in the usual vertical orientation](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/MeanQuantiles2019.pdf#page=18) has the (1/2) _pyramid_ shape that characterizes developing countries. The somewhat different female age-distribution is in part because Ireland's capital city, Dublin City, attracted many female workers in their late teens and their 20s (cf. the last 3 entries in Gosset's return).
+The [age-distributions today](https://www.cso.ie/en/releasesandpublications/ep/p-cp3oy/cp3/aad/)
+show large city vs. rural differences.  
+
+**Shapes of distributions**
+
+Below, the age-distribution is rotated by 90 degrees, so that age is on the horizontal axis, and numbers of persons in the different age-bins (we will combine male and female) are on the vertical axis. In this more familiar orientation, it is easier to see that the **age-distribution does not have the symmetry observed  in the earlier section**, where the variation was entirely due to measurement variations around some constant.
+
+(Incidentally, in the 'age-distributions of today's Irish population, there are none of the 'spikes' at ages 40, 50, 60, .. that were seem in the 1911 data. The origin of these spikes is left for you to puzzle about. There are many modern examples of this phenomenon, as in this example of the [recording of emergency department arrival and departure times](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch-chapterPlusNotes-ch3-2019.pdf#page=21) . Another difficulty faced by earlier-century census takers is described in this account 
+[The Puzzled Census-Taker](https://books.google.ca/books?id=fUsPAAAAYAAJ&pg=PA118&dq=John+Godfrey+Saxe+census-taker&hl=en&sa=X&ved=0ahUKEwjQv6f04OvVAhUL5IMKHUZfBfgQ6AEIJjAA#v=onepage&q=John%20Godfrey%20Saxe%20census-taker&f=false) )
 
 
-```{r,eval=T, echo=TRUE, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
+This -- first of many -- distribution of a human characteristic will serve as a strong messsage that **we should not expect such distributions to be symmetric, let alone bell-shaped ('Gaussian' / 'Normal').** The default stance should  be that they are not. The same  stance should apply to distributions of characteristics of 'man-made' or 'human-made'  institutions --  such as the distribution of the sizes of the hopitals or schools in a province or country. Nor should we expect symmetric distributions in the physical world, such as the distribution of the depths of the ocean,  heights of land,   lengths of rivers, daily temperatures in a region over  a year,  magnitudes of earthquakes, or intervals between eruptions of the Old Faithful geyser.
+
+Foe example, the distributions of the amounts of income tax paid by individuals in Quebec, the salaries of professional ice-hockey players, and the lengths of stay {LOS] of hospital patients do not have symmetric shapes (some distributions may even be multi-modal). Despite this, in _some_ instances it may be critical to know the mean of the distibution, so that one can calculate the total revenue, or total payroll, or how much the savings would be if the mean LOS were reduced by 2%. 
+We have to think about a  summary  appropriate  to the situation. If you are representing the players, would you cite the median or the mean when telling the team-owners how poorly paid the 'average' player is? What if represented the owners, and wanted to show how much the team costs in payroll?
+
+**Measures of 'centre'**
+
+(Online, there are now many jokes about **silly statistics** and silly statisticians, such as on [this site](http://www.workjoke.com/statisticians-jokes.html).
+A radio prgram used to end with
+>Well, that's the news from Lake Wobegon, where all the women are strong, all the men are good-looking, and all the children are above average.
+There are stories  of a statistician [drowning in a river that was 3 feet deep on 
+average](https://ask.metafilter.com/261337/Source-of-well-known-joke-about-statisticians)
+or being [comfortable on average](https://www.barrypopik.com/index.php/new_york_city/entry/head_in_the_oven_feet_in_the_freezer). One year in the 607 summer course for doctors, JH used some of these stories to warn against silly averages, and even quoted Francis Galton.
+
+>Why do statisticians commonly limit their inquiries to Averages?
+It is difficult to understand why statisticians commonly limit their inquiries to Averages, and do not revel in more comprehensive views.
+Their souls seem as dull to the charm of variety as that of the native of one of our flat English counties, whose retrospect of Switzerland was that, if its mountains could be thrown into its lakes, two nuisances would be got rid of at once. [Natural Inheritance, 1889.]
+
+A urologist in the class gave a better example.
+
+>The average person has 1 ovary and 1 testicle.
+
+Despite these jibes, there are some situations where it does make sense to talk about the mean value, even if nobody has a value close to the mean.
+
+When it comes to the age distribution of a population, the reports of national statistical agencies use a number of summary parameters, sometimes the median, sometimes the mean, and sometimes a 'dependency ratio'  such as non-working-age to working-age numbers. For now, we will pursue the 'mean' parameter $\mu$. Later, we also pursue other numerical parameters for the centre. Part of the reason for our first choice is that the behavioural properties of the sample _mean_ (an estimator of the {population mean_) are much easier to describe with standard statistical laws. Fortunately, nowadays, we have intensive computer techniques that use data-driven  techniques rather than formulae-based ones, that can handle estimators of other parameters. 
+
+**Mean-Pursuit**
+
+In the following `R` code, we simulate trying to estimate the mean age ($\mu$), using just a random sample of $n$ persons. Clearly, the $n$'s we will use are too small to give estimates that are 'close enough for government work'
+but the purpose is to understand **what size $n$ would ensure sufficiently precise estimates.** 
+
+
+
+
+```{r,eval=T, echo=FALSE, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
 
 ds=read.table(
 "http://www.biostat.mcgill.ca/hanley/bios601/AgeFrequencies.txt",
@@ -198,54 +247,142 @@ as.is=TRUE,header=TRUE)
 
 AGES = ds$Age
 Proportions = ds$Freq/sum(ds$Freq)
+
+A.50 = AGES[min(which(cumsum(Proportions) > 0.50))]
 mu = sum(AGES*Proportions)
 
-no.of.sims = 100000
+```
 
-sample.sizes = c(1,2,4,10,25)
+In the following code, AGES refers to the ages (0 to 109) and Proportions the proportions of the population in each 1-year age bin.
+
+
+
+```{r,eval=T, echo=TRUE, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
+
+
+no.of.sims = 10000 ;  # no. of samples of each size
+                      # enough to generate relatively smmoth histograms  
+sample.sizes = c(1,2,4,10,25) ; 
 
 par(mfrow=c(length(sample.sizes),1),mar = c(0.5,1,0.5,1) )
 
-for (n in sample.sizes ){
-   ages = matrix(sample(AGES,
-                    size = n*no.of.sims, 
-                    replace = TRUE,
-                    prob = Proportions),
-                 nrow = no.of.sims, ncol=n)
-   print(head(ages,3))
+for (n in sample.sizes ){        # loop over the various sample sizes
+   ages = matrix(sample(AGES,          # 1 row per simulation
+              size = n*no.of.sims,     # to save time, do all at once
+              replace = TRUE,          # only because data compressed
+              prob = Proportions),     # = FALSE if has indiv. data
+          nrow = no.of.sims, ncol=n) # put into rows / columns
+   if(n > 1 & n <= 10){
+     print( noquote(
+      paste("Ages of sampled persons in first 2 samples of size",  
+            toString(n)) )   ) 
+     print(head(ages,2))
+   }
+   
+   if( n == max(sample.sizes) ){
+     cat("The first panel shows the age-distribution of the entire population.\n")
+     cat("The remaining ones show the  distributions of the sample sums and means.\n")
+     message("test")
+     
+   } 
+  
+   # compute the row-specific (simulation-specific) sums and means
+   # apply sum/mean to MARGIN=1, i.e., to each simulation (each row)
 
    sums.samples.of.size.n = apply(ages,MARGIN=1,FUN=sum)
    means.samples.of.size.n = apply(ages,MARGIN=1,FUN=mean)
 
-   tail(sums.samples.of.size.n,4)
-   tail(means.samples.of.size.n,4)
-
-   fr = table(sums.samples.of.size.n)
-   Y = max(Proportions*no.of.sims)/sqrt(0.8*n)
-   plot(fr,lw=0.4,xlim=c(0,n*(max(AGES)+12) ),
-                  ylim=c(-0.25,1)*Y,
-        xaxt="n")
+   fr = table(sums.samples.of.size.n)          # fr = frequency
+   Y = max(Proportions*no.of.sims)/sqrt(0.8*n) # scale the y axis
+   plot(fr,lw=0.4,xlim=c(0,n*(max(AGES)+12) ), 
+                  ylim=c(-0.25,1)*Y, xaxt="n")
    text(n*105,0.55*Y,paste("n =",toString(n)),cex=2,font=3,adj=c(0,1))
    for(a in seq(0,100,5)) {
      text(n*a, -0.01*Y, toString(n*a),adj=c(0.5,1),cex=1.5)
-     if(a==100) text(n*105, -0.01*Y,
-          paste("Sum of",toString(n),"Ages"),adj=c(0,1),cex=1.5)
-     text(n*a, -0.15*Y, toString(a),adj=c(0.5,1),font=4,cex=1.5)
-     if(a==100) text(n*105, -0.15*Y,
+     txts = paste("Sum of",toString(n),"Ages")
+     if(n==1) txts = "Individual Ages"
+     if(a==100 ) text(n*105, -0.01*Y,
+          txts,adj=c(0,1),cex=1.5)
+     if(n > 1) text(n*a, -0.15*Y, toString(a),adj=c(0.5,1),font=4,cex=1.5)
+     if(a==100 & n > 1) text(n*105, -0.15*Y,
           paste("Mean of",toString(n)," Ages"),adj=c(0,1),font=4,cex=1.5)
    }
-   sd.sums = round(sd(sums.samples.of.size.n),1)
-   sd.means = round(sd(means.samples.of.size.n),1)
-   text(n*30 +  sd.sums,Y*1/2,
-        paste("SD of Sum:",
-              toString(sd.sums),"\n\n",
-              "SD of Mean:",
-              toString(sd.means)
-              ),
-        cex=1.5,adj=c(0,0))
+   
+   # how big is the spread (sd) of the simulated sums and means ?
+   
+   sd.sums  = round( sd(sums.samples.of.size.n), 1 )
+   sd.means = round( sd(means.samples.of.size.n),1 )
+   
+   txt.s = paste( "SD of Sum:", toString(sd.sums) )
+   if(n==1) txt.s = paste("SD of Individual Ages:",toString(sd.sums) )
+   txt.m = paste("\n\n  SD of Mean:",toString(sd.means))
+   if(n==1) txt.m = "\n\n "
+   text(n*mu +  sd.sums,Y*0.7,
+        paste(txt.s,txt.m), cex=1.5,adj=c(0,0.5) )
    points(n*mu,0,pch=19,col="red",cex=1.5)
+   if(n==1){
+     text(A.50-0.1,0.95*Y,"50% <- | -> 50%",adj=c(0.5,1),cex=1.5,col="blue")
+     segments(A.50-0.1,0.95*Y, A.50-0.1,0,col="blue")
+     text(115,Y,
+       "Reported Ages of Population of Dublin\nIrish Census of 1911",
+       adj=c(1,1),cex=1.25)
+   } 
 }
 
 ```
 
+**Exercises**
+
+* Based on the numbers in the 5 panels, derive the statistical law that connects the spreads of the sampling distributions of the sample sum to the spread of the individual ages. (Since the calculated sd's are based on a finite set of simulations, the numbers may not fit  the law _exactly_ ; also, the sd's shown are rounded)
+
+* Likewise, state the statistical law that connects the spreads of the sampling distributions of the sample mean to the spread of the individual ages. Use this law to predict the spread of the sampling distribution if we were to use a smaple size of $n$ =100.
+
+* Are these laws the same as the ones that apply when the only source of variation is measurement error?
+
+* In the 'measuring the meter bar' example, the error distribution was symmetric; in this example, the ages do not have a symmetric distribution: it has a long right tail. Describe how the shape of the (sampling) distribution changes with the sample size involved. Look online for the name of this law or theorem.
+
+
+### Example 2
+
+The frequency distribution of the self-reported weights of a given population of adults is available here.
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
+
+ds = read.table("http://www.biostat.mcgill.ca/hanley/statbook/Weights.txt")
+
+MEAN=round(weighted.mean(ds$Weight.lbs,w=ds$Freq))
+
+VAR = sum( ds$Freq * (ds$Weight.lbs-MEAN)^2 ) / sum(ds$Freq)
+
+SD = sqrt(VAR)
+
+```
+
+
 Elevators
+
+On the average, conventioneers weigh about 150 pounds; the SD is 25 pounds.
+i. If a large elevator for a convention centre is designed to lift a maximum of 15,500 pounds, the chance it will be overloaded by a random group of 100 conventioneers is closest to which of the following: 0.1 of 1%, 2%, 5%, 50%, 95%, 98%, 99.9% ? Explain your reasoning.
+ii. The weights of conventioneers are unlikely to have a Gaussian (“Normal”) distribution. In the light of this information, are you still comfortable using the Normal distribution for your calculations in part i? Explain carefully. Explain why the ‘random’ is key to being able to answer part i. and what impact it would have if it is not the case.
+
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
+
+plot(ds$Weight.lbs,ds$Freq,type="h",xlab="Weight in lbs",
+     ylab="Frequency",cex.lab=1.5, cex.axis=1.5)
+
+ds$smoothed.Freqs = filter(ds$Freq,filter=rep(1/20,20))
+
+lines(ds$Weight.lbs,ds$smoothed.Freqs)
+      
+ds$fitted.Gaussian.frequencies = 
+   sum(ds$Freq)*dnorm(ds$Weight.lbs, mean=MEAN, sd = SD)
+
+lines(ds$Weight.lbs,ds$fitted.Gaussian.frequencies)
+
+   
+```
+
+Pyx

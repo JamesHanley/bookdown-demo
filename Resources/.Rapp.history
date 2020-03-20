@@ -1,385 +1,3 @@
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          as.numeric(#
-           year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],2,5) )#
-         }#
-    } # #
-} # page
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = as.numeric(#
-                    substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],2,5) )#
-         }#
-    } # #
-} # page
-year
-warnings
-warnings()
-substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],2,5)
-for(i in 1:L){#
-          year = as.numeric(#
-                    substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],2,5) )#
-         }
-year
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],2,5) #
-         }#
-    } # #
-} # page
-year
-Year=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],2,5) #
-          Year = c(Year,year)#
-         }#
-    } # #
-} # page
-Year
-Year=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          Year = c(Year,year)#
-         }#
-    } # #
-} # page
-Year
-Year=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©" year = substr(year,2,5)#
-          Year = c(Year,year)#
-         }#
-    } # #
-} # page
-Year=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©") year = substr(year,2,5)#
-          Year = c(Year,year)#
-         }#
-    } # #
-} # page
-Year
-Year=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©") year = substr(year,2,5)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          Year = c(Year,year)#
-         }#
-    } # #
-} # page
-Year
-Year=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©") year = substr(year,2,5)#
-          if(substr(year,1,1)=="[]") year = substr(year,2,5)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          Year = c(Year,year)#
-         }#
-    } # #
-} # page#
-Year
-Year=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
-             substr(year,2,5)#
-          if(substr(year,1,1)=="[]") year = substr(year,2,5)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          Year = c(Year,year)#
-         }#
-    } # #
-} # page#
-Year
-Year=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
-             substr(year,2,5)#
-          if(substr(year,1,1)=="[") year = substr(year,2,5)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          Year = c(Year,year)#
-         }#
-    } # #
-} # page#
-Year
-Year=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
-             substr(year,2,5)#
-          if(substr(year,1,1)=="[") year = substr(year,2,5)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
-             substr(year,2,5)#
-          Year = c(Year,year)#
-         }#
-    } # #
-} # page#
-Year
-Year=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
-             substr(year,2,5)#
-          if(substr(year,1,1)=="[") year = substr(year,2,5)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          Year = c(Year,year)#
-         }#
-    } # #
-} # page#
-Year
-url0="https://mcgill.on.worldcat.org/search?queryString=kw:(biostatistics)&databaseList=638,283&sortKey=LIBRARY&clusterResults=true&scope=wz:12129&format=Book&subformat=Book::book_thsis&subformat=Book::book_digital&subformat=Book::book_printbook&page="#
-library(RCurl)
-tag="\t\t\t<td>"#
-tag.k=nchar(tag)#
-#
-Year=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
-             substr(year,2,5)#
-          if(substr(year,1,1)=="[") year = substr(year,2,5)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          Year = c(Year,year)#
-         }#
-    } # #
-} # page#
-Year
-txt
-title = substr(strsplit(txt[i],#
-           ""title=\"")[[1]]
-txt[i]
-substr(strsplit(txt[i],"title=")
-strsplit(txt[i],"title=")
-TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];
-page
-url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];
-L = length(txt)
-txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)
-i=1
-year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
-             substr(year,2,5)#
-          if(substr(year,1,1)=="[") year = substr(year,2,5)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)
-txt[i]
-strsplit(txt[i],"<a     class=\"record-title\"")
-title = strsplit(txt[i],"<a     class=\"record-title\"") [[1]][2]
-title
-title = strsplit(txt[i],"</a>")[[1]]
-title
-title = strsplit(txt[i],"<a     class=\"record-title\"") [[1]][2]
-title
-title = strsplit(txt[i],"<a     class=\"record-title\"") [[1]][2]
-title
-title = strsplit(txt[i],"<a     class=\"record-title\"") [[1]]
-title
-txt = txt[ grepl("Explore all editions",txt) ]
-txt
-i
-year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
-             substr(year,2,5)#
-          if(substr(year,1,1)=="[") year = substr(year,2,5)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)
-year
-title = strsplit(txt[i],"<a     class=\"record-title\"") [[1]]
-title
-title = strsplit(txt[i],"detailed-record") [[1]]
-title
-title = strsplit(txt[i],"detailed-record") [[1]][2]
-title
-title = strsplit(txt[i],"title=")[[1]]
-title
-title = strsplit(txt[i],"detailed-record") [[1]][2]#
-          title = strsplit(txt[i],"title=")[[1]][3]
-title
-title = strsplit(txt[i],"detailed-record") [[1]][2]#
-          title = strsplit(txt[i],"title=")[[1]][3]
-title = strsplit(txt[i],">")[[1]]
-title
-title = strsplit(txt[i],"detailed-record") [[1]][2]
-title = strsplit(txt[i],"<a     class=\"record-title\")
-title
-title = strsplit(txt[i],"detailed-record") [[1]][2]
-title = strsplit(txt[i],"<a     class=\"record-title\")
-title = strsplit(txt[i],"detailed-record") [[1]][2]
-title
-title = strsplit(title,"<a     class=\"record-title\")
-title
-title = strsplit(txt[i],"detailed-record") [[1]][2]
-title
-title = strsplit(txt[i],"detailed-record") [[1]][2]
-title = strsplit(title,"</a}")
-title
-title = strsplit(txt[i],"detailed-record") [[1]][2]
-title = strsplit(title,"</a>")
-title
-title = strsplit(title,"</a>")[[1]]
-title
-tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-          tx = strsplit(tx,"</a>")[[1]]
-strsplit(tx[1],">")
-strsplit(tx[1],">") [[1]]
-title = strsplit(tx[1],">") [[1]] [2]
 title
 au = strsplit(tx[2],">") [[1]] [2]
 au
@@ -580,691 +198,2664 @@ for(page in seq(11,1210,10)) {#
 }
 241929*(1:4)/100
 round(241929*(1:4)/100)
-url0="https://mcgill.on.worldcat.org/search?queryString=kw:(biostatistics)&databaseList=638,283&sortKey=LIBRARY&clusterResults=true&scope=wz:12129&format=Book&subformat=Book::book_thsis&subformat=Book::book_digital&subformat=Book::book_printbook&page="#
-library(RCurl)#
-tag="\t\t\t<td>"#
-tag.k=nchar(tag)#
+par(mfrow=c(1,1),mar = c(0,0,0,0) )#
+     L=0 ; U = 5.45#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     xN=0.2#
+     xS=1.2#
+     N = 3.6#
+     S = 4.4#
+     dy= 1#
+ for(co in 1:3){#
+    plot(c(l,r),c(L,U),#
+	        col="white",yaxt="n",#
+	        xlim=c(l,r),ylim=c(L,U) )#
+	   text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	   text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+ }
+PARA=expression(mu)
+L=0 ; U = 5.45#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     xN=0.2#
+     xS=1.2#
+     N = 3.6#
+     S = 4.4#
+     dy= 1#
+ for(co in 1:3){#
+    plot(c(l,r),c(L,U),#
+	        col="white",yaxt="n",#
+	        xlim=c(l,r),ylim=c(L,U) )#
+	   text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	   text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+ }
+par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     L=0 ; U = 5.45#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     xN=0.2#
+     xS=1.2#
+     N = 3.6#
+     S = 4.4#
+     dy= 1#
+ for(co in 1:3){#
+    plot(c(l,r),c(L,U),#
+	        col="white",yaxt="n",#
+	        xlim=c(l,r),ylim=c(L,U) )#
+	   text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	   text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+ }
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     L=0 ; U = 5.45#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     xN=0.2#
+     xS=1.2#
+     N = 3.6#
+     S = 4.4#
+     dy= 1#
+ for(co in 1:3){#
+    plot(c(l,r),c(L,U),#
+	        col="white",yaxt="n",#
+	        xlim=c(l,r),ylim=c(L,U) )#
+	   text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	   text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+ }#
+}#
 #
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
-             substr(year,2,5)#
-          if(substr(year,1,1)=="[") year = substr(year,2,5)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-          tx = strsplit(tx,"</a>")[[1]]#
-          title = strsplit(tx[1],">") [[1]] [2]#
-          au = strsplit(tx[2],">") [[1]]#
-          au = au[length(au)] #
-          Year = c(Year,year)#
-          Au   = c(Au,au)#
-          Title   = c(Title,title)#
-         }#
-    } # #
-} # page#
-cbind(Year,Title,Au)
-tag="\t\t\t<td>"#
-tag.k=nchar(tag)#
+PARA=expression(mu)#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     L=0 ; U = 5.45#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     xN=0.2#
+     xS=1.2#
+     N = 3.6#
+     S = 4.4#
+     dy= 1#
+ for(co in 1:3){#
+    plot(c(l,r),c(L,U),#
+	        col="white",yaxt="n",#
+	        xlim=c(l,r),ylim=c(L,U) )#
+	   text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	   text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	   points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+ }#
+}#
 #
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:1 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5) #
-          if(substr(year,1,1)=="©" | substr(year,1,1)=="c") year = #
-             substr(year,2,5)#
-          if(substr(year,1,1)=="[") year = substr(year,2,5)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-          tx = strsplit(tx,"</a>")[[1]]#
-          title = strsplit(tx[1],">") [[1]] [2]#
-          au = strsplit(tx[2],">") [[1]]#
-          au = au[length(au)] #
-          Year = c(Year,year)#
-          Au   = c(Au,au)#
-          Title   = c(Title,title)#
-         }#
-    } # #
-} # page#
-cbind(Year,Title,Au)
-i=1
-year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,5)
-year
-year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,10)
-txt[i]
-strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2]
-substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,10)
-year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,9)
-if(substr(year,4,4)==".") year =  substr(year,6,9)
-year
-year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,9)
-year
-if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)
-year
-year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,9)
-year
-if(substr(year,4,4)==".") year =  substr(year,6,9)
-year
-tag="\t\t\t<td>"#
-tag.k=nchar(tag)#
+PARA=expression(mu)#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     L=0 ; U = 5.45#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     xN=0.2#
+     xS=1.2#
+     N = 3.6#
+     S = 4.4#
+     dy= 1#
+ for(co in 1:3){#
+    plot(c(l,r),c(L,U),#
+	        col="white",yaxt="n",#
+	        xlim=c(l,r),ylim=c(L,U) )#
+	   text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	   for( y in 0:5) segments(0, y, 1,y, col="lightblue")#
+	   text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	   points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+ }#
+}#
 #
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:1 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,9) #
-          if(substr(year,4,4)==".") year =  substr(year,6,9)#
-          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-          tx = strsplit(tx,"</a>")[[1]]#
-          title = strsplit(tx[1],">") [[1]] [2]#
-          au = strsplit(tx[2],">") [[1]]#
-          au = au[length(au)] #
-          Year = c(Year,year)#
-          Au   = c(Au,au)#
-          Title   = c(Title,title)#
-         }#
-    } # #
-} # page#
-cbind(Year,Title,Au)
-tag="\t\t\t<td>"#
-tag.k=nchar(tag)#
+PARA=expression(mu)#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     L=0 ; U = 5.45#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     xN=0.2#
+     xS=1.8#
+     N = 3.6#
+     S = 4.4#
+     dy= 1#
+ for(co in 1:3){#
+    plot(c(l,r),c(L,U),#
+	        col="white",yaxt="n",#
+	        xlim=c(l,r),ylim=c(L,U) )#
+	   text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	   for( y in 0:5) segments(0, y, 1,y, col="lightblue")#
+	   text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	   points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+ }#
+}#
 #
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,9) #
-          if(substr(year,4,4)==".") year =  substr(year,6,9)#
-          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-          tx = strsplit(tx,"</a>")[[1]]#
-          title = strsplit(tx[1],">") [[1]] [2]#
-          au = strsplit(tx[2],">") [[1]]#
-          au = au[length(au)] #
-          Year = c(Year,year)#
-          Au   = c(Au,au)#
-          Title   = c(Title,title)#
-         }#
-    } # #
-} # page#
-cbind(Year,Title,Au)
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:5 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(L)#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,9) #
-          if(substr(year,4,4)==".") year =  substr(year,6,9)#
-          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-          tx = strsplit(tx,"</a>")[[1]]#
-          title = strsplit(tx[1],">") [[1]] [2]#
-          au = strsplit(tx[2],">") [[1]]#
-          au = au[length(au)] #
-          Year = c(Year,year)#
-          Au   = c(Au,au)#
-          Title   = c(Title,title)#
-         }#
-    } # #
-} # page#
-cbind(Year,Title,Au)
-hist(as.numeric(Year))
-url0="https://mcgill.on.worldcat.org/search?queryString=kw:(biostatistics)&databaseList=638,283&sortKey=LIBRARY&clusterResults=true&scope=wz:12129&subformat=Book::book_digital&subformat=Book::book_printbook&page="
-url0="https://mcgill.on.worldcat.org/search?queryString=kw:(biostatistics)&databaseList=638,283&sortKey=LIBRARY&clusterResults=true&scope=wz:12129&subformat=Book::book_digital&subformat=Book::book_printbook&page="
-library(RCurl)#
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:10 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(c(page,L))#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,9) #
-          if(substr(year,4,4)==".") year =  substr(year,6,9)#
-          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-          tx = strsplit(tx,"</a>")[[1]]#
-          title = strsplit(tx[1],">") [[1]] [2]#
-          au = strsplit(tx[2],">") [[1]]#
-          au = au[length(au)] #
-          Year = c(Year,year)#
-          Au   = c(Au,au)#
-          Title   = c(Title,title)#
-         }#
-    } # #
-} # page#
-cbind(Year,Title,Au)
-843/5
-ceiling(843/5)
-library(RCurl)#
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:169 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(c(page,L))#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,9) #
-          if(substr(year,4,4)==".") year =  substr(year,6,9)#
-          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-          if(substr(year,5,5)=="<") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-          tx = strsplit(tx,"</a>")[[1]]#
-          title = strsplit(tx[1],">") [[1]] [2]#
-          au = strsplit(tx[2],">") [[1]]#
-          au = au[length(au)] #
-          Year = c(Year,year)#
-          Au   = c(Au,au)#
-          Title   = c(Title,title)#
-         }#
-    } # #
-} # page
-ceiling(843/10)
-hist(as.numeric(Year))
-hist(as.numeric(Year),breaks=100)
-ds = data.frame(Year=as.numeric(Year),Title=Title,Author=Author)
-hist(ds$Year,breaks=100)
-hist(ds$Year,breaks=100)
-str(ds)
-ds = data.frame(Year=as.numeric(Year),Title=Title,Author=Author)
-Year=as.numeric(Year
-as.numeric(Year)
-Year
-ceiling(843/10)
-library(RCurl)#
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:85 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(c(page,L))#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,10) #
-          if(substr(year,4,4)==".") year =  substr(year,6,9)#
-          if(substr(year,5,5)==".") year =  substr(year,7,10)#
-          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-          if(substr(year,5,5) %in% c("<","?"," ","]","-") year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-          tx = strsplit(tx,"</a>")[[1]]#
-          title = strsplit(tx[1],">") [[1]] [2]#
-          au = strsplit(tx[2],">") [[1]]#
-          au = au[length(au)] #
-          Year = c(Year,year)#
-          Au   = c(Au,au)#
-          Title   = c(Title,title)#
-         }#
-    } # #
-} # page
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:85 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(c(page,L))#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,10) #
-          if(substr(year,4,4)==".") year =  substr(year,6,9)#
-          if(substr(year,5,5)==".") year =  substr(year,7,10)#
-          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-          if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-          tx = strsplit(tx,"</a>")[[1]]#
-          title = strsplit(tx[1],">") [[1]] [2]#
-          au = strsplit(tx[2],">") [[1]]#
-          au = au[length(au)] #
-          Year = c(Year,year)#
-          Au   = c(Au,au)#
-          Title   = c(Title,title)#
-         }#
-    } # #
-} # page
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Author)
-str(ds)
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Author)
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au)
-str(ds)
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,as.is=TRUE)
-str(ds)
-?data.frame
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)
-str(ds)
-as.numeric(Year)
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
-ds=ds[ !is.na(ds$Year), ]
-str(ds)
-summary(ds)
-hist(ds$Year,breaks=100)
-ds[ds$Year<1950,]
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
-ds=ds[ !is.na(ds$Year) , ]#
-ds=ds[ds$Year >= 1950 , ]#
-str(ds)#
-summary(ds)
-hist(ds$Year,breaks=100)
-summary(ds)
-hist(ds$Year,breaks=70)
-ds[ds$Year<1960,]
-ds[ds$Year<1960,2]
-ds[ds$Year<1980,2]
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
-ds=ds[ !is.na(ds$Year) , ]#
-ds=ds[ds$Year >= 1960 , ]#
-str(ds)#
-summary(ds)#
-hist(ds$Year,breaks=60)
-ds[ds$Year<1980,2]
-grepl("iostatistic",Title)
-ds[ds$Year<1980,2]
-Title[1]
-grepl("iostatistic", Title[1] )
-Title[110]
-grepl("iostatistic", Title[210] )
-Title[210]
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:85 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(c(page,L))#
-         for(i in 1:L){#
-          year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,10) #
-          if(substr(year,4,4)==".") year =  substr(year,6,9)#
-          if(substr(year,5,5)==".") year =  substr(year,7,10)#
-          if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-          if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
-          if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-          if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-          tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-          tx = strsplit(tx,"</a>")[[1]]#
-          title = strsplit(tx[1],">") [[1]] [2]#
-          au = strsplit(tx[2],">") [[1]]#
-          au = au[length(au)] #
-          if( grepl("iostatistic", Title[210] ) {#
-              Year = c(Year,year)#
-              Au   = c(Au,au)#
-              Title   = c(Title,title)#
-          }              #
-          }#
-         }#
-    } # #
-} # page
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:85 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(c(page,L))#
-         for(i in 1:L){#
-           year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,10) #
-           if(substr(year,4,4)==".") year =  substr(year,6,9)#
-           if(substr(year,5,5)==".") year =  substr(year,7,10)#
-           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
-           if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-           tx = strsplit(tx,"</a>")[[1]]#
-           title = strsplit(tx[1],">") [[1]] [2]#
-           au = strsplit(tx[2],">") [[1]]#
-           au = au[length(au)] #
-           if( grepl("iostatistic", Title[210] ) {#
-              Year = c(Year,year)#
-              Au   = c(Au,au)#
-              Title   = c(Title,title)#
-           }              #
-         } # i#
-    } # L > 0#
-} # page
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:85 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(c(page,L))#
-         for(i in 1:L){#
-           year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,10) #
-           if(substr(year,4,4)==".") year =  substr(year,6,9)#
-           if(substr(year,5,5)==".") year =  substr(year,7,10)#
-           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
-           if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-           tx = strsplit(tx,"</a>")[[1]]#
-           title = strsplit(tx[1],">") [[1]] [2]#
-           au = strsplit(tx[2],">") [[1]]#
-           au = au[length(au)] #
-           if( grepl("iostatistic", Title[210] ) ) {#
-              Year = c(Year,year)#
-              Au   = c(Au,au)#
-              Title   = c(Title,title)#
-           }              #
-         } # i#
-    } # L > 0#
-} # page
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:85 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(c(page,L))#
-         for(i in 1:L){#
-           year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,10) #
-           if(substr(year,4,4)==".") year =  substr(year,6,9)#
-           if(substr(year,5,5)==".") year =  substr(year,7,10)#
-           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
-           if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-           tx = strsplit(tx,"</a>")[[1]]#
-           title = strsplit(tx[1],">") [[1]] [2]#
-           au = strsplit(tx[2],">") [[1]]#
-           au = au[length(au)] #
-           if( grepl("iostatistic", title ) ) {#
-              Year = c(Year,year)#
-              Au   = c(Au,au)#
-              Title   = c(Title,title)#
-           }              #
-         } # i#
-    } # L > 0#
-} # page
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
-ds=ds[ !is.na(ds$Year) , ]
-str(ds)
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
-ds=ds[ !is.na(ds$Year) , ]#
-str(ds)#
-summary(ds)
-hist(ds$Year,breaks=77)
-ds[ds$Year<1980,2]
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:85 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(c(page,L))#
-         for(i in 1:L){#
-           year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,10) #
-           if(substr(year,4,4)==".") year =  substr(year,6,9)#
-           if(substr(year,5,5)==".") year =  substr(year,7,10)#
-           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
-           if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-           tx = strsplit(tx,"</a>")[[1]]#
-           title = strsplit(tx[1],">") [[1]] [2]#
-           au = strsplit(tx[2],">") [[1]]#
-           au = au[length(au)] #
-           if(  grepl("iostatistic", title   ) &#
-               !grepl("iostatistic", summary ) ) {#
-              Year = c(Year,year)#
-              Au   = c(Au,au)#
-              Title   = c(Title,title)#
-           }              #
-         } # i#
-    } # L > 0#
-} # page
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:85 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(c(page,L))#
-         for(i in 1:L){#
-           year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,10) #
-           if(substr(year,4,4)==".") year =  substr(year,6,9)#
-           if(substr(year,5,5)==".") year =  substr(year,7,10)#
-           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
-           if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-           tx = strsplit(tx,"</a>")[[1]]#
-           title = strsplit(tx[1],">") [[1]] [2]#
-           au = strsplit(tx[2],">") [[1]]#
-           au = au[length(au)] #
-           if(  grepl("iostatistic", title   ) &#
-               !grepl("summary", title ) ) {#
-              Year = c(Year,year)#
-              Au   = c(Au,au)#
-              Title   = c(Title,title)#
-           }              #
-         } # i#
-    } # L > 0#
-} # page
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
-ds=ds[ !is.na(ds$Year) , ]#
-str(ds)#
-summary(ds)
-hist(ds$Year,breaks=70)
-ds[ds$Year<1980,2]
-ds[ds$Year<2020,2]
-Year=NULL#
-Au=NULL#
-Title=NULL#
-for (page in 1:85 ){#
-	url=paste(url0,toString(page), sep="")#
-	TXT = getURL(url)#
-    txt=strsplit(TXT,"\n")[[1]];   #
-    L = length(txt)#
-    if(L > 0){ 	#
-         txt = txt[ grepl("Explore all editions",txt) ]#
-         L = length(txt)#
-         print(c(page,L))#
-         for(i in 1:L){#
-           year = substr(strsplit(txt[i],#
-           "<dd class=\"publication-year\">")[[1]][2],1,10) #
-           if(substr(year,4,4)==".") year =  substr(year,6,9)#
-           if(substr(year,5,5)==".") year =  substr(year,7,10)#
-           if(substr(year,1,1) %in% c("©" , "c" , "[", "<") ) year = substr(year,2,9)#
-           if(substr(year,5,5) %in% c("<","?"," ","]","-")) year = substr(year,1,4)#
-           if(substr(year,1,1)=="©" ) year = #
-             substr(year,2,5)#
-           if(substr(year,5,8)=="]</d" ) year = substr(year,1,4)#
-           tx = strsplit(txt[i],"detailed-record") [[1]][2]#
-           tx = strsplit(tx,"</a>")[[1]]#
-           title = strsplit(tx[1],">") [[1]] [2]#
-           au = strsplit(tx[2],">") [[1]]#
-           au = au[length(au)] #
-           if(  grepl("iostatistic", title   ) &#
-               !grepl("summary", title ) &#
-               !grepl("eport",   title ) &#
-               !grepl("fishery", title ) &#
-               !grepl("animal", title  ) &#
-               !grepl("aging", title   ) &#
-               !grepl("&amp", title    ) &#
-               !grepl("roceed", title  ) &#
-               !grepl("eeting", title  ) &#
-               !grepl("Writing", title ) &#
-               !grepl("ocompu", title  ) &#
-               !grepl("dvances", title ) &#
-               !grepl("rontier", title ) &#
-               !grepl("mposium", title )   ) {#
-              Year = c(Year,year)#
-              Au   = c(Au,au)#
-              Title   = c(Title,title)#
-           }              #
-         } # i#
-    } # L > 0#
-} # page
-ds = data.frame(Year=as.numeric(Year), Title=Title,Author=Au,stringsAsFactors=FALSE)#
-ds=ds[ !is.na(ds$Year) , ]#
-str(ds)#
-summary(ds)#
-hist(ds$Year,breaks=70)
-ds[ds$Year<2020,2]
-summary(ds)
-hist(ds$Year,breaks=56)
-write.table(ds,"BiostatisticsTextsMcGillLibrary.txt")
+PARA=expression(mu)#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     L=0 ; U = 5.45#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     xN=0.2#
+     xS=0.8#
+     N = 3.6#
+     S = 4.4#
+     dy= 1#
+ for(co in 1:3){#
+    plot(c(l,r),c(L,U),#
+	        col="white",yaxt="n",#
+	        xlim=c(l,r),ylim=c(L,U) )#
+	   text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	   for( y in 0:5) segments(0, y, 1,y, col="lightblue")#
+	   text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	   points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+ }#
+}#
+#
+PARA=expression(mu)#
+plot3(1)
+PARA1 = c(expression(mu[South]), expression(mu[South]) )
+L=0 ; U = 5.45
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.2,0.8)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+ for(co in 1:3){#
+    plot(x,mu,yaxt="n", xlim=c(l,r),ylim=mu)#
+	   text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	   for( y in seq(U,ceiling(mu[2]),dy)) segments(0, y, 1,y, col="lightblue")#
+	   text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	   points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	   for(j in 1:2){#
+	   	text(PARAs = c(expression(mu[South]), expression(mu[South]) )#
+	   }#
+ }#
+}#
+#
+PARA=expression(mu)#
+plot3(1)
+PARAs = c(expression(mu[North]), expression(mu[South]) )
+PARAs
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.2,0.8)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(l,r),ylim=mu)#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(U,ceiling(mu[2]),dy)) segments(0, y, 1,y, col="lightblue")#
+	     text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	     for(j in 1:2) text(x[j],mu[j],PARAs[j])#
+	  }#
+ }#
+}#
+#
+PARA=expression(mu)#
+plot3(1)#
+#
+PARAs = c(expression(mu[North]), expression(mu[South]) )
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.2,0.8)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(l,r),ylim=mu)#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(U,ceiling(mu[2]),dy)) segments(0, y, 1,y, col="lightblue")#
+	     text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	     for(j in 1:2) text(x[j],mu[j],PARAs[j])#
+	  }#
+ }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.2,0.8)#
+     mu = c(3.6,4.4)#
+     dy= 1
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.2,0.8)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(l,r),ylim=mu)#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(U,ceiling(mu[2]),dy)) segments(0, y, 1,y, col="lightblue")#
+	     text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	     for(j in 1:2) text(x[j],mu[j],PARAs[j])#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.2,0.8)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(l,r),ylim=mu)#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(0, y, 1,y, col="lightblue")#
+	     text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	     for(j in 1:2) text(x[j],mu[j],PARAs[j])#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.2,0.8)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=x,ylim=mu)#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(0, y, 1,y, col="lightblue")#
+	     text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	     for(j in 1:2) text(x[j],mu[j],PARAs[j])#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+seq(0,ceiling(mu[2]),dy)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.2,0.8)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=mu)#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(0, y, 1,y, col="lightblue")#
+	     text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	     for(j in 1:2) text(x[j],mu[j],PARAs[j])#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.2,0.8)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(0,mu[2])#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(0, y, 1,y, col="lightblue")#
+	     text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	     for(j in 1:2) text(x[j],mu[j],PARAs[j])#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+c(0,mu[2]
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.2,0.8)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(0,mu[2]))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(0, y, 1,y, col="lightblue")#
+	     text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	     for(j in 1:2) text(x[j],mu[j],PARAs[j])#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.2,0.8)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(0,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(0, y, 1,y, col="lightblue")#
+	     text((l+r)/2,1.05*U,TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	     for(j in 1:2) text(x[j],mu[j],PARAs[j])#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(0,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(0, y, 1,y, col="lightblue")#
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	     for(j in 1:2) text(x[j],mu[j],PARAs[j])#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(0,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(x[1], y, x[2],y, col="lightblue")#
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=0.5)#
+	     for(j in 1:2) text(x[j],mu[j],PARAs[j])#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(0,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(x[1], y, x[2],y, col="lightblue")#
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=1)#
+	     for(j in 1:2) text(x[j]+ 0.02*(j==1)-0.02*(j==2),#
+	                        mu[j],PARAs[j], #
+	                        adj=c(0+(j==2)0.5),cex=2)#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(0,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(x[1], y, x[2],y, col="lightblue")#
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(c(xN,xS),c(N,S),pch=19,cex=1)#
+	     for(j in 1:2) text(x[j]+ 0.02*(j==1)-0.02*(j==2),#
+	                        mu[j],PARAs[j], #
+	                        adj=c(0+(j==2),0.5),cex=2)#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(0,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(x[1], y, x[2],y, col="lightblue")#
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2) text(x[j]+ 0.02*(j==1)-0.02*(j==2),#
+	                        mu[j],PARAs[j], #
+	                        adj=c(0+(j==2),0.5),cex=2)#
+	  }#
+}#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(0,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(x[1], y, x[2],y, col="lightblue")#
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]+ 0.02*(j==1)-0.02*(j==2),#
+	                        mu[j],PARAs[j], #
+	                        adj=c(0+(j==2),0.5),cex=2)#
+	        text(x[j],0,PARAs[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABELS=c("South","North")#
+PARA=c(toString(x[1],toString(x[2])#
+plot3(1)
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABELS=c("South","North")#
+PARA=c( toString(x[1],toString(x[2]) )#
+plot3(1)
+PARA=c( toString(mu[1],toString(mu[2]) )
+toString(mu[2])
+toString(mu[1]
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABELS=c("South","North")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(0,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(x[1], y, x[2],y, col="lightblue")#
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]+ 0.02*(j==1)-0.02*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(0+(j==2),0.5),cex=2)#
+	        text(x[j],0,PARAs[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABELS=c("South","North")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(0,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(x[1], y, x[2],y, col="lightblue")#
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]+ 0.02*(j==1)-0.02*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(0+(j==2),0.5),cex=2)#
+	        text(x[j],0,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("South","North")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)) segments(x[1], y, x[2],y, col="lightblue")#
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]+ 0.02*(j==1)-0.02*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(0+(j==2),0.5),cex=2)#
+	        text(x[j],0,LABEL[j], adj=c(0.5,1.25),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("South","North")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1], y,toString(y), adj=c(1.25,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]+ 0.02*(j==1)-0.02*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(0+(j==2),0.5),cex=2)#
+	        text(x[j],0,LABEL[j], adj=c(0.5,1.25),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("South","North")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1], y,toString(y), adj=c(1.25,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.02*(j==1)+0.02*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(0+(j==2),0.5),cex=2)#
+	        text(x[j],0,LABEL[j], adj=c(0.5,1.25),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("South","North")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1], y,toString(y), adj=c(1.25,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.02*(j==1)+0.02*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(1-(j==1),0.5),cex=2)#
+	        text(x[j],0,LABEL[j], adj=c(0.5,1.25),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("South","North")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1], y,toString(y), adj=c(1.25,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.02*(j==1)+0.02*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(1-(j==2),0.5),cex=2)#
+	        text(x[j],0,LABEL[j], adj=c(0.5,1.25),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("South","North")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.3,0.7)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1], y,toString(y), adj=c(1.25,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(1-(j==2),0.5),cex=2)#
+	        text(x[j],0,LABEL[j], adj=c(0.5,1.25),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("South","North")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.3,0.7)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1], y,toString(y), adj=c(1.25,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(1-(j==2),0.5),cex=2)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("South","North")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.3,0.7)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.01, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.01, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(1-(j==2),0.5),cex=2)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("South","North")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.3,0.7)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.01, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.01, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(1-(j==2),0.5),cex=2)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.3,0.7)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(1-(j==2),0.5),cex=2)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+PARA=c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.3,0.7)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(1-(j==2),0.5),cex=1.5)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+PARA = matrix( c( toString(mu[1]),toString(mu[2]),  )#
+plot3(1)
+PARA = matrix( c( toString(mu[1]),toString(mu[2]) )
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.3,0.7)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
+	                        mu[j],PARA[j], #
+	                        adj=c(1-(j==2),0.5),cex=1.5)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+PARA = matrix( c( toString(mu[1]),toString(mu[2]) )#
+plot3(1)
+PARA = c( toString(mu[1]),toString(mu[2])
+plot3(1)
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), "+", toString(mu[2]), sep=""),#
+                  "a", "b" ), 2,3) )
+PARA
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.3,0.7)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
+	                        mu[j],PARA[co,j], #
+	                        adj=c(1-(j==2),0.5),cex=1.5)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), "+", toString(mu[2]), sep=""),#
+                  "a", "b" ), 2,3) ) #
+plot3(1)
+delta.mu = mu[2]-mu[1]
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), "+", toString(delta.mu),sep=""),#
+                  rep(paste(toString(mu[1]),"+", toString(delta.mu),"if South",sep=""),2)#
+                  ),2,3) )
+plot3(1)
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), "\n+", toString(delta.mu),sep=""),#
+                  rep(paste(toString(mu[1]),"\n+", toString(delta.mu),"if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), "\n+", toString(delta.mu),sep=""),#
+                  rep(paste(toString(mu[1]),"\n+", toString(delta.mu),"if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), "\n+", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1]),"\n+",toString(delta.mu),"\nif South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.35,0.65)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
+	                        mu[j],PARA[co,j], #
+	                        adj=c(1-(j==2),0.5),cex=1.5)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), "\n+", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1]),"\n+",toString(delta.mu),"\nif South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), "\n+", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1]),"\n+",toString(delta.mu),"\nif S",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.35,0.65)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
+	                        mu[j],PARA[co,j], #
+	                        adj=c(1-(j==2),0.5),cex=1.25)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), "+", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1]),"+",toString(delta.mu),"if S",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), "+", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1]),"+",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
+	                        mu[j],PARA[co,j], #
+	                        adj=c(1-(j==2),0.5),cex=1.05)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), "+", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1]),"+",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j], mu[j]-0.05,PARA[co,j], #
+	                        adj=c(0.5,1),cex=1.05)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j], mu[j]-0.01,PARA[co,j], #
+	                        adj=c(0.5,1),cex=1.05,srt=45)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.02*(j==1) + 0.02*(j==2), #
+	     	     mu[j] - 0.1 *(j==1) + 0.1 *(j==2),#
+	     	     PARA[co,j], #
+	                        adj=c(0.5,1),cex=1.05,srt=45)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)#
+#
+PARA=expression(mu)#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+#
+PARAs = c(expression(mu[North]), expression(mu[South]) )#
+plot3(1)
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.02*(j==1) + 0.02*(j==2), #
+	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
+	     	     PARA[co,j], #
+	                        adj=c(0.5,1),#
+	                        cex=1.05,srt=45)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.02*(j==1) + 0.02*(j==2), #
+	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
+	     	     PARA[co,j], #
+	                        adj=c(1, 1),#
+	                        cex=1.05,srt=50)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
+	     	     PARA[co,j], #
+	                        adj=c(1, 1),#
+	                        cex=1.05,srt=50)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
+	     	     PARA[co,j], #
+	                        adj=c(1, 0),#
+	                        cex=1.05,srt=50)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
+	     	     PARA[co,j], #
+	                        adj=c(1-(j==2), 0),#
+	                        cex=1.05,srt=50)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
+	     	     PARA[co,j], #
+	                        adj=c(1-(j==2), 0.5),#
+	                        cex=1.05,srt=50)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
+	     	     PARA[co,j], #
+	                        adj=c(0.5, 0.5),#
+	                        cex=1.05,srt=50)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
+	     	     PARA[co,j], #
+	                        adj=c(0.5, 0.5),#
+	                        cex=1.05,srt=SRT)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+SRT=30                   #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.2,#
+	     	     PARA[co,j], #
+	                        adj=c(0.5, 0.5),#
+	                        cex=1.05,srt=SRT)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+SRT=30                   #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.1,#
+	     	     PARA[co,j], #
+	                        adj=c(0.5, 0.5),#
+	                        cex=1.05,srt=SRT)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+SRT=30                   #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.375,0.625)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.175,#
+	     	     PARA[co,j], #
+	                        adj=c(0.5, 0.5),#
+	                        cex=1.05,srt=SRT)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+SRT=45                   #
+plot3(1)
+SRT=48                   #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.175,#
+	     	     PARA[co,j], #
+	                        adj=c(0.5, 0.5),#
+	                        cex=1.05,srt=SRT)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+SRT=48                   #
+plot3(1)
+SRT=40                   #
+plot3(1)
+SRT=35
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.175,#
+	     	     PARA[co,j], #
+	                        adj=c(0.5, 0.5),#
+	                        cex=1.05,srt=SRT)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=1.25)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+SRT=35                  #
+plot3(1)
+plot3 = function(row){#
+     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
+     l = 0; r=1#
+     TOP="Mean Ocean\ndepth (Km)"#
+     x=c(0.25,0.75)#
+     mu = c(3.6,4.4)#
+     dy= 1#
+     for(co in 1:3){#
+         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
+	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
+	     for( y in seq(0,ceiling(mu[2]),dy)){#
+	     	segments(x[1], y, x[2],y, col="lightblue")#
+	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
+	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
+	     } #
+	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
+	     points(x,mu,pch=19,cex=0.75)#
+	     for(j in 1:2){#
+	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
+	     	     mu[j] - 0.125,#
+	     	     PARA[co,j], #
+	                        adj=c(0.5, 0.5),#
+	                        cex=1.05,srt=SRT)#
+	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=1.25)#
+	     } #
+	  }#
+}#
+#
+x=c(0.25,0.75)#
+mu = c(3.6,4.4)#
+LABEL=c("North", "South")#
+delta.mu = mu[2]-mu[1]#
+PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
+                  toString(mu[1]), #
+                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
+        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
+                  ),2,3) ) #
+SRT=35                  #
+plot3(1)
+demo(plotmath)
+plot(1:10)
+?print
+density = c(#
+5.50, 5.61, 4.88, 5.07, 5.26, 5.55, 5.36, 5.29, 5.58, 5.65,#
+5.57, 5.53, 5.62, 5.29, 5.44, 5.34, 5.79, 5.10, 5.27, 5.39,#
+5.42, 5.47, 5.63, 5.34, 5.46, 5.30, 5.75, 5.68, 5.85)#
+#
+round(mean(density),2)#
+#
+lm.fit =  lm(density ~ 1)#
+print(summary(lm.fit),digits=1)
+library(mosaic)
+bootstrap.means <- do(500) * lm( resample(density) ~1)
+bootstrap.means
+bootstrap.means <- do(1000) * lm( resample(density) ~1)
+confint(bootstrap.means)
+bootstrap.fits <- do(1000) * lm( resample(density) ~1)
+confint(bootstrap.fits$Intercept)
+round(confint(bootstrap.fits$Intercept),2)
+round(sd(bootstrap.fits$Intercept),2)
+print(summary(lm.fit),digits=1)
+?confint
+fit <- lm(100/mpg ~ disp + hp + wt + am, data = mtcars)#
+confint(fit)#
+confint(fit, "wt")
+possible.n = c(1,2,3,4,8)#
+Errors =list(e2 = c(-1,1) ,    #
+             e3 = sqrt(3/2)*c(-1,0,1), #
+             e4 = sqrt(1/2)*c(-1,0,0,1)#
+             )#
+max.e = max()*max(abs(unlist(Errors))
+possible.n = c(1,2,3,4,8)#
+Errors =list(e2 = c(-1,1) ,    #
+             e3 = sqrt(3/2)*c(-1,0,1), #
+             e4 = sqrt(1/2)*c(-1,0,0,1)#
+             )#
+max.e = max(possible.n)*max(abs(unlist(Errors))
+possible.n = c(1,2,3,4,8)#
+Errors =list(e2 = c(-1,1) ,    #
+             e3 = sqrt(3/2)*c(-1,0,1), #
+             e4 = sqrt(1/2)*c(-1,0,0,1)#
+             )
+max(possible.n)
+max(abs(unlist(Errors))
+max.e = max(possible.n) * max(abs(unlist(Errors)))
+max.e
+max.e = max(possible.n) * max(abs(unlist(Errors)))
+max.e
+possible.n = c(1,2,3,4,8)#
+Errors =list(e2 = c(-1,1) ,    #
+             e3 = sqrt(3/2)*c(-1,0,1), #
+             e4 = sqrt(1/2)*c(-1,0,0,1)#
+             )#
+#
+n.sampled.possibilities = 10000#
+#
+nr = length(possible.n)#
+nc = length(Errors)#
+par(mfrow=c(nr,nc),mar = c(1,1,1,1) )#
+#
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(100,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = max(possible.n) * max(abs(unlist(errors)))#
+#
+    XLIM=100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=XLIM,#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in XLIM[1]:XLIM[2] ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+nc = length(Errors)#
+par(mfrow=c(nr,nc),mar = c(1,1,1,1) )#
+#
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(100,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 10#
+#
+    XLIM=100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=XLIM,#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in XLIM[1]:XLIM[2] ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+nr = length(possible.n)#
+nc = length(Errors)#
+par(mfrow=c(nr,nc),mar = c(1,1,1,1) )#
+#
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(100,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 10#
+#
+    XLIM=100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=XLIM,#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in seq(XLIM[1]mXLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(100,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 10#
+#
+    XLIM=100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=XLIM,#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(100,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=XLIM,#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=XLIM,#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e-8,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=XLIM,#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-2,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+      text(l,0,toString(l/n),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+      text(l,0,toString(round(l/n,1)),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    dy = n.sampled.possibilities/8#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+      text(l,-dy,toString(round(l/n,1)),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    dy = n.sampled.possibilities/8#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+    }#
+    for(m in (XLIM[1]/n):(XLIM[2]/n) ){#
+      text(n*m,-dy,toString(m),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    dy = n.sampled.possibilities/8#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+    }#
+    for(m in seq(92,108,2) ){#
+      text(n*m,-dy,toString(m),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    dy = n.sampled.possibilities/8#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+    }#
+    for(l in seq(XLIM[1],XLIM[2],n) ){#
+      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    dy = n.sampled.possibilities/8#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+    }#
+    for(l in seq(XLIM[1],XLIM[2],n) ){#
+      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(pct in seq(0,50,10)){#
+    	text(XLIM[1],n.sampled.possibilities*pct/100,toString(pct),adj=c(1,0.5))#
+    }#
+    dy = n.sampled.possibilities/8#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+    }#
+    for(l in seq(XLIM[1],XLIM[2],n) ){#
+      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    for(pct in seq(0,50,10)){#
+    	text(XLIM[1],n.sampled.possibilities*pct/100,#
+    	         paste(toString(pct),"%",sep=""),adj=c(1,0.5),cex=0.7)#
+    }#
+    dy = n.sampled.possibilities/8#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+    }#
+    for(l in seq(XLIM[1],XLIM[2],n) ){#
+      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    segments(XLIM[1],0,XLIM[1],XLIM[1],sampled.possibilities/0.95)#
+    for(pct in seq(10,50,10)){#
+    	text(XLIM[1],n.sampled.possibilities*pct/100,#
+    	         paste(toString(pct),"%",sep=""),adj=c(1,0.5),cex=0.7)#
+    }#
+    dy = n.sampled.possibilities/8#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+    }#
+    for(l in seq(XLIM[1],XLIM[2],n) ){#
+      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+segments(XLIM[1],0,XLIM[1],sampled.possibilities/0.95)
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    segments(XLIM[1],0,XLIM[1],sampled.possibilities/0.95)#
+    for(pct in seq(10,50,10)){#
+    	text(XLIM[1],n.sampled.possibilities*pct/100,#
+    	         paste(toString(pct),"%",sep=""),adj=c(1,0.5),cex=0.7)#
+    }#
+    dy = n.sampled.possibilities/8#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+    }#
+    for(l in seq(XLIM[1],XLIM[2],n) ){#
+      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    segments(XLIM[1],0,XLIM[1],n.sampled.possibilities/1.95)#
+    for(pct in seq(10,50,10)){#
+    	text(XLIM[1],n.sampled.possibilities*pct/100,#
+    	         paste(toString(pct),"%",sep=""),adj=c(1,0.5),cex=0.7)#
+    }#
+    dy = n.sampled.possibilities/8#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+    }#
+    for(l in seq(XLIM[1],XLIM[2],n) ){#
+      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+possible.n = c(1,2,3,4,8)#
+Errors =list(e2 = c(-1,1) ,    #
+             e3 = sqrt(3/2)*c(-1,0,1), #
+             e4 = sqrt(1/2)*c(-1,0,0,1)#
+             )#
+#
+n.sampled.possibilities = 1000#
+#
+nr = length(possible.n)#
+nc = length(Errors)#
+par(mfrow=c(nr,nc),mar = c(1,1,1,1) )#
+#
+for(r in 1:nr){#
+  for(c in 1:nc){#
+    errors = Errors[[c]]#
+    n = possible.n[r]#
+    lengths = rep(0,n.sampled.possibilities)#
+    for (i in 1:n) {#
+      lengths = lengths + 100 +#
+                sample(errors,n.sampled.possibilities,#
+                          replace=TRUE)#
+    }#
+    f = table(lengths)#
+    max.e = 8#
+#
+    XLIM=n*100 + c(-max.e,max.e)#
+    plot(f,yaxt="n", xaxt="n",#
+         xlim=c(XLIM[1]-4,XLIM[2]),#
+         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
+         main=toString(n))#
+    segments(XLIM[1], 0, XLIM[2], 0)#
+    segments(XLIM[1],0,XLIM[1],n.sampled.possibilities/1.95)#
+    for(pct in seq(10,50,10)){#
+    	text(XLIM[1],n.sampled.possibilities*pct/100,#
+    	         paste(toString(pct),"%",sep=""),adj=c(1,0.5),cex=0.7)#
+    }#
+    dy = n.sampled.possibilities/8#
+    for(l in seq(XLIM[1],XLIM[2],2) ){#
+      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
+    }#
+    for(l in seq(XLIM[1],XLIM[2],n) ){#
+      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
+      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
+    }#
+  }#
+}
+?sample
+?apply
+?sample
+?message
+ddi <- read_ipums_ddi("nhis_00008.xml")
+library(ipumsr)
+ddi <- read_ipums_ddi("nhis_00008.xml")
+library(ipumsr)
+ddi <- read_ipums_ddi("nhis_00008.xml")
+data <- read_ipums_micro(ddi)
+ddi <- read_ipums_ddi(nhis_00008.dat")
+ddi <- read_ipums_ddi(nhis_00008.dat")
+ddi <- read_ipums_ddi(nhis_00008.dat")
+ddi <- read_ipums_ddi("nhis_00008.dat")
+ddi <- read_ipums_ddi("nhis_00008.dat")
+ddi <- readLines("nhis_00008.dat")
+ddi <- read.Lines("nhis_00008.dat")
+ddi <- read.Lines("nhis_00008.dat")
+dir()
 getwd()
-setwd("/Users/jameshanley/git-repos/bookdown-demo/Resources/")
-setwd("/Users/jameshanley/git_repos/bookdown-demo/Resources/")
-lib()
-dir()
-write.table(ds,"BiostatisticsTextsMcGillLibrary.txt")
-dir()
+setwd("/Users/jameshanley/git_repos/statbook/Resources")
+library(ipumsr)
+ddi <- read.Lines("nhis_00008.dat")
+data <- read_ipums_micro(ddi)
+ddi <- read.Lines("nhis_00008.xml")
+ddi <- read_ipums_ddi("nhis_00008.xml")
+data <- read_ipums_micro(ddi)
+ds <- read_ipums_micro(ddi)
+str(ds)
+ds=ds[,17:19] ; head(ds)
+summary(ds)
+library(ipumsr)#
+ddi <- read_ipums_ddi("nhis_00008.xml")#
+ds <- read_ipums_micro(ddi)#
+str(ds)#
+ds=ds[ds$AGE>-18,17:19] ; head(ds)
+summary(ds)
+library(ipumsr)#
+ddi <- read_ipums_ddi("nhis_00008.xml")#
+ds <- read_ipums_micro(ddi)#
+str(ds)#
+ds=ds[ds$AGE>=18,17:19] ; head(ds)#
+summary(ds)
+library(ipumsr)#
+ddi <- read_ipums_ddi("nhis_00008.xml")#
+ds <- read_ipums_micro(ddi)#
+str(ds)#
+ds=ds[ds$AGE>=18 & ds$WEIGHT>60,17:19] ; head(ds)#
+summary(ds)
+ds=ds[ds$AGE>=18 ,17:19] ; head(ds)
+library(ipumsr)#
+ddi <- read_ipums_ddi("nhis_00008.xml")#
+ds <- read_ipums_micro(ddi)#
+str(ds)#
+table(ds$)#
+ds=ds[ds$AGE>=18 ,17:19] ;
+table(ds$WEIGHT)
+library(ipumsr)#
+ddi <- read_ipums_ddi("nhis_00008.xml")#
+ds <- read_ipums_micro(ddi)#
+str(ds)#
+table(ds$)#
+ds=ds[ds$AGE>=18 & ds$WEIGHT > 100 ,17:19] ; #
+table(ds$WEIGHT)
+library(ipumsr)#
+ddi <- read_ipums_ddi("nhis_00008.xml")#
+ds <- read_ipums_micro(ddi)#
+str(ds)#
+table(ds$)#
+ds=ds[ds$AGE>=18 & #
+      ds$WEIGHT > 100 &#
+      ds$WEIGHT < 300 ,17:19] ; #
+table(ds$WEIGHT)
+fr=table(ds$WEIGHT)
+plot(fr)
+length(fr)
+str(fr)
+write.table("fr","weights.txt"")
+write.table("fr","weights.txt")
+write.table("fr","weights.txt")
+write.table(fr,"weights.txt")
+str(fr)
+data.frame(fr)
+names(ds)[1]="Weight.lbs"
+names(ds)[1]="Weight.lbs"#
+write.table(ds,"weights.txt")
+setwd("/Users/jameshanley/git_repos/statbook/Resources")#
+#
+library(ipumsr)#
+ddi <- read_ipums_ddi("nhis_00008.xml")#
+ds <- read_ipums_micro(ddi)#
+str(ds)#
+table(ds$)#
+ds=ds[ds$AGE>=18 & #
+      ds$WEIGHT > 100 &#
+      ds$WEIGHT < 300 ,17:19] ; #
+fr=table(ds$WEIGHT)#
+plot(fr)#
+ds = data.frame(fr)#
+names(ds)[1]="Weight.lbs"#
+head(ds)
+write.table(ds,"weights.txt")
