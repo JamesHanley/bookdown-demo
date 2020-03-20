@@ -373,9 +373,9 @@ ii. The weights of conventioneers are unlikely to have a Gaussian (“Normal”)
 plot(ds$Weight.lbs,ds$Freq,type="h",xlab="Weight in lbs",
      ylab="Frequency",cex.lab=1.5, cex.axis=1.5)
 
-ds$smoothed.Freqs = filter(ds$Freq,filter=rep(1/20,20))
+#ds$smoothed.Freqs = filter(ds$Freq,filter=rep(1/20,20))
 
-lines(ds$Weight.lbs,ds$smoothed.Freqs)
+#lines(ds$Weight.lbs,ds$smoothed.Freqs)
       
 ds$fitted.Gaussian.frequencies = 
    sum(ds$Freq)*dnorm(ds$Weight.lbs, mean=MEAN, sd = SD)
