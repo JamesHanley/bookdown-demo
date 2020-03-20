@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-03-19" />
+<meta name="date" content="2020-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -188,7 +188,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="14.2.1" data-path="computing02.html"><a href="computing02.html#measurement-errors"><i class="fa fa-check"></i><b>14.2.1</b> Measurement errors</a></li>
 <li class="chapter" data-level="14.2.2" data-path="computing02.html"><a href="computing02.html#discovering-the-laws-via-this-computing-exercise"><i class="fa fa-check"></i><b>14.2.2</b> Discovering the Laws [via this computing exercise]</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="computing02.html"><a href="computing02.html#biological-variation"><i class="fa fa-check"></i><b>14.3</b> Biological variation</a></li>
+<li class="chapter" data-level="14.3" data-path="computing02.html"><a href="computing02.html#biological-variation"><i class="fa fa-check"></i><b>14.3</b> Biological variation</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="computing02.html"><a href="computing02.html#example"><i class="fa fa-check"></i><b>14.3.1</b> Example</a></li>
+<li class="chapter" data-level="14.3.2" data-path="computing02.html"><a href="computing02.html#example-2"><i class="fa fa-check"></i><b>14.3.2</b> Example 2</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="computing03.html"><a href="computing03.html"><i class="fa fa-check"></i><b>15</b> Computing Week3</a><ul>
 <li class="chapter" data-level="15.1" data-path="computing03.html"><a href="computing03.html#ages-of-books"><i class="fa fa-check"></i><b>15.1</b> Ages of books</a></li>
@@ -267,8 +270,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">14.2</span> Random Variation</h2>
 <div id="measurement-errors" class="section level3">
 <h3><span class="header-section-number">14.2.1</span> Measurement errors</h3>
-<p>The ‘standard’ since been replaced by fancier methods, but for now let’s imagine that every family in the world make their own independent physical copy (using say string or paper or cardboard) of the official <a href="https://en.wikipedia.org/wiki/History_of_the_metre">1 meter</a> platimun bar that used to be stored in Paris. Suppose these copies had a measurement error of either +1 centimeter or -1 centimeter (with plus errors and minus errors being equally likely). Thus, these errors, or ‘deviations’ from the 100cm, average out to 0. Each squared deviation is 1, so the mean squared deviation (called the error <strong>variance</strong>) is also 1. Its square root, also 1 in this instance, is called the <strong>standard deviation</strong> of the errors, or <span class="math inline">\(\sigma_{e}\)</span> for short.</p>
-<p>Now imagine taking a random sample of <span class="math inline">\(n\)</span> of these copies, and computing the sum and the mean of the <span class="math inline">\(n\)</span> lengths.</p>
+<p>The ‘standard’ has since been replaced by fancier methods, but for now let’s imagine that every family in the world make their own independent physical copy (using say string or paper or cardboard) of the official <a href="https://en.wikipedia.org/wiki/History_of_the_metre">1 meter</a> platimun bar that used to be stored in Paris. Suppose these copies had a measurement error of either +1 centimeter or -1 centimeter (with plus errors and minus errors being equally likely). Thus, these errors, or ‘deviations’ from the 100cm, average out to 0. Each squared deviation is 1, so the mean squared deviation (called the error <strong>variance</strong>) is also 1. Its square root, also 1 in this instance, is called the <strong>standard deviation</strong> of the errors, or <span class="math inline">\(\sigma_{e}\)</span> for short.</p>
+<p><strong>Now imagine taking a random sample of <span class="math inline">\(n\)</span> of these copies, and computing the sum and the mean of the <span class="math inline">\(n\)</span> lengths.</strong></p>
 <p>Although it is possible to mathematically enumerate/calculate the exact probalities that the sum or mean takes on the various possible values, we will instead use <code>R</code> to approximate the probabilities by simulation. The probabilities in the following Figure are based on large enough numbers of simulations that – while they don’t show the <em>perfect</em> symmetry they would exhibit if we worked them out mathematically – they give quite close approximations.</p>
 <p>The uppermost panel in the following figure shows the probability of obtaining various sums and various sample means.</p>
 <p><img src="statbook_files/figure-html/unnamed-chunk-10-1.png" width="864" style="display: block; margin: auto;" /></p>
@@ -358,87 +361,147 @@ measurements =<span class="st"> </span><span class="kw">matrix</span>(<span clas
 </div>
 <div id="biological-variation" class="section level2">
 <h2><span class="header-section-number">14.3</span> Biological variation</h2>
-<p>Ages</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ds=<span class="kw">read.table</span>(
-<span class="st">&quot;http://www.biostat.mcgill.ca/hanley/bios601/AgeFrequencies.txt&quot;</span>,
-<span class="dt">as.is=</span><span class="ot">TRUE</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
-
-AGES =<span class="st"> </span>ds<span class="op">$</span>Age
-Proportions =<span class="st"> </span>ds<span class="op">$</span>Freq<span class="op">/</span><span class="kw">sum</span>(ds<span class="op">$</span>Freq)
-mu =<span class="st"> </span><span class="kw">sum</span>(AGES<span class="op">*</span>Proportions)
-
-no.of.sims =<span class="st"> </span><span class="dv">100000</span>
-
-sample.sizes =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">25</span>)
+<div id="example" class="section level3">
+<h3><span class="header-section-number">14.3.1</span> Example</h3>
+<p>We move now to contexts where the variation is primarily (or in a few deluxe cases where there are no measurement issues, entirely) due to genuine – e.g., biological or geographical – variation. Below, you will address one such example, the weights of a specific population where we have good national-level data to help us to set up simulations that demonstate and let us discover the statistical laws governing the (sampling) variability of various statistics derived from samples. For for now, we will consider a demographic characteristic, namely <strong>age</strong>, in a setting where it was documented for an entire population. The ages were gathered on the night of Sunday April 2nd in the <a href="http://www.census.nationalarchives.ie/help/about19011911census.html">1911 Census of Ireland,</a> the last one to be carried out under British rule. Here are the returns of one famous statistician, whose important work, published under the pen-name <a href="http://www.census.nationalarchives.ie/reels/nai000230598/">‘Student,’</a> we will meet shortly.</p>
+<p>We will limit our attention to the county of Dublin, which at the time has a population of about half a million people, mostly urban. The male age-distribution <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/MeanQuantiles2019.pdf#page=18">displayed here in the usual vertical orientation</a> has the (1/2) <em>pyramid</em> shape that characterizes developing countries. The somewhat different female age-distribution is in part because Ireland’s capital city, Dublin City, attracted many female workers in their late teens and their 20s (cf. the last 3 entries in Gosset’s return). The <a href="https://www.cso.ie/en/releasesandpublications/ep/p-cp3oy/cp3/aad/">age-distributions today</a> show large city vs. rural differences.</p>
+<p><strong>Shapes of distributions</strong></p>
+<p>Below, the age-distribution is rotated by 90 degrees, so that age is on the horizontal axis, and numbers of persons in the different age-bins (we will combine male and female) are on the vertical axis. In this more familiar orientation, it is easier to see that the <strong>age-distribution does not have the symmetry observed in the earlier section</strong>, where the variation was entirely due to measurement variations around some constant.</p>
+<p>(Incidentally, in the ‘age-distributions of today’s Irish population, there are none of the ’spikes’ at ages 40, 50, 60, .. that were seem in the 1911 data. The origin of these spikes is left for you to puzzle about. There are many modern examples of this phenomenon, as in this example of the <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch-chapterPlusNotes-ch3-2019.pdf#page=21">recording of emergency department arrival and departure times</a> . Another difficulty faced by earlier-century census takers is described in this account <a href="https://books.google.ca/books?id=fUsPAAAAYAAJ&amp;pg=PA118&amp;dq=John+Godfrey+Saxe+census-taker&amp;hl=en&amp;sa=X&amp;ved=0ahUKEwjQv6f04OvVAhUL5IMKHUZfBfgQ6AEIJjAA#v=onepage&amp;q=John%20Godfrey%20Saxe%20census-taker&amp;f=false">The Puzzled Census-Taker</a> )</p>
+<p>This – first of many – distribution of a human characteristic will serve as a strong messsage that <strong>we should not expect such distributions to be symmetric, let alone bell-shaped (‘Gaussian’ / ‘Normal’).</strong> The default stance should be that they are not. The same stance should apply to distributions of characteristics of ‘man-made’ or ‘human-made’ institutions – such as the distribution of the sizes of the hopitals or schools in a province or country. Nor should we expect symmetric distributions in the physical world, such as the distribution of the depths of the ocean, heights of land, lengths of rivers, daily temperatures in a region over a year, magnitudes of earthquakes, or intervals between eruptions of the Old Faithful geyser.</p>
+<p>Foe example, the distributions of the amounts of income tax paid by individuals in Quebec, the salaries of professional ice-hockey players, and the lengths of stay {LOS] of hospital patients do not have symmetric shapes (some distributions may even be multi-modal). Despite this, in <em>some</em> instances it may be critical to know the mean of the distibution, so that one can calculate the total revenue, or total payroll, or how much the savings would be if the mean LOS were reduced by 2%. We have to think about a summary appropriate to the situation. If you are representing the players, would you cite the median or the mean when telling the team-owners how poorly paid the ‘average’ player is? What if represented the owners, and wanted to show how much the team costs in payroll?</p>
+<p><strong>Measures of ‘centre’</strong></p>
+<p>(Online, there are now many jokes about <strong>silly statistics</strong> and silly statisticians, such as on <a href="http://www.workjoke.com/statisticians-jokes.html">this site</a>. A radio prgram used to end with &gt;Well, that’s the news from Lake Wobegon, where all the women are strong, all the men are good-looking, and all the children are above average. There are stories of a statistician <a href="https://ask.metafilter.com/261337/Source-of-well-known-joke-about-statisticians">drowning in a river that was 3 feet deep on average</a> or being <a href="https://www.barrypopik.com/index.php/new_york_city/entry/head_in_the_oven_feet_in_the_freezer">comfortable on average</a>. One year in the 607 summer course for doctors, JH used some of these stories to warn against silly averages, and even quoted Francis Galton.</p>
+<blockquote>
+<p>Why do statisticians commonly limit their inquiries to Averages? It is difficult to understand why statisticians commonly limit their inquiries to Averages, and do not revel in more comprehensive views. Their souls seem as dull to the charm of variety as that of the native of one of our flat English counties, whose retrospect of Switzerland was that, if its mountains could be thrown into its lakes, two nuisances would be got rid of at once. [Natural Inheritance, 1889.]</p>
+</blockquote>
+<p>A urologist in the class gave a better example.</p>
+<blockquote>
+<p>The average person has 1 ovary and 1 testicle.</p>
+</blockquote>
+<p>Despite these jibes, there are some situations where it does make sense to talk about the mean value, even if nobody has a value close to the mean.</p>
+<p>When it comes to the age distribution of a population, the reports of national statistical agencies use a number of summary parameters, sometimes the median, sometimes the mean, and sometimes a ‘dependency ratio’ such as non-working-age to working-age numbers. For now, we will pursue the ‘mean’ parameter <span class="math inline">\(\mu\)</span>. Later, we also pursue other numerical parameters for the centre. Part of the reason for our first choice is that the behavioural properties of the sample <em>mean</em> (an estimator of the {population mean_) are much easier to describe with standard statistical laws. Fortunately, nowadays, we have intensive computer techniques that use data-driven techniques rather than formulae-based ones, that can handle estimators of other parameters.</p>
+<p><strong>Mean-Pursuit</strong></p>
+<p>In the following <code>R</code> code, we simulate trying to estimate the mean age (<span class="math inline">\(\mu\)</span>), using just a random sample of <span class="math inline">\(n\)</span> persons. Clearly, the <span class="math inline">\(n\)</span>’s we will use are too small to give estimates that are ‘close enough for government work’ but the purpose is to understand <strong>what size <span class="math inline">\(n\)</span> would ensure sufficiently precise estimates.</strong></p>
+<p>In the following code, AGES refers to the ages (0 to 109) and Proportions the proportions of the population in each 1-year age bin.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">no.of.sims =<span class="st"> </span><span class="dv">10000</span> ;  <span class="co"># no. of samples of each size</span>
+                      <span class="co"># enough to generate relatively smmoth histograms  </span>
+sample.sizes =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">25</span>) ; 
 
 <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="kw">length</span>(sample.sizes),<span class="dv">1</span>),<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="fl">0.5</span>,<span class="dv">1</span>) )
 
-<span class="cf">for</span> (n <span class="cf">in</span> sample.sizes ){
-   ages =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(AGES,
-                    <span class="dt">size =</span> n<span class="op">*</span>no.of.sims, 
-                    <span class="dt">replace =</span> <span class="ot">TRUE</span>,
-                    <span class="dt">prob =</span> Proportions),
-                 <span class="dt">nrow =</span> no.of.sims, <span class="dt">ncol=</span>n)
-   <span class="kw">print</span>(<span class="kw">head</span>(ages,<span class="dv">3</span>))
+<span class="cf">for</span> (n <span class="cf">in</span> sample.sizes ){        <span class="co"># loop over the various sample sizes</span>
+   ages =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(AGES,          <span class="co"># 1 row per simulation</span>
+              <span class="dt">size =</span> n<span class="op">*</span>no.of.sims,     <span class="co"># to save time, do all at once</span>
+              <span class="dt">replace =</span> <span class="ot">TRUE</span>,          <span class="co"># only because data compressed</span>
+              <span class="dt">prob =</span> Proportions),     <span class="co"># = FALSE if has indiv. data</span>
+          <span class="dt">nrow =</span> no.of.sims, <span class="dt">ncol=</span>n) <span class="co"># put into rows / columns</span>
+   <span class="cf">if</span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>n <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>){
+     <span class="kw">print</span>( <span class="kw">noquote</span>(
+      <span class="kw">paste</span>(<span class="st">&quot;Ages of sampled persons in first 2 samples of size&quot;</span>,  
+            <span class="kw">toString</span>(n)) )   ) 
+     <span class="kw">print</span>(<span class="kw">head</span>(ages,<span class="dv">2</span>))
+   }
+   
+   <span class="cf">if</span>( n <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(sample.sizes) ){
+     <span class="kw">cat</span>(<span class="st">&quot;The first panel shows the age-distribution of the entire population.</span><span class="ch">\n</span><span class="st">&quot;</span>)
+     <span class="kw">cat</span>(<span class="st">&quot;The remaining ones show the  distributions of the sample sums and means.</span><span class="ch">\n</span><span class="st">&quot;</span>)
+     <span class="kw">message</span>(<span class="st">&quot;test&quot;</span>)
+     
+   } 
+  
+   <span class="co"># compute the row-specific (simulation-specific) sums and means</span>
+   <span class="co"># apply sum/mean to MARGIN=1, i.e., to each simulation (each row)</span>
 
    sums.samples.of.size.n =<span class="st"> </span><span class="kw">apply</span>(ages,<span class="dt">MARGIN=</span><span class="dv">1</span>,<span class="dt">FUN=</span>sum)
    means.samples.of.size.n =<span class="st"> </span><span class="kw">apply</span>(ages,<span class="dt">MARGIN=</span><span class="dv">1</span>,<span class="dt">FUN=</span>mean)
 
-   <span class="kw">tail</span>(sums.samples.of.size.n,<span class="dv">4</span>)
-   <span class="kw">tail</span>(means.samples.of.size.n,<span class="dv">4</span>)
-
-   fr =<span class="st"> </span><span class="kw">table</span>(sums.samples.of.size.n)
-   Y =<span class="st"> </span><span class="kw">max</span>(Proportions<span class="op">*</span>no.of.sims)<span class="op">/</span><span class="kw">sqrt</span>(<span class="fl">0.8</span><span class="op">*</span>n)
-   <span class="kw">plot</span>(fr,<span class="dt">lw=</span><span class="fl">0.4</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,n<span class="op">*</span>(<span class="kw">max</span>(AGES)<span class="op">+</span><span class="dv">12</span>) ),
-                  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.25</span>,<span class="dv">1</span>)<span class="op">*</span>Y,
-        <span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>)
+   fr =<span class="st"> </span><span class="kw">table</span>(sums.samples.of.size.n)          <span class="co"># fr = frequency</span>
+   Y =<span class="st"> </span><span class="kw">max</span>(Proportions<span class="op">*</span>no.of.sims)<span class="op">/</span><span class="kw">sqrt</span>(<span class="fl">0.8</span><span class="op">*</span>n) <span class="co"># scale the y axis</span>
+   <span class="kw">plot</span>(fr,<span class="dt">lw=</span><span class="fl">0.4</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,n<span class="op">*</span>(<span class="kw">max</span>(AGES)<span class="op">+</span><span class="dv">12</span>) ), 
+                  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.25</span>,<span class="dv">1</span>)<span class="op">*</span>Y, <span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>)
    <span class="kw">text</span>(n<span class="op">*</span><span class="dv">105</span>,<span class="fl">0.55</span><span class="op">*</span>Y,<span class="kw">paste</span>(<span class="st">&quot;n =&quot;</span>,<span class="kw">toString</span>(n)),<span class="dt">cex=</span><span class="dv">2</span>,<span class="dt">font=</span><span class="dv">3</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))
    <span class="cf">for</span>(a <span class="cf">in</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">5</span>)) {
      <span class="kw">text</span>(n<span class="op">*</span>a, <span class="op">-</span><span class="fl">0.01</span><span class="op">*</span>Y, <span class="kw">toString</span>(n<span class="op">*</span>a),<span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>),<span class="dt">cex=</span><span class="fl">1.5</span>)
-     <span class="cf">if</span>(a<span class="op">==</span><span class="dv">100</span>) <span class="kw">text</span>(n<span class="op">*</span><span class="dv">105</span>, <span class="op">-</span><span class="fl">0.01</span><span class="op">*</span>Y,
-          <span class="kw">paste</span>(<span class="st">&quot;Sum of&quot;</span>,<span class="kw">toString</span>(n),<span class="st">&quot;Ages&quot;</span>),<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">cex=</span><span class="fl">1.5</span>)
-     <span class="kw">text</span>(n<span class="op">*</span>a, <span class="op">-</span><span class="fl">0.15</span><span class="op">*</span>Y, <span class="kw">toString</span>(a),<span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>),<span class="dt">font=</span><span class="dv">4</span>,<span class="dt">cex=</span><span class="fl">1.5</span>)
-     <span class="cf">if</span>(a<span class="op">==</span><span class="dv">100</span>) <span class="kw">text</span>(n<span class="op">*</span><span class="dv">105</span>, <span class="op">-</span><span class="fl">0.15</span><span class="op">*</span>Y,
+     txts =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Sum of&quot;</span>,<span class="kw">toString</span>(n),<span class="st">&quot;Ages&quot;</span>)
+     <span class="cf">if</span>(n<span class="op">==</span><span class="dv">1</span>) txts =<span class="st"> &quot;Individual Ages&quot;</span>
+     <span class="cf">if</span>(a<span class="op">==</span><span class="dv">100</span> ) <span class="kw">text</span>(n<span class="op">*</span><span class="dv">105</span>, <span class="op">-</span><span class="fl">0.01</span><span class="op">*</span>Y,
+          txts,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">cex=</span><span class="fl">1.5</span>)
+     <span class="cf">if</span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">text</span>(n<span class="op">*</span>a, <span class="op">-</span><span class="fl">0.15</span><span class="op">*</span>Y, <span class="kw">toString</span>(a),<span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>),<span class="dt">font=</span><span class="dv">4</span>,<span class="dt">cex=</span><span class="fl">1.5</span>)
+     <span class="cf">if</span>(a<span class="op">==</span><span class="dv">100</span> <span class="op">&amp;</span><span class="st"> </span>n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="kw">text</span>(n<span class="op">*</span><span class="dv">105</span>, <span class="op">-</span><span class="fl">0.15</span><span class="op">*</span>Y,
           <span class="kw">paste</span>(<span class="st">&quot;Mean of&quot;</span>,<span class="kw">toString</span>(n),<span class="st">&quot; Ages&quot;</span>),<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="dt">font=</span><span class="dv">4</span>,<span class="dt">cex=</span><span class="fl">1.5</span>)
    }
-   sd.sums =<span class="st"> </span><span class="kw">round</span>(<span class="kw">sd</span>(sums.samples.of.size.n),<span class="dv">1</span>)
-   sd.means =<span class="st"> </span><span class="kw">round</span>(<span class="kw">sd</span>(means.samples.of.size.n),<span class="dv">1</span>)
-   <span class="kw">text</span>(n<span class="op">*</span><span class="dv">30</span> <span class="op">+</span><span class="st">  </span>sd.sums,Y<span class="op">*</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>,
-        <span class="kw">paste</span>(<span class="st">&quot;SD of Sum:&quot;</span>,
-              <span class="kw">toString</span>(sd.sums),<span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span>,
-              <span class="st">&quot;SD of Mean:&quot;</span>,
-              <span class="kw">toString</span>(sd.means)
-              ),
-        <span class="dt">cex=</span><span class="fl">1.5</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>))
+   
+   <span class="co"># how big is the spread (sd) of the simulated sums and means ?</span>
+   
+   sd.sums  =<span class="st"> </span><span class="kw">round</span>( <span class="kw">sd</span>(sums.samples.of.size.n), <span class="dv">1</span> )
+   sd.means =<span class="st"> </span><span class="kw">round</span>( <span class="kw">sd</span>(means.samples.of.size.n),<span class="dv">1</span> )
+   
+   txt.s =<span class="st"> </span><span class="kw">paste</span>( <span class="st">&quot;SD of Sum:&quot;</span>, <span class="kw">toString</span>(sd.sums) )
+   <span class="cf">if</span>(n<span class="op">==</span><span class="dv">1</span>) txt.s =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;SD of Individual Ages:&quot;</span>,<span class="kw">toString</span>(sd.sums) )
+   txt.m =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">  SD of Mean:&quot;</span>,<span class="kw">toString</span>(sd.means))
+   <span class="cf">if</span>(n<span class="op">==</span><span class="dv">1</span>) txt.m =<span class="st"> &quot;</span><span class="ch">\n\n</span><span class="st"> &quot;</span>
+   <span class="kw">text</span>(n<span class="op">*</span>mu <span class="op">+</span><span class="st">  </span>sd.sums,Y<span class="op">*</span><span class="fl">0.7</span>,
+        <span class="kw">paste</span>(txt.s,txt.m), <span class="dt">cex=</span><span class="fl">1.5</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>) )
    <span class="kw">points</span>(n<span class="op">*</span>mu,<span class="dv">0</span>,<span class="dt">pch=</span><span class="dv">19</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">cex=</span><span class="fl">1.5</span>)
+   <span class="cf">if</span>(n<span class="op">==</span><span class="dv">1</span>){
+     <span class="kw">text</span>(A.<span class="dv">50</span><span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.95</span><span class="op">*</span>Y,<span class="st">&quot;50% &lt;- | -&gt; 50%&quot;</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>),<span class="dt">cex=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)
+     <span class="kw">segments</span>(A.<span class="dv">50</span><span class="op">-</span><span class="fl">0.1</span>,<span class="fl">0.95</span><span class="op">*</span>Y, A.<span class="dv">50</span><span class="op">-</span><span class="fl">0.1</span>,<span class="dv">0</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)
+     <span class="kw">text</span>(<span class="dv">115</span>,Y,
+       <span class="st">&quot;Reported Ages of Population of Dublin</span><span class="ch">\n</span><span class="st">Irish Census of 1911&quot;</span>,
+       <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">cex=</span><span class="fl">1.25</span>)
+   } 
 }</code></pre></div>
-<pre><code>##      [,1]
-## [1,]   43
-## [2,]   40
-## [3,]   37</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]   58   14
-## [2,]   69   41
-## [3,]   15   22</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    5    6   38   33
-## [2,]   73   12   36    3
-## [3,]   30   16   60    9</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-## [1,]   34    9   36   21   43   44   69   27   20    29
-## [2,]    9   12   48    3    4   38   23   23   40    25
-## [3,]    2   44   24   23   76   14    4   14   24    28</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13] [,14]
-## [1,]   38    4   22   41   26   12   30    6   72     3     7    43    18     9
-## [2,]   36   30   26   12   34   32   38   35   38    62    40    12    35    44
-## [3,]   26   45   70    3   12   37   38   29    3    15    32    20     2     4
-##      [,15] [,16] [,17] [,18] [,19] [,20] [,21] [,22] [,23] [,24] [,25]
-## [1,]     0    56    43    28    36    31    14    20     3     7    40
-## [2,]    18    30    41    59     4    16    23    21    26    35     6
-## [3,]    27    45    16    16    68    19    65    22     7     6    20</code></pre>
-<p><img src="statbook_files/figure-html/unnamed-chunk-13-1.png" width="864" style="display: block; margin: auto;" /></p>
-<p>Elevators</p>
+<pre><code>## [1] Ages of sampled persons in first 2 samples of size 2
+##      [,1] [,2]
+## [1,]   18   28
+## [2,]    0   45</code></pre>
+<pre><code>## [1] Ages of sampled persons in first 2 samples of size 4
+##      [,1] [,2] [,3] [,4]
+## [1,]    7   30   21   25
+## [2,]   15   50   38   58</code></pre>
+<pre><code>## [1] Ages of sampled persons in first 2 samples of size 10
+##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+## [1,]   81    7   25   58   14   21   37   74   23    17
+## [2,]   44    3    8   69   14   34   11   33   61    22</code></pre>
+<pre><code>## The first panel shows the age-distribution of the entire population.
+## The remaining ones show the  distributions of the sample sums and means.</code></pre>
+<p><img src="statbook_files/figure-html/unnamed-chunk-14-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><strong>Exercises</strong></p>
+<ul>
+<li><p>Based on the numbers in the 5 panels, derive the statistical law that connects the spreads of the sampling distributions of the sample sum to the spread of the individual ages. (Since the calculated sd’s are based on a finite set of simulations, the numbers may not fit the law <em>exactly</em> ; also, the sd’s shown are rounded)</p></li>
+<li><p>Likewise, state the statistical law that connects the spreads of the sampling distributions of the sample mean to the spread of the individual ages. Use this law to predict the spread of the sampling distribution if we were to use a smaple size of <span class="math inline">\(n\)</span> =100.</p></li>
+<li><p>Are these laws the same as the ones that apply when the only source of variation is measurement error?</p></li>
+<li><p>In the ‘measuring the meter bar’ example, the error distribution was symmetric; in this example, the ages do not have a symmetric distribution: it has a long right tail. Describe how the shape of the (sampling) distribution changes with the sample size involved. Look online for the name of this law or theorem.</p></li>
+</ul>
+</div>
+<div id="example-2" class="section level3">
+<h3><span class="header-section-number">14.3.2</span> Example 2</h3>
+<p>The frequency distribution of the self-reported weights of a given population of adults is available here.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ds =<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;http://www.biostat.mcgill.ca/hanley/statbook/Weights.txt&quot;</span>)
 
+MEAN=<span class="kw">round</span>(<span class="kw">weighted.mean</span>(ds<span class="op">$</span>Weight.lbs,<span class="dt">w=</span>ds<span class="op">$</span>Freq))
+
+VAR =<span class="st"> </span><span class="kw">sum</span>( ds<span class="op">$</span>Freq <span class="op">*</span><span class="st"> </span>(ds<span class="op">$</span>Weight.lbs<span class="op">-</span>MEAN)<span class="op">^</span><span class="dv">2</span> ) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(ds<span class="op">$</span>Freq)
+
+SD =<span class="st"> </span><span class="kw">sqrt</span>(VAR)</code></pre></div>
+<p>Elevators</p>
+<p>On the average, conventioneers weigh about 150 pounds; the SD is 25 pounds. i. If a large elevator for a convention centre is designed to lift a maximum of 15,500 pounds, the chance it will be overloaded by a random group of 100 conventioneers is closest to which of the following: 0.1 of 1%, 2%, 5%, 50%, 95%, 98%, 99.9% ? Explain your reasoning. ii. The weights of conventioneers are unlikely to have a Gaussian (“Normal”) distribution. In the light of this information, are you still comfortable using the Normal distribution for your calculations in part i? Explain carefully. Explain why the ‘random’ is key to being able to answer part i. and what impact it would have if it is not the case.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(ds<span class="op">$</span>Weight.lbs,ds<span class="op">$</span>Freq,<span class="dt">type=</span><span class="st">&quot;h&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;Weight in lbs&quot;</span>,
+     <span class="dt">ylab=</span><span class="st">&quot;Frequency&quot;</span>,<span class="dt">cex.lab=</span><span class="fl">1.5</span>, <span class="dt">cex.axis=</span><span class="fl">1.5</span>)
+
+<span class="co">#ds$smoothed.Freqs = filter(ds$Freq,filter=rep(1/20,20))</span>
+
+<span class="co">#lines(ds$Weight.lbs,ds$smoothed.Freqs)</span>
+      
+ds<span class="op">$</span>fitted.Gaussian.frequencies =<span class="st"> </span>
+<span class="st">   </span><span class="kw">sum</span>(ds<span class="op">$</span>Freq)<span class="op">*</span><span class="kw">dnorm</span>(ds<span class="op">$</span>Weight.lbs, <span class="dt">mean=</span>MEAN, <span class="dt">sd =</span> SD)
+
+<span class="kw">lines</span>(ds<span class="op">$</span>Weight.lbs,ds<span class="op">$</span>fitted.Gaussian.frequencies)</code></pre></div>
+<p><img src="statbook_files/figure-html/unnamed-chunk-16-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>Pyx</p>
+
+</div>
 </div>
 </div>
             </section>
