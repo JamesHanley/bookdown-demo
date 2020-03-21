@@ -1,4 +1,4 @@
-# Computing Week2 {#computing02}
+# Computing: Session No. 2 {#computing02}
 
 The **'computing' objectives** are to learn how to use `R` to 
 
@@ -114,9 +114,9 @@ More important than this are the statistical laws governing how widely the sums 
 
 **Instead of just telling you what the laws are, we ask you to use `R` to discover them yourself. 
 
-### Discovering the Laws [via this computing exercise]
+#### Discovering the Laws [via this computing exercise]
 
-1. Put the two (equally likely) errors (or deviations), i.e., -1cm and +1cm, into an `R` vector of length 2. [By the way,  `c(a,b)` in `R` means **c**oncatenate `a` and `b` into a vector.] Then, make a new vector containing the squares of these deviations. [you can use `vector * vector` or `vector^2`]. Then use the built-in `R` function `mean` to compute the mean squared deviation. Although it is not needed in this case, use the `round` function to display the average squared deviation to a suitable number of decimals. Since what you have copputed is a `variance', use `this`variance` (or better still, `error.variance` as the name for the mean squared deviation. Finally, check by hand that the calculation is correct.
+1. Put the two (equally likely) errors (or deviations), i.e., -1cm and +1cm, into an `R` vector of length 2. [By the way,  `c(a,b)` in `R` means **c**oncatenate `a` and `b` into a vector.] Then, make a new vector containing the squares of these deviations. [you can use `vector * vector` or `vector^2`]. Then use the built-in `R` function `mean` to compute the mean squared deviation. Although it is not needed in this case, use the `round` function to display the average squared deviation to a suitable number of decimals. Since what you have computed is a `variance', use `this`variance` (or better still, `error.variance` as the name for the mean squared deviation. Finally, check by hand that the calculation is correct.
 
 2. Use the `sqrt()` function (or the `^0.5` power) to compute the standard deviation of the errors.
 
@@ -124,7 +124,9 @@ More important than this are the statistical laws governing how widely the sums 
 
 4. Add the errors onto 100cm to make 2 measurements (imperfect copies) of the meter bar, and calculate the mean, variance and standard deviation of the  2 measurements. From this, and by varying the sizes of the 2 errors, what did you learn about the mean the variance and the standard deviation of a shifted (re-located) random variable? {Hint: be careful to use your own variance and standard deviation functions, not the inbuilt `var` and `sd` functions. The reason is that whereas we say there are just 2 errors, in reality there are as many as there are copiers -- effectively an infinite number, about half of whom will make an error of +1cm, and about half of whome will an error of -1cm. Or you can say that the probabilities of  errors of -1cm and +1cm are 0.5, and 0.5.
 
-5. In order to see the laws in action, and figure them out (with the aid of the `R` **code below**)
+5. Change the -1cm and +1cm errors to -10mm and +10mm, and tepeat steps 1 and 2. What did you learn? 
+
+6. In order to see the laws in action, and figure them out (with the aid of the `R` **code below**)
 
    + Begin with many simulated random **pairs** of measurements of (possibly imperfect copies) of the meter bar. For example, you might specify `no.of.pairs = 10000`. 
 
@@ -185,9 +187,9 @@ References
 David Hughes. The mean density of the Earth.
 Journal of the British Astronomical Association, Vol. 116, No. 1, p.21. 2006
 
-## Biological variation
+### Biological variation
 
-### Example
+#### Example
 
 We move now to contexts where the variation is primarily (or in a few deluxe cases where there are no measurement issues, entirely) due to genuine -- e.g., biological or geographical  -- variation. 
 Below, you will address one such example, the weights of a specific  population where we have good national-level data to help us to set up simulations that demonstate and let us discover the statistical laws governing the (sampling) variability of various statistics derived from samples. For for now, we will consider a demographic characteristic, namely **age**, in a setting where it was documented for an entire population.  The ages were gathered on the night of Sunday April 2nd in the [1911 Census of Ireland,](http://www.census.nationalarchives.ie/help/about19011911census.html) the last one to be carried out under British rule. 
@@ -261,7 +263,7 @@ In the following code, AGES refers to the ages (0 to 109) and Proportions the pr
 
 
 no.of.sims = 10000 ;  # no. of samples of each size
-                      # enough to generate relatively smmoth histograms  
+                      # enough to generate relatively smooth histograms  
 sample.sizes = c(1,2,4,10,25) ; 
 
 par(mfrow=c(length(sample.sizes),1),mar = c(0.5,1,0.5,1) )
@@ -331,25 +333,29 @@ for (n in sample.sizes ){        # loop over the various sample sizes
 
 ```
 
-**Exercises**
+#### Exercises
 
-* Based on the numbers in the 5 panels, derive the statistical law that connects the spreads of the sampling distributions of the sample sum to the spread of the individual ages. (Since the calculated sd's are based on a finite set of simulations, the numbers may not fit  the law _exactly_ ; also, the sd's shown are rounded)
+1. Based on the numbers in the 5 panels, derive the statistical law that connects the spreads of the sampling distributions of the sample sum to the spread of the individual ages. (Since the calculated sd's are based on a finite set of simulations, the numbers may not fit  the law _exactly_ ; also, the sd's shown are rounded)
 
-* Likewise, state the statistical law that connects the spreads of the sampling distributions of the sample mean to the spread of the individual ages. Use this law to predict the spread of the sampling distribution if we were to use a smaple size of $n$ =100.
+2. Likewise, state the statistical law that connects the spreads of the sampling distributions of the sample mean to the spread of the individual ages. Use this law to predict the spread of the sampling distribution if we were to use a sample size of $n$ = 100.
 
-* Are these laws the same as the ones that apply when the only source of variation is measurement error?
+3. What $n$ would you need to have so that the (approx. 95%) Margin of Error, i.e., 2 times the SD of the mean (or 2 times the 'Standard Error of the Mean' or 2 times the 'SEM') is less than (a) 1 year (b) 0.5 years?
 
-* In the 'measuring the meter bar' example, the error distribution was symmetric; in this example, the ages do not have a symmetric distribution: it has a long right tail. Describe how the shape of the (sampling) distribution changes with the sample size involved. Look online for the name of this law or theorem.
+4. Are these laws the same as the ones that apply when the only source of variation is measurement error?
+
+5. In the 'measuring the meter bar' example, the error distribution was symmetric; in this example, the ages do not have a symmetric distribution: it has a long right tail. Describe how the shape of the (sampling) distribution changes with the sample size involved. Look online for the name of this law or theorem.
+
+6. Let's go back and help Cavendish with his Margin of Error. Calculate the standard deviation of his 29 individual measurements. [Hint: Don't call it $\sigma$, since $\sigma$ refers to an infinite set of possible errors, and is therefore unknown. Call it $s$, the conventional name for standard deviation of the individual values in a sample, sometimes abbreviated to _sample_ standard deviation.  It is an _estimate_ of $\sigma$, so you are allowed to call it $\hat{\sigma}$ or 'sigma-hat'.] Now 'plug-in' the $s$ value into the $\frac{\sigma}{\sqrt{n}}$ formula and calculate $\frac{s}{\sqrt{29}}$. You should refer to this as the Standard Error of the Mean, or SEM for short. For a sample size this large, approx. 2 times the SEM can be used as the 95% Margin of Error or 'ME'. ['Student', whom we met above, and will meet again soon, worked out what (bigger) multiple Cavendish would need to use if he had say just 4 measurements, or maybe 9, or 19 measurements rather than 29. Why, do you think, did he suggested bigger multiples when $s$ -- and thus the SEM and the ME -- are based on just a few measurements?]
 
 
 ### Example 2
 
-The frequency distribution of the self-reported weights of a given population of adults is available here.
+The frequency distribution of the self-reported **weights** of a population of adults is available here.
 
 
 ```{r,eval=T, echo=T, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
 
-ds = read.table("http://www.biostat.mcgill.ca/hanley/statbook/Weights.txt")
+ds = read.table("http://www.biostat.mcgill.ca/hanley/statbook/weightsEtc.txt")
 
 MEAN=round(weighted.mean(ds$Weight.lbs,w=ds$Freq))
 
@@ -357,32 +363,224 @@ VAR = sum( ds$Freq * (ds$Weight.lbs-MEAN)^2 ) / sum(ds$Freq)
 
 SD = sqrt(VAR)
 
+WEIGHTS = sort(unique(ds$Weight.lbs))
+Freq = aggregate(ds$Freq,by=list(ds$Weight.lbs),sum)$x
+Proportions = Freq/sum(Freq)
+
+W.50 = WEIGHTS[min(which(cumsum(Proportions) > 0.50))]
+mu = sum(WEIGHTS*Proportions)
+
 ```
 
-
-Elevators
-
-On the average, conventioneers weigh about 150 pounds; the SD is 25 pounds.
-i. If a large elevator for a convention centre is designed to lift a maximum of 15,500 pounds, the chance it will be overloaded by a random group of 100 conventioneers is closest to which of the following: 0.1 of 1%, 2%, 5%, 50%, 95%, 98%, 99.9% ? Explain your reasoning.
-ii. The weights of conventioneers are unlikely to have a Gaussian (“Normal”) distribution. In the light of this information, are you still comfortable using the Normal distribution for your calculations in part i? Explain carefully. Explain why the ‘random’ is key to being able to answer part i. and what impact it would have if it is not the case.
+```{r,eval=T, echo=TRUE, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
 
 
+no.of.sims = 10000 ;  # no. of samples of each size
+                      # enough to generate relatively smooth histograms  
+sample.sizes = c(1,2,4,8,16) ; 
 
-```{r,eval=T, echo=T, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
+par(mfrow=c(length(sample.sizes),1),mar = c(0.5,1,0.5,1) )
 
-plot(ds$Weight.lbs,ds$Freq,type="h",xlab="Weight in lbs",
-     ylab="Frequency",cex.lab=1.5, cex.axis=1.5)
-
-#ds$smoothed.Freqs = filter(ds$Freq,filter=rep(1/20,20))
-
-#lines(ds$Weight.lbs,ds$smoothed.Freqs)
-      
-ds$fitted.Gaussian.frequencies = 
-   sum(ds$Freq)*dnorm(ds$Weight.lbs, mean=MEAN, sd = SD)
-
-lines(ds$Weight.lbs,ds$fitted.Gaussian.frequencies)
-
+for (n in sample.sizes ){        # loop over the various sample sizes
+   weights = matrix(sample(WEIGHTS,    # 1 row per simulation
+              size = n*no.of.sims,     # to save time, do all at once
+              replace = TRUE,          # only because data compressed
+              prob = Proportions),     # = FALSE if has indiv. data
+          nrow = no.of.sims, ncol=n) # put into rows / columns
+   if(n > 1 & n <= 10){
+     print( noquote(
+      paste("Weights (lbs) of sampled persons in first 2 samples of size",  
+            toString(n)) )   ) 
+     print(head(weights,2))
+   }
    
+   if( n == max(sample.sizes) ){
+     cat("The first panel shows the weight-distribution of the entire population.\n")
+     cat("The remaining ones show the  distributions of the sample sums and means.\n")
+     message("test")
+     
+   } 
+  
+   # compute the row-specific (simulation-specific) sums and means
+   # apply sum/mean to MARGIN=1, i.e., to each simulation (each row)
+
+   sums.samples.of.size.n = apply(weights,MARGIN=1,FUN=sum)
+   means.samples.of.size.n = apply(weights,MARGIN=1,FUN=mean)
+
+   fr = table(sums.samples.of.size.n)          # fr = frequency
+   Y = max(Proportions*no.of.sims)/sqrt(0.75*n) # scale the y axis
+   plot(fr,lw=0.4,xlim=c(n*100,n*(max(WEIGHTS)+50) ), 
+                  ylim=c(-0.25,1)*Y, xaxt="n")
+   text(n*320,0.55*Y,paste("n =",toString(n)),cex=2,font=3,adj=c(0,1))
+   for(w in seq(100,300,20)) {
+     text(n*w, -0.01*Y, toString(n*w),adj=c(0.5,1),cex=1.5)
+     txts = paste("Sum of",toString(n),"Weights")
+     if(n==1) txts = "Individual Weights"
+     if(w==300 ) text(n*310, -0.01*Y,
+          txts,adj=c(0,1),cex=1.5)
+     if(n > 1) text(n*w, -0.15*Y, toString(w),adj=c(0.5,1),font=4,cex=1.5)
+     if(w==300 & n > 1) text(n*310, -0.15*Y,
+          paste("Mean of",toString(n)," Weights"),adj=c(0,1),font=4,cex=1.5)
+   }
+   
+   # how big is the spread (sd) of the simulated sums and means ?
+   
+   sd.sums  = round( sd(sums.samples.of.size.n), 1 )
+   sd.means = round( sd(means.samples.of.size.n),1 )
+   
+   txt.s = paste( "SD of Sum:", toString(sd.sums) )
+   if(n==1) txt.s = paste("SD of Individual Weights:",toString(sd.sums),"(lbs)" )
+   txt.m = paste("\n\n  SD of Mean:",toString(sd.means))
+   if(n==1) txt.m = "\n\n "
+   text(n*mu +  sd.sums,Y*0.7,
+        paste(txt.s,txt.m), cex=1.5,adj=c(0,0.5) )
+   points(n*mu,0,pch=19,col="red",cex=1.5)
+   if(n==1){
+     text(W.50-1,0.95*Y,"50% <- | -> 50%",adj=c(0.5,1),cex=1.5,col="blue")
+     segments(W.50-0.1,0.95*Y, W.50-0.1,0,col="blue")
+     text(352,-0.175*Y,
+       "Reported Weights, US Adults, 2014-2018",
+       adj=c(1,1),cex=1.25)
+   } 
+}
+
 ```
 
-Pyx
+#### Exercises
+
+1. If an elevator is designed to lift a maximum of 5,000 pounds, what is the probability that it will be overloaded by a random group of 25 persons? What maximum number of persons should you specify so that the probability is below 1 in a million?
+
+2. The weights of individuals do not have a Gaussian ("Normal") distribution. Are you still comfortable using the Normal distribution for your calculations. Explain carefully. Explain also why the  'random' is key to being able to answer,  and what the impact would be if it is not the case.
+
+
+
+## When these Laws don't apply 
+
+In these panels, it's the same elevator, and the same population. **But what's going on with these elevator-loads?** Is the safe to have a load of 25?
+
+```
+```{r,eval=T, echo=FALSE, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
+
+Freq = by(ds$Freq,list(ds$Weight.lbs,ds$Sex),sum)
+totals = matrix( rep(apply(Freq,2,sum), each=dim(Freq)[1]) ,dim(Freq)[1],dim(Freq)[2])
+Freq = matrix( Freq,dim(Freq)[1],dim(Freq)[2])
+Proportions = Freq / totals
+WEIGHTS = sort(unique(ds$Weight.lbs))
+
+n.each = apply(Freq,2,sum)
+p.each = n.each / sum(n.each)
+
+```
+
+```{r,eval=T, echo=FALSE, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
+
+verbose=FALSE
+
+no.of.sims = 10000 ;  # no. of samples of each size
+                      # enough to generate relatively smooth histograms  
+sample.sizes = c(1,2,4,8,16) ; 
+
+par(mfrow=c(length(sample.sizes),1),mar = c(0.5,1,0.5,1) )
+
+for (n in sample.sizes ){        # loop over the various sample sizes
+	
+   s1 = rbinom(1,no.of.sims,prob=p.each[1])
+	
+   w1      = matrix(sample(WEIGHTS,      # 1 row per simulation
+               size    = n*s1,            # to save time, do all at once
+               replace = TRUE,            # only because data compressed
+               prob = Proportions[,1]),   # = FALSE if has indiv. data
+             nrow = s1, ncol=n)          # put into rows / columns
+   s2 = no.of.sims - s1
+   w2      = matrix(sample(WEIGHTS,      # 1 row per simulation
+               size    = n*s2,            # to save time, do all at once
+               replace = TRUE,            # only because data compressed
+               prob = Proportions[,2]),   # = FALSE if has indiv. data
+             nrow = s2, ncol=n)          # put into rows / columns
+          
+   weights = rbind(w1,w2)
+             
+   if(n > 1 & n <= 10 & verbose){
+     print( noquote(
+      paste("Weights (lbs) of sampled persons in first 2 samples of size",  
+            toString(n)) )   ) 
+     print(head(weights,2))
+   }
+   
+   if( n == max(sample.sizes & verbose) ){
+     cat("The first panel shows the weight-distribution of the entire population.\n")
+     cat("The remaining ones show the  distributions of the sample sums and means.\n")
+   } 
+  
+   # compute the row-specific (simulation-specific) sums and means
+   # apply sum/mean to MARGIN=1, i.e., to each simulation (each row)
+
+   sums.samples.of.size.n = apply(weights,MARGIN=1,FUN=sum)
+   means.samples.of.size.n = apply(weights,MARGIN=1,FUN=mean)
+
+   fr = table(sums.samples.of.size.n)          # fr = frequency
+   Y = max(Proportions*no.of.sims)/sqrt(0.75*n) # scale the y axis
+   plot(fr,lw=0.4,xlim=c(n*100,n*(max(WEIGHTS)+50) ), 
+                  ylim=c(-0.25,1)*Y, xaxt="n")
+   text(n*320,0.55*Y,paste("n =",toString(n)),cex=2,font=3,adj=c(0,1))
+   for(w in seq(100,300,20)) {
+     text(n*w, -0.01*Y, toString(n*w),adj=c(0.5,1),cex=1.5)
+     txts = paste("Sum of",toString(n),"Weights")
+     if(n==1) txts = "Individual Weights"
+     if(w==300 ) text(n*310, -0.01*Y,
+          txts,adj=c(0,1),cex=1.5)
+     if(n > 1) text(n*w, -0.15*Y, toString(w),adj=c(0.5,1),font=4,cex=1.5)
+     if(w==300 & n > 1) text(n*310, -0.15*Y,
+          paste("Mean of",toString(n)," Weights"),adj=c(0,1),font=4,cex=1.5)
+   }
+   
+   # how big is the spread (sd) of the simulated sums and means ?
+   
+   sd.sums  = round( sd(sums.samples.of.size.n), 1 )
+   sd.means = round( sd(means.samples.of.size.n),1 )
+   
+   txt.s = paste( "SD of Sum:", toString(sd.sums) )
+   if(n==1) txt.s = paste("SD of Individual Weights:",toString(sd.sums),"(lbs)" )
+   txt.m = paste("\n\n  SD of Mean:",toString(sd.means))
+   if(n==1) txt.m = "\n\n "
+   text(n*mu +  sd.sums,Y*0.7,
+        paste(txt.s,txt.m), cex=1.5,adj=c(0,0.5) )
+   points(n*mu,0,pch=19,col="red",cex=1.5)
+   if(n==1){
+     text(W.50-1,0.95*Y,"50% <- | -> 50%",adj=c(0.5,1),cex=1.5,col="blue")
+     segments(W.50-0.1,0.95*Y, W.50-0.1,0,col="blue")
+     text(352,-0.175*Y,
+       "Reported Weights, US Adults, 2014-2018",
+       adj=c(1,1),cex=1.25)
+   } 
+}
+
+```
+
+## SUMMARY
+
+
+* Definition of the Standard Deviation $\sigma,$ (and its square, the 'Variance', $\sigma^2$, of  a random variable $Y$ with mean $\mu$.
+
+$$ Var[Y] = \sigma^2 = \textrm{mean of } (Y - \mu)^2 \ ; \ \ \  SD[Y] = \sigma.$$
+
+$$ Var[Y \pm a \ constant] = Var[Y] ; \ \ \  SD[Y \pm a \ constant] = \sigma.$$
+$$ Var[Y \times a \ constant] = constant^2 \ \times \ Var[Y] ; \ \ \  SD[Y \times a \ constant] = |constant| \times \sigma.$$
+
+* Rules for Variances and SDs of _sums_ of $n$ _independent_ random variables, say 
+
+$$ Var[ Y_1 + Y_2 + \dots + Y_n] = \sigma^2 + \sigma^2 + \dots + \sigma^2 = n \times \sigma^2.$$
+$$ SD[ Y_1 + Y_2 + \dots + Y_n]  = \sqrt{n} \times \sigma.$$
+
+* Rules for Variances and SDs of _means_ of $n$ _independent_ random variables. 
+
+$$ Var\bigg[\frac{Y_1 + Y_2 + \dots + Y_n}{n}\bigg] =  \frac{1}{n} \times \sigma^2.$$
+$$ SD\bigg[\frac{Y_1 + Y_2 + \dots + Y_n}{n}\bigg] =  \sqrt{\frac{1}{n}} \times \sigma.$$
+
+* **Sums** of $n$ _independent_ random variables are  $\sqrt{n}$ times **more** variable than their individual components. [But on a _relative_ scale, since the sum is proportional to $n$ while its spread is proportional to $\sqrt{n}$, the _percentage_ spread is a _decreasing_ function of $n.$    
+
+* **Means** of $n$ _independent_ random variables are  $\sqrt{n}$ times **less** variable than their individual components.
+
+* **The SHAPES** of the **sampling distributions of the sums and means** of $n$ _independent_ random variables become more 'Gaussian-looking' with larger $n.$
+
+

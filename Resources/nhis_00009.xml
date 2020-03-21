@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ipums-ddi-xslt.xsl"?>
+<codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ddi:codebook:2_5 http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd" version="2.5" ID="ddi2-127475_nhis_00009.dat-nhis.ipums.org">
+  <docDscr>
+    <citation>
+      <titlStmt>
+        <titl>Codebook for an Integrated Health Interview Series Data Extract</titl>
+        <subTitl>DDI 2.5 metadata describing the extract file  'nhis_00009.dat'</subTitl>
+        <IDNo>ddi2-127475_nhis_00009.dat-nhis.ipums.org</IDNo>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty affiliation="University of Minnesota">Minnesota Population Center</AuthEnty>
+      </rspStmt>
+      <prodStmt>
+        <producer abbr="MPC" affiliation="University of Minnesota" role="Documentation">Minnesota Population Center</producer>
+        <prodDate date="2020-03-20">March 20, 2020</prodDate>
+        <prodPlac>Minnesota Population Center, 50 Willey Hall, 225 - 19th Avenue South, Minneapolis, MN 55455</prodPlac>
+      </prodStmt>
+      <distStmt>
+        <contact affiliation="University of Minnesota" URI="http://pop.umn.edu">Minnesota Population Center</contact>
+      </distStmt>
+    </citation>
+  </docDscr>
+  <stdyDscr>
+    <citation>
+      <titlStmt>
+        <titl>User Extract nhis_00009.dat</titl>
+      </titlStmt>
+      <rspStmt>
+        <AuthEnty affiliation="University of Minnesota">Minnesota Population Center</AuthEnty>
+      </rspStmt>
+      <prodStmt>
+        <producer abbr="MPC" affiliation="University of Minnesota" role="Documentation">Minnesota Population Center</producer>
+        <prodDate date="2020-03-20">March 20, 2020</prodDate>
+        <prodPlac>Minnesota Population Center, 50 Willey Hall, 225 - 19th Avenue South, Minneapolis, MN 55455</prodPlac>
+      </prodStmt>
+      <distStmt>
+        <contact affiliation="University of Minnesota" URI="http://pop.umn.edu">Minnesota Population Center</contact>
+      </distStmt>
+      <serStmt>
+        <serName abbr="nhis">NHIS</serName>
+        <serInfo>DOI:10.18128/D070.V6.4</serInfo>
+      </serStmt>
+      <verStmt>
+        <version date="2020-03-20"/>
+      </verStmt>
+    </citation>
+    <stdyInfo>
+      <subject>
+        <topcClas vocab="IPUMS">Technical Household Variables -- HOUSEHOLD</topcClas>
+        <topcClas vocab="IPUMS">Technical Person Variables -- PERSON</topcClas>
+        <topcClas vocab="IPUMS">Core Demographic Variables -- PERSON</topcClas>
+        <topcClas vocab="IPUMS">General Health Variables -- PERSON</topcClas>
+      </subject>
+      <sumDscr ID="sdatref-2419">
+        <timePrd event="single" date="2014">2014</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2438">
+        <timePrd event="single" date="2015">2015</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2439">
+        <timePrd event="single" date="2016">2016</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2440">
+        <timePrd event="single" date="2017">2017</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <sumDscr ID="sdatref-2441">
+        <timePrd event="single" date="2018">2018</timePrd>
+        <nation abbr="us">United States</nation>
+      </sumDscr>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  NHIS 2014; regular size
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  NHIS 2015; regular size
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  NHIS 2016; regular size
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  NHIS 2017; regular size
+]]></notes>
+      <notes><![CDATA[Additional notes on a sample that is part of this study:  NHIS 2018; regular size
+]]></notes>
+    </stdyInfo>
+    <dataAccs>
+      <useStmt>
+        <confDec required="yes"><![CDATA[The Public Health Service Act (Section 308 (d)) provides that the data collected by the National Center for Health Statistics (NCHS), Centers for Disease Control and Prevention (CDC), may be used only for the purpose of health statistical reporting and analysis. Any effort to determine the identity of any reported case is prohibited by this law. NCHS does all it can to assure that the identity of data subjects cannot be disclosed. All direct identifiers, as well as any characteristics that might lead to identification, are omitted from the data files. Any intentional identification or disclosure of a person or establishment violates the assurances of confidentiality given to the providers of the information. 
+
+Therefore, users will: 
+
+Use the data in these data files for statistical reporting and analysis only. 
+
+Make no use of the identity of any person or establishment discovered inadvertently and advise the Director, NCHS, of any such discovery (301-458-4500). 
+
+Not link these data files with individually identifiable data from other NCHS or non-NCHS data files. 
+
+By using these data, you signify your agreement to comply with the above-stated statutorily-based requirements. ]]></confDec>
+        <contact affiliation="Minnesota Population Center" URI="http://www.nhis.ipums.org/">Integrated Health Interview Series</contact>
+        <citReq><![CDATA[Publications and research reports based on the NHIS database must cite it appropriately.  The citation is as follows:
+
+Lynn A. Blewett,  Julia A. Rivera Drew,  Miriam L. King and Kari C.W. Williams. IPUMS Health  Surveys: National Health Interview Survey, Version 6.4 [dataset]. Minneapolis, MN: IPUMS, 2019. https://doi.org/10.18128/D070.V6.4
+
+If possible, citations should also include the URL for the NHIS site:  http://www.nhis.ipums.org.
+
+Please see http://www.nhis.ipums.org/nhis/citation.shtml for precise formatting of the citation.]]></citReq>
+        <conditions><![CDATA[The Public Health Service Act (Section 308 (d)) provides that the data collected by the National Center for Health Statistics (NCHS), Centers for Disease Control and Prevention (CDC), may be used only for the purpose of health statistical reporting and analysis. Any effort to determine the identity of any reported case is prohibited by this law. NCHS does all it can to assure that the identity of data subjects cannot be disclosed. All direct identifiers, as well as any characteristics that might lead to identification, are omitted from the data files. Any intentional identification or disclosure of a person or establishment violates the assurances of confidentiality given to the providers of the information. 
+
+Therefore, users must: 
+
+Use the data in these data files for statistical reporting and analysis only. 
+
+Make no use of the identity of any person or establishment discovered inadvertently and advise the Director, NCHS, of any such discovery (301-458-4500). 
+
+Not link these data files with individually identifiable data from other NCHS or non-NCHS data files. 
+
+By using these data, you signify your agreement to comply with the above-stated statutorily-based requirements. 
+
+Furthermore, users of NHIS data must agree to abide by the conditions of use. Users must agree to the following conditions:
+  
+  
+(1) Use the data in these data files for statistical reporting and analysis only 
+
+(2) Make no use of the identity of any person or establishment discovered inadvertently and advise the Director of NCHS of any such discovery (301-458-4500) 
+
+(3) Do not link these data with individually-identifiable data from NCHS or non-NCHS data files 
+
+(4) No fees may be charged for use or distribution of the data.  All persons are granted a limited license to use and distribute these data, but you may not charge a fee for the data if you distribute them to others. 
+
+(5) Cite the NHIS appropriately.  Publications and research reports based on the database must cite it appropriately.  Please see http://www.nhis.ipums.org/nhis/citation.shtml
+
+(6) NHIS cannot be used to study small geographic areas.  The smallest geographical areas identified in the NHIS are regions (groups of states) and a limited number of metropolitan areas.
+
+(7) This system provides individual-level data only.  The NHIS Data Extraction System will not produce tables. You will need to use a statistical software package, such as Stata, SAS, or SPSS, to analyze the downloaded data.  Alternatively, you may use the NHIS-SDA tabulator to produce tables online, without making a data extract.]]></conditions>
+        <disclaimer>The user of the data acknowledges that the original collector of the data, the authorized distributor of the data, and the relevant funding agency bear no responsibility for use of the data or for interpretations or inferences based upon such uses.</disclaimer>
+      </useStmt>
+    </dataAccs>
+    <notes><![CDATA[User-provided description:  ht weight age sex]]></notes>
+  </stdyDscr>
+  <fileDscr ID="ExtractData">
+    <fileTxt>
+      <fileName>nhis_00009.dat</fileName>
+      <fileCont>Microdata records</fileCont>
+      <fileStrc type="rectangular">
+      </fileStrc>
+      <fileType charset="ISO-8859-1">ISO-8859-1 data file</fileType>
+      <format>fixed length fields</format>
+      <filePlac>Minnesota Population Center, 50 Willey Hall, 225 - 19th Avenue South, Minneapolis, MN 55455</filePlac>
+    </fileTxt>
+  </fileDscr>
+  <dataDscr>
+    <var ID="YEAR" files="ExtractData" name="YEAR" intrvl="contin" dcml="0">
+      <location StartPos="1" width="4" EndPos="4"/>
+      <labl>Survey year</labl>
+      <txt><![CDATA[YEAR is a four-digit variable reporting the calendar year (e.g., 2003) the survey was conducted and the data were collected.  YEAR indicates the survey year reported on the household record.]]></txt>
+      <codInstr><![CDATA[This is a 4-digit numeric variable with 0 implied decimal places]]></codInstr>
+      <concept vocab="IPUMS">Technical Household Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="SERIAL" files="ExtractData" name="SERIAL" intrvl="contin" dcml="0">
+      <location StartPos="5" width="6" EndPos="10"/>
+      <labl>Sequential Serial Number, Household Record</labl>
+      <txt><![CDATA[SERIAL is an IPUMS NHIS-constructed value that is an identifying number unique to each household in a given survey year. The combination of YEAR and SERIAL provides a unique identifier for every household in the IPUMS NHIS database.]]></txt>
+      <codInstr><![CDATA[
+SERIAL is a 6-digit numeric variable.]]></codInstr>
+      <concept vocab="IPUMS">Technical Household Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="STRATA" files="ExtractData" name="STRATA" intrvl="contin" dcml="0">
+      <location StartPos="11" width="4" EndPos="14"/>
+      <labl>Stratum for variance estimation</labl>
+      <txt><![CDATA[STRATA is an IPUMS NHIS-constructed variable based on the NHIS sample design variables in the public use files concatenated with a sample design period indicator. STRATA represents the impact of the sample design stratification on the estimates of variance and standard errors. It is constant within a sample design period and changes between sample design periods. For analysis, researchers need to use STRATA in conjunction with PSU to account for stratification and clustering when computing variance estimates with IPUMS NHIS data.
+
+See the User Notes [URL omitted from DDI.] on variance estimation for additional information.]]></txt>
+      <codInstr><![CDATA[
+STRATA is a 5-digit numeric variable.
+
+000:	Not in Universe]]></codInstr>
+      <concept vocab="IPUMS">Technical Household Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="PSU" files="ExtractData" name="PSU" intrvl="contin" dcml="0">
+      <location StartPos="15" width="3" EndPos="17"/>
+      <labl>Primary sampling unit (PSU) for variance estimation</labl>
+      <txt><![CDATA[PSU is the primary sampling unit variable that represents the impact of the sample design clustering on the estimates of variance and standard errors. It is constant within a sample design period and changes between sample design periods. For analysis, researchers need to use PSU in conjunction with STRATA to account for stratification and clustering when computing variance estimates with IPUMS NHIS data.  
+
+See the User Notes [URL omitted from DDI.] on variance estimation for additional information.]]></txt>
+      <codInstr><![CDATA[
+PSU is a 3-digit numeric variable.
+
+000:	Not in Universe]]></codInstr>
+      <concept vocab="IPUMS">Technical Household Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NHISHID" files="ExtractData" name="NHISHID" intrvl="contin" dcml="0">
+      <location StartPos="18" width="14" EndPos="31"/>
+      <labl>NHIS Unique identifier, household</labl>
+      <txt><![CDATA[NHISHID is an IPUMS NHIS-constructed value that is an identifying number unique to each household in a given survey year. Using NHISHID, analysts can link IPUMS NHIS data with additional household-level data elements, from the NHIS source public use data files, that are not currently available in IPUMS.  NHISHID is a single variable constructed by concatenating multiple data elements from the NHIS source data files.  Analysts wishing to link person-level NHIS data should use the person-level linking key NHISPID.
+
+See the user note on LINKING [URL omitted from DDI.] for instructions on how to create links between IPUMS NHIS and NHIS source data.]]></txt>
+      <codInstr><![CDATA[
+NHISHID is a 14-character string variable.]]></codInstr>
+      <concept vocab="IPUMS">Technical Household Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="character"/>
+    </var>
+    <var ID="HHWEIGHT" files="ExtractData" name="HHWEIGHT" intrvl="contin" dcml="0">
+      <location StartPos="32" width="6" EndPos="37"/>
+      <labl>Household weight, final annual</labl>
+      <txt><![CDATA[HHWEIGHT is an IPUMS NHIS-constructed variable based on the Final Annual Household Weight for 1997 forward and the Final Basic Weight in 1969-1996 NHIS public use files. HHWEIGHT represents the inverse probability of household selection into the sample, adjusted for non-response. For analyses using the household as the unit of analysis (e.g., how many households contained a person who needed help with activities of daily living?), researchers should use the household weight. 
+
+Rather than using HHWEIGHT, researchers should use PERWEIGHT or SAMPWEIGHT when analyzing person-level variables or variables from the sample adult/sample child supplements from 1997 forward. See the User Notes [URL omitted from DDI.] on the use of sampling weights for additional information.]]></txt>
+      <codInstr><![CDATA[
+HHWEIGHT is a 6-digit numeric variable.]]></codInstr>
+      <concept vocab="IPUMS">Technical Household Variables -- HOUSEHOLD</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="PERNUM" files="ExtractData" name="PERNUM" intrvl="contin" dcml="0">
+      <location StartPos="38" width="2" EndPos="39"/>
+      <labl>Person number within family (from reformatting)</labl>
+      <txt><![CDATA[PERNUM is an IPUMS NHIS-constructed variable that numbers all persons within each family in each household consecutively (starting with "1") in the order in which they appear in the original NHIS data.  PERNUM was created by IPUMS NHIS during the process of reformatting the original NHIS public use files.]]></txt>
+      <codInstr><![CDATA[
+PERNUM is a 2-digit numeric variable.]]></codInstr>
+      <concept vocab="IPUMS">Technical Person Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="NHISPID" files="ExtractData" name="NHISPID" intrvl="contin" dcml="0">
+      <location StartPos="40" width="16" EndPos="55"/>
+      <labl>NHIS Unique Identifier, person</labl>
+      <txt><![CDATA[NHISPID is an IPUMS NHIS-constructed value that is an identifying number unique to each person in a given survey year.  Using NHISPID, analysts can link IPUMS NHIS data with additional data elements, from the NHIS source public use data files, that are not currently available in IPUMS.  For example, researchers can use NHISPID to link variables in IPUMS NHIS with other variables from the core NHIS files variables.  Alternatively, users may use NHISPID to link variables from IPUMS with variables from NHIS supplements that are not yet part of IPUMS NHIS. NHISPID is a single variable constructed by concatenating multiple data elements from the NHIS source data files.  
+
+Analysts wishing to link household-level NHIS data should use the household-level linking key NHISHID.
+
+See the user note on LINKING [URL omitted from DDI.] for instructions on how to create links between IPUMS NHIS and NHIS source data.]]></txt>
+      <codInstr><![CDATA[
+NHISPID is a 16-character string variable.]]></codInstr>
+      <concept vocab="IPUMS">Technical Person Variables -- PERSON</concept>
+      <varFormat schema="other" type="character"/>
+    </var>
+    <var ID="HHX" files="ExtractData" name="HHX" intrvl="contin" dcml="0">
+      <location StartPos="56" width="6" EndPos="61"/>
+      <labl>Household number (from NHIS)</labl>
+      <txt><![CDATA[For all persons, HHX reports the person's household number on the original NHIS data. HHX is unique within sample but only unique across samples when combined with information on year.]]></txt>
+      <codInstr><![CDATA[This is a 6-digit numeric variable with 0 implied decimal places]]></codInstr>
+      <concept vocab="IPUMS">Technical Person Variables -- PERSON</concept>
+      <varFormat schema="other" type="character"/>
+    </var>
+    <var ID="FMX" files="ExtractData" name="FMX" intrvl="contin" dcml="0">
+      <location StartPos="62" width="2" EndPos="63"/>
+      <labl>Family number (from NHIS)</labl>
+      <txt><![CDATA[For all persons, FMX reports the person's family number within the household, as documented on the family record on the original NHIS data. FMX is unique only when combined with information on year and household.]]></txt>
+      <codInstr><![CDATA[This is a 2-digit numeric variable with 0 implied decimal places]]></codInstr>
+      <concept vocab="IPUMS">Technical Person Variables -- PERSON</concept>
+      <varFormat schema="other" type="character"/>
+    </var>
+    <var ID="PX" files="ExtractData" name="PX" intrvl="contin" dcml="0">
+      <location StartPos="64" width="2" EndPos="65"/>
+      <labl>Person number of respondent (from NHIS).</labl>
+      <txt><![CDATA[PX is the original person number assigned to each individual by the NHIS. PX is unique only when combined with information on year, household, and family.]]></txt>
+      <codInstr><![CDATA[
+PX is a 2-digit numeric variable.]]></codInstr>
+      <concept vocab="IPUMS">Technical Person Variables -- PERSON</concept>
+      <varFormat schema="other" type="character"/>
+    </var>
+    <var ID="PERWEIGHT" files="ExtractData" name="PERWEIGHT" intrvl="contin" dcml="0">
+      <location StartPos="66" width="12" EndPos="77"/>
+      <labl>Final basic annual weight</labl>
+      <txt><![CDATA[PERWEIGHT is an IPUMS NHIS-constructed variable based on the Final Annual Weight in the original NHIS public use files.  This weight should be used for many analyses at the person level, particularly with variables for which information was collected about all family members. PERWEIGHT represents the inverse probability of selection into the sample, adjusted for non-response with post-stratification adjustments for age, race/ethnicity, and sex using the Census Bureau's population control totals. For each year, the sum of these weights is equal to that year's civilian, non-institutionalized U.S. population.
+
+There are instances, however, when the researcher should use a different person-level weight, particularly with supplements where a random adult or child family member was selected for questioning. For example, researchers analyzing variables from the sample adult/sample child supplements from 1997 forward should use SAMPWEIGHT rather than PERWEIGHT. 
+
+Users  should review the documentation for extracted variables--most notably the "Weights" section toward the top of each variable description--to ascertain which weight is the appropriate choice for a given survey year. See the User Notes [URL omitted from DDI.] on the use of sampling weights for additional information.]]></txt>
+      <codInstr><![CDATA[
+
+PERWEIGHT is a 12-digit numeric variable.]]></codInstr>
+      <concept vocab="IPUMS">Technical Person Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="SAMPWEIGHT" files="ExtractData" name="SAMPWEIGHT" intrvl="contin" dcml="0">
+      <location StartPos="78" width="9" EndPos="86"/>
+      <labl>Sample Person Weight</labl>
+      <txt><![CDATA[SAMPWEIGHT is an IPUMS NHIS-constructed variable that represents, with a few exceptions, the random selection of a sample person in the household to complete a supplement survey.  (The exceptions to this generalization are the 1983 health insurance supplement and 1993 health insurance, access to care, and family resources supplements, which were asked of all persons in the second half of the year.)
+
+For survey years 1997 forward, SAMPWEIGHT is based on the Final Annual Sample Adult and Sample Child Weights in the original NHIS public use files. This weight should be used with variables taken from the sample adult or sample child supplements for 1997 on (as indicated by the supplement title in the "Source" section toward the top of each variable description). 
+
+SAMPWEIGHT also contains the sampling weights for a subset of the pre-1997 supplements, for which the definition of a sample person, and the rules governing the section of sample persons, are less consistent. The universe statements for SAMPWEIGHT document who was included in the supplements requiring use of this weight on a year-by-year basis. SAMPWEIGHT consistently represents the inverse probability of selection into a supplement, adjusted for non-response with additional post-stratification adjustments for age, 
+race/ethnicity, and sex using the Census Bureau's population control totals.
+
+Users  should review the documentation for extracted variables--most notably the "Weights" section toward the top of each variable description--to ascertain which weight is the appropriate choice for a given survey year. See the User Notes [URL omitted from DDI.] on the use of sampling weights for additional information.]]></txt>
+      <codInstr><![CDATA[
+SAMPWEIGHT is a 9-digit numeric variable.]]></codInstr>
+      <concept vocab="IPUMS">Technical Person Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="FWEIGHT" files="ExtractData" name="FWEIGHT" intrvl="contin" dcml="0">
+      <location StartPos="87" width="6" EndPos="92"/>
+      <labl>Final annual family weight</labl>
+      <txt><![CDATA[FWEIGHT is a variable based on the Final Annual Weight in the original NHIS public use files. This weight should be used for many analyses at the family level, particularly with variables for which information was collected about family characteristics. 
+
+
+Creating FWEIGHT requires using independent estimates of the number of families from a reliable source such as the U.S. Census Bureau in order to perform post-stratification adjustments in a manner similar to what was done for the person-level weights. However, such independent estimates do not exist. 
+
+As a result, the NHIS used the "principle person" method to create family-level weights. The person weight with the smallest ratio adjustment within each family was used as a proxy for the family-level ratio adjustment. This method is believed to provide a more accurate estimate of the total number of U.S. families than either the use of other person weights within the family or the use of no ratio adjustments at all. Therefore, the Family weight contains factors for selection probabilities at the household level, household non-response adjustment, and several ratio adjustment factors that are applied to all person weights.
+
+
+Users  should review the documentation for extracted variables--most notably the "Weights" section toward the top of each variable description--to ascertain which weight is the appropriate choice for a given survey year. See the User Notes [URL omitted from DDI.] on the use of sampling weights for additional information.]]></txt>
+      <codInstr><![CDATA[
+FWEIGHT is a 6-digit numeric variable.]]></codInstr>
+      <concept vocab="IPUMS">Technical Person Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="ASTATFLG" files="ExtractData" name="ASTATFLG" intrvl="discrete" dcml="0">
+      <location StartPos="93" width="1" EndPos="93"/>
+      <labl>Sample adult flag</labl>
+      <txt><![CDATA[ASTATFLG identifies the record of a sample adult. A sample adult is the one adult per family who was selected at random by the computerized survey instrument to answer additional health-related questions, under the survey design instituted in 1997.  All persons other than sample adults (those not having the value 1 in ASTATFLG) are coded as "not in universe" for variables derived from the additional questions asked only of sample adults.  (Some additional questions were asked of both sample adults and sample children.)   Every adult in each family, except for active duty armed forces members, was eligible to be selected as the sample adult.  
+
+ASTATFLG has the value "no one selected as sample adult" (code 4) for all adults in the family in the following two cases: 1) sample adult status was incorrectly assigned to someone in the armed forces, or 2) it could not be ascertained which adult in the family was chosen as sample adult.   
+
+A similar flag variable, CSTATFLG, identifies the record of a sample child, that is, the one person under 18 per family who was selected at random for additional health-related questions, beginning in 1997, for families that included children.
+
+This variable is automatically included in all extracts, but only has valid values for 1997 forward.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>NIU</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>Sample adult, has record</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Sample adult, no record</labl>
+      </catgry>
+      <catgry>
+        <catValu>3</catValu>
+        <labl>Not selected as sample adult</labl>
+      </catgry>
+      <catgry>
+        <catValu>4</catValu>
+        <labl>No one selected as sample adult</labl>
+      </catgry>
+      <catgry>
+        <catValu>5</catValu>
+        <labl>Armed forces member</labl>
+      </catgry>
+      <catgry>
+        <catValu>6</catValu>
+        <labl>AF member, selected as sample adult</labl>
+      </catgry>
+      <concept vocab="IPUMS">Technical Person Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="CSTATFLG" files="ExtractData" name="CSTATFLG" intrvl="discrete" dcml="0">
+      <location StartPos="94" width="1" EndPos="94"/>
+      <labl>Sample child flag</labl>
+      <txt><![CDATA[CSTATFLG identifies the record of a sample child.  A sample child is the one person under age 18 per family who was selected at random by the computerized survey instrument for additional health-related questions, under the survey design instituted in 1997.  All persons other than sample children (those not having the value 1 in CSTATFLG) are coded as "not in universe" for variables derived from these additional questions asked only of sample children.  (Some additional questions were asked of both sample adults and sample children.)   
+
+Every child in each family, except for active duty armed forces members and emancipated minors, was eligible to be selected as the sample child.  Emancipated minors are persons age 14 to 17 who are married or living with a partner OR who live on their own without the supervision of a parent, other adult family member, or legal guardian.  
+
+CSTATFLG has the value "no one selected as sample child" (code 4) for all children in the family in the following two cases: 1) if sample child status was incorrectly assigned to someone who was ineligible, or 2) if it was unknown which child in the family was chosen as sample child.   
+
+A similar flag variable, ASTATFLG, identifies the record of a sample adult, that is, the one person age 18+ per family who was selected at random for additional health-related questions, under the survey design instituted in 1997.
+
+This variable is automatically included in all extracts, but only has valid values for 1997 forward.]]></txt>
+      <catgry>
+        <catValu>0</catValu>
+        <labl>NIU</labl>
+      </catgry>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>Sample child-has record</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Sample child-no record</labl>
+      </catgry>
+      <catgry>
+        <catValu>3</catValu>
+        <labl>Not selected as sample child</labl>
+      </catgry>
+      <catgry>
+        <catValu>4</catValu>
+        <labl>No one selected as sample child</labl>
+      </catgry>
+      <catgry>
+        <catValu>5</catValu>
+        <labl>Emancipated minor</labl>
+      </catgry>
+      <concept vocab="IPUMS">Technical Person Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="AGE" files="ExtractData" name="AGE" intrvl="contin" dcml="0">
+      <location StartPos="95" width="2" EndPos="96"/>
+      <labl>Age</labl>
+      <txt><![CDATA[AGE reports the individual's age, in years since last birthday.  Age is not coded as "unknown" for any persons included in the IPUMS NHIS data.  As the public use file's codebooks for 1998 forward state, "Because age is an important variable for instrument check items and in developing the weights, all respondents must have data on age."]]></txt>
+      <codInstr><![CDATA[
+
+AGE is a 2-digit-numeric variable.
+
+85:	Top code for 85 years or older (1963-1968 and 1997-forward)
+90:	Top code for 90 years or older (1969-1995)
+99:	Top code for 99 years or older (1996 only)]]></codInstr>
+      <concept vocab="IPUMS">Core Demographic Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="SEX" files="ExtractData" name="SEX" intrvl="discrete" dcml="0">
+      <location StartPos="97" width="1" EndPos="97"/>
+      <labl>Sex</labl>
+      <txt><![CDATA[SEX indicates whether the person was male or female.]]></txt>
+      <catgry>
+        <catValu>1</catValu>
+        <labl>Male</labl>
+      </catgry>
+      <catgry>
+        <catValu>2</catValu>
+        <labl>Female</labl>
+      </catgry>
+      <concept vocab="IPUMS">Core Demographic Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="HEIGHT" files="ExtractData" name="HEIGHT" intrvl="discrete" dcml="0">
+      <location StartPos="98" width="2" EndPos="99"/>
+      <labl>Height in inches without shoes</labl>
+      <txt><![CDATA[HEIGHT reports the approximate height of adults, in inches.  The values for this variable are based on self-reports or proxy reports/estimates by respondents for other household members, supplied in response to the question, "About how tall is [person] without shoes?"  Such data are less accurate than, and thus not fully comparable to, data on height gleaned via direct measurement in other surveys, such as NHANES (the National Health and Nutrition Examination Survey fielded by the National Center for Health Statistics).]]></txt>
+      <catgry>
+        <catValu>00</catValu>
+        <labl>NIU</labl>
+      </catgry>
+      <catgry>
+        <catValu>12</catValu>
+        <labl>12</labl>
+      </catgry>
+      <catgry>
+        <catValu>13</catValu>
+        <labl>13</labl>
+      </catgry>
+      <catgry>
+        <catValu>14</catValu>
+        <labl>14</labl>
+      </catgry>
+      <catgry>
+        <catValu>15</catValu>
+        <labl>15</labl>
+      </catgry>
+      <catgry>
+        <catValu>16</catValu>
+        <labl>16</labl>
+      </catgry>
+      <catgry>
+        <catValu>17</catValu>
+        <labl>17</labl>
+      </catgry>
+      <catgry>
+        <catValu>18</catValu>
+        <labl>18</labl>
+      </catgry>
+      <catgry>
+        <catValu>19</catValu>
+        <labl>19</labl>
+      </catgry>
+      <catgry>
+        <catValu>20</catValu>
+        <labl>20</labl>
+      </catgry>
+      <catgry>
+        <catValu>21</catValu>
+        <labl>21</labl>
+      </catgry>
+      <catgry>
+        <catValu>22</catValu>
+        <labl>22</labl>
+      </catgry>
+      <catgry>
+        <catValu>23</catValu>
+        <labl>23</labl>
+      </catgry>
+      <catgry>
+        <catValu>24</catValu>
+        <labl>24</labl>
+      </catgry>
+      <catgry>
+        <catValu>25</catValu>
+        <labl>25</labl>
+      </catgry>
+      <catgry>
+        <catValu>26</catValu>
+        <labl>26</labl>
+      </catgry>
+      <catgry>
+        <catValu>27</catValu>
+        <labl>27</labl>
+      </catgry>
+      <catgry>
+        <catValu>28</catValu>
+        <labl>28</labl>
+      </catgry>
+      <catgry>
+        <catValu>29</catValu>
+        <labl>29</labl>
+      </catgry>
+      <catgry>
+        <catValu>30</catValu>
+        <labl>30</labl>
+      </catgry>
+      <catgry>
+        <catValu>31</catValu>
+        <labl>31</labl>
+      </catgry>
+      <catgry>
+        <catValu>32</catValu>
+        <labl>32</labl>
+      </catgry>
+      <catgry>
+        <catValu>33</catValu>
+        <labl>33</labl>
+      </catgry>
+      <catgry>
+        <catValu>34</catValu>
+        <labl>34</labl>
+      </catgry>
+      <catgry>
+        <catValu>35</catValu>
+        <labl>35</labl>
+      </catgry>
+      <catgry>
+        <catValu>36</catValu>
+        <labl>36</labl>
+      </catgry>
+      <catgry>
+        <catValu>37</catValu>
+        <labl>37</labl>
+      </catgry>
+      <catgry>
+        <catValu>38</catValu>
+        <labl>38</labl>
+      </catgry>
+      <catgry>
+        <catValu>39</catValu>
+        <labl>39</labl>
+      </catgry>
+      <catgry>
+        <catValu>40</catValu>
+        <labl>40</labl>
+      </catgry>
+      <catgry>
+        <catValu>41</catValu>
+        <labl>41</labl>
+      </catgry>
+      <catgry>
+        <catValu>42</catValu>
+        <labl>42</labl>
+      </catgry>
+      <catgry>
+        <catValu>43</catValu>
+        <labl>43</labl>
+      </catgry>
+      <catgry>
+        <catValu>44</catValu>
+        <labl>44</labl>
+      </catgry>
+      <catgry>
+        <catValu>45</catValu>
+        <labl>45</labl>
+      </catgry>
+      <catgry>
+        <catValu>46</catValu>
+        <labl>46</labl>
+      </catgry>
+      <catgry>
+        <catValu>47</catValu>
+        <labl>47</labl>
+      </catgry>
+      <catgry>
+        <catValu>48</catValu>
+        <labl>48</labl>
+      </catgry>
+      <catgry>
+        <catValu>49</catValu>
+        <labl>49</labl>
+      </catgry>
+      <catgry>
+        <catValu>50</catValu>
+        <labl>50</labl>
+      </catgry>
+      <catgry>
+        <catValu>51</catValu>
+        <labl>51</labl>
+      </catgry>
+      <catgry>
+        <catValu>52</catValu>
+        <labl>52</labl>
+      </catgry>
+      <catgry>
+        <catValu>53</catValu>
+        <labl>53</labl>
+      </catgry>
+      <catgry>
+        <catValu>54</catValu>
+        <labl>54</labl>
+      </catgry>
+      <catgry>
+        <catValu>55</catValu>
+        <labl>55</labl>
+      </catgry>
+      <catgry>
+        <catValu>56</catValu>
+        <labl>56</labl>
+      </catgry>
+      <catgry>
+        <catValu>57</catValu>
+        <labl>57</labl>
+      </catgry>
+      <catgry>
+        <catValu>58</catValu>
+        <labl>58 (1996: 58 inches or less)</labl>
+      </catgry>
+      <catgry>
+        <catValu>59</catValu>
+        <labl>59</labl>
+      </catgry>
+      <catgry>
+        <catValu>60</catValu>
+        <labl>60</labl>
+      </catgry>
+      <catgry>
+        <catValu>61</catValu>
+        <labl>61</labl>
+      </catgry>
+      <catgry>
+        <catValu>62</catValu>
+        <labl>62</labl>
+      </catgry>
+      <catgry>
+        <catValu>63</catValu>
+        <labl>63</labl>
+      </catgry>
+      <catgry>
+        <catValu>64</catValu>
+        <labl>64</labl>
+      </catgry>
+      <catgry>
+        <catValu>65</catValu>
+        <labl>65</labl>
+      </catgry>
+      <catgry>
+        <catValu>66</catValu>
+        <labl>66</labl>
+      </catgry>
+      <catgry>
+        <catValu>67</catValu>
+        <labl>67</labl>
+      </catgry>
+      <catgry>
+        <catValu>68</catValu>
+        <labl>68</labl>
+      </catgry>
+      <catgry>
+        <catValu>69</catValu>
+        <labl>69</labl>
+      </catgry>
+      <catgry>
+        <catValu>70</catValu>
+        <labl>70</labl>
+      </catgry>
+      <catgry>
+        <catValu>71</catValu>
+        <labl>71</labl>
+      </catgry>
+      <catgry>
+        <catValu>72</catValu>
+        <labl>72</labl>
+      </catgry>
+      <catgry>
+        <catValu>73</catValu>
+        <labl>73</labl>
+      </catgry>
+      <catgry>
+        <catValu>74</catValu>
+        <labl>74</labl>
+      </catgry>
+      <catgry>
+        <catValu>75</catValu>
+        <labl>75</labl>
+      </catgry>
+      <catgry>
+        <catValu>76</catValu>
+        <labl>76</labl>
+      </catgry>
+      <catgry>
+        <catValu>77</catValu>
+        <labl>77 (1996: 77+ inches)</labl>
+      </catgry>
+      <catgry>
+        <catValu>78</catValu>
+        <labl>78</labl>
+      </catgry>
+      <catgry>
+        <catValu>79</catValu>
+        <labl>79</labl>
+      </catgry>
+      <catgry>
+        <catValu>80</catValu>
+        <labl>80</labl>
+      </catgry>
+      <catgry>
+        <catValu>81</catValu>
+        <labl>81</labl>
+      </catgry>
+      <catgry>
+        <catValu>82</catValu>
+        <labl>82</labl>
+      </catgry>
+      <catgry>
+        <catValu>83</catValu>
+        <labl>83</labl>
+      </catgry>
+      <catgry>
+        <catValu>84</catValu>
+        <labl>84 (1976 - 1981: 84+ inches)</labl>
+      </catgry>
+      <catgry>
+        <catValu>85</catValu>
+        <labl>85</labl>
+      </catgry>
+      <catgry>
+        <catValu>86</catValu>
+        <labl>86</labl>
+      </catgry>
+      <catgry>
+        <catValu>87</catValu>
+        <labl>87</labl>
+      </catgry>
+      <catgry>
+        <catValu>88</catValu>
+        <labl>88</labl>
+      </catgry>
+      <catgry>
+        <catValu>89</catValu>
+        <labl>89</labl>
+      </catgry>
+      <catgry>
+        <catValu>90</catValu>
+        <labl>90</labl>
+      </catgry>
+      <catgry>
+        <catValu>91</catValu>
+        <labl>91</labl>
+      </catgry>
+      <catgry>
+        <catValu>92</catValu>
+        <labl>92</labl>
+      </catgry>
+      <catgry>
+        <catValu>93</catValu>
+        <labl>93</labl>
+      </catgry>
+      <catgry>
+        <catValu>94</catValu>
+        <labl>94+</labl>
+      </catgry>
+      <catgry>
+        <catValu>95</catValu>
+        <labl>Unknown-all causes</labl>
+      </catgry>
+      <catgry>
+        <catValu>96</catValu>
+        <labl>Exceptionally short or tall</labl>
+      </catgry>
+      <catgry>
+        <catValu>97</catValu>
+        <labl>Unknown-refused</labl>
+      </catgry>
+      <catgry>
+        <catValu>98</catValu>
+        <labl>Unknown-not ascertained</labl>
+      </catgry>
+      <catgry>
+        <catValu>99</catValu>
+        <labl>Unknown-don't know</labl>
+      </catgry>
+      <concept vocab="IPUMS">General Health Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+    <var ID="WEIGHT" files="ExtractData" name="WEIGHT" intrvl="contin" dcml="0">
+      <location StartPos="100" width="3" EndPos="102"/>
+      <labl>Weight in pounds without clothes or shoes</labl>
+      <txt><![CDATA[WEIGHT reports the approximate weight of adults, in pounds.  The values for this variable are based on self-reports or proxy reports/estimates by respondents for other household members, supplied in response to the question, "About how much does [person] weigh without shoes?"  
+
+Such verbally reported data are less accurate than, and thus not fully comparable to, data on weight gleaned via direct measurement in other surveys, such as NHANES (the National Health and Nutrition Examination Survey fielded by the National Center for Health Statistics).  Indeed, the Field Representative's Manual for 1991 specified that one rationale for collecting height and weight data in the NHIS was to compare respondents' answers to the distribution of actual body measurements obtained in the Health and Nutrition Examination Survey, "to determine the reliability of self-reported or proxy-reported heights and weights."]]></txt>
+      <codInstr><![CDATA[
+WEIGHT is a 3-digit-numeric variable. The upper and lower weight thresholds for public data suppression vary over time.  User should carefully review the codes below before making cross-year comparisons or interpreting results. 
+
+1997-forward codes
+000:	Not in Universe 
+99: 	99 pounds or less (FEMALES only, 1997-2005)
+100: 	100 pounds or less (FEMALES only, 2006-forward)
+126: 	126 pounds or less (MALES only, 1997-forward)
+259: 	259 pounds or more (FEMALES only, 1997-2005)
+274: 	274 pounds or more (FEMALES only, 2006-forward)
+285: 	285 pounds or more (MALES only, 1997-2005)
+299: 	299 pounds or more (MALES only, 2006-forward)
+996:	Exceptionally low or high weight
+997:	Unknown-refused
+998:	Unknown-not ascertained
+999:	Unknown-don't know
+
+In 1997-forward, data are NOT top and bottom coded, but instead cases outside of these upper and lower bounds are assigned to a code of "996: Exceptionally low or high weight". Additionally, these thresholds differ by sex.
+
+Pre-1997 codes:
+000:	Not in Universe (includes 2 reported "0" values in 1974, which has no bottom-code)
+50: 	50 pounds or less (1976-1995)
+97: 	97 pounds or less (1996)
+290: 	290 pounds or more (1996)
+300: 	300 pounds or more (1976 and 1978)
+400: 	400 pounds or more (1977, 1979-1981)
+500: 	500 pounds or more (1982-1995)
+997: 	997 pounds or more (1974)
+995:	Unknown - all causes]]></codInstr>
+      <concept vocab="IPUMS">General Health Variables -- PERSON</concept>
+      <varFormat schema="other" type="numeric"/>
+    </var>
+  </dataDscr>
+</codeBook>
