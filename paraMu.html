@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-03-20" />
+<meta name="date" content="2020-03-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -182,16 +182,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.2.2" data-path="computing01.html"><a href="computing01.html#exercises-1"><i class="fa fa-check"></i><b>13.2.2</b> Exercises</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="computing02.html"><a href="computing02.html"><i class="fa fa-check"></i><b>14</b> Computing Week2</a><ul>
+<li class="chapter" data-level="14" data-path="computing02.html"><a href="computing02.html"><i class="fa fa-check"></i><b>14</b> Computing: Session No. 2</a><ul>
 <li class="chapter" data-level="14.1" data-path="computing02.html"><a href="computing02.html#scientific-background"><i class="fa fa-check"></i><b>14.1</b> Scientific background</a></li>
 <li class="chapter" data-level="14.2" data-path="computing02.html"><a href="computing02.html#random-variation"><i class="fa fa-check"></i><b>14.2</b> Random Variation</a><ul>
 <li class="chapter" data-level="14.2.1" data-path="computing02.html"><a href="computing02.html#measurement-errors"><i class="fa fa-check"></i><b>14.2.1</b> Measurement errors</a></li>
-<li class="chapter" data-level="14.2.2" data-path="computing02.html"><a href="computing02.html#discovering-the-laws-via-this-computing-exercise"><i class="fa fa-check"></i><b>14.2.2</b> Discovering the Laws [via this computing exercise]</a></li>
+<li class="chapter" data-level="14.2.2" data-path="computing02.html"><a href="computing02.html#biological-variation"><i class="fa fa-check"></i><b>14.2.2</b> Biological variation</a></li>
+<li class="chapter" data-level="14.2.3" data-path="computing02.html"><a href="computing02.html#example-2"><i class="fa fa-check"></i><b>14.2.3</b> Example 2</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="computing02.html"><a href="computing02.html#biological-variation"><i class="fa fa-check"></i><b>14.3</b> Biological variation</a><ul>
-<li class="chapter" data-level="14.3.1" data-path="computing02.html"><a href="computing02.html#example"><i class="fa fa-check"></i><b>14.3.1</b> Example</a></li>
-<li class="chapter" data-level="14.3.2" data-path="computing02.html"><a href="computing02.html#example-2"><i class="fa fa-check"></i><b>14.3.2</b> Example 2</a></li>
-</ul></li>
+<li class="chapter" data-level="14.3" data-path="computing02.html"><a href="computing02.html#when-these-laws-dont-apply"><i class="fa fa-check"></i><b>14.3</b> When these Laws don’t apply</a></li>
+<li class="chapter" data-level="14.4" data-path="computing02.html"><a href="computing02.html#summary-1"><i class="fa fa-check"></i><b>14.4</b> SUMMARY</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="computing03.html"><a href="computing03.html"><i class="fa fa-check"></i><b>15</b> Computing Week3</a><ul>
 <li class="chapter" data-level="15.1" data-path="computing03.html"><a href="computing03.html#ages-of-books"><i class="fa fa-check"></i><b>15.1</b> Ages of books</a></li>
@@ -298,7 +297,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 bootstrap.fits &lt;-<span class="st"> </span><span class="kw">do</span>(<span class="dv">1000</span>) <span class="op">*</span><span class="st"> </span><span class="kw">lm</span>( <span class="kw">resample</span>(density) <span class="op">~</span><span class="dv">1</span>)
 <span class="kw">round</span>(<span class="kw">confint</span>(bootstrap.fits<span class="op">$</span>Intercept),<span class="dv">2</span>)</code></pre></div>
 <pre><code>##            2.5% 97.5%
-## percentile 5.36  5.53</code></pre>
+## percentile 5.37  5.53</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">sd</span>(bootstrap.fits<span class="op">$</span>Intercept),<span class="dv">2</span>)</code></pre></div>
 <pre><code>## [1] 0.04</code></pre>
 <ul>
