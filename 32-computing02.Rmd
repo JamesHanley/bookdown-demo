@@ -12,9 +12,9 @@ The **'statistical' objectives** of this exercise are to
 
 * be introduced to parameters that measure the spread of the distribution of a random variable, whether it be an error distribution, or a biological one.
 
-* learn (empirically) the statistical laws that govern how the spread of a linear combination (e.g, the sum, or the mean) of several (generically, $n$) independent random variates is related to the spread of the individual random variables.
+* learn (empirically, and heuristically) the statistical laws that govern how the spread of a linear combination (e.g, the sum, or the mean) of several (generically, $n$) independent random variates is related to the spread of the individual random variables.
 
-The ultimate objective is to be able to use these laws to help  investigators, such as Henry Cavendish, to (probabilistically) quantify 'how far off' their parameter estimates might be.
+The ultimate objective is to be able to use these laws to help  investigators, such as Henry Cavendish [see below], to (probabilistically) quantify 'how far off' their parameter estimates might be.
 
 
 
@@ -25,22 +25,22 @@ The ultimate objective is to be able to use these laws to help  investigators, s
 
 Some of words above are taken  from this article by [astronomer David Hughes](http://www.biostat.mcgill.ca/hanley/statbook/DensityOfEarth.pdf).
 Table 2 in the article shows 'Values suggested for the mean density of the Earth, as a function of the date of publication' starts with Newton's 1687 guesstimate, and ends, (23 estimates later) with Heyl and Chrzanowski's 1942 value.
-Five of the 24 estimates are accompanied by a $\pm$ value, but what this values signifies is left unexplained. One of the 24s is Cavendish's 1798 estimate, which he obtained by taking the mean of 29 density measurements derived using a torsion balance on  17 days in the months of August and  September, and the following April and May. Cavendish's 'point estimate'  was 5.48. Since his'extreme results do not differ from the mean by more than 0.38,or $\frac{1}{14}$ of the whole' [...] Therefore, it seems very unlikely that the density of the earth should differ from the 5.48 by so much as $\frac{1}{14}$ of the whole.'
+Five of the 24 estimates are accompanied by a $\pm$ value, but what these $\pm$ values  signify is left unexplained. One of the 24 is Cavendish's 1798 estimate, which he obtained by taking the mean of $n =$ 29 density measurements derived using a torsion balance on  17 days in the months of August and  September, and the following April and May. Cavendish's 'point estimate'  was 5.48. Since his'extreme results do not differ from the mean by more than 0.38,or $\frac{1}{14}$ of the whole' [...] Therefore, it seems very unlikely that the density of the earth should differ from the 5.48 by so much as $\frac{1}{14}$ of the whole.'
 
-Here we have an effort, by no less than Isaac Newton, to give a numerical interval within which the true parameter value is likely to lie. Cavendish it seems very unlikely that the density of the earth should differ from the 5.48 by so much as $\frac{1}{14}$ of the whole.'  bounds on the amounts by which the 'likely'  
+Here we have an effort, by no less than Isaac Newton, to give a **numerical interval** within which the true parameter value is **likely** to lie. To Cavendish, it seems **very unlikely** that the density of the earth should differ from the 5.48 by so much as $\frac{1}{14}$ of the whole.'  Our objective is to learn the statistical laws and tools, unknown in their time,  to statistically quantify how far off the mark our modern statistical estimators are (un)likely to be -- and to tighten Cavendish's lower and upper bounds!   
 
 
 ## Random Variation
 
 ### Measurement errors
 
-The 'standard' has since been replaced by fancier methods, but for now let's imagine that every family in the world make their own independent physical copy (using say string or paper or cardboard) of the official [1 meter](https://en.wikipedia.org/wiki/History_of_the_metre) platimun bar that used to be stored in Paris. Suppose these copies had a measurement error of either +1 centimeter or -1 centimeter (with  plus errors and  minus errors being equally likely). Thus, these errors, or  'deviations' from the 100cm,  average out to 0. Each squared deviation is 1, so the mean squared deviation (called the error **variance**) is also 1. Its square root, also 1 in this instance, is called the **standard deviation** of the errors, or $\sigma_{e}$ for short.
+The 'standard' has since been replaced by fancier methods, but for now let's imagine that every family in the world make their own independent physical copy (using say a length of string or a paper or cardboard strip) of the official [1 meter](https://en.wikipedia.org/wiki/History_of_the_metre) platimun bar that used to be stored in Paris. Suppose these copies had a measurement error of either +1 centimeter or -1 centimeter (with  plus errors and  minus errors being equally likely). Thus, these errors, or  'deviations' from the 100cm,  average out to 0. Each squared deviation is 1, so the mean squared deviation (called the error **variance**) is also 1. Its square root, also 1 in this instance, is called the **standard deviation** of the errors, or $\sigma_{e}$ for short.
 
 **Now imagine taking a random sample of $n$ of these copies, and computing the sum and  the mean of the $n$ lengths.**
 
-Although it is possible to mathematically enumerate/calculate the exact probalities that the sum or mean takes on the various possible values,  we will instead use `R` to approximate the probabilities by simulation. The probabilities in the following Figure are based on large enough numbers of  simulations that -- while they don't show the _perfect_ symmetry they would exhibit if we worked them out mathematically -- they give quite close approximations. 
+Although it is possible to mathematically enumerate/calculate the exact probalities that the sum or mean of the lengths of the $n$ copies takes on the various possible values,  we will instead use `R` to approximate the probabilities by simulation. The probabilities in the following Figure are based on large enough numbers of  simulations that -- while they don't show the _perfect_ symmetry they would exhibit if we worked them out mathematically -- they give quite close approximations. 
 
-The uppermost panel in the following figure shows the probability of obtaining various sums and various sample means.  
+The panels in the following figure shows the probability of obtaining various possible sums and various possible sample means. Clearly, the patterns of the probabilities are strong functions of $n.$  
 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F}
@@ -96,10 +96,10 @@ errors = c(-1,1)
 plotMeterMeasurements(errors)
 ``` 
 
-Instead of a 2-point error distribution, the next Figure shows how variable the sample totals and sample means would be if the errors were distributed as in the first row below. There, a quarter of the measurements have errors of +$\sqrt{2} \approx$  +1.4cm, half have no error, and a quarter have errors of -$\sqrt{2} \approx$  -1.4cm. Thus the error variance, the average of the squared deviations, is 
+Instead of a 2-point error distribution, the next Figure shows how variable the sample totals and sample means would be if the errors were distributed a bit differently, as in the first row below. There, a quarter of the measurements have errors of +$\sqrt{2} \approx$  +1.4cm, half have no error, and a quarter have errors of -$\sqrt{2} \approx$  -1.4cm. Thus the error variance, the average of the squared deviations, is 
 $$\sigma_e^2 = \frac{1}{4} \times (-1.4)^2  +  \frac{1}{2} \times (0)^2 +  \frac{1}{4} \times (1.4)^2 = 1,$$  so that the standard deviation is again $\sigma_e =  1.$
 
-The row- (n-) specific distributions in the two Figures are  not exactly the same. For example, the possible means in samples of size $n$ = 2  have a 3-point distribution in the first one, but a 5-point distribution in the second one. But, as you will be asked to verify in the exercises below, the row-specific variances ate the same in the two figures.
+The row- (i.e., n-) specific distributions in the two Figures are  not exactly the same. For example, the possible means in samples of size $n$ = 2  have a 3-point distribution in the first one, but a 5-point distribution in the second one. But, as you will be asked to verify in the exercises below, the row-specific variances are the same in the two figures.
 
 
 
@@ -110,9 +110,9 @@ plotMeterMeasurements(errors)
    
 ```
 
-More important than this are the statistical laws governing how widely the sums (and the means) deviate from the 100cm. Clearly, the possible **sums** of 5 copies have a **wider** spread than the possible sums of 2, and the sums of 10  a wider spread than the sums of 5. Conversely, the **means** of 5 copies have a **narrower** spread than the means of 2, and the means of 10  a narrower spread than the means of 5.
+More important than this are the statistical laws governing how widely the sums deviate from $\mu_{sum}$ = $n \times$ 100cm, and the means  deviate from $\mu$ = 100cm. Clearly, the possible **sums** of 5 copies have a **wider** spread than the possible sums of 2, and the sums of 10  a wider spread than the sums of 5. Conversely, the **means** of 5 copies have a **narrower** spread than the means of 2, and the means of 10  a narrower spread than the means of 5.
 
-**Instead of just telling you what the laws are, we ask you to use `R` to discover them yourself. 
+**Instead of just telling you what the laws are, we ask you to use `R` to discover them yourself.** 
 
 #### Discovering the Laws [via this computing exercise]
 
@@ -120,13 +120,23 @@ More important than this are the statistical laws governing how widely the sums 
 
 2. Use the `sqrt()` function (or the `^0.5` power) to compute the standard deviation of the errors.
 
-3. Change the errors from -1cm and +1cm to say -5cm and +5cm, and repeat steps 1 and 2. From this, what did you learn about the variance and the standard deviation?
+3. Change the errors from -1cm and +1cm to say -5cm and +5cm, and repeat steps 1 and 2. From this, what did you learn about the laws goverming variances and  standard deviations?
 
 4. Add the errors onto 100cm to make 2 measurements (imperfect copies) of the meter bar, and calculate the mean, variance and standard deviation of the  2 measurements. From this, and by varying the sizes of the 2 errors, what did you learn about the mean the variance and the standard deviation of a shifted (re-located) random variable? {Hint: be careful to use your own variance and standard deviation functions, not the inbuilt `var` and `sd` functions. The reason is that whereas we say there are just 2 errors, in reality there are as many as there are copiers -- effectively an infinite number, about half of whom will make an error of +1cm, and about half of whome will an error of -1cm. Or you can say that the probabilities of  errors of -1cm and +1cm are 0.5, and 0.5.
 
 5. Change the -1cm and +1cm errors to -10mm and +10mm, and tepeat steps 1 and 2. What did you learn? 
 
-6. In order to see the laws in action, and figure them out (with the aid of the `R` **code below**)
+6. If Montreal's mean  January  temperature was -10C, and the standard deviation was  
+
+Over 68 years with records  years from 1928 to 2004
+St Hubert -6.6 C and sd was 2.9
+
+                  Mean.Max.Temp...C. Mean.Min.Temp...C. Mean.Temp...C.
+Mean.Max.Temp...C.           7.417654           7.924109       7.684844
+Mean.Min.Temp...C.           7.924109          10.276646       9.113090
+Mean.Temp...C.               7.684844           9.113090       8.413088
+
+7. In order to see the laws in action, and figure them out (with the aid of the `R` **code below**)
 
    + Begin with many simulated random **pairs** of measurements of (possibly imperfect copies) of the meter bar. For example, you might specify `no.of.pairs = 10000`. 
 
@@ -559,6 +569,40 @@ for (n in sample.sizes ){        # loop over the various sample sizes
 
 ## SUMMARY
 
+### Computing
+
+* Assigning values to objects via `<-` or `=` 
+
+* Putting numbers (or character strings) into vectors  via  concatenation `c( , , )`
+
+* Putting repeated values into vectors  via  the `rep()` function
+
+* Looking at the first `n` and the last `n` elements of an object via `head(object,n)` and `tail(object)` -- if you omit the `n`, it defaults to 6 
+
+* Making a new numerical value or vector of numerical values from existing ones via, e.g. via `+` , `*` ( multiplication), `^ power` etc.
+
+* Using built-in functions, such as `mean()`, `sum()`, `sd()` and `var()`, that operate on vectors, or on single numbers (or 'element-wise' on vectors), such as `round()` and `sqrt()`
+
+* Making numerical arrays using the `matrix` function
+
+* Taking values at random from a vector via `sample()`
+
+* Using `str(object)` to see the **str*ucture of an object
+
+* Using `apply(object, MARGIN = , FUN = )` to apply
+ a function to the spefified margins (1=rows,2=cols) of an matrix or of a (possibly higher-dimensional) array.
+ 
+* Using `table` to create a vector, matrix or array of the frequencies (cell counts) corresponding to a single variable, or combination of variables
+
+* Using `plot(x,y)` to plot an 'x' vector versus a 'y' vector. `lines(), `points()` and `text()` can be added to an existing plot.
+
+* A graphic can be split into a 2-way grid of panels by using a vector of the form `c(nr, nc)` as the input to `mfrow` or `mfcol` in the `par` statement.
+
+* The bottom, left, upper, and right margins can be set using the `mar` parameter 
+
+* Consider a Gaussian distribution with a specified mean.value and standard deviation sd.value. Then the proportion of the distrution to that lies ot the left of a specified value `q` is given by the inbuilt `R` function `pnorm(q, mean = mean.value, sd = sd.value)`. For example, if in a certain population IQ has a Gaussian distribution with a mean of 100, and a sd of 15, then using this `R` expression  `round( 100*pnorm(110, mean = 100, sd = 15) , 1 )` we can determine that `r round(100*pnorm(110, mean = 100, sd = 15),1)` percent of the distribution would be below 110, and thus that `r round(100*pnorm(90, mean = 100, sd = 15),1)` percent would be below 90. The middle 50% could be calculated  using this expression `round( 100*qnorm(c(1/4,3/4), mean = 100, sd = 15) , 1 )` to give `r round( qnorm(c(1/4,3/4), mean = 100, sd = 15) , 1 )`
+
+### Statistical Concepts and Principles 
 
 * Definition of the Standard Deviation $\sigma,$ (and its square, the 'Variance', $\sigma^2$, of  a random variable $Y$ with mean $\mu$.
 

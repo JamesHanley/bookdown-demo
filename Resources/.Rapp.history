@@ -1,1004 +1,3 @@
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), "\n+", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1]),"\n+",toString(delta.mu),"\nif S",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.35,0.65)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
-	                        mu[j],PARA[co,j], #
-	                        adj=c(1-(j==2),0.5),cex=1.25)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), "+", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1]),"+",toString(delta.mu),"if S",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), "+", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1]),"+",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j] - 0.03*(j==1)+0.03*(j==2),#
-	                        mu[j],PARA[co,j], #
-	                        adj=c(1-(j==2),0.5),cex=1.05)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), "+", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1]),"+",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j], mu[j]-0.05,PARA[co,j], #
-	                        adj=c(0.5,1),cex=1.05)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j], mu[j]-0.01,PARA[co,j], #
-	                        adj=c(0.5,1),cex=1.05,srt=45)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.02*(j==1) + 0.02*(j==2), #
-	     	     mu[j] - 0.1 *(j==1) + 0.1 *(j==2),#
-	     	     PARA[co,j], #
-	                        adj=c(0.5,1),cex=1.05,srt=45)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)#
-#
-PARA=expression(mu)#
-PARAs = c(expression(mu[North]), expression(mu[South]) )#
-#
-PARAs = c(expression(mu[North]), expression(mu[South]) )#
-plot3(1)
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.02*(j==1) + 0.02*(j==2), #
-	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
-	     	     PARA[co,j], #
-	                        adj=c(0.5,1),#
-	                        cex=1.05,srt=45)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.02*(j==1) + 0.02*(j==2), #
-	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
-	     	     PARA[co,j], #
-	                        adj=c(1, 1),#
-	                        cex=1.05,srt=50)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
-	     	     PARA[co,j], #
-	                        adj=c(1, 1),#
-	                        cex=1.05,srt=50)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
-	     	     PARA[co,j], #
-	                        adj=c(1, 0),#
-	                        cex=1.05,srt=50)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
-	     	     PARA[co,j], #
-	                        adj=c(1-(j==2), 0),#
-	                        cex=1.05,srt=50)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
-	     	     PARA[co,j], #
-	                        adj=c(1-(j==2), 0.5),#
-	                        cex=1.05,srt=50)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
-	     	     PARA[co,j], #
-	                        adj=c(0.5, 0.5),#
-	                        cex=1.05,srt=50)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.00*(j==1) + 0.00*(j==2),#
-	     	     PARA[co,j], #
-	                        adj=c(0.5, 0.5),#
-	                        cex=1.05,srt=SRT)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-SRT=30                   #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.2,#
-	     	     PARA[co,j], #
-	                        adj=c(0.5, 0.5),#
-	                        cex=1.05,srt=SRT)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-SRT=30                   #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.1,#
-	     	     PARA[co,j], #
-	                        adj=c(0.5, 0.5),#
-	                        cex=1.05,srt=SRT)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-SRT=30                   #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.375,0.625)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.175,#
-	     	     PARA[co,j], #
-	                        adj=c(0.5, 0.5),#
-	                        cex=1.05,srt=SRT)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-SRT=45                   #
-plot3(1)
-SRT=48                   #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.25,0.75)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.175,#
-	     	     PARA[co,j], #
-	                        adj=c(0.5, 0.5),#
-	                        cex=1.05,srt=SRT)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=2)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-SRT=48                   #
-plot3(1)
-SRT=40                   #
-plot3(1)
-SRT=35
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.25,0.75)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.175,#
-	     	     PARA[co,j], #
-	                        adj=c(0.5, 0.5),#
-	                        cex=1.05,srt=SRT)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=1.25)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-SRT=35                  #
-plot3(1)
-plot3 = function(row){#
-     par(mfrow=c(1,3),mar = c(0,0,0,0) )#
-     l = 0; r=1#
-     TOP="Mean Ocean\ndepth (Km)"#
-     x=c(0.25,0.75)#
-     mu = c(3.6,4.4)#
-     dy= 1#
-     for(co in 1:3){#
-         plot(x,mu,yaxt="n", xlim=c(0,1),ylim=c(-0.2,ceiling(mu[2])))#
-	     text( l,U,PARA,adj=c(0.5,0),cex=2)#
-	     for( y in seq(0,ceiling(mu[2]),dy)){#
-	     	segments(x[1], y, x[2],y, col="lightblue")#
-	     	text(x[1]-0.015, y,toString(y), adj=c(1,0.5))#
-	     	text(x[2]+0.015, y,toString(y), adj=c(0,0.5))#
-	     } #
-	     text(0.5,1.05*ceiling(mu[2]),TOP,adj=c(0.5,0),cex=1.2,font=2) #
-	     points(x,mu,pch=19,cex=0.75)#
-	     for(j in 1:2){#
-	     	text(x[j]  - 0.00*(j==1) + 0.00*(j==2), #
-	     	     mu[j] - 0.125,#
-	     	     PARA[co,j], #
-	                        adj=c(0.5, 0.5),#
-	                        cex=1.05,srt=SRT)#
-	        text(x[j],-0.15,LABEL[j], adj=c(0.5,1),cex=1.25)#
-	     } #
-	  }#
-}#
-#
-x=c(0.25,0.75)#
-mu = c(3.6,4.4)#
-LABEL=c("North", "South")#
-delta.mu = mu[2]-mu[1]#
-PARA = t(matrix( c( toString(mu[1]), toString(mu[2]),#
-                  toString(mu[1]), #
-                  paste( toString(mu[1]), " + ", toString(delta.mu),sep=""),#
-        rep(paste(toString(mu[1])," + ",toString(delta.mu)," if South",sep=""),2)#
-                  ),2,3) ) #
-SRT=35                  #
-plot3(1)
-demo(plotmath)
-plot(1:10)
-?print
-density = c(#
-5.50, 5.61, 4.88, 5.07, 5.26, 5.55, 5.36, 5.29, 5.58, 5.65,#
-5.57, 5.53, 5.62, 5.29, 5.44, 5.34, 5.79, 5.10, 5.27, 5.39,#
-5.42, 5.47, 5.63, 5.34, 5.46, 5.30, 5.75, 5.68, 5.85)#
-#
-round(mean(density),2)#
-#
-lm.fit =  lm(density ~ 1)#
-print(summary(lm.fit),digits=1)
-library(mosaic)
-bootstrap.means <- do(500) * lm( resample(density) ~1)
-bootstrap.means
-bootstrap.means <- do(1000) * lm( resample(density) ~1)
-confint(bootstrap.means)
-bootstrap.fits <- do(1000) * lm( resample(density) ~1)
-confint(bootstrap.fits$Intercept)
-round(confint(bootstrap.fits$Intercept),2)
-round(sd(bootstrap.fits$Intercept),2)
-print(summary(lm.fit),digits=1)
-?confint
-fit <- lm(100/mpg ~ disp + hp + wt + am, data = mtcars)#
-confint(fit)#
-confint(fit, "wt")
-possible.n = c(1,2,3,4,8)#
-Errors =list(e2 = c(-1,1) ,    #
-             e3 = sqrt(3/2)*c(-1,0,1), #
-             e4 = sqrt(1/2)*c(-1,0,0,1)#
-             )#
-max.e = max()*max(abs(unlist(Errors))
-possible.n = c(1,2,3,4,8)#
-Errors =list(e2 = c(-1,1) ,    #
-             e3 = sqrt(3/2)*c(-1,0,1), #
-             e4 = sqrt(1/2)*c(-1,0,0,1)#
-             )#
-max.e = max(possible.n)*max(abs(unlist(Errors))
-possible.n = c(1,2,3,4,8)#
-Errors =list(e2 = c(-1,1) ,    #
-             e3 = sqrt(3/2)*c(-1,0,1), #
-             e4 = sqrt(1/2)*c(-1,0,0,1)#
-             )
-max(possible.n)
-max(abs(unlist(Errors))
-max.e = max(possible.n) * max(abs(unlist(Errors)))
-max.e
-max.e = max(possible.n) * max(abs(unlist(Errors)))
-max.e
-possible.n = c(1,2,3,4,8)#
-Errors =list(e2 = c(-1,1) ,    #
-             e3 = sqrt(3/2)*c(-1,0,1), #
-             e4 = sqrt(1/2)*c(-1,0,0,1)#
-             )#
-#
-n.sampled.possibilities = 10000#
-#
-nr = length(possible.n)#
-nc = length(Errors)#
-par(mfrow=c(nr,nc),mar = c(1,1,1,1) )#
-#
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(100,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = max(possible.n) * max(abs(unlist(errors)))#
-#
-    XLIM=100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=XLIM,#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in XLIM[1]:XLIM[2] ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-nc = length(Errors)#
-par(mfrow=c(nr,nc),mar = c(1,1,1,1) )#
-#
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(100,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 10#
-#
-    XLIM=100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=XLIM,#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in XLIM[1]:XLIM[2] ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-nr = length(possible.n)#
-nc = length(Errors)#
-par(mfrow=c(nr,nc),mar = c(1,1,1,1) )#
-#
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(100,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 10#
-#
-    XLIM=100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=XLIM,#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in seq(XLIM[1]mXLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(100,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 10#
-#
-    XLIM=100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=XLIM,#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(100,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=XLIM,#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=XLIM,#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e-8,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=XLIM,#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
 for(r in 1:nr){#
   for(c in 1:nc){#
     errors = Errors[[c]]#
@@ -1802,10 +801,8 @@ rep(apply(Freq,2,sum), dim(Freq)[1])
 rep(apply(Freq,2,sum), each=dim(Freq)[1])
 matrix( rep(apply(Freq,2,sum), each=dim(Freq)[1]) ,dim(Freq)[1],dim(Freq)[2])
 Freq / totals
-Freq / totals
 Freq = Freq / totals
 Freq
-Proportions = Freq / totals
 Proportions = Freq / totals
 str(Proportions)
 apply(Proportions,2,sum)
@@ -1861,7 +858,6 @@ n.each = apply(Freq,2,sum)
 p.each = n.each / sum(n.each)
 p.each
 no.of.sims
-s1 = rbinom(1,no.of.sims,prob=p.each[1])
 s1 = rbinom(1,no.of.sims,prob=p.each[1])
 s1
 Proportions[,1]
@@ -1966,3 +962,124 @@ for (n in sample.sizes ){        # loop over the various sample sizes#
        adj=c(1,1),cex=1.25)#
    } #
 }
+getwd()
+setwd("/Users/jameshanley/git_repos/statbook/Resources")
+ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv")
+str(ds)
+ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv",#
+             as.is=TRUE)#
+str(ds)
+summary(ds)
+ds=ds[ds$Month==12,]
+str(ds)
+ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv",#
+             as.is=TRUE)#
+str(ds) #
+summary(ds)#
+#
+ds=ds[ds$Month==12,c("Mean.Max.Temp...C.") ]
+summary(ds)
+ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv",#
+             as.is=TRUE)#
+str(ds) #
+summary(ds)#
+#
+ds=ds[ds$Month==12,c("Mean.Max.Temp...C.",#
+                     "Mean.Min.Temp...C.",#
+                     "Mean.Temp...C.") ]
+ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv",#
+             as.is=TRUE)#
+str(ds) #
+summary(ds)#
+#
+ds=ds[ds$Month==12,c("Year",#
+                      "Mean.Max.Temp...C.",#
+                     "Mean.Min.Temp...C.",#
+                     "Mean.Temp...C.") ]
+ds
+ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv",#
+             as.is=TRUE)#
+str(ds) #
+summary(ds)#
+#
+ds=ds[ds$Month==12 & !is.na(ds$Mean.Temp...C.),c("Year",#
+                      "Mean.Max.Temp...C.",#
+                     "Mean.Min.Temp...C.",#
+                     "Mean.Temp...C.") ]
+ds
+summary(ds)
+dim(ds)
+plot(ds$Year,ds$Mean.Temp...C.")
+plot(ds$Year,ds$Mean.Temp...C.)
+plot(ds$Year,ds$Mean.Temp...C.)
+ds$Mean.Temp...C.
+ds=ds[ds$Month==12 & !is.na(ds$Mean.Temp...C.),c("Year",#
+                      "Mean.Max.Temp...C.",#
+                     "Mean.Min.Temp...C.",#
+                     "Mean.Temp...C.") ]#
+dim(ds)#
+summary(ds)#
+plot(ds$Year,ds$Mean.Temp...C.)
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,0))
+points(ds$Year,Mean.Min.Temp...C.)
+summary(ds)#
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10))#
+points(ds$Year,Mean.Min.Temp...C.)
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10))#
+points(ds$Year,Mean.Min.Temp...C.,pch=19)
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10))#
+points(ds$Year,ds$Mean.Min.Temp...C.,pch=19)
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10),cex=0.5)#
+points(ds$Year,ds$Mean.Min.Temp...C.,pch=19,cex=0.5)
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10),cex=0.5,type="l")
+dim(ds)#
+summary(ds)#
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10))#
+lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10),type="l")#
+lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)
+summary(ds)#
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10),type="l")#
+lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)#
+lines(ds$Year,ds$Mean.Max.Temp...C.,pch=19)
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,5),type="l")#
+lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)#
+lines(ds$Year,ds$Mean.Max.Temp...C.,pch=19)
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-21,5),type="l")
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,5),type="l")
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,5),type="l")#
+lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)#
+lines(ds$Year,ds$Mean.Max.Temp...C.,pch=19)
+abline(h=25)
+abline(h=-25)
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,5),type="l")#
+lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)#
+lines(ds$Year,ds$Mean.Max.Temp...C.,pch=19)#
+abline(h = seq(-25,5,5))
+summary(ds)#
+plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,5),type="l")#
+lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)#
+lines(ds$Year,ds$Mean.Max.Temp...C.,pch=19)#
+abline(h = seq(-25,5,5),lwd=0.5,col="blue")
+summary( lm(ds$Mean.Temp...C. ~ ds$Year))
+summary( lm(ds$Mean.Temp...C. ~ ds$Year-mean(ds$Year)))
+ds$Year.c = ds$Year-mean(ds$Year)
+summary( lm(ds$Mean.Temp...C. ~ ds$Year.c))
+sd(ds$Mean.Temp...C.)
+mean(ds$Mean.Temp...C.)
+cor(ds)
+covar(ds)
+cov(ds)
+cov(ds[,2:4])
+V = cov(ds[,2:4])
+str(V)
+V[1,1]/4 + V[2,2]/4
+cor(ds[,2:4])
+cor(ds[,2:3])
+( V = cov(ds[,2:4]) )
+( V = cov(ds[,2:4]) )
+mean(ds$Mean.Temp...C.)
+sd(ds$Mean.Temp...C.)
+9*3/7
+9*3/5
+summary(ds)
