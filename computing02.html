@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-03-21" />
+<meta name="date" content="2020-03-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -190,7 +190,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="14.2.3" data-path="computing02.html"><a href="computing02.html#example-2"><i class="fa fa-check"></i><b>14.2.3</b> Example 2</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="computing02.html"><a href="computing02.html#when-these-laws-dont-apply"><i class="fa fa-check"></i><b>14.3</b> When these Laws don’t apply</a></li>
-<li class="chapter" data-level="14.4" data-path="computing02.html"><a href="computing02.html#summary-1"><i class="fa fa-check"></i><b>14.4</b> SUMMARY</a></li>
+<li class="chapter" data-level="14.4" data-path="computing02.html"><a href="computing02.html#summary-1"><i class="fa fa-check"></i><b>14.4</b> SUMMARY</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="computing02.html"><a href="computing02.html#computing"><i class="fa fa-check"></i><b>14.4.1</b> Computing</a></li>
+<li class="chapter" data-level="14.4.2" data-path="computing02.html"><a href="computing02.html#statistical-concepts-and-principles"><i class="fa fa-check"></i><b>14.4.2</b> Statistical Concepts and Principles</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="computing03.html"><a href="computing03.html"><i class="fa fa-check"></i><b>15</b> Computing Week3</a><ul>
 <li class="chapter" data-level="15.1" data-path="computing03.html"><a href="computing03.html#ages-of-books"><i class="fa fa-check"></i><b>15.1</b> Ages of books</a></li>
@@ -253,41 +256,47 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The <strong>‘statistical’ objectives</strong> of this exercise are to</p>
 <ul>
 <li><p>be introduced to parameters that measure the spread of the distribution of a random variable, whether it be an error distribution, or a biological one.</p></li>
-<li><p>learn (empirically) the statistical laws that govern how the spread of a linear combination (e.g, the sum, or the mean) of several (generically, <span class="math inline">\(n\)</span>) independent random variates is related to the spread of the individual random variables.</p></li>
+<li><p>learn (empirically, and heuristically) the statistical laws that govern how the spread of a linear combination (e.g, the sum, or the mean) of several (generically, <span class="math inline">\(n\)</span>) independent random variates is related to the spread of the individual random variables.</p></li>
 </ul>
-<p>The ultimate objective is to be able to use these laws to help investigators, such as Henry Cavendish, to (probabilistically) quantify ‘how far off’ their parameter estimates might be.</p>
+<p>The ultimate objective is to be able to use these laws to help investigators, such as Henry Cavendish [see below], to (probabilistically) quantify ‘how far off’ their parameter estimates might be.</p>
 <div id="scientific-background" class="section level2">
 <h2><span class="header-section-number">14.1</span> Scientific background</h2>
 <blockquote>
 <p>In Isaac Newton’s Principia, Book III, The System of the World, Proposition 10, Theorem 10 we read: ‘If the earth were not denser than the seas, it would emerge from those seas and, according to the degree of its lightness, a part of the earth would stand out from the water, while all those seas flowed to the opposite side. By the same argument the spots on the sun are lighter than the solar shining matter on top of which they float. And in whatever way the planets were formed, at the time when the mass was fluid, all heavier matter made for the centre, away from the water. Accordingly, since the ordinary matter of our earth at its surface is about twice as heavy as water, and a little lower down, in mines, is found to be about three or four or even five times heavier than water, it is likely that the <strong>total amount of matter in the earth is about five to six times greater than it would be if the whole earth consisted of water</strong>, especially since it has already been shown above that the earth is about four times denser than Jupiter.’<br />
     The fact that the average of Newton’s ‘five or six’ is very close to today’s value of the mean relative density of the Earth shows just how prescient he was. The mean density of the Earth was an extremely important quantity in early Renaissance science as it provided a strong clue as to planetary composition.</p>
 </blockquote>
-<p>Some of words above are taken from this article by <a href="http://www.biostat.mcgill.ca/hanley/statbook/DensityOfEarth.pdf">astronomer David Hughes</a>. Table 2 in the article shows ‘Values suggested for the mean density of the Earth, as a function of the date of publication’ starts with Newton’s 1687 guesstimate, and ends, (23 estimates later) with Heyl and Chrzanowski’s 1942 value. Five of the 24 estimates are accompanied by a <span class="math inline">\(\pm\)</span> value, but what this values signifies is left unexplained. One of the 24s is Cavendish’s 1798 estimate, which he obtained by taking the mean of 29 density measurements derived using a torsion balance on 17 days in the months of August and September, and the following April and May. Cavendish’s ‘point estimate’ was 5.48. Since his’extreme results do not differ from the mean by more than 0.38,or <span class="math inline">\(\frac{1}{14}\)</span> of the whole’ […] Therefore, it seems very unlikely that the density of the earth should differ from the 5.48 by so much as <span class="math inline">\(\frac{1}{14}\)</span> of the whole.’</p>
-<p>Here we have an effort, by no less than Isaac Newton, to give a numerical interval within which the true parameter value is likely to lie. Cavendish it seems very unlikely that the density of the earth should differ from the 5.48 by so much as <span class="math inline">\(\frac{1}{14}\)</span> of the whole.‘bounds on the amounts by which the ’likely’</p>
+<p>Some of words above are taken from this article by <a href="http://www.biostat.mcgill.ca/hanley/statbook/DensityOfEarth.pdf">astronomer David Hughes</a>. Table 2 in the article shows ‘Values suggested for the mean density of the Earth, as a function of the date of publication’ starts with Newton’s 1687 guesstimate, and ends, (23 estimates later) with Heyl and Chrzanowski’s 1942 value. Five of the 24 estimates are accompanied by a <span class="math inline">\(\pm\)</span> value, but what these <span class="math inline">\(\pm\)</span> values signify is left unexplained. One of the 24 is Cavendish’s 1798 estimate, which he obtained by taking the mean of <span class="math inline">\(n =\)</span> 29 density measurements derived using a torsion balance on 17 days in the months of August and September, and the following April and May. Cavendish’s ‘point estimate’ was 5.48. Since his’extreme results do not differ from the mean by more than 0.38,or <span class="math inline">\(\frac{1}{14}\)</span> of the whole’ […] Therefore, it seems very unlikely that the density of the earth should differ from the 5.48 by so much as <span class="math inline">\(\frac{1}{14}\)</span> of the whole.’</p>
+<p>Here we have an effort, by no less than Isaac Newton, to give a <strong>numerical interval</strong> within which the true parameter value is <strong>likely</strong> to lie. To Cavendish, it seems <strong>very unlikely</strong> that the density of the earth should differ from the 5.48 by so much as <span class="math inline">\(\frac{1}{14}\)</span> of the whole.’ Our objective is to learn the statistical laws and tools, unknown in their time, to statistically quantify how far off the mark our modern statistical estimators are (un)likely to be – and to tighten Cavendish’s lower and upper bounds!</p>
 </div>
 <div id="random-variation" class="section level2">
 <h2><span class="header-section-number">14.2</span> Random Variation</h2>
 <div id="measurement-errors" class="section level3">
 <h3><span class="header-section-number">14.2.1</span> Measurement errors</h3>
-<p>The ‘standard’ has since been replaced by fancier methods, but for now let’s imagine that every family in the world make their own independent physical copy (using say string or paper or cardboard) of the official <a href="https://en.wikipedia.org/wiki/History_of_the_metre">1 meter</a> platimun bar that used to be stored in Paris. Suppose these copies had a measurement error of either +1 centimeter or -1 centimeter (with plus errors and minus errors being equally likely). Thus, these errors, or ‘deviations’ from the 100cm, average out to 0. Each squared deviation is 1, so the mean squared deviation (called the error <strong>variance</strong>) is also 1. Its square root, also 1 in this instance, is called the <strong>standard deviation</strong> of the errors, or <span class="math inline">\(\sigma_{e}\)</span> for short.</p>
+<p>The ‘standard’ has since been replaced by fancier methods, but for now let’s imagine that every family in the world make their own independent physical copy (using say a length of string or a paper or cardboard strip) of the official <a href="https://en.wikipedia.org/wiki/History_of_the_metre">1 meter</a> platimun bar that used to be stored in Paris. Suppose these copies had a measurement error of either +1 centimeter or -1 centimeter (with plus errors and minus errors being equally likely). Thus, these errors, or ‘deviations’ from the 100cm, average out to 0. Each squared deviation is 1, so the mean squared deviation (called the error <strong>variance</strong>) is also 1. Its square root, also 1 in this instance, is called the <strong>standard deviation</strong> of the errors, or <span class="math inline">\(\sigma_{e}\)</span> for short.</p>
 <p><strong>Now imagine taking a random sample of <span class="math inline">\(n\)</span> of these copies, and computing the sum and the mean of the <span class="math inline">\(n\)</span> lengths.</strong></p>
-<p>Although it is possible to mathematically enumerate/calculate the exact probalities that the sum or mean takes on the various possible values, we will instead use <code>R</code> to approximate the probabilities by simulation. The probabilities in the following Figure are based on large enough numbers of simulations that – while they don’t show the <em>perfect</em> symmetry they would exhibit if we worked them out mathematically – they give quite close approximations.</p>
-<p>The uppermost panel in the following figure shows the probability of obtaining various sums and various sample means.</p>
+<p>Although it is possible to mathematically enumerate/calculate the exact probalities that the sum or mean of the lengths of the <span class="math inline">\(n\)</span> copies takes on the various possible values, we will instead use <code>R</code> to approximate the probabilities by simulation. The probabilities in the following Figure are based on large enough numbers of simulations that – while they don’t show the <em>perfect</em> symmetry they would exhibit if we worked them out mathematically – they give quite close approximations.</p>
+<p>The panels in the following figure shows the probability of obtaining various possible sums and various possible sample means. Clearly, the patterns of the probabilities are strong functions of <span class="math inline">\(n.\)</span></p>
 <p><img src="statbook_files/figure-html/unnamed-chunk-10-1.png" width="864" style="display: block; margin: auto;" /></p>
-<p>Instead of a 2-point error distribution, the next Figure shows how variable the sample totals and sample means would be if the errors were distributed as in the first row below. There, a quarter of the measurements have errors of +<span class="math inline">\(\sqrt{2} \approx\)</span> +1.4cm, half have no error, and a quarter have errors of -<span class="math inline">\(\sqrt{2} \approx\)</span> -1.4cm. Thus the error variance, the average of the squared deviations, is <span class="math display">\[\sigma_e^2 = \frac{1}{4} \times (-1.4)^2  +  \frac{1}{2} \times (0)^2 +  \frac{1}{4} \times (1.4)^2 = 1,\]</span> so that the standard deviation is again <span class="math inline">\(\sigma_e = 1.\)</span></p>
-<p>The row- (n-) specific distributions in the two Figures are not exactly the same. For example, the possible means in samples of size <span class="math inline">\(n\)</span> = 2 have a 3-point distribution in the first one, but a 5-point distribution in the second one. But, as you will be asked to verify in the exercises below, the row-specific variances ate the same in the two figures.</p>
+<p>Instead of a 2-point error distribution, the next Figure shows how variable the sample totals and sample means would be if the errors were distributed a bit differently, as in the first row below. There, a quarter of the measurements have errors of +<span class="math inline">\(\sqrt{2} \approx\)</span> +1.4cm, half have no error, and a quarter have errors of -<span class="math inline">\(\sqrt{2} \approx\)</span> -1.4cm. Thus the error variance, the average of the squared deviations, is <span class="math display">\[\sigma_e^2 = \frac{1}{4} \times (-1.4)^2  +  \frac{1}{2} \times (0)^2 +  \frac{1}{4} \times (1.4)^2 = 1,\]</span> so that the standard deviation is again <span class="math inline">\(\sigma_e = 1.\)</span></p>
+<p>The row- (i.e., n-) specific distributions in the two Figures are not exactly the same. For example, the possible means in samples of size <span class="math inline">\(n\)</span> = 2 have a 3-point distribution in the first one, but a 5-point distribution in the second one. But, as you will be asked to verify in the exercises below, the row-specific variances are the same in the two figures.</p>
 <p><img src="statbook_files/figure-html/unnamed-chunk-11-1.png" width="864" style="display: block; margin: auto;" /></p>
-<p>More important than this are the statistical laws governing how widely the sums (and the means) deviate from the 100cm. Clearly, the possible <strong>sums</strong> of 5 copies have a <strong>wider</strong> spread than the possible sums of 2, and the sums of 10 a wider spread than the sums of 5. Conversely, the <strong>means</strong> of 5 copies have a <strong>narrower</strong> spread than the means of 2, and the means of 10 a narrower spread than the means of 5.</p>
-<p>**Instead of just telling you what the laws are, we ask you to use <code>R</code> to discover them yourself.</p>
+<p>More important than this are the statistical laws governing how widely the sums deviate from <span class="math inline">\(\mu_{sum}\)</span> = <span class="math inline">\(n \times\)</span> 100cm, and the means deviate from <span class="math inline">\(\mu\)</span> = 100cm. Clearly, the possible <strong>sums</strong> of 5 copies have a <strong>wider</strong> spread than the possible sums of 2, and the sums of 10 a wider spread than the sums of 5. Conversely, the <strong>means</strong> of 5 copies have a <strong>narrower</strong> spread than the means of 2, and the means of 10 a narrower spread than the means of 5.</p>
+<p><strong>Instead of just telling you what the laws are, we ask you to use <code>R</code> to discover them yourself.</strong></p>
 <div id="discovering-the-laws-via-this-computing-exercise" class="section level4">
 <h4><span class="header-section-number">14.2.1.1</span> Discovering the Laws [via this computing exercise]</h4>
 <ol style="list-style-type: decimal">
 <li><p>Put the two (equally likely) errors (or deviations), i.e., -1cm and +1cm, into an <code>R</code> vector of length 2. [By the way, <code>c(a,b)</code> in <code>R</code> means <strong>c</strong>oncatenate <code>a</code> and <code>b</code> into a vector.] Then, make a new vector containing the squares of these deviations. [you can use <code>vector * vector</code> or <code>vector^2</code>]. Then use the built-in <code>R</code> function <code>mean</code> to compute the mean squared deviation. Although it is not needed in this case, use the <code>round</code> function to display the average squared deviation to a suitable number of decimals. Since what you have computed is a <code>variance', use</code>this<code>variance</code> (or better still, <code>error.variance</code> as the name for the mean squared deviation. Finally, check by hand that the calculation is correct.</p></li>
 <li><p>Use the <code>sqrt()</code> function (or the <code>^0.5</code> power) to compute the standard deviation of the errors.</p></li>
-<li><p>Change the errors from -1cm and +1cm to say -5cm and +5cm, and repeat steps 1 and 2. From this, what did you learn about the variance and the standard deviation?</p></li>
+<li><p>Change the errors from -1cm and +1cm to say -5cm and +5cm, and repeat steps 1 and 2. From this, what did you learn about the laws goverming variances and standard deviations?</p></li>
 <li><p>Add the errors onto 100cm to make 2 measurements (imperfect copies) of the meter bar, and calculate the mean, variance and standard deviation of the 2 measurements. From this, and by varying the sizes of the 2 errors, what did you learn about the mean the variance and the standard deviation of a shifted (re-located) random variable? {Hint: be careful to use your own variance and standard deviation functions, not the inbuilt <code>var</code> and <code>sd</code> functions. The reason is that whereas we say there are just 2 errors, in reality there are as many as there are copiers – effectively an infinite number, about half of whom will make an error of +1cm, and about half of whome will an error of -1cm. Or you can say that the probabilities of errors of -1cm and +1cm are 0.5, and 0.5.</p></li>
 <li><p>Change the -1cm and +1cm errors to -10mm and +10mm, and tepeat steps 1 and 2. What did you learn?</p></li>
-<li><p>In order to see the laws in action, and figure them out (with the aid of the <code>R</code> <strong>code below</strong>)</p></li>
+<li><p>If Montreal’s mean January temperature was -10C, and the standard deviation was</p></li>
+</ol>
+<p>Over 68 years with records years from 1928 to 2004 St Hubert -6.6 C and sd was 2.9</p>
+<pre><code>              Mean.Max.Temp...C. Mean.Min.Temp...C. Mean.Temp...C.</code></pre>
+<p>Mean.Max.Temp…C. 7.417654 7.924109 7.684844 Mean.Min.Temp…C. 7.924109 10.276646 9.113090 Mean.Temp…C. 7.684844 9.113090 8.413088</p>
+<ol start="7" style="list-style-type: decimal">
+<li>In order to see the laws in action, and figure them out (with the aid of the <code>R</code> <strong>code below</strong>)</li>
 </ol>
 <ul>
 <li><p>Begin with many simulated random <strong>pairs</strong> of measurements of (possibly imperfect copies) of the meter bar. For example, you might specify <code>no.of.pairs = 10000</code>.</p>
@@ -596,6 +605,28 @@ sample.sizes =<span class="st"> </span><span class="kw">c</span>(<span class="dv
 </div>
 <div id="summary-1" class="section level2">
 <h2><span class="header-section-number">14.4</span> SUMMARY</h2>
+<div id="computing" class="section level3">
+<h3><span class="header-section-number">14.4.1</span> Computing</h3>
+<ul>
+<li><p>Assigning values to objects via <code>&lt;-</code> or <code>=</code></p></li>
+<li><p>Putting numbers (or character strings) into vectors via concatenation <code>c( , , )</code></p></li>
+<li><p>Putting repeated values into vectors via the <code>rep()</code> function</p></li>
+<li><p>Looking at the first <code>n</code> and the last <code>n</code> elements of an object via <code>head(object,n)</code> and <code>tail(object)</code> – if you omit the <code>n</code>, it defaults to 6</p></li>
+<li><p>Making a new numerical value or vector of numerical values from existing ones via, e.g. via <code>+</code> , <code>*</code> ( multiplication), <code>^ power</code> etc.</p></li>
+<li><p>Using built-in functions, such as <code>mean()</code>, <code>sum()</code>, <code>sd()</code> and <code>var()</code>, that operate on vectors, or on single numbers (or ‘element-wise’ on vectors), such as <code>round()</code> and <code>sqrt()</code></p></li>
+<li><p>Making numerical arrays using the <code>matrix</code> function</p></li>
+<li><p>Taking values at random from a vector via <code>sample()</code></p></li>
+<li><p>Using <code>str(object)</code> to see the **str*ucture of an object</p></li>
+<li><p>Using <code>apply(object, MARGIN = , FUN = )</code> to apply a function to the spefified margins (1=rows,2=cols) of an matrix or of a (possibly higher-dimensional) array.</p></li>
+<li><p>Using <code>table</code> to create a vector, matrix or array of the frequencies (cell counts) corresponding to a single variable, or combination of variables</p></li>
+<li><p>Using <code>plot(x,y)</code> to plot an ‘x’ vector versus a ‘y’ vector. <code>lines(),</code>points()<code>and</code>text()` can be added to an existing plot.</p></li>
+<li><p>A graphic can be split into a 2-way grid of panels by using a vector of the form <code>c(nr, nc)</code> as the input to <code>mfrow</code> or <code>mfcol</code> in the <code>par</code> statement.</p></li>
+<li><p>The bottom, left, upper, and right margins can be set using the <code>mar</code> parameter</p></li>
+<li><p>Consider a Gaussian distribution with a specified mean.value and standard deviation sd.value. Then the proportion of the distrution to that lies ot the left of a specified value <code>q</code> is given by the inbuilt <code>R</code> function <code>pnorm(q, mean = mean.value, sd = sd.value)</code>. For example, if in a certain population IQ has a Gaussian distribution with a mean of 100, and a sd of 15, then using this <code>R</code> expression <code>round( 100*pnorm(110, mean = 100, sd = 15) , 1 )</code> we can determine that 74.8 percent of the distribution would be below 110, and thus that 25.2 percent would be below 90. The middle 50% could be calculated using this expression <code>round( 100*qnorm(c(1/4,3/4), mean = 100, sd = 15) , 1 )</code> to give 89.9, 110.1</p></li>
+</ul>
+</div>
+<div id="statistical-concepts-and-principles" class="section level3">
+<h3><span class="header-section-number">14.4.2</span> Statistical Concepts and Principles</h3>
 <ul>
 <li>Definition of the Standard Deviation <span class="math inline">\(\sigma,\)</span> (and its square, the ‘Variance’, <span class="math inline">\(\sigma^2\)</span>, of a random variable <span class="math inline">\(Y\)</span> with mean <span class="math inline">\(\mu\)</span>.</li>
 </ul>
@@ -615,6 +646,7 @@ sample.sizes =<span class="st"> </span><span class="kw">c</span>(<span class="dv
 <li><p><strong>The SHAPES</strong> of the <strong>sampling distributions of the sums and means</strong> of <span class="math inline">\(n\)</span> <em>independent</em> random variables become more ‘Gaussian-looking’ with larger <span class="math inline">\(n.\)</span></p></li>
 </ul>
 
+</div>
 </div>
 </div>
             </section>
