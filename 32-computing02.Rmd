@@ -126,15 +126,8 @@ More important than this are the statistical laws governing how widely the sums 
 
 5. Change the -1cm and +1cm errors to -10mm and +10mm, and tepeat steps 1 and 2. What did you learn? 
 
-6. If Montreal's mean  January  temperature was -10C, and the standard deviation was  
+6. (In passing: At St Hubert airport on Montreal's South Shore from 1928 to 2004, over the 68 years where records were kept, the mean  temperature for the month of January was recorded. The mean of these 68 values was -6.6 degrees Celsius (C) and the standard deviation was 2.9 degrees Celsius. Convert these to degrees F [Hint: $F = 32 + (9/5) \times C$])
 
-Over 68 years with records  years from 1928 to 2004
-St Hubert -6.6 C and sd was 2.9
-
-                  Mean.Max.Temp...C. Mean.Min.Temp...C. Mean.Temp...C.
-Mean.Max.Temp...C.           7.417654           7.924109       7.684844
-Mean.Min.Temp...C.           7.924109          10.276646       9.113090
-Mean.Temp...C.               7.684844           9.113090       8.413088
 
 7. In order to see the laws in action, and figure them out (with the aid of the `R` **code below**)
 
