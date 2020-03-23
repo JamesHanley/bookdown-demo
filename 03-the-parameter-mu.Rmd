@@ -1,4 +1,4 @@
-# The 'mean' parameter {#paraMu}
+# The 'mean' parameter $\mu$ {#paraMu}
 
 [and other location (and spread and shape) parameters]
 
