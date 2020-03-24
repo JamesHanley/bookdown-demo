@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 The ‘mean’ parameter \(\mu\) | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
+  <title>Chapter 4 The ‘mean’ parameter \(\mu\) | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
   <meta name="description" content="A regression-from-the-outset based approach" />
   <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 The ‘mean’ parameter \(\mu\) | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta property="og:title" content="Chapter 4 The ‘mean’ parameter \(\mu\) | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 The ‘mean’ parameter \(\mu\) | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta name="twitter:title" content="Chapter 4 The ‘mean’ parameter \(\mu\) | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   
   <meta name="twitter:description" content="A regression-from-the-outset based approach" />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-03-23" />
+<meta name="date" content="2020-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="paras.html"/>
+<link rel="prev" href="CI.html"/>
 <link rel="next" href="paraPi.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -133,99 +133,100 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="paras.html"><a href="paras.html#exercises"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
 <li class="chapter" data-level="2.7" data-path="paras.html"><a href="paras.html#references"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="paraMu.html"><a href="paraMu.html"><i class="fa fa-check"></i><b>3</b> The ‘mean’ parameter <span class="math inline">\(\mu\)</span></a><ul>
-<li class="chapter" data-level="3.1" data-path="paraMu.html"><a href="paraMu.html#two-genres"><i class="fa fa-check"></i><b>3.1</b> Two genres</a></li>
-<li class="chapter" data-level="3.2" data-path="paraMu.html"><a href="paraMu.html#fitting-these-to-data-estimating-them-from-data"><i class="fa fa-check"></i><b>3.2</b> Fitting these to data / Estimating them from data</a></li>
+<li class="chapter" data-level="3" data-path="CI.html"><a href="CI.html"><i class="fa fa-check"></i><b>3</b> Interval Estimates</a></li>
+<li class="chapter" data-level="4" data-path="paraMu.html"><a href="paraMu.html"><i class="fa fa-check"></i><b>4</b> The ‘mean’ parameter <span class="math inline">\(\mu\)</span></a><ul>
+<li class="chapter" data-level="4.1" data-path="paraMu.html"><a href="paraMu.html#two-genres"><i class="fa fa-check"></i><b>4.1</b> Two genres</a></li>
+<li class="chapter" data-level="4.2" data-path="paraMu.html"><a href="paraMu.html#fitting-these-to-data-estimating-them-from-data"><i class="fa fa-check"></i><b>4.2</b> Fitting these to data / Estimating them from data</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="paraPi.html"><a href="paraPi.html"><i class="fa fa-check"></i><b>4</b> The (proportion) parameter</a><ul>
-<li class="chapter" data-level="4.1" data-path="paraPi.html"><a href="paraPi.html#example-one"><i class="fa fa-check"></i><b>4.1</b> Example one</a></li>
-<li class="chapter" data-level="4.2" data-path="paraPi.html"><a href="paraPi.html#example-two"><i class="fa fa-check"></i><b>4.2</b> Example two</a></li>
+<li class="chapter" data-level="5" data-path="paraPi.html"><a href="paraPi.html"><i class="fa fa-check"></i><b>5</b> The (proportion) parameter</a><ul>
+<li class="chapter" data-level="5.1" data-path="paraPi.html"><a href="paraPi.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
+<li class="chapter" data-level="5.2" data-path="paraPi.html"><a href="paraPi.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="paraLambda.html"><a href="paraLambda.html"><i class="fa fa-check"></i><b>5</b> The (event rate) parameter</a><ul>
-<li class="chapter" data-level="5.1" data-path="paraLambda.html"><a href="paraLambda.html#etc"><i class="fa fa-check"></i><b>5.1</b> Etc</a></li>
-<li class="chapter" data-level="5.2" data-path="paraLambda.html"><a href="paraLambda.html#etc-1"><i class="fa fa-check"></i><b>5.2</b> ETC</a></li>
+<li class="chapter" data-level="6" data-path="paraLambda.html"><a href="paraLambda.html"><i class="fa fa-check"></i><b>6</b> The (event rate) parameter</a><ul>
+<li class="chapter" data-level="6.1" data-path="paraLambda.html"><a href="paraLambda.html#etc"><i class="fa fa-check"></i><b>6.1</b> Etc</a></li>
+<li class="chapter" data-level="6.2" data-path="paraLambda.html"><a href="paraLambda.html#etc-1"><i class="fa fa-check"></i><b>6.2</b> ETC</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="contrast2Muparas.html"><a href="contrast2Muparas.html"><i class="fa fa-check"></i><b>6</b> Contrast: 2 mean parameters</a><ul>
-<li class="chapter" data-level="6.1" data-path="contrast2Muparas.html"><a href="contrast2Muparas.html#estimand-estimator-estimate"><i class="fa fa-check"></i><b>6.1</b> Estimand, estimator, estimate</a></li>
+<li class="chapter" data-level="7" data-path="contrast2Muparas.html"><a href="contrast2Muparas.html"><i class="fa fa-check"></i><b>7</b> Contrast: 2 mean parameters</a><ul>
+<li class="chapter" data-level="7.1" data-path="contrast2Muparas.html"><a href="contrast2Muparas.html#estimand-estimator-estimate"><i class="fa fa-check"></i><b>7.1</b> Estimand, estimator, estimate</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="contrast2Piparas.html"><a href="contrast2Piparas.html"><i class="fa fa-check"></i><b>7</b> Contrast: 2 proportion parameters</a><ul>
-<li class="chapter" data-level="7.1" data-path="contrast2Piparas.html"><a href="contrast2Piparas.html#estimand-estimator-estimate-1"><i class="fa fa-check"></i><b>7.1</b> Estimand, estimator, estimate</a></li>
+<li class="chapter" data-level="8" data-path="contrast2Piparas.html"><a href="contrast2Piparas.html"><i class="fa fa-check"></i><b>8</b> Contrast: 2 proportion parameters</a><ul>
+<li class="chapter" data-level="8.1" data-path="contrast2Piparas.html"><a href="contrast2Piparas.html#estimand-estimator-estimate-1"><i class="fa fa-check"></i><b>8.1</b> Estimand, estimator, estimate</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="contrast2Lambdaparas.html"><a href="contrast2Lambdaparas.html"><i class="fa fa-check"></i><b>8</b> Contrast: 2 speed parameters</a><ul>
-<li class="chapter" data-level="8.1" data-path="contrast2Lambdaparas.html"><a href="contrast2Lambdaparas.html#estimand-estimator-estimate-2"><i class="fa fa-check"></i><b>8.1</b> Estimand, estimator, estimate</a></li>
+<li class="chapter" data-level="9" data-path="contrast2Lambdaparas.html"><a href="contrast2Lambdaparas.html"><i class="fa fa-check"></i><b>9</b> Contrast: 2 speed parameters</a><ul>
+<li class="chapter" data-level="9.1" data-path="contrast2Lambdaparas.html"><a href="contrast2Lambdaparas.html#estimand-estimator-estimate-2"><i class="fa fa-check"></i><b>9.1</b> Estimand, estimator, estimate</a></li>
 </ul></li>
 <li class="part"><span><b>II Part II</b></span></li>
-<li class="chapter" data-level="9" data-path="Probability.html"><a href="Probability.html"><i class="fa fa-check"></i><b>9</b> Probability</a><ul>
-<li class="chapter" data-level="9.1" data-path="Probability.html"><a href="Probability.html#conditional-forwards"><i class="fa fa-check"></i><b>9.1</b> Conditional – forwards</a></li>
-<li class="chapter" data-level="9.2" data-path="Probability.html"><a href="Probability.html#conditional-reverse"><i class="fa fa-check"></i><b>9.2</b> Conditional – reverse</a></li>
+<li class="chapter" data-level="10" data-path="Probability.html"><a href="Probability.html"><i class="fa fa-check"></i><b>10</b> Probability</a><ul>
+<li class="chapter" data-level="10.1" data-path="Probability.html"><a href="Probability.html#conditional-forwards"><i class="fa fa-check"></i><b>10.1</b> Conditional – forwards</a></li>
+<li class="chapter" data-level="10.2" data-path="Probability.html"><a href="Probability.html#conditional-reverse"><i class="fa fa-check"></i><b>10.2</b> Conditional – reverse</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="Distributions.html"><a href="Distributions.html"><i class="fa fa-check"></i><b>10</b> Distributions /Random Variables</a><ul>
-<li class="chapter" data-level="10.1" data-path="Distributions.html"><a href="Distributions.html#gaussian-bernoulli-binomial-poisson"><i class="fa fa-check"></i><b>10.1</b> Gaussian Bernoulli-Binomial Poisson</a></li>
-<li class="chapter" data-level="10.2" data-path="Distributions.html"><a href="Distributions.html#expectation-and-variance"><i class="fa fa-check"></i><b>10.2</b> Expectation and Variance</a></li>
-<li class="chapter" data-level="10.3" data-path="Distributions.html"><a href="Distributions.html#functionscombinations-of-random-variables"><i class="fa fa-check"></i><b>10.3</b> Functions/combinations of random variables</a></li>
+<li class="chapter" data-level="11" data-path="Distributions.html"><a href="Distributions.html"><i class="fa fa-check"></i><b>11</b> Distributions /Random Variables</a><ul>
+<li class="chapter" data-level="11.1" data-path="Distributions.html"><a href="Distributions.html#gaussian-bernoulli-binomial-poisson"><i class="fa fa-check"></i><b>11.1</b> Gaussian Bernoulli-Binomial Poisson</a></li>
+<li class="chapter" data-level="11.2" data-path="Distributions.html"><a href="Distributions.html#expectation-and-variance"><i class="fa fa-check"></i><b>11.2</b> Expectation and Variance</a></li>
+<li class="chapter" data-level="11.3" data-path="Distributions.html"><a href="Distributions.html#functionscombinations-of-random-variables"><i class="fa fa-check"></i><b>11.3</b> Functions/combinations of random variables</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>11</b> Statistical Inference</a><ul>
-<li class="chapter" data-level="11.1" data-path="inference.html"><a href="inference.html#schools"><i class="fa fa-check"></i><b>11.1</b> 2 schools</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="inference.html"><a href="inference.html#bayesian"><i class="fa fa-check"></i><b>11.1.1</b> Bayesian</a></li>
-<li class="chapter" data-level="11.1.2" data-path="inference.html"><a href="inference.html#frequentist"><i class="fa fa-check"></i><b>11.1.2</b> Frequentist</a></li>
+<li class="chapter" data-level="12" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>12</b> Statistical Inference</a><ul>
+<li class="chapter" data-level="12.1" data-path="inference.html"><a href="inference.html#schools"><i class="fa fa-check"></i><b>12.1</b> 2 schools</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="inference.html"><a href="inference.html#bayesian"><i class="fa fa-check"></i><b>12.1.1</b> Bayesian</a></li>
+<li class="chapter" data-level="12.1.2" data-path="inference.html"><a href="inference.html#frequentist"><i class="fa fa-check"></i><b>12.1.2</b> Frequentist</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Part III</b></span></li>
-<li class="chapter" data-level="12" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>12</b> Mathematics</a><ul>
-<li class="chapter" data-level="12.1" data-path="math.html"><a href="math.html#notation"><i class="fa fa-check"></i><b>12.1</b> Notation</a></li>
-<li class="chapter" data-level="12.2" data-path="math.html"><a href="math.html#powers-logarithms-and-antilogarithms"><i class="fa fa-check"></i><b>12.2</b> Powers, Logarithms and Anti–logarithms</a></li>
+<li class="chapter" data-level="13" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>13</b> Mathematics</a><ul>
+<li class="chapter" data-level="13.1" data-path="math.html"><a href="math.html#notation"><i class="fa fa-check"></i><b>13.1</b> Notation</a></li>
+<li class="chapter" data-level="13.2" data-path="math.html"><a href="math.html#powers-logarithms-and-antilogarithms"><i class="fa fa-check"></i><b>13.2</b> Powers, Logarithms and Anti–logarithms</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="computing01.html"><a href="computing01.html"><i class="fa fa-check"></i><b>13</b> Computing Session 1</a><ul>
-<li class="chapter" data-level="13.1" data-path="computing01.html"><a href="computing01.html#biological-background"><i class="fa fa-check"></i><b>13.1</b> Biological background</a></li>
-<li class="chapter" data-level="13.2" data-path="computing01.html"><a href="computing01.html#statistical-task"><i class="fa fa-check"></i><b>13.2</b> Statistical Task</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="computing01.html"><a href="computing01.html#the-p-and-q-functions-an-orientation"><i class="fa fa-check"></i><b>13.2.1</b> The p and q functions: an orientation</a></li>
-<li class="chapter" data-level="13.2.2" data-path="computing01.html"><a href="computing01.html#exercises-1"><i class="fa fa-check"></i><b>13.2.2</b> Exercises</a></li>
+<li class="chapter" data-level="14" data-path="computing01.html"><a href="computing01.html"><i class="fa fa-check"></i><b>14</b> Computing Session 1</a><ul>
+<li class="chapter" data-level="14.1" data-path="computing01.html"><a href="computing01.html#biological-background"><i class="fa fa-check"></i><b>14.1</b> Biological background</a></li>
+<li class="chapter" data-level="14.2" data-path="computing01.html"><a href="computing01.html#statistical-task"><i class="fa fa-check"></i><b>14.2</b> Statistical Task</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="computing01.html"><a href="computing01.html#the-p-and-q-functions-an-orientation"><i class="fa fa-check"></i><b>14.2.1</b> The p and q functions: an orientation</a></li>
+<li class="chapter" data-level="14.2.2" data-path="computing01.html"><a href="computing01.html#exercises-1"><i class="fa fa-check"></i><b>14.2.2</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="computing01.html"><a href="computing01.html#summary-1"><i class="fa fa-check"></i><b>13.3</b> SUMMARY</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="computing01.html"><a href="computing01.html#computing"><i class="fa fa-check"></i><b>13.3.1</b> Computing</a></li>
-<li class="chapter" data-level="13.3.2" data-path="computing01.html"><a href="computing01.html#statistical-concepts-and-principles"><i class="fa fa-check"></i><b>13.3.2</b> Statistical Concepts and Principles</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="computing02.html"><a href="computing02.html"><i class="fa fa-check"></i><b>14</b> Computing: Session No. 2</a><ul>
-<li class="chapter" data-level="14.1" data-path="computing02.html"><a href="computing02.html#scientific-background"><i class="fa fa-check"></i><b>14.1</b> Scientific background</a></li>
-<li class="chapter" data-level="14.2" data-path="computing02.html"><a href="computing02.html#random-variation"><i class="fa fa-check"></i><b>14.2</b> Random Variation</a><ul>
-<li class="chapter" data-level="14.2.1" data-path="computing02.html"><a href="computing02.html#measurement-errors"><i class="fa fa-check"></i><b>14.2.1</b> Measurement errors</a></li>
-<li class="chapter" data-level="14.2.2" data-path="computing02.html"><a href="computing02.html#biological-variation"><i class="fa fa-check"></i><b>14.2.2</b> Biological variation</a></li>
-<li class="chapter" data-level="14.2.3" data-path="computing02.html"><a href="computing02.html#example-2"><i class="fa fa-check"></i><b>14.2.3</b> Example 2</a></li>
-</ul></li>
-<li class="chapter" data-level="14.3" data-path="computing02.html"><a href="computing02.html#when-these-laws-dont-apply"><i class="fa fa-check"></i><b>14.3</b> When these Laws don’t apply</a></li>
-<li class="chapter" data-level="14.4" data-path="computing02.html"><a href="computing02.html#summary-2"><i class="fa fa-check"></i><b>14.4</b> SUMMARY</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="computing02.html"><a href="computing02.html#computing-1"><i class="fa fa-check"></i><b>14.4.1</b> Computing</a></li>
-<li class="chapter" data-level="14.4.2" data-path="computing02.html"><a href="computing02.html#statistical-concepts-and-principles-1"><i class="fa fa-check"></i><b>14.4.2</b> Statistical Concepts and Principles</a></li>
+<li class="chapter" data-level="14.3" data-path="computing01.html"><a href="computing01.html#summary-1"><i class="fa fa-check"></i><b>14.3</b> SUMMARY</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="computing01.html"><a href="computing01.html#computing"><i class="fa fa-check"></i><b>14.3.1</b> Computing</a></li>
+<li class="chapter" data-level="14.3.2" data-path="computing01.html"><a href="computing01.html#statistical-concepts-and-principles"><i class="fa fa-check"></i><b>14.3.2</b> Statistical Concepts and Principles</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="computing03.html"><a href="computing03.html"><i class="fa fa-check"></i><b>15</b> Computing Week3</a><ul>
-<li class="chapter" data-level="15.1" data-path="computing03.html"><a href="computing03.html#ages-of-books"><i class="fa fa-check"></i><b>15.1</b> Ages of books</a></li>
-<li class="chapter" data-level="15.2" data-path="computing03.html"><a href="computing03.html#ngrams"><i class="fa fa-check"></i><b>15.2</b> ngrams</a></li>
-<li class="chapter" data-level="15.3" data-path="computing03.html"><a href="computing03.html#ice-breakup-dates"><i class="fa fa-check"></i><b>15.3</b> Ice Breakup Dates</a><ul>
-<li class="chapter" data-level="15.3.1" data-path="computing03.html"><a href="computing03.html#the-2018-book-of-guesses"><i class="fa fa-check"></i><b>15.3.1</b> The 2018 Book of Guesses</a></li>
-<li class="chapter" data-level="15.3.2" data-path="computing03.html"><a href="computing03.html#trends-over-the-last-100-years"><i class="fa fa-check"></i><b>15.3.2</b> Trends over the last 100 years</a></li>
+<li class="chapter" data-level="15" data-path="computing02.html"><a href="computing02.html"><i class="fa fa-check"></i><b>15</b> Computing: Session No. 2</a><ul>
+<li class="chapter" data-level="15.1" data-path="computing02.html"><a href="computing02.html#scientific-background"><i class="fa fa-check"></i><b>15.1</b> Scientific background</a></li>
+<li class="chapter" data-level="15.2" data-path="computing02.html"><a href="computing02.html#random-variation"><i class="fa fa-check"></i><b>15.2</b> Random Variation</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="computing02.html"><a href="computing02.html#measurement-errors"><i class="fa fa-check"></i><b>15.2.1</b> Measurement errors</a></li>
+<li class="chapter" data-level="15.2.2" data-path="computing02.html"><a href="computing02.html#biological-variation"><i class="fa fa-check"></i><b>15.2.2</b> Biological variation</a></li>
+<li class="chapter" data-level="15.2.3" data-path="computing02.html"><a href="computing02.html#example-2"><i class="fa fa-check"></i><b>15.2.3</b> Example 2</a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="computing03.html"><a href="computing03.html#galtons-data-on-family-heights"><i class="fa fa-check"></i><b>15.4</b> Galton’s data on family heights</a></li>
-<li class="chapter" data-level="15.5" data-path="computing03.html"><a href="computing03.html#temperature-perceptions"><i class="fa fa-check"></i><b>15.5</b> Temperature perceptions</a></li>
-<li class="chapter" data-level="15.6" data-path="computing03.html"><a href="computing03.html#natural-history-of-prostate-cancer"><i class="fa fa-check"></i><b>15.6</b> Natural history of prostate cancer</a></li>
-<li class="chapter" data-level="15.7" data-path="computing03.html"><a href="computing03.html#serial-psa-values"><i class="fa fa-check"></i><b>15.7</b> Serial PSA values</a></li>
-<li class="chapter" data-level="15.8" data-path="computing03.html"><a href="computing03.html#graphics"><i class="fa fa-check"></i><b>15.8</b> Graphics</a></li>
-<li class="chapter" data-level="15.9" data-path="computing03.html"><a href="computing03.html#possible-body-mass-indices"><i class="fa fa-check"></i><b>15.9</b> Possible Body Mass Indices</a></li>
-<li class="chapter" data-level="15.10" data-path="computing03.html"><a href="computing03.html#galton"><i class="fa fa-check"></i><b>15.10</b> Galton</a></li>
-<li class="chapter" data-level="15.11" data-path="computing03.html"><a href="computing03.html#epidemics"><i class="fa fa-check"></i><b>15.11</b> Epidemics</a></li>
-<li class="chapter" data-level="15.12" data-path="computing03.html"><a href="computing03.html#duplicate-birthdays"><i class="fa fa-check"></i><b>15.12</b> Duplicate Birthdays</a></li>
-<li class="chapter" data-level="15.13" data-path="computing03.html"><a href="computing03.html#lottery-payoffs"><i class="fa fa-check"></i><b>15.13</b> Lottery payoffs</a></li>
-<li class="chapter" data-level="15.14" data-path="computing03.html"><a href="computing03.html#chevalier-de-méré"><i class="fa fa-check"></i><b>15.14</b> Chevalier de Méré</a></li>
-<li class="chapter" data-level="15.15" data-path="computing03.html"><a href="computing03.html#detecting-a-fake-bernoulli-sequenece"><i class="fa fa-check"></i><b>15.15</b> Detecting a fake Bernoulli sequenece</a></li>
-<li class="chapter" data-level="15.16" data-path="computing03.html"><a href="computing03.html#cell-occupancy"><i class="fa fa-check"></i><b>15.16</b> Cell occupancy</a></li>
-<li class="chapter" data-level="15.17" data-path="computing03.html"><a href="computing03.html#life-tables"><i class="fa fa-check"></i><b>15.17</b> Life Tables</a></li>
-<li class="chapter" data-level="15.18" data-path="computing03.html"><a href="computing03.html#carrier-status-genetics"><i class="fa fa-check"></i><b>15.18</b> Carrier Status (genetics)</a></li>
-<li class="chapter" data-level="15.19" data-path="computing03.html"><a href="computing03.html#diagnostic-and-statistical-tests"><i class="fa fa-check"></i><b>15.19</b> Diagnostic and statistical tests</a></li>
+<li class="chapter" data-level="15.3" data-path="computing02.html"><a href="computing02.html#when-these-laws-dont-apply"><i class="fa fa-check"></i><b>15.3</b> When these Laws don’t apply</a></li>
+<li class="chapter" data-level="15.4" data-path="computing02.html"><a href="computing02.html#summary-2"><i class="fa fa-check"></i><b>15.4</b> SUMMARY</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="computing02.html"><a href="computing02.html#computing-1"><i class="fa fa-check"></i><b>15.4.1</b> Computing</a></li>
+<li class="chapter" data-level="15.4.2" data-path="computing02.html"><a href="computing02.html#statistical-concepts-and-principles-1"><i class="fa fa-check"></i><b>15.4.2</b> Statistical Concepts and Principles</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="dalite.html"><a href="dalite.html"><i class="fa fa-check"></i><b>16</b> DALITE</a><ul>
-<li class="chapter" data-level="16.1" data-path="dalite.html"><a href="dalite.html#aim"><i class="fa fa-check"></i><b>16.1</b> Aim</a></li>
-<li class="chapter" data-level="16.2" data-path="dalite.html"><a href="dalite.html#how-it-works"><i class="fa fa-check"></i><b>16.2</b> How it works</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="computing03.html"><a href="computing03.html"><i class="fa fa-check"></i><b>16</b> Computing Week3</a><ul>
+<li class="chapter" data-level="16.1" data-path="computing03.html"><a href="computing03.html#ages-of-books"><i class="fa fa-check"></i><b>16.1</b> Ages of books</a></li>
+<li class="chapter" data-level="16.2" data-path="computing03.html"><a href="computing03.html#ngrams"><i class="fa fa-check"></i><b>16.2</b> ngrams</a></li>
+<li class="chapter" data-level="16.3" data-path="computing03.html"><a href="computing03.html#ice-breakup-dates"><i class="fa fa-check"></i><b>16.3</b> Ice Breakup Dates</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="computing03.html"><a href="computing03.html#the-2018-book-of-guesses"><i class="fa fa-check"></i><b>16.3.1</b> The 2018 Book of Guesses</a></li>
+<li class="chapter" data-level="16.3.2" data-path="computing03.html"><a href="computing03.html#trends-over-the-last-100-years"><i class="fa fa-check"></i><b>16.3.2</b> Trends over the last 100 years</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="computing03.html"><a href="computing03.html#galtons-data-on-family-heights"><i class="fa fa-check"></i><b>16.4</b> Galton’s data on family heights</a></li>
+<li class="chapter" data-level="16.5" data-path="computing03.html"><a href="computing03.html#temperature-perceptions"><i class="fa fa-check"></i><b>16.5</b> Temperature perceptions</a></li>
+<li class="chapter" data-level="16.6" data-path="computing03.html"><a href="computing03.html#natural-history-of-prostate-cancer"><i class="fa fa-check"></i><b>16.6</b> Natural history of prostate cancer</a></li>
+<li class="chapter" data-level="16.7" data-path="computing03.html"><a href="computing03.html#serial-psa-values"><i class="fa fa-check"></i><b>16.7</b> Serial PSA values</a></li>
+<li class="chapter" data-level="16.8" data-path="computing03.html"><a href="computing03.html#graphics"><i class="fa fa-check"></i><b>16.8</b> Graphics</a></li>
+<li class="chapter" data-level="16.9" data-path="computing03.html"><a href="computing03.html#possible-body-mass-indices"><i class="fa fa-check"></i><b>16.9</b> Possible Body Mass Indices</a></li>
+<li class="chapter" data-level="16.10" data-path="computing03.html"><a href="computing03.html#galton"><i class="fa fa-check"></i><b>16.10</b> Galton</a></li>
+<li class="chapter" data-level="16.11" data-path="computing03.html"><a href="computing03.html#epidemics"><i class="fa fa-check"></i><b>16.11</b> Epidemics</a></li>
+<li class="chapter" data-level="16.12" data-path="computing03.html"><a href="computing03.html#duplicate-birthdays"><i class="fa fa-check"></i><b>16.12</b> Duplicate Birthdays</a></li>
+<li class="chapter" data-level="16.13" data-path="computing03.html"><a href="computing03.html#lottery-payoffs"><i class="fa fa-check"></i><b>16.13</b> Lottery payoffs</a></li>
+<li class="chapter" data-level="16.14" data-path="computing03.html"><a href="computing03.html#chevalier-de-méré"><i class="fa fa-check"></i><b>16.14</b> Chevalier de Méré</a></li>
+<li class="chapter" data-level="16.15" data-path="computing03.html"><a href="computing03.html#detecting-a-fake-bernoulli-sequenece"><i class="fa fa-check"></i><b>16.15</b> Detecting a fake Bernoulli sequenece</a></li>
+<li class="chapter" data-level="16.16" data-path="computing03.html"><a href="computing03.html#cell-occupancy"><i class="fa fa-check"></i><b>16.16</b> Cell occupancy</a></li>
+<li class="chapter" data-level="16.17" data-path="computing03.html"><a href="computing03.html#life-tables"><i class="fa fa-check"></i><b>16.17</b> Life Tables</a></li>
+<li class="chapter" data-level="16.18" data-path="computing03.html"><a href="computing03.html#carrier-status-genetics"><i class="fa fa-check"></i><b>16.18</b> Carrier Status (genetics)</a></li>
+<li class="chapter" data-level="16.19" data-path="computing03.html"><a href="computing03.html#diagnostic-and-statistical-tests"><i class="fa fa-check"></i><b>16.19</b> Diagnostic and statistical tests</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="dalite.html"><a href="dalite.html"><i class="fa fa-check"></i><b>17</b> DALITE</a><ul>
+<li class="chapter" data-level="17.1" data-path="dalite.html"><a href="dalite.html#aim"><i class="fa fa-check"></i><b>17.1</b> Aim</a></li>
+<li class="chapter" data-level="17.2" data-path="dalite.html"><a href="dalite.html#how-it-works"><i class="fa fa-check"></i><b>17.2</b> How it works</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -249,7 +250,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="paraMu" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> The ‘mean’ parameter <span class="math inline">\(\mu\)</span></h1>
+<h1><span class="header-section-number">Chapter 4</span> The ‘mean’ parameter <span class="math inline">\(\mu\)</span></h1>
 <p>[and other location (and spread and shape) parameters]</p>
 <p>The <strong>objectives</strong> of this chapter are to</p>
 <ul>
@@ -258,7 +259,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>Although few textbooks do so, we think it is worth distinguishing two contexts.</p>
 <div id="two-genres" class="section level2">
-<h2><span class="header-section-number">3.1</span> Two genres</h2>
+<h2><span class="header-section-number">4.1</span> Two genres</h2>
 <ul>
 <li><p>The <em>first</em> is where, <em>if</em> there were no measurement issues, we would ‘see’ / ‘get’ / ‘observe’ the same constant every time we made a determination, but where, because of unavoidable measurement variations, there is a statistical distribution of ‘measurements’ around that constant. Examples include measurements of constants such as the speed of light, or of physical constants, such as a standard weight (e.g. 1 Kg) or of a fixed distance measured by a smart phone app or a fixed number of steps measured by a step-counter. Examples of ‘personal’ constants that are constant – at least in the short term – but not easily or reproducibly measured might be the size of a person’s vocabulary, or a person’s mean (or minimum, or typical) reaction time. Or, the target could be a person’s ‘true score’ on some test – the value one would get if one (could, but not realistically) be tested on each of the (very large) number of test items in the test bank, or observed/measured continously over the period of interest.<br />
     Starting with this simpler ‘measurement variation only’ context makes it easier to master the statistical laws that govern the variation of values derived from a combination of measurements, the variation of <em>statistics</em>.</p></li>
@@ -269,7 +270,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>We will begin with the first genre, where, <em>if</em> there were no measurement issues, we would ‘see’ / ‘get’ / ‘observe’ the same constant every time we made a determination, but where, because of unavoidable measurement variations, there is a statistical distribution of ‘measurements’ around that constant. Because its estimation involves the same statistical laws as when the distribution/variation is biological, we will refer to this elusive ‘constant’ as <span class="math inline">\(\mu.\)</span></p>
 </div>
 <div id="fitting-these-to-data-estimating-them-from-data" class="section level2">
-<h2><span class="header-section-number">3.2</span> Fitting these to data / Estimating them from data</h2>
+<h2><span class="header-section-number">4.2</span> Fitting these to data / Estimating them from data</h2>
 <p>Experiments to Determine the Density of the Earth. By Henry Cavendish, Esq. F.R.S. and A.S. Philosophical Transactions of the Royal Society of London, Vol. 88. (1798), pp. 469-526.</p>
 <p><a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Mean-Quantile/Cavendish1798.pdf" class="uri">http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Mean-Quantile/Cavendish1798.pdf</a></p>
 <p>The following Table contains the Results of the Experiments</p>
@@ -318,7 +319,7 @@ bootstrap.fits &lt;-<span class="st"> </span><span class="kw">do</span>(<span cl
           </div>
         </div>
       </div>
-<a href="paras.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="CI.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="paraPi.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
+  <title>Chapter 3 Interval Estimates | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
   <meta name="description" content="A regression-from-the-outset based approach" />
   <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta property="og:title" content="Chapter 3 Interval Estimates | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta name="twitter:title" content="Chapter 3 Interval Estimates | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   
   <meta name="twitter:description" content="A regression-from-the-outset based approach" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="dalite.html"/>
-
+<link rel="prev" href="paras.html"/>
+<link rel="next" href="paraMu.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -249,8 +249,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references-1" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="CI" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Interval Estimates</h1>
+<p>The <strong>objective</strong> of this chapter is to provide a simple example of <strong>reverse engineering</strong> that shows some of the logic behind statistical ‘confidence intervals.’ The intervals we provide are ‘100% confidence’ intervals. Later we will move to ‘less-than-100% confidence’ intervals</p>
+<p><strong>Example</strong></p>
+<p>Suppose you try to measure the height of a building by standing a known horizontal distance (e.g. 100 metres) from the bottom of the building and using an instrument to measure the angle between the horizontal and the top of the building. Suppose, as shown in the left panel of the Figure below, that the instrument gives a reading of 70 degrees.</p>
+<p>Remembering from trigonometry that the tangent of a 70 degree angles is 2.75, the vertical reading of 70 degrees suggests that the height of the building is 275 metres.</p>
+<p>After calculating this, you learn that the angle is only diplayed to the nearest 10 degrees. This means that the true angle is somewhere between 65 and 75 degrees. [This is the same range you would get if it was dark and you used a laser pointer or flashlight attached to a wheel that rotates in fixed 10-degree steps, i.e., 5 degrees, 15 degrees, 25 degrees, etc. At 65 degrees, the light is visible on the building, but at 75 degrees, it goes above the building and shines into the sky.]</p>
+<p>So you <strong>cannot say</strong> that the true height is <strong>exactly</strong> 275 metres. What <strong>can</strong> you say? And with what certainty?</p>
+<p>You can put <strong>limits</strong> on the true height by asking <strong>what are the minimum and maximum heights that could have produced the observed reading of 70 degrees?</strong></p>
+<p>To do this you need to take the limits one at a time. The <strong>minimum</strong> angle that could have given the readout of 70 degrees is 65 degrees, and this corresponds to a minimum height (lower limit) height of 214 metres. The <strong>maximum</strong> angle that could have given the readout of 70 degrees is 75 degrees, and this corresponds to a maximun height (upper limit) of 373 metres. Thus you are 100% confident that the true height lies in the interval (214,373). As is clear in the graph, this does not have the typical 275 <span class="math inline">\(\pm\)</span> a single-number margin of error that we typically see in reports.</p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-6-1.png" width="864" style="display: block; margin: auto;" /> <strong><em>More data</em></strong></p>
+<p>The panel on the right shows how, by obtaining 3 measurements at 3 different distances, and finding the interval they have in common, you can narrow the interval within which the true height must lie.</p>
 
 </div>
             </section>
@@ -258,8 +268,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="dalite.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="paras.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="paraMu.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -290,7 +300,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/51-references.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02a-confidenceIntervals.Rmd",
 "text": "Edit"
 },
 "history": {
