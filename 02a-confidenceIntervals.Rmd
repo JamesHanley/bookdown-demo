@@ -1,0 +1,100 @@
+# Interval Estimates  {#CI}
+
+The **objective** of this chapter is to provide a simple example of **reverse engineering** that shows some of the logic behind statistical 'confidence intervals.' The intervals we provide are '100% confidence' intervals. Later we will move to 'less-than-100% confidence' intervals
+
+**Example**
+
+Suppose you try to measure the height of a building by standing a known horizontal distance (e.g. 100 metres) from the bottom of the building and using an instrument to measure the angle between the horizontal and the top of the building. Suppose, as shown in the left panel of the Figure below, that the instrument gives a reading of 70 degrees. 
+
+Remembering from trigonometry that the tangent of a 70 degree angles is 2.75,  the  vertical reading of 70 degrees suggests that the height of the building  is 275 metres. 
+
+After calculating this, you learn that the angle is only diplayed to the nearest 10 degrees. This means that the true angle is somewhere between 65 and 75 degrees. [This is the same  range you would get if it was dark and you used a laser pointer or flashlight attached to a wheel that rotates in fixed 10-degree steps, i.e., 5 degrees, 15 degrees, 25 degrees, etc.  At 65 degrees, the light is visible on the building, but at 75 degrees, it goes above the building and shines into the sky.]
+
+So you **cannot say** that the true height is **exactly** 275 metres. What **can** you say? And with what certainty?
+
+You can put **limits** on the true height by asking **what are the minimum and maximum heights that could have produced the observed reading of 70 degrees?**
+
+To do this you need to take the limits one at a time. The **minimum** angle that could have given the readout of 70 degrees is 65 degrees, and this corresponds to a minimum height (lower limit) height of 214 metres. The **maximum** angle that could have given the readout of 70 degrees is 75 degrees, and this corresponds to a maximun height (upper limit) of 373 metres. Thus you are 100% confident that the true height lies in the interval (214,373). As is clear in the graph, this does not have the typical 275 $\pm$ a single-number margin of error that we typically see in reports.
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F}
+
+
+DA = 10
+
+xmax=0.75
+DX=3+xmax
+ymax=4
+
+u = 100
+
+par(mfrow=c(1,2),mar = c(0.01,1,0.01,0.25))
+
+for (example in 1:2) {
+	
+ 
+plot(u*c(-3,xmax),u*c(-0.5,ymax),col="white",
+ xaxt="n", yaxt="n",xlab="",ylab="",
+ xlim=u*c(-3.35,xmax+0.35),ylim=u*c(-0.5,ymax),
+ frame=FALSE)
+lines(u*c(-4,0,0),u*c(0,0,ymax),lty="dotted")
+
+segments(u*xmax, 0, u*xmax,  u*6)
+for(h in seq(0,6,1)){
+	text(u*xmax,u*h,
+	     paste(toString(u*h),"m",sep=""),
+	     adj=c(-0.2,0.5),cex=0.75)
+	segments(u*(xmax-0.025), u*h, u*xmax,  u*h)
+}
+for(d in seq(1,3,1)){
+	text(-u*d,-0.15*u,
+	     paste(toString(u*d),"m",sep=""),
+	     adj=c(0.5,1),cex=0.75)
+	segments(-u*d, 0, -u*d,  -u*0.05)
+}
+
+
+H = u*2.25
+
+x=0.15
+U=u*5
+L=0
+COL=1
+dd = 1
+
+distances = 1
+if(example==2) distances = seq(dd,3,dd)
+
+for (d in u*distances ) {	
+   ANGLE   = atan( H/d ) * 360/(2*pi) 
+   angle.hat   = DA*round(ANGLE/DA)
+   h.hat   = d*tan(  angle.hat       / ( 360/(2*pi) ) )
+   segments(-d,0,0,h.hat,col=COL)
+   ii = d/u
+
+   text(-d + u*c(0.1,0.2,0.25)[ii], 0,
+        toString(angle.hat), 
+        adj=c(0,-0.3), col=COL)
+   h.upper = d*tan( (angle.hat+DA/2) / ( 360/(2*pi) ) )
+   h.lower = d*tan( (angle.hat-DA/2) / ( 360/(2*pi) ) )
+   segments(u*x,h.lower,u*x,h.upper,col=COL)
+   points(u*x,h.hat,pch=19,cex=0.4,col=COL)
+   if(example==1) points(u*xmax,h.hat,pch=19,cex=0.4,col=COL)
+   U = min(U,h.upper)
+   L = max(L,h.lower)
+   x=x+0.15
+   COL=COL+1
+}
+if(example==2){
+  segments(u*(xmax),L,u*(xmax),U,lwd=2)
+  segments(u*(xmax-0.05),L,u*(xmax+0.05),L )
+  segments(u*(xmax-0.05),U,u*(xmax+0.05),U )
+} 
+
+}
+
+```
+***More data***
+
+The panel on the right shows how, by obtaining 3 measurements at 3 different distances, and finding the interval they have in common, you can narrow the interval within which the true height must lie.
+
+
