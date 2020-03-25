@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-03-24" />
+<meta name="date" content="2020-03-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -314,12 +314,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Given what you know about the sizes of the possible errors, you <strong>cannot say</strong> that the true age is <strong>exactly</strong> 13.1 years What <strong>can</strong> you say? And with what certainty?</p>
 <p>You can put <strong>limits</strong> on the true age by asking <strong>what are the minimum and maximum ages that could have produced the observed reading of 13.1 years</strong>.</p>
 <p>To do this you need to consider the limits <strong>one scenario at a time</strong>. The <strong>minimum</strong> age that could have given the estimate of 13.1 years is 13.1/1.25 = 10.5 years. The <strong>maximum</strong> age that could have produced this reading is 13.1/0.75 = 17.5 years Thus (assuming the error model is correct!) you are 100% confident that the true age lies in the interval (10.5,17.5). As is clear in the graph, this does not have the typical 13.1 <span class="math inline">\(\pm\)</span> a single-number margin of error that we typically see in reports. Rather, it is 13.1 <strong>- 2.6</strong> and 13.1 <strong>+ 4.4</strong> !</p>
-<p><img src="statbook_files/figure-html/unnamed-chunk-7-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-8-1.png" width="864" style="display: block; margin: auto;" /></p>
 <p><strong><em>More data</em></strong></p>
 <p>The panel on the right shows how, by obtaining 3 independent measurements, and finding the interval they have in common, you can narrow the interval within which the true age must surely lie to (12.4, 14.9).</p>
+<p>Can we narrow the interval more, maybe by first averaging the 3 measurements? Should the mean of 3 measurements give us more information, ie., a tighter interval, that the one based on the overlap? The sad fact is that, as long we <strong>insist on 100% confidence</strong> in our interval (or our procedure), we can not: the mean of the 3 measurements can still – theoretically – be <strong>anywhere</strong> in the same 0.75 <span class="math inline">\(\times\)</span> True Age to 1.25 <span class="math inline">\(\times\)</span> True Age range that a single measurement can.</p>
+<p>The <strong>only way to narrow</strong> the interval is to <strong>take a chance, cut corners, and accept a lower confidence level</strong>. To do this, we need to know a bit more about where the pattern (shape) of the error distribution (**up to now we didn’t use the <em>shape</em>, just the <em>boundaries</em>). In other words, we need to know how much of the error distribution is in the corners, so that cut them!</p>
+<p>In the next section, we will stick for now with Daniel Bernoulli’s error distribution, but cut some corners. (Later on, we will cut some corners on Laplace’s and Gauss’s error distributions, but with the same standard deviation as in Bernoulli’s error curve.)</p>
 </div>
 <div id="more-nuanced-intervals" class="section level2">
 <h2><span class="header-section-number">3.2</span> More-nuanced intervals</h2>
+<p>We will cut 5% from each corner. That means a 90% probability of a measurement falling between -0.69 <span class="math inline">\(\times\)</span> the radius of the semi-ellipse and +0.69 <span class="math inline">\(\times\)</span> the radius, leaving only a 5% probability of observing a measurement below this, and a 5% probability of observing a measurement above this. After we observe a single measurement, we retain only those true-age-scenarios in which the observed measurement would fall within this central (90%) range, and discard those age scenarios in which the measurement would be at one extreme or the other extreme, ie, in which the measurement would be in the excluded or ‘cut’ corner.</p>
+<p>The left panel shows the (now narrower, and more nuanced) true-age-interval that is compatible with the observed measurement of 13.1 years. In all other age-scenarios, the 13.1 would have been too extreme, and so these scenarios are discarded.</p>
+<p>Note again the method of constructing this non-symmetric interval, namely one boundary at a time. It does not fit the <span class="math inline">\(\pm\)</span> mold.</p>
+<p>It does, however, give a way of talk about such an interval:</p>
+<p>the observed measurement (point-estimate) may be an underestimate: it might have fallen short of the true value. Or, it may be an underestimate: it might have overshot the true value. The plus and the minus amounts are the almost-maximal amounts by which it might have done so. (as we will see later, the maximal error can be infinite, so we have to put some probalistic limits on the error if we are to narrow the interval).</p>
+<p>Q: Does this <strong>procedure</strong> for constructing intervals have a 90% success rate, if used up and down all of the ages, say from 10 to 30 years? We could try it out with people of known ages. [answer by simulation]</p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-10-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>When we have <span class="math inline">\(n = 3\)</span> observations (right panel), it is not so easy to say how confident we should be about the overlap of the 3 intervals. Instead, we would be bettter off taking the mean of the 3 measurements, and ‘trying on’ this single mean against the various sampling distributions of the means of 3 independent measurements from a semi-circular error distribution. Again, since the range remains the same, we would again have to cut corners. But we will wait to illustrate this when we consider the easier-to-work-with Gaussian error distribution.</p>
+<p>NEXT</p>
+<p>we deliberately took non-symmetric situations where it is not +/-</p>
+<p>Now will show sitations where the error doesnt get bigger of smaller with the context, and where the ‘trying-on’ is faster.</p>
 
 </div>
 </div>
