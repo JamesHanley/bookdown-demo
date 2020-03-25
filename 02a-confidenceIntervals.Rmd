@@ -21,7 +21,7 @@ You can put **limits** on the true height by asking **what are the minimum and m
 
 To do this you need to take the limits one at a time. The **minimum** angle that could have given the readout of 70 degrees is 65 degrees, and this corresponds to a minimum height (lower limit) height of 214 metres. The **maximum** angle that could have given the readout of 70 degrees is 75 degrees, and this corresponds to a maximum height (upper limit) of 373 metres. Thus you are 100% confident that the true height lies in the interval (214,373). As is clear in the graph, this does not have the typical 275 $\pm$ a single-number margin of error that we typically see in reports.
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F}
+```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F,fig.cap="Test Caption"}
 
 
 DA = 10
@@ -253,7 +253,7 @@ draw = function(conf.level){
 
 ```
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Test Caption"}
 
 conf.level = 1; 
 draw(conf.level)
@@ -274,7 +274,7 @@ In the next section, we will stick for now with Daniel Bernoulli's error distrib
 ## More-nuanced intervals
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F,  fig.cap="Test Caption"}
 
 conf.level = 0.90; 
 q.u = qSemiElliptical(conf.level)
@@ -301,7 +301,7 @@ You will  discover in your simulations that it **might matter** whether you simu
 BUT, there aren't as many people 5 feet and 6 feet tall as there are people 5 feet 6 inches. So, the distribution of heights in people with a span of 5 feet 11 might have a different shape than that in people with a span of 5 feet 6, or  5 feet. Simulations (or even some diagrams) could settle the issue as to whether the height-mix (or, in example 2, the age mix) matters. What is your intuition as to whether it affects the perfornace of your nuanced parameter estimates? The point is that your method needs to have the same claimed performance (say 90%) at any age you throw at it.
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Test Caption"}
 
 conf.level = 0.90; 
 draw(conf.level)
@@ -331,4 +331,17 @@ NEXT
 
 we deliberately took non-symmetric situations where it is not +/-
 
-Now will show sitations where the error doesnt get bigger of smaller with the context, and where the 'trying-on'  is faster. 
+Now will show sitations where the error doesnt get bigger of smaller with the context, and where the 'trying-on'  is faster.
+
+## SUMMARY
+
+* If an error distribution is bounded, we can be 100% confident in our parameter interval, and we can narrow it by taking more measurements. Moreover, we don't need to specify the exact shape of the error distribution. All that matters are its bounds.
+
+* With unbounded error distributions, a 100% parameter interval may be unacceptably wide, even if we take many measurements. Thus, we have to 'give up something' (in certainty) in order to  'get something' (a narrower interval). Moreover, we need to either (a) specify a model for the shape of the error distribution, or (b) use data-intensive techniques, such as re-sampling, to be able to 'cut the corners.'
+
+* Either way, a logical way to determine parameter intervals is to have them consist of all of the parameter-value scenarios in which the observed measurement (or summary measurement) is 'plausible'. The upper limit for the parameter is the scenario in which the measurement would be probalistically near (or if we want 100% condidence, exactly at)  the bottom of the corresponding sampling distribution;  the lower limit is the scenario in which the measurement would be near (but not quite at)  the top of the corresponding sampling distribution.
+
+* If the error (or sampling) distributions have differing spreads at different parameter values, then the parameter interval will not be symmetric about the point estimate. If the error (or sampling) distributions have the same spreads at different parameter values, then the parameter interval will be symmetric about the point estimate, and thus, easier to calculate.
+
+* It is not correct to view the parameter as 'falling' on one or other side of the measurement. The true parameter values is fixed, and isn't moving or falling anywhere. Rather, it is the observed measurement (point-estimate) that may have fallen to the left of (fallen short of), and thus provided an underestimate of, the true parameter value: Or, it may have overshot the true parameter value, and thus overestimated it. 
+
