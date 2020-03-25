@@ -149,73 +149,146 @@ To do this you need to consider the limits **one scenario at a time**. The **min
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
 
-
-a.max=30; da=2.5
-beta = 1
-radius.as.proportion = 0.25
-dx=75
-dy=1
-
-ang =seq(-pi/2,to = pi/2,length.out = 73)
-xx=  cos(ang) ; yy=sin(ang)
-par(mfrow=c(1,2),mar = c(4,5,0.01,0.25))
-
-for (example in 1:2) {
-	
-   y.max = (1+radius.as.proportion)*beta*a.max
-   y.min = (1-radius.as.proportion)*beta*a.max
-   plot(c(0,a.max),c(0,y.max),col="white",
-       xlab="True Chronological Age",ylab="Indirect Measure of Age",
-       xlim=c(0,1.1*a.max),
-       ylim=c(-y.max/10,y.max), frame=FALSE)
-   
-   for (a in seq(7*da,a.max,da)){
-     r = radius.as.proportion * a
-     x = beta*a - xx*dx*2/(pi*r^2)
-     y = beta*a + yy*r
-     if(a > 7*da) polygon(x,y,col="gray80",border=NA)
-     if(a == 7*da) text(a,a,"etc.",col="gray50",
-                        adj=c(1,0.5),srt=45,cex=1.25)
-   }
-   segments(0,0,a.max,y.max,lty="dotted")
-   segments(0,0,a.max,y.min,lty="dotted")
-   segments(0,0,a.max,beta*a.max)
-   
-   i.age = 13.1
-   if(example>1) i.age = c(13.1, 15.5, 11.2)
-   n=length(i.age)
-   U = a.max ; L = 0
-   for (i in 1:n){
-     points(0, i.age[i], pch=19)
-     if(example==1) text(0,i.age[i],
-            toString(i.age[i]), cex=0.75, adj=c(0.5,-0.75))
-     segments(0,i.age[i],a.max,i.age[i],lty="dotted")
-     for(rr in 1+c(-1,0,1)*radius.as.proportion ){
-       if(example==1) arrows(i.age[i]/rr, i.age,
-            i.age[i]/rr, 0.5, length=0.07,angle=30)
-     }
-     segments(i.age[i]/(1+radius.as.proportion),
-              0-i*dy,
-            i.age[i]/(1-radius.as.proportion),
-              0-i*dy,lwd=1.25)
-     U = min(U,i.age[i]/(1-radius.as.proportion))
-     L = max(L,i.age[i]/(1+radius.as.proportion))
-   } # i
-   if(example==2) segments(L, 0-(i+1.5)*dy,
-            U, 0-(i+1.5)*dy,lwd=3)
-   if(example==1 ){ 
-     points(i.age[i],i.age[i], pch=19,cex=0.75)
-     points(i.age[i],-1.0*dy, pch=19,cex=0.75)
-   }
-
+q = function(p){
+ cdf = 
+   function(y) 1/2 + (y*sqrt(1-y^2))/pi + asin(y)/pi - p 
+ return(uniroot(cdf, c(-1,1))$root)
 }
+
+
+draw = function(conf.level){
+  q.u = q( (1+conf.level)/2 )
+  a.max=30; da=2.5
+  beta = 1
+  radius.as.proportion = 0.25
+  dx=75
+  dy=1
+
+  ang =seq(-pi/2,to = pi/2,length.out = 73)
+  xx=  cos(ang) ; yy=sin(ang)
+  par(mfrow=c(1,2),mar = c(4,5,0.01,0.25))
+
+  for (example in 1:2) {
+     y.max = (1+radius.as.proportion)*beta*a.max
+     y.u =   (1+q.u*radius.as.proportion)*beta*a.max
+     y.min = (1-radius.as.proportion)*beta*a.max
+     y.l   = (1-q.u*radius.as.proportion)*beta*a.max
+     plot(c(0,a.max),c(0,y.max),col="white",
+          xlab="True Chronological Age",
+          ylab="Indirect Measure of Age",
+          xlim=c(0,1.1*a.max),
+          ylim=c(-y.max/10,y.max), frame=FALSE)
+   
+     for (a in seq(7*da,a.max,da)){
+        r = radius.as.proportion * a
+        x = beta*a - xx*dx*2/(pi*r^2)
+        y = beta*a + yy*r
+        if(a > 7*da) polygon(x,y,col="gray80",border=NA)
+        if(a == 7*da) text(a,a,"etc.",col="gray50",
+                        adj=c(1,0.5),srt=45,cex=1.25)
+      }
+      segments(0,0,a.max,y.max,lty="dotted")
+      segments(0,0,a.max,y.min,lty="dotted")
+      if(conf.level<1) segments(0,0,a.max,y.u,col="red")
+      if(conf.level<1)  segments(0,0,a.max,y.l,col="red")
+      segments(0,0,a.max,beta*a.max)
+   
+      i.age = 13.1
+      if(example>1) i.age = c(13.1, 15.1, 11.7)
+      n=length(i.age)
+      U = a.max ; L = 0
+      for (i in 1:n){
+          points(0, i.age[i], pch=19)
+          if(example==1) text(0,i.age[i],
+            toString(i.age[i]), cex=0.75,
+            adj=c(0.5,-0.75))
+          segments(0,i.age[i],a.max,i.age[i],lty="dotted")
+          for(rr in 1+c(-1,0,1)*radius.as.proportion*q.u ){
+             if(example==1) arrows(
+                    i.age[i]/rr,
+                    i.age, i.age[i]/rr, 0.5, 
+                    length=0.07,angle=30,
+                    col=c("black","red")[1+(conf.level<1)])
+          }
+       segments(i.age[i]/(1+radius.as.proportion*q.u),
+                0-i*dy,
+                i.age[i]/(1-radius.as.proportion*q.u),
+                0-i*dy,lwd=1.25,
+                col=c("black","red")[1+(conf.level<1)])
+       U = min(U,i.age[i]/(1-radius.as.proportion*q.u))
+       L = max(L,i.age[i]/(1+radius.as.proportion*q.u))
+     } # i
+     if(example==2) segments(L, 0-(i+1.5)*dy,
+                             U, 0-(i+1.5)*dy,lwd=3,
+                             col=c("black","red")[1+(conf.level<1)])
+     if(example==1 ){ 
+         points(i.age[i],i.age[i], pch=19,cex=0.75)
+         points(i.age[i],-1.0*dy, pch=19,cex=0.75)
+     }
+  } 
+}
+
 
 ```
 
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+
+conf.level = 1; 
+draw(conf.level)
+
+```
 
 ***More data***
 
 The panel on the right shows how, by obtaining 3 independent measurements, and finding the interval they have in common, you can narrow the interval within which the true age must surely lie to (12.4, 14.9).
 
+Can we narrow the interval more, maybe by first averaging the 3 measurements? Should  the mean of 3 measurements  give us more information, ie., a tighter interval, that the one based on the overlap? The sad fact is that, as long we **insist on 100% confidence** in our interval (or our procedure), we can not: the mean of the 3 measurements can still -- theoretically -- be **anywhere** in the same 0.75 $\times$ True Age to 1.25 $\times$ True Age range that a single measurement can.
+
+
+The **only way to narrow** the interval is to **take a chance, cut corners, and accept a lower confidence level**. To do this, we need to know a bit more about where the pattern (shape) of the error distribution (**up to now we didn't use the _shape_, just the _boundaries_). In other words, we need to know how much of the error distribution is in the corners, so that cut them! 
+
+In the next section, we will stick for now with Daniel Bernoulli's error distribution, but cut some corners. (Later on, we will cut some corners on Laplace's and Gauss's error distributions, but with the same standard deviation as in Bernoulli's error curve.)
+
 ## More-nuanced intervals
 
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+
+conf.level = 0.90; 
+q.u = q(conf.level)
+
+```
+
+We will cut 5% from each corner. That means a 90% probability of a measurement falling between
+`r paste(-round(q.u,2))` $\times$ the radius of the semi-ellipse and 
+`r paste("+",round(q.u,2),sep="")` $\times$ the  radius, leaving  only a 5% probability of observing a measurement below this, and 
+a 5% probability of observing a measurement above this. After we observe a single measurement, we retain only those true-age-scenarios in which the observed measurement would fall within this central (90%) range, and discard those age scenarios in which  the measurement would be at one extreme or the other extreme, ie, in which  the measurement would be in the excluded or 'cut' corner.
+
+The left panel shows the (now narrower, and more nuanced) true-age-interval that is compatible with the observed measurement of 13.1 years. In all other age-scenarios, the 13.1 would have been too extreme, and so these scenarios are discarded.  
+
+Note again the method of constructing this non-symmetric interval, namely one boundary at a time. It does not fit  the $\pm$ mold.
+
+It does, however, give a way of talk about such an interval:
+
+the observed measurement (point-estimate) may be an underestimate: it might have fallen short of the true value. Or,  it may be an underestimate: it might have overshot the true value. The plus and the minus amounts are the almost-maximal amounts by which it might have done so. (as we will see later, the maximal error can be infinite, so we have to put some probalistic limits on the error if we are to narrow the interval).
+
+Q: Does this  **procedure** for constructing intervals  have a 90% success rate, if used up and down all of the ages, say from 10 to 30 years? We could try it out with people of known ages. [answer by simulation]
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+
+conf.level = 0.90; 
+draw(conf.level)
+
+```
+
+When we have $n = 3$ observations (right panel), it is not so easy to say how confident we should be about the overlap of the 3 intervals.
+Instead, we would be bettter off taking the mean of the 3 measurements, and 'trying on' this single mean against the various sampling distributions of the means of 3 independent measurements from a semi-circular error distribution. Again, since the range remains the same, we would again have to cut corners. But we will wait to illustrate this when we consider the easier-to-work-with Gaussian error distribution.  
+
+
+NEXT
+
+
+we deliberately took non-symmetric situations where it is not +/-
+
+Now will show sitations where the error doesnt get bigger of smaller with the context, and where the 'trying-on'  is faster. 
