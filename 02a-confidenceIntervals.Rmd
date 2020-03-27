@@ -115,24 +115,17 @@ The reason is  the limited error range.  How wide the error range is, and how ma
 
 **Example 2**
 
-This one is less artificial, and indeed is motivated by a real court case in the alte 1990s in Quebec, where a defendant's age (which would determine wheter he was tried in an adult or a juvenile court) was in doubt. He was adopted, while still a young child, from another country. Official birth records were not available, and his adoptive parents were able to get a cheaper airfare by claiming that he was under age 2 at the time. Bone age, and Tanner Staging, also known as Sexual Maturity Rating (SMR), an objective classification system used to track the development and sequence of secondary sex characteristics of children during puberty, were other pieces of information used by the judge.
+This one is less artificial, and indeed is motivated by a real court case in the late 1990s in Quebec, where a defendant's age (which would determine wheter he was tried in an adult or a juvenile court) was in doubt. He was adopted, while still a young child, from another country. Official birth records were not available, and his adoptive parents were able to get a cheaper airfare by claiming that he was under age 2 at the time. Bone age, and Tanner Staging, also known as Sexual Maturity Rating (SMR), an objective classification system used to track the development and sequence of secondary sex characteristics of children during puberty, were other pieces of information used by the judge.
 
 For more on this topic of determining chronological age, see this article, entitled [Many applications for medical statistics](https://discovery.ucl.ac.uk/id/eprint/1470308/1/Tim_Cole_Intl_Innovation_140_Research_Media.pdf) and thos one, entitled [People smugglers, statistics and bone age](https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2012.00568.x), by UCL statistics professor and child growth expert, [Tim Cole](https://scholar.google.com/citations?user=1P_yQocAAAAJ&hl=en).
 
 Again, the person's correct chronological age is a  particularistic parameter, one that had nothing to do with science, or universal laws of Nature. But it can be estimated by using the laws of mathematics and statistics.
 
 For didactic purposes, we will simplify matters, and assume that 'our' indirect method gives estimates such that if many of them were averaged, they would give the correct chronological age of the person (in statistical lingo, statisticians say that the method/estimator is 'unbiased'). However, as is seen below, the individual measurements vary quite a bit around the correct age. They can be off by as much as 25% (1/4th) in either direction. [In practice, a measuring instrument  with this much measurement error would not be useful -- unless it was fast, safe, inexpensive, non-invasive, easily repetaed, and so on -- but we make the measurement variations  this large just so we can see the patters more clearly on the graph!]. Another unrealistic feature of our 'measurement model' is that the 'error distribution' has a **finite range**. The  **shape** of the error distribution doesn't come into the 100% 'confidence intervals' below, but it will matter a little bit -- but not a whole lot unless the sample size is small -- later on  when we cut corners. 
-
-Consider first a single indirect measurement of chronological age, that yielded a value of **17.1 years**.
-
-Given what you know about the sizes of the possible errors, you **cannot say** that the true age is **exactly** 17.1 years What **can** you say? And with what certainty?
-
-You can put **limits** on the true age by asking **what are the minimum and maximum ages that could have produced the observed reading of 17.1 years**.
-
-To do this you need to consider the limits **one scenario at a time**. The **minimum** age that could have given the estimate of 13.1 years is 13.1/1.25 = `r round(13.1/1.25,1)` years. The **maximum** age that could have produced this reading  is 13.1/0.75 = `r round(13.1/0.75,1)` years. Thus (assuming the error model is correct!) you are 100% confident that the true age lies in the interval (10.5,17.5) years. Agian, as is clear in the graph, this does not have the typical 13.1 $\pm$ a single-number margin of error that we typically see in reports. Rather, it is 13.1 **- 2.6** and 13.1 **+ 4.4** !   
+  
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
 
 dSemiElliptical = function(q,mean=0,radius=1) ( 2/(pi*radius^2) ) *
                                            sqrt(radius^2 - (q-mean)^2)
@@ -159,74 +152,169 @@ rSemiElliptical =  function(n=1,mean=0,radius=1) {
    return(q)
 }
 
+AGE = 18   # (7/8)*AGE
+
+radius.as.proportion = 0.125
+
+set.seed(1345437)
+set.seed(2454375)
+  
+age.hats = rSemiElliptical(4, AGE, radius.as.proportion*AGE)
+
 draw = function(conf.level){
+	
   q.u = qSemiElliptical( (1+conf.level)/2 )
-  a.max=30; da=2.5
+  
+  a.min=14; a.max=22; da=2
   beta = 1
-  radius.as.proportion = 0.25
+
   dx=75
-  dy=1
-
-  ang =seq(-pi/2,to = pi/2,length.out = 73)
-  xx=  cos(ang) ; yy=sin(ang)
-  par(mfrow=c(1,2),mar = c(4,5,0.01,0.25))
-
+  dy=0.4
+  
+  a.bottom = a.min - 1.75*da
+  
+  AGE = 18   # (7/8)*AGE
+  
+  par(mfrow=c(1,2),mar = c(0,0,0,0))
+  
+  
   for (example in 1:2) {
-     y.max = (1+radius.as.proportion)*beta*a.max
-     y.u =   (1+q.u*radius.as.proportion)*beta*a.max
-     y.min = (1-radius.as.proportion)*beta*a.max
-     y.l   = (1-q.u*radius.as.proportion)*beta*a.max
-     plot(c(0,a.max),c(0,y.max),col="white",
-          xlab="True Chronological Age",
-          ylab="Indirect Measure of Age",
-          xlim=c(0,1.1*a.max),
-          ylim=c(-y.max/10,y.max), frame=FALSE)
-   
-      polygon(c(0,a.max,a.max,0),c(0,y.max,y.min,0),col="grey90",border=NA)
-      if(conf.level<1) segments(0,0,a.max,y.u,col="red")
-      if(conf.level<1)  segments(0,0,a.max,y.l,col="red")
-      segments(0,0,a.max,beta*a.max)
-   
-      i.age = 17.3
-      if(example>1) i.age = c(17.3, 16.1, 19.9)
-      n=length(i.age)
-      U = a.max ; L = 0
+    
+      n=1 ; if(example>1) n=4
+      
+      age.hat = age.hats[1:n]
+
+      age.bar = mean(age.hat)
+      
+     div = 1; if (conf.level < 1) div=sqrt(n)
+     u.at.a.max = (1+radius.as.proportion/div)*beta*(a.max+1)
+     l.at.a.max = (1-radius.as.proportion/div)*beta*(a.max+1)
+     
+     u.at.a.min = (1+radius.as.proportion/div)*beta*a.min
+     l.at.a.min = (1-radius.as.proportion/div)*beta*a.min
+     
+     plot(c(a.min,a.max),c(l.at.a.min,u.at.a.max),col="white",
+          xlim=c(a.min-1.35*da/2,a.max+2.75*da/2),
+          ylim=c(a.min-2.6*da,a.max+1.6*da), frame=FALSE,
+          xaxt ="n", yaxt="n")
+     lines(c(a.min-da/2,a.min-da/2,a.max+da/2),
+           c(a.max+da,a.min-2*da,a.min-2*da))
+     text(( a.min+a.max)/2,a.min-2.5*da,
+           "True Chronological Age", adj=c(0.5,1),cex=1.25)
+     txt = "Indirect\nMeasure\nof Age"
+     if(n>1) txt = "Indirect\nMeasures\nof Age"
+     text(a.min-da/2.5, a.max+da, txt,
+          adj=c(0,1),cex=1.05,font=4)
+     for(a in seq(a.min,a.max,da/2)){
+       text(a,a.min-2*da,toString(a), adj=c(0.5,1.5))
+       segments(a, a.min-2*da, a, a.min-2.05*da)
+       text(a.min-da/2,a,toString(a),adj=c(1.5,0.5))
+       segments(a.min-da/2, a, a.min-da/2-da/20, a)
+     } 
+      polygon(c(a.min,a.min,
+                a.max+1,a.max+1,a.min),
+              c(l.at.a.min,u.at.a.min,
+                u.at.a.max,l.at.a.max, l.at.a.min),
+              col="grey90",border=NA)
+      
+      segments(a.min,   a.min,
+               a.max+1, beta*(a.max+1),
+               col="white",lwd=2)
+      
+      arrows(a.max+1.2, l.at.a.max,
+             a.max+1.2, u.at.a.max,
+             code=3,length=0.05,angle=35)
+      arrows(a.min-0.2, l.at.a.min,
+             a.min-0.2, u.at.a.min,
+             code=3,length=0.05,angle=35)
+      text(a.min -0.3, a.min, 
+           paste( toString(100*conf.level),"%",sep=""),
+           adj=c(0.5,0),srt=90,cex=1)
+      
+      text(a.max+1.3, a.max+1, 
+           paste( toString(100*conf.level),"%",sep=""), cex = 1.25,
+           adj=c(0,0.5))
+      
+      UU = 100 ; LL = 0
+      
       for (i in 1:n){
-          points(0, i.age[i], pch=19)
-          if(example==1) text(0,i.age[i],
-            toString(i.age[i]), cex=0.75,
-            adj=c(0.5,-0.75))
-          segments(0,i.age[i],a.max,i.age[i],lty="dotted")
-          for(rr in 1+c(-1,0,1)*radius.as.proportion*q.u ){
-             if(example==1) arrows(
-                    i.age[i]/rr,
-                    i.age, i.age[i]/rr, 0.5, 
-                    length=0.07,angle=30,
-                    col=c("black","red")[1+(conf.level<1)])
+          points(a.min-da/2 + i/6, age.hat[i], pch=19,cex=0.5)
+          if(conf.level < 1 & i==n & n>1) segments(
+               a.min-da/2 + 1/6 , age.bar ,
+               a.min-da/2 + n/6 , age.bar ) 
+          if(example==1) text(a.min-da/3,age.hat[i],
+            toString(round(age.hat[i],1)), cex=0.85,
+            adj=c(0,0.5),font=4)
+          M = age.hat[i] ; if(conf.level < 1 & n> 1) M = age.bar
+          L = M/(1+radius.as.proportion/div)
+          R = M/(1-radius.as.proportion/div)
+          segments(L, M, R, M, lty="dotted")
+          for(a in c(L,M,R)){
+             if(example==1 | conf.level < 1) arrows( a, M,
+                    a, a.bottom+1.5*dy, 
+                    length=0.07,angle=30)
+            if(example==1 & a==L) arrows( 
+                    a, L,
+                    a, M,lwd=2,angle=35,length=0.07)
+            if(example==1 & a==R) arrows( 
+                    a, R,
+                    a, M,lwd=2,angle=35,length=0.07,code=2)
           }
-       segments(i.age[i]/(1+radius.as.proportion*q.u),
-                0-i*dy,
-                i.age[i]/(1-radius.as.proportion*q.u),
-                0-i*dy,lwd=1.25,
-                col=c("black","red")[1+(conf.level<1)])
-       points(i.age[i],0-i*dy, pch=19,cex=0.75)
-       U = min(U,i.age[i]/(1-radius.as.proportion*q.u))
-       L = max(L,i.age[i]/(1+radius.as.proportion*q.u))
+       if(conf.level ==1 | (conf.level < 1 & i==1 ) ) {
+            segments(L,a.bottom + i*dy, R,a.bottom + i*dy,lwd=1.25)
+            points(M,a.bottom+i*dy, pch=19,cex=0.5)
+            Limits = round(c(L,R),1)
+            if(conf.level < 1 | example == 1 ) text(L-0.1,a.bottom + i*dy,
+                 toString(Limits[1]), adj=c(1,0.5),cex=0.8,font=2)
+            if(conf.level < 1 | example == 1)  text(R+0.1,a.bottom + i*dy,
+                 toString(Limits[2]), adj=c(0,0.5),cex=0.8,font=2)
+       }
+       
+       UU = min(UU,R)
+       LL = max(LL,L)
      } # i
-     if(example==2) segments(L, 0-(i+1.5)*dy,
-                             U, 0-(i+1.5)*dy,lwd=3,
-                             col=c("black","red")[1+(conf.level<1)])
+      
+     if(example > 1 & conf.level==1){
+       segments(LL, a.bottom, UU,  a.bottom, 
+                lwd=3)
+       segments(LL, a.bottom+dy, LL,  a.bottom +n*dy,  lty="dotted")
+       segments(UU, a.bottom+dy, UU,  a.bottom +n*dy,  lty="dotted")
+       Limits = round(c(LL,UU),1)
+       text(LL-0.1,a.bottom,toString(Limits[1]), adj=c(1,0.5),cex=0.8,
+            font=2)
+       text(UU+0.1,a.bottom,toString(Limits[2]), adj=c(0,0.5),cex=0.8,
+            font=2)
+     } 
      if(example==1 ){ 
-         points(i.age[i],i.age[i], pch=19,cex=0.75)
-         points(i.age[i],-1.0*dy, pch=19,cex=0.75)
+         points(age.hat[i],age.hat[i], pch=19,cex=0.75)
+         points(age.hat[i],-1.0*dy, pch=19,cex=0.75)
      }
   } 
 }
 
 
+
 ```
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Test Caption"}
+Consider first a single indirect measurement of chronological age, that yielded a value of `r round(age.hats[1],1)` years.
+
+Given what you know about the sizes of the possible errors, you **cannot say** that the true age is **exactly** `r round(age.hats[1],1)` years What **can** you say? And with what certainty?
+
+You can put **limits** on the true age by asking **what are the minimum and maximum ages that could have produced the observed reading of**
+`r A.hat = round(age.hats[1],1); A.hat`  years.
+
+To do this you need to consider the limits **one scenario at a time**. The **minimum** age that could have given the estimate of `r  A.hat` years is `r Lower = round(age.hats[1],1)` /
+`r 1+radius.as.proportion` = 
+`r Lower = round(age.hats[1]/(1+radius.as.proportion),1); Lower` years. The **maximum** age that could have produced this reading  is 
+`r Upper=round(age.hats[1],1); Upper` / `r 1-radius.as.proportion` = `r round(age.hats[1]/(1-radius.as.proportion),1)` years. Thus (assuming the error model is correct!) you are 100% confident that the true age lies in the interval (`r round(age.hats[1]/(1+radius.as.proportion),1)` , `r round(age.hats[1]/(1-radius.as.proportion),1)`) years. Again, as is clear in the graph, this does not have the typical 
+`r A.hat` $\pm$ a single-number margin of error that we typically see in reports. Rather, it is `r A.hat` **- 2.6** and `r A.hat`  **+ 4.4** ! 
+
+But, you can't arrive at these directly; get there this way. You have to try on various limits, until 
+
+$$ LowerLimit + margin  = `r A.hat` \ = \   UpperLimit - margin  $$
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="100% Confidence Intervals for a person's chronological age when error distributions (that in this example are wider at the  older ages) are 100% confined within the shaded ranges. Left: based on n = 1 measurement; right: based on n = 4 independent measurements. "}
 
 conf.level = 1; 
 draw(conf.level)
@@ -235,9 +323,9 @@ draw(conf.level)
 
 ***More data***
 
-The panel on the right shows how, by obtaining 3 independent measurements, and finding the interval they have in common, you can narrow the interval within which the true age must surely lie to (12.4, 14.9).
+The panel on the right shows how, by obtaining 4 independent measurements, and finding the interval they have in common, you can narrow the interval containing the true age.
 
-Can we narrow the interval more, maybe by first averaging the 3 measurements? Should  the mean of 3 measurements  give us more information, ie., a tighter interval, that the one based on the overlap? The sad fact is that, as long we **insist on 100% confidence** in our interval (or our procedure), we can not: the mean of the 3 measurements can still -- theoretically -- be **anywhere** in the same 0.75 $\times$ True Age to 1.25 $\times$ True Age range -- just as a single measurement can.
+Can we narrow the interval more, maybe by first averaging the 4 measurements? Should  the mean of 4 measurements  give us more information, ie., a tighter interval, that the one based on the overlap? The sad fact is that, as long we **insist on 100% confidence** in our interval (or our procedure), we can not: the mean of the 3 measurements can still -- theoretically -- be **anywhere** in the same 0.75 $\times$ True Age to 1.25 $\times$ True Age range -- just as a single measurement can.
 
 
 The **only way to narrow** the interval is to **take a chance, cut corners, and accept a lower confidence level**. To do this, we need to know a bit more about where the pattern (shape) of the error distribution (**up to now we didn't use the _shape_, just the _boundaries_). In other words, we need to know how much of the error distribution is in the corners, so that we can cut them! 
@@ -247,11 +335,10 @@ In the next section, we will stick for now with Daniel Bernoulli's error distrib
 ## More-nuanced intervals
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F,  fig.cap="Test Caption"}
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
 
-conf.level = 0.90; 
+conf.level = 1; 
 q.u = qSemiElliptical(conf.level)
-
 
 
 ```
@@ -274,7 +361,7 @@ You will  discover in your simulations that it **might matter** whether you simu
 BUT, there aren't as many people 5 feet and 6 feet tall as there are people 5 feet 6 inches. So, the distribution of heights in people with a span of 5 feet 11 might have a different shape than that in people with a span of 5 feet 6, or  5 feet. Simulations (or even some diagrams) could settle the issue as to whether the height-mix (or, in example 2, the age mix) matters. What is your intuition as to whether it affects the perfornace of your nuanced parameter estimates? The point is that your method needs to have the same claimed performance (say 90%) at any age you throw at it.
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Test Caption"}
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="90% Confidence intervals for Chronological Age when only 90% of the error distributions lie within the shaded ranges."}
 
 conf.level = 0.90; 
 draw(conf.level)
@@ -308,15 +395,39 @@ Now will show sitations where the error doesnt get bigger of smaller with the co
 
 ## SUMMARY
 
+* what a parameter interval is
+
 * If an error distribution is bounded, we can be 100% confident in our parameter interval, and we can narrow it by taking more measurements. Moreover, we don't need to specify the exact shape of the error distribution. All that matters are its bounds.
+
+I don't think you should take for granted that students (or even professors!) will know what an error distribution is. So I think a first point should be to describe what you mean by an error distribution.
+
 
 * With unbounded error distributions, a 100% parameter interval may be unacceptably wide, even if we take many measurements. Thus, we have to 'give up something' (in certainty) in order to  'get something' (a narrower interval). Moreover, we need to either (a) specify a model for the shape of the error distribution, or (b) use data-intensive techniques, such as re-sampling, to be able to 'cut the corners.'
 
-* Either way, a logical way to determine parameter intervals is to have them consist of all of the parameter-value scenarios in which the observed measurement (or summary measurement) is 'plausible'. The upper limit for the parameter is the scenario in which the measurement would be probalistically near (or if we want 100% condidence, exactly at)  the bottom of the corresponding sampling distribution;  the lower limit is the scenario in which the measurement would be near (but not quite at)  the top of the corresponding sampling distribution.
+* Either way, a logical way to determine parameter intervals is to have them consist of all the parameter-value scenarios in which the observed measurement (or summary measurement) is 'plausible'. The upper limit for the parameter is the scenario in which the measurement would be probalistically near the bottom of the corresponding sampling distribution;  the lower limit is the scenario in which the measurement would be near the top of the corresponding sampling distribution.
 
 * If the error (or sampling) distributions have differing spreads at different parameter values, then the parameter interval will not be symmetric about the point estimate. If the error (or sampling) distributions have the same spreads at different parameter values, then the parameter interval will be symmetric about the point estimate, and thus, easier to calculate.
 
+it would be good to give a concrete example here.e.g. repeat the age example --> It's harder to accurately guess the true age of someone who is older. 
+perhaps also a good time to mention that in this situation, the +/- formula will fail you
+
 * It is not correct to view the parameter as 'falling' on one or other side of the measurement. The true parameter values is fixed, and isn't moving or falling anywhere. Rather, it is the observed measurement (point-estimate) that may have fallen to the left of (fallen short of), and thus provided an underestimate of, the true parameter value: Or, it may have overshot the true parameter value, and thus overestimated it. 
+
+This point also explains why the +/- formula fails us
+
+
+Missing from the above summary points is a direct answer to the question or criticisms we are likely to face: "Why do we care about Wilson when the +/- gives you the same answer?" 
+The answer to this question is given indirectly in points 4) and 5).   But I think we need to be explicitly clear about this, since for me at least, is the main motivation for this chapter. 
+
+I also think the objective of the chapter needs to be revised. Based on our discussions, the point of the chapter is to explain: 
+      1) Why the +/- formula fails us in the interpretation of a CI and when the spread of the error distribution is non-constant and 
+      2) Wilson's idea to remedy the situation. 
+
+If you agree with those two objectives, the next question to answer is how '100% confidence intervals' and ultimately 'cutting corners' helps you explain the points 1) and 2). 
+
+
+By the way, a simplified version of the Wilson plot you made will be a great help in visualizing point 3:
+
 
 --------
 

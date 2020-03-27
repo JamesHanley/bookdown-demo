@@ -1,9 +1,69 @@
 # Statistical Inference {#inference}
 
-## 2 schools 
 
-### Bayesian
+Inference is making numerical statements about parameters or general mechanisms -- or future observations. It is not about data (samples) per se, although it uses data from samples. It is about the process that generated the limited data you got/get to observe. The object of the inference as the portion of the universe you could only partially observe, or didnt 
 
-### Frequentist 
+Some example parameters -- some scientific, some more personal or particularistic -- might be
 
+* The proportion of 
+
+   + thumbtacks that land on their back when lossed 
+   
+   + your time that you are being productive
+   
+   + the earth's surface that is covered by water
+   
+   + your driving time that you are on the phone
+   
+   + your time that you spend inside
+   
+* The probability that
+
+   + a potential hemophilia carrier is in fact a carrier
+   
+   + an email is malicious
+
+
+* The age of a person who have just met
+
+* The mean level of
+
+* 
+
+
+Two main schools or approaches: Bayesian Frequentist 
+
+
+
+Bayesian [ not even mentioned by M&M ]
+• Makes direct statements about parameters and future observations
+• Uses previous impressions plus new data to update impressions about parameter(s)
+e.g.
+
+
+e.g.
+Everyday life
+Medical tests: Pre- and post-test impressions
+Frequentist
+• Makes statements about observed data (or statistics from data) (used indirectly [but often incorrectly] to assess evidence against certain values of parameter)
+• Does not use previous impressions or data outside of current study (me
+ta-analysis is changing this)
+e.g.
+• Statistical Quality Control procedures [for Decisions] • Sample survey organizations: Confidence intervals • Statistical Tests of Hypotheses
+Unlike Bayesian inference, there is no quantified pre-test or pre- data "impression"; the ultimate statements are about data, conditional on an assumed null or other hypothesis.
+Thus, an explanation of a p-value must start with the conditional "IF the parameter is ... the probability that the data woul
+
+natural
+
+tennis
+
+productivity
+
+thumb tacks
+
+
+
+Bayes Theorem : Haemophilia
+Brother has haemophilia => Probability (WOMAN is Carrier) = 0.5 New Data: Her Son is Normal (NL) .
+Update: Prob[Woman is Carrier, given her son is NL] = ??
 
