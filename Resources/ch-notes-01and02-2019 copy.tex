@@ -1,0 +1,1281 @@
+
+\documentclass[landscape,twocolumn,letterpaper,9pt,reqno]{article}
+
+
+\usepackage{lscape,fancyhdr,color,xcolor}
+
+\pagestyle{fancy}
+
+\usepackage{amsmath,epsfig,subfigure,amsthm,amsfonts,epsf,psfrag,
+rotating,setspace,bm,ulem}
+
+\usepackage{verbatim}
+
+\usepackage{hyperref}
+
+%\definecolor{wheat}{rgb}{0.96,0.687,0.70}
+
+\definecolor{wheat}{cmyk}{0.00, 0.09, 0.27, 0.04}
+
+
+\setlength{\oddsidemargin}{-0.4in}		% default=0in
+\setlength\evensidemargin{-0.4in}
+
+\setlength{\textwidth}{9.8in}		% default=9in
+
+\setlength{\columnsep}{0.5in}		% default=10pt
+
+\setlength{\columnseprule}{0pt}		% default=0pt (no line)
+
+
+\setlength{\textheight}{7.0in}		% default=5.15in
+
+\setlength{\topmargin}{-0.75in}		% default=0.20in
+
+\setlength{\headsep}{0.25in}		% default=0.35in
+
+\setlength{\parskip}{1.2ex}
+
+\setlength{\parindent}{0mm}
+
+\lhead{
+{ \small
+BIOS601: Notes, Clayton\&Hills. Ch 1(Probability models); 2 (Condn'l prob. models; Bayes rule )  v. 2019.09.09.
+}
+}
+\rhead{ }
+
+\begin{document}
+
+\section{Probability models}
+
+\subsection{Observation, experiments and models}
+
+\textsc{Stochastic Models}\footnote{`Stochastic' 
+\texttt{http://www.allwords.com/word-stochastic.html}
+French: stochastique(fr) German: stochastisch(de) Spanish:
+estocí¡stico(es) Etymology: From Ancient Greek (polytonic, ), from
+(polytonic, ) ``aim at a target, guess'', from (polytonic, ) ``an
+aim, a guess''. Parzen, in his text on Stochastic Processes .. page 7 says: $<<$The
+word is of Greek origin; see Hagstroem (1940) for a study of the
+history of the word. In seventeenth century English, the word
+``stochastic'' had the meaning ``to conjecture, to aim at a
+mark.'' It is not clear how it acquired the meaning it has today
+of ``pertaining to chance.'' Many writers use the expression
+``chance process'' or ``random process'' as synonyms for
+``stochastic process.''$>>$ } 
+
+\textit{Normal} vs \textit{Bernoulli} and \textit{Poisson}: We need to distinguish between \textit{individual} observations, governed by Bernoulli and Poisson (or if quantitative rather than all-or-none or a count, Normal) and \textit{statistics} formed by aggregation of individual observations. If a large enough number of individual non-Gaussian observations are used to form a statistic, its (sampling) distribution can be described by a Gaussian (Normal) probability model.  So, ultimately, the Normal probability model is very  relevant.
+
+\subsubsection{Epidemiologic [subject-matter] models [JH]}
+
+We need to also make a distinction between
+the quantity(quantities) that is(are) of substantive interest or concern,
+ the data from which this(these) is(are) estimated, the \textit{statistical} models used to 
+ get to the  the quantity(quantities) and the relationships of interest.
+
+For example, of medical, public health or personal interest/concern might be the 
+
+\begin{itemize}
+\item
+level of use of cell phones among drivers
+\item
+average and range [across people] of reductions in cholesterol
+with regular use of a cholesterol-lowering medication
+\item
+amount of time taken by health care personnel
+to decipher the handwriting of other health care personnel
+\item
+(average) number of times people have to phone to reach 
+a `live' person
+\item
+reduction in one's risk of dying of a specific cancer if one
+is regularly screened for it.
+\item
+appropriate-size tracheostomy tube
+for an obese patient, based on easily easily obtained anthropometric measurements
+\item
+length of central venous catheter that can be safely inserted 
+into a child as a function of the child's height etc. 
+\item
+rate of automobile accidents as a function of 
+drivers' blood levels of alcohol and other drugs,
+numbers of persons in the car, cell-phone and other
+activities, weather, road conditions, etc.
+\item
+Psychological Stress, Negative Life Events, Perceived Stress, 
+Negative Affect Smoking, Alcohol Consumption and Susceptibility to the Common Cold	
+\item
+The force of mortality as a function of age, sex and calendar time.
+\item
+Genetic variation in alcohol dehydrogenase 
+and the beneficial effect of moderate alcohol consumption
+on myocardial infarction
+\item
+Are seat belt restraints as effective in school age children as in adults?
+\item
+
+Levels of folic acid to add to flour, so that most people have sufficiently high blood levels, but birth defects are reduced
+\item
+Early diet  in children born preterm and their IQ at age eight.
+\item
+Prevalence of Down's syndrome in relation to parity and maternal age.
+\end{itemize}
+
+Of broader interest/concern might be 
+\begin{itemize}
+\item
+the wind chill factor as a function of 
+temperature and wind speed
+\item
+how many fewer Florida votes Al Gore got in 2000
+because of a badly laid-out ballot
+\item
+a formula for deriving one's  ``ideal'' weight from one's height
+\item
+yearly costs under different cell-phone plans
+\item
+yearly maintenance costs for different makes and models of cars
+\item
+car or life insurance premiums as a function of ...
+\item
+cost per foot$^2$ of commercial or business
+rental space as a function of ...
+\item
+Rapid Changes in Flowering Time in British Plants
+\item
+How much money  the City of New York should revover from 
+Brink's for the  losses the City incurred by the criminal activities of 
+two Brink's employees (they collected the money form the parking meters,
+but kept some of it!). 
+\end{itemize}
+
+\subsubsection{From behaviour of statistical `atoms' to statistical `molecules'}
+
+\textbf{`1 condition' or `1 circumstance' or `setting'} [``1-sample problems'']
+
+\textit{The smallest statistical element or unit (? atom)}: the  quantity of interest
+might have a $Y$ distribution that under sampling, could be represented by
+a discrete random variable with  `2-point' support (Bernoulli), 
+3-point support, $k-$point support, etc. or interval support 
+(Normal, gamma, beta,  log-normal,)
+
+The \textit{aggregate} or summary of the values associated with these elements 
+ is often a sum or a count: with e.g., a
+Binomial, Negative Binomial,  gamma  distribution.
+Or the summary might be more complex -- it could be some re-arrangement of the data on the individuals
+(e.g., the way the tumbler longevity data were summarized).
+This brings in the notion of ``sufficient statistics''.
+
+More complex: $t$, $F$,   ...
+
+\textbf{`2 or conditions' or `circumstances' or `settings'}, indexed by possible 
+values of `$X$' variable(s). Think of the  `$X$' variable(s) as `covariate patterns'
+or `profiles,' \underline{not} as a `random' variable.
+
+\textbf{unknown conditions or circumstances}
+Sometimes we don't have any measurable (or measured) `$X$' variable(s)
+to explain the differences in $Y$ from say
+family to family or person to person.There instead of the usual multiple regression
+approach, we use the concept of a hierarchical or random-effects or latent class
+or mixture model.
+
+ 
+
+\subsection{Binary data}
+
+It is worth recalling from bios601 in earlier years
+\footnote{\url{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Epidemiology1/epi-notes-bios601-2009.pdf}} the concepts of \underline{states} and \underline{events} (transitions from one state to another). 
+
+
+
+\textsc{Cohort studies with fixed follow-up time} 
+
+Recall: \textit{cohort} is another name for a closed population, with membership (entry) defined by some event,
+such as birth, losing one's virginity, obtaining one's first driver's permit, attaining age 21, 
+graduating from university, entering the `ever-married' state, undergoing a certain medical intervention, enrolling in a follow-up study, etc. 
+Then the \textit{event of interest} is the \textit{exit} (transition) from a/the state that prevailed at entry. So \textit{death} is the transition from the \textit{living} state to the \textit{dead} state, receiving a \textit{diagnosis} of cancer changes one's state from `no history of cancer since entry/birth' to `have a history of cancer', being convicted of a traffic offense changes one's state from `clean record' to `have a history of traffic offenses.'  We can also envision more complex situations, with a transition from `never had a stroke,' to `have had 1 stroke,' to `have had 2 strokes,' ... or   `haven't yet had a cold this winter,' to `have had 1 cold,' to `have had 2 colds,' etc.
+
+\textit{Censoring}: to be distinguished from \textit{truncation}. Truncation implies some observations are \underline{missed} by the data-gathering process, i.e., that the observed distribution is a systematic distortion of the true distribution. Note that we can have censoring of \textit{any} quantitative variable, not just one that measures the \textit{time duration} until the event of interest. For example, the limits on say a thermometer or a weight scale or
+a chemical assay may mean that it cannot record/detect values below or above these limits. Also, the example in C\&H implicitly refers to \textit{right} censoring: one can have \textit{left} censoring, as with lower limits of detection in a chemical assay, or \textit{interval} censoring, as -- in repeated cross-sectional examinations -- with the date of sero-conversion to HIV.  
+
+\textit{Incidence} studies: the word \textit{new} means a \uwave{change of state} since entry.
+
+``\textit{Failure}'': It is a pity that C\&H didn't go one step more and use the even more generic 
+term ``\textit{event}''. That way, they would not have to think of graduating with a PhD (i.e., \textit{getting out of -- exiting from -- here}) as ``\textit{failure}'' and`` still pursuing one" as ``\textit{survival}.'' This simpler and more general terminology would mean that we would not have to struggle to find a suitable label of the `y' axis
+of the $1-F(t)$, usually called $S(t),$ function. One could simply say \textit{``proportion still in \underline{initial} state,''} and substitute the term for the initial state, i.e., proportion still in PhD program, proportion event-free, etc.
+
+$N$ or $n$? $D$ or $d$? JH would have preferred lower case, at least for the denominator. In \textit{sampling} textbooks, $N$ usually denotes the \textit{population} size, and $n$ the \textit{sample} size. In the style manual used in \textit{social sciences}, 
+$n$ is the sample size in each stratum, whereas $N$ is the overall sample size: thus, for example,
+a study might report on a sample of $N=76$ subjects, composed of $n=40$ females and $n=36$ males. 
+
+\textit{Cohort studies with variable follow-up  time}: If every subject entered a study at least 5 years ago,
+then, in principle, one should be able to determine $D$ and $N-D, $ and the 5-year survival proportion.  However, \textit{losses to follow-up} before 5 years, and before the event of interest, lead to observations that are typically regarded as censored at the time of the loss. Another phenomenon that leads to censored observations
+is \textit{staggered entry}, as in the JUPITER trial.\footnote{\url{http://www.medicine.mcgill.ca/epidemiology/hanley/c634/JUPITER/}}
+Unfortunately, some losses to follow-up may be examples of `\textit{informative}' censoring.
+
+\newpage
+\textsc{Cross-sectional prevalence data} 
+
+Recall again that prevalence refers to a \textit{state}.
+Examples would include the proportion (of a certain age group, say) who wear glasses for reading, or
+have undetected high blood pressure, or have high-speed internet at home, or have a family history of
+a certain disease, or a certain `gene' or blood-type.
+
+From a purely \textit{statistical} perspective, the analysis of \textit{prevalence} proportions of the form $D/N$ and \textit{incidence} proportions of the form $D/N$ takes the same form: the underlying statistical `atoms'
+are $N$ Bernoulli random variables.
+
+
+
+\textbf{Important: Concepts and terms in Epidemiology}
+
+\begin{itemize}
+\item
+State\footnote{Google: The way something is with respect to its main attributes; ``the current state of knowledge''; ``his state of health''; ``in a weak financial state''.
+State of matter: (chemistry) the three traditional states of matter are solids (...) liquids (...) and gases (...).}
+vs. 
+Event\footnote{Most of the definitions below are adapted from the glossary in the textbook \textit{Theoretical Epidemiology: Principles of Occurrence Research in Medicine} by O.S. Miettinen (Wiley 1985). See also \url{https://link.springer.com/book/10.1007\%2F978-94-007-1171-6}
+\newline
+Google:
+something that happens at a given place and time $ | $
+a phenomenon located at a single point in space-time; the fundamental observational entity in relativity theory $ | $
+In the Unified Modeling Language, an event is a notable occurrence at a particular point in time. Events can, but do not necessarily, cause \textit{state transitions} from one state to another ... $ | $
+An event in computer software is an action which can be initiated either by the user, a device such as a timer or Keyboard (computing), or even by the operating system. $ | $
+\sout{In probability theory, an event is a set of outcomes and a subset of the sample space where a probability is assigned. Typically, when the sample space is finite, any subset of the sample space is an event (i.e. all elements of the power set of the sample space are defined as events)}. $ | $
+An occurrence. $ | $
+A runtime condition or change of state within a system. $ | $
+A thing which happens, like a button is pressed. Events can by low-level (such as button or keyboard events), or they can be high level (such as when a new dataset is available for processing). $ | $
+A means by which the server notifies clients of \textit{changes of state}. An event may be a side effect of a client request, or it may have a completely asynchronous cause, such as the user's pressing a key or moving the pointer. In addition, a client may send an event, via the server, to another client.} 
+[the \textit{transition} (rapid) from one state to another] \footnote{
+In epidemiology, some authors reserve the word ``\textit{occur}''  for an event (Google: happen; take place;  come to pass; ``Nothing occurred that seemed important'')
+But, both in epidemiology and in lay use, it is and can also be used for a \textit{state} ( to be found to exist; ``sexism occurs in many workplaces''; ``precious stones occur in a large area in Brazil''). Miettinen [European J of Epi. (2005) 20: 11-15] makes this point in his reply to one of the several authors who  commented on his article  \textit{Epidemiology: Quo vadis?} ibid, 2004; 19: 713–718. \begin{quote}
+Walker's commentary was devoted to teaching me 
+that the concept of occurrence has to do with outcome events only; that it thus does not encompass outcome \textit{states}; and that etiologic occurrence 
+research therefore does not encompass the important 
+study of causal \textit{prevalence} functions. As I now consult The New Oxford Dictionary of English (1998  edn), I find as the meanings of ‘occurrence’ (as a mass  noun) these: `the fact or frequency of something happening' and `the fact of something \textit{existing} or 
+being found . . .,' as in `the occurrence of natural gas  fields.' And in my Perspective article I find 'state' or 'prevalence' occurring as many as eight times, `event' 
+or `incidence' no more than nine times. The verb  `occur,' I might need to add, means `happen; take place; \textit{exist or to be found to be present} . . . ,' as in 
+`radon \textit{occurs} naturally in rocks . . . ' [italics added by JH] \end{quote}
+ }
+
+\item
+Population 
+An aggregate of people, defined by a membership-defining...
+  \begin{itemize}
+  \item
+  event $\rightarrow$ ``cohort'' ( closed population i.e., closed for exit) \newline  
+  \textbf{or}
+  \item
+  state -- one is a member just for duration of state $\rightarrow$ Open population (open for exit) / dynamic / turnover
+  \end{itemize}
+\item
+Prevalence (of a state) : The existence (as opposed to the inception or termination) of a particular state among the members of the population.
+\item
+Prevalence Rate: the proportion of a population that is in a particular state.
+\item
+Population-time: The amount of population experience in terms of the integral of 
+population size over the period of observation.
+\item
+Incidence: The appearance of events of a particular kind in a population (of candidates over time)
+  \begin{itemize}
+  \item
+ \textit{ Incidence density (ID)}: The ratio of the number of events to the corresponding population time (candidate time). If we subdivide time into very short spans,  \textit{ID} becomes a function of time, $ID(t)$; otherwise \textit{ID} refers to the average over the entire span of time.
+  \item
+  \textit{Hazard}:  limiting case of \textit{ID} as we narrow the span of time. More commonly used w.r.t.  \textit{closed} population, with  a natural ``$t_0$.''
+  \item
+  \textit{Force of morbidity/mortality (Demography)}.
+  \end{itemize}
+\item
+Case: Medicine -- episode of illness, (``a case of gonorrhea''). Epidemiology -- a person representing a case (in medical sense) of some state or event.\footnote{\begin{scriptsize}
+\textit{\underline{Google}}: an occurrence or instance of something; ``a case of bad judgment'''; ``another \textit{instance} occurred yesterday''; \textit{\underline{Merriam-Webster}}: noun, 
+Middle English cas, from Anglo-French, from Latin \textit{casus} fall, chance, from \textit{cadere} to fall.
+1 a: a set of circumstances or conditions  b (1): a situation requiring investigation or action  6 a: an \textit{instance} of disease or injury $<$a \textit{case} of pneumonia$>.$\end{scriptsize}}
+\item
+Incident cases: Cases that \uwave{appear} (as against those that \uwave{exist} or prevail).
+ \item
+Cumulative Incidence (CI): The \textit{proportion} of a cohort (of candidates) experiencing the event at issue over a particular risk period if time-specific incidence density is
+considered to operate over that period.
+  \begin{itemize}
+  \item
+  { \color{red}{The relation between ID and CI}} \footnote{{ \color{red}{So fundamental I put it in red}}} can be expressed mathematically as
+  { \color{red}{$$CI_T = CI_{0\rightarrow T} = 1 - \exp \bigg\{ - \int_0^T ID(t) dt\bigg\}.$$ }}
+  \item
+  As a function of $t$, the \textit{complement}, $1 - CI_{0\rightarrow t}$ is called  the ``\textit{Survival}'' function, $S(t),$ since it is the proportion of the cohort that, at time $t$, remains (continues, ``survives'') in the initial state.
+   \end{itemize} 
+\item
+Risk: The \textit{probability} that an event (untoward) will occur.
+\item
+Case Fatality Rate: (Rothman 1986, p31) The cumulative incidence of death among those who develop an [acute] illness [e.g., SARS, influenza]. The time period for measuring the case fatality rate is often unstated. 
+\end{itemize}
+
+
+
+\subsection{The binary probability model}
+
+JH presumes they use this heading as a shorthand for `the probability model for binary responses' (or `binary outcomes' or binary random variables)
+
+... to ``\textit{predict} the outcome'' : JH takes this word \textit{predict} in its broader meaning. If we are 
+giving a patient the probability that he will have a certain \textit{future} event \textit{say within the next 5 years}, we can talk
+about predicting\footnote{The term `Risk Prediction' has led to further confusion. Risk is by definition anout the future, and is a probability. It is the probability that (a future) Y=1. The Y is unknown, but the Risk may be well or poorly 'known'.} the outcome: we are speaking of \textit{pro}gnosis;  but what if we
+are giving a woman the probability that the suspicious finding on a mammogram 
+does in fact represent an existing breast cancer, we are speaking of the \textit{present}, of whether a
+phenomenon already \textit{exists}, and we use a prevalence proportion as an estimate of the 
+\textit{dia}gnostic probability. Note that prevalence and incidence refer to aggregates.
+
+\textsc{The risk parameter} 
+
+\textit{Risk} typically refers to the \textit{future}, and can be used when speaking to or about one person; we don't have a comparable specialized term for \textit{the probability that a state exists}  when speaking to or about one person, and would therefore just use the generic term probability.
+
+\textsc{The odds parameter} 
+
+The sex-ratio is often expressed as an odds, i.e., as a ratio of males to females. If the proportion of males
+is 0.51, then the male:female ratio is 51:49 or (51/49):1, i.e., approximately 1.04:1.
+This example  is a good reason why C\&H should have used a more generic pair of terms than
+failure and survival (or success and failure).
+
+In betting on horse races (at least where JH comes from), odds of 3:1 are the odds \textit{against} the horse winning; i.e., the probability of winning is 1/4.\footnote{Think of the 3:1 as the `bookie' putiing \$3 in an envelope, and the better butting \$1, and when the race result is known, the bookie or the bettor taking the envelope with the \$4.} When a horse is a heavy favourite so that
+the probability of winning was 75\%, the ``bookies'' would give the odds as ``3:1 \textit{on}.''\footnote{Now the bookie puts in 1 and the bettor 3}
+
+\textsc{Rare events} 
+
+One of the tricks to make events \textit{rare} will be to slice the time period into small slices or windows.
+
+Death, the first of the two only sure events (taxes is the other) is also  rare -  in the short term!
+
+Also, it would be more correct to speak of a \textit{rare events}, since disease is often used to describe a process,
+rather than a transition. And since most transitions are rapid, the
+probability of a transition (an event) occurring within a given short sub-interval will usually be small.
+
+If the state of interest being addressed with cross-sectional data is uncommon (or rare), then yes,
+the prevalence odds and the prevalence  proportion will  be very close to each other.   
+
+\textbf{Supplementary Exercise 1.1}. If one rounds probabilities or risks or prevalences ($\pi$'s), or their 
+corresponding odds, $\Omega=\pi/(1-\pi)$, to 1 decimal place, at what value of $\pi$ will the rounded values of $\pi$ and $\Omega$ be differerent? Also, why use lowercase $\pi$ for proportion, and uppercase
+$\Omega$ for odds?
+
+\subsection{Parameter Estimation}
+
+Should you be surprised if  the estimate were $\pi$ were other than $D/N$? Consult Google or Wikipedia on ``the rule of succession,'' and on Laplace's estimate of the probability that the sun will rise tomorrow, given that it has unfailingly risen ($D=0$) for the past 6000 years, i.e., $N \approx 365\times 6000$.
+
+\textbf{Supplementary Exercise 1.2}. One has 2 independent observations from the model
+$$ E[y|x] = \beta \times x \ \ \  \textrm{[`no intercept' model].}$$
+The $y$'s might represent the total numbers of typographical errors on $x$ randomly sample pages of a
+large document, and the data might be $y=2$ errors in total in a sample of $x=1$ page,  and $y=8$ errors in total in a separate sample of $x=2$ pages. The $\beta$ in the model represents the mean number of errors per page of the document. Or the $y$'s might represent the total weight of $x$ randomly sample pages of a
+document, and the data might be $y=2$ units of weight in total for a sample of $x=1$ page,  and $y=8$ units for a separate sample of $x=2$ pages. The $\beta$ in the model represents the mean weight per page of the document.  We gave this `estimation of $\beta$' problem to several statisticians and epidemiologists, and to several grade 6 students, and they gave us a variety of estimates, such as $\hat{\beta} = $ 3.6/page, 3.33/page, and 3.45! 
+
+\textit{How can this be?} [If it still works] You might run the applet `2 datapoints and a model' \url{http://www.biostat.mcgill.ca/hanley/2DatapointsAndaModel/}
+
+
+\subsection{Is the model true?}
+
+I wonder if they were aware of the quote, attributed to the statistician George Box
+that goes something like this
+\begin{quote}
+``\textbf{all models are wrong; but some are more useful than others}"
+\end{quote}
+
+Box also said
+\begin{quote}
+\textbf{Statisticians, like artists, have the bad habit of falling in love with their models}.
+\end{quote}
+
+\begin{verbatim}
+http://en.wikiquote.org/wiki/George_E._P._Box
+\end{verbatim}
+
+
+%%%%%%%%%%%%%%
+
+\newpage
+
+\section{Conditional probability models}
+\vspace{-9pt}
+\subsection{Conditional probability}
+
+JH is surprised at how few textbooks use trees to explain conditional 
+probabilities. Probability trees make it easy to see  the  \textbf{direction} in which one is
+preceeding, or looking,  where simply (and often arbitrarily chosen) algebraic symbols like A and B can not; they make it easier
+to distinguish `forward' from `reverse' probabilities. try to order letters so it is $A\rightarrow B$ not   $B\rightarrow A.$
+
+\begin{figure}[h!]
+\centering
+        \includegraphics[width=4.65in]{HowToCalculate}
+        \caption{{\footnotesize From JH's notes for EPIB607, introductory biostatistics for epidemiology}}
+\end{figure}
+
+Trees show that the probability of  a particular sequence
+is always a fraction of a fraction of a fraction .. , and that if
+we start with the full probability of 1 at the single entry point on the extreme left,
+then we need at the right hand side to account for all of this (i.e., the `total') probability.
+
+\textsc{Statistical dependence and independence}
+
+JH likes to say that with independence, one doesn't have to look
+over one's shoulder to the previous event to know which probability
+to multiple by.. The illustrated example on the gender composition of 2 independent births, and 
+of a sample of 2 persons  sampled (without replacement) from a pool
+of 5 males and 5 females, show this distinction: in the first example, when one
+comes to the second component in the probability product, $Pr(y_2=male)$ is the same
+whether one has got to there via the `upper' path, or the `lower' one. 
+
+\begin{figure}[h!]
+\centering
+        \includegraphics[width=4.5in]{egsCondnlProbs.pdf}
+        \caption{JH examples of \textit{\textbf{independence/dependence}} [2 panels on left] and \textit{`\textbf{forward'/`reverse}'} probabilities [3 panels on right]}
+
+\end{figure}
+
+\vspace{-21pt}
+
+\subsection{Changing the conditioning: Bayes' rule}
+
+\vspace{-6pt}
+
+The panels on the right hand column of JH Figure 2 shows 3 examples of `forward' probabilities (on the left) and `reverse'
+probabilities (on the right).
+
+The difference between  `forward' and  `reverse' probabilities
+distinguishes frequentist p-values (probabilities) from Bayesian
+posterior probabilities. 
+{ \large
+{\color{red}{
+$$Probability[ data \ | \ Hypothesis ] \neq Probability[ Hypothesis \ | \ data ]$$} 
+}
+or, if you prefer something that rhymes, 
+{ \large
+{\color{red}{$$Probability[ \ data \ | \  theta ] \neq Probability[ \ theta \ | \ data ].$$}
+}
+\textit{\textbf{Two striking  -- and frightening -- examples of misunderstandings about them are given on the next page.}}
+
+\textbf{\uwave{The True Title of Bayes's Essay}}
+
+Today's students are told that the Bayes essay was published after his death
+under the title ``An Essay toward solving a Problem in the Doctrine of Chances''.
+But when he spoke in Montreal at the end of 2013, Stephen Stigler gave us the inside story on
+the very concrete reason the person who published it, Richard Price, had for being
+interested in this work, and why it was advertised elsewhere under a very different title: 
+\textbf{`A method of calculating the exact probability of all conclusions based on induction'}
+Read about Stigler's fascinating detective work in his captivating article 
+Statistical Science
+2013, Vol. 28, No. 3, 283-288 (Resources website) or here:
+
+\vspace{3pt}
+
+\url{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/CandH-ch0102/StiglerBayesTitle.pdf}
+
+\includegraphics[width=2.2in]{StiglerFig1}
+\includegraphics[width=2.4in]{StiglerFig3}
+
+Figures 1 and 3 from Stigler 2013
+
+\newpage
+
+\normalsize
+
+\begin{center}
+\textbf{U.S. National Academy of Sciences under fire
+over plans for new study of DNA statistics: 
+Confusion leads to retrial in UK}.\footnote{NATURE p 101-102 Jan 13, 1994.}
+\end{center}
+
+\vspace{-6pt}
+
+[...] He also argued that one of the prosecution's
+expert witnesses, as well as the judge, had
+confused two different sorts of probability.
+
+One is the probability that DNA from an
+individual selected at random from the
+population would match that of the semen
+taken from the rape victim, a calculation
+generally based solely on the frequency of
+different alleles in the population.
+The other is the separate probability that 
+\textit{a match between a suspect's DNA and that
+taken from the scene of a crime could have
+arisen simply by chance} --
+\textbf{in other words that
+the suspect is innocent despite the apparent
+match.}\footnote{italics by JH. 
+The wording of the italicized
+phrase is imprecise; the text in bold
+wording is much better .. if you read ``despite'' as ``given
+that'' or ``conditional on the fact of''t}
+ This probability depends on the other
+factors that led to the suspect being identified
+as such in the first place.
+
+During the trial, a forensic scientist gave the first probability in reply
+to a question about the second. Mansfield convinced the appeals
+court that the error was repeated by the judge in his summing up,
+and that this slip -- widely recognized as a danger in any trial
+requiring the explanation of statistical arguments to a lay jury --
+justified a retrial.
+In their judgement, the three appeal judges, headed by the Lord
+Chief Justice, Lord Farquharson, explicitly stated that their decision
+``should not be taken to indicate that DNA profiling is an unsafe
+source of evidence.''
+
+Nevertheless, with DNA techniques being increasingly used in
+court cases, some forensic scientists are worried that flaws in the
+presentation of their statistical significance could, as in the Deen
+case, undermine what might otherwise be a convincing
+demonstration of a suspect's guilt.
+
+Some now argue, for example, that quantified statistical
+probabilities should be replaced, wherever possible, by a more
+descriptive presentation of the conclusions of their analysis. ``The
+whole issue of statistics and DNA profiling has got rather out of
+hand,'' says one.
+Others, however, say that the Deen case has been important in
+revealing the dangers inherent in the `\textbf{prosecutor's fallacy}'. They
+argue that this suggests the need for more sophisticated
+calculation and careful presentation of statistical probabilities.
+``The way that the prosecution's case has been presented in trials
+involving DNA-based identification has often been very
+unsatisfactory,'' says David Balding, lecturer in probability and
+statistics at Queen Mary and Westfield College in London.
+``\textbf{Warnings about the prosecutor's fallacy should be made much
+more explicit. After this decision, people are going to have to be
+more careful}.''
+
+\newpage
+\begin{center}
+\textbf{``The prosecutor's fallacy'': Who's the DNA fingerprinting pointing at?}
+\footnote{New Scientist item by  David Pringle, 1994.01.29, 51-52; cited in Vol 3.02 Chance News}
+\end{center}
+
+Pringle describes the successful appeal of a rape case where
+the primary evidence was DNA fingerprinting. In this case the
+statistician \textbf{Peter Donnell}y opened a new area of debate. He
+remarked that\\
+
+\vspace{-12pt}
+
+\begin{quote}
+
+``\underline{forensic evidence} answers the question
+
+\textbf{What is the probability that the defendant's DNA
+profile matches that of the crime sample,
+assuming that the defendant is innocent?} \\
+
+while \underline{the jury} must try to answer the question
+
+\textbf{What is the probability that the defendant is
+innocent, [in the light of ALL of the OTHER EVIDENCE and] assuming that the DNA profiles of the
+defendant and the crime sample match?} '' 
+%\footnote{(JH)  Donnelly's words make the contrast of the two types of probability much ``crisper.'' The fuzziness of the wording on the previous story is sadly typical of the way statistical concepts often become muddied as they are passed on.}
+
+\end{quote}
+
+Apparently, Donnelly suggested to the Lord Chief Justice and
+his fellow judges that they imagine themselves playing a game
+of poker with the Archbishop of Canterbury. If the Archbishop
+were to deal himself a royal flush on the first hand, one might
+suspect him of cheating. Assuming that he is an honest card
+player (and shuffled eleven times) the chance of this happening
+is about 1 in 70,000.
+
+But if the judges were asked whether the Archbishop were
+honest, given that he had just dealt a royal flush, they would be
+likely to place the chance a bit higher than 1 in 70,000 *.
+
+The error in mixing up these two probabilities
+is called the ``the prosecutor's fallacy,''
+and it is suggested that newspapers regularly
+make this error.
+
+Apparently, Donnelly's testimony convinced the three judges
+that the case before them involved an example of this and they
+ordered a retrial
+
+[* Comment by JH: This is a very nice example of the advantages of
+Bayesian over Frequentist inference .. it lets one take
+one's prior knowledge (\uwave{the fact that he is the
+Archbishop}) into account.
+
+The book `Statistical Inference'' by Michael W. Oakes is an excellent 
+introduction to this topic and the limitations of frequentist inference.]
+See also \url{http://nautil.us/issue/74/networks/the-flawed-reasoning-behind-the-replication-crisis}
+
+}
+
+\newpage
+
+\subsection{Examples}
+\subsubsection{Example from genetics}
+
+\begin{figure}[h!]
+\centering
+        \includegraphics[width=4.0in]{hemophilia.pdf}
+        \caption{{\scriptsize simpler [older] example -- nowadays, direct tests  mean women don't have to wait to have a son to be probabilistically sorted into definite/possible carriers.}}
+\end{figure}
+
+\newpage
+
+\vspace{-27pt}
+
+\begin{figure}[h!]
+\centering
+        \includegraphics[width=1.75in]{HaemophiliaSorting.pdf}
+        \caption{At the outset, each woman had a 50:50 chance of being a haemophilia carrier. \textbf{Accumulating information from their sons} \textbf{increasingly} `\textbf{sorts}' or \textbf{segregates} them by moving their probability of being a carrier  \textbf{to} 100\% or \textbf{towards} 0\%.} 
+\end{figure}
+
+
+
+
+\vspace{-4pt}
+
+\noindent\fcolorbox{white}{wheat}{
+    \minipage[t]{\dimexpr0.999\linewidth-2\fboxsep-2\fboxrule\relax}
+\textbf{Probabilities: Diagnostic and Screening Tests }
+
+\vspace{1pt}
+
+Try  { \footnotesize   \url{https://jameshanley.shinyapps.io/FromPreTestToPostTestProbabilities/}},
+while noting that what JH calls
+
+{ \footnotesize
+\begin{itemize}
+\item
+ \textit{detection rate} is called \textit{sensitivity} in medicine, and \textit{power} in statistics
+\item
+\textit{false alarm rate} is alpha (medical people call it the false positive rate, but focus on its complement, 1-alpha, and call it specificity)
+\item
+\textit{pre-test probability} is sometimes referred to as the \textit{prior} probability or `\textit{prevalence}'
+\end{itemize}
+}
+JH borrowed the nomogram from Fagan (below).
+Fagan put the pre-test probability on the right and worked from right to left;
+his middle column has the Likelihood ratios (LR +ve $>$ 1 and LR- $<$ 1);
+his post-test probabilities are on left. In JH's nomogram, pre-test is at bottom, then LRs, and then post-test.
+
+\vspace{2pt}
+Here is an older  introduction to terminology/concepts  in medical diagnosis
+ { \footnotesize
+  \url{http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/PrimerMedicalDecisionMaking.pdf}
+  
+\vspace{2pt}
+ See also the very interesting `\textit{When doctors meet numbers}'
+\url{http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/Berwick1981WhenDoctorsMeetNumbers.pdf}
+
+\vspace{2pt}
+This link \url{http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/} has several newer articles under PERFORMANCE AND INTERPRETATION OF DIAGNOSTIC TESTS. The one by Steurer -- where he tries
+to improve matters by proving a user-friendly explanation of the Likelihood ratio -- is of note.
+
+\vspace{3pt}
+\textbf{SCREENING} for HIV \url{http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/MeyerPaukerHIVscreening.pdf} Can we afford the False Positive Rate? MDs tell Pres.  Reagan: `5/15 +ve results will be in people who are not infected.'
+
+}
+    \endminipage}\hfill
+    \fcolorbox{white}{white}{%
+    \minipage[t]{\dimexpr0.0001\linewidth-2\fboxsep-2\fboxrule\relax}
+    \endminipage}
+
+
+\newpage
+
+\subsubsection{Twins: Excerpt from an article  by Bradley Efron} 
+
+\textsc{Modern science and the Bayesian-Frequentist controversy}
+{ \small
+\begin{quote}
+Here is a real-life example I used to illustrate Bayesian virtues to the physicists. A 
+physicist friend of mine and her husband found out, thanks to the miracle of sonograms, 
+that they were going to have twin boys. One day at breakfast in the student union she 
+suddenly asked me what was the probability that the twins would be identical rather than 
+fraternal. This seemed like a tough question, especially at breakfast. Stalling for time, I 
+asked if the doctor had given her any more information. ``Yes'', she said, ``he told me that 
+the proportion of identical twins was one third''. This is the population proportion of course, 
+and my friend wanted to know the probability that her twins would be identical. 
+
+Bayes would have lived in vain if I didn't answer my friend using Bayes' rule. According 
+to the doctor the prior odds ratio of identical to nonidentical is one-third to two-thirds, or 
+one half. Because identical twins are always the same sex but fraternal twins are random, the 
+likelihood ratio for seeing ``both boys'' in the sonogram is a factor of two in favor of Identical. 
+\textbf{Bayes' rule says to multiply the prior odds by the likelihood ratio to get the current odds}: in 
+this case 1/2 times 2 equals 1; in other words, equal odds on identical or nonidentical given 
+the sonogram results. So I told my friend that her odds were 50-50 (wishing the answer had 
+come out something else, like 63-37, to make me seem more clever.) Incidentally, the twins 
+are a couple of years old now, and ``couldn't be more non-identical'' according to their mom.
+\end{quote}
+}
+
+\textbf{Supplementary Exercise 2.1}. Depict Efron's calculations using a probability tree.
+
+\textbf{Supplementary Exercise 2.2} Use a probability tree to determine the best strategy in the Monty Hall problem 
+\url{http://en.wikipedia.org/wiki/Monty_Hall_problem}
+
+\textbf{Supplementary Exercise 2.3} A man has exactly two children: you meet the \textit{older} one and see that it's a boy. A woman has exactly two children; you meet  \textit{one} of them [don't know if its the younger/older] and see is a boy. What is the probability of the man's younger child being a boy, and\textbf{ [be careful!]} what is the probability of the woman's ``other'' child being a boy?
+
+
+\newpage
+
+\normalsize
+
+\textbf{Supplementary Exercise 2.4}\\
+
+Refer to the article \url{http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/BBCNewsAmandaKnoxAndBadMathsInCourt.pdf}
+
+Specifically look at the highlighted section \textbf{"why are two tests better than one?"}
+and in particular,  the statement that
+\begin{quote}
+\textbf{\textit{``The probability that the coin is fair  -- given this outcome -- is about 8\%''}}
+
+\end{quote}
+
+This statement and the subsequent one involving the phrase ``Now the probability for a fair coin'' both seem to come out of nowhere.
+
+\textit{Questions}:
+
+\begin{itemize}
+\item
+Is this a well posed problem, or does one need to specify more context in order to do the calculations?
+\item
+Are they using a p-value somehow?
+\item
+(After you have first thought about it for a while) read the relevant portion of pages 61-62 and pages 85-86 of the book chapter 
+\url{http://ebookcentral.proquest.com/lib/mcgill/reader.action?docID=991081&ppg=74} Math Error Number 4: Double Experiment: the test that wasn't done (Amanda Knox case) and  
+find out what information was missing from the BBC article.
+Then verify the 92:8 posterior odds given in the chapter. Repeat the calculation, but assuming only a 5\% prior probability that the coin is biased and 
+a 95\% probability that it is fair. Comment.
+\end{itemize}
+
+
+%%%%%%%
+
+
+\textbf{Supplementary Exercise 2.5}
+
+Refer to the Economist article `Problems with scientific research: HOW SCIENCE GOES WRONG'
+\url{http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/HowScienceGoesWrong.pdf}
+
+
+It has a very nice graphical explanation of why some many 
+studies get it wrong, and cannot be reproduced -- the topic of 
+the Reproducibility Project in Psychology referred to on same page.
+
+One reason is that even if all studies were published, regardless
+of  whether the p-value was less than 0.05 (a common screening/filtering
+criterion) or greater than 0.05, then, of all the hypotheses tested, only 
+a small percentage of the hypotheses are  `true'. Thus many or most of the `positive' tests (\textit{published} results)  will be false
+positives. It is just like when using mammography to screen for breast cancer:
+in maybe 4 of every 5 women referred for biopsy, the biopsy will
+come back negative. 
+
+\begin{itemize}
+\item
+Represent the information in their Figure as
+a  tree. Then present the  same information in a different tree,
+with data on left, and  hypothesis on the right
+(rather than the conventional `theta $\rightarrow$ data' direction) --
+as JH has done in the three rightmost instances 
+in Figure 2 on page 6 above.
+
+\item
+What percentage of positive tests would be correct/not if, instead,
+1 in \underline{2} of the hypotheses interesting enough to test
+were true?
+
+\item
+Come up with a general formula for what in medicine is called
+the `\textit{\uwave{positive predictive value}}' of a positive medical test.
+
+\item
+Try to simplify it so that the characteristics of the \underline{test}
+($\alpha \ \textrm{and} \ \beta$) are isolated in one factor, and the 
+testing \underline{context} (the 1 in 10 or 1 in 2, etc) is in another.
+\textit{Hint: use odds rather than probabilities, so that you
+are addressing the ratio of true positives to false positives,
+and the ratio of true hypothesis to false hypotheses. And use the \textit{Likelihood Ratio}}
+
+\item
+On the same Resources web page is another (but longer)
+attempt to explain these concepts graphically to left brain and right brain doctors. \url{http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/RightSideLeftSide.pdf}.
+JH was impressed with this, and wanted to share it with 
+the Court for Arbitration in Sport, when explaining the interpretation
+of positive doping tests. But he found that the
+`teaser' sentence immediately following the title
+\begin{quote}
+Can you explain why a test with 95\% sensitivity might identify only 1\% of affected people in the general population?
+\end{quote}
+is misleading, and so he make his own diagram (available on request).
+
+\textit{\textbf{Exercise}}: Revise this misleading phrase.
+
+\end{itemize}
+
+see \url{http://shinyapps.org/apps/PPV/}
+
+
+\textbf{Supplementary Exercise 2.6}\footnote{New this year, so wording may need some polishing. Also, JH developed this question in 1991;
+it may well be that technology since then has made the task easier.} How many offspring do I need to test? \\
+
+\vspace{-18pt}
+
+\textbf{Background:}\footnote{If in a hurry, skip to the \textbf{Possible F3 genotypes} later in the piece.} \\
+A researcher is trying to develop a strain of ``transgenic'' mice, by introducing an altered gene (transgene) into the genome. In order to breed true, the animals must be made to be homozygous, i.e., to have two copies of the introduced gene (+ +) . Molecular biology techniques can detect whether the transgene is present in an individual animal (without having to sacrifice the animal), but \textit{cannot} distinguish a hemizygote, with one copy of the gene (+ -), from a homozygote (+ +). This difference can only be detected by breeding strategies. But, time and resources are pressing.
+
+\underline{First generations}: \\ 
+A copy of the transgene is injected into the pronucleus of a newly fertilized ovum, prior to fusion with the male pronucleus. Thus all animals that develop from these zygotes can have at most  one copy of the gene, from the ovum. After birth, screening is performed to detect these ``positive'' animals, called founders. After sexual maturation, all founders are bred to normal ``wild type'' (WT) animals, to ensure that the transgene has been incorporated in such a way as to be heritable. Pairs of positive (hemizygous) animals in this F1 generation are then bred to each other. By Mendelian genetics, the distribution of F2 offspring should be 1:2:1, homozygous transgenic : hemizygous transgenic : homozygous normal. The homozygous normal animals are not used. The question is, how to tell the homozygous transgenic mice (the desired ones) from the hemizygous transgenic ones? Note that the mix in this reduced population is 1 homozygous transgenic to 2 hemizygous transgenic.
+
+\underline{F2 breeding}:  \\ 
+All 'positive' F2 animals (i.e. all homozygous and hemizygous animals) are bred to wild type. \textbf{Possible F3 genotypes} are as follows: (by Mendelian genetics)
+\begin{itemize}
+\item
+Hemizygous (which comprise 2/3 of the F2 animals used) x wild type = 50:50, hemizygous (and therefore `positive') : normal (and therefore `negative'),
+\item
+Homozygous (which comprise 1/3 of the F2 animals used) x wild type = all hemizygous (and therefore `positive').
+\end{itemize}
+That is, while only half of the offspring from a Hemi x WT pair will be `positive' when screened, all of the offspring of a Homo x WT pair will be `positive'.
+
+
+\textbf{The question:}\\ \ \\
+How many F3 offspring from a particular pairing does the researcher have to screen before declaring the positive parent as homozygous? Note: as soon as an offspring is screened as `negative', one knows the parent must have been hemizygous.
+
+\vspace{-12pt}
+
+The point is to check the least number of offspring and do as few repeated breedings as possible to detect homozygous animals. How many consecutive `positive' F3 offspring does one need to observe  to be convinced (and with what probability) that the positive F2 parent is  homozygous for the transgene?
+
+\vspace{-12pt}
+
+\begin{enumerate}
+\item
+Calculate the probability before the positive F2 parent has any offspring, and after observing  1,  4, 8, 11 consecutive 'positive' F3 offspring. Give a general rule for the probability after K consecutive `positives'.
+\vspace{-6pt}
+\item
+This probability/odds problem has a  structure similar to the hemophilia one in \S 2.3. So redraw the diagram provided there, using the transgenic testing example,  and making the necessary changes to the prior probabilities and to the labels. Do so first for the ``1 inconclusive offspring'' case: think of this 1 inconclusive offspring as \textit{somewhat} helpful, \textit{better} than where the probabilities stood \textit{before} any offspring were observed.  Then extend the diagram to the general ``K inconclusive offspring'' case; think of this as  `not quite certain  but closer to it than where one stood before any offspring were observed. \textit{[Many students argue that even after the suspected carrier has a NL son, the probability she is a carrier is unaltered, at 0.5. When asked again once she has had 3  or more consecutive NL sons that they begin to realize that each  NL son pushes the probability that she is a carrier closer to 0.] For the transgenic testing, the longer the run of `p\textbf{osi}tives' the more the probability is moved close to 1.}
+\vspace{-6pt}
+\item
+ Denote the probability of being transgenic, or a haemophilia carrier, after observing K , as the post-test' probability (think of the offspring as providing a test for the status of the parent).
+ Obviously, if at any stage the next offspring provides conclusive evidence, the probability immediately goes to 0 (transgenic) or 1 (haemophilia). But if the K consecutive offspring are inconclusive but still informative, it merely moves  the probability of interest further in the other direction.\\  
+{ \color{red}{The formula for the post-test probability of being transgenic, or a haemophilia carrier, i.e., after observing K consecutive inconclusive but still informative offspring, is  awkward. It has the form A/(A + B). But, what if we switch from pre-test and post-test \textit{probabilities} to pre-test and post-test `\textit{odds}?\footnote{As C\&H tells us, $\Omega = \pi/(1-\pi);$ Odds = Prob(+)/Prob(-).} Redo the calculations  in terms of pre-and post-test odds, and characterize (give a more familiar name to) the $???$  in the expression
+$$ \textrm{Post-test } odds =    \textrm{Pre-test }  odds \  \times \ ??? \ ,$$
+or
+$$ \log[ \textrm{Post-test } odds]  =    \log[ \textrm{Pre-test } \ odds] +   \log[???].$$
+or
+$$logit[post.test.prob]  =    logit[pre.test.prob] +   \log[???].$$ } }
+\end{enumerate}
+\vspace{-36pt}
+\includegraphics[width=3.5in]{Fagan1.pdf} {\color{red}{N.E. J.Med, 1975}}
+\includegraphics[width=3.5in]{Fagan2.pdf}
+
+\newpage
+
+\textbf{Supplementary Exercise 2.7}\footnote{This exercise, also new in 2016,  was suggested by a  statistical geneticist colleague whom JH consulted as to whether using offspring to infer haemophilia carriage or  trangenicity is outdated: answer YES!}
+
+A woman had a daughter and then  3 sons; the 3rd son has Duchenne muscular
+dystrophy\footnote{\url{https://en.wikipedia.org/wiki/Muscular\_dystrophy.}}.
+Thus. there is a chance the daughter is a carrier. If  the affected son's status is a result
+of a gene inherited from his mother (the affected gene lies on the X chromosome), then the probability that the daughter is [also] a carrier is 50\%. If the son's status is a result of a spontaneous mutation in his genome, then
+the probability that the daughter is a carrier is negligible.
+The mother can have the daughter tested, but prefers to wait until she is grown
+up when she can decide for herself whether to be tested.\\
+
+What additional information, if any, is provided by the data on the other
+2 sons? \footnote{The son of a female carrier has a 50\% chance of receiving the affected X chromosome.
+If the son has the mutation, it is 100\% probability of disease.}
+Depict the situation as a tree diagram,
+and state any assumptions/information you have to make/include.
+
+\textbf{Supplementary Exercise 2.8: } How often does it land like this?
+
+A thumbtack refers to `a tack with a large, flat head, designed to be thrust into a board or other fairly soft object or surface by the pressure of the thumb'.   The British tend to call it a drawing pin -- a tack used to hold drawings on drawing boards. (Nowadays, a pin or map tack refers to thumb tacks used to mark locations on a map and to hold the map in place).  { \small [ https://en.wikipedia.org/wiki/Drawing\_pin. ] }  \\
+We will focus on this version \ \includegraphics[width=1.0in]{BrassThumbtack.jpg}
+and on what proportion ($\pi$) of  times, if tossed in the air or dropped from a height, it would land in the position indicated in the above diagram, as opposed to on its back. 
+Of course, this ($\pi$) might well depend on the height, or whether the surface it is dropped onto is soft (a carpet) or hard (a table, or wood floor), or even on the person tossing it.\footnote{The data in Beckett and Diaconis (Advances in Mathematics, 103, 107-128 (1994) `involve repeated rolls of a common thumbtack, and recording whether
+the tack landed point up or point down. All tacks started point down. Each tack was flicked or
+hit with the fingers from where it last rested. A fixed tack was flicked 9
+times. The data are recorded in Table I. There are 320 9-tuples. These arose
+from 16 different tacks, 2 ``flickers,'' and 10 surfaces. The tacks vary
+considerably in shape and in proportion of ones. The surfaces varied from
+rugs through tablecloths through bathroom floors.} For our class investigation we will choose a hard surface.
+
+\begin{enumerate}
+\item
+Before you gather any data, make your best educated  guess  as to the magnitude of $\pi$.  Since you won't want to bet all your money on one specific value, you should give your `distribution' in the form of a p.d.f. with a range of 0 to 1. Thus, describe your uncertainty (or degree of certainty) concerning $\pi$ as a beta distribution with parameters 
+$\alpha$ and $\beta$, with the parameter values chosen to reflect how concentrated or vague your estimate of $\pi$ is. Remember (or look up, preferably in Cassela and Berger, or -- only if stuck -- Wikipedia) that  the mean of a  beta distribution is $ \mu = \alpha/(\alpha+\beta)$ and the SD is $[\mu(1-\mu)/(\alpha+\beta+1) ]^{1/2}.$
+
+
+\item
+Then carry out a number of tosses and update the p.d.f. 
+
+\end{enumerate}
+
+
+\textbf{Supplementary Exercise 2.9}\footnote{This exercise, based on 
+Weinberg \& Gladen, Biometrics 42, pp.547-560 (1986), is new in 2016, so the wording may still need some polishing.}
+
+For this exercise we will take the term  \textit{fecundability} to mean
+the probability of pregnancy during a single menstrual cycle.
+ 
+Couples attempting pregnancy are to be followed for up to K menstrual cycles, or until pregnancy occurs. We assume K is fairly small, so that aging during the follow-up interval will have negligible effects on the fecundability of any given couple. In practice, K is usually some number less than or equal to 12. 
+
+If all non-contracepting, sexually active couples had the same per-cycle conception probability, $\pi$, then the number of cycles required to achieve pregnancy would be distributed as
+geometric with parameter $\pi$. In fact, there is ample evidence that \textit{couples vary in their
+fecundability}. About 30\% of sexually active couples achieve pregnancy in their first non-contracepting cycle, a smaller proportion of the remaining couples achieve pregnancy in the second, and with each additional unsuccessful cycle, the conception rate continues to decline, as the risk sets become further depleted of the relatively fecund couples. The pronounced decrease in conception probability over time is not properly viewed as a time or age effect, but as a \uwave{sorting} effect in a heterogeneous population.
+
+Thus, couples will be assumed to vary in their fecundability, so that a given couple has a per-cycle conception probability that stays constant throughout the follow-up interval, but these probabilities vary across couples. Assume  that $\pi$ varies  according to a beta distribution, with parameters  $\alpha=3, \ \beta=7,$  i.e.,
+ $$\pi \sim Beta(3,7).$$
+
+\begin{enumerate}
+\item
+Show that if this is indeed the case, then indeed about 30\% of sexually active couples achieve pregnancy in their first non-contracepting cycle. \textit{It may help to think of the results as the realizations of  Bernoulli random variables  with differing expectations, in other words,   i. \ \sout{i}. \ d. Bernoullis.}  
+\item
+Now, exclude the \textit{first}-cycle pregnancies and consider the couples who   proceed to the \textit{second} cycle. What is the distribution of $\pi$ in these remaining couples? \textit{Hint: 
+to see what happens, you might want to make a graph: convert the continuous r.v.  -- and associated density
+-- for cycle 1  into a discrete one with  100
+probabilities centered on $0.005, 0.015,  \dots, 0.995$   with a rectangle erected over each one;
+then remove the appropriate portion from the top of each rectangle, and rescale the altered rectangles so that the frequencies again add to 1, and then convert the discrete r.v. back to a continuous r.v. The new p.d.f. should have a familiar (and remarkable!)
+functional form. What is it?}  
+\item
+Generalize to  12 cycles, and plot the 12 pdfs on a single graph. Then, for $k=2, \dots , 12$,  find what \% 
+of those who undergo non-contracepting cycle $k$ become pregnant 
+in cycle $k.$ 
+
+
+\item
+After 6 unsuccessful cycles, a couple asks you what is the estimated probability 
+that  -- if they continue to try -- they will be successful in one of the next 6 cycles.
+Rather than just giving a `central' estimate, give a 
+pessimistic\footnote{Use the 5th percentile of the `after-6-unsuccessful cycles'  distribution.}  
+estimate and an optimistic\footnote{Use the 95th percentile of this `after-6'  distribution.} one.
+
+
+\item
+Instead of `assuming' $\alpha=3, \  \beta=7,$ how might one estimate  $\alpha$ and $\beta$
+from data? For concreteness, imagine one had the data from 500 
+couples followed for up to 12 cycles after discontinuing contraception.
+
+\item
+Among the couples attempting pregnancy, 
+a proportion $\rho$ will have some hidden condition that makes $\pi = 0.$ 
+ Thus, it may be more realistic to
+consider the distribution of $\pi$ to be a beta `contaminated by' (or `mixed with') a second distribution degenerate at 0. In this context,  $\rho$ is called the `mixing parameter'.  \\
+
+Repeat the calculations for the cycle-specific distributions and percentages.  
+\end{enumerate}
+
+
+\textbf{Supplementary Exercise 2.10}\footnote{New in 2018, so wording may need some polishing.} Two (orientational) probability examples from Alan \textbf{Turing} [Full Turing article available here \url{http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/}, along with commentary by Zabell.] Each question is preceded by a $\bullet$  \ .  \\
+
+Zabell  tells us
+\begin{quote}
+In April 2012, two papers written by Alan Turing during the Second World War on the use of probability in cryptanalysis were released by GCHQ. The longer of these presented an overall framework for the use of Bayes's theorem and prior probabilities, including [in Ch. 2] four examples worked out in detail: the Vigen\`ere cipher, a letter subtractor cipher, the use of repeats to find depths, and simple columnar transposition. (The other paper was an alternative version of the section on repeats.) Turing stressed the importance in practical cryptanalysis of sometimes using only part of the evidence or making simplifying assumptions and presents in each case computational shortcuts to make burdensome calculations manageable. The four examples increase roughly in their difficulty and cryptanalytic demands. After the war, Turing's approach to statistical inference was championed by his assistant in Hut 8, Jack Good, which played a role in the later resurgence of Bayesian statistics.
+\end{quote}
+
+
+
+The following numbering of the Chapter 1 subsections was introduced by Ian Taylor, who reset the `manuscript' in LateX.
+ 
+\begin{verbatim}
+Chapter 1. Introduction 
+
+1.1. Preamble 
+1.2. Meaning of probability and odds 
+1.3. Probabilities based on part of the evidence 
+1.4. A priori probabilities 
+1.5. The Factor Principle 
+1.6. Decibanage
+
+\end{verbatim}
+
+%\normalsize
+\begin{enumerate}
+
+\item
+
+Turing's Section 1.2 (`\textbf{Meaning of probability and odds}') is quite short
+\begin{quote}
+I shall not attempt to give a systematic account of the theory of probability, but it may be worth while to define shortly \textit{probability} and \textit{odds}. \\
+
+\textbf{The \textit{probability} of an event on certain evidence is the proportion of cases in which that event may be expected to happen given that evidence.} For instance if it is known the 20\% of men live to the age of 70, then knowing of Hitler only Hitler is a man we can say that the probability of Hitler living to the age of 70 is 0.2. Suppose however that we know that Hitler is now of age 52 the probability will be quite different, say 0.5, because 50\% of men of 52 live to 70. \\
+
+\textbf{The \textit{odds} of an event happening is the ratio P/(1-P) where P is the probability of it happening.} This terminology is connected with the common phraseology `odds of 5:2 on' meaning in our terminology that the odds are 5/2.
+\end{quote}
+
+$\bullet$ Does Turing's definition of probability fit with what you have been taught, or is it a bit more qualified and specific? (cf. commentary by Zabell, and specifically his quotes from Laplace and Bertrand.)
+
+$\bullet$ Later on, in another example, Turing admits that his `facts' are `no doubt hopelessly inaccurate.' How accurate are the `facts' he used in the living to 52 and to 70 example? Compare them with those in the portion of the `current' English lifetable from 1930-1932, used by Armitage, and discussed by JH in section 4.2 of his  Notes on Clayton \& Hills. Ch 4: Follow-up. 
+\url{http://www.biostat.mcgill.ca/hanley/bios601/ch04.pdf}
+In that lifetable, approximately what \%  of men of 5\underline{0} live to 70?
+
+\item
+
+Section 1.5. (`\textbf{The Factor Principle}')  is illustrated with a medical example:
+\begin{quote}
+Nearly all applications of probability to cryptography depend on the `factor principle' (or Bayes' theorem). This principle may first be illustrated by a simple example. \\
+
+Suppose that one man in five dies of heart failure, and that of the men who die of heart failure two in three die in their beds, but of the men who die from other causes only one in four die in their beds. (My facts are no doubt hopelessly inaccurate). Now suppose we know that a certain man died in his bed. What is the probability that he died of heart failure? \\
+
+%\newpage
+
+Of all men numbering N say, we find that \\
+
+\begin{tabular}{cccc c l}
+N & $\times$ & (1/5) & $\times$ (2/3) &  & die in their beds of heart failure \\
+N & $\times$ & (1/5) & $\times$ (1/3) &  & die \ \ elsewhere \ \  of heart failure \\ \\
+N & $\times$ & (4/5) & $\times$ (1/4) &  & die in their beds from other causes \\
+N & $\times$ & (4/5) & $\times$ (3/4) &  & die \ \ elsewhere \ \ from other causes \\ \\
+\end{tabular}
+
+Now as our man died in his bed we do not need to consider the cases of men who did not die in their beds, and these consist of\\
+
+\begin{tabular}{cccc c l}
+N & $\times$ & (1/5) & $\times$ (2/3) &  & cases of heart failure \\
+N & $\times$ & (4/5) & $\times$ (1/4) &  & from other causes, \\ \\
+\end{tabular}
+
+and therefore the odds are 1 $\times$ (2/3) : 4 $\times$ (1/4) in favour of heart failure. If this had been done algebraically the result would have been\\
+
+\textbf{A posteriori odds of the theor}y \\
+
+= \textbf{\textbf{A priori odds of the theory}}
+$$ \times \  \frac{\textrm{Probability of the data being fulfilled if the theory is true}}
+                       {\textrm{Probability of the data being fulfilled if the theory is false}}.$$
+                       
+In this the `theory' is that the man died of heart failure, and the `data' is that he died in his bed.\\
+
+The general formula above will be described as the `factor principle',
+the ratio $\frac{\textrm{Probability of the data if the theory is true}}{
+\textrm{Probability of the data if the theory is false}}$
+is called the factor for the theory on account of the data.
+
+\end{quote}
+
+$\bullet$  Use the above information  to sketch 2 probability trees, along the lines of those
+shown in Figure 2 (p.6) of JH's Notes.
+
+\item
+
+Section 1.6. (`\textbf{Decibanage}') adds 2 additional pieces of information to the same medical example.
+\begin{quote}
+Usually when we are estimating the probability of a theory there will be several independent pieces of evidence e.g. following our last example, where we want to know whether a certain man died of heart failure or not, we may know\\
+
+a) He died in his bed\\
+b) His father died of heart failure\\
+c) His bedroom was on the ground floor \\
+
+and also have statistics telling us\\
+
+{ \scriptsize
+2/3 of men who die of heart failure  \ \  die in their beds\\
+2/5 ................................................ \ \ have fathers who died of heart failure\\
+1/2 ................................................ \ \ \ have their bedrooms on the ground floor\\
+
+1/4 of men who died of other causes \ die in their beds\\
+1/6 ................................................. \ have fathers who died of heart failure\\
+1/20 ...............................................  \ have their bedrooms on the ground floor\\
+
+}
+Let us suppose that the three pieces of evidence are independent of one another
+if we know that he died of heart failure, and also if we know that he did not die of heart failure. That is to say that we suppose for instance that knowing that he slept on the ground floor does not make it any more likely that he died in his bed if we knew all along that he died of heart failure. \\
+
+When we make these assumptions the probability of a man who died of heart failure satisfying all three conditions is obtained simply by multiplication, and is (2/3) $\times$ (2/5) $\times$ (1/2) and likewise for those who died from other causes the probability is (1/4) $\times$ (1/6) $\times$ (1/20), and the factor in favour of the heart theory failure is
+$$ \frac{(2/3) \times (2/5) \times (1/2)}{(1/4) \times (1/6) \times (1/20)}.$$
+We may regard this as the product of three factors (2/3)/(1/4) and (2/5)/(1/6) and (1/2)/(1/20) arising from the three independent pieces of evidence. \\
+
+Products like this arise very frequently, and sometimes one will get products involving thousands of factors, and large groups of these factors may be equal. We naturally therefore work in terms of the logarithms of the factors. The logarithm of the factor, taken to the base $10^{1/10}$ is called the decibanage in favour of the theory! A `deciban' is a unit of evidence; a piece of evidence is worth a deciban if it increase the odds of the theory in the ratio $10^{1/10}$ : 1. The deciban is used as a more convenient unit that the `ban'. The terminology was introduced in honour of the famous town of Banbury.\footnote{As Zabell tells us, `The factor of 10 was included to simplify the arithmetic, dropping everything after the first decimal place. For example, in the cases p=0.55 and p=0.9, one has $\log_{10}(0.55/0.45) = 0.08715$ and $\log_{10}(0.9/0.10) = 0.95424,$ and these would be reported in decibans as 0.9 and 9.5, respectively.' Zabell also has an interesting note on the (time- and effort-saving) switch to \textit{half-decibans}, a practical innovation introduced by I.J. Good.}
+
+Using this terminology we might say that the fact that our man died in bed scores 4.3 decibans in favour of the heart failure theory (10log(8/3) = 4.3). We score a further 3.8 decibans for his father dying of heart failure, and 10 for his having his bedroom on the ground floor, totalling 18.1 decibans. We then bring in the a priori odds 1/4 or $10^{-6/10}$ and the result is the the odds are $10^{12.1/10}$, or as we may say `12.1 decibans up on evens'. This means about 16:1 on.
+\end{quote}
+
+$\bullet$  Sketch  the relevant parts of Turing's example using a probability tree.
+
+This `\textit{\textbf{independence}}' assumption that Turing invokes is  called `\textit{\textbf{conditional independence}}' today, and it is widely used in the statistical literature that deals with imperfect diagnostic tests. The `classic' papers in the field are by Hui and  Walter (1980) and Walter and Irwig (1988).\footnote{Hui SL, Walter SD. (1980) Estimating the error rates of diagnostic tests.  Biometrics 36, 167-171; and Walter SD and Irwig L. Estimation of test error rates, disease prevalence and relative risk from misclassified data: a review. J Clin Epidemiol. 1988;41(9):923-37. They latter `shows how, under certain conditions, it is possible to estimate error parameters such as sensitivity, specificity, relative risk, or predictive value, even though no definitive classification (gold standard) is available. The parameter estimates are obtained by modelling the data, using maximum likelihood, with or without some constraints. The models recognize that the true classification of an individual is unknown, and so are sometimes referred to as ``latent class'' models. The latent class approach provides a unified framework for various methods found in a dispersed literature, characterising each by the number of populations or subgroups in the data, and the number of observations made on each individual; the statistical degrees of freedom are implied by the sampling design. Data sets with less than three replicate observations per individual necessarily require constraints for parameter estimation to be possible. Data sets with three or more replicates lead directly to estimates of the misclassification rates, subject to some simple assumptions.'} The work of McGill's Lawrence Joseph, beginning with Bayesian Estimation of Disease Prevalence and the Parameters of Diagnostic Tests in the Absence of a Gold Standard (AJE  1995) and his student Nandini Dendukuri, and their students has considerably extended the uses of this model. In some cases they have tried to relax the conditional independence assumption. Links to some of these are provided in the Resources.
+
+One of the objections to the conditional independence assumption is that (especially in those with the disease who are the target of the diagnostic tests), the results of the various tests  (physical examination, blood tests, imaging tests) may be correlated, and that one may be giving too much weight to them if one combines the evidence on the assumption that the pieces of information are independent. However, some investigations (e.g., Torrance-Rynard and Walter. Effects of dependent errors in the assessment of diagnostic test performance. Stat Med. 1997 Oct 15;16(19):2157-75.) have found that  `violations' of the  assumption may not matter greatly in practice. In a recent email to me, Lawrence Joseph agreed that `conditional dependence is likely rarely exactly true in real problems' but went on to say that `effects from dependence may be small so assuming independence may be good as an approximation. it can also be pretty difficult to evaluate conditional independence from available data.'
+
+Imagine\footnote{As with Turing, these are `made up' frequencies, so as to keep the arithmetic easy.} 2 pieces of information (younger(Y) / older(O) age and female(F) / male(M) gender) that might help decide which cases of chest pain reported to  a telephone helpline are because the patient is (a) having a heart attack, or (b) suffering from anxiety or panic.\\
+Suppose that of 12 calls in whom  it is ultimately determined that the cause is (b), the expected frequencies of the 4 profiles (YF, YM, OF, OM), are 3 : 3 : 3 : 3; and that of 12 calls in whom  it is ultimately determined that the cause is (a), the frequencies of these same 4 profiles  are 1 : 2 : 3 : 6. \\ \ \\
+$\bullet$  Do these  data obey the conditional independence assumption?  \\  \ \\
+$\bullet$  Calculate (i) the a-priori odds of heart-attack : anxiety, (ii) the (overall) `factor' associated with each of the four profiles, and (iii) the a-posteriori odds  of heart-attack : anxiety for each profile. (Don't bother converting them to decibans)
+
+$\bullet$ Generically, denote the states of interest by Y=0 and Y=1, and the 2 pieces of information as X$_1$ and X$_2$, each categorized as `+' or `-'. Suppose that of 100 instances in whom  it is ultimately determined that Y=0, the expected frequencies of the 4 profiles (- -, - +, + -, + +), are 75 : 9 : 9 : 7; and that of 100 instances in whom  it is ultimately determined that Y=1, the frequencies of these same 4 profiles  are 7 : 9 : 9 : 75. \\ Repeat the 2 earlier questions. How much do the `violations' of the  conditional- independence assumption affect the a-posteriori probabilities?     
+
+\end{enumerate}
+
+\parindent -18pt
+\includegraphics[width=5.25in]{Dependence.pdf}
+
+\parindent 0pt
+
+------------------
+
+{\footnotesize
+\textbf{Note} regarding the frequencies in last part of the question above:
+
+The bottom left panel of this Figure was used to calculate the (rounded) frequencies. It uses 2 overlapping bivariate \{$X_1,  X_2$\} distributions, one for those in the { \color{red}{$Y=1$}} state (in red) and one for  those in the { \color{black}{$Y=0$}}  state (in grey).
+The \{$X_1,  X_2$\} correlations range from 0 (upper right panel) to 0.9 (lower left).
+The vertical and horizontal lines are cut-points that dichotomize the  \{X$_1,  X_2$\} values into 'positive' and 'negative'   results. 
+
+The assumption of \textbf{2 overlapping Multivariate Normal distributions} is the basis for the \textit{\textbf{disciminant function}} (the linear combination $\beta X$) introduced by  Ronald Fisher in 1936. If the 2 covariance matrices are equal to each other, then the linear discriminant is also (modulo an intercept) the logit of the probability that Y=1:
+$$\log \frac{Prob[Y=1|X]}{Prob[Y=0|X]} =  \beta X,$$
+a form known today as \textit{\textbf{logistic regression}}.
+
+This logistic form was introduced to epidemiology with \textbf{Cornfield's 1962 
+paper}\footnote{ \texttt{http://www.medicine.mcgill.ca/epidemiology/hanley/c678/cornfield.pdf}}
+that used 2 variables ($X_1 = log_{10}$ cholesterol) and 
+$X_2 = log_{10}$ (blood pressure - 75) measured in the Framingham Heart study to fit the risk (probability) of developing heart disease (Y=1) over the next 6 years. The linear discriminant function (LD) he fitted was 
+$$LD = -23.13 + 6.14 X_1 + 3.29 X_2$$
+
+So the odds is $\exp [LD]:1$ and the probability is odds/(odds+1)  
+$$\textrm{Probability = odds/(1+odds)}  = \frac{\exp [LD]}{1+\exp [LD]}$$
+
+The dataset had 92 instances of Y=1 and 1237 of Y=0, so the a-priori odds were 92:1237 or
+ 0.074:1. The `average' probability is thus approximately 7\%.
+ 
+Consider 4 profiles: cholesterol of 200 or 300 (log=2.30 or 2.48),  and SBP of 120 or 180 (log = 2.08 or 2.26). So the 4 LDs are -23.13 + 6.14$\times$(2.30 or 2.48) + 3.29$\times$(2.08 or 2.26),   i.e., -3.56, -2.35, -2.48 and -1.27. So the profile-specific odds are 0.028:1,  0.095:1,  0.084:1 and 0.281:1. So the probabilities are 0.03, 0.09, 0.08 and 0.22, or 3\%, 9\%, 8\% and 22\%.
+ 
+ \textbf{50 years ago, in 1967}, Truett Cornfield and Kannel\footnote{A multivariate analysis of the risk of coronary heart disease in Framingham.
+Truett J, Cornfield J, Kannel W. J Chronic Dis. 1967 Jul;20(7):511-24.} \textbf{relaxed the insistence  on strict multivariate normality} (which could not work apply to binary variables, or to many continuous ones). 
+ 
+`For the multiple logistic function to provide an exact description of the relation between risk and risk factors it is sufficient that the underlying distributions be multivariate normal. It is by no means necessary, however. In fact a much weaker condition is sufficient, namely that the linear compound of risk factors be univariate normal. The circumstances under which a linear com- pound of independent variables will be normal are given by the central limit theorem, and of dependent variables by Bernstein?s theorem.'
+
+They still used the (1-pass) method of Discriminant Analysis to fit the weights or coefficients.
+
+\textbf{That same year, in Biometrika}, Walker and Duncan\footnote{Walker, SH, Duncan, DB. Estimation of the probability of an event as a function of several independent variables. Biometrika. 1967;54:167?179.}
+reversed the statistical modelling focus. Remember that  the focus of discriminant analysis is  $\textrm{Prob}[X | Y ]$ -- the random variable is the multivariate X.  But why model  the joint distribution of these X variables?
+Walker and Duncan  focused directly on what Cornfield et al. were ultimately interested in but had derived indirectly (post-fit) from the LD, namely  the $\textrm{Prob}[Y | X ]$: the random variable is now the univariate Y, and the X's are regressors.
+
+They estimated the model coefficients `through a least-squares argument using (iteratively) re-estimated weights, which `as is well known' gives coefficients that  `are identical with those which would be obtained by the method of \textbf{maximum likelihood}.' \\ 
+
+\newpage
+
+\textbf{NB: Diagnostic versus Prognostic probabilities} -- and the `directionalities' involved
+
+The above examples bring out an important point that is missed by today's use of logistic regression of Y (=1/0) on X for fitting \textbf{both}  diagnostic and prognostic probabilities.
+
+In \textit{\uwave{dia}-gnosis}, the disease or condition is \uwave{already either present or absent}, and (apart from variables such as age and sex, that act as risk factors) many of the X's (symptoms, signs, what is seen on imagining, or in blood tests) will be \underline{consequences} or \underline{manifestations} of Y. So the directionality is  
+$$Y \rightarrow X. \quad (Diagnostic) $$  
+
+In \textit{\uwave{pro}-gnosis}, the disease or condition is in the \uwave{future}, i.e., the X's precede Y. So the directionality is  
+$$X \rightarrow Y. \quad (Prognostic) $$  
+
+}
+
+\newpage
+
+\textbf{Supplementary Exercise 2.11}\footnote{New in 2019, so wording may need some polishing.} 
+\textbf{Lie-detection technology}  \\
+
+\textbf{\underline{2003}}
+
+The executive summary of the authoritative 2003 report \textit{The Polygraph and Lie Detection} by the National Research Council. 2003. Washington, DC: The National Academies Press. [available for free, 
+\url{https://www.nap.edu/catalog/10420/the-polygraph-and-lie-detection} ] includes these conclusions
+
+\begin{quote}
+\textbf{CONCLUSION}: Notwithstanding the limitations of the quality of the empirical research and the limited ability to generalize to real- world settings, we conclude that in populations of examinees such as those represented in the polygraph research literature, untrained in countermeasures, specific-incident polygraph tests can discriminate lying from truth telling at rates well above chance, though well below perfection. Because the studies of acceptable quality all focus on specific incidents, generalization from them to uses for screening is not justified. Because actual screening applications involve considerably more ambiguity for the examinee and in determining truth than arises in specific-incident studies, polygraph accuracy for screening purposes is almost certainly lower than what can be achieved by specific-incident polygraph tests in the field.
+\end{quote}
+
+and
+
+\begin{quote}
+\textbf{CONCLUSION}: Basic science and polygraph research give reason for concern that polygraph test accuracy may be degraded by countermeasures, particularly when used by major security threats who have a strong incentive and sufficient resources to use them effectively. If these measures are effective, they could seriously under- mine any value of polygraph security screening.
+\end{quote}
+
+
+
+Under the heading \textbf{Polygraph Use for Security Screening}, we read
+\begin{quote}The proportion of spies, terrorists, and other major national security threats among the employees subject to polygraph testing in the DOE laboratories and similar federal sites presumably is extremely low. Screening in populations with very low rates of the target transgressions (e.g., less than 1 in 1,000) requires diagnostics of extremely high accuracy, well beyond what can be expected from polygraph testing. 
+
+Table S-1 illustrates the unpleasant tradeoffs facing policy makers who use a screening technique in a hypothetical population of 10,000 government employees that includes 10 spies, even when an accuracy is assumed that is greater than can be expected of polygraph testing on the basis of available research. If the test were set sensitively enough to detect about 80 percent or more of deceivers, about 1,606 employees or more would be expected ``fail'' the test; further investigation would be needed to separate the 8 spies from the 1,598 loyal employees caught in the screen. 
+
+\underline{\textbf{TABLE S-1}} Expected Results of a Polygraph Test Procedure \uwave{with an Accuracy Index of 0.90} in a Hypothetical Population of 10,000 Examinees That Includes 10 Spies
+
+\textbf{S-1A} If detection threshold is set to detect the great majority (80 percent) of spies
+
+\begin{tabular}{l r r r }
+& \multicolumn{2}{c}{Examinee's True Condition} & \\
+ Test Result & Spy & Nonspy & Total\\
+ \hline
+``Fail'' test & 8 & 1,598 & 1,606\\
+``Pass'' test & 2 & 8,392 & 8,394 \\
+Total & 10 & 9,990 & 10,000\\
+\hline
+\end{tabular}
+
+
+If the test were set to reduce the numbers of false alarms (loyal employees who ``fail'' the test) to about 40 of 9,990, it would correctly classify over 99.5 percent of the examinees, but among the errors would be 8 of the 10 hypothetical spies, who could be expected to ``pass'' the test and so would be free to cause damage.
+
+	
+\textbf{S-1B} If detection threshold is set to greatly reduce false positive results
+
+\begin{tabular}{l r r r }
+& \multicolumn{2}{c}{Examinee's True Condition} & \\
+ Test Result & Spy & Nonspy & Total\\
+ \hline
+``Fail'' test & 2 & 39 & 41\\
+``Pass'' test & 8 &9,951 & 9,959 \\
+Total & 10 & 9,990 & 10,000\\
+\hline
+\end{tabular} 
+
+\vspace{12pt}
+
+Available evidence indicates that polygraph testing as currently used has extremely serious limitations in such screening applications, if the intent is both to identify security risks and protect valued employees. Given its level of accuracy, achieving a high probability of identifying individuals who pose major security risks in a population with a very low proportion of such individuals would require setting the test to be so sensitive that hundreds, or even thousands, of innocent individuals would be implicated for every major security violator correctly identified. The only way to be certain to limit the frequency of ``false positives'' is to administer the test in a manner that would almost certainly severely limit the proportion of serious transgressors identified.
+\end{quote}
+
+\begin{quote}
+
+\textbf{CONCLUSION}: Polygraph testing yields an unacceptable choice for DOE employee security screening between too many loyal employees falsely judged deceptive and too many major security threats left undetected. Its accuracy in distinguishing actual or potential security violators from innocent test takers is insufficient to justify reliance on its use in employee security screening in federal agencies.
+Polygraph screening may be useful for achieving such objectives as deterring security violations, increasing the frequency of admissions of such violations, deterring employment applications from potentially poor security risks, and increasing public confidence in national security organizations. On the basis of field reports and indirect scientific evidence, we believe that polygraph testing is likely to have some utility for such purposes. Such utility derives from beliefs about the procedure?s validity, which are distinct from actual validity or accuracy. Polygraph screening programs that yield only a small percentage of positive test results, such as those in use at DOE and some other federal agencies, might be useful for deterrence, eliciting admissions, and related purposes. However, in populations with very low base rates of the target transgressions they
+should not be counted on for detection: they will not detect more than a small proportion of major security violators who do not admit their actions.
+
+We have thought hard about how to advise government agencies on whether or how to use information from a diagnostic screening test that has these serious limitations. We note that \underline{in medicine}, such imperfect diagnostics are often used for screening, though only occasionally in populations with very low base rates of the target condition. When this is done, either the test is far more accurate than polygraph testing appears to be, or there is a more accurate (though generally more invasive or expensive) follow-up test that can be used when the screening test gives a positive result. Such a follow-up test does not exist for the polygraph. The medical analogy and this difference between medical and security screening underline the wisdom in contexts like that of employee security screening in the DOE laboratories of using positive polygraph screening results -- if polygraph screening is to be used at all -- only as triggers for detailed follow-up investigation, not as a basis for personnel action. It also underlines the need to pay close attention to the implications of false negative test results, especially if tests are used that yield a low proportion of positive results.
+
+A belief that polygraph testing is highly accurate probably enhances its utility for such objectives as deterrence. However, overconfidence in the polygraph -- a belief in its accuracy that goes beyond what is justified by the evidence -- also presents a danger to national security objectives. Overconfidence in polygraph screening can create a false sense of security among policy makers, employees in sensitive positions, and the general public that may in turn lead to inappropriate relaxation of other methods of ensuring security, such as periodic security re-investigation and vigilance about potential security violations in facilities that use the polygraph for employee security screening. It can waste public resources by devoting to the polygraph funds and energy that would be better spent on alternative procedures. It can lead to unnecessary loss of competent or highly skilled individuals in security organizations because of suspicions cast on them by false positive polygraph exams or because of their fear of such prospects. And it can lead to credible claims that agencies that use polygraphs are infringing civil liberties for insufficient benefits to the national security. Thus, policy makers should consider each application of polygraph testing in the larger context of its various costs and benefits.
+
+\end{quote}
+
+\textit{\textbf{Exercises related to the 2003 report}}
+
+\begin{enumerate}
+\item Figure out what the authors mean by `\uwave{an Accuracy Index of 0.90}' in their table.
+\item Plot the 2 operating points  (from tables S1-A and S1-B) in the (unit-square) ROC space.
+\item The authors used a `spy' prevalence of 10/10,000 or 0.1\%.
+Develop a general equation linking the  post-test odds (after a `Fail'' result) that a person is a spy to the pre-test odds that a person is a spy. 
+\item
+What (post - ``Fail'' result) probability would this equation 
+yield if the equation were applied to a person for whom -- on the basis of \textit{all of the other evidence} bearing on the case --  the  probability of his/her having committed a very serious offence against another person is thought be be (a) 20\% (b) 50\% (c) 80\% ?
+
+\item
+What  would the (minimum)  pre-test probability have to be in order for
+the post-test probability to exceed  the 50\% (the balance-of-probabilities) threshold use in civil law cases?
+
+
+ \end{enumerate}
+
+
+\textbf{\underline{2016}}
+
+
+
+Refer to the 2016 article ``Laboratory and Field Research on the Ocular-Motor Deception Test'' (`ODT') by Kircher JC and Raskin DC in the journal \textit{European Polygraph} 10(4): 159-172. You can find it here
+\url{https://www.polygraph.pl/vol/2016-4/european-polygraph-2016-no4-kircher-raskin.pdf}
+For this exercise, refer specifically  to the section `Field study of the ODT' on pages 168-169.
+
+
+
+\textit{\textbf{Exercises related to this 2016 article}}
+
+\begin{enumerate}
+\item From the reported  percents, back-calculate the numerators and denominators for each of the 5 folds in Table 4, and add across folds to get an overall `specificity' (for the `truthful' row, consisting of 83 persons) and an overall sensitivity (for the `deceptive' row, consisting of 71 persons) [the overall $n$'s are given in paragraph 1]
+\item Add this single operating point to the already-plotted points in ROC space.
+\item
+Calculate the (post - `Fail'' result) probability of deception for a person for whom -- on the basis of \textit{all of the other evidence} bearing on the case --  the  pre-test probability is thought to be (a) 0.1\% (b) 20\% (c) 50\% (d) 80\%.
+
+\item
+What  would the (minimum)  pre-test probability have to be in order for
+the post-test probability to exceed  50\%?
+
+ \end{enumerate}
+
+If interested, see the 2018 article
+ \url{https://www.wired.com/story/eye-scanning-lie-detector-polygraph-forging-a-dystopian-future/}
+ and the 2019 one
+ \url{https://www.theguardian.com/technology/2019/sep/05/the-race-to-create-a-perfect-lie-detector-and-the-dangers-of-succeeding}
+ 
+
+\end{document} 

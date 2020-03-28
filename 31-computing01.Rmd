@@ -6,22 +6,25 @@ The **'statistical' objective** of this exercise is to understand the concept of
 
 ## Biological background
 
-Later on we will examine climate trends using unusual datasets, which suggest that over the last few centuries, winter tends to end earlier, and plants tend to flower earlier.
+Later on we will examine [climate trends using unusual datasets](http://www.medicine.mcgill.ca/epidemiology/hanley/c678/index.html#anthropometricData), which suggest that over the last few centuries, winter tends to end earlier, and plants tend to flower earlier.
 
 One such dataset arose as part of a long-running contest, the [Nenana Ice Classic](http://www.nenanaakiceclassic.com)
 More [here](http://www.john-daly.com/nenana.htm)
 
 ## Statistical Task
 
-You are asked to approximate and carefully examine the distribution of guesses in 2018, contained in the Book of Guesses for that year. 
+You are asked to approximate and carefully examine the distribution of guesses in 2018, contained in the Book of Guesses for that year. The full book is available  as the 7th tab in the [2020 website](http://www.nenanaakiceclassic.com). If it takes too  long o load, here are some 
+[excerpts from the book](http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/SampledPages.pdf).
 
-For now, we will measure the guesses (and eventually the actual time) as the numbers of days since the beginning of 2018. Thus a guess of Tuesday April 17 5:20 p.m. would be measured as 31 + 28 + 31 + 16 + (16 + 20/60)/24 = 106.6806 days since the beginning of 2018.
+For now, we will measure the guesses (and eventually the actual time) as the numbers of days since the beginning of 2018. Thus a guess of Tuesday April 17 5:20 p.m. would be measured as 31 + 28 + 31 + 16 + (17 + 20/60)/24 = 106.7208 days since the beginning of 2018.
 
 It would be tedious to try to apply optical character recognition (OCR) to each of the  1210 pages in order to be able to computerize all of the almost 242,000 guesses. Instead, you are asked to reconstruct the distribution of the guesses in two more economical ways: 
 
-1. By determining, for  each  of the 36 x 2 = 72 half-days days from April 10 to May 15 inclusive, the proportion, p, of guesses that are earlier than midnight on that date. [ In `R`, if p = 39.6% of the guesses were below xy.z days, we would write this as pGuessDistribution(xy.z) = 0.396. Thus, if we were dealing with the location  of a  value in a Gaussian ('normal') distribution, we would write `pnorm(q=110, mean = , sd = )` ] Once you have determined these 72 proportions (p's), plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
+1. By determining, for  each  of the 36 x 2 = 72 half-days days from April 10 to May 15 inclusive, the proportion, p, of guesses that are earlier than mid-day and midnight on that date. [ In `R`, if p = 39.6% of the guesses were below xy.z days, we would write this as pGuessDistribution(xy.z) = 0.396. Thus, if we were dealing with the location  of a  value in a Gaussian ('normal') distribution, we would write `pnorm(q=110, mean = , sd = )` ] Once you have determined these 72 proportions (p's), plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
 
 2. By determining the 1st, 2nd, ... , 98th, 99th percentiles. These are specific examples of 'quantiles', or q's. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all guesses are below this value, and 1-q are above it. [ In `R`, if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a  Gaussian distribution with mean 130 and standard deviation 15, we would write `qnorm(p=0.4, mean = 130, sd = 15)`. ] Once you have determined them, plot the 99 p's (on the vertical axis) against the 99 (elapsed) times on the horizontal axis.
+
+Before we get to the actual Exercises in subsection 2.2, an orientation...
 
 ### The p and q functions: an orientation
 
@@ -129,7 +132,20 @@ tail(round(percent,1),10)
 
 5. By successive subtractions, calculate the numbers of guesses in each 1/2 day bin, and make a histogram of them. From them, calculate the mean, the mode, and the standard deviation.
 
-6. (For a future assignment, but you can start thinking about how) From a random sample of 100 guesses from the book, estimate how many guesses in the entire book are PM.
+6. How far off was the median guess in 2018 from the actual time? Answer in days, and (with reservations stated) as a percentage? {see the 2020 brochure }
+
+7. Why did the 'experts' at the 1906 [English country fair](http://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf) do so much better that their Alaskan counterparts?
+
+8. Why was the shape of the distribution of guesses by [Dutch casino goers](http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/The_wisdom_of_the_inner_crowd_.pdf) so different from the English and Alaskan ones?
+
+9. Instead of measuring the guessed times from the beginning of the year, suppose that, as [Fonseca et al](http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/VoxPopuliNenana.pdf)
+did,  we  measure the guessed times from the spring equinox in Alaska, i.e. from 8:15 a.m. on Tuesday, March 20, 2018, Alaska time. In this scale, compute the mean guess, and the SD of the guesses.
+
+10. Suppose, again, we  measure the guessed times from the spring equinox, but in weeks. In this scale, compute the mean guess, and the SD of the guesses.
+
+11. How much warmer/colder in Nov-April is Montreal than Nenana?
+
+12. (For a future assignment, but you can start thinking about how) From a random sample of 100 guesses from the book, estimate how many guesses in the entire book are PM.
 
 
 ```{r,eval=T, echo=T, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
@@ -152,18 +168,8 @@ tail(dataset)
 ```
 
 
-* How far off was the median guess in 2018 from the actual time? Answer in days, and (with reservations stated) as a percentage? {see the 2020 brochure }
 
-* Why did the experts at the country fair do so much better?
-
-* Where were the punters in 2019 with respect to the actual time?
-
-* Instead of measuring the guessed times from the beginning of the year, suppose that, as Fonseca et al did,  we  measure the guessed times from the spring equinox in Alaska, i.e. from 8:15 a.m. on Tuesday, March 20, 2018, Alaska time. In this scale, compute the mean guess, and the SD of the guesses.
-
-* Suppose, again, we  measure the guessed times from the spring equinox, but in weeks. In this scale, compute the mean guess, and the SD of the guesses.
-
-
-Some links on the 'Wisdom of Crowds'
+Some more links on the 'Wisdom of Crowds'
 
 https://www.technologyreview.com/s/528941/forget-the-wisdom-of-crowds-neurobiologists-reveal-the-wisdom-of-the-confident/
 
@@ -172,9 +178,6 @@ https://www.all-about-psychology.com/the-wisdom-of-crowds.html
 
 
 http://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf
-
-* How much warmer/colder in Nov-April is Monreal than Nenana?
-
 
 
 ## SUMMARY
@@ -195,24 +198,18 @@ http://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf
 
 * Using `plot(x,y)` to plot an 'x' vector versus a 'y' vector. `lines(), `points()` and `text()` can be added to an existing plot.
 
-* Consider a Gaussian distribution with a specified mean.value and standard deviation sd.value. Then the proportion of the distrution to that lies ot the left of a specified value `q` is given by the inbuilt `R` function `pnorm(q, mean = mean.value, sd = sd.value)`. For example, if in a certain population IQ has a Gaussian distribution with a mean of 100, and a sd of 15, then using this `R` expression  `round( 100*pnorm(110, mean = 100, sd = 15) , 1 )` we can determine that `r round(100*pnorm(110, mean = 100, sd = 15),1)` percent of the distribution would be below 110, and thus that `r round(100*pnorm(90, mean = 100, sd = 15),1)` percent would be below 90. The middle 50% could be calculated  using this expression `round( 100*qnorm(c(1/4,3/4), mean = 100, sd = 15) , 1 )` to give `r round( qnorm(c(1/4,3/4), mean = 100, sd = 15) , 1 )`
+* The `approx()` function for fitting
+
 
 ### Statistical Concepts and Principles 
 
-* Definition of the p
+* Definition of the p (Cumulative Distribution) function of a random variable $Y:$
 
-$$ Var[Y] = \sigma^2 = \textrm{mean of } (Y - \mu)^2 \ ; \ \ \  SD[Y] = \sigma.$$
+$$CDF_Y(y) = F_Y(y) =  Prob( Y \le y).$$
 
+* Definition of the q (quantile, or InverseCDF) function of a random variable $Y:$
 
-
-* Definition of the p 
-
-$$ Var[ Y_1 + Y_2 + \dots + Y_n] = \sigma^2 + \sigma^2 + \dots + \sigma^2 = n \times \sigma^2.$$
-$$ SD[ Y_1 + Y_2 + \dots + Y_n]  = \sqrt{n} \times \sigma.$$
-
-* the `approx()` function for fitting
+$$ q_Y(p) : the \ y \ such \ that \ Prob( Y \le q) = p.$$
 
 
-* **The SHAPES** of  distributions -- no universal rule (log normal)
-
-* Using the bulit-in functions `pnorm()` and `qnorm`
+* The is no _default_ shape for the distributions of random variables,  especially those generated by humans.

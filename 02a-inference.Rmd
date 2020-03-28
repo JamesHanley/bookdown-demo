@@ -1,0 +1,116 @@
+# Statistical Inference {#inference}
+
+Google gives the following defintion
+
+>The theory, methods, and practice of forming judgments about the parameters of a population and the reliability of statistical relationships, typically on the basis of random sampling.
+
+The Oxford English Dictionary defines it as
+
+>The drawing of inferences about a population based on data taken from a sample of that population; an inference drawn in this way; the branch of statistics concerned with this procedure.
+
+We would add to these numerical statements about unknown (and unknowable) constants, as well as the mechanism or process that generated the limited data you got/get to observe.
+
+Some example parameters -- some scientific, some more personal or particularistic -- include
+
+* Whether
+
+   + a potential hemophilia carrier is in fact a carrier
+   
+   + a particular email is malicious
+   
+   + a person committed the crime they are accused of
+   
+* The proportion of 
+
+   + thumbtacks that land on their back when tossed 
+   
+   + your time that you are being productive
+   
+   + the earth's surface that is covered by water
+   
+   + your driving time that you are on the phone
+   
+   + your time that you spend inside
+
+
+* The density of the Earth,relative to water
+
+* The age of a person whom you have just met
+
+* Your cholesterol level
+
+* The mean depth of the ocean
+
+* The 20th percentile of the depths of the ocean
+
+* The median age of a population
+
+To address the uncertainties involved in the judgements/inferences, some use of probabililies is required.
+
+There are two  'schools' of statistical inference. One of them makes **direct probabilistic statements about the possible parameter values**. This approach goes back at least as far as the mid-1700's essay 'A method of calculating the exact probability of all conclusions based on induction'.
+
+The more popular method today, dating from the early 20th century, is **indirect**. It makes (conditional) probabilistic statements about the **data** and about the performance of the procedure used to bracket the parameter values. A variant on it ranks the various  possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves.
+
+
+
+But how exactly do we expresss/describe these judgements or inferences? So that we can describe the main ways, we will use the very simplest case,   
+
+Today's students are told that the Bayes essay was published after his death
+under the title ``An Essay toward solving a Problem in the Doctrine of Chances''.
+But when he spoke in Montreal at the end of 2013, Stephen Stigler gave us the inside story on
+the very concrete reason the person who published it, Richard Price, had for being
+interested in this work, and why it was advertised elsewhere under a very different title: 
+\textbf{`A method of calculating the exact probability of all conclusions based on induction'}
+Read about Stigler's fascinating detective work in his captivating article 
+Statistical Science
+2013, Vol. 28, No. 3, 283-288 (Resources website) or here:
+
+\vspace{3pt}
+
+\url{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/CandH-ch0102/StiglerBayesTitle.pdf}
+
+\includegraphics[width=2.2in]{StiglerFig1}
+\includegraphics[width=2.4in]{StiglerFig3}
+
+Figures 1 and 3 from Stigler 2013
+
+
+Two main schools or approaches: Bayesian Frequentist 
+
+
+
+Bayesian [ not even mentioned by M&M ]
+• Makes direct statements about parameters and future observations
+• Uses previous impressions plus new data to update impressions about parameter(s)
+e.g.
+
+
+Turing
+
+
+e.g.
+Everyday life
+Medical tests: Pre- and post-test impressions
+Frequentist
+• Makes statements about observed data (or statistics from data) (used indirectly [but often incorrectly] to assess evidence against certain values of parameter)
+• Does not use previous impressions or data outside of current study (me
+ta-analysis is changing this)
+e.g.
+• Statistical Quality Control procedures [for Decisions] • Sample survey organizations: Confidence intervals • Statistical Tests of Hypotheses
+Unlike Bayesian inference, there is no quantified pre-test or pre- data "impression"; the ultimate statements are about data, conditional on an assumed null or other hypothesis.
+Thus, an explanation of a p-value must start with the conditional "IF the parameter is ... the probability that the data woul
+
+natural
+
+tennis
+
+productivity
+
+thumb tacks
+
+
+
+Bayes Theorem : Haemophilia
+Brother has haemophilia => Probability (WOMAN is Carrier) = 0.5 New Data: Her Son is Normal (NL) .
+Update: Prob[Woman is Carrier, given her son is NL] = ??
+
