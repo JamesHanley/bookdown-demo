@@ -9,11 +9,14 @@ The **'statistical' objective** of this exercise is to understand the concept of
 Later on we will examine [climate trends using unusual datasets](http://www.medicine.mcgill.ca/epidemiology/hanley/c678/index.html#anthropometricData), which suggest that over the last few centuries, winter tends to end earlier, and plants tend to flower earlier.
 
 One such dataset arose as part of a long-running contest, the [Nenana Ice Classic](http://www.nenanaakiceclassic.com)
-More [here](http://www.john-daly.com/nenana.htm)
+More [here](http://www.john-daly.com/nenana.htm).
+
+Here is the [2020 brochure](http://www.medicine.mcgill.ca/epidemiology/hanley/c691/Nenana2020Brochure.pdf). There is still time to compete this year, but it looks like you need to be in Alaska to find and fill out  a ticket, and  the organizers ask for your mailing address, not your email one!
+
 
 ## Statistical Task
 
-You are asked to approximate and carefully examine the distribution of guesses in 2018, contained in the Book of Guesses for that year. The full book is available  as the 7th tab in the [2020 website](http://www.nenanaakiceclassic.com). If it takes too  long o load, here are some 
+You are asked to approximate and carefully examine the distribution of guesses in 2018, contained in the Book of Guesses for that year. The full book is available  as the 7th tab in the [2020 website](http://www.nenanaakiceclassic.com). If the full book takes too  long to load, here are some 
 [excerpts from the book](http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/SampledPages.pdf).
 
 For now, we will measure the guesses (and eventually the actual time) as the numbers of days since the beginning of 2018. Thus a guess of Tuesday April 17 5:20 p.m. would be measured as 31 + 28 + 31 + 16 + (17 + 20/60)/24 = 106.7208 days since the beginning of 2018.
@@ -22,7 +25,7 @@ It would be tedious to try to apply optical character recognition (OCR) to each 
 
 1. By determining, for  each  of the 36 x 2 = 72 half-days days from April 10 to May 15 inclusive, the proportion, p, of guesses that are earlier than mid-day and midnight on that date. [ In `R`, if p = 39.6% of the guesses were below xy.z days, we would write this as pGuessDistribution(xy.z) = 0.396. Thus, if we were dealing with the location  of a  value in a Gaussian ('normal') distribution, we would write `pnorm(q=110, mean = , sd = )` ] Once you have determined these 72 proportions (p's), plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
 
-2. By determining the 1st, 2nd, ... , 98th, 99th percentiles. These are specific examples of 'quantiles', or q's. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all guesses are below this value, and 1-q are above it. [ In `R`, if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a  Gaussian distribution with mean 130 and standard deviation 15, we would write `qnorm(p=0.4, mean = 130, sd = 15)`. ] Once you have determined them, plot the 99 p's (on the vertical axis) against the 99 (elapsed) times on the horizontal axis.
+2. By determining the 1st, 2nd, ... , 98th, 99th percentiles. These are specific examples of 'quantiles', or q's. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all guesses are below this value, and 1-q are above it. [ In `R`, if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a  Gaussian distribution with mean 130 and standard deviation 15, we would write `qnorm(p=0.4, mean = 130, sd = 15)`. ] Once you have determined them, plot the 99 p's (on the vertical axis) against the 99 (elapsed) times on the horizontal axis. [see the spreadsheet].
 
 Before we get to the actual Exercises in subsection 2.2, an orientation...
 
@@ -116,7 +119,7 @@ text(xx,yy/0.8,"(dDistribution)", family="mono")
 1. Once you have determined the 72 (cumulative) proportions (p's) associated with the 72 half-days, plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
 
 2. The 1st, 2nd, ... , 98th, 99th percentiles are not so easy to determine since you  have  to locate the 2419th, 4839th, 7258t, ... entries in the 1201-page Book of Guesses and  plot the 99 p's (on the vertical axis) against the 99 (elapsed) times (q's) on the horizontal axis.  Instead, use the first entry on each of pages 11, 21, ... in 
-[this excerpt](http://www.biostat.mcgill.ca/hanley/bios691/SampledPages.pdf). Using a different colour, plot these  slightly-more-dense quantiles on the horizontal axix against the following percentages:
+[this excerpt](http://www.biostat.mcgill.ca/hanley/bios691/SampledPages.pdf). [see the shared spreadsheet]. Using a different colour, plot these  slightly-more-dense quantiles on the horizontal axix against the following percentages:
 
 ```{r,eval=T, echo=T, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
 
@@ -132,7 +135,7 @@ tail(round(percent,1),10)
 
 5. By successive subtractions, calculate the numbers of guesses in each 1/2 day bin, and make a histogram of them. From them, calculate the mean, the mode, and the standard deviation.
 
-6. How far off was the median guess in 2018 from the actual time? Answer in days, and (with reservations stated) as a percentage? {see the 2020 brochure }
+6. How far off was the median guess in 2018 from the actual time? Answer in days, and (with reservations stated) as a percentage? {see the 2020 brochure}
 
 7. Why did the 'experts' at the 1906 [English country fair](http://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf) do so much better that their Alaskan counterparts?
 
@@ -141,7 +144,7 @@ tail(round(percent,1),10)
 9. Instead of measuring the guessed times from the beginning of the year, suppose that, as [Fonseca et al](http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/VoxPopuliNenana.pdf)
 did,  we  measure the guessed times from the spring equinox in Alaska, i.e. from 8:15 a.m. on Tuesday, March 20, 2018, Alaska time. In this scale, compute the mean guess, and the SD of the guesses.
 
-10. Suppose, again, we  measure the guessed times from the spring equinox, but in weeks. In this scale, compute the mean guess, and the SD of the guesses.
+10. Suppose, again, we  measure the guessed times from the spring equinox, but in **weeks**. In this scale, compute the mean guess, and the SD of the guesses.
 
 11. How much warmer/colder in Nov-April is Montreal than Nenana?
 
