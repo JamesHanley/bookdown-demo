@@ -11,7 +11,7 @@ Later on we will examine [climate trends using unusual datasets](http://www.medi
 One such dataset arose as part of a long-running contest, the [Nenana Ice Classic](http://www.nenanaakiceclassic.com)
 More [here](http://www.john-daly.com/nenana.htm).
 
-Here is the [2020 brochure](http://www.medicine.mcgill.ca/epidemiology/hanley/c691/Nenana2020Brochure.pdf). There is still time to compete this year, but it looks like you need to be in Alaska to find and fill out  a ticket, and  the organizers ask for your mailing address, not your email one!
+Here is the [2020 brochure](http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/Nenana2020Brochure.pdf). There is still time to compete this year, but it looks like you need to be in Alaska to find and fill out  a ticket, and  the organizers ask for your mailing address, not your email one!
 
 
 ## Statistical Task
