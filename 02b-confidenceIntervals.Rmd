@@ -165,6 +165,8 @@ draw = function(conf.level){
 	
   q.u = qSemiElliptical( (1+conf.level)/2 )
   
+  half.alpha = toString( (1-conf.level)/2 )
+  
   a.min=14; a.max=22; da=2
   beta = 1
 
@@ -200,9 +202,9 @@ draw = function(conf.level){
      lines(c(a.min-da/2,a.min-da/2,a.max+da/2),
            c(a.max+da,a.min-2*da,a.min-2*da))
      text(( a.min+a.max)/2,a.min-2.5*da,
-           "True Chronological Age", adj=c(0.5,1),cex=1.25)
-     txt = "Indirect\nMeasure\nof Age"
-     if(n>1) txt = "Indirect\nMeasures\nof Age"
+           "True Chronological Age (A)", adj=c(0.5,1),cex=1.25)
+     txt = "Indirect\nMeasure\nof Age (a)"
+     if(n>1) txt = "Indirect\nMeasures\nof Age (a)"
      text(a.min-da/2.5, a.max+da, txt,
           adj=c(0,1),cex=1.05,font=4)
      for(a in seq(a.min,a.max,da/2)){
@@ -250,15 +252,37 @@ draw = function(conf.level){
           R = M/(1-radius.as.proportion/div)
           segments(L, M, R, M, lty="dotted")
           for(a in c(L,M,R)){
-             if(example==1 | conf.level < 1) arrows( a, M,
+             if(example==1 | conf.level < 1) arrows( 
+                    a, a.bottom+3.5*dy,
                     a, a.bottom+1.5*dy, 
                     length=0.07,angle=30)
-            if(example==1 & a==L) arrows( 
+            if(example==1 & a==L){
+                
+                aA  = toString(round(M,1))
+                AA  = toString(round(L,1))
+                txt = substitute(paste(
+                         "P[ a > ",aA,
+                         " | A =",AA, " ] = ", Pval,sep=""),
+                          list(aA=aA,AA=AA,Pval=half.alpha))
+              arrows( 
                     a, L,
                     a, M,lwd=2,angle=35,length=0.07)
-            if(example==1 & a==R) arrows( 
+              text(L,L,toString(round(L,1)),adj=c(0.5,1.5))
+              text(L,M+0.25,txt,adj=c(0,0.5),srt=75)
+            } 
+            if(example==1 & a==R){
+                aA  = toString(round(M,1))
+                AA  = toString(round(R,1))
+                txt = substitute(paste(
+                         "P[ a < ",aA,
+                         " | A =",AA, " ] = ", Pval,sep=""),
+                          list(aA=aA,AA=AA,Pval=half.alpha))
+                arrows( 
                     a, R,
                     a, M,lwd=2,angle=35,length=0.07,code=2)
+                text(R,R,toString(round(R,1)),adj=c(0.5,-0.5))
+                text(R,M-0.25,txt,adj=c(0,0.5),srt=-55)
+            } 
           }
        if(conf.level ==1 | (conf.level < 1 & i==1 ) ) {
             segments(L,a.bottom + i*dy, R,a.bottom + i*dy,lwd=1.25)

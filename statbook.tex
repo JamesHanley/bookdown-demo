@@ -118,7 +118,7 @@
 
 \title{Introduction to Statistical Analysis: a regression-from-the-outset approach}
 \author{Sahir, Shirin and Jim}
-\date{2020-03-18}
+\date{2020-03-30}
 
 \begin{document}
 \maketitle
@@ -619,8 +619,451 @@ Olli S. Miettinen, Johann Steurer, Albert Hofman.
 Clinical Research Transformed. Springer, 2019.
 Chapter 7: The Logistic Regression Model (The Precursors of the General Linear Model; The General Linear Model; The Generalized Linear Model; The Logistic Regression Model)
 
+\hypertarget{inference}{%
+\chapter{Statistical Inference}\label{inference}}
+
+Google gives the following defintion
+
+\begin{quote}
+The theory, methods, and practice of forming judgments about the parameters of a population and the reliability of statistical relationships, typically on the basis of random sampling.
+\end{quote}
+
+The Oxford English Dictionary defines it as
+
+\begin{quote}
+The drawing of inferences about a population based on data taken from a sample of that population; an inference drawn in this way; the branch of statistics concerned with this procedure.
+\end{quote}
+
+We would add to these numerical statements about unknown (and unknowable) constants, as well as the mechanism or process that generated the limited data you got/get to observe.
+
+Some example parameters -- some scientific, some more personal or particularistic -- include
+
+\begin{itemize}
+\tightlist
+\item
+  Whether
+
+  \begin{itemize}
+  \tightlist
+  \item
+    a potential hemophilia carrier is in fact a carrier
+  \item
+    a particular email is malicious
+  \item
+    a person committed the crime they are accused of
+  \item
+    a person has been infected with a certain virus
+  \end{itemize}
+\item
+  The proportion of
+
+  \begin{itemize}
+  \tightlist
+  \item
+    thumbtacks that land on their back when tossed
+  \item
+    your time that you are being productive
+  \item
+    the earth's surface that is covered by water
+  \item
+    your driving time that you are on the phone
+  \item
+    your time that you spend inside
+  \end{itemize}
+\item
+  The numerical value for
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the density of the Earth,relative to water
+  \item
+    the age of a person whom you have just met
+  \item
+    your cholesterol level
+  \item
+    the mean depth of the ocean
+  \item
+    the 20th percentile of the depths of the ocean
+  \item
+    the median age of a population
+  \end{itemize}
+\end{itemize}
+
+To address the uncertainties involved in the judgements/inferences, some use of probabililies is required.
+
+There are \textbf{two `schools' of statistical inference}. One of them makes \textbf{direct probabilistic statements about the possible parameter values}. This approach goes back at least as far as the mid-1700's essay `A method of calculating the exact probability of all conclusions based on induction'.
+
+The more popular method today, dating from the early 20th century, is \textbf{indirect}. It makes (conditional) probabilistic statements about the \textbf{data} and about the performance of the procedure used to bracket the parameter values. A variant on it ranks the various possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves. Because it is indirect, conditional, the results are often interpreted incorrectly.
+
+We begin with the direct method, one that studies tell us we are born with, and use throughout our lives, both consciously and subconsciously, to continue to learn/update.
+
+\begin{quote}
+When we learn a new motor skill, such as playing an approaching
+tennis ball, both our sensors and the task possess variability.
+{[}\ldots{}{]} We show that subjects internally represent both the statistical
+distribution of the task and their sensory uncertainty,
+combining them in a manner consistent with a performance-optimizing bayesian process. The central nervous system therefore employs probabilistic models during sensorimotor learning. Bayesian integration in sensorimotor learning. Nature 427; 15 Jan 2004.
+\end{quote}
+
+leading to this headline
+
+\begin{quote}
+Subconsciously, Athletes May Play Like Statisticians - The New York Times
+\end{quote}
+
+\hypertarget{the-bayesian-approach}{%
+\section{The Bayesian Approach}\label{the-bayesian-approach}}
+
+to probability statements concerning parameter values.
+
+This paragraph is taken from this chapter
+\href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/an\%20overview\%20of\%20the\%20Bayesian\%20approach.pdf}{An Overview of the Bayesian Approach}
+in the book Bayesian Approaches to Clinical Trials and Health-Care Evaluation by David Speigelhalter at al, describes it well:
+
+\begin{quote}
+The standard interpretation of probability describes long-run properties of repeated random events (Section 2.1.1). This is known as the frequency interpretation of probability, and standard statistical methods are sometimes referred to as `frequentist'. In contrast, the \textbf{Bayesian approach} rests on an essentially `subjective' interpretation of probability, which is allowed to express generic uncertainty or `degree of belief' about any unknown but potentially observable quantity, whether or not it is one of a number of repeatable experiments. For example, it is quite reasonable from a subjective perspective to think of a probability of the event `Earth will be openly visited by aliens in the next ten years', whereas it may be difficult to interpret this potential event as part of a `long-run' series. Methods of assessing subjective probabilities and probability distributions will be discussed in Section 5.2.
+\end{quote}
+
+Section 3.1 SUBJECTIVITY AND CONTEXT emphasizes that
+`the vital point of the subjective interpretation is that \textbf{Your probability} for an event is a property of \textbf{Your} relationship to that event, and not an objective property of the event itself.' Moreover, `pedantically speaking, one should always refer to probabilities \textbf{for} events rather than probabilities \textbf{of} events, and the \textbf{conditioning context} used in Section 2.1.1 \textbf{includes the observer and all their background knowledge and assumptions.}'
+
+That there is `always a context' goes along with what we read in Alan Turing's recently de-classified essay The Applications of Probability to Cryptography. Under section 1.2 (`Meaning of probability and odds') he starts out
+
+\begin{quote}
+I shall not attempt to give a systematic account of the theory of probability, but it may be worth while to define shortly probability and odds. The probability of an event \textbf{on certain evidence} is the proportion of cases in which that event may be expected to happen given that evidence. For instance if it is known the 20\% of men live to the age of 70, then knowing of Hitler only Hitler is a man we can say that the probability of Hitler living to the age of 70 is 0.2. Suppose that we know that Hitler is now of age 52 the probability will be quite different, say 0.5, because 50\% of men of 52 live to 70.
+\end{quote}
+
+\textbf{Not all context is subjective}. We will start with a context where the initial (starting out, pre-new-data) probability is \textbf{objective}.
+
+\textbf{Without getting into the details of the calculations, we will apply this approach to the first example in each of the parameter genres listed above. The point is to illustrate how direct and unambigous the answer is in each case.}
+
+In the first genre, the parameter is personal or particular. In each of the examples, the true state is binary. The potential hemophilia carrier \textbf{is} a hemophia carrier or \textbf{is not}; the particular email is either malicious or is not; the person in question either committed the crime ot did not. So, there are just two possible parameter values: yes or no, \textbf{is} or \textbf{is not}.
+
+From the outset, just like in Turing's example, there is a given context. For example, suppose a woman's brother is known to have haemophilia.
+
+\begin{quote}
+hemophilia: a medical condition in which the ability of the blood to clot is severely reduced, causing the sufferer to bleed severely from even a slight injury. The condition is typically caused by a hereditary lack of a coagulation factor, caused by a mutation in one of the genes located on the X chromosome. - Google
+\end{quote}
+
+Just knowing this, the probability that the woman is a hemophilia carrier is 50\% or 1/2.
+
+Today, genetic testing of the carrier can help determine whether the woman is a carrier. But when JH first taught 607, the only time to learn more about her carrier status (and move her probability to 1, or towards 0) was after the births of her sons: their status was knowable virtually immedediately.
+
+If it is determined that the first son has hemophilia, it establishes that she IS a carrier, thereby moving the probability up to 1. If he was not, it moves the probability down to 1/3: in other words, among `women like her', i.e, other potential carriers who also have had 1 son who turned out to be Normal (NL), 1/3 of the sons are the sons of carriers, and 2/3 are the sons of non-carriers.
+
+The \textbf{continued updating} as the women with a NL son gave birth to a second son, and so on, is shown in the diagram below, with \textbf{C} used as shorthand for `\textbf{Is} a \textbf{C}arrier.' Technically speaking, each sequential P{[}C{]} should indicate that it is `conditioned on' -- and thus reflects the information in -- the history up to that point. In other words, the 1/5 probability refers to P{[}C \textbar{} both sons are NL{]}, where ``\textbar{}'' stands for `given that', or -- to use Turing's phrase -- `on the evidence that'.
+
+\textbackslash{}begin\{figure\}
+
+\{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-6-1}
+
+\}
+
+\textbackslash{}caption\{At the outset, each woman had a 50:50 chance of being a haemophilia carrier. Accumulating information from the hemophilia status of the sons increasingly `sorts' or segregates the women by moving their probabilities of being a carrier TO 1 (100\%) or FURTHER TOWARDS 0 (0\%). It `updates' the probablity of being a carrier, P{[}C{]}. For brevity, the ' \textbar{} data' in each P{[}C \textbar{} data{]} is omitted.\}\label{fig:unnamed-chunk-6}
+\textbackslash{}end\{figure\}
+
+\begin{quote}
+ASIDE: This is similar to how researchers develop strains of ``transgenic'' mice, by introducing an altered gene (transgene) into the genome. In order to breed true, theanimals must be made to be homozygous, i.e., to have two copies of the introduced gene (+ +). Molecular biology techniques can detect whether the transgene is present in an individual animal (without having to sacrifice the animal), but cannot distinguish a hemizygote, with one copy of the gene (+ -), from a homozygote (+ +). This difference can only be detected by breeding strategies. First generations: A copy of the transgene is injected into the pronucleus of a newly fertilized ovum, prior to fusion with the male pronucleus. Thus all animals that develop from these zygotes can have at most one copy of the gene, from the ovum. After birth, screening is performed to detect these `positive' animals, called founders. After sexual maturation, all founders are bred to normal `wild type' (WT) animals, to ensure that the transgene has been incorporated in such a way as to be heritable. Pairs of positive (hemizygous) animals in this F1 generation are then bred to each other. By Mendelian genetics, the distri- bution of F2 offspring should be 1:2:1, homozygous transgenic : hemizygous transgenic : homozygous normal. The homozygous normal animals are not used. The question is, how to tell the homozygous transgenic mice (the desired ones) from the hemizygous transgenic ones? Note that the mix in this reduced population is 1 homozygous transgenic to 2 hemizygous transgenic. F2 breeding: All 'positive' F2 animals (i.e.~all homozygous and hemizygous animals) are bred to wild type. Possible F3 genotypes are as follows: (by Mendelian genetics) Hemizygous (which comprise 2/3 of the F2 animals used) x wild type = 50:50, hemizygous (and therefore `positive') : normal (and therefore `negative'), Homozygous (which comprise 1/3 of the F2 animals used) x wild type = all hemizygous (and therefore `positive').
+That is, while only half of the offspring from a Hemi x WT pair will be `positive' when screened, all of the offspring of a Homo x WT pair will be `positive'.
+The question: How many F3 offspring from a particular pairing does the researcher have to screen before declaring the positive parent as homozygous? Note: as soon as an offspring is screened as `negative,' one knows the parent must have been hemizygous. A variant on the above diagram can help withe probabilities. Furthe details are avilable on the bios601 website, in the `probability' chapter.
+\end{quote}
+
+Able to say the probability is.. and in these instance sit has a `long-run' or average interpretaion.
+
+one can make a diagram that stats with 100 women and
+say what the expected numbers are
+
+In both the hemophilia and transgenic mice examples, the objective prior
+
+.5
+
+or \ldots{}.. it might be
+
+nothing magic about 0.5
+
+some subjective trials. dx tests. ehistory,. e
+
+\hypertarget{freq}{%
+\section{Freq}\label{freq}}
+
+• Statistical Quality Control procedures {[}for Decisions{]} • Sample survey organizations: Confidence intervals • Statistical Tests of Hypotheses
+Unlike Bayesian inference, there is no quantified pre-test or pre- data ``impression''; the ultimate statements are about data, conditional on an assumed null or other hypothesis.
+Thus, an explanation of a p-value must start with the conditional "IF the parameter is \ldots{} the probability that the data woul
+
+Bayes Theorem : Haemophilia
+Brother has haemophilia =\textgreater{} Probability (WOMAN is Carrier) = 0.5 New Data: Her Son is Normal (NL) .
+Update: Prob{[}Woman is Carrier, given her son is NL{]} = ??
+
+\hypertarget{CI}{%
+\chapter{Parameter Intervals}\label{CI}}
+
+The \textbf{objective} of this first section is to provide simple examples of \textbf{reverse engineering} that show some of the logic behind statistical `confidence intervals' for parameters. We begin with `100\% confidence' intervals, and then, in section 2, we explain why we have to move to `less-than-100\% confidence' intervals, where things get a bit more nuanced.
+In both sections, we emphasize the reverse engineering, i.e, by using as our limits the worst-case or almost-worst-case scenarios involving the (unknown) values of the parameter that is being estimated.
+
+\hypertarget{confidence-intervals}{%
+\section{`100\% confidence' intervals}\label{confidence-intervals}}
+
+\textbf{Example 1}
+
+Consider a very `particularistic' parameter, the height of a particular building. There is nothing `scientific' about the parameter, except maybe that we use tools of mathematical science (of trignometry) to measure it. Nevertheless, we will sometimes refer to it one of the generic symbols for a parameter, namely \(\theta.\)
+
+Suppose you measure the height of this building by standing a known horizontal distance (e.g.~100 metres) from the bottom of the building and using an instrument to measure the angle between the horizontal and the top of the building. Suppose, as shown in the left panel of the Figure below, that the instrument gives a reading of 70 degrees.
+
+Remembering from trigonometry that the tangent of a 70 degree angles is 2.75, the angle of 70 degrees suggests that the height of the building is \(\hat{\theta}\) = 275 metres. The `hat' is statistical shorthand for `estimate of.' Since it is sometimes referred to as a `point estimate' of \(\theta\), we display the value using a dot or point.
+
+After calculating this, you learn that the measuring instrument only displays the angle is to the nearest 10 degrees. This means that the true angle is somewhere between 65 and 75 degrees. {[}This is the same range you would get if it was dark and you used a laser pointer or flashlight attached to a wheel that rotates in fixed 10-degree steps, i.e., 5 degrees, 15 degrees, 25 degrees, etc. At 65 degrees, the light is visible on the building, but at 75 degrees, it goes above the building and shines into the sky.{]}
+
+So you \textbf{cannot say} that the true height is \textbf{exactly} 275 metres. What \textbf{can} you say? And with what certainty?
+
+You can put \textbf{limits} on the true height by asking \textbf{what are the minimum and maximum heights that could have produced the observed reading of 70 degrees?}
+
+To do this you need to take the limits one at a time. The \textbf{minimum} angle that could have given the (rounded) readout of 70 degrees is 65 degrees, and this corresponds to a minimum height (lower limit) height of \(\theta_L\) = 214 metres. The \textbf{maximum} angle that could have given the readout of 70 degrees is 75 degrees, and this corresponds to a maximum height (upper limit) of \(\theta_U\) = 373 metres. Thus, assuming that the instrument is measuring the angle correctly, and then doing what you are told it does, you are 100\% confident that the true height lies in the interval (214, 373). As is clear in the graph, this does not have the typical 275 \(\pm\) a single-number (or in sybols, \(\hat{\theta} \pm\) ME {[}`margin of error'{]}) that we typically see in reports.
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-7-1} 
+
+}
+
+\caption{Estimating the height of an building by measuring subtended angles. The '70' in the left panel signifies that the real angle was somewhere between 65 and 75 degrees; thus the real height lies between the L and U limits of 214 and 373 metres. In the righ panel, the  interval shown by the thicker black segment to the right of the 3 individual intervals is the  set of parameter values common to all 3.}\label{fig:unnamed-chunk-7}
+\end{figure}
+
+\textbf{\emph{More data}}
+
+The panel on the right shows how, by obtaining 3 measurements at 3 different distances, and finding the interval they have in common (the overlap), you can narrow the interval within which the true height must lie.
+
+\textbf{What allows us to be 100\% confident in the parameter interval}
+
+The reason is the limited error range. How wide the error range is, and how many measurements one makes, determine how wide the parameter interval is.
+
+\textbf{Example 2}
+
+This one is less artificial, and indeed is motivated by a real court case in the late 1990s in Quebec, where a defendant's age (which would determine wheter he was tried in an adult or a juvenile court) was in doubt. He was adopted, while still a young child, from another country. Official birth records were not available, and his adoptive parents were able to get a cheaper airfare by claiming that he was under age 2 at the time. Bone age, and Tanner Staging, also known as Sexual Maturity Rating (SMR), an objective classification system used to track the development and sequence of secondary sex characteristics of children during puberty, were other pieces of information used by the judge.
+
+For more on this topic of determining chronological age, see this article, entitled \href{https://discovery.ucl.ac.uk/id/eprint/1470308/1/Tim_Cole_Intl_Innovation_140_Research_Media.pdf}{Many applications for medical statistics} and thos one, entitled \href{https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2012.00568.x}{People smugglers, statistics and bone age}, by UCL statistics professor and child growth expert, \href{https://scholar.google.com/citations?user=1P_yQocAAAAJ\&hl=en}{Tim Cole}.
+
+Again, the person's correct chronological age is a particularistic parameter, one that had nothing to do with science, or universal laws of Nature. But it can be estimated by using the laws of mathematics and statistics.
+
+For didactic purposes, we will simplify matters, and assume that `our' indirect method gives estimates such that if many of them were averaged, they would give the correct chronological age of the person (in statistical lingo, statisticians say that the method/estimator is `unbiased'). However, as is seen below, the individual measurements vary quite a bit around the correct age. They can be off by as much as 25\% (1/4th) in either direction. {[}In practice, a measuring instrument with this much measurement error would not be useful -- unless it was fast, safe, inexpensive, non-invasive, easily repetaed, and so on -- but we make the measurement variations this large just so we can see the patters more clearly on the graph!{]}. Another unrealistic feature of our `measurement model' is that the `error distribution' has a \textbf{finite range}. The \textbf{shape} of the error distribution doesn't come into the 100\% `confidence intervals' below, but it will matter a little bit -- but not a whole lot unless the sample size is small -- later on when we cut corners.
+
+Consider first a single indirect measurement of chronological age, that yielded a value of 17.6 years.
+
+Given what you know about the sizes of the possible errors, you \textbf{cannot say} that the true age is \textbf{exactly} 17.6 years What \textbf{can} you say? And with what certainty?
+
+You can put \textbf{limits} on the true age by asking \textbf{what are the minimum and maximum ages that could have produced the observed reading of}
+17.6 years.
+
+To do this you need to consider the limits \textbf{one scenario at a time}. The \textbf{minimum} age that could have given the estimate of 17.6 years is /
+1.125 =
+15.7 years. The \textbf{maximum} age that could have produced this reading is
+17.6 / 0.875 = 20.1 years. Thus (assuming the error model is correct!) you are 100\% confident that the true age lies in the interval (15.7 , 20.1) years. Again, as is clear in the graph, this does not have the typical
+17.6 \(\pm\) a single-number margin of error that we typically see in reports. Rather, it is 17.6 \textbf{- 2.6} and 17.6 \textbf{+ 4.4} !
+
+But, you can't arrive at these directly; get there this way. You have to try on various limits, until
+
+\[ LowerLimit + margin  = 17.6 \ = \   UpperLimit - margin  \]
+
+\textbackslash{}begin\{figure\}
+
+\{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-9-1}
+
+\}
+
+\textbackslash{}caption\{100\% Confidence Intervals for a person's chronological age when error distributions (that in this example are wider at the older ages) are 100\% confined within the shaded ranges. Left: based on n = 1 measurement; right: based on n = 4 independent measurements. \}\label{fig:unnamed-chunk-9}
+\textbackslash{}end\{figure\}
+
+\textbf{\emph{More data}}
+
+The panel on the right shows how, by obtaining 4 independent measurements, and finding the interval they have in common, you can narrow the interval containing the true age.
+
+Can we narrow the interval more, maybe by first averaging the 4 measurements? Should the mean of 4 measurements give us more information, ie., a tighter interval, that the one based on the overlap? The sad fact is that, as long we \textbf{insist on 100\% confidence} in our interval (or our procedure), we can not: the mean of the 3 measurements can still -- theoretically -- be \textbf{anywhere} in the same 0.75 \(\times\) True Age to 1.25 \(\times\) True Age range -- just as a single measurement can.
+
+The \textbf{only way to narrow} the interval is to \textbf{take a chance, cut corners, and accept a lower confidence level}. To do this, we need to know a bit more about where the pattern (shape) of the error distribution (**up to now we didn't use the \emph{shape}, just the \emph{boundaries}). In other words, we need to know how much of the error distribution is in the corners, so that we can cut them!
+
+In the next section, we will stick for now with Daniel Bernoulli's error distribution, but cut some corners. (Later on, we will cut some corners on Laplace's and Gauss's error distributions, but with the same standard deviation as in Bernoulli's error curve.)
+
+\hypertarget{more-nuanced-intervals}{%
+\section{More-nuanced intervals}\label{more-nuanced-intervals}}
+
+We will cut 5\% from each corner of the distribution, and focus on the middlemost 90\%. From the formula for its mathematical shape, we can calculate that this measurement range is from
+-1 \(\times\) the radius of the semi-ellipse to
++1 \(\times\) the radius. There is only a 5\% probability of observing a measurement below (to the left of) this interval, and a 5\% probability of observing a measurement above (to the right of) the interval. After we observe our single measurement, we `try it on' against all possible true-age-scenarios. We retain only those true-age-scenarios in which the observed measurement would fall within this central (90\%) range. We discard (`rule out') those age scenarios in which the measurement would be at one extreme or the other extreme, in one of the two excluded or `cut' corners.
+
+The left panel shows the (now narrower, and more nuanced) \textbf{range of true-ages (rahe of parameter values) that is compatible with the observed measurement of 13.1 years}. In all other age-scenarios, the 13.1 would have been too extreme, and so these scenarios are discarded. We can think of the \textbf{`ruled in' range} as our (nuanced, compromise) \textbf{parameter interval}.
+
+Note again the method of constructing this \textbf{non-symmetric} parameter interval, namely one boundary at a time. It does not fit the \(\pm\) mold.
+
+It does, however, give a way of talk about such an interval:
+
+\begin{quote}
+\textbf{The observed measurement (point-estimate) may be an underestimate of the parameter: it might have fallen short of the true parameter value. Or, it may be an underestimate: it might have overshot the true parameter value. The plus and the minus amounts are the almost-maximal amounts by which our \emph{shot} might have been off-target.} (as we will see later, the maximal error can be infinite, so we have to put some probalistic limits on the error if we are to narrow the interval).
+\end{quote}
+
+Q: Does this \textbf{procedure} for constructing intervals have a 90\% success rate, if used up and down all of the ages, say from 10 to 30 years? We could try it out with people of known ages. {[}answer by simulation{]}
+
+You will discover in your simulations that it \textbf{might matter} whether you simulate the same number of 16 year olds as 10 years, i.e., what the \textbf{mix of real ages} is. This does not matter in the 100\% intervals, but it might if you are more nuanced. For example,instead of estimating age by an indirect method, pretend you were were \textbf{estimating a person's height indirectly}, by just \textbf{measuring their arm span} (at each height, the mean armspan is very close to the height, but there is a spread of armspans (pardon the pun!)). And (just like in our example 2 where the spread increases with the mean) the spread of armspans is larger in people who are 6 feet tall than it is in people 5 feet tall.
+BUT, there aren't as many people 5 feet and 6 feet tall as there are people 5 feet 6 inches. So, the distribution of heights in people with a span of 5 feet 11 might have a different shape than that in people with a span of 5 feet 6, or 5 feet. Simulations (or even some diagrams) could settle the issue as to whether the height-mix (or, in example 2, the age mix) matters. What is your intuition as to whether it affects the perfornace of your nuanced parameter estimates? The point is that your method needs to have the same claimed performance (say 90\%) at any age you throw at it.
+
+\textbackslash{}begin\{figure\}
+
+\{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-11-1}
+
+\}
+
+\textbackslash{}caption\{90\% Confidence intervals for Chronological Age when only 90\% of the error distributions lie within the shaded ranges.\}\label{fig:unnamed-chunk-11}
+\textbackslash{}end\{figure\}
+
+When we have \(n = 3\) observations (right panel), it is not so easy to say how confident we should be about the overlap of the 3 intervals.
+Instead, we would be bettter off taking the mean of the 3 measurements, and `trying on' this single mean against the various sampling distributions of the means of 3 independent measurements from a semi-circular error distribution. Again, since the range remains the same, we would again have to cut corners. We will illustrate this when we now consider the easier-to-work-with Gaussian error distribution.
+
+\textbf{A more realistic error distribution}
+
+Although it makes it easier to demonstrate `100\% confidence' intervals, Daniel Bernoulli's error distribution is both mathematically unfamiliar, and a bit unrealistic. And it isn't that easy to see how to use it for situations where you wiull want to take an average of several independent indirect measurements. So, we now switch to a more familiar and more realistic bell-shaped error distribution. It is often called the Gaussian distribution, even if Gauss was not the first to publish it. Variations of it were alraedy discovered by deMoivre many decades earlier, and Gauss' competotor, Laplace , publihed it well before Gauss did. Gauss claimed he was using it for many years before he published it.
+Laplace also used a different (more spiked) error distibution that today is called after him.
+
+In any case, lets switch to bell-shaped distributions of the age measurements at each true age, but let's keep the `average squared deviation' or its square root, the standard deviation, the same as it was in the Bernoulli model.
+
+on 10 Mark note
+
+NEXT
+
+we deliberately took non-symmetric situations where it is not +/-
+
+Now will show sitations where the error doesnt get bigger of smaller with the context, and where the `trying-on' is faster.
+
+\hypertarget{summary-1}{%
+\section{SUMMARY}\label{summary-1}}
+
+\begin{itemize}
+\item
+  what a parameter interval is
+\item
+  If an error distribution is bounded, we can be 100\% confident in our parameter interval, and we can narrow it by taking more measurements. Moreover, we don't need to specify the exact shape of the error distribution. All that matters are its bounds.
+\end{itemize}
+
+I don't think you should take for granted that students (or even professors!) will know what an error distribution is. So I think a first point should be to describe what you mean by an error distribution.
+
+\begin{itemize}
+\item
+  With unbounded error distributions, a 100\% parameter interval may be unacceptably wide, even if we take many measurements. Thus, we have to `give up something' (in certainty) in order to `get something' (a narrower interval). Moreover, we need to either (a) specify a model for the shape of the error distribution, or (b) use data-intensive techniques, such as re-sampling, to be able to `cut the corners.'
+\item
+  Either way, a logical way to determine parameter intervals is to have them consist of all the parameter-value scenarios in which the observed measurement (or summary measurement) is `plausible'. The upper limit for the parameter is the scenario in which the measurement would be probalistically near the bottom of the corresponding sampling distribution; the lower limit is the scenario in which the measurement would be near the top of the corresponding sampling distribution.
+\item
+  If the error (or sampling) distributions have differing spreads at different parameter values, then the parameter interval will not be symmetric about the point estimate. If the error (or sampling) distributions have the same spreads at different parameter values, then the parameter interval will be symmetric about the point estimate, and thus, easier to calculate.
+\end{itemize}
+
+it would be good to give a concrete example here.e.g. repeat the age example --\textgreater{} It's harder to accurately guess the true age of someone who is older.
+perhaps also a good time to mention that in this situation, the +/- formula will fail you
+
+\begin{itemize}
+\tightlist
+\item
+  It is not correct to view the parameter as `falling' on one or other side of the measurement. The true parameter values is fixed, and isn't moving or falling anywhere. Rather, it is the observed measurement (point-estimate) that may have fallen to the left of (fallen short of), and thus provided an underestimate of, the true parameter value: Or, it may have overshot the true parameter value, and thus overestimated it.
+\end{itemize}
+
+This point also explains why the +/- formula fails us
+
+Missing from the above summary points is a direct answer to the question or criticisms we are likely to face: ``Why do we care about Wilson when the +/- gives you the same answer?''
+The answer to this question is given indirectly in points 4) and 5). But I think we need to be explicitly clear about this, since for me at least, is the main motivation for this chapter.
+
+I also think the objective of the chapter needs to be revised. Based on our discussions, the point of the chapter is to explain:
+1) Why the +/- formula fails us in the interpretation of a CI and when the spread of the error distribution is non-constant and
+2) Wilson's idea to remedy the situation.
+
+If you agree with those two objectives, the next question to answer is how `100\% confidence intervals' and ultimately `cutting corners' helps you explain the points 1) and 2).
+
+By the way, a simplified version of the Wilson plot you made will be a great help in visualizing point 3:
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Another unrealistic feature of our `measurement model' is that the `error distribution' has a semi-circular (or rather semi-eliptical) shape. In statistics, it is called the \href{https://en.wikipedia.org/wiki/Wigner_semicircle_distribution}{`Wigner' semicircle distribution}. First written about by \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Likelihood/Kendall1961OnDanielBernoulliML.pdf}{Daniel Bernoulli}, predates the error distributions of Laplace and Gauss.
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  If the \textbf{archer} makes innumerable \textbf{shots}, all with the utmost possible care, the arrows will strike sometimes the first band next to the mark, sometimes the second, sometimes the third and so on, and this is to be understood equally of either side whether left or right. Now is it not self-evident that the hits must be assumed to be thicker and more numerous on any given band the nearer this is to the mark? If all the places on the vertical plane, whatever their distance from the mark, were equally liable to be hit, the most skilful shot would have no advantage over a blind man. That, however, is the tacit assertion of those who use the common rule in estimating the value of various discrepant observations, when they treat them all indiscriminately. In this way, therefore, the degree of probability of any given deviation could be determined to some extent a posteriori, since there is no doubt that, for a large number of shots, the probability is proportional to the number of shots which hit a band situated at a given distance from the mark.
+  Moreover, there is \textbf{no doubt that the greatest deviation has its limits which are never exceeded} and which indeed are narrowed by the experience and skill of the observer. Beyond these limits all probability is zero; from the limits towards the mark in the centre the probability increases and will be greatest at the mark itself. {[}\textbf{Note}: developers and teachers of statistical methods have long made use of archery, gunnery, darts, and \textbf{aiming at targets}. Indeed, \textbf{the word stochastic}, which refers to randomnees, has its roots in the Greek word stokhastikos, meaning able to guess, with the root stokhos meaning a target. Klein (1997) writes of `men reasoning on the likes of target practice' and describes how this imagery has pervaded the thinking and work of natural philosophers and \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Likelihood/letter-jrssa-20110509.pdf}{statisticians} {]}
+\end{enumerate}
+\end{quote}
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  The foregoing give some idea of a scale of probabilities for all deviations, such as each observer should form for himself. It will not be absolutely exact, but it will suit the nature of the inquiry well enough. The mark set up is, as it were, the centre of forces to which the observers are drawn; but these efforts are opposed by innumerable imperfections and other tiny hidden obstacles which may produce in the observations small chance errors. Some of these will be in the same direction and will be cumulative, others will cancel out, according as the observer is more or less lucky. From this it may be understood that there is some relation between the errors which occur and the actual true position of the centre of forces; for another position of the mark the outcome of chance would be estimated differently. So we arrive at the particular problem of determining the most probable position of the mark from a knowledge of the positions of some of the hits. It follows from what we have adduced that one should think above all of a scale (scala) between the various distances from the centre of forces and the corresponding probabilities. Vague as is the determination of this scale, it seems to be subject to various axioms which we have only to satisfy to be in a better case than if we suppose every deviation, whatever its magnitude, to occur with equal ease and therefore to have equal probability. Let us suppose a straight line in which there are disposed various points, which indicate of course the results of different observations. Let there be marked on this line some intermediate point which is taken as the true position to be determined. Let perpendiculars expressing the probability appropriate to a given point be erected. If now a curve is drawn through the ends of the several perpendiculars this will be the scale of the probabilities of which we are speaking.
+\end{enumerate}
+\end{quote}
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  If this is accepted, I think the following assumptions about the scale of probabilities can hardly be denied.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Inasmuch as deviations from the true intermediate point are equally easy in both directions, the scale will have two perfectly similar and equal branches.
+\item
+  Observations will certainly be more numerous and indeed more probable near to the centre of forces; at the same time they will be less numerous in proportion to their distance from that centre. The scale therefore on both sides approaches the straight line on which we supposed the observed points to be placed.
+\item
+  The degree of probability will be greatest in the middle where we suppose the centre of forces to be located, and the tangent to the scale for this point will be parallel to the aforesaid straight line.
+\item
+  If it is true, as I suppose, that even the least-favoured observations have their limits, best fixed by the observer himself, it follows that the scale, if correctly arranged, will meet the line of the observations at the limits themselves. For at both extremes all probability vanishes and a greater error is impossible.
+\item
+  Finally, the maximum deviations on either side are reckoned to be a sort of boundary between what can happen and what cannot. The last part, therefore, of the scale, on either side, should approach steeply the line on which the observations are sited, and the tangents at the extreme points will be almost perpendicular to that line. The scale itself will thus indicate that it is scarcely possible to pass beyond the supposed limits. Not that this condition should be applied in all its rigour if, that is, one does not fix the limits of error over-dogmatically.
+\end{enumerate}
+\end{quote}
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  If we now construct a \textbf{semi-ellipse} of any parameter on the line representing the whole field of possible deviations as its axis, this will certainly satisfy the foregoing conditions quite well. The parameter {[}radius{]} of the ellipse is arbitrary, since we are concerned only with the proportion between the probabilities of any given deviation. However elongated or com-pressed the ellipse may be, provided it is constructed on the same axis, it will perform the same function; which shows that we have no reason to be anxious about an accurate description of the scale. In fact we can even use a circle, not because it is proved to be the true scale by mathematical reasoning, but because it is nearer the truth than an infinite straight line parallel to the axis, which supposes that the several observations are of equal weight and probability, however distant from the true position. This circular scale also lends itself best to numerical calculations; meanwhile it is worth observing in advance that both hypotheses come to the same whenever the several observations are considered to be infinitely small. They also agree if the radius of the auxiliary circle is supposed to be infinitely large, as if no limits were set to the deviations. Thus if the deviation of an observation from the true position is thought of as the sine of a circular arc, the probability of that observation will be the cosine of the same arc. Let the auxiliary semicircle, which I have just described, be called the controlling semicircle (moderator). Where the centre of this semicircle is located, the true position, which fits the observations best, is to be fixed. Admittedly our hypothesis is, to some extent, precarious, but it is certainly to be preferred to the common one, and will not be hazardous to those who understand it, since the result that they will arrive at will always have a higher probability than if they had adhered to the common method. When by the nature of the case a certain decision cannot be reached, there is no other course than to prefer the more probable to the less probable.
+\end{enumerate}
+\end{quote}
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  I will illustrate this line of argument by a trivial example. The particular problem is the reconciliation of discrepant observations; it is therefore a question of difference of observations. Now if a dice-thrower makes three throws with one die so that the second exceeds the first by one and the third exceeds the second by two, the throws may arise in three ways, viz. 1,2,4 or 2,3,5 or 3,4,6. None of these throws is to be preferred to the other two, for each is in itself equally probable. If you prefer the one in the middle, viz. 2,3,5, the preference is illogical. The same sort of thing happens if you choose to consider observations which, so far as you are concerned, are accidental, whether they are astronomical or of some other kind, as equally probable. Now suppose the thrower produces the same result by throwing a pair of dice three times. There will then be eight different ways in which he would obtain this result, viz. 2,3,5; 3,4,6; 4,5,7; 5,6,8; 6,7,9; 7,8,10; 8,9,11 and 9,10,12.
+  But they are far from being all equally probable. It is well known that the respective probabilities are proportional to the numbers 8, 30, 72, 100, 120, 80, 40 and 12. From this known scale I have better right to conclude that the fifth set has happened than that any other has, because it has the highest probability; and so the three throws of a pair of dice will have been 6, 7 and 9. No-one, however, will deny that the first set 2, 3 and 5 might possibly have happened, even though it has only a fifteenth part of the probability corresponding to the fifth set. Forced to choose, I simply choose what is most probable. Although this example does not quite square with our argument, it makes clear what contribution the investigation of probabilities can make to the determination of cases. Now I will come more to grips with the actual problem.
+\end{enumerate}
+\end{quote}
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  First of all, \textbf{I would have every observer ponder thoroughly in his own mind and judge what is the greatest error which he is morally certain (though he should call down the wrath of heaven) he will never exceed however often he repeats the observation}. He must be his own judge of his dexterity and not err on the side of severity or indulgence. Not that it matters very much whether the judgement he passes in this matter is fitting or somewhat flighty. Then let him \textbf{make the radius of the controlling circle equal to the aforementioned greatest error}; let this radius be r and hence the width of the whole doubtful field = 2r.
+  If you desire a rule on this matter common to all observers, I recommend you to suit your judgement to the actual observations that you have made: if you double the distance between the two extreme observations, you can use it, I think, safely enough as the diameter of the controlling circle, or, what comes to the same thing, if you make the radius equal to the difference between the two extreme observations. Indeed, it will be sufficient to increase this difference by half to form the diameter of the circle if several observations have been made; my own practice is to double it for three or four observations, and .to increase it by half for more. Lest this uncertainty offend any one, it is as well to note that if we were to make our controlling semicircle infinite we should then coincide with the generally accepted rule of the arithmetical mean; but if we were to diminish the circle as much as possible without contradiction, we should obtain the mean between the two extreme observations, which as a rule for several observations I have found to be less often wrong than I thought
+  before I investigated the matter.
+\end{enumerate}
+\end{quote}
+
+We must wonder whether its was that this eminent mathematician (who also, incidentally contributed to the epidemiological debate about smallpox vaccination) was unable to think of a formula for an error distribution that did not end abruptly, and that would instead `flow out' further in both directions. Or was it that he wasn't bothered by having to find the roots of 5th degree polynomials to find the best `centre' of his semicircukar distribution? As it turns out, the mathematics involved in finding (what we now call today) the Maximun Likelihood Estimator for Laplace's and Gauss's (infinitely wide) error distributions is much simpler. But the, we have the benefit of hindsight.
+
+The \textbf{key ideas -- the semi-ellipse and the fixed (assumed known) -- are highlighted}.
+
 \hypertarget{paraMu}{%
-\chapter{The `mean' parameter}\label{paraMu}}
+\chapter{\texorpdfstring{The `mean' parameter \(\mu\)}{The `mean' parameter \textbackslash{}mu}}\label{paraMu}}
 
 {[}and other location (and spread and shape) parameters{]}
 
@@ -825,18 +1268,6 @@ Wald : CF screening
 \hypertarget{functionscombinations-of-random-variables}{%
 \section{Functions/combinations of random variables}\label{functionscombinations-of-random-variables}}
 
-\hypertarget{inference}{%
-\chapter{Statistical Inference}\label{inference}}
-
-\hypertarget{schools}{%
-\section{2 schools}\label{schools}}
-
-\hypertarget{bayesian}{%
-\subsection{Bayesian}\label{bayesian}}
-
-\hypertarget{frequentist}{%
-\subsection{Frequentist}\label{frequentist}}
-
 \hypertarget{part-part-iii}{%
 \part{Part III}\label{part-part-iii}}
 
@@ -874,7 +1305,7 @@ Wald : CF screening
 \end{itemize}
 
 \hypertarget{computing01}{%
-\chapter{Computing Week 1}\label{computing01}}
+\chapter{Computing Session 1}\label{computing01}}
 
 The \textbf{`computing' objectives} are to learn how to use \texttt{R} to put series of observations into vectors, and how to plot one series against another.
 
@@ -883,27 +1314,32 @@ The \textbf{`statistical' objective} of this exercise is to understand the conce
 \hypertarget{biological-background}{%
 \section{Biological background}\label{biological-background}}
 
-Later on we will examine climate trends using unusual datasets, which suggest that over the last few centuries, winter tends to end earlier, and plants tend to flower earlier.
+Later on we will examine \href{http://www.medicine.mcgill.ca/epidemiology/hanley/c678/index.html\#anthropometricData}{climate trends using unusual datasets}, which suggest that over the last few centuries, winter tends to end earlier, and plants tend to flower earlier.
 
 One such dataset arose as part of a long-running contest, the \href{http://www.nenanaakiceclassic.com}{Nenana Ice Classic}
-More \href{http://www.john-daly.com/nenana.htm}{here}
+More \href{http://www.john-daly.com/nenana.htm}{here}.
+
+Here is the \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/Nenana2020Brochure.pdf}{2020 brochure}. There is still time to compete this year, but it looks like you need to be in Alaska to find and fill out a ticket, and the organizers ask for your mailing address, not your email one!
 
 \hypertarget{statistical-task}{%
 \section{Statistical Task}\label{statistical-task}}
 
-You are asked to approximate and carefully examine the distribution of guesses in 2018, contained in the Book of Guesses for that year.
+You are asked to approximate and carefully examine the distribution of guesses in 2018, contained in the Book of Guesses for that year. The full book is available as the 7th tab in the \href{http://www.nenanaakiceclassic.com}{2020 website}. If the full book takes too long to load, here are some
+\href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/SampledPages.pdf}{excerpts from the book}.
 
-For now, we will measure the guesses (and eventually the actual time) as the numbers of days since the beginning of 2018. Thus a guess of Tuesday April 17 5:20 p.m. would be measured as 31 + 28 + 31 + 16 + (16 + 20/60)/24 = 106.6806 days since the beginning of 2018.
+For now, we will measure the guesses (and eventually the actual time) as the numbers of days since the beginning of 2018. Thus a guess of Tuesday April 17 5:20 p.m. would be measured as 31 + 28 + 31 + 16 + (17 + 20/60)/24 = 106.7208 days since the beginning of 2018.
 
 It would be tedious to try to apply optical character recognition (OCR) to each of the 1210 pages in order to be able to computerize all of the almost 242,000 guesses. Instead, you are asked to reconstruct the distribution of the guesses in two more economical ways:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  By determining, for each of the 36 x 2 = 72 half-days days from April 10 to May 15 inclusive, the proportion, p, of guesses that are earlier than midnight on that date. {[} In \texttt{R}, if p = 39.6\% of the guesses were below xy.z days, we would write this as pGuessDistribution(xy.z) = 0.396. Thus, if we were dealing with the location of a value in a Gaussian (`normal') distribution, we would write \texttt{pnorm(q=110,\ mean\ =\ ,\ sd\ =\ )} {]} Once you have determined these 72 proportions (p's), plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
+  By determining, for each of the 36 x 2 = 72 half-days days from April 10 to May 15 inclusive, the proportion, p, of guesses that are earlier than mid-day and midnight on that date. {[} In \texttt{R}, if p = 39.6\% of the guesses were below xy.z days, we would write this as pGuessDistribution(xy.z) = 0.396. Thus, if we were dealing with the location of a value in a Gaussian (`normal') distribution, we would write \texttt{pnorm(q=110,\ mean\ =\ ,\ sd\ =\ )} {]} Once you have determined these 72 proportions (p's), plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
 \item
-  By determining the 1st, 2nd, \ldots{} , 98th, 99th percentiles. These are specific examples of `quantiles', or q's. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all guesses are below this value, and 1-q are above it. {[} In \texttt{R}, if 40\% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a Gaussian distribution with mean 130 and standard deviation 15, we would write \texttt{qnorm(p=0.4,\ mean\ =\ 130,\ sd\ =\ 15)}. {]} Once you have determined them, plot the 99 p's (on the vertical axis) against the 99 (elapsed) times on the horizontal axis.
+  By determining the 1st, 2nd, \ldots{} , 98th, 99th percentiles. These are specific examples of `quantiles', or q's. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all guesses are below this value, and 1-q are above it. {[} In \texttt{R}, if 40\% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a Gaussian distribution with mean 130 and standard deviation 15, we would write \texttt{qnorm(p=0.4,\ mean\ =\ 130,\ sd\ =\ 15)}. {]} Once you have determined them, plot the 99 p's (on the vertical axis) against the 99 (elapsed) times on the horizontal axis. {[}see the spreadsheet{]}.
 \end{enumerate}
+
+Before we get to the actual Exercises in subsection 2.2, an orientation\ldots{}
 
 \hypertarget{the-p-and-q-functions-an-orientation}{%
 \subsection{The p and q functions: an orientation}\label{the-p-and-q-functions-an-orientation}}
@@ -916,7 +1352,7 @@ In the plot below, the values of the \textbf{p} function are shown on the vertic
 
 The \textbf{q} function (in blue) goes into the opposite direction. You enter at some proportion on the vertical axis, and exit with a value of the characteristic (a quantile) on the horizontal axis. In our plot, the proportions on the vertical axis are equally-spaced. Percentiles and quartiles are a very specific sets of quantiles: they are obtained by finding the values that divide the distribution into 100 or into 4.
 
-\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-7-1} \end{center}
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
 \hypertarget{exercises-1}{%
 \subsection{Exercises}\label{exercises-1}}
@@ -927,7 +1363,7 @@ The \textbf{q} function (in blue) goes into the opposite direction. You enter at
   Once you have determined the 72 (cumulative) proportions (p's) associated with the 72 half-days, plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
 \item
   The 1st, 2nd, \ldots{} , 98th, 99th percentiles are not so easy to determine since you have to locate the 2419th, 4839th, 7258t, \ldots{} entries in the 1201-page Book of Guesses and plot the 99 p's (on the vertical axis) against the 99 (elapsed) times (q's) on the horizontal axis. Instead, use the first entry on each of pages 11, 21, \ldots{} in
-  \href{http://www.biostat.mcgill.ca/hanley/bios691/SampledPages.pdf}{this excerpt}. Using a different colour, plot these slightly-more-dense quantiles on the horizontal axix against the following percentages:
+  \href{http://www.biostat.mcgill.ca/hanley/bios691/SampledPages.pdf}{this excerpt}. {[}see the shared spreadsheet{]}. Using a different colour, plot these slightly-more-dense quantiles on the horizontal axix against the following percentages:
 \end{enumerate}
 
 \begin{Shaded}
@@ -961,6 +1397,19 @@ The \textbf{q} function (in blue) goes into the opposite direction. You enter at
   Compare the directly-obtained proportions of guesses that are before (the end of) April 20, April 30, and May 10 with the ones obtained by interpolation of the curve showing the results of the other method.
 \item
   By successive subtractions, calculate the numbers of guesses in each 1/2 day bin, and make a histogram of them. From them, calculate the mean, the mode, and the standard deviation.
+\item
+  How far off was the median guess in 2018 from the actual time? Answer in days, and (with reservations stated) as a percentage? \{see the 2020 brochure\}
+\item
+  Why did the `experts' at the 1906 \href{http://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf}{English country fair} do so much better that their Alaskan counterparts?
+\item
+  Why was the shape of the distribution of guesses by \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/The_wisdom_of_the_inner_crowd_.pdf}{Dutch casino goers} so different from the English and Alaskan ones?
+\item
+  Instead of measuring the guessed times from the beginning of the year, suppose that, as \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/VoxPopuliNenana.pdf}{Fonseca et al}
+  did, we measure the guessed times from the spring equinox in Alaska, i.e.~from 8:15 a.m. on Tuesday, March 20, 2018, Alaska time. In this scale, compute the mean guess, and the SD of the guesses.
+\item
+  Suppose, again, we measure the guessed times from the spring equinox, but in \textbf{weeks}. In this scale, compute the mean guess, and the SD of the guesses.
+\item
+  How much warmer/colder in Nov-April is Montreal than Nenana?
 \item
   (For a future assignment, but you can start thinking about how) From a random sample of 100 guesses from the book, estimate how many guesses in the entire book are PM.
 \end{enumerate}
@@ -1018,20 +1467,7 @@ The \textbf{q} function (in blue) goes into the opposite direction. You enter at
 ## 50        1181             2         30
 \end{verbatim}
 
-\begin{itemize}
-\item
-  How far off was the median guess in 2018 from the actual time? Answer in days, and (with reservations stated) as a percentage? \{see the 2020 brochure \}
-\item
-  Why did the experts at the country fair do so much better?
-\item
-  Where were the punters in 2019 with respect to the actual time?
-\item
-  Instead of measuring the guessed times from the beginning of the year, suppose that, as Fonseca et al did, we measure the guessed times from the spring equinox in Alaska, i.e.~from 8:15 a.m. on Tuesday, March 20, 2018, Alaska time. In this scale, compute the mean guess, and the SD of the guesses.
-\item
-  Suppose, again, we measure the guessed times from the spring equinox, but in weeks. In this scale, compute the mean guess, and the SD of the guesses.
-\end{itemize}
-
-Some links on the `Wisdom of Crowds'
+Some more links on the `Wisdom of Crowds'
 
 \url{https://www.technologyreview.com/s/528941/forget-the-wisdom-of-crowds-neurobiologists-reveal-the-wisdom-of-the-confident/}
 
@@ -1039,10 +1475,735 @@ Some links on the `Wisdom of Crowds'
 
 \url{http://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf}
 
+\hypertarget{summary-2}{%
+\section{SUMMARY}\label{summary-2}}
+
+\hypertarget{computing}{%
+\subsection{Computing}\label{computing}}
+
+\begin{itemize}
+\item
+  Assigning values to objects via \texttt{\textless{}-} or \texttt{=}
+\item
+  Putting numbers into vectors via concatenation \texttt{c(\ ,\ ,\ )}
+\item
+  Putting a sequence of values into vectors via the \texttt{seq()} function
+\item
+  Looking at the first \texttt{n} and the last \texttt{n} elements of an object via \texttt{head(object,n)} and \texttt{tail(object)} -- if you omit the \texttt{n}, it defaults to 6
+\item
+  Making a new numerical value or vector of numerical values from existing ones via, e.g.~via \texttt{+} , \texttt{*} ( multiplication), \texttt{\^{}\ power} etc.
+\item
+  Using \texttt{str(object)} to see the **str*ucture of an object
+\item
+  Using \texttt{plot(x,y)} to plot an `x' vector versus a `y' vector. \texttt{lines(),}points()\texttt{and}text()` can be added to an existing plot.
+\item
+  The \texttt{approx()} function for fitting
+\end{itemize}
+
+\hypertarget{statistical-concepts-and-principles}{%
+\subsection{Statistical Concepts and Principles}\label{statistical-concepts-and-principles}}
+
 \begin{itemize}
 \tightlist
 \item
-  How much warmer/colder in Nov-April is Monreal than Nenana?
+  Definition of the p (Cumulative Distribution) function of a random variable \(Y:\)
+\end{itemize}
+
+\[CDF_Y(y) = F_Y(y) =  Prob( Y \le y).\]
+
+\begin{itemize}
+\tightlist
+\item
+  Definition of the q (quantile, or InverseCDF) function of a random variable \(Y:\)
+\end{itemize}
+
+\[ q_Y(p) : the \ y \ such \ that \ Prob( Y \le q) = p.\]
+
+\begin{itemize}
+\tightlist
+\item
+  The is no \emph{default} shape for the distributions of random variables, especially those generated by humans.
+\end{itemize}
+
+\hypertarget{computing02}{%
+\chapter{Computing: Session No.~2}\label{computing02}}
+
+The \textbf{`computing' objectives} are to learn how to use \texttt{R} to
+
+\begin{itemize}
+\item
+  simulate random variation, and random variables
+\item
+  visualize the consequences of aggregating independent random variables\\
+\item
+  discover the statistical laws that govern the variability of combinations of independent observations
+\end{itemize}
+
+The \textbf{`statistical' objectives} of this exercise are to
+
+\begin{itemize}
+\item
+  be introduced to parameters that measure the spread of the distribution of a random variable, whether it be an error distribution, or a biological one.
+\item
+  learn (empirically, and heuristically) the statistical laws that govern how the spread of a linear combination (e.g, the sum, or the mean) of several (generically, \(n\)) independent random variates is related to the spread of the individual random variables.
+\end{itemize}
+
+The ultimate objective is to be able to use these laws to help investigators, such as Henry Cavendish {[}see below{]}, to (probabilistically) quantify `how far off' their parameter estimates might be.
+
+\hypertarget{scientific-background}{%
+\section{Scientific background}\label{scientific-background}}
+
+\begin{quote}
+In Isaac Newton's Principia, Book III, The System of the World, Proposition 10, Theorem 10 we read: `If the earth were not denser than the seas, it would emerge from those seas and, according to the degree of its lightness, a part of the earth would stand out from the water, while all those seas flowed to the opposite side. By the same argument the spots on the sun are lighter than the solar shining matter on top of which they float. And in whatever way the planets were formed, at the time when the mass was fluid, all heavier matter made for the centre, away from the water. Accordingly, since the ordinary matter of our earth at its surface is about twice as heavy as water, and a little lower down, in mines, is found to be about three or four or even five times heavier than water, it is likely that the \textbf{total amount of matter in the earth is about five to six times greater than it would be if the whole earth consisted of water}, especially since it has already been shown above that the earth is about four times denser than Jupiter.'\\
+\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}\hspace*{0.333em}The fact that the average of Newton's `five or six' is very close to today's value of the mean relative density of the Earth shows just how prescient he was. The mean density of the Earth was an extremely important quantity in early Renaissance science as it provided a strong clue as to planetary composition.
+\end{quote}
+
+Some of words above are taken from this article by \href{http://www.biostat.mcgill.ca/hanley/statbook/DensityOfEarth.pdf}{astronomer David Hughes}.
+Table 2 in the article shows `Values suggested for the mean density of the Earth, as a function of the date of publication' starts with Newton's 1687 guesstimate, and ends, (23 estimates later) with Heyl and Chrzanowski's 1942 value.
+Five of the 24 estimates are accompanied by a \(\pm\) value, but what these \(\pm\) values signify is left unexplained. One of the 24 is Cavendish's 1798 estimate, which he obtained by taking the mean of \(n =\) 29 density measurements derived using a torsion balance on 17 days in the months of August and September, and the following April and May. Cavendish's `point estimate' was 5.48. Since his'extreme results do not differ from the mean by more than 0.38,or \(\frac{1}{14}\) of the whole' {[}\ldots{}{]} Therefore, it seems very unlikely that the density of the earth should differ from the 5.48 by so much as \(\frac{1}{14}\) of the whole.'
+
+Here we have an effort, by no less than Isaac Newton, to give a \textbf{numerical interval} within which the true parameter value is \textbf{likely} to lie. To Cavendish, it seems \textbf{very unlikely} that the density of the earth should differ from the 5.48 by so much as \(\frac{1}{14}\) of the whole.' Our objective is to learn the statistical laws and tools, unknown in their time, to statistically quantify how far off the mark our modern statistical estimators are (un)likely to be -- and to tighten Cavendish's lower and upper bounds!
+
+\hypertarget{random-variation}{%
+\section{Random Variation}\label{random-variation}}
+
+\hypertarget{measurement-errors}{%
+\subsection{Measurement errors}\label{measurement-errors}}
+
+The `standard' has since been replaced by fancier methods, but for now let's imagine that every family in the world make their own independent physical copy (using say a length of string or a paper or cardboard strip) of the official \href{https://en.wikipedia.org/wiki/History_of_the_metre}{1 meter} platimun bar that used to be stored in Paris. Suppose these copies had a measurement error of either +1 centimeter or -1 centimeter (with plus errors and minus errors being equally likely). Thus, these errors, or `deviations' from the 100cm, average out to 0. Each squared deviation is 1, so the mean squared deviation (called the error \textbf{variance}) is also 1. Its square root, also 1 in this instance, is called the \textbf{standard deviation} of the errors, or \(\sigma_{e}\) for short.
+
+\textbf{Now imagine taking a random sample of \(n\) of these copies, and computing the sum and the mean of the \(n\) lengths.}
+
+Although it is possible to mathematically enumerate/calculate the exact probalities that the sum or mean of the lengths of the \(n\) copies takes on the various possible values, we will instead use \texttt{R} to approximate the probabilities by simulation. The probabilities in the following Figure are based on large enough numbers of simulations that -- while they don't show the \emph{perfect} symmetry they would exhibit if we worked them out mathematically -- they give quite close approximations.
+
+The panels in the following figure shows the probability of obtaining various possible sums and various possible sample means. Clearly, the patterns of the probabilities are strong functions of \(n.\)
+
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-16-1} \end{center}
+
+Instead of a 2-point error distribution, the next Figure shows how variable the sample totals and sample means would be if the errors were distributed a bit differently, as in the first row below. There, a quarter of the measurements have errors of +\(\sqrt{2} \approx\) +1.4cm, half have no error, and a quarter have errors of -\(\sqrt{2} \approx\) -1.4cm. Thus the error variance, the average of the squared deviations, is
+\[\sigma_e^2 = \frac{1}{4} \times (-1.4)^2  +  \frac{1}{2} \times (0)^2 +  \frac{1}{4} \times (1.4)^2 = 1,\] so that the standard deviation is again \(\sigma_e = 1.\)
+
+The row- (i.e., n-) specific distributions in the two Figures are not exactly the same. For example, the possible means in samples of size \(n\) = 2 have a 3-point distribution in the first one, but a 5-point distribution in the second one. But, as you will be asked to verify in the exercises below, the row-specific variances are the same in the two figures.
+
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-17-1} \end{center}
+
+More important than this are the statistical laws governing how widely the sums deviate from \(\mu_{sum}\) = \(n \times\) 100cm, and the means deviate from \(\mu\) = 100cm. Clearly, the possible \textbf{sums} of 5 copies have a \textbf{wider} spread than the possible sums of 2, and the sums of 10 a wider spread than the sums of 5. Conversely, the \textbf{means} of 5 copies have a \textbf{narrower} spread than the means of 2, and the means of 10 a narrower spread than the means of 5.
+
+\textbf{Instead of just telling you what the laws are, we ask you to use \texttt{R} to discover them yourself.}
+
+\hypertarget{discovering-the-laws-via-this-computing-exercise}{%
+\subsubsection{Discovering the Laws {[}via this computing exercise{]}}\label{discovering-the-laws-via-this-computing-exercise}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Put the two (equally likely) errors (or deviations), i.e., -1cm and +1cm, into an \texttt{R} vector of length 2. {[}By the way, \texttt{c(a,b)} in \texttt{R} means \textbf{c}oncatenate \texttt{a} and \texttt{b} into a vector.{]} Then, make a new vector containing the squares of these deviations. {[}you can use \texttt{vector\ *\ vector} or \texttt{vector\^{}2}{]}. Then use the built-in \texttt{R} function \texttt{mean} to compute the mean squared deviation. Although it is not needed in this case, use the \texttt{round} function to display the average squared deviation to a suitable number of decimals. Since what you have computed is a \texttt{variance\textquotesingle{},\ use}this\texttt{variance} (or better still, \texttt{error.variance} as the name for the mean squared deviation. Finally, check by hand that the calculation is correct.
+\item
+  Use the \texttt{sqrt()} function (or the \texttt{\^{}0.5} power) to compute the standard deviation of the errors.
+\item
+  Change the errors from -1cm and +1cm to say -5cm and +5cm, and repeat steps 1 and 2. From this, what did you learn about the laws goverming variances and standard deviations?
+\item
+  Add the errors onto 100cm to make 2 measurements (imperfect copies) of the meter bar, and calculate the mean, variance and standard deviation of the 2 measurements. From this, and by varying the sizes of the 2 errors, what did you learn about the mean the variance and the standard deviation of a shifted (re-located) random variable? \{Hint: be careful to use your own variance and standard deviation functions, not the inbuilt \texttt{var} and \texttt{sd} functions. The reason is that whereas we say there are just 2 errors, in reality there are as many as there are copiers -- effectively an infinite number, about half of whom will make an error of +1cm, and about half of whome will an error of -1cm. Or you can say that the probabilities of errors of -1cm and +1cm are 0.5, and 0.5.
+\item
+  Change the -1cm and +1cm errors to -10mm and +10mm, and tepeat steps 1 and 2. What did you learn?
+\item
+  (In passing: At St Hubert airport on Montreal's South Shore from 1928 to 2004, over the 68 years where records were kept, the mean temperature for the month of January was recorded. The mean of these 68 values was -6.6 degrees Celsius (C) and the standard deviation was 2.9 degrees Celsius. Convert these to degrees F {[}Hint: \(F = 32 + (9/5) \times C\){]})
+\item
+  In order to see the laws in action, and figure them out (with the aid of the \texttt{R} \textbf{code below})
+
+  \begin{itemize}
+  \item
+    Begin with many simulated random \textbf{pairs} of measurements of (possibly imperfect copies) of the meter bar. For example, you might specify \texttt{no.of.pairs\ =\ 10000}.
+  \item
+    Then, using the 2-point (-1cm, +1cm) error distribution shown in the first Figure, simulate this large number of pairs of measurements. There are almost as many ways to do this as there are \texttt{R} programmers. One way (looking ahead to when we want to generalize and simulate larger samples) would be to use a matrix, i.e.~a 2-way array, with as many rows as there are pairs (sets), and as many columns as the number of measurements per sample (here 2, but adjustable as you go along). See below.
+  \item
+    For each of these simulated samples of size \(n\) = 2, calculate the sample sum and sample mean. The \texttt{apply} function is very helpful here: you tell it to apply the desired function (FUN) separately for each \textbf{row} of the matrix by specifying \texttt{MARGIN\ =\ 1}. (Specifying \texttt{MARGIN\ =\ 2} would give you a separate result for each column.)
+  \item
+    Now (finally) calculate the spread of the sample sums and sample means. Do so using both the standard deviation, and its square (the variance). The latter is not a natural quantity for non-statistians, but, as you will deduce, it is variances that scale with \(n\).
+  \item
+    Repeat these steps for samples of size \(n\) = 1, 3, 4, 5, 6, 7 , 8, 9, and 10. and plot the variances and sd's against \(n.\) What laws do these plots suggest?
+  \end{itemize}
+\end{enumerate}
+
+According to Stephen Stigler, a historian of statistics, understanding of this law is one of the things that separates statisticians from mathematicains and computer scientists. Indeed, it is the second of what he calls the Seven Pillars od Statistics:
+
+\begin{quote}
+The first recognition that the variation of sums did not increase proportionately with the number of independent terms added (and that the standard deviation of means did not decrease inversely with the number of terms) dates to the 1700s. This novel insight, that information on accuracy did not accumulate linearly with added data, came in the 1720s to Abraham de Moivre as he began to seek a way to accurately compute binomial probabilities with a large number of trials. In 1733 this would lead to his famous result, which we now call the normal approximation to the binomial, but by 1730 he already noticed that a crucial aspect of the distribution was tied to \ldots{} {[}Stigler The Seven Pillars of Statistical Wisdom. Chapter 2. Its Measurement and Rate of Change.{]}
+\end{quote}
+
+His story of \href{http://www.biostat.mcgill.ca/hanley/c323/pyx.pdf}{The Trial of the Pyx} dramatically illustrates the early and continued blindness to the correct form of the laws. But he doesn't think that Newtom, who was Master of the Mint for many years, took advantage of this blindness to become rich.
+
+\textbf{possible R code:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ERRORS =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+
+\NormalTok{no.of.pairs =}\StringTok{ }\DecValTok{10000} 
+\NormalTok{means.samples.of.size}\FloatTok{.2}\NormalTok{ =}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{,no.of.pairs)}
+
+\NormalTok{measurements =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{100}\OperatorTok{+}\KeywordTok{sample}\NormalTok{(ERRORS,}\DataTypeTok{size =} \DecValTok{2}\OperatorTok{*}\NormalTok{no.of.pairs, }\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{),}
+                      \DataTypeTok{nrow =}\NormalTok{ no.of.pairs, }\DataTypeTok{ncol=}\DecValTok{2}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(measurements)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  num [1:10000, 1:2] 99 101 99 99 99 99 101 99 101 99 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(measurements,}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]   99   99
+## [2,]  101   99
+## [3,]   99  101
+## [4,]   99   99
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(measurements,}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1] [,2]
+##  [9997,]  101   99
+##  [9998,]  101  101
+##  [9999,]   99   99
+## [10000,]  101   99
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sums.samples.of.size}\FloatTok{.2}\NormalTok{ =}\StringTok{ }\KeywordTok{apply}\NormalTok{(measurements,}\DataTypeTok{MARGIN=}\DecValTok{1}\NormalTok{,}\DataTypeTok{FUN=}\NormalTok{sum)}
+\KeywordTok{str}\NormalTok{(sums.samples.of.size}\FloatTok{.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  num [1:10000] 198 200 200 198 198 200 200 198 202 198 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{means.samples.of.size}\FloatTok{.2}\NormalTok{ =}\StringTok{ }\KeywordTok{apply}\NormalTok{(measurements,}\DataTypeTok{MARGIN=}\DecValTok{1}\NormalTok{,}\DataTypeTok{FUN=}\NormalTok{mean)}
+
+\KeywordTok{tail}\NormalTok{(sums.samples.of.size}\FloatTok{.2}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 200 202 198 200
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(means.samples.of.size}\FloatTok{.2}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 100 101  99 100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(sums.samples.of.size}\FloatTok{.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## sums.samples.of.size.2
+##  198  200  202 
+## 2529 4941 2530
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{( }\KeywordTok{mean}\NormalTok{(sums.samples.of.size}\FloatTok{.2}\NormalTok{), }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 200
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{( }\KeywordTok{var}\NormalTok{(sums.samples.of.size}\FloatTok{.2}\NormalTok{), }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.02
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{( }\KeywordTok{sd}\NormalTok{(sums.samples.of.size}\FloatTok{.2}\NormalTok{) , }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.42
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(means.samples.of.size}\FloatTok{.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## means.samples.of.size.2
+##   99  100  101 
+## 2529 4941 2530
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{( }\KeywordTok{mean}\NormalTok{(means.samples.of.size}\FloatTok{.2}\NormalTok{), }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{( }\KeywordTok{var}\NormalTok{(means.samples.of.size}\FloatTok{.2}\NormalTok{), }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.51
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{( }\KeywordTok{sd}\NormalTok{(means.samples.of.size}\FloatTok{.2}\NormalTok{) , }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.71
+\end{verbatim}
+
+References
+
+David Hughes. The mean density of the Earth.
+Journal of the British Astronomical Association, Vol. 116, No.~1, p.21. 2006
+
+\hypertarget{biological-variation}{%
+\subsection{Biological variation}\label{biological-variation}}
+
+\hypertarget{example}{%
+\subsubsection{Example}\label{example}}
+
+We move now to contexts where the variation is primarily (or in a few deluxe cases where there are no measurement issues, entirely) due to genuine -- e.g., biological or geographical -- variation.
+Below, you will address one such example, the weights of a specific population where we have good national-level data to help us to set up simulations that demonstate and let us discover the statistical laws governing the (sampling) variability of various statistics derived from samples. For for now, we will consider a demographic characteristic, namely \textbf{age}, in a setting where it was documented for an entire population. The ages were gathered on the night of Sunday April 2nd in the \href{http://www.census.nationalarchives.ie/help/about19011911census.html}{1911 Census of Ireland,} the last one to be carried out under British rule.
+Here are the returns of one famous statistician, whose important work, published under the pen-name \href{http://www.census.nationalarchives.ie/reels/nai000230598/}{`Student,'} we will meet shortly.
+
+We will limit our attention to the county of Dublin, which at the time has a population of about half a million people, mostly urban. The male age-distribution \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/MeanQuantiles2019.pdf\#page=18}{displayed here in the usual vertical orientation} has the (1/2) \emph{pyramid} shape that characterizes developing countries. The somewhat different female age-distribution is in part because Ireland's capital city, Dublin City, attracted many female workers in their late teens and their 20s (cf.~the last 3 entries in Gosset's return).
+The \href{https://www.cso.ie/en/releasesandpublications/ep/p-cp3oy/cp3/aad/}{age-distributions today}
+show large city vs.~rural differences.
+
+\textbf{Shapes of distributions}
+
+Below, the age-distribution is rotated by 90 degrees, so that age is on the horizontal axis, and numbers of persons in the different age-bins (we will combine male and female) are on the vertical axis. In this more familiar orientation, it is easier to see that the \textbf{age-distribution does not have the symmetry observed in the earlier section}, where the variation was entirely due to measurement variations around some constant.
+
+(Incidentally, in the `age-distributions of today's Irish population, there are none of the 'spikes' at ages 40, 50, 60, .. that were seem in the 1911 data. The origin of these spikes is left for you to puzzle about. There are many modern examples of this phenomenon, as in this example of the \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch-chapterPlusNotes-ch3-2019.pdf\#page=21}{recording of emergency department arrival and departure times} . Another difficulty faced by earlier-century census takers is described in this account
+\href{https://books.google.ca/books?id=fUsPAAAAYAAJ\&pg=PA118\&dq=John+Godfrey+Saxe+census-taker\&hl=en\&sa=X\&ved=0ahUKEwjQv6f04OvVAhUL5IMKHUZfBfgQ6AEIJjAA\#v=onepage\&q=John\%20Godfrey\%20Saxe\%20census-taker\&f=false}{The Puzzled Census-Taker} )
+
+This -- first of many -- distribution of a human characteristic will serve as a strong messsage that \textbf{we should not expect such distributions to be symmetric, let alone bell-shaped (`Gaussian' / `Normal').} The default stance should be that they are not. The same stance should apply to distributions of characteristics of `man-made' or `human-made' institutions -- such as the distribution of the sizes of the hopitals or schools in a province or country. Nor should we expect symmetric distributions in the physical world, such as the distribution of the depths of the ocean, heights of land, lengths of rivers, daily temperatures in a region over a year, magnitudes of earthquakes, or intervals between eruptions of the Old Faithful geyser.
+
+Foe example, the distributions of the amounts of income tax paid by individuals in Quebec, the salaries of professional ice-hockey players, and the lengths of stay \{LOS{]} of hospital patients do not have symmetric shapes (some distributions may even be multi-modal). Despite this, in \emph{some} instances it may be critical to know the mean of the distibution, so that one can calculate the total revenue, or total payroll, or how much the savings would be if the mean LOS were reduced by 2\%.
+We have to think about a summary appropriate to the situation. If you are representing the players, would you cite the median or the mean when telling the team-owners how poorly paid the `average' player is? What if represented the owners, and wanted to show how much the team costs in payroll?
+
+\textbf{Measures of `centre'}
+
+(Online, there are now many jokes about \textbf{silly statistics} and silly statisticians, such as on \href{http://www.workjoke.com/statisticians-jokes.html}{this site}.
+A radio prgram used to end with
+\textgreater{}Well, that's the news from Lake Wobegon, where all the women are strong, all the men are good-looking, and all the children are above average.
+There are stories of a statistician \href{https://ask.metafilter.com/261337/Source-of-well-known-joke-about-statisticians}{drowning in a river that was 3 feet deep on
+average}
+or being \href{https://www.barrypopik.com/index.php/new_york_city/entry/head_in_the_oven_feet_in_the_freezer}{comfortable on average}. One year in the 607 summer course for doctors, JH used some of these stories to warn against silly averages, and even quoted Francis Galton.
+
+\begin{quote}
+Why do statisticians commonly limit their inquiries to Averages?
+It is difficult to understand why statisticians commonly limit their inquiries to Averages, and do not revel in more comprehensive views.
+Their souls seem as dull to the charm of variety as that of the native of one of our flat English counties, whose retrospect of Switzerland was that, if its mountains could be thrown into its lakes, two nuisances would be got rid of at once. {[}Natural Inheritance, 1889.{]}
+\end{quote}
+
+A urologist in the class gave a better example.
+
+\begin{quote}
+The average person has 1 ovary and 1 testicle.
+\end{quote}
+
+Despite these jibes, there are some situations where it does make sense to talk about the mean value, even if nobody has a value close to the mean.
+
+When it comes to the age distribution of a population, the reports of national statistical agencies use a number of summary parameters, sometimes the median, sometimes the mean, and sometimes a `dependency ratio' such as non-working-age to working-age numbers. For now, we will pursue the `mean' parameter \(\mu\). Later, we also pursue other numerical parameters for the centre. Part of the reason for our first choice is that the behavioural properties of the sample \emph{mean} (an estimator of the \{population mean\_) are much easier to describe with standard statistical laws. Fortunately, nowadays, we have intensive computer techniques that use data-driven techniques rather than formulae-based ones, that can handle estimators of other parameters.
+
+\textbf{Mean-Pursuit}
+
+In the following \texttt{R} code, we simulate trying to estimate the mean age (\(\mu\)), using just a random sample of \(n\) persons. Clearly, the \(n\)'s we will use are too small to give estimates that are `close enough for government work'
+but the purpose is to understand \textbf{what size \(n\) would ensure sufficiently precise estimates.}
+
+In the following code, AGES refers to the ages (0 to 109) and Proportions the proportions of the population in each 1-year age bin.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{no.of.sims =}\StringTok{ }\DecValTok{10000}\NormalTok{ ;  }\CommentTok{# no. of samples of each size}
+                      \CommentTok{# enough to generate relatively smooth histograms  }
+\NormalTok{sample.sizes =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{25}\NormalTok{) ; }
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\KeywordTok{length}\NormalTok{(sample.sizes),}\DecValTok{1}\NormalTok{),}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{) )}
+
+\ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in}\NormalTok{ sample.sizes )\{        }\CommentTok{# loop over the various sample sizes}
+\NormalTok{   ages =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{sample}\NormalTok{(AGES,          }\CommentTok{# 1 row per simulation}
+              \DataTypeTok{size =}\NormalTok{ n}\OperatorTok{*}\NormalTok{no.of.sims,     }\CommentTok{# to save time, do all at once}
+              \DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{,          }\CommentTok{# only because data compressed}
+              \DataTypeTok{prob =}\NormalTok{ Proportions),     }\CommentTok{# = FALSE if has indiv. data}
+          \DataTypeTok{nrow =}\NormalTok{ no.of.sims, }\DataTypeTok{ncol=}\NormalTok{n) }\CommentTok{# put into rows / columns}
+   \ControlFlowTok{if}\NormalTok{(n }\OperatorTok{>}\StringTok{ }\DecValTok{1} \OperatorTok{&}\StringTok{ }\NormalTok{n }\OperatorTok{<=}\StringTok{ }\DecValTok{10}\NormalTok{)\{}
+     \KeywordTok{print}\NormalTok{( }\KeywordTok{noquote}\NormalTok{(}
+      \KeywordTok{paste}\NormalTok{(}\StringTok{"Ages of sampled persons in first 2 samples of size"}\NormalTok{,  }
+            \KeywordTok{toString}\NormalTok{(n)) )   ) }
+     \KeywordTok{print}\NormalTok{(}\KeywordTok{head}\NormalTok{(ages,}\DecValTok{2}\NormalTok{))}
+\NormalTok{   \}}
+   
+   \ControlFlowTok{if}\NormalTok{( n }\OperatorTok{==}\StringTok{ }\KeywordTok{max}\NormalTok{(sample.sizes) )\{}
+     \KeywordTok{cat}\NormalTok{(}\StringTok{"The first panel shows the age-distribution of the entire population.}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+     \KeywordTok{cat}\NormalTok{(}\StringTok{"The remaining ones show the  distributions of the sample sums and means.}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+     \KeywordTok{message}\NormalTok{(}\StringTok{"test"}\NormalTok{)}
+     
+\NormalTok{   \} }
+  
+   \CommentTok{# compute the row-specific (simulation-specific) sums and means}
+   \CommentTok{# apply sum/mean to MARGIN=1, i.e., to each simulation (each row)}
+
+\NormalTok{   sums.samples.of.size.n =}\StringTok{ }\KeywordTok{apply}\NormalTok{(ages,}\DataTypeTok{MARGIN=}\DecValTok{1}\NormalTok{,}\DataTypeTok{FUN=}\NormalTok{sum)}
+\NormalTok{   means.samples.of.size.n =}\StringTok{ }\KeywordTok{apply}\NormalTok{(ages,}\DataTypeTok{MARGIN=}\DecValTok{1}\NormalTok{,}\DataTypeTok{FUN=}\NormalTok{mean)}
+
+\NormalTok{   fr =}\StringTok{ }\KeywordTok{table}\NormalTok{(sums.samples.of.size.n)          }\CommentTok{# fr = frequency}
+\NormalTok{   Y =}\StringTok{ }\KeywordTok{max}\NormalTok{(Proportions}\OperatorTok{*}\NormalTok{no.of.sims)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\FloatTok{0.8}\OperatorTok{*}\NormalTok{n) }\CommentTok{# scale the y axis}
+   \KeywordTok{plot}\NormalTok{(fr,}\DataTypeTok{lw=}\FloatTok{0.4}\NormalTok{,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,n}\OperatorTok{*}\NormalTok{(}\KeywordTok{max}\NormalTok{(AGES)}\OperatorTok{+}\DecValTok{12}\NormalTok{) ), }
+                  \DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.25}\NormalTok{,}\DecValTok{1}\NormalTok{)}\OperatorTok{*}\NormalTok{Y, }\DataTypeTok{xaxt=}\StringTok{"n"}\NormalTok{)}
+   \KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\DecValTok{105}\NormalTok{,}\FloatTok{0.55}\OperatorTok{*}\NormalTok{Y,}\KeywordTok{paste}\NormalTok{(}\StringTok{"n ="}\NormalTok{,}\KeywordTok{toString}\NormalTok{(n)),}\DataTypeTok{cex=}\DecValTok{2}\NormalTok{,}\DataTypeTok{font=}\DecValTok{3}\NormalTok{,}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+   \ControlFlowTok{for}\NormalTok{(a }\ControlFlowTok{in} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{5}\NormalTok{)) \{}
+     \KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\NormalTok{a, }\FloatTok{-0.01}\OperatorTok{*}\NormalTok{Y, }\KeywordTok{toString}\NormalTok{(n}\OperatorTok{*}\NormalTok{a),}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+\NormalTok{     txts =}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\StringTok{"Sum of"}\NormalTok{,}\KeywordTok{toString}\NormalTok{(n),}\StringTok{"Ages"}\NormalTok{)}
+     \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{1}\NormalTok{) txts =}\StringTok{ "Individual Ages"}
+     \ControlFlowTok{if}\NormalTok{(a}\OperatorTok{==}\DecValTok{100}\NormalTok{ ) }\KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\DecValTok{105}\NormalTok{, }\FloatTok{-0.01}\OperatorTok{*}\NormalTok{Y,}
+\NormalTok{          txts,}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+     \ControlFlowTok{if}\NormalTok{(n }\OperatorTok{>}\StringTok{ }\DecValTok{1}\NormalTok{) }\KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\NormalTok{a, }\FloatTok{-0.15}\OperatorTok{*}\NormalTok{Y, }\KeywordTok{toString}\NormalTok{(a),}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{font=}\DecValTok{4}\NormalTok{,}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+     \ControlFlowTok{if}\NormalTok{(a}\OperatorTok{==}\DecValTok{100} \OperatorTok{&}\StringTok{ }\NormalTok{n }\OperatorTok{>}\StringTok{ }\DecValTok{1}\NormalTok{) }\KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\DecValTok{105}\NormalTok{, }\FloatTok{-0.15}\OperatorTok{*}\NormalTok{Y,}
+          \KeywordTok{paste}\NormalTok{(}\StringTok{"Mean of"}\NormalTok{,}\KeywordTok{toString}\NormalTok{(n),}\StringTok{" Ages"}\NormalTok{),}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{font=}\DecValTok{4}\NormalTok{,}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+\NormalTok{   \}}
+   
+   \CommentTok{# how big is the spread (sd) of the simulated sums and means ?}
+   
+\NormalTok{   sd.sums  =}\StringTok{ }\KeywordTok{round}\NormalTok{( }\KeywordTok{sd}\NormalTok{(sums.samples.of.size.n), }\DecValTok{1}\NormalTok{ )}
+\NormalTok{   sd.means =}\StringTok{ }\KeywordTok{round}\NormalTok{( }\KeywordTok{sd}\NormalTok{(means.samples.of.size.n),}\DecValTok{1}\NormalTok{ )}
+   
+\NormalTok{   txt.s =}\StringTok{ }\KeywordTok{paste}\NormalTok{( }\StringTok{"SD of Sum:"}\NormalTok{, }\KeywordTok{toString}\NormalTok{(sd.sums) )}
+   \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{1}\NormalTok{) txt.s =}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\StringTok{"SD of Individual Ages:"}\NormalTok{,}\KeywordTok{toString}\NormalTok{(sd.sums) )}
+\NormalTok{   txt.m =}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{  SD of Mean:"}\NormalTok{,}\KeywordTok{toString}\NormalTok{(sd.means))}
+   \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{1}\NormalTok{) txt.m =}\StringTok{ "}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{ "}
+   \KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\NormalTok{mu }\OperatorTok{+}\StringTok{  }\NormalTok{sd.sums,Y}\OperatorTok{*}\FloatTok{0.7}\NormalTok{,}
+        \KeywordTok{paste}\NormalTok{(txt.s,txt.m), }\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{,}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{) )}
+   \KeywordTok{points}\NormalTok{(n}\OperatorTok{*}\NormalTok{mu,}\DecValTok{0}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{19}\NormalTok{,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+   \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{1}\NormalTok{)\{}
+     \KeywordTok{text}\NormalTok{(A}\FloatTok{.50-0.1}\NormalTok{,}\FloatTok{0.95}\OperatorTok{*}\NormalTok{Y,}\StringTok{"50% <- | -> 50%"}\NormalTok{,}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+     \KeywordTok{segments}\NormalTok{(A}\FloatTok{.50-0.1}\NormalTok{,}\FloatTok{0.95}\OperatorTok{*}\NormalTok{Y, A}\FloatTok{.50-0.1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+     \KeywordTok{text}\NormalTok{(}\DecValTok{115}\NormalTok{,Y,}
+       \StringTok{"Reported Ages of Population of Dublin}\CharTok{\textbackslash{}n}\StringTok{Irish Census of 1911"}\NormalTok{,}
+       \DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{cex=}\FloatTok{1.25}\NormalTok{)}
+\NormalTok{   \} }
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] Ages of sampled persons in first 2 samples of size 2
+##      [,1] [,2]
+## [1,]   18   28
+## [2,]    0   45
+\end{verbatim}
+
+\begin{verbatim}
+## [1] Ages of sampled persons in first 2 samples of size 4
+##      [,1] [,2] [,3] [,4]
+## [1,]    7   30   21   25
+## [2,]   15   50   38   58
+\end{verbatim}
+
+\begin{verbatim}
+## [1] Ages of sampled persons in first 2 samples of size 10
+##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+## [1,]   81    7   25   58   14   21   37   74   23    17
+## [2,]   44    3    8   69   14   34   11   33   61    22
+\end{verbatim}
+
+\begin{verbatim}
+## The first panel shows the age-distribution of the entire population.
+## The remaining ones show the  distributions of the sample sums and means.
+\end{verbatim}
+
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-20-1} \end{center}
+
+\hypertarget{exercises-2}{%
+\subsubsection{Exercises}\label{exercises-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Based on the numbers in the 5 panels, derive the statistical law that connects the spreads of the sampling distributions of the sample sum to the spread of the individual ages. (Since the calculated sd's are based on a finite set of simulations, the numbers may not fit the law \emph{exactly} ; also, the sd's shown are rounded)
+\item
+  Likewise, state the statistical law that connects the spreads of the sampling distributions of the sample mean to the spread of the individual ages. Use this law to predict the spread of the sampling distribution if we were to use a sample size of \(n\) = 100.
+\item
+  What \(n\) would you need to have so that the (approx. 95\%) Margin of Error, i.e., 2 times the SD of the mean (or 2 times the `Standard Error of the Mean' or 2 times the `SEM') is less than (a) 1 year (b) 0.5 years?
+\item
+  Are these laws the same as the ones that apply when the only source of variation is measurement error?
+\item
+  In the `measuring the meter bar' example, the error distribution was symmetric; in this example, the ages do not have a symmetric distribution: it has a long right tail. Describe how the shape of the (sampling) distribution changes with the sample size involved. Look online for the name of this law or theorem.
+\item
+  Let's go back and help Cavendish with his Margin of Error. Calculate the standard deviation of his 29 individual measurements. {[}Hint: Don't call it \(\sigma\), since \(\sigma\) refers to an infinite set of possible errors, and is therefore unknown. Call it \(s\), the conventional name for standard deviation of the individual values in a sample, sometimes abbreviated to \emph{sample} standard deviation. It is an \emph{estimate} of \(\sigma\), so you are allowed to call it \(\hat{\sigma}\) or `sigma-hat'.{]} Now `plug-in' the \(s\) value into the \(\frac{\sigma}{\sqrt{n}}\) formula and calculate \(\frac{s}{\sqrt{29}}\). You should refer to this as the Standard Error of the Mean, or SEM for short. For a sample size this large, approx. 2 times the SEM can be used as the 95\% Margin of Error or `ME'. {[}`Student', whom we met above, and will meet again soon, worked out what (bigger) multiple Cavendish would need to use if he had say just 4 measurements, or maybe 9, or 19 measurements rather than 29. Why, do you think, did he suggested bigger multiples when \(s\) -- and thus the SEM and the ME -- are based on just a few measurements?{]}
+\end{enumerate}
+
+\hypertarget{example-2}{%
+\subsection{Example 2}\label{example-2}}
+
+The frequency distribution of the self-reported \textbf{weights} of a population of adults is available here.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ds =}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"http://www.biostat.mcgill.ca/hanley/statbook/weightsEtc.txt"}\NormalTok{)}
+
+\NormalTok{MEAN=}\KeywordTok{round}\NormalTok{(}\KeywordTok{weighted.mean}\NormalTok{(ds}\OperatorTok{$}\NormalTok{Weight.lbs,}\DataTypeTok{w=}\NormalTok{ds}\OperatorTok{$}\NormalTok{Freq))}
+
+\NormalTok{VAR =}\StringTok{ }\KeywordTok{sum}\NormalTok{( ds}\OperatorTok{$}\NormalTok{Freq }\OperatorTok{*}\StringTok{ }\NormalTok{(ds}\OperatorTok{$}\NormalTok{Weight.lbs}\OperatorTok{-}\NormalTok{MEAN)}\OperatorTok{^}\DecValTok{2}\NormalTok{ ) }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(ds}\OperatorTok{$}\NormalTok{Freq)}
+
+\NormalTok{SD =}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(VAR)}
+
+\NormalTok{WEIGHTS =}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{unique}\NormalTok{(ds}\OperatorTok{$}\NormalTok{Weight.lbs))}
+\NormalTok{Freq =}\StringTok{ }\KeywordTok{aggregate}\NormalTok{(ds}\OperatorTok{$}\NormalTok{Freq,}\DataTypeTok{by=}\KeywordTok{list}\NormalTok{(ds}\OperatorTok{$}\NormalTok{Weight.lbs),sum)}\OperatorTok{$}\NormalTok{x}
+\NormalTok{Proportions =}\StringTok{ }\NormalTok{Freq}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(Freq)}
+
+\NormalTok{W}\FloatTok{.50}\NormalTok{ =}\StringTok{ }\NormalTok{WEIGHTS[}\KeywordTok{min}\NormalTok{(}\KeywordTok{which}\NormalTok{(}\KeywordTok{cumsum}\NormalTok{(Proportions) }\OperatorTok{>}\StringTok{ }\FloatTok{0.50}\NormalTok{))]}
+\NormalTok{mu =}\StringTok{ }\KeywordTok{sum}\NormalTok{(WEIGHTS}\OperatorTok{*}\NormalTok{Proportions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{no.of.sims =}\StringTok{ }\DecValTok{10000}\NormalTok{ ;  }\CommentTok{# no. of samples of each size}
+                      \CommentTok{# enough to generate relatively smooth histograms  }
+\NormalTok{sample.sizes =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{16}\NormalTok{) ; }
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\KeywordTok{length}\NormalTok{(sample.sizes),}\DecValTok{1}\NormalTok{),}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{) )}
+
+\ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in}\NormalTok{ sample.sizes )\{        }\CommentTok{# loop over the various sample sizes}
+\NormalTok{   weights =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{sample}\NormalTok{(WEIGHTS,    }\CommentTok{# 1 row per simulation}
+              \DataTypeTok{size =}\NormalTok{ n}\OperatorTok{*}\NormalTok{no.of.sims,     }\CommentTok{# to save time, do all at once}
+              \DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{,          }\CommentTok{# only because data compressed}
+              \DataTypeTok{prob =}\NormalTok{ Proportions),     }\CommentTok{# = FALSE if has indiv. data}
+          \DataTypeTok{nrow =}\NormalTok{ no.of.sims, }\DataTypeTok{ncol=}\NormalTok{n) }\CommentTok{# put into rows / columns}
+   \ControlFlowTok{if}\NormalTok{(n }\OperatorTok{>}\StringTok{ }\DecValTok{1} \OperatorTok{&}\StringTok{ }\NormalTok{n }\OperatorTok{<=}\StringTok{ }\DecValTok{10}\NormalTok{)\{}
+     \KeywordTok{print}\NormalTok{( }\KeywordTok{noquote}\NormalTok{(}
+      \KeywordTok{paste}\NormalTok{(}\StringTok{"Weights (lbs) of sampled persons in first 2 samples of size"}\NormalTok{,  }
+            \KeywordTok{toString}\NormalTok{(n)) )   ) }
+     \KeywordTok{print}\NormalTok{(}\KeywordTok{head}\NormalTok{(weights,}\DecValTok{2}\NormalTok{))}
+\NormalTok{   \}}
+   
+   \ControlFlowTok{if}\NormalTok{( n }\OperatorTok{==}\StringTok{ }\KeywordTok{max}\NormalTok{(sample.sizes) )\{}
+     \KeywordTok{cat}\NormalTok{(}\StringTok{"The first panel shows the weight-distribution of the entire population.}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+     \KeywordTok{cat}\NormalTok{(}\StringTok{"The remaining ones show the  distributions of the sample sums and means.}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+     \KeywordTok{message}\NormalTok{(}\StringTok{"test"}\NormalTok{)}
+     
+\NormalTok{   \} }
+  
+   \CommentTok{# compute the row-specific (simulation-specific) sums and means}
+   \CommentTok{# apply sum/mean to MARGIN=1, i.e., to each simulation (each row)}
+
+\NormalTok{   sums.samples.of.size.n =}\StringTok{ }\KeywordTok{apply}\NormalTok{(weights,}\DataTypeTok{MARGIN=}\DecValTok{1}\NormalTok{,}\DataTypeTok{FUN=}\NormalTok{sum)}
+\NormalTok{   means.samples.of.size.n =}\StringTok{ }\KeywordTok{apply}\NormalTok{(weights,}\DataTypeTok{MARGIN=}\DecValTok{1}\NormalTok{,}\DataTypeTok{FUN=}\NormalTok{mean)}
+
+\NormalTok{   fr =}\StringTok{ }\KeywordTok{table}\NormalTok{(sums.samples.of.size.n)          }\CommentTok{# fr = frequency}
+\NormalTok{   Y =}\StringTok{ }\KeywordTok{max}\NormalTok{(Proportions}\OperatorTok{*}\NormalTok{no.of.sims)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\FloatTok{0.75}\OperatorTok{*}\NormalTok{n) }\CommentTok{# scale the y axis}
+   \KeywordTok{plot}\NormalTok{(fr,}\DataTypeTok{lw=}\FloatTok{0.4}\NormalTok{,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(n}\OperatorTok{*}\DecValTok{100}\NormalTok{,n}\OperatorTok{*}\NormalTok{(}\KeywordTok{max}\NormalTok{(WEIGHTS)}\OperatorTok{+}\DecValTok{50}\NormalTok{) ), }
+                  \DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.25}\NormalTok{,}\DecValTok{1}\NormalTok{)}\OperatorTok{*}\NormalTok{Y, }\DataTypeTok{xaxt=}\StringTok{"n"}\NormalTok{)}
+   \KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\DecValTok{320}\NormalTok{,}\FloatTok{0.55}\OperatorTok{*}\NormalTok{Y,}\KeywordTok{paste}\NormalTok{(}\StringTok{"n ="}\NormalTok{,}\KeywordTok{toString}\NormalTok{(n)),}\DataTypeTok{cex=}\DecValTok{2}\NormalTok{,}\DataTypeTok{font=}\DecValTok{3}\NormalTok{,}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+   \ControlFlowTok{for}\NormalTok{(w }\ControlFlowTok{in} \KeywordTok{seq}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{300}\NormalTok{,}\DecValTok{20}\NormalTok{)) \{}
+     \KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\NormalTok{w, }\FloatTok{-0.01}\OperatorTok{*}\NormalTok{Y, }\KeywordTok{toString}\NormalTok{(n}\OperatorTok{*}\NormalTok{w),}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+\NormalTok{     txts =}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\StringTok{"Sum of"}\NormalTok{,}\KeywordTok{toString}\NormalTok{(n),}\StringTok{"Weights"}\NormalTok{)}
+     \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{1}\NormalTok{) txts =}\StringTok{ "Individual Weights"}
+     \ControlFlowTok{if}\NormalTok{(w}\OperatorTok{==}\DecValTok{300}\NormalTok{ ) }\KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\DecValTok{310}\NormalTok{, }\FloatTok{-0.01}\OperatorTok{*}\NormalTok{Y,}
+\NormalTok{          txts,}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+     \ControlFlowTok{if}\NormalTok{(n }\OperatorTok{>}\StringTok{ }\DecValTok{1}\NormalTok{) }\KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\NormalTok{w, }\FloatTok{-0.15}\OperatorTok{*}\NormalTok{Y, }\KeywordTok{toString}\NormalTok{(w),}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{font=}\DecValTok{4}\NormalTok{,}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+     \ControlFlowTok{if}\NormalTok{(w}\OperatorTok{==}\DecValTok{300} \OperatorTok{&}\StringTok{ }\NormalTok{n }\OperatorTok{>}\StringTok{ }\DecValTok{1}\NormalTok{) }\KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\DecValTok{310}\NormalTok{, }\FloatTok{-0.15}\OperatorTok{*}\NormalTok{Y,}
+          \KeywordTok{paste}\NormalTok{(}\StringTok{"Mean of"}\NormalTok{,}\KeywordTok{toString}\NormalTok{(n),}\StringTok{" Weights"}\NormalTok{),}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{font=}\DecValTok{4}\NormalTok{,}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+\NormalTok{   \}}
+   
+   \CommentTok{# how big is the spread (sd) of the simulated sums and means ?}
+   
+\NormalTok{   sd.sums  =}\StringTok{ }\KeywordTok{round}\NormalTok{( }\KeywordTok{sd}\NormalTok{(sums.samples.of.size.n), }\DecValTok{1}\NormalTok{ )}
+\NormalTok{   sd.means =}\StringTok{ }\KeywordTok{round}\NormalTok{( }\KeywordTok{sd}\NormalTok{(means.samples.of.size.n),}\DecValTok{1}\NormalTok{ )}
+   
+\NormalTok{   txt.s =}\StringTok{ }\KeywordTok{paste}\NormalTok{( }\StringTok{"SD of Sum:"}\NormalTok{, }\KeywordTok{toString}\NormalTok{(sd.sums) )}
+   \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{1}\NormalTok{) txt.s =}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\StringTok{"SD of Individual Weights:"}\NormalTok{,}\KeywordTok{toString}\NormalTok{(sd.sums),}\StringTok{"(lbs)"}\NormalTok{ )}
+\NormalTok{   txt.m =}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{  SD of Mean:"}\NormalTok{,}\KeywordTok{toString}\NormalTok{(sd.means))}
+   \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{1}\NormalTok{) txt.m =}\StringTok{ "}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{ "}
+   \KeywordTok{text}\NormalTok{(n}\OperatorTok{*}\NormalTok{mu }\OperatorTok{+}\StringTok{  }\NormalTok{sd.sums,Y}\OperatorTok{*}\FloatTok{0.7}\NormalTok{,}
+        \KeywordTok{paste}\NormalTok{(txt.s,txt.m), }\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{,}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{) )}
+   \KeywordTok{points}\NormalTok{(n}\OperatorTok{*}\NormalTok{mu,}\DecValTok{0}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{19}\NormalTok{,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+   \ControlFlowTok{if}\NormalTok{(n}\OperatorTok{==}\DecValTok{1}\NormalTok{)\{}
+     \KeywordTok{text}\NormalTok{(W}\FloatTok{.50}\DecValTok{-1}\NormalTok{,}\FloatTok{0.95}\OperatorTok{*}\NormalTok{Y,}\StringTok{"50% <- | -> 50%"}\NormalTok{,}\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+     \KeywordTok{segments}\NormalTok{(W}\FloatTok{.50-0.1}\NormalTok{,}\FloatTok{0.95}\OperatorTok{*}\NormalTok{Y, W}\FloatTok{.50-0.1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+     \KeywordTok{text}\NormalTok{(}\DecValTok{352}\NormalTok{,}\OperatorTok{-}\FloatTok{0.175}\OperatorTok{*}\NormalTok{Y,}
+       \StringTok{"Reported Weights, US Adults, 2014-2018"}\NormalTok{,}
+       \DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{cex=}\FloatTok{1.25}\NormalTok{)}
+\NormalTok{   \} }
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] Weights (lbs) of sampled persons in first 2 samples of size 2
+##      [,1] [,2]
+## [1,]  120  110
+## [2,]  130  140
+\end{verbatim}
+
+\begin{verbatim}
+## [1] Weights (lbs) of sampled persons in first 2 samples of size 4
+##      [,1] [,2] [,3] [,4]
+## [1,]  130  170  150  190
+## [2,]  200  200  150  150
+\end{verbatim}
+
+\begin{verbatim}
+## [1] Weights (lbs) of sampled persons in first 2 samples of size 8
+##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+## [1,]  150  130  160  130  180  130  180  140
+## [2,]  130  130  170  150  130  200  220  150
+\end{verbatim}
+
+\begin{verbatim}
+## The first panel shows the weight-distribution of the entire population.
+## The remaining ones show the  distributions of the sample sums and means.
+\end{verbatim}
+
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-22-1} \end{center}
+
+\hypertarget{exercises-3}{%
+\subsubsection{Exercises}\label{exercises-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  If an elevator is designed to lift a maximum of 5,000 pounds, what is the probability that it will be overloaded by a random group of 25 persons? What maximum number of persons should you specify so that the probability is below 1 in a million?
+\item
+  The weights of individuals do not have a Gaussian (``Normal'') distribution. Are you still comfortable using the Normal distribution for your calculations. Explain carefully. Explain also why the `random' is key to being able to answer, and what the impact would be if it is not the case.
+\end{enumerate}
+
+\hypertarget{when-these-laws-dont-apply}{%
+\section{When these Laws don't apply}\label{when-these-laws-dont-apply}}
+
+In these panels, it's the same elevator, and the same population. \textbf{But what's going on with these elevator-loads?} Is the safe to have a load of 25?
+
+```
+
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-24-1} \end{center}
+
+\hypertarget{summary-3}{%
+\section{SUMMARY}\label{summary-3}}
+
+\hypertarget{computing-1}{%
+\subsection{Computing}\label{computing-1}}
+
+\begin{itemize}
+\item
+  Assigning values to objects via \texttt{\textless{}-} or \texttt{=}
+\item
+  Putting numbers (or character strings) into vectors via concatenation \texttt{c(\ ,\ ,\ )}
+\item
+  Putting repeated values into vectors via the \texttt{rep()} function
+\item
+  Looking at the first \texttt{n} and the last \texttt{n} elements of an object via \texttt{head(object,n)} and \texttt{tail(object)} -- if you omit the \texttt{n}, it defaults to 6
+\item
+  Making a new numerical value or vector of numerical values from existing ones via, e.g.~via \texttt{+} , \texttt{*} ( multiplication), \texttt{\^{}\ power} etc.
+\item
+  Using built-in functions, such as \texttt{mean()}, \texttt{sum()}, \texttt{sd()} and \texttt{var()}, that operate on vectors, or on single numbers (or `element-wise' on vectors), such as \texttt{round()} and \texttt{sqrt()}
+\item
+  Making numerical arrays using the \texttt{matrix} function
+\item
+  Taking values at random from a vector via \texttt{sample()}
+\item
+  Using \texttt{str(object)} to see the **str*ucture of an object
+\item
+  Using \texttt{apply(object,\ MARGIN\ =\ ,\ FUN\ =\ )} to apply
+  a function to the spefified margins (1=rows,2=cols) of an matrix or of a (possibly higher-dimensional) array.
+\item
+  Using \texttt{table} to create a vector, matrix or array of the frequencies (cell counts) corresponding to a single variable, or combination of variables
+\item
+  Using \texttt{plot(x,y)} to plot an `x' vector versus a `y' vector. \texttt{lines(),}points()\texttt{and}text()` can be added to an existing plot.
+\item
+  A graphic can be split into a 2-way grid of panels by using a vector of the form \texttt{c(nr,\ nc)} as the input to \texttt{mfrow} or \texttt{mfcol} in the \texttt{par} statement.
+\item
+  The bottom, left, upper, and right margins can be set using the \texttt{mar} parameter
+\item
+  Consider a Gaussian distribution with a specified mean.value and standard deviation sd.value. Then the proportion of the distrution to that lies ot the left of a specified value \texttt{q} is given by the inbuilt \texttt{R} function \texttt{pnorm(q,\ mean\ =\ mean.value,\ sd\ =\ sd.value)}. For example, if in a certain population IQ has a Gaussian distribution with a mean of 100, and a sd of 15, then using this \texttt{R} expression \texttt{round(\ 100*pnorm(110,\ mean\ =\ 100,\ sd\ =\ 15)\ ,\ 1\ )} we can determine that 74.8 percent of the distribution would be below 110, and thus that 25.2 percent would be below 90. The middle 50\% could be calculated using this expression \texttt{round(\ 100*qnorm(c(1/4,3/4),\ mean\ =\ 100,\ sd\ =\ 15)\ ,\ 1\ )} to give 89.9, 110.1
+\end{itemize}
+
+\hypertarget{statistical-concepts-and-principles-1}{%
+\subsection{Statistical Concepts and Principles}\label{statistical-concepts-and-principles-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Definition of the Standard Deviation \(\sigma,\) (and its square, the `Variance', \(\sigma^2\), of a random variable \(Y\) with mean \(\mu\).
+\end{itemize}
+
+\[ Var[Y] = \sigma^2 = \textrm{mean of } (Y - \mu)^2 \ ; \ \ \  SD[Y] = \sigma.\]
+
+\[ Var[Y \pm a \ constant] = Var[Y] ; \ \ \  SD[Y \pm a \ constant] = \sigma.\]
+\[ Var[Y \times a \ constant] = constant^2 \ \times \ Var[Y] ; \ \ \  SD[Y \times a \ constant] = |constant| \times \sigma.\]
+
+\begin{itemize}
+\tightlist
+\item
+  Rules for Variances and SDs of \emph{sums} of \(n\) \emph{independent} random variables, say
+\end{itemize}
+
+\[ Var[ Y_1 + Y_2 + \dots + Y_n] = \sigma^2 + \sigma^2 + \dots + \sigma^2 = n \times \sigma^2.\]
+\[ SD[ Y_1 + Y_2 + \dots + Y_n]  = \sqrt{n} \times \sigma.\]
+
+\begin{itemize}
+\tightlist
+\item
+  Rules for Variances and SDs of \emph{means} of \(n\) \emph{independent} random variables.
+\end{itemize}
+
+\[ Var\bigg[\frac{Y_1 + Y_2 + \dots + Y_n}{n}\bigg] =  \frac{1}{n} \times \sigma^2.\]
+\[ SD\bigg[\frac{Y_1 + Y_2 + \dots + Y_n}{n}\bigg] =  \sqrt{\frac{1}{n}} \times \sigma.\]
+
+\begin{itemize}
+\item
+  \textbf{Sums} of \(n\) \emph{independent} random variables are \(\sqrt{n}\) times \textbf{more} variable than their individual components. {[}But on a \emph{relative} scale, since the sum is proportional to \(n\) while its spread is proportional to \(\sqrt{n}\), the \emph{percentage} spread is a \emph{decreasing} function of \(n.\)
+\item
+  \textbf{Means} of \(n\) \emph{independent} random variables are \(\sqrt{n}\) times \textbf{less} variable than their individual components.
+\item
+  \textbf{The SHAPES} of the \textbf{sampling distributions of the sums and means} of \(n\) \emph{independent} random variables become more `Gaussian-looking' with larger \(n.\)
 \end{itemize}
 
 \hypertarget{computing03}{%
