@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-03-28" />
+<meta name="date" content="2020-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -133,7 +133,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="paras.html"><a href="paras.html#exercises"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
 <li class="chapter" data-level="2.7" data-path="paras.html"><a href="paras.html#references"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>3</b> Statistical Inference</a></li>
+<li class="chapter" data-level="3" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>3</b> Statistical Inference</a><ul>
+<li class="chapter" data-level="3.1" data-path="inference.html"><a href="inference.html#the-bayesian-approach"><i class="fa fa-check"></i><b>3.1</b> The Bayesian Approach</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="inference.html"><a href="inference.html#example-parameter-is-2-valued-yes-or-no"><i class="fa fa-check"></i><b>3.1.1</b> Example: parameter is 2-valued: yes or no</a></li>
+<li class="chapter" data-level="3.1.2" data-path="inference.html"><a href="inference.html#example-parameter-is-a-proportion"><i class="fa fa-check"></i><b>3.1.2</b> Example: parameter is a proportion</a></li>
+<li class="chapter" data-level="3.1.3" data-path="inference.html"><a href="inference.html#example-parameter-is-a-mean"><i class="fa fa-check"></i><b>3.1.3</b> Example: parameter is a mean</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="inference.html"><a href="inference.html#frequentist"><i class="fa fa-check"></i><b>3.2</b> Frequentist</a></li>
+<li class="chapter" data-level="3.3" data-path="inference.html"><a href="inference.html#does-it-matter"><i class="fa fa-check"></i><b>3.3</b> Does it matter?</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="CI.html"><a href="CI.html"><i class="fa fa-check"></i><b>4</b> Parameter Intervals</a><ul>
 <li class="chapter" data-level="4.1" data-path="CI.html"><a href="CI.html#confidence-intervals"><i class="fa fa-check"></i><b>4.1</b> ‘100% confidence’ intervals</a></li>
 <li class="chapter" data-level="4.2" data-path="CI.html"><a href="CI.html#more-nuanced-intervals"><i class="fa fa-check"></i><b>4.2</b> More-nuanced intervals</a></li>
@@ -261,42 +269,245 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>We would add to these numerical statements about unknown (and unknowable) constants, as well as the mechanism or process that generated the limited data you got/get to observe.</p>
 <p>Some example parameters – some scientific, some more personal or particularistic – include</p>
 <ul>
-<li><p>Whether</p></li>
-<li><p>a potential hemophilia carrier is in fact a carrier</p></li>
-<li><p>a particular email is malicious</p></li>
-<li><p>a person committed the crime they are accused of</p></li>
-<li><p>The proportion of</p></li>
-<li><p>thumbtacks that land on their back when tossed</p></li>
-<li><p>your time that you are being productive</p></li>
-<li><p>the earth’s surface that is covered by water</p></li>
-<li><p>your driving time that you are on the phone</p></li>
-<li><p>your time that you spend inside</p></li>
-<li><p>The density of the Earth,relative to water</p></li>
-<li><p>The age of a person whom you have just met</p></li>
-<li><p>Your cholesterol level</p></li>
-<li><p>The mean depth of the ocean</p></li>
-<li><p>The 20th percentile of the depths of the ocean</p></li>
-<li><p>The median age of a population</p></li>
+<li>Whether</li>
+<li>a potential hemophilia carrier is in fact a carrier</li>
+<li>a particular email is malicious</li>
+<li>a person committed the crime they are accused of</li>
+<li><p>a person has been infected with a certain virus</p></li>
+<li>The proportion of</li>
+<li>thumbtacks that land on their back when tossed</li>
+<li>your time that you are being productive</li>
+<li>the earth’s surface that is covered by water</li>
+<li>your driving time that you are on the phone</li>
+<li>your time (over the entire year) that you spend inside</li>
+<li>patients whose disease would respond to a medication</li>
+<li><p>people who would volunteer for a demanding survey or long-term research study</p></li>
+<li>The numerical value for</li>
+<li>the density of the Earth,relative to water</li>
+<li>the age of a person whom you have just met</li>
+<li>your cholesterol level</li>
+<li>the mean depth of the ocean</li>
+<li>the 20th percentile of the depths of the ocean</li>
+<li><p>the median age of a population</p></li>
 </ul>
 <p>To address the uncertainties involved in the judgements/inferences, some use of probabililies is required.</p>
-<p>There are two ‘schools’ of statistical inference. One of them makes <strong>direct probabilistic statements about the possible parameter values</strong>. This approach goes back at least as far as the mid-1700’s essay ‘A method of calculating the exact probability of all conclusions based on induction’.</p>
-<p>The more popular method today, dating from the early 20th century, is <strong>indirect</strong>. It makes (conditional) probabilistic statements about the <strong>data</strong> and about the performance of the procedure used to bracket the parameter values. A variant on it ranks the various possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves.</p>
-<p>But how exactly do we expresss/describe these judgements or inferences? So that we can describe the main ways, we will use the very simplest case,</p>
-<p>Today’s students are told that the Bayes essay was published after his death under the title `<code>An Essay toward solving a Problem in the Doctrine of Chances''. But when he spoke in Montreal at the end of 2013, Stephen Stigler gave us the inside story on the very concrete reason the person who published it, Richard Price, had for being interested in this work, and why it was advertised elsewhere under a very different title:  \textbf{</code>A method of calculating the exact probability of all conclusions based on induction’} Read about Stigler’s fascinating detective work in his captivating article Statistical Science 2013, Vol. 28, No. 3, 283-288 (Resources website) or here:</p>
+<p>There are <strong>two ‘schools’ of statistical inference</strong>. One of them makes <strong>direct probabilistic statements about the possible parameter values</strong>. This approach goes back at least as far as the mid-1700’s essay ‘A method of calculating the exact probability of all conclusions based on induction’.</p>
+<p>The more popular method today, dating from the early 20th century, is <strong>indirect</strong>. It makes (conditional) probabilistic statements about the <strong>data</strong> and about the performance of the procedure used to bracket the parameter values. A variant on it ranks the various possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves. Because it is indirect, conditional, the results are often interpreted incorrectly.</p>
+<p>We begin with the direct method, one that studies tell us we are born with, and use throughout our lives, both consciously and subconsciously, to continue to learn/update.</p>
+<blockquote>
+<p>When we learn a new motor skill, such as playing an approaching tennis ball, both our sensors and the task possess variability. […] We show that subjects internally represent both the statistical distribution of the task and their sensory uncertainty, combining them in a manner consistent with a performance-optimizing bayesian process. The central nervous system therefore employs probabilistic models during sensorimotor learning. Bayesian integration in sensorimotor learning. Nature 427; 15 Jan 2004.</p>
+</blockquote>
+<p>leading to this headline</p>
+<blockquote>
+<p>Subconsciously, Athletes May Play Like Statisticians - The New York Times</p>
+</blockquote>
+<div id="the-bayesian-approach" class="section level2">
+<h2><span class="header-section-number">3.1</span> The Bayesian Approach</h2>
+<p>to probability statements concerning parameter values.</p>
+<p>This paragraph is taken from this chapter <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/an%20overview%20of%20the%20Bayesian%20approach.pdf">An Overview of the Bayesian Approach</a> in the book Bayesian Approaches to Clinical Trials and Health-Care Evaluation by David Speigelhalter at al, describes it well:</p>
+<blockquote>
+<p>The standard interpretation of probability describes long-run properties of repeated random events (Section 2.1.1). This is known as the frequency interpretation of probability, and standard statistical methods are sometimes referred to as ‘frequentist’. In contrast, the <strong>Bayesian approach</strong> rests on an essentially ‘subjective’ interpretation of probability, which is allowed to express generic uncertainty or ‘degree of belief’ about any unknown but potentially observable quantity, whether or not it is one of a number of repeatable experiments. For example, it is quite reasonable from a subjective perspective to think of a probability of the event ‘Earth will be openly visited by aliens in the next ten years’, whereas it may be difficult to interpret this potential event as part of a ‘long-run’ series. Methods of assessing subjective probabilities and probability distributions will be discussed in Section 5.2.</p>
+</blockquote>
+<p>Section 3.1 SUBJECTIVITY AND CONTEXT emphasizes that ‘the vital point of the subjective interpretation is that <strong>Your probability</strong> for an event is a property of <strong>Your</strong> relationship to that event, and not an objective property of the event itself.’ Moreover, ‘pedantically speaking, one should always refer to probabilities <strong>for</strong> events rather than probabilities <strong>of</strong> events, and the <strong>conditioning context</strong> used in Section 2.1.1 <strong>includes the observer and all their background knowledge and assumptions.</strong>’</p>
+<p>That there is ‘always a context’ goes along with what we read in Alan Turing’s recently de-classified essay The Applications of Probability to Cryptography. Under section 1.2 (‘Meaning of probability and odds’) he starts out</p>
+<blockquote>
+<p>I shall not attempt to give a systematic account of the theory of probability, but it may be worth while to define shortly probability and odds. The probability of an event <strong>on certain evidence</strong> is the proportion of cases in which that event may be expected to happen given that evidence. For instance if it is known the 20% of men live to the age of 70, then knowing of Hitler only Hitler is a man we can say that the probability of Hitler living to the age of 70 is 0.2. Suppose that we know that Hitler is now of age 52 the probability will be quite different, say 0.5, because 50% of men of 52 live to 70.</p>
+</blockquote>
+<p><strong>Not all context is subjective</strong>. We will start with a context where the initial (starting out, pre-new-data) probability is <strong>objective</strong>.</p>
+<p><strong>Without getting into the details of the calculations, we will apply this approach to the first example in each of the parameter genres listed above. The point is to illustrate how direct and unambigous the answer is in each case.</strong></p>
+<div id="example-parameter-is-2-valued-yes-or-no" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Example: parameter is 2-valued: yes or no</h3>
+<p>In the first genre, the parameter is personal or particular. In each of the examples, the true state is binary. The potential hemophilia carrier <strong>is</strong> a hemophia carrier or <strong>is not</strong>; the particular email is either malicious or is not; the person in question either committed the crime ot did not. So, there are just two possible parameter values: yes or no, <strong>is</strong> or <strong>is not</strong>.</p>
+<p>From the outset, just like in Turing’s example, there is a given context. For example, suppose a woman’s brother is known to have haemophilia.</p>
+<blockquote>
+<p>hemophilia: a medical condition in which the ability of the blood to clot is severely reduced, causing the sufferer to bleed severely from even a slight injury. The condition is typically caused by a hereditary lack of a coagulation factor, caused by a mutation in one of the genes located on the X chromosome. - Google</p>
+</blockquote>
+<p>Just knowing this, the probability that the woman is a hemophilia carrier is 50% or 1/2.</p>
+<p>Today, genetic testing of the carrier can help determine whether the woman is a carrier. But when JH first taught 607, the only time to learn more about her carrier status (and move her probability to 1, or towards 0) was after the births of her sons: their status was knowable virtually immedediately.</p>
+<p>If it is determined that the first son has hemophilia, it establishes that she IS a carrier, thereby moving the probability up to 1. If he was not, it moves the probability down to 1/3: in other words, among ‘women like her’, i.e, other potential carriers who also have had 1 son who turned out to be Normal (NL), 1/3 of the sons are the sons of carriers, and 2/3 are the sons of non-carriers.</p>
+<p>The <strong>continued updating</strong> as the women with a NL son gave birth to a second son, and so on, is shown in the diagram below, with <strong>C</strong> used as shorthand for ‘<strong>Is</strong> a <strong>C</strong>arrier.’ Technically speaking, each sequential P[C] should indicate that it is ‘conditioned on’ – and thus reflects the information in – the history up to that point. In other words, the 1/5 probability refers to P[C | both sons are NL], where “|” stands for ‘given that’, or – to use Turing’s phrase – ‘on the evidence that’.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-6-1.png" alt="At the outset, each woman had a 50:50 chance of being a haemophilia carrier. Accumulating information from the hemophilia status of the sons increasingly 'sorts' or segregates the women by moving their probabilities of being a carrier TO 1 (100%) or FURTHER TOWARDS 0 (0%). It 'updates' the probablity of  being a carrier, P[C]. For brevity,  the ' | data' in each P[C | data] is omitted." width="864" />
+<p class="caption">
+Figure 3.1: At the outset, each woman had a 50:50 chance of being a haemophilia carrier. Accumulating information from the hemophilia status of the sons increasingly ‘sorts’ or segregates the women by moving their probabilities of being a carrier TO 1 (100%) or FURTHER TOWARDS 0 (0%). It ‘updates’ the probablity of being a carrier, P[C]. For brevity, the ‘| data’ in each P[C | data] is omitted.
+</p>
+</div>
+<blockquote>
+<p>ASIDE: This is similar to how researchers develop strains of “transgenic” mice, by introducing an altered gene (transgene) into the genome. In order to breed true, theanimals must be made to be homozygous, i.e., to have two copies of the introduced gene (+ +). Molecular biology techniques can detect whether the transgene is present in an individual animal (without having to sacrifice the animal), but cannot distinguish a hemizygote, with one copy of the gene (+ -), from a homozygote (+ +). This difference can only be detected by breeding strategies. First generations: A copy of the transgene is injected into the pronucleus of a newly fertilized ovum, prior to fusion with the male pronucleus. Thus all animals that develop from these zygotes can have at most one copy of the gene, from the ovum. After birth, screening is performed to detect these ‘positive’ animals, called founders. After sexual maturation, all founders are bred to normal ‘wild type’ (WT) animals, to ensure that the transgene has been incorporated in such a way as to be heritable. Pairs of positive (hemizygous) animals in this F1 generation are then bred to each other. By Mendelian genetics, the distri- bution of F2 offspring should be 1:2:1, homozygous transgenic : hemizygous transgenic : homozygous normal. The homozygous normal animals are not used. The question is, how to tell the homozygous transgenic mice (the desired ones) from the hemizygous transgenic ones? Note that the mix in this reduced population is 1 homozygous transgenic to 2 hemizygous transgenic. F2 breeding: All ’positive’ F2 animals (i.e. all homozygous and hemizygous animals) are bred to wild type. Possible F3 genotypes are as follows: (by Mendelian genetics) Hemizygous (which comprise 2/3 of the F2 animals used) x wild type = 50:50, hemizygous (and therefore ‘positive’) : normal (and therefore ‘negative’), Homozygous (which comprise 1/3 of the F2 animals used) x wild type = all hemizygous (and therefore ‘positive’). That is, while only half of the offspring from a Hemi x WT pair will be ‘positive’ when screened, all of the offspring of a Homo x WT pair will be ‘positive’. The question: How many F3 offspring from a particular pairing does the researcher have to screen before declaring the positive parent as homozygous? Note: as soon as an offspring is screened as ‘negative,’ one knows the parent must have been hemizygous. A variant on the above diagram can help withe probabilities. Furthe details are avilable on the bios601 website, in the ‘probability’ chapter.</p>
+</blockquote>
+<p>Befor moving on the the next type of parameter, a few points</p>
+<ul>
+<li><p>In both the hemophilia and transgenic mice examples, the ‘starting’ probability is objective and the post-data probabilities have a ‘long-run’ or ‘in large numbers of similar instances’ interpretation. One could make a diagram that shows the expected numbers ‘in every 100 women like this.’</p></li>
+<li><p>There is nothing special about the ‘starting out’ probability P[C] of 0.5. Before a pregnancy test, or a pre-natal diagnostic test, for example, the probability of the target <strong>C</strong>ondition/state of interest/concern would be a function of many other factors, and could in theory take on any value between 0 and 1. The (starting out, pre-filter) proportion of malicious emails would depend on which of a person’s email accounts it was.</p></li>
+<li><p>In the language of diagnostic tests, each ‘Son as a test of the mother’s carrier status’ has 50% sensitivity and 100 ‘specificity’. For sensitivity, this puts it on par with the Pap test for cervical cancer: the main problem withe latter is in the sampling. For specificity, it is better than most tests.</p></li>
+<li><p>The ‘starting out’ probability it could be more subjective, as for example one’s impression (before getting to see up close how wrinkled their face is) as whether the person is a smoker, or one’s assessment of the probability that the accused is guilty (before getting to hear the DNA expert, or lie detection report) bases on how credible the accused appears to be, and all of the other evidence to date.</p></li>
+</ul>
+</div>
+<div id="example-parameter-is-a-proportion" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Example: parameter is a proportion</h3>
+<p>In theory, in this genre, the true parameter value could in theory lie anywhere between 0 and 1, But again, just like in Turing’s example, we seldom start from complete ignorance, or with – in the title of pscychologist Stephen Pinker’s book – a blank slate. Even if you have never seen thumbtacks tossed onto on a surface, you can reason informally, and indicate what proportions are unlikely, and where along the (0,1) scale you would ‘put your money’.</p>
+<p>You could do the same when asked what proportions of your time that you are being productive, or on the phone, or sedentary, or indoors. Mind you, you might be ‘way off’ with your claims, but the nice thing is that — and this is the point of this course – you can generate data to narrow down the true proportion.</p>
+<p>The other nice thing with the Bayesian approach in particular is that – no matter whether you believe the proportion is low or medium or high, we can work out what your post-data beliefs should be. It is a matter of mathematics. If, before collecting any new data, we have ‘no idea’ – a common phrase among todays’s generation, one that, if it is uttered with empahsis on the ‘no’, irks JH to no end – what the true parameter value is, that is easily handled. Moreover, enough valid data will (or should!) trump the pre-data beliefs.</p>
+<blockquote>
+<p>On a side note: Dick Pound, a former chancellor of McGill University, and first president of the World Anti-Doping Agency is a staunch advocate of strict drug testing for athletes. Discussing the National Hockey League in November 2005, Pound said, ‘you wouldn’t be far wrong if you said a third of hockey players are gaining some pharmaceutical assistance.’ Pound would later admit that he completely invented the figure. Both the NHL and NHLPA have denied the claims, demanding Pound provide evidence rather than make what they term unsubstantiated claims. Since his comments were made, some NHL players have tested positive for banned substances, including Bryan Berard, José Théodore, and two of 250 players involved in Olympic testing. As of June 2006, there had been 1,406 tests in the program jointly administered by the league and the union, and none has come up with banned substances under NHL rules. Pound remained skeptical, claiming the NHL rules were too lax and unclear, as they do not test for some banned substance, including certain stimulants. In an interview with hockey blogger, B. D. Gallof, of Hockeybuzz on December 19, 2007, Pound was asked to expand on the 30% comment and subsequent reaction, expounded that stimulants was ‘the NHL’s drug of choice’. He also cited that the NHL will have no credibility on a drug policy if it, and other sports, continue to run things ‘in-house’. <a href="https://en.wikipedia.org/wiki/Dick_Pound" class="uri">https://en.wikipedia.org/wiki/Dick_Pound</a> and <a href="https://www.cbc.ca/sports/hockey/dick-pound-slams-nhl-s-drug-policy-1.557993" class="uri">https://www.cbc.ca/sports/hockey/dick-pound-slams-nhl-s-drug-policy-1.557993</a></p>
+</blockquote>
+<p>Even before studying/asking them, investigators would have some sense of the proportions of patients whose disease would respond to a medication, or people who would volunteer for a survey or research study. These iimpressions would probably be based on previous analogous situations, and the ‘literature’, but would vary from pundit to pundit. But ultimately, they could be much improved and narrowed (and even replaced entirely) by new-data-based ones.</p>
+<p>The proportion of the earth’s surface that is covered by water is easy to determine: just look up a reputable source. But what if you weren’t able to, but did have access to the database of 933 million recordings in the <a href="https://topex.ucsd.edu/cgi-bin/get_srtm30.cg">SRTM30PLUS database</a>. It has altitude/depth measurements for 43,200 x 21,600 = 933,120,000 locations. This database is so large that you would have to sample from it. From a thosuand randonly chosen loactions, you would be able to ‘trust’ the first decimal in your estimate; from a million you should be able to trust the second – and maybe the third.</p>
+<p>Since we alreadt know/remember from high school ‘roughly’ what the propotuon is, will leave it for an exercsie in another chapter. In this chapter, following the advice of master-teacher Fred Mosteller, we use examples where the <strong>correct answer is not known with any precision</strong>. The proportion of these we probably know the least about is the thumbtack one. However, it has fewer personal benefits than knowing what proportion of your time you are being productive. Moreover, we have a nice written account of how you might go about learning this personal proportion.</p>
+</div>
+<div id="example-parameter-is-a-mean" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> Example: parameter is a mean</h3>
+<p>In his book Elementary Bayesian Statistics, Gordon Antelman informally introduces and illustrate a Bayesian analysis of an uncertain proportion with a slightly modified version of a novel and useful application of work sampling discussed by Fuller (1985). We have changed his notation for the proportion of your time spent in productive work, and called it <span class="math inline">\(\pi\)</span>.</p>
+<blockquote>
+<p>Suppose you, as a good up-to-date manager practicing continuous quality and productivity improvement, have some ideas on improving your own productivity. To see if these ideas have any merit, you would like to compare some ‘before’ measure of productivity with a comparable ‘after’ measure of productivity.<br />
+For now — we shall come back to this example several times — let us focus on just a ‘before’ measure. The measure to be used is the proportion of your time spent in productive work, call it <span class="math inline">\(\pi\)</span>, as opposed to time spent doing something that would not have needed doing if things had been done right the first time. Examples of the latter might include searching for a misplaced document, recreating a deleted computer file, following up on a customer’s complaint, or waiting past a scheduled time for a meeting to start.<br />
+Rather than saying <span class="math inline">\(\pi\)</span> is not (precisely) ‘known’, it is better to say that ‘<span class="math inline">\(\pi\)</span> is uncertain’; from your job experience, you would really know quite a lot about p. For example, you might be almost certain that it is greater than 0.50, less than 0.90, and you might assess your odds that <span class="math inline">\(\pi\)</span> is between, say, 0.60 and 0.80 to be about 9 to 1. A precise statement of these beliefs will be your prior distribution for <span class="math inline">\(\pi\)</span>.<br />
+You would probably feel uncomfortable — most people do — about assessing this prior distribution, especially since there are an infinite number of states; viz., all of the values between zero and one. But, without any real loss, you can bypass the infinite-number problem by rounding the values of <span class="math inline">\(\pi\)</span> to the nearest 5% or 10%, making the problem discrete. Then you have a contemplatable Bayes’ theorem, like those discussed in Chapter 4, with the finitely many <span class="math inline">\(\pi\)</span>-values as the possible “states”. (When we reconsider this example later in this chapter, you will see that, with a little theory, the infinite number of <span class="math inline">\(\pi\)</span>-values can almost always be handled very neatly and more easily.)</p>
+</blockquote>
+<p>For illustration, he supposes you choose just five possible values for <span class="math inline">\(\pi\)</span>: 0.50, 0.60, 0.70, 0.80, and 0.90, and assess your prior distribution</p>
+<table>
+<caption><span id="tab:unnamed-chunk-7">Table 3.1: </span>A table of the first 10 rows of the mtcars data.</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">mpg</th>
+<th align="right">cyl</th>
+<th align="right">disp</th>
+<th align="right">hp</th>
+<th align="right">drat</th>
+<th align="right">wt</th>
+<th align="right">qsec</th>
+<th align="right">vs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mazda RX4</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.620</td>
+<td align="right">16.46</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Mazda RX4 Wag</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.875</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td>Datsun 710</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">108.0</td>
+<td align="right">93</td>
+<td align="right">3.85</td>
+<td align="right">2.320</td>
+<td align="right">18.61</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>Hornet 4 Drive</td>
+<td align="right">21.4</td>
+<td align="right">6</td>
+<td align="right">258.0</td>
+<td align="right">110</td>
+<td align="right">3.08</td>
+<td align="right">3.215</td>
+<td align="right">19.44</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Hornet Sportabout</td>
+<td align="right">18.7</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">175</td>
+<td align="right">3.15</td>
+<td align="right">3.440</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Valiant</td>
+<td align="right">18.1</td>
+<td align="right">6</td>
+<td align="right">225.0</td>
+<td align="right">105</td>
+<td align="right">2.76</td>
+<td align="right">3.460</td>
+<td align="right">20.22</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Duster 360</td>
+<td align="right">14.3</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">245</td>
+<td align="right">3.21</td>
+<td align="right">3.570</td>
+<td align="right">15.84</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Merc 240D</td>
+<td align="right">24.4</td>
+<td align="right">4</td>
+<td align="right">146.7</td>
+<td align="right">62</td>
+<td align="right">3.69</td>
+<td align="right">3.190</td>
+<td align="right">20.00</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Merc 230</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">140.8</td>
+<td align="right">95</td>
+<td align="right">3.92</td>
+<td align="right">3.150</td>
+<td align="right">22.90</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>Merc 280</td>
+<td align="right">19.2</td>
+<td align="right">6</td>
+<td align="right">167.6</td>
+<td align="right">123</td>
+<td align="right">3.92</td>
+<td align="right">3.440</td>
+<td align="right">18.30</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>This prior distribution would reflect, for example, that your judgment is that there is only about one chance in 20 that <span class="math inline">\(\pi\)</span> rounds to 0.50, about one chance in 20 that <span class="math inline">\(\pi\)</span> rounds to 0.90, about one chance in four that it rounds to 0.60, a little more than one chance in three that it rounds to 0.70, and a little less than one chance in three that it rounds to 0.80.</p>
+</blockquote>
+</div>
+</div>
+<div id="frequentist" class="section level2">
+<h2><span class="header-section-number">3.2</span> Frequentist</h2>
+<p>2 sepaare issues Ho and intervals (treated togheter in Bayesian)</p>
+<p>• Statistical Quality Control procedures [for Decisions] • Sample survey organizations: Confidence intervals • Statistical Tests of Hypotheses Unlike Bayesian inference, there is no quantified pre-test or pre- data “impression”; the ultimate statements are about data, conditional on an assumed null or other hypothesis. Thus, an explanation of a p-value must start with the conditional “IF the parameter is … the probability that the data woul</p>
+</div>
+<div id="does-it-matter" class="section level2">
+<h2><span class="header-section-number">3.3</span> Does it matter?</h2>
+<p>semantics</p>
 
-
-<p> </p>
-<p>Figures 1 and 3 from Stigler 2013</p>
-<p>Two main schools or approaches: Bayesian Frequentist</p>
-<p>Bayesian [ not even mentioned by M&amp;M ] • Makes direct statements about parameters and future observations • Uses previous impressions plus new data to update impressions about parameter(s) e.g.</p>
-<p>Turing</p>
-<p>e.g. Everyday life Medical tests: Pre- and post-test impressions Frequentist • Makes statements about observed data (or statistics from data) (used indirectly [but often incorrectly] to assess evidence against certain values of parameter) • Does not use previous impressions or data outside of current study (me ta-analysis is changing this) e.g. • Statistical Quality Control procedures [for Decisions] • Sample survey organizations: Confidence intervals • Statistical Tests of Hypotheses Unlike Bayesian inference, there is no quantified pre-test or pre- data “impression”; the ultimate statements are about data, conditional on an assumed null or other hypothesis. Thus, an explanation of a p-value must start with the conditional “IF the parameter is … the probability that the data woul</p>
-<p>natural</p>
-<p>tennis</p>
-<p>productivity</p>
-<p>thumb tacks</p>
-<p>Bayes Theorem : Haemophilia Brother has haemophilia =&gt; Probability (WOMAN is Carrier) = 0.5 New Data: Her Son is Normal (NL) . Update: Prob[Woman is Carrier, given her son is NL] = ??</p>
-
+</div>
 </div>
             </section>
 
