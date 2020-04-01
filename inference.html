@@ -291,8 +291,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>the median age of a population</p></li>
 </ul>
 <p>To address the uncertainties involved in the judgements/inferences, some use of probabililies is required.</p>
-<p>There are <strong>two ‘schools’ of statistical inference</strong>. One of them makes <strong>direct probabilistic statements about the possible parameter values</strong>. This approach goes back at least as far as the mid-1700’s essay ‘A method of calculating the exact probability of all conclusions based on induction’.</p>
-<p>The more popular method today, dating from the early 20th century, is <strong>indirect</strong>. It makes (conditional) probabilistic statements about the <strong>data</strong> and about the performance of the procedure used to bracket the parameter values. A variant on it ranks the various possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves. Because it is indirect, conditional, the results are often interpreted incorrectly.</p>
+<p>In their preamble to their chapter on inferemce, Clayton and Hills tell us that</p>
+<blockquote>
+<p>There are <strong>two radically different approaches</strong> to associating a probability with a range of parameter values, reflecting a deep philosophical division amongst mathematicians and scientists about the nature of probability. We shall start with the more orthodox view within biomedical science.</p>
+</blockquote>
+<p>Clayton and Hills completed their book in 1993. Since then, propelled by greater computer power, and by people like Clayton’s Cambridge colleague David Spiegelhalter, whose book we will start with, the Bayesian approach to ‘associating a probability with a range of parameter values’ has become more common. It has not yet reached the status of ‘customary or conventional, as a means or method; established.’ that the dictionaries give as the meaning of orthodox. In any case, we should not take Clayton and Hills’ use of the phrase ‘more orthodox’ to describe the <em>frequentist</em> approach to mean that the Bayesian approach <code>does not  conform to the approved form of analysis' or is in some sense</code>wrong.’</p>
+<p>The first-established of the two ‘schools’ (or ‘churches’) of statistical inference** makes <strong>direct probabilistic statements about the possible parameter values</strong>. This approach goes back at least as far as the mid-1700’s essay ‘A method of calculating the exact probability of all conclusions based on induction’; ironically the author was a Presbyterian minister.</p>
+<p>Theory that would not die.</p>
+<p>Maybe, by calling it the more orthodox, all that Clayton and Hills mean is that the frequentist approach is more popular method today. It got a slow start, and dates from the early 20th century. (In one of our sampling exercises, we wil try to determine the relative frequencies of the two approaches in the epidemiology and medical literature).</p>
+<p>Interestingly, if you use <a href="https://books.google.com/ngrams/graph?content=frequentist+approach%2C+bayesian+approach&amp;case_insensitive=on&amp;year_start=1800&amp;year_end=2008&amp;corpus=15&amp;smoothing=3&amp;share=&amp;direct_url=t4%3B%2Cfrequentist%20approach%3B%2Cc0%3B%2Cs0%3B%3Bfrequentist%20approach%3B%2Cc0%3B%3BFrequentist%20approach%3B%2Cc0%3B%3BFrequentist%20Approach%3B%2Cc0%3B.t4%3B%2Cbayesian%20approach%3B%2Cc0%3B%2Cs0%3B%3BBayesian%20approach%3B%2Cc0%3B%3BBayesian%20Approach%3B%2Cc0%3B%3BBAYESIAN%20APPROACH%3B%2Cc0%3B%3Bbayesian%20approach%3B%2Cc0">Google Books Ngram Viewer</a> you get a different sense. Maybe this is because the majority don’t need to justify whhe methods they use!</p>
+<p>Frequentist statements are <strong>indirect</strong>. They are (conditional) probabilistic statements about the <strong>data</strong> and about the performance of the <strong>procedure</strong> used to bracket the parameter values. A variant on it ranks the various possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves. Because it is indirect, conditional, the results are often interpreted incorrectly.</p>
 <p>We begin with the direct method, one that studies tell us we are born with, and use throughout our lives, both consciously and subconsciously, to continue to learn/update.</p>
 <blockquote>
 <p>When we learn a new motor skill, such as playing an approaching tennis ball, both our sensors and the task possess variability. […] We show that subjects internally represent both the statistical distribution of the task and their sensory uncertainty, combining them in a manner consistent with a performance-optimizing bayesian process. The central nervous system therefore employs probabilistic models during sensorimotor learning. Bayesian integration in sensorimotor learning. Nature 427; 15 Jan 2004.</p>
@@ -304,7 +312,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="the-bayesian-approach" class="section level2">
 <h2><span class="header-section-number">3.1</span> The Bayesian Approach</h2>
 <p>to probability statements concerning parameter values.</p>
-<p>This paragraph is taken from this chapter <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/an%20overview%20of%20the%20Bayesian%20approach.pdf">An Overview of the Bayesian Approach</a> in the book Bayesian Approaches to Clinical Trials and Health-Care Evaluation by David Speigelhalter at al, describes it well:</p>
+<p>This paragraph is taken from this chapter <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/an%20overview%20of%20the%20Bayesian%20approach.pdf">An Overview of the Bayesian Approach</a> in the book Bayesian Approaches to Clinical Trials and Health-Care Evaluation by David Speigelhalter et al, describes it well:</p>
 <blockquote>
 <p>The standard interpretation of probability describes long-run properties of repeated random events (Section 2.1.1). This is known as the frequency interpretation of probability, and standard statistical methods are sometimes referred to as ‘frequentist’. In contrast, the <strong>Bayesian approach</strong> rests on an essentially ‘subjective’ interpretation of probability, which is allowed to express generic uncertainty or ‘degree of belief’ about any unknown but potentially observable quantity, whether or not it is one of a number of repeatable experiments. For example, it is quite reasonable from a subjective perspective to think of a probability of the event ‘Earth will be openly visited by aliens in the next ten years’, whereas it may be difficult to interpret this potential event as part of a ‘long-run’ series. Methods of assessing subjective probabilities and probability distributions will be discussed in Section 5.2.</p>
 </blockquote>
@@ -314,6 +322,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>I shall not attempt to give a systematic account of the theory of probability, but it may be worth while to define shortly probability and odds. The probability of an event <strong>on certain evidence</strong> is the proportion of cases in which that event may be expected to happen given that evidence. For instance if it is known the 20% of men live to the age of 70, then knowing of Hitler only Hitler is a man we can say that the probability of Hitler living to the age of 70 is 0.2. Suppose that we know that Hitler is now of age 52 the probability will be quite different, say 0.5, because 50% of men of 52 live to 70.</p>
 </blockquote>
 <p><strong>Not all context is subjective</strong>. We will start with a context where the initial (starting out, pre-new-data) probability is <strong>objective</strong>.</p>
+<p>Just before we do, we include this passage from Clayton and Hills, in subchapter 10.2 Subjective probablity, which they denote as optional material.</p>
+<blockquote>
+<p>The second approach to the problem of assigning a probability to a range of values for a parameter is based on the philosophical position that probability is a subjective measure of ignorance. The investigator uses probability as a measure of subjective degree of belief in the different values which the parameter might take. With this view it is perfectly logical to say that there is a probability of 0.9 that the parameter lies within a stated range.<br />
+Before observing the data, the investigator will have certain beliefs about the parameter value and these can be measured by a priori probabilities. Because they are subjective every scientist would be permitted to give different probabilities to different parameter values. However, the idea of scientific objectivity is not completely rejected. In this approach objectivity lies in the rule used to modify the a priori probabilities in the light of the data from the study. This is Bayes’ rule and statisticians who take this philosophical position call themselves Bayesians.<br />
+Bayes’ rule was described in Chapter 2, where it was used to calcu- late the probabilities of exposure given outcome from the probabilities of outcome given exposure. Once we are prepared to assign probabilities to parameter values, Bayes’ rule can be used to calculate the probability of each value of a parameter (<span class="math inline">\(\theta\)</span>) given the data, from the probability of the data given the value of the parameter.<br />
+The argument is illustrated by two tree diagrams. Fig. 10.2 illustrates the direction in which probabilities are specified in the statistical model — given the choice of the value of the parameter, <span class="math inline">\(\theta\)</span>, the model tells us the probability of the data. The probability of any particular combination of data and parameter value is then the product of the probability of the parameter value and the probability of data given the parameter value. In this product, the first term, Pr(<span class="math inline">\(\theta\)</span>), represents the a priori degree of belief for the value of <span class="math inline">\(\theta\)</span> and the second term, Pr(Data | <span class="math inline">\(\theta\)</span> ), is the likelihood. Fig. 10.3 reverses the conditioning argument, and expresses the joint probabilityas the product of the overall probability of the data multiplied by the probability of the parameter given the data. This latter term, Pr( <span class="math inline">\(\theta\)</span> | Data), represents the posterior degree of belief in the parameter value once the data have been observed. Since the joint probability of data and parameter value is the same no matter which way we argue, so that <span class="math display">\[Pr(\theta) \times Pr(Data | \theta) = Pr(Data) \times Pr(\theta | Data),\]</span> so that <span class="math display">\[Pr(\theta | Data) = \frac{Pr(\theta) \times Pr(Data | \theta)}{Pr(Data)}\]</span> Thus elementary probability theory tells us how prior beliefs about the value of a parameter should be modified after the observation of data.</p>
+</blockquote>
+<p>Their 2 figures nicely show that the difference is in the directionality or conditioning, i.e. is the object <span class="math display">\[Pr(\theta | data) \ \ \ OR \ \ \   Pr(data | \theta) \ \ ?\]</span></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="images/ClaytonHillsFig102103.png" alt="From Chapter 10.2 of Clayton and Hills" width="604" />
+<p class="caption">
+Figure 3.1: From Chapter 10.2 of Clayton and Hills
+</p>
+</div>
 <p><strong>Without getting into the details of the calculations, we will apply this approach to the first example in each of the parameter genres listed above. The point is to illustrate how direct and unambigous the answer is in each case.</strong></p>
 <div id="example-parameter-is-2-valued-yes-or-no" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> Example: parameter is 2-valued: yes or no</h3>
@@ -326,10 +348,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Today, genetic testing of the carrier can help determine whether the woman is a carrier. But when JH first taught 607, the only time to learn more about her carrier status (and move her probability to 1, or towards 0) was after the births of her sons: their status was knowable virtually immedediately.</p>
 <p>If it is determined that the first son has hemophilia, it establishes that she IS a carrier, thereby moving the probability up to 1. If he was not, it moves the probability down to 1/3: in other words, among ‘women like her’, i.e, other potential carriers who also have had 1 son who turned out to be Normal (NL), 1/3 of the sons are the sons of carriers, and 2/3 are the sons of non-carriers.</p>
 <p>The <strong>continued updating</strong> as the women with a NL son gave birth to a second son, and so on, is shown in the diagram below, with <strong>C</strong> used as shorthand for ‘<strong>Is</strong> a <strong>C</strong>arrier.’ Technically speaking, each sequential P[C] should indicate that it is ‘conditioned on’ – and thus reflects the information in – the history up to that point. In other words, the 1/5 probability refers to P[C | both sons are NL], where “|” stands for ‘given that’, or – to use Turing’s phrase – ‘on the evidence that’.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-6-1.png" alt="At the outset, each woman had a 50:50 chance of being a haemophilia carrier. Accumulating information from the hemophilia status of the sons increasingly 'sorts' or segregates the women by moving their probabilities of being a carrier TO 1 (100%) or FURTHER TOWARDS 0 (0%). It 'updates' the probablity of  being a carrier, P[C]. For brevity,  the ' | data' in each P[C | data] is omitted." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-7-1.png" alt="At the outset, each woman had a 50:50 chance of being a haemophilia carrier. Accumulating information from the hemophilia status of the sons increasingly 'sorts' or segregates the women by moving their probabilities of being a carrier TO 1 (100%) or FURTHER TOWARDS 0 (0%). It 'updates' the probablity of  being a carrier, P[C]. For brevity,  the ' | data' in each P[C | data] is omitted." width="864" />
 <p class="caption">
-Figure 3.1: At the outset, each woman had a 50:50 chance of being a haemophilia carrier. Accumulating information from the hemophilia status of the sons increasingly ‘sorts’ or segregates the women by moving their probabilities of being a carrier TO 1 (100%) or FURTHER TOWARDS 0 (0%). It ‘updates’ the probablity of being a carrier, P[C]. For brevity, the ‘| data’ in each P[C | data] is omitted.
+Figure 3.2: At the outset, each woman had a 50:50 chance of being a haemophilia carrier. Accumulating information from the hemophilia status of the sons increasingly ‘sorts’ or segregates the women by moving their probabilities of being a carrier TO 1 (100%) or FURTHER TOWARDS 0 (0%). It ‘updates’ the probablity of being a carrier, P[C]. For brevity, the ‘| data’ in each P[C | data] is omitted.
 </p>
 </div>
 <blockquote>
@@ -373,13 +395,13 @@ PriorProbForP =<span class="st"> </span><span class="kw">c</span>(<span class="f
      <span class="dt">cex.lab =</span> <span class="fl">1.25</span>, <span class="dt">cex.axis =</span> <span class="fl">1.25</span>)
 <span class="kw">text</span>(<span class="fl">0.5</span>,<span class="fl">0.25</span>, <span class="st">&quot;Prior Probabilities&quot;</span>, <span class="dt">font=</span><span class="dv">2</span>,
      <span class="dt">col=</span><span class="st">&quot;grey75&quot;</span>, <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">cex=</span><span class="fl">1.75</span>)</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-7-1.png" alt="Prior Probabilities for the parameter P, the proportion of time that I am being productive." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-8-1.png" alt="Prior Probabilities for the parameter P, the proportion of time that I am being productive." width="864" />
 <p class="caption">
-Figure 3.2: Prior Probabilities for the parameter P, the proportion of time that I am being productive.
+Figure 3.3: Prior Probabilities for the parameter P, the proportion of time that I am being productive.
 </p>
 </div>
-<p><strong>DATA</strong>: Suppose you are fitted with a beeper set to beep at random times; when the beeper beeps, you classify the task being worked on as <strong>W</strong> — for ‘productive <strong>Work</strong>’, or <strong>F</strong> — for ‘<strong>Fixing</strong>’.</p>
+<p><strong>DATA</strong>: Suppose you are fitted with a beeper set to beep at random times; when the beeper beeps, you classify the task being worked on as <strong>W</strong> — for ‘productive <strong>Work</strong>’, or <strong>F</strong> — for ‘<strong>Fixing</strong>’ (or today we mght say ‘<strong>F</strong>iddling’ or ‘<strong>F</strong>ooling around’ or wasting time).</p>
 <p>Although we will skip the technicalities, it is important that the experiment be designed so that the trials are independent. Beeps should be unpredictable so you do not arrange, possibly subconsciously, to be doing productive work at the beep. They probably also should not be too close together to make the independence assumption more reasonable.</p>
 <p><strong>Suppose the first four trials give the data <span class="math inline">\(F_1, F_2, W_3\)</span>, and <span class="math inline">\(F_4\)</span>.</strong></p>
 <p>Below is a picture showing the effects of the data FFWF on the prior distribution. Three F’s in four trials increase your probabilities for the two smaller values of P and decrease your probabilities for the three larger ones.</p>
@@ -397,10 +419,10 @@ PosteriorProbForP =<span class="st"> </span>(PriorProbForP <span class="op">*</s
 <span class="kw">lines</span>(P, PosteriorProbForP, <span class="dt">type=</span><span class="st">&quot;h&quot;</span>, <span class="dt">lwd=</span><span class="dv">6</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lend=</span><span class="dv">1</span>)
 <span class="kw">text</span>(<span class="fl">0.5</span>,<span class="fl">0.4</span>, <span class="st">&quot;Posterior Probabilities</span><span class="ch">\n</span><span class="st">after observing 1W, 3F&quot;</span>, <span class="dt">font=</span><span class="dv">2</span>,
      <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">cex=</span><span class="fl">1.75</span>)</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-8-1.png" alt="Prior Probabilities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior probabilities, after observing that in n = 4 randomly sampled occasions, I was actually productive in only 1 of the 4." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-9-1.png" alt="Prior Probabilities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior probabilities, after observing that in n = 4 randomly sampled occasions, I was actually productive in only 1 of the 4." width="864" />
 <p class="caption">
-Figure 3.3: Prior Probabilities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior probabilities, after observing that in n = 4 randomly sampled occasions, I was actually productive in only 1 of the 4.
+Figure 3.4: Prior Probabilities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior probabilities, after observing that in n = 4 randomly sampled occasions, I was actually productive in only 1 of the 4.
 </p>
 </div>
 <p>The sample alone most strongly supports a value for P of 0.25 (one W in four trials); had the prior included a value of P of 0.25, the (relative) increase in going from prior to posterior would have been greatest for that value.</p>
@@ -417,13 +439,22 @@ b =<span class="st"> </span>(<span class="dv">1</span><span class="op">-</span>m
 P =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)
 prior.density =<span class="st"> </span><span class="kw">dbeta</span>(P,a,b)
 posterior.density =<span class="st"> </span><span class="kw">dbeta</span>(P,a<span class="op">+</span><span class="dv">1</span>,b<span class="op">+</span><span class="dv">3</span>)</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-10-1.png" alt="Prior probability densities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior densities, after observing that in n = 4 randomly sampled occasions, I was actually productive in only 1 of the 4." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-11"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-11-1.png" alt="Prior probability densities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior densities, after observing that in n = 4 randomly sampled occasions, I was actually productive  (W) in only 1 of the 4." width="864" />
 <p class="caption">
-Figure 3.4: Prior probability densities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior densities, after observing that in n = 4 randomly sampled occasions, I was actually productive in only 1 of the 4.
+Figure 3.5: Prior probability densities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior densities, after observing that in n = 4 randomly sampled occasions, I was actually productive (W) in only 1 of the 4.
 </p>
 </div>
-<p>Before moving on the the next type of parameter, a few points</p>
+<p>Before moving on the the next type of parameter, a few points:</p>
+<ul>
+<li>You are probably wondering what the posterior distribution would look like with more data. Here is what it would look like after observing 7 out of 25 or 13 out of 25. The modes of the posterior distributions are still somewhat influenced by the prior – as they are still well above P=7/25 = 0.28 and P=13/25 = 0.52. If the data were 70/250 or 13/250, the modes would be closer to P= 0.28 or P = 0.52; in other words, the data would ‘swamp’ – or ‘trump’ – the prior.</li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-12-1.png" alt="Prior probability densities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior densities, after observing that in n = 25 randomly sampled occasions, I was actually productive (W) in only 7 of the 25, or 13 of the 25." width="864" />
+<p class="caption">
+Figure 3.6: Prior probability densities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior densities, after observing that in n = 25 randomly sampled occasions, I was actually productive (W) in only 7 of the 25, or 13 of the 25.
+</p>
+</div>
 <ul>
 <li><p>Be thinking about your prior for the proportion of thumbtacks that land on their back, and the proportion of the Earth’s surface that is covered by water, or [these words written on March 30, 2020, before any trial data] the proportion of patients with mild symptoms of covid-19 who would benefit from chloroquine.</p></li>
 <li><p>Think about how you might elicit a prior distribution. You might want to Google ‘tools for eliciting prior distributions’.</p></li>
@@ -433,43 +464,55 @@ Figure 3.4: Prior probability densities for the parameter P, the proportion of t
 <div id="example-parameter-is-a-mean" class="section level3">
 <h3><span class="header-section-number">3.1.3</span> Example: parameter is a mean</h3>
 <p>We will start with a discrete version of a commonly-encountered parameter, the age of a person whom you have just met, or seen a photo of. We will then go on to a full numerical example, your average cholesterol or blood pressure level.</p>
-<p>To start with, <strong>how old</strong> do you think this IBC2006 attendee was when this photo was taken? This is the <em>parameter of interest</em>.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-11"></span>
+<p><strong>Example 1</strong></p>
+<p><strong>How old</strong> (or <strong>what age</strong> – if you prefer to avoid spekking of ‘old’) do you think this IBC2006 attendee was when this photo was taken? This is the <em>parameter of interest</em>.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
 <img src="images/IMG_DS.png" alt="An attendee at the International Biometrics Conference, held at McGill in July 2006" width="913" />
 <p class="caption">
-Figure 3.5: An attendee at the International Biometrics Conference, held at McGill in July 2006
+Figure 3.7: An attendee at the International Biometrics Conference, held at McGill in July 2006
 </p>
 </div>
 <p>He tells you he <strong>got his PhD 32 years earlier</strong>. Based on distribution of ages at which people get their PhD (show in grey below), that puts his current age somewhere in the blue distribution.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-12-1.png" alt="Current ages of persons who obtained PhD 32 years earlier." width="864" />
-<p class="caption">
-Figure 3.6: Current ages of persons who obtained PhD 32 years earlier.
-</p>
-</div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-14-1.png" alt="If he looked like he was in mid 50s" width="864" />
+<img src="statbook_files/figure-html/unnamed-chunk-14-1.png" alt="Current ages of persons who obtained PhD 32 years earlier." width="864" />
 <p class="caption">
-Figure 3.7: If he looked like he was in mid 50s
+Figure 3.8: Current ages of persons who obtained PhD 32 years earlier.
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-15-1.png" alt="If If he looked like he was around 60." width="864" />
-<p class="caption">
-Figure 3.8: If If he looked like he was around 60.
-</p>
-</div>
+<p>This is a somewhat unusual example, as the blue distribution is very wide – partly because we could not find age-at-graduation data specific to PhD graduates in statistics in 1974. We suspect that specific distribution is a good deal narrower than the one shown. In the next chapter, you will see that other indirect measures of age are a good bit tighter than this.</p>
+<p>Nevertheless, it emphasizes that, depending on what impression you got form the photo alone, you may now wish to revise your estimate of the person’s age. We suspect that many of you would have initially though he <strong>looks like he was in mid 50s</strong>, and so would have made guesses like those shown in red in the top panel. If you are one of those, then you will want to <strong>revise the age upwards</strong>, as we do in the green in the bottom panel.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-16"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-16-1.png" alt="If If he looked like he was in his mid 60s." width="864" />
+<img src="statbook_files/figure-html/unnamed-chunk-16-1.png" alt="If he looked like he was in mid 50s" width="864" />
 <p class="caption">
-Figure 3.9: If If he looked like he was in his mid 60s.
+Figure 3.9: If he looked like he was in mid 50s
 </p>
 </div>
+<p>If you initially thought he looked like he was ‘around 60’ you would have made guesses like those shown in red in the top panel. If you did, then you will want to <strong>revise upwards a little</strong>, as is shown in green, and now put hime him somewhere around 60, or a bit above.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-17"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-17-1.png" alt="If If he looked like he was around 60." width="864" />
+<p class="caption">
+Figure 3.10: If If he looked like he was around 60.
+</p>
+</div>
+<p>If you initially thought he looked like he was ‘in his mid 60s’ your estimate is more in line with the age-at-PhD data, and so you would not revise as much. You might bet a bit more on the ‘around 60’ age-bracket.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-18"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-18-1.png" alt="If If he looked like he was in his mid 60s." width="864" />
+<p class="caption">
+Figure 3.11: If If he looked like he was in his mid 60s.
+</p>
+</div>
+<p>As we noted, the PhD data have too much of a right tail, and so it is driving up the estimates. If you are now curious as how keen your ‘age-estimation’ skills are, here is a link to the cv of the <a href="https://scholar.google.com/citations?user=e8DARmEAAAAJ&amp;hl=en">statistician whose age we have been trying to determine</a>.</p>
+<p>Age estimation via face images (image-based age estimation) is a growing research area, with many possible applications.</p>
+<p><strong>2 more examples</strong></p>
+<ul>
+<li><p>a person’s BP from Spiegelhalter chapter</p></li>
+<li><p>a person’s cholesterol level – Irwig article</p></li>
+</ul>
 </div>
 </div>
 <div id="frequentist-approach" class="section level2">
 <h2><span class="header-section-number">3.2</span> Frequentist approach</h2>
-<p>2 sepaare issues Ho and intervals (treated togheter in Bayesian)</p>
+<p>2 separate issues Ho and intervals (treated together in Bayesian)</p>
 <p>• Statistical Quality Control procedures [for Decisions] • Sample survey organizations: Confidence intervals • Statistical Tests of Hypotheses Unlike Bayesian inference, there is no quantified pre-test or pre- data “impression”; the ultimate statements are about data, conditional on an assumed null or other hypothesis. Thus, an explanation of a p-value must start with the conditional “IF the parameter is … the probability that the data woul</p>
 </div>
 <div id="does-it-matter" class="section level2">
