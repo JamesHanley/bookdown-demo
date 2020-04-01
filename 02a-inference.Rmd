@@ -37,9 +37,29 @@ Some example parameters -- some scientific, some more personal or particularisti
 
 To address the uncertainties involved in the judgements/inferences, some use of probabililies is required.
 
-There are **two  'schools' of statistical inference**. One of them makes **direct probabilistic statements about the possible parameter values**. This approach goes back at least as far as the mid-1700's essay 'A method of calculating the exact probability of all conclusions based on induction'.
 
-The more popular method today, dating from the early 20th century, is **indirect**. It makes (conditional) probabilistic statements about the **data** and about the performance of the procedure used to bracket the parameter values. A variant on it ranks the various  possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves. Because it is indirect, conditional, the results are often interpreted incorrectly.
+
+In their preamble to their chapter on inferemce, Clayton and Hills tell us that
+
+>There are **two radically different approaches** to associating a probability with a range of parameter values, reflecting a deep philosophical division amongst mathematicians and scientists about the nature of probability. We shall start with the more orthodox view within biomedical science.
+
+Clayton and Hills completed  their book in 1993.
+Since then, propelled by greater  computer power, and by people like
+Clayton's Cambridge colleague David Spiegelhalter, whose book we will start with, the Bayesian approach to 'associating a  probability with a range of parameter values' has become more common. It has not yet reached the status of 'customary or conventional, as a means or method; established.' that the dictionaries give as the meaning of orthodox. In any case, we should not take Clayton and Hills'  use of the phrase 'more orthodox' to describe the _frequentist_ approach to mean 
+that the Bayesian approach `does not  conform to the approved form of analysis' or is in some sense `wrong.' 
+
+
+The first-established of the two  'schools' (or 'churches') of statistical inference** makes **direct probabilistic statements about the possible parameter values**. This approach goes back at least as far as the mid-1700's essay 'A method of calculating the exact probability of all conclusions based on induction'; ironically the author was a  Presbyterian minister.
+
+Theory that would not die.
+
+Maybe, by calling it the more orthodox,  all that Clayton and Hills mean is that the frequentist approach is more popular method today. It got a slow start, and dates from the early 20th century. (In one of our sampling exercises, we wil try to determine the relative frequencies of the two approaches in the epidemiology and medical literature).
+
+Interestingly, if you use 
+[Google Books	Ngram Viewer](
+https://books.google.com/ngrams/graph?content=frequentist+approach%2C+bayesian+approach&case_insensitive=on&year_start=1800&year_end=2008&corpus=15&smoothing=3&share=&direct_url=t4%3B%2Cfrequentist%20approach%3B%2Cc0%3B%2Cs0%3B%3Bfrequentist%20approach%3B%2Cc0%3B%3BFrequentist%20approach%3B%2Cc0%3B%3BFrequentist%20Approach%3B%2Cc0%3B.t4%3B%2Cbayesian%20approach%3B%2Cc0%3B%2Cs0%3B%3BBayesian%20approach%3B%2Cc0%3B%3BBayesian%20Approach%3B%2Cc0%3B%3BBAYESIAN%20APPROACH%3B%2Cc0%3B%3Bbayesian%20approach%3B%2Cc0) you get a different sense. Maybe this is because the majority don't need to justify whhe methods they use!
+
+Frequentist statements are  **indirect**. They are (conditional) probabilistic statements about the **data** and about the performance of the **procedure** used to bracket the parameter values. A variant on it ranks the various  possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves. Because it is indirect, conditional, the results are often interpreted incorrectly. 
 
 We begin with the direct method, one that studies tell us we are born with, and use throughout our lives, both consciously and subconsciously, to continue to learn/update.
 
@@ -60,7 +80,7 @@ to probability statements concerning parameter values.
 
 This paragraph is taken from this chapter
 [An Overview of the Bayesian Approach](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/an%20overview%20of%20the%20Bayesian%20approach.pdf)
-in the book Bayesian Approaches to Clinical Trials and Health-Care Evaluation by David Speigelhalter at al, describes it well:
+in the book Bayesian Approaches to Clinical Trials and Health-Care Evaluation by David Speigelhalter et al, describes it well:
 
 > The standard interpretation of probability describes long-run properties of repeated random events (Section 2.1.1). This is known as the frequency interpretation of probability, and standard statistical methods are sometimes referred to as 'frequentist'. In contrast, the **Bayesian approach** rests on an essentially 'subjective' interpretation of probability, which is allowed to express generic uncertainty or 'degree of belief' about any unknown but potentially observable quantity, whether or not it is one of a number of repeatable experiments. For example, it is quite reasonable from a subjective perspective to think of a probability of the event 'Earth will be openly visited by aliens in the next ten years', whereas it may be difficult to interpret this potential event as part of a 'long-run' series. Methods of assessing subjective probabilities and probability distributions will be discussed in Section 5.2.
 
@@ -72,6 +92,49 @@ That there is 'always a context' goes along with what we read in Alan Turing's r
 >I shall not attempt to give a systematic account of the theory of probability, but it may be worth while to define shortly probability and odds. The probability of an event **on certain evidence** is the proportion of cases in which that event may be expected to happen given that evidence. For instance if it is known the 20% of men live to the age of 70, then knowing of Hitler only Hitler is a man we can say that the probability of Hitler living to the age of 70 is 0.2. Suppose that we know that Hitler is now of age 52 the probability will be quite different, say 0.5, because 50% of men of 52 live to 70.
 
 **Not all context is subjective**. We will start with a context where the initial (starting out, pre-new-data) probability is **objective**.
+
+Just before we do, we include this passage from Clayton and Hills, in subchapter 10.2 Subjective probablity, which they denote as optional material.
+
+> The second approach to the problem of assigning a probability to a range of
+values for a parameter is based on the philosophical position that probability is a subjective measure of ignorance. The investigator uses probability
+as a measure of subjective degree of belief in the different values which the
+parameter might take. With this view it is perfectly logical to say that
+there is a probability of 0.9 that the parameter lies within a stated range.  
+Before observing the data, the investigator will have certain beliefs
+about the parameter value and these can be measured by a priori probabilities. Because they are subjective every scientist would be permitted
+to give different probabilities to different parameter values. However, the
+idea of scientific objectivity is not completely rejected. In this approach
+objectivity lies in the rule used to modify the a priori probabilities in the
+light of the data from the study. This is Bayes' rule and statisticians who
+take this philosophical position call themselves Bayesians.  
+Bayes' rule was described in Chapter 2, where it was used to calcu-
+late the probabilities of exposure given outcome from the probabilities of
+outcome given exposure. Once we are prepared to assign probabilities to
+parameter values, Bayes' rule can be used to calculate the probability of
+each value of a parameter ($\theta$) given the data, from the probability of the data given the value of the parameter.  
+The argument is illustrated by two tree diagrams. Fig. 10.2 illustrates
+the direction in which probabilities are specified in the statistical model
+— given the choice of the value of the parameter, $\theta$, the model tells us
+the probability of the data. The probability of any particular combination
+of data and parameter value is then the product of the probability of the
+parameter value and the probability of data given the parameter value. In
+this product, the first term, Pr($\theta$), represents the a priori degree of belief for the value of $\theta$ and the second term, Pr(Data | $\theta$ ), is the likelihood. Fig. 10.3 reverses the conditioning argument, and expresses the joint probabilityas the product of the overall probability of the data multiplied by the probability of the parameter given the data. This latter term, Pr( $\theta$ | Data), represents the posterior degree of belief in the parameter value once the data have been observed. Since the joint probability of data and parameter value is the same no matter which way we argue,
+so that
+$$Pr(\theta) \times Pr(Data | \theta) = Pr(Data) \times Pr(\theta | Data),$$
+so that
+$$Pr(\theta | Data) = \frac{Pr(\theta) \times Pr(Data | \theta)}{Pr(Data)}$$
+Thus elementary probability theory tells us how prior beliefs about the
+value of a parameter should be modified after the observation of data.
+
+Their 2 figures nicely show that the difference is in the directionality or conditioning, i.e. is the object $$Pr(\theta | data) \ \ \ OR \ \ \   Pr(data | \theta) \ \ ?$$  
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="From Chapter 10.2 of Clayton and Hills"}
+
+knitr::include_graphics("images/ClaytonHillsFig102103.png",dpi=96)
+
+```
+
 
 **Without getting into the details of the calculations, we will apply this approach to the  first example in each of the parameter genres listed above. The point is to illustrate how direct and unambigous the answer is in each case.**
 
@@ -238,7 +301,7 @@ text(0.5,0.25, "Prior Probabilities", font=2,
 ```
 
 
-**DATA**: Suppose you are fitted with a beeper set to beep at random times; when the beeper beeps, you classify the task being worked on as **W** — for 'productive **Work**', or **F** — for '**Fixing**'.
+**DATA**: Suppose you are fitted with a beeper set to beep at random times; when the beeper beeps, you classify the task being worked on as **W** — for 'productive **Work**', or **F** — for '**Fixing**' (or today we mght say '**F**iddling' or '**F**ooling around' or wasting time).
 
 Although we will skip the technicalities, it is important that  the experiment  be designed so that the trials are independent. Beeps should be unpredictable so you do not arrange, possibly subconsciously, to be doing productive work at the beep. They probably also should not be too close together to make the independence assumption more reasonable.
 
@@ -291,7 +354,7 @@ posterior.density = dbeta(P,a+1,b+3)
 ```
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Prior probability densities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior densities, after observing that in n = 4 randomly sampled occasions, I was actually productive in only 1 of the 4."}
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Prior probability densities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior densities, after observing that in n = 4 randomly sampled occasions, I was actually productive  (W) in only 1 of the 4."}
 
 
 par(mfrow=c(1,1),mar = c(5,5,1,1))
@@ -312,7 +375,36 @@ text(0.25,max(prior.density)/1.25, "Posterior Probability Density\nafter observi
 ```
 
 
-Before moving on the the next type of parameter, a few points
+Before moving on the the next type of parameter, a few points:
+
+* You are probably wondering what the posterior distribution would look like with more data. Here is what it would look like after observing 7 out of 25 or 13 out of 25. The modes of the posterior distributions are still  somewhat influenced by the prior -- as they are still well above P=7/25 = 0.28 and P=13/25 = 0.52. If the data were 70/250 or 13/250, the modes would be closer to  P= 0.28 or P = 0.52; in other words, the data would 'swamp' -- or 'trump' -- the prior. 
+
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Prior probability densities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior densities, after observing that in n = 25 randomly sampled occasions, I was actually productive (W) in only 7 of the 25, or 13 of the 25."}
+
+
+par(mfrow=c(1,1),mar = c(5,5,1,1))
+plot(P, prior.density, col="grey80",
+     xlab="P: Proportion of time that I am being productive",
+     ylab="probability density",
+     cex.lab = 1.25, cex.axis = 1.25, type="l",lwd=5,
+     ylim=c(0,1.75*max(posterior.density)) )
+text(0.975,max(prior.density), "Prior\nProbability\nDensity", font=2,
+     col="grey75", adj=c(1,1), cex=1.75)
+for(num in c(7,13) ) {
+  posterior.density = dbeta(P,a+num,b+(25-num))
+  lines(P,posterior.density, type="l",lwd=2.5,col="red")
+  p = P[which(posterior.density == max(posterior.density))]
+  text(p,max(posterior.density), 
+       paste(toString(num),"W,",toString(25-num),"F",sep=""), font=2, col="red", 
+       adj=c(0.5,-0.5),cex= 1.25)
+}
+text(0.025,1.25*max(posterior.density), "Posterior Probability Density of P after observing:", font=2,
+     col="red", adj=c(0,1), cex=1.25)
+
+
+```
 
 * Be thinking about your prior for the proportion of thumbtacks that land on their back, and the proportion of the Earth's surface that is covered by water, or [these words written on March 30, 2020, before any trial data] the proportion of patients with mild symptoms of covid-19  who would benefit from chloroquine.
 
@@ -328,7 +420,9 @@ We will start with a discrete version of a commonly-encountered parameter,
 the age of a person whom you have just met, or seen a photo of.
 We will then go on to a full numerical example, your average cholesterol or blood pressure level.
 
-To start with, **how old** do you think this IBC2006 attendee was when this photo was taken? This is the _parameter of interest_.
+**Example 1**
+
+**How old** (or **what age** -- if you prefer to avoid spekking of 'old') do you think this IBC2006 attendee was when this photo was taken? This is the _parameter of interest_.
 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F, fig.cap="An attendee at the International Biometrics Conference, held at McGill in July 2006"}
@@ -412,20 +506,24 @@ for (i in 1:7) {
 
 ```
 
+This is a somewhat unusual example, as the blue distribution is very wide -- partly because we could not find age-at-graduation data specific to PhD graduates in statistics in 1974. We suspect that specific distribution is a good deal narrower than the one shown.   In the next chapter, you will see that other indirect measures of age are a good bit tighter  than this.
+
+Nevertheless, it emphasizes that, depending on what impression you got form the photo alone, you may now wish to revise your estimate of the person's age. We suspect that many of you would have initially though he **looks like he was in mid 50s**, and so would have made guesses like those shown in red in the top panel. If you are one of those, then you will want to **revise the age upwards**, as we do in the green in the bottom panel.
+
 ```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="If he looked like he was in mid 50s"}
 
 draw.3.panels(1)
 
 ```
 
-
+If you initially thought he looked like he was 'around 60' you would have made guesses like those shown in red in the top panel. If you did, then you will want to **revise upwards a little**, as is shown in green, and now put hime him somewhere around 60, or a bit above.
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="If If he looked like he was around 60."}
 
 draw.3.panels(2)
 
 ```
-
+If you initially thought he looked like he was 'in his mid 60s' your estimate is more in line with the age-at-PhD data, and so you would not revise as much. You might bet a bit more on the 'around 60' age-bracket.
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="If If he looked like he was in his mid 60s."}
 
@@ -433,11 +531,21 @@ draw.3.panels(3)
 
 ```
 	
+As we noted, the PhD data have too much of a right tail, and so it is driving up the estimates. If you are now curious as how keen your 'age-estimation' skills are, here is a link to the cv of the [statistician whose age we have been trying to determine](https://scholar.google.com/citations?user=e8DARmEAAAAJ&hl=en).
+
+Age estimation via face images (image-based age estimation) is a growing research area, with many possible applications.
+
+
+**2 more examples**
+
+* a person's BP from Spiegelhalter chapter
+
+* a person's cholesterol level -- Irwig article
 	
 ## Frequentist approach
 
-2 sepaare issues  Ho and intervals
-(treated togheter in Bayesian)
+2 separate issues  Ho and intervals
+(treated together in Bayesian)
 
 • Statistical Quality Control procedures [for Decisions] • Sample survey organizations: Confidence intervals • Statistical Tests of Hypotheses
 Unlike Bayesian inference, there is no quantified pre-test or pre- data "impression"; the ultimate statements are about data, conditional on an assumed null or other hypothesis.
