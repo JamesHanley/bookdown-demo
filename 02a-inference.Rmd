@@ -67,11 +67,11 @@ We begin with the direct method, one that studies tell us we are born with, and 
 tennis ball, both our sensors and the task possess variability. 
 [...] We show that subjects internally represent both the statistical
 distribution of the task and their sensory uncertainty,
-combining them in a manner consistent with a performance-optimizing bayesian process. The central nervous system therefore employs probabilistic models during sensorimotor learning. Bayesian integration in sensorimotor learning. Nature 427; 15 Jan 2004.
+combining them in a manner consistent with a performance-optimizing bayesian process. The central nervous system therefore employs probabilistic models during sensorimotor learning. [Bayesian integration in sensorimotor learning](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/nature02169.pdf)
 
-leading to this headline
+leading to this New York Times headline
 
-> Subconsciously, Athletes May Play Like Statisticians - The New York Times
+> [Subconsciously, Athletes May Play Like Statisticians](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/AthletesStatisticians.pdf)
   
 
 ## The Bayesian Approach
@@ -422,7 +422,7 @@ We will then go on to a full numerical example, your average cholesterol or bloo
 
 **Example 1**
 
-**How old** (or **what age** -- if you prefer to avoid spekking of 'old') do you think this IBC2006 attendee was when this photo was taken? This is the _parameter of interest_.
+**How old** (or **what age** -- if you prefer to avoid speaking of 'old') do you think this IBC2006 attendee was when this photo was taken? This is the _parameter of interest_.
 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F, fig.cap="An attendee at the International Biometrics Conference, held at McGill in July 2006"}
