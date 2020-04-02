@@ -51,9 +51,9 @@ that the Bayesian approach `does not  conform to the approved form of analysis' 
 
 The first-established of the two  'schools' (or 'churches') of statistical inference** makes **direct probabilistic statements about the possible parameter values**. This approach goes back at least as far as the mid-1700's essay 'A method of calculating the exact probability of all conclusions based on induction'; ironically the author was a  Presbyterian minister.
 
-Theory that would not die.
+The developments since then are  nicely told in the very readable book [_The Theory That Would Not Die: How Bayes' Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy_ ](https://www.amazon.com/Theory-That-Would-Not-Die-ebook/dp/B0050QB3EQ) by Sharon Bertsch McGrayne, and in her [Microsoft lecture](https://www.youtube.com/watch?v=2o-_BGqYM5U) and her [Google lecture](https://www.youtube.com/watch?v=8oD6eBkjF9o).
 
-Maybe, by calling it the more orthodox,  all that Clayton and Hills mean is that the frequentist approach is more popular method today. It got a slow start, and dates from the early 20th century. (In one of our sampling exercises, we will try to determine the relative frequencies of the two approaches in the epidemiology and medical literature).
+Maybe, by calling it the more 'orthodox',  all that Clayton and Hills mean is that the frequentist approach is more popular method today. It got a slow start, and dates from the early 20th century. (In one of our sampling exercises, we will try to determine the relative frequencies of the two approaches in the epidemiology and medical literature).
 
 Interestingly, if you use 
 [Google Books	Ngram Viewer](
@@ -249,7 +249,9 @@ probabilities  have a 'long-run' or 'in large numbers of similar instances' inte
 * The shiny app [From Pre-test to Post-test Probabilities](https://jameshanley.shinyapps.io/FromPreTestToPostTestProbabilities/) shows how the initial average (pre-test) probability is segregated into 2 post-test probabilities by the 2 possible test results, and the role of the 2 error-probabilities (just about all tests are fallible) in how well they push them out.
 
 
-* The 'starting out' probability could  be  subjective. For example it could be one's impression (before getting to see up close how wrinkled their face is) as whether the person is a smoker, or one's assessment of the probability that the accused is guilty (before getting to hear the  DNA expert, or lie detection report)  based on how credible the accused appears to be, and all of the other evidence to date. 
+* The 'starting out' probability could  be  subjective. For example it could be one's impression (before getting to see up close how wrinkled their face is) as whether the person is a smoker, or one's assessment of the probability that the accused is guilty (before getting to hear the  DNA expert, or lie detection report)  based on how credible the accused appears to be, and all of the other evidence to date.
+
+* The main point is that we are merging (adding) two sources of information. 
 
 
 ### Example: parameter is a proportion
@@ -377,7 +379,11 @@ text(0.25,max(prior.density)/1.25, "Posterior Probability Density\nafter observi
 
 Before moving on the the next type of parameter, a few points:
 
-* You are probably wondering what the posterior distribution would look like with more data. Here is what it would look like after observing 7 out of 25 or 13 out of 25. The modes of the posterior distributions are still  somewhat influenced by the prior -- as they are still well above P=7/25 = 0.28 and P=13/25 = 0.52. If the data were 70/250 or 13/250, the modes would be closer to  P= 0.28 or P = 0.52; in other words, the data would 'swamp' -- or 'trump' -- the prior. 
+* The beta distribution nicely shows **how the prior information/impression and the new data get combined**. The $a$ and $b$ parameters of the prior distribution are `r round(a,1)` and `r round(b,1)`. Together, they determine the mean, $a/(a=b)$, the median, the  mode, $(a-1)/(a+b-2)$, and the variance,
+$a^2b^2/(a+b+1)^2$ of the prior distribution. 
+Their conterparts in the data-likelihood are 1 and 3. The '$a$' and '$b$' parameters of the posterior distribution are `r round(a+1,1)` and `r round(b+3,1)`: the $a$'s **add**, and the  $b$'s **add**. In other words, the distribution of one's pre-data beliefs is the distribution one would have after 'seeing' `r round(a,1)` W's and `r round(b,1)` F's;  the distribution of one's post-data beliefs is the distribution one would have after 'seeing' `r round(a+1,1)` W's and `r round(b+3,1)` F's. **The (synthetic) experience-equivalent of the numbers of Ws and F's in the prior are added to the  actual (observed) numbers of Ws and F's in the data to arrive at  the (new) posterior distribution.**
+
+* You are probably wondering what the posterior distribution would look like **with more data**. Here is what it would look like after observing 7 out of 25 or 13 out of 25. The modes of the posterior distributions are still  somewhat influenced by the prior -- as they are still well above P=7/25 = 0.28 and P=13/25 = 0.52. If the data were 70/250 or 13/250, the modes would be closer to  P= 0.28 or P = 0.52; in other words, the data would 'swamp' -- or 'trump' -- the prior. 
 
 
 
