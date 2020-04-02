@@ -35,7 +35,7 @@ Some example parameters -- some scientific, some more personal or particularisti
    + the 20th percentile of the depths of the ocean
    + the median age of a population
 
-To address the uncertainties involved in the judgements/inferences, some use of probabililies is required.
+To address the uncertainties involved in the judgements/inferences, some use of probabilities is required.
 
 
 
@@ -53,11 +53,11 @@ The first-established of the two  'schools' (or 'churches') of statistical infer
 
 Theory that would not die.
 
-Maybe, by calling it the more orthodox,  all that Clayton and Hills mean is that the frequentist approach is more popular method today. It got a slow start, and dates from the early 20th century. (In one of our sampling exercises, we wil try to determine the relative frequencies of the two approaches in the epidemiology and medical literature).
+Maybe, by calling it the more orthodox,  all that Clayton and Hills mean is that the frequentist approach is more popular method today. It got a slow start, and dates from the early 20th century. (In one of our sampling exercises, we will try to determine the relative frequencies of the two approaches in the epidemiology and medical literature).
 
 Interestingly, if you use 
 [Google Books	Ngram Viewer](
-https://books.google.com/ngrams/graph?content=frequentist+approach%2C+bayesian+approach&case_insensitive=on&year_start=1800&year_end=2008&corpus=15&smoothing=3&share=&direct_url=t4%3B%2Cfrequentist%20approach%3B%2Cc0%3B%2Cs0%3B%3Bfrequentist%20approach%3B%2Cc0%3B%3BFrequentist%20approach%3B%2Cc0%3B%3BFrequentist%20Approach%3B%2Cc0%3B.t4%3B%2Cbayesian%20approach%3B%2Cc0%3B%2Cs0%3B%3BBayesian%20approach%3B%2Cc0%3B%3BBayesian%20Approach%3B%2Cc0%3B%3BBAYESIAN%20APPROACH%3B%2Cc0%3B%3Bbayesian%20approach%3B%2Cc0) you get a different sense. Maybe this is because the majority don't need to justify whhe methods they use!
+https://books.google.com/ngrams/graph?content=frequentist+approach%2C+bayesian+approach&case_insensitive=on&year_start=1800&year_end=2008&corpus=15&smoothing=3&share=&direct_url=t4%3B%2Cfrequentist%20approach%3B%2Cc0%3B%2Cs0%3B%3Bfrequentist%20approach%3B%2Cc0%3B%3BFrequentist%20approach%3B%2Cc0%3B%3BFrequentist%20Approach%3B%2Cc0%3B.t4%3B%2Cbayesian%20approach%3B%2Cc0%3B%2Cs0%3B%3BBayesian%20approach%3B%2Cc0%3B%3BBayesian%20Approach%3B%2Cc0%3B%3BBAYESIAN%20APPROACH%3B%2Cc0%3B%3Bbayesian%20approach%3B%2Cc0) you get a different sense. Maybe this is because the majority don't need to justify the methods they use!
 
 Frequentist statements are  **indirect**. They are (conditional) probabilistic statements about the **data** and about the performance of the **procedure** used to bracket the parameter values. A variant on it ranks the various  possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves. Because it is indirect, conditional, the results are often interpreted incorrectly. 
 
@@ -244,7 +244,7 @@ probabilities  have a 'long-run' or 'in large numbers of similar instances' inte
 
 * There is nothing special about the 'starting out' probability P[**C**] of 0.5. Before a pregnancy test, or a pre-natal diagnostic test, for example, the probability  of the target **C**ondition/state of interest/concern would be a function of many other factors, and could in theory take on any value between 0 and 1. The (starting out, pre-filter) proportion of malicious emails would depend on which of a person's email accounts it was. 
 
-* In the language of diagnostic tests, each 'Son as a test of the mother's carrier status' has 50% sensitivity and 100 'specificity'. For sensitivity, this puts it on par with the Pap test for cervical cancer: the main problem withe latter is in the sampling. For specificity, it is better than most tests.  
+* In the language of diagnostic tests, each 'Son as a test of the mother's carrier status' has 50% sensitivity and 100% 'specificity'. For sensitivity, this puts it on par with the Pap test for cervical cancer: the main problem withe latter is in the sampling. For specificity, it is better than most tests.  
 
 * The shiny app [From Pre-test to Post-test Probabilities](https://jameshanley.shinyapps.io/FromPreTestToPostTestProbabilities/) shows how the initial average (pre-test) probability is segregated into 2 post-test probabilities by the 2 possible test results, and the role of the 2 error-probabilities (just about all tests are fallible) in how well they push them out.
 
@@ -332,7 +332,7 @@ The sample alone most strongly supports a value for P of 0.25 (one W in four tri
 
 For the assumed prior, in which only p's of 0.50, 0.60, 0.70, 0.80, or 0.90 are considered, the sample evidence FFWF in favor of a P near 0.25 can only push up the posterior probabilities for the nearest possible values - 0.50 and 0.60. (The seemingly harder consideration of **all possible p's between zero and one** will handle this kind of situation more logically.)
 
-Below we show the '**continuous P **' version he refers to. To make this, we calculeated the mean and variance of his discrete (5-point) prior distribution, and converted them to the 2 parameters, $a$ and $b$, of the beta distribution with the same mean and variance.
+Below we show the '**continuous P **' version Antelman refers to. To make this, we calculated the mean and variance of his discrete (5-point) prior distribution, and converted them to the 2 parameters, $a$ and $b$, of the beta distribution with the same mean and variance.
 
 Conveniently, the posterior density is also a beta distribution, but with parameters $a+1$ and $b+3$. 
 
@@ -408,7 +408,7 @@ text(0.025,1.25*max(posterior.density), "Posterior Probability Density of P afte
 
 * Be thinking about your prior for the proportion of thumbtacks that land on their back, and the proportion of the Earth's surface that is covered by water, or [these words written on March 30, 2020, before any trial data] the proportion of patients with mild symptoms of covid-19  who would benefit from chloroquine.
 
-* Think about how you might elicit a prior distribution. You might want to Google 'tools for eliciting prior distributions'.
+* Think about how you might elicit a prior distribution. You might want to Google 'tools for eliciting prior distributions' -- or consult Chapter 5 of Spiegelhalter's book.
 
 
 We now move on to last parameter genre we will consider.
@@ -431,7 +431,7 @@ knitr::include_graphics("images/IMG_DS.png",dpi=45)
 
 ```
 
-He tells you  he **got his PhD 32 years earlier**. Based on distribution of ages at which people get their PhD (show in grey below), that puts his current age somewhere in the blue distribution.
+He tells you  he **got his PhD 32 years earlier**. Based on the distribution of ages at which people get their PhD (shown in grey below), that puts his current age somewhere in the blue distribution.
 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Current ages of persons who obtained PhD 32 years earlier."}
@@ -506,7 +506,7 @@ for (i in 1:7) {
 
 ```
 
-This is a somewhat unusual example, as the blue distribution is very wide -- partly because we could not find age-at-graduation data specific to PhD graduates in statistics in 1974. We suspect that specific distribution is a good deal narrower than the one shown.   In the next chapter, you will see that other indirect measures of age are a good bit tighter  than this.
+This is a somewhat unusual example, as the blue distribution is very wide -- partly because we could not find age-at-graduation data specific to PhD graduates in statistics in 1974. We suspect that that specific distribution is a good deal narrower than the one shown.   In the next chapter, you will see that other indirect measures of age are a good bit tighter  than this.
 
 Nevertheless, it emphasizes that, depending on what impression you got form the photo alone, you may now wish to revise your estimate of the person's age. We suspect that many of you would have initially though he **looks like he was in mid 50s**, and so would have made guesses like those shown in red in the top panel. If you are one of those, then you will want to **revise the age upwards**, as we do in the green in the bottom panel.
 
@@ -531,16 +531,56 @@ draw.3.panels(3)
 
 ```
 	
-As we noted, the PhD data have too much of a right tail, and so it is driving up the estimates. If you are now curious as how keen your 'age-estimation' skills are, here is a link to the cv of the [statistician whose age we have been trying to determine](https://scholar.google.com/citations?user=e8DARmEAAAAJ&hl=en).
+As we noted, the PhD data have too much of a right tail, and so it is driving up the estimates. If you are now curious as how keen your 'age-estimation' skills are, here is a link to the Google Scholar page of the [statistician whose age we have been trying to determine](https://scholar.google.com/citations?user=e8DARmEAAAAJ&hl=en).
 
 Age estimation via face images (image-based age estimation) is a growing research area, with many possible applications.
 
+We now describe 2 more classical examples
 
-**2 more examples**
+**Example 2**
 
-* a person's BP from Spiegelhalter chapter
+Spiegelhalter et al. address this in their  Example 3.4: 'Suppose we are interested in the **long-term systolic blood pressure  (SBP)
+in mmHg of a particular 60-year-old female**.'
 
-* a person's cholesterol level -- Irwig article
+> We take two independent readings 6 weeks apart, and their mean is 130. We know that SBP is measured with a standard deviation $\sigma = 5.$ What should we estimate her SBP to be? 
+
+They then go on to give the frequentist ('standard') 95% confidence interval,
+of 123.1 to 136.9, centered on the measured value of 130 [we will come later to how they calculated this]. They continue, ...
+
+> **However**, we may have considerable additional information about SBPs 
+which we can express as a prior distribution. Suppose that a survey in the 
+same population revealed that females aged 60 had a mean long-term 
+SBP of 120 with standard deviation 10. This population distribution can be
+considered as a prior distribution for the specific individual, and is shown in Figure 3.3(a): 
+
+
+The posterior distribution, computed from the combination of the 130 measured on the woman, 
+and the prior, is centered on 128.9 and 
+ the 95\% interval is 122.4 to 135.4. 
+
+\begin{quote}
+
+``This posterior distribution reveals some 'shrinkage' towards the population mean, and a small increase in precision from not using the data alone.
+
+Intuitively, we can say that the woman has somewhat higher measure- 
+ments than we would expect for someone her age, and hence we slightly 
+adjust our estimate to allow for the possibility that her two measures 
+happened by chance to be on the high side. As additional measures are 
+made, this possibility becomes less plausible and the prior knowledge will 
+be systematically downgraded.''
+\end{quote}
+
+It's a pity that these authors did not give an actual source for this
+prior, or be a bit more realistic about  ``a same population of females aged 60 with
+ a mean long-term SBP of 120''. This must be a  somewhat selected,
+ healthier-than-average population, since we might find such a mean of 120
+ in 25-year old women; in the general population of 60-year old women,
+ it is higher than that. 
+
+
+**Example 3**
+
+a person's cholesterol level -- Irwig article
 	
 ## Frequentist approach
 
