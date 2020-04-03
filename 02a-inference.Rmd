@@ -51,7 +51,12 @@ that the Bayesian approach `does not  conform to the approved form of analysis' 
 
 The first-established of the two  'schools' (or 'churches') of statistical inference** makes **direct probabilistic statements about the possible parameter values**. This approach goes back at least as far as the mid-1700's essay 'A method of calculating the exact probability of all conclusions based on induction'; ironically the author was a  Presbyterian minister.
 
-The developments since then are  nicely told in the very readable book [_The Theory That Would Not Die: How Bayes' Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy_ ](https://www.amazon.com/Theory-That-Would-Not-Die-ebook/dp/B0050QB3EQ) by Sharon Bertsch McGrayne, and in her [Microsoft lecture](https://www.youtube.com/watch?v=2o-_BGqYM5U) and her [Google lecture](https://www.youtube.com/watch?v=8oD6eBkjF9o).
+The developments since then are  nicely told in the very readable book [_The Theory That Would Not Die: How Bayes' Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy_ ](https://www.amazon.com/Theory-That-Would-Not-Die-ebook/dp/B0050QB3EQ) by Sharon Bertsch McGrayne, and in her Microsoft lecture
+
+<iframe width="720" height="405" src="https://www.youtube.com/embed/2o-_BGqYM5U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+and her Google lecture
+<iframe width="720" height="405" src="https://www.youtube.com/embed/8oD6eBkjF9o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 Maybe, by calling it the more 'orthodox',  all that Clayton and Hills mean is that the frequentist approach is more popular method today. It got a slow start, and dates from the early 20th century. (In one of our sampling exercises, we will try to determine the relative frequencies of the two approaches in the epidemiology and medical literature).
 
