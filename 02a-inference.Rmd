@@ -425,9 +425,9 @@ text(0.025,1.25*max(posterior.density), "Posterior Probability Density of P afte
 We now move on to last parameter genre we will consider.
 
 
-### Example: parameter is a mean
+### Example: parameter is a personal number or population mean
 
-We will start with a discrete version of a commonly-encountered parameter, 
+We will start with a discrete version of a commonly-wondered-about parameter, 
 the age of a person whom you have just met, or seen a photo of.
 We will then go on to a full numerical example, your average cholesterol or blood pressure level.
 
@@ -555,43 +555,406 @@ in mmHg of a particular 60-year-old female**.'
 
 > We take two independent readings 6 weeks apart, and their mean is 130. We know that SBP is measured with a standard deviation $\sigma = 5.$ What should we estimate her SBP to be? 
 
-They then go on to give the frequentist ('standard') 95% confidence interval,
-of 123.1 to 136.9, centered on the measured value of 130 [we will come later to how they calculated this]. They continue, ...
+They then go on to give the **frequentist** ('standard', 'orthodox') **95% confidence interval**,
+of **123.1 to 136.9**, **centered on the measured value of 130** [we will come later to how they calculated this]. They continue, ...
 
-> **However**, we may have considerable additional information about SBPs 
-which we can express as a prior distribution. Suppose that a survey in the 
-same population revealed that females aged 60 had a mean long-term 
-SBP of 120 with standard deviation 10. This population distribution can be
-considered as a prior distribution for the specific individual, and is shown in Figure 3.3(a): 
-
-
-The posterior distribution, computed from the combination of the 130 measured on the woman, 
-and the prior, is centered on 128.9 and 
- the 95\% interval is 122.4 to 135.4. 
-
-\begin{quote}
-
-``This posterior distribution reveals some 'shrinkage' towards the population mean, and a small increase in precision from not using the data alone.
-
-Intuitively, we can say that the woman has somewhat higher measure- 
-ments than we would expect for someone her age, and hence we slightly 
-adjust our estimate to allow for the possibility that her two measures 
-happened by chance to be on the high side. As additional measures are 
-made, this possibility becomes less plausible and the prior knowledge will 
-be systematically downgraded.''
-\end{quote}
-
-It's a pity that these authors did not give an actual source for this
-prior, or be a bit more realistic about  ``a same population of females aged 60 with
- a mean long-term SBP of 120''. This must be a  somewhat selected,
- healthier-than-average population, since we might find such a mean of 120
- in 25-year old women; in the general population of 60-year old women,
- it is higher than that. 
+> **However**, we may have **considerable additional information about SBPs 
+which we can express as a prior distribution**. Suppose that a survey in the 
+**same population** revealed that females aged 60 had a mean long-term 
+SBP of 120 with standard deviation 10. **This population distribution can be
+considered as a prior distribution for the specific individual**. 
 
 
-**Example 3**
+The **posterior distribution**, computed from the combination of the 130 measured on the woman, 
+and the prior, is **centered on 128.9** and 
+ the 95\% interval is **122.4 to 135.4**. 
 
-a person's cholesterol level -- Irwig article
+>This posterior distribution reveals some **'shrinkage' towards the population mean**, and a small increase in precision from not using the data alone.  
+**Intuitively**, we can say that the woman has somewhat higher measurements than we would expect for someone her age, and hence we slightly adjust our estimate to allow for the possibility that her two measureshappened by chance to be on the high side. As additional measures are made, this possibility becomes less plausible and the prior knowledge will be systematically downgraded.
+
+Before going on to example 3, we emphasize that the 128.9 is a **compromize** between the persnal mean of 130, and the (prior)  poulation mean of 120: it is a weighted average, with (relative) weights that are the reciprocals of the squares of the 2 standard deviations, the reciprocals of $\frac{5^2}{2}$ and $10^2,$ i.e., $\frac{2}{25} = 0.08$ and $\frac{1}{10^2} = 0.01.$ The 
+128.9 is **8/9ths closer to the measured 130** than it is to the **population mean of 120**. It is slightly 'shrunk' toawards the population. This is why physicians might not believe that the 130 is correct, and might ask for more measurements before putting this woman on  blood pressure-lowering drugs.
+
+[The already cited 'Bayesian integration in sensorimotor learning'  illustrates how as humans, we automatically **combine estimates of different precisions** into one more precise estimate, and do so using the same mathematical laws that are used in the Bayesian approach!]
+
+
+**Example 3** 
+
+One article that does go into some detail about a similar situation is the very nice medically-useful – and didactic article [Estimating an Individual’s True Cholesterol Level and Response to Intervention](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/Irwig-1991-cholesterol.pdf) by Les Irwig, Paul Glasziou, Andrew Wilson and Petra Macaskill.
+
+It begins with a single measurement, before dealing with an average of several measurements on the same person. It also gives separate charts for persons of different ages, and deals not just with point and interval estimates, but also derives probability statements for the possibility that the person’s true cholesterol is above some threshold that should trigger intervention. The appendix is a nice tutorial for combining information.
+
+Their _abstract_ begins:
+
+> An individual’s blood cholesterol measurement may differ from the true level because of short-term biological and technical measurement variability. Using data on the within-individual and population variance of serum cholesterol, we addressed the following **clinical concerns: Given a cholesterol measurement, what is the individual’s likely true level?** The confidence interval for the true level is wide and asymmetrical around extreme measurements because of regres-sion to the mean. Of particular concern is the misclassification of people with a screening measurement below 5.2 mmol/L who may be advised that their cholesterol level is 'desirable' when their true level warrants further action.
+
+The first half of the paper, which deals with two related topics, (a) Estimating the True Cholesterol Level, and (b) assesing the Probability of Misclassification shows the primary elements, and these notes will focus on the highlights. [after these, extensive excerpts will be included]
+
+The results for (a) and (b) were presented as 2 Figures. The first gave the (posterior) credible interval for a person’s true cholesterol level based on either 1, or an average of 3, measurements, using on the horizontal axis the measured value, and on the vertical one the point and 95% credible interval. Using a graph (rather than a formula) allows the clinician to use it for all possible ‘what if’s.
+
+Below, we will **illustrate** it using one specific example, a **person whose measured value was 7.15**.
+
+The second uses the (posterior) credible interval to calculate the **probability that someone with a specific measured value has a true level that is above a certain threshold level used in treatment guidelines.**
+Thus, the key tool is the posterior distribution itself, and so we give the statistical basis for this.
+
+_Reasons to take a Bayesian approach_
+
+The reason this problem arises in the first place is because of short term biological variability in the quantity of interest in the person in question. If we were measuring a person’s height, we could do so carefully at just one time-point: it would not be different a week or month from now; it remains quite stable over several years. [it does vary slightly over the day, but, be keep it simple, we could speak of one’s height at mid-day]. The same is not the case for a person’s cholesterol level: even if we measured it very carefully at one time, it would be genuinely different a week or month later, even in the absence of any intervention of lifestyle change. (The same applies, more strikingly, for other blood levels such as C-reactive protein (CRP), which is a marker of inflammation).
+
+Thus any single measurement, or any average of a finite number of determinations, is imprecise. **So what’s new?** Don’t we meet this issue all the time in statistics?
+
+The **point of Irwig's article** is that we should **not rely solely on the estimate based on the _person_’s measurements**, but rather **should combine it with an
+estimate based on _outside information_.**
+
+
+The same reasoning is at work when a physician repeats a measurement that seems extreme. In so doing, (s)he is not relying only on the point or interval estimate provided by the measurement itself: rather (s)he is **also using knowledge of how this measurement behaves in other similar persons**! And what we know about others, even if collectively, can help us with an individual.
+
+All of the technical details are available in these notes, prepared for [bios601]()
+Here we will skip to the 'botom line' diagrams.
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F, fig.cap="A Person's estimated true cholesterol level from one measurement for a population of individuals where the mean is 5.2 mmol/L (i.e, at the time of the article, men less than 35 and women less than 45 years old). The thicker solid line indicates the estimated true level, the  thinner solid lines are 80% confidence intervals. The dotted diagonal line is an equivalence line. The arrow shows the amount by which a single measurement of 7.15 mmol/L is shrunk towards the population mean, to a rcorrected value of 6.8 mmol/L."}
+
+var.within.log.chol = c(0.00635, 0.00548, 0.00539, 0.00589)[4]
+var.total.log.chol = c(0.04194, 0.03964, 0.03649, 0.03936)[4]
+var.between.true.log.chol = var.total.log.chol - var.within.log.chol
+precision.p =  1/ var.between.true.log.chol 
+precision.e =  1/ var.within.log.chol
+
+mu.log.chol=log( c(5.2, 5.8, 6.4) ) - var.total.log.chol/2
+
+median = exp(mu.log.chol); 
+measurement=log( seq(4, 10, 0.2) )
+
+mean.log.A = mu.log.chol[1]
+
+weight.e = precision.e / (precision.e + precision.p)
+weight.p = precision.p / (precision.e + precision.p)
+
+revised.est = measurement * weight.e + mean.log.A * weight.p
+precision.revised.est = precision.e + precision.p
+sd = sqrt(1/precision.revised.est)
+
+plot(c(4,10), c(4,10), ylab="Estimated Level (mmol/L)",
+     xlab="Measured Level (mmol/L)",col="white" ,
+     cex.axis=1.5, cex.lab=1.5)
+for(x in seq(4, 10, 0.2)) segments(x,4,x,10,col="lightblue",lwd=0.5)
+for(x in seq(4, 10, 1.0)) segments(x,4,x,10,col="lightblue",lwd=2)
+for(x in seq(4, 10, 0.2)) segments(4,x,10,x,col="lightblue",lwd=0.5)
+for(x in seq(4, 10, 1.0)) segments(4,x,10,x,col="lightblue",lwd=2)
+points(7.15,3.9,pch=19,cex=1)
+points(7.15,7.15,pch=19,cex=1)
+est = log(7.15) * weight.e + mean.log.A * weight.p
+arrows(7.15,7.15,  7.15, exp(est), length=0.075, angle=35,lwd=1.5)
+points(exp(measurement),exp(measurement),type="l", lty="dotted",lwd=2)
+points(exp(measurement),exp(revised.est),type="l",lwd=2)
+points(exp(measurement),exp(revised.est+1.96*sd),type="l",lwd=1)
+points(exp(measurement),exp(revised.est-1.96*sd),type="l",lwd=1)
+points(5.2,5.2,pch="+",cex=1.5)
+
+```
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F, fig.cap="If If he looked like he was around 60."}
+
+mu.log.chol.Pop.A = mu.log.chol[1]
+var.log.True.chol.Pop.A=var.between.true.log.chol
+sigma.p=sqrt(var.log.True.chol.Pop.A)
+observed.log.chol = log(7.15) ; observed.log.chol
+var.log.Indiv.log.chol = var.within.log.chol
+sigma.e=sqrt(var.log.Indiv.log.chol)
+
+mu.log.chol.Pop.A - 2.5*sqrt(var.log.True.chol.Pop.A)
+mu.log.chol.Pop.A + 2.5*sqrt(var.log.True.chol.Pop.A)
+
+v0=1.0; v1=2.3; dv=0.1
+values=seq(v0,v1,dv)
+finer.values=seq(v0,v1,dv/5)
+
+prior=dnorm(finer.values,mu.log.chol.Pop.A,sigma.p)
+
+par(mfrow=c(1,1),mar=c(0.1,0.1,0.1,0.1),oma=c(0.1,0.1,0.1,0.1))
+
+y.max=4; y.min= -38
+
+plot(finer.values,prior,type="l",
+ylim=c(y.min,y.max),
+xlim=c(v0-0.125*dv,v1+0.75*dv),
+xaxt="n",yaxt="n")
+h=dnorm(mu.log.chol.Pop.A+sigma.p,mu.log.chol.Pop.A,sigma.p)
+segments(mu.log.chol.Pop.A               ,0+h, 
+         mu.log.chol.Pop.A+sigma.p       ,0+h,
+   lty="dotted",lwd=0.5)
+text(mu.log.chol.Pop.A+sigma.p/2,0+h, 
+     toString(round(sigma.p,3)),
+        cex=0.5,col="darkgrey",adj=c(0.5,1.5))
+text(mu.log.chol.Pop.A+sigma.p/2,0+3*h/5, 
+     paste("[",toString(round(1/sigma.p^2,2)),"]"),
+        cex=0.4,col="darkgrey",adj=c(0.5,1.5))
+
+segments(mu.log.chol.Pop.A,0, 
+   mu.log.chol.Pop.A,dnorm(mu.log.chol.Pop.A,mu.log.chol.Pop.A,sigma.p),
+   lty="dotted",lwd=0.5)
+
+text(1,3.5,
+expression(paste("Parameter of Interest: ",
+                 theta,
+                 " = A Specific Person's True log[Cholesterol Level]")), cex=1,adj=c(0,0))
+
+segments(0,2.7, 3,2.5,lty="dotted",lwd=2)
+
+segments(v0,0,v1,0,lwd=0.5,col="lightblue")
+text(1,1.75,"Distrn.: True log[Level]s in all such persons", cex=0.6,adj=c(0,0))
+text(1,0.7,"[ Vertical axis such that a.u.c. = 1 ]", cex=0.5,adj=c(0,0))
+
+text(2.0,1.4,
+ expression(
+   paste(
+     "Before observing ", 
+      italic(y),
+      ", this distribution" 
+      ) 
+  ),
+ cex=0.5,adj=c(0,0))
+ 
+ text(2.0,0.7,
+ expression(
+   paste(
+      "serves as ", 
+      italic(PriorProb),
+      "( ",
+      theta,
+      " )" 
+      ) 
+  ),
+ cex=0.5,adj=c(0,0))
+ 
+
+
+for (v in seq(v0,v1,dv)) {
+	segments(v,-0.1,v,0)
+	text(v,-0.15,toString(v),cex=0.5,adj=c(0.5,1))
+	} 
+	
+text(v1+0.5*dv,0,
+ expression(
+   paste(
+     theta,
+      ) 
+  ),
+ cex=1,adj=c(0,0.5))
+
+segments(0, -1, 3, - 1,lty="dotted",lwd=2)	
+y0 = -2
+segments(v0,y0,v1,y0,lwd=0.5,col="lightblue")
+for (v in seq(v0,v1,dv)) {
+	segments(v,y0-0.1,v,y0)
+	text(v,y0-0.2,toString(v),cex=0.5,adj=c(0.5,1))
+	} 
+text(observed.log.chol,y0-1,"y",cex=0.6,adj=c(0.5,0.5),font=3)
+text(1,y0-1,"Observed log[level] for person in question",  
+   cex=0.6,adj=c(0,0.5))
+points(c(observed.log.chol),y0,pch=19,cex=0.5)
+text(v1+0.5*dv,y0,
+ expression(
+   paste(
+     italic(Y)
+      ) 
+  ),
+ cex=1,adj=c(0,0.5))
+
+segments(0, -4, 3, -4,lty="dotted",lwd=2)
+
+text(1, y0-10, expression(
+ paste("Prob( ", 
+       italic(y), " | ", 
+       theta, 
+       " ) for selected values of ", 
+       theta, 
+       "  ..." )),
+   cex = 0.6,adj=c(0,0.5))    
+
+   
+int=floor((observed.log.chol-v0)/dv)
+offset=observed.log.chol-(v0+int*dv)
+
+y0 = -4.5; theta=c(); p.y.given.theta=c()
+for (true.val in (dv/2+seq(2.15,1.65,-dv/2)) ){
+	y0=y0-1.25
+	val = true.val +
+	  seq(-0.25,0.25,0.0125) + offset
+	ht=0.1*dnorm(val,true.val,sigma.e)
+	for(j in 1:length(ht)){
+	 if( abs(val[j]-observed.log.chol) < 0.1*dv) {
+		  segments(val[j],y0,val[j],y0+ht[j],lwd=1.5)
+		  theta=c(theta,true.val);
+		  p.y.given.theta=c(p.y.given.theta,ht[j])
+		  }
+	 if( abs(val[j]-observed.log.chol) >= 0.1*dv)
+		  segments(val[j],y0,val[j],y0+ht[j],col="grey")
+		}
+	 segments(min(val)-0.025,y0,max(val)+0.025,y0,
+	  lwd=0.5,col="lightblue")
+	 #points(c(true.val),c(y0),cex=0.2,pch=19)
+	 text(true.val,c(y0-0.075),quote(theta),cex=0.5,adj=c(0.5,1))
+	}
+
+         
+text(1, y0-1.5, expression(
+ paste("Selected portion of Likelihood function, L( ",
+       theta, 
+       " ), based on observed data, ",
+       italic(y)
+        )),
+   cex = 0.6,adj=c(0,0.5))
+text(1, y0-2.5, "[ same (arbitrary) scale for vertical axis ]",
+   cex = 0.5,adj=c(0,0.5))
+
+for (j in 1:length(theta))
+ segments(theta[j],(y0-3.5),
+          theta[j],(y0-3.5)+p.y.given.theta[j],lwd=1.5)
+          
+y0=y0-7
+text(1, y0, expression(
+ paste("Entire Likelihood function, L( ",
+       theta, 
+       " ):"
+        )),
+   cex = 0.6,adj=c(0,0.5))
+   
+text(1, y0-1, "[ vertical axis scaled so a.u.c. = 1 ]",
+   cex = 0.5,adj=c(0,0.5))
+
+
+
+y0=y0-2.5
+points(finer.values,
+      y0+dnorm(finer.values,observed.log.chol,sigma.e),
+      type="l")
+segments(observed.log.chol,y0, 
+         observed.log.chol,y0+
+           dnorm(observed.log.chol,observed.log.chol,sigma.e),
+   lty="dotted",lwd=0.5)
+
+h=dnorm(observed.log.chol+sigma.e,observed.log.chol,sigma.e)
+segments(observed.log.chol               ,y0+h, 
+         observed.log.chol+sigma.e       ,y0+h,
+   lty="dotted",lwd=0.5)
+text(observed.log.chol+sigma.e/2,y0+h, 
+     toString(round(sigma.e,3)),
+        cex=0.5,col="darkgrey",adj=c(0.5,1.5))
+text(observed.log.chol+sigma.e/2,y0+h/2, 
+     paste("[", toString(round(1/sigma.e^2,2)) ,"]"),
+        cex=0.4,col="darkgrey",adj=c(0.5,1.5))
+        
+text(v1+0.5*dv,y0,
+ expression(
+   paste(
+     theta,
+      ) 
+  ),
+ cex=1,adj=c(0,0.5))
+
+segments(v0,y0,v1,y0,lwd=0.5,col="lightblue")
+for (v in seq(v0,v1,dv)) {
+	segments(v,y0-0.1,v,y0)
+	text(v,y0-0.2,toString(v),cex=0.5,adj=c(0.5,1))
+	} 
+
+y0=y0-2.5;
+
+
+segments(0,y0, 3,y0,lty="dotted",lwd=2)
+
+y0=y0-2;
+
+text(1, y0, 
+     expression(
+       paste(
+       italic(PostProb),
+      "( ",
+      theta,
+      " | ",
+      italic(y),
+      " ) "
+      )
+     ),
+   cex = 0.6,adj=c(0,0.5)
+)
+text(1, y0-1, 
+     expression(
+       paste(
+      " = ",
+      "S.F. x Prob( ",
+       italic(y) ,
+       " | ",
+       theta,
+       " ) x ",
+       italic(PriorProb),
+      "( ",
+      theta,
+      " ) = ", 
+       "S.F. x L( ",
+       theta, 
+       " )  x  ",
+       italic(PriorProb),
+      "( ",
+      theta,
+      " )"
+      )
+     ),
+   cex = 0.6,adj=c(0,0.5)
+)
+text(1, y0-2.5, "[ S.F. = Scaling Factor, chosen so a.u.c. = 1 ]",
+   cex = 0.5,adj=c(0,0.5))
+
+
+y0=y0-5
+
+segments(v0,y0,v1,y0,lwd=0.5,col="lightblue")
+for (v in seq(v0,v1,dv)) {
+	segments(v,y0-0.1,v,y0)
+	text(v,y0-0.2,toString(v),cex=0.5,adj=c(0.5,1))
+	}
+
+sigma.combined = sqrt(1/precision.revised.est) 
+weight.e = precision.e / (precision.e + precision.p)
+weight.p = precision.p / (precision.e + precision.p)
+mu.combined = weight.p*mu.log.chol.Pop.A + weight.e*observed.log.chol
+weight.e = precision.e / (precision.e + precision.p)
+weight.p = precision.p / (precision.e + precision.p)
+points(finer.values,
+      y0+    dnorm(finer.values,mu.combined,sigma.combined),
+      type="l")
+      
+segments(mu.combined,y0, 
+         mu.combined,y0+
+           dnorm(mu.combined,mu.combined,sigma.combined),
+   lty="dotted",lwd=0.5)
+   
+h=dnorm(mu.combined+sigma.combined,mu.combined,sigma.combined)
+segments(mu.combined               ,y0+h, 
+         mu.combined+sigma.combined,y0+h,
+   lty="dotted",lwd=0.5)
+text(mu.combined+sigma.combined/2,y0+h, 
+     toString(round(sigma.combined,3)),
+        cex=0.5,col="darkgrey",adj=c(0.5,1.5))
+text(mu.combined+sigma.combined/2,y0+h/2, 
+     paste("[",toString(round(1/sigma.combined^2,2)),"]"),
+        cex=0.4,col="darkgrey",adj=c(0.5,1.5))
+
+text(v1+0.5*dv,y0,
+ expression(
+   paste(
+     theta,
+      ) 
+  ),
+ cex=1,adj=c(0,0.5))
+ 
+ text(1, y0-2,"Adapted from Irwig et al, JAMA 1991",cex=0.6,adj=c(0,0),
+ font=3)
+ 
+ ```
 	
 ## Frequentist approach
 

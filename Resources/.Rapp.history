@@ -1,696 +1,3 @@
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-2,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-      text(l,0,toString(l/n),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-      text(l,0,toString(round(l/n,1)),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    dy = n.sampled.possibilities/8#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-      text(l,-dy,toString(round(l/n,1)),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    dy = n.sampled.possibilities/8#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-    }#
-    for(m in (XLIM[1]/n):(XLIM[2]/n) ){#
-      text(n*m,-dy,toString(m),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    dy = n.sampled.possibilities/8#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-    }#
-    for(m in seq(92,108,2) ){#
-      text(n*m,-dy,toString(m),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    dy = n.sampled.possibilities/8#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-    }#
-    for(l in seq(XLIM[1],XLIM[2],n) ){#
-      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    dy = n.sampled.possibilities/8#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-    }#
-    for(l in seq(XLIM[1],XLIM[2],n) ){#
-      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(pct in seq(0,50,10)){#
-    	text(XLIM[1],n.sampled.possibilities*pct/100,toString(pct),adj=c(1,0.5))#
-    }#
-    dy = n.sampled.possibilities/8#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-    }#
-    for(l in seq(XLIM[1],XLIM[2],n) ){#
-      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    for(pct in seq(0,50,10)){#
-    	text(XLIM[1],n.sampled.possibilities*pct/100,#
-    	         paste(toString(pct),"%",sep=""),adj=c(1,0.5),cex=0.7)#
-    }#
-    dy = n.sampled.possibilities/8#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-    }#
-    for(l in seq(XLIM[1],XLIM[2],n) ){#
-      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    segments(XLIM[1],0,XLIM[1],XLIM[1],sampled.possibilities/0.95)#
-    for(pct in seq(10,50,10)){#
-    	text(XLIM[1],n.sampled.possibilities*pct/100,#
-    	         paste(toString(pct),"%",sep=""),adj=c(1,0.5),cex=0.7)#
-    }#
-    dy = n.sampled.possibilities/8#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-    }#
-    for(l in seq(XLIM[1],XLIM[2],n) ){#
-      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-segments(XLIM[1],0,XLIM[1],sampled.possibilities/0.95)
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    segments(XLIM[1],0,XLIM[1],sampled.possibilities/0.95)#
-    for(pct in seq(10,50,10)){#
-    	text(XLIM[1],n.sampled.possibilities*pct/100,#
-    	         paste(toString(pct),"%",sep=""),adj=c(1,0.5),cex=0.7)#
-    }#
-    dy = n.sampled.possibilities/8#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-    }#
-    for(l in seq(XLIM[1],XLIM[2],n) ){#
-      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    segments(XLIM[1],0,XLIM[1],n.sampled.possibilities/1.95)#
-    for(pct in seq(10,50,10)){#
-    	text(XLIM[1],n.sampled.possibilities*pct/100,#
-    	         paste(toString(pct),"%",sep=""),adj=c(1,0.5),cex=0.7)#
-    }#
-    dy = n.sampled.possibilities/8#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-    }#
-    for(l in seq(XLIM[1],XLIM[2],n) ){#
-      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-possible.n = c(1,2,3,4,8)#
-Errors =list(e2 = c(-1,1) ,    #
-             e3 = sqrt(3/2)*c(-1,0,1), #
-             e4 = sqrt(1/2)*c(-1,0,0,1)#
-             )#
-#
-n.sampled.possibilities = 1000#
-#
-nr = length(possible.n)#
-nc = length(Errors)#
-par(mfrow=c(nr,nc),mar = c(1,1,1,1) )#
-#
-for(r in 1:nr){#
-  for(c in 1:nc){#
-    errors = Errors[[c]]#
-    n = possible.n[r]#
-    lengths = rep(0,n.sampled.possibilities)#
-    for (i in 1:n) {#
-      lengths = lengths + 100 +#
-                sample(errors,n.sampled.possibilities,#
-                          replace=TRUE)#
-    }#
-    f = table(lengths)#
-    max.e = 8#
-#
-    XLIM=n*100 + c(-max.e,max.e)#
-    plot(f,yaxt="n", xaxt="n",#
-         xlim=c(XLIM[1]-4,XLIM[2]),#
-         ylim=c(-0.25,1/1.8)*n.sampled.possibilities,#
-         main=toString(n))#
-    segments(XLIM[1], 0, XLIM[2], 0)#
-    segments(XLIM[1],0,XLIM[1],n.sampled.possibilities/1.95)#
-    for(pct in seq(10,50,10)){#
-    	text(XLIM[1],n.sampled.possibilities*pct/100,#
-    	         paste(toString(pct),"%",sep=""),adj=c(1,0.5),cex=0.7)#
-    }#
-    dy = n.sampled.possibilities/8#
-    for(l in seq(XLIM[1],XLIM[2],2) ){#
-      text(l,0,toString(l),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,0,"Sum:",cex=1,adj=c(0.5,1.25))#
-    }#
-    for(l in seq(XLIM[1],XLIM[2],n) ){#
-      text(l,-dy,toString(l/n),cex=1,adj=c(0.5,1.25))#
-      if(l == XLIM[1]) text(XLIM[1]-2,-dy,"mean:",cex=1,adj=c(0.5,1.25))#
-    }#
-  }#
-}
-?sample
-?apply
-?sample
-?message
-qnorm(1/10^6)
-ds = read.table("http://www.biostat.mcgill.ca/hanley/statbook/weightsEtc.txt")#
-#
-MEAN=round(weighted.mean(ds$Weight.lbs,w=ds$Freq))#
-#
-VAR = sum( ds$Freq * (ds$Weight.lbs-MEAN)^2 ) / sum(ds$Freq)#
-#
-SD = sqrt(VAR)#
-#
-WEIGHTS = sort(unique(ds$Weight.lbs))#
-Freq = aggregate(ds$Freq,by=list(ds$Weight.lbs),sum)$x#
-Proportions = Freq/sum(Freq)#
-#
-W.50 = WEIGHTS[min(which(cumsum(Proportions) > 0.50))]#
-mu = sum(WEIGHTS*Proportions)
-WEIGHTS = sort(unique(ds$Weight.lbs))#
-Freq = aggregate(ds$Freq,by=list(ds$Weight.lbs,ds$Sex),sum)$x
-Freq
-Freq = aggregate(ds$Freq,by=list(ds$Weight.lbs,ds$Sex),sum)$x
-Freq
-str(ds)
-Freq = aggregate(ds$Freq,by=list(ds$Weight.lbs,ds$Sex),sum)
-Freq
-Freq = aggregate(ds$Freq,by=list(ds$Sex,,ds$Weight.lbs),sum)
-Freq
-Freq = aggregate(ds$Freq,by=list(ds$Sex,ds$Weight.lbs),sum)
-Freq
-ds = read.table("http://www.biostat.mcgill.ca/hanley/statbook/weightsEtc.txt")
-ds
-sum(ds$Freq)
-Freq = aggregate(ds$Freq,by=list(sex=ds$Sex,bin=ds$Weight.lbs),sum)
-Freq
-ds$Sex
-Freq = aggregate(ds$Freq,by=list(sex=ds$Sex,w=ds$Weight.lbs),sum)
-table(ds$Weight.lbs,ds$Sex)
-setwd("/Users/jameshanley/git_repos/statbook/Resources")#
-#
-library(ipumsr)#
-ddi <- read_ipums_ddi("nhis_00009.xml")#
-ds <- read_ipums_micro(ddi)#
-str(ds)#
-table(ds$WEIGHT)#
-table(ds$HEIGHT)#
-table(ds$SEX)#
-ds=ds[ds$AGE    >= 18 & #
-      ds$WEIGHT >  100 &#
-      ds$WEIGHT <  300  &#
-      ds$HEIGHT >=  59 &#
-      ds$HEIGHT <=  75, 17:20] #
-ds$WEIGHT = 10*ceiling(ds$WEIGHT/10)#
-fr=table(ds$WEIGHT,ds$HEIGHT,ds$SEX)#
-str(fr)#
-options(stringsAsFactors =FALSE)#
-#
-ds = data.frame(fr)#
-ds[,1] = as.numeric(levels(ds[,1]))#
-ds[,2] = as.numeric(levels(ds[,2]))#
-ds[,3] = as.numeric(levels(ds[,3]))
-setwd("/Users/jameshanley/git_repos/statbook/Resources")#
-#
-library(ipumsr)#
-ddi <- read_ipums_ddi("nhis_00009.xml")#
-ds <- read_ipums_micro(ddi)#
-str(ds)#
-table(ds$WEIGHT)#
-table(ds$HEIGHT)#
-table(ds$SEX)#
-ds=ds[ds$AGE    >= 18 & #
-      ds$WEIGHT >  100 &#
-      ds$WEIGHT <  300  &#
-      ds$HEIGHT >=  59 &#
-      ds$HEIGHT <=  75, 17:20] #
-ds$WEIGHT = 10*ceiling(ds$WEIGHT/10)#
-fr=table(ds$WEIGHT,ds$HEIGHT,ds$SEX)
-str(fr)
-ds = data.frame(fr)#
-ds[,1] = as.numeric(levels(ds[,1]))#
-ds[,2] = as.numeric(levels(ds[,2]))#
-ds[,3] = as.numeric(levels(ds[,3]))
-str(ds)
-fr
-ds = data.frame(fr)
-ds
-aggregate(ds$Freq,by=list(w=ds$Weight.lbs,sex=ds$Sex),sum)
-ds$Freq
-aggregate(ds$Freq,by=list(w=ds$Weight.lbs,sex=ds$Sex), sum)
-ds = data.frame(fr)#
-ds[,1] = as.numeric(levels(ds[,1]))#
-ds[,2] = as.numeric(levels(ds[,2]))#
-ds[,3] = as.numeric(levels(ds[,3]))#
-names(ds)[1:3]=c("Weight.lbs","Height.ins","Sex")#
-head(ds)#
-str(ds)
-library(ipumsr)#
-ddi <- read_ipums_ddi("nhis_00009.xml")#
-ds <- read_ipums_micro(ddi)#
-str(ds)#
-table(ds$WEIGHT)#
-table(ds$HEIGHT)#
-table(ds$SEX)#
-ds=ds[ds$AGE    >= 18 & #
-      ds$WEIGHT >  100 &#
-      ds$WEIGHT <  300  &#
-      ds$HEIGHT >=  59 &#
-      ds$HEIGHT <=  75, 17:20] #
-ds$WEIGHT = 10*ceiling(ds$WEIGHT/10)#
-fr=table(ds$WEIGHT,ds$HEIGHT,ds$SEX)#
-str(fr)#
-options(stringsAsFactors =FALSE)#
-#
-ds = data.frame(fr)
-ds
-str(ds)
-levels(ds[,1])
-ds[,1] = as.numeric(ds[,1][levels(ds[,1])])
-ds
-ds = data.frame(fr)#
-str(ds)#
-ds[,1] = as.numeric(ds[,1][levels(ds[,1])])#
-ds[,2] = as.numeric(ds[,2][levels(ds[,2])])#
-ds[,3] = as.numeric(ds[,3][levels(ds[,3])])
-names(ds)[1:3]=c("Weight.lbs","Height.ins","Sex")
-head(ds)
-str(ds)
-aggregate(ds$Freq,by=list(w=ds$Weight.lbs,sex=ds$Sex), sum)
-str(fr)
-options(stringsAsFactors =FALSE)
-str(fr)
-ds = as.data.frame(fr)
-str(ds)
-str(fr)
-# dim(fr)
-dim(fr)
-ds = as.data.frame(fr,stringsAsFactors =FALSE)
-str(ds)
-ds[,1] = as.numeric(ds[,1])
-ds = as.data.frame(fr,stringsAsFactors =FALSE)#
-str(ds)#
-ds[,1] = as.numeric(ds[,1])#
-ds[,2] = as.numeric(ds[,2])#
-ds[,3] = as.numeric(ds[,3])#
-names(ds)[1:3]=c("Weight.lbs","Height.ins","Sex")#
-head(ds)#
-str(ds)
-aggregate(ds$Freq,by=list(w=ds$Weight.lbs,sex=ds$Sex), sum)
-ds=aggregate(ds$Freq,by=list(w=ds$Weight.lbs,sex=ds$Sex), sum)
-ds
-ds=aggregate(ds$Freq,by=list(ds$Weight.lbs,sex=ds$Sex), sum)
-ds = as.data.frame(fr,stringsAsFactors =FALSE)#
-str(ds)#
-ds[,1] = as.numeric(ds[,1])#
-ds[,2] = as.numeric(ds[,2])#
-ds[,3] = as.numeric(ds[,3])#
-names(ds)[1:3]=c("Weight.lbs","Height.ins","Sex")#
-head(ds)#
-str(ds)
-ds=aggregate(ds$Freq,by=list(ds$Weight.lbs,sex=ds$Sex), sum)
-ds
-ds = as.data.frame(fr,stringsAsFactors =FALSE)#
-str(ds)#
-ds[,1] = as.numeric(ds[,1])#
-ds[,2] = as.numeric(ds[,2])#
-ds[,3] = as.numeric(ds[,3])#
-names(ds)[1:3]=c("Weight.lbs","Height.ins","Sex")#
-head(ds)#
-str(ds)
-ds
-str(ds)
-ds = as.data.frame(fr,stringsAsFactors =FALSE)
-str(ds)
-library(ipumsr)#
-ddi <- read_ipums_ddi("nhis_00009.xml")#
-ds <- read_ipums_micro(ddi)#
-str(ds)#
-table(ds$WEIGHT)#
-table(ds$HEIGHT)#
-table(ds$SEX)#
-ds=ds[ds$AGE    >= 18 & #
-      ds$WEIGHT >  100 &#
-      ds$WEIGHT <  300  &#
-      ds$HEIGHT >=  59 &#
-      ds$HEIGHT <=  75, 17:20] #
-ds$WEIGHT = 10*ceiling(ds$WEIGHT/10)#
-fr=table(ds$WEIGHT,ds$HEIGHT,ds$SEX)#
-str(fr)#
-dim(fr)#
-#
-ds = as.data.frame(fr,stringsAsFactors =FALSE)#
-ds[,1] = as.numeric(ds[,1])#
-ds[,2] = as.numeric(ds[,2])#
-ds[,3] = as.numeric(ds[,3])#
-str(ds)
-names(ds)[1:3]=c("Weight.lbs","Height.ins","Sex")
-head(ds)
 str(ds)
 head(ds)
 write.table(ds,"weightsEtc.txt")
@@ -1011,7 +318,6 @@ summary(ds)
 dim(ds)
 plot(ds$Year,ds$Mean.Temp...C.")
 plot(ds$Year,ds$Mean.Temp...C.)
-plot(ds$Year,ds$Mean.Temp...C.)
 ds$Mean.Temp...C.
 ds=ds[ds$Month==12 & !is.na(ds$Mean.Temp...C.),c("Year",#
                       "Mean.Max.Temp...C.",#
@@ -1077,9 +383,176 @@ V[1,1]/4 + V[2,2]/4
 cor(ds[,2:4])
 cor(ds[,2:3])
 ( V = cov(ds[,2:4]) )
-( V = cov(ds[,2:4]) )
 mean(ds$Mean.Temp...C.)
 sd(ds$Mean.Temp...C.)
 9*3/7
 9*3/5
 summary(ds)
+path="https://docs.google.com/spreadsheets/d/1nfQuBoAPoPPuXCthfze5XU3dZWw0ugdTrm-0yXL3JXU/edit?usp=sharing"
+library(readxl)#
+library(xlsx)
+library(readxl)
+ds=read_xlsx(path)
+library(googlesheets)
+gs_ls()
+path="https://docs.google.com/spreadsheets/d/1nfQuBoAPoPPuXCthfze5XU3dZWw0ugdTrm-0yXL3JXU/edit#gid=0"
+library(readxl)
+ds=read_xlsx(path)
+path='https://docs.google.com/spreadsheets/d/1nfQuBoAPoPPuXCthfze5XU3dZWw0ugdTrm-0yXL3JXU/edit#gid=0'
+library(readxl)
+ds=read_xlsx(path)
+ds=read.xlsx("https://docs.google.com/spreadsheets/d/1lAhFCtGGWJUoFXkXwLe7zyiXM8LRhM-TfgukYVtykuw/export?format=xlsx")
+library(readxl)
+ds=read.xlsx("https://docs.google.com/spreadsheets/d/1lAhFCtGGWJUoFXkXwLe7zyiXM8LRhM-TfgukYVtykuw/export?format=xlsx")
+library(xlsx)
+library(xlsx)
+dest = .libPaths()[1]
+install.packages("xlsx",lib=dest)
+library(xlsx)
+ds=read.csv("pFile.csv")
+str(ds)
+ds=read.csv("pFile.csv",as.is=TRUE)
+str(ds)
+ds#entry.no = (ds$page.no-1.   ) * 200  + #
+              (ds$column.no -1) * 100  +#
+               ds$row.no
+head(ds)
+head(ds)
+head(ds) ; tail(ds)
+ds$entry.no = (ds$page.no-1.   ) * 200  + #
+              (ds$column.no -1) * 100  +#
+               ds$row.no#
+head(ds) ; tail(ds)
+ds=read.csv("pFile.csv",as.is=TRUE)#
+str(ds)#
+ds$CDF =  ( (ds$page.no-1.   ) * 200  + #
+            (ds$column.no -1) * 100  +#
+               ds$row.no. ) / 241929#
+head(ds) ; tail(ds)
+ds=read.csv("pFile.csv",as.is=TRUE)#
+str(ds)
+head(ds) ; tail(ds)
+ds$CDF =  ( (ds$page.no-1.   ) * 200  + #
+            (ds$column.no -1) * 100  +#
+               ds$row.no. )
+ds=read.csv("pFile.csv",as.is=TRUE)#
+str(ds)#
+ds$CDF =  ( (ds$page.no   - 1) * 200  + #
+            (ds$column.no - 1) * 100  +#
+               ds$row.no. ) / 241929#
+head(ds) ; tail(ds)
+ds$CDF =  ( (ds$page.no   - 1) * 200  + #
+            (ds$column.no - 1) * 100  +#
+               ds$row.no. )
+head(ds) ; tail(ds)
+ds=read.csv("pFile.csv",as.is=TRUE)#
+str(ds)#
+ds$CDF =  ( (ds$page.no   - 1) * 200  + #
+            (ds$column.no - 1) * 100  +#
+               ds$row.no ) / 241929#
+head(ds) ; tail(ds)
+ds$day = (ds$Day -1)   #
+#
+ds$CDF =  ( (ds$page.no   - 1) * 200  + #
+            (ds$column.no - 1) * 100  +#
+               ds$row.no ) / 241929#
+head(ds) ; tail(ds)
+ds$day = (ds$Month + (1/2)*(ds$AMorPM=="PM") +ds$Hour/12
+ds$day = (ds$Month-4) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/12
+head(ds) ; tail(ds)
+ds$AMorPM=="PM"
+ds$day = (ds$Month-4) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/12
+ds$day
+ds$day = (ds$Month-4) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/24
+hist(ds$day)
+ds$day = (ds$Month-4)*30 + (ds$Day-1) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/24
+hist(ds$day)
+ds$CDF =  ( (ds$page.no   - 1) * 200  + #
+            (ds$column.no - 1) * 100  +#
+               ds$row.no ) / 241929#
+head(ds) ; tail(ds)
+head(ds) ; tail(ds)
+plot(ds#day,ds$CDF)
+plot(ds$day,ds$CDF)
+plot(ds$day,ds$CDF)
+plot(ds$day,ds$CDF,type="l")
+abline(h=1/2)
+L = length(ds$CDF)
+L
+ds$d = ds$CDF - c(0, ds$CDF[1:(L-1)])
+ds$d
+ds$d
+ds
+plot(ds$day, ds$d, type="h" )
+abline(v=30)
+abline(v=30.1,col="blue")
+abline(v=30.1,col="blue",lwd=0.2)
+ds
+ds=read.csv("pFile.csv",as.is=TRUE)#
+str(ds)#
+#
+ds$day = (ds$Month-4)*30 + (ds$Day-1) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/24#
+#
+hist(ds$day)   #
+#
+ds$CDF =  ( (ds$page.no   - 1) * 200  + #
+            (ds$column.no - 1) * 100  +#
+               ds$row.no ) / 241929#
+head(ds) ; tail(ds)#
+#
+plot(ds$day,ds$CDF,type="l")#
+abline(h=1/2)#
+#
+L = length(ds$CDF)#
+#
+ds$d = ds$CDF - c(0, ds$CDF[1:(L-1)])#
+#
+plot(ds$day, ds$d, type="h" )#
+abline(v=30.1,col="blue",lwd=0.2)
+ds=read.csv("pFile.csv",as.is=TRUE)#
+str(ds)#
+#
+ds$day = (ds$Month-4)*30 + (ds$Day-1) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/24#
+#
+hist(ds$day)   #
+#
+ds$CDF =  ( (ds$page.no   - 1) * 200  + #
+            (ds$column.no - 1) * 100  +#
+               ds$row.no ) / 241929#
+head(ds) ; tail(ds)#
+#
+plot(ds$day,ds$CDF,type="l")#
+abline(h=1/2)#
+#
+L = length(ds$CDF)#
+#
+ds$d = ds$CDF - c(0, ds$CDF[1:(L-1)])#
+#
+plot(ds$day, ds$d, type="h" )#
+abline(v=30.1,col="blue",lwd=0.2)
+plot(ds$day, ds$d, type="l")
+plot(ds$day, ds$d, type="h")
+plot(ds$day, ds$d, type="h",lwd=2)
+plot(ds$day, ds$d, type="h",lwd=3)
+plot(ds$day, ds$d, type="h",lwd=4)
+plot(ds$day, ds$d, type="h",lwd=3.5)
+plot(ds$day, ds$d, type="h",lwd=3)
+abline(v=30.1,col="blue",lwd=0.2)
+sum(ds$d)
+ds$p = ds$CDF - c(0, ds$CDF[1:(L-1)])
+plot(ds$day, ds$p, type="h",lwd=3)
+sum(ds$p*ds$Day)
+# sum(ds$p*ds$d)
+sum(ds$p*ds$d)
+sum(ds$p*ds$day)
+var  = sum(ds$p* (ds$day-mean)^2
+var
+var  = sum(ds$p* (ds$day-mean)^2 )
+var
+var  = sum(ds$p* (ds$day-mean)^2 )
+(ds$day-mean)^2
+mean = sum(ds$p*ds$day)
+var  = sum( ds$p * (ds$day-mean)^2 )
+var
+sd  = sqrt( sum( ds$p * (ds$day-mean)^2 ) )
+sd
