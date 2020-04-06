@@ -124,7 +124,7 @@ For now, in this chapter, we are only concentrate on distributions of individual
 
 The main points concerning the **shape of a distribution of individual values** are that:
 
-* The **size of the population has nothing to do with the shape**. If we could measure the distribution of the _diameters_ of one's red blood cells, the size distribution should look the same whether you are smaller person or a larger person, or male or female. The distribution of individuals' _concentrations_ would be the same in  provinces/states/countries with larger/smaller populations of persons. 
+* The **size of the population has nothing to do with the shape**. If we could measure the distribution of the _diameters_ of one's red blood cells, the size distribution should look the same whether you are smaller person or a larger person, or male or female. Moreover, the distribution of individuals' red bllod cell _concentrations_ would be the same in  provinces/states/countries with larger/smaller populations of persons. 
 
 * There is **no default  shape.** The shape is determined by the context
 
@@ -133,27 +133,29 @@ The main points concerning the **shape of a distribution of individual values** 
 
 * Another example are the distributions of hospital size (no. of beds) in different countries or states. [Likewise with the sizes of schools and universities] These might be determined by government policy. In former communist countries, there are often cookie-cutter hospitals, all the same size within a region, and given the names hospital # 1, hospital # 2, etc. In other countries, they might reflect variations in population density, or historical reasons.
 
-* Yet another examples are age-distributions: **many factors determine the age-structure** of a country or region of a country.
+* Yet another examples are age-distributions: **many factors determine the age-structure** of a country or region of a country. It used to be like a pyramid, and still is in less developed countries. See here for some historical and modern 
+[Canadian](https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/pyramid/pyramid.cfm?type=1&geo1=01) and [world](https://www.visualcapitalist.com/animation-population-pyramids-10-biggest-countries/) examples.
 
-* The distribution of age-at-death is determined by the age-distribution of the living -- and by the many factors that drive age-specific death rates.
+* The **distribution of age-at-death** is determined by the age-distribution of the living -- and by the many factors that drive age-specific death rates.
 
 * The (sex-specific) distribution of **adult heights** of a homogeneous population might be close to symmetric (and even close to Gaussian), since the heights are determined by a large number of both 'nature' and 'nurture' factors. But, the (sex-specific) distribution of **adult weights** would not. Weight is determined in part by height, but also by a large number of 'elective' factors that are determined by one's own lifestyle, and by the environment one lives in. In over-nourished North America, the distribution has a long right tail, whereas in some under-nourished parts of the world, it would have a long left tail.  
 
 * Why does the distribution of **blood levels of lead** in 
-[women of child bearing age](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch01/homegrown_exercises_01.pdf) have a long right tail, and why is it better fiot by a log-'normal' than a 'normal' curve? Note that the shape would not change much if  a bigger sample had been taken. The histogram would just be smoother. Might it have to do with subpopulations of persons with different other sources of exposure besides Glasgow's drinking water? For older distributions of blood lead, see here. For modern ones, use Google. 
+[women of child bearing age](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch01/homegrown_exercises_01.pdf#page=2) have a long right tail, and why is it better fiot by a log-'normal' than a 'normal' curve? Note that the shape would not change much if  a bigger sample had been taken. The histogram would just be smoother. Might it have to do with subpopulations of persons with different other sources of exposure besides Glasgow's drinking water? For older distributions of blood lead, see here. For modern ones, use Google. 
 
 * The distribution of the lengths of flight delays might well be determined by competition, regulation, location, etc.
 
-* 'Then God said, 'Let there be a firmament in the midst of the waters, and let it divide the waters from the waters.' Thus God made the firmament, and divided the waters which were under the firmament from the waters which were above the firmament; and it was so. And God called the firmament Heaven. So the evening and the morning were the second day' (Genesis 1:6-8). Did 'God' try to make it so that the distribution of the depths of the ocean  would have a Gaussian curve?
+* 'Then God said, 'Let there be a firmament in the midst of the waters, and let it divide the waters from the waters.' Thus God made the firmament, and divided the waters which were under the firmament from the waters which were above the firmament; and it was so. And God called the firmament Heaven. So the evening and the morning were the second day' (Genesis 1:6-8). Did 'God' try to make it so that the **distribution of the depths of the ocean**  would have a Gaussian curve?
 
 * The distribution is a property of the population or the owner.
 
 * The testing for normality that is so common needs to stop. There are **a few individual-based contexts** (such as with growth curves, where the percentile where an individual is located on a growth curve critical, or in tests to detect doping in sports, where an athlete's [test value is located in a reference distribution](http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/TestingForHumanIGFdoping.pdf)) where the **shape is critical.** However, when we are interested in **estimating the mean** or another measure of (covariate-patten-specific) distributions, the shape of the distribution of individaul values is not that relevant.   
 
-* See here for [more 'odd' shapes of distributions of individual values](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch01/)
-
+* See here for [shapes -- some odd -- of distributions of individual values -- and material on graphics](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/DescriptiveStatistics/).
 
 ## Exercises
+
+Refer again to the guesses about the time of the ice-breakup.
 
 1. Once you have determined the 72 (cumulative) proportions (p's) associated with the 72 half-days, plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
 
@@ -254,8 +256,7 @@ $$CDF_Y(y) = F_Y(y) =  Prob( Y \le y).$$
 $$ q_Y(p) : the \ y \ such \ that \ Prob( Y \le q) = p.$$
 
 
-* The is no _default_ shape for the distributions of random variables,  especially those generated by humans.
+* The is **no default shape** for the distributions of random variables,  especially those representing **individual values** generated by, or concerning, humans. The shape is determined by the context.
 
-Marathon finishing times
 
 

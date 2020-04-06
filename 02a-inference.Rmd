@@ -654,24 +654,27 @@ points(5.2,5.2,pch="+",cex=1.5)
 
 ```
 
+Below, we show the detailed calculations for a person with  a single measurement of 7.15 mmol/L. For now, just focus on the  items shown in red (the prior distribution for $\theta$, blue (the 7.15 for the individual, and the associated likelihood function) and green (the posterior distribution of $\theta$). All the calculations are on the log scale.
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F, fig.cap="If If he looked like he was around 60."}
+```{r,eval=T, echo=F, fig.align="center", fig.height=9, fig.width=9, warning=FALSE, message=F, fig.cap="Worked example, for a person with a measured value of 7.15"}
 
 mu.log.chol.Pop.A = mu.log.chol[1]
-var.log.True.chol.Pop.A=var.between.true.log.chol
+var.log.True.chol.Pop.A = var.between.true.log.chol
 sigma.p=sqrt(var.log.True.chol.Pop.A)
-observed.log.chol = log(7.15) ; observed.log.chol
+observed.log.chol = log(7.15) ; # observed.log.chol
 var.log.Indiv.log.chol = var.within.log.chol
 sigma.e=sqrt(var.log.Indiv.log.chol)
 
-mu.log.chol.Pop.A - 2.5*sqrt(var.log.True.chol.Pop.A)
-mu.log.chol.Pop.A + 2.5*sqrt(var.log.True.chol.Pop.A)
+# mu.log.chol.Pop.A - 2.5*sqrt(var.log.True.chol.Pop.A)
+# mu.log.chol.Pop.A + 2.5*sqrt(var.log.True.chol.Pop.A)
 
 v0=1.0; v1=2.3; dv=0.1
 values=seq(v0,v1,dv)
 finer.values=seq(v0,v1,dv/5)
 
 prior=dnorm(finer.values,mu.log.chol.Pop.A,sigma.p)
+
+
 
 par(mfrow=c(1,1),mar=c(0.1,0.1,0.1,0.1),oma=c(0.1,0.1,0.1,0.1))
 
@@ -680,7 +683,7 @@ y.max=4; y.min= -38
 plot(finer.values,prior,type="l",
 ylim=c(y.min,y.max),
 xlim=c(v0-0.125*dv,v1+0.75*dv),
-xaxt="n",yaxt="n")
+xaxt="n",yaxt="n",lwd=2.5,col="red")
 h=dnorm(mu.log.chol.Pop.A+sigma.p,mu.log.chol.Pop.A,sigma.p)
 segments(mu.log.chol.Pop.A               ,0+h, 
          mu.log.chol.Pop.A+sigma.p       ,0+h,
@@ -699,15 +702,17 @@ segments(mu.log.chol.Pop.A,0,
 text(1,3.5,
 expression(paste("Parameter of Interest: ",
                  theta,
-                 " = A Specific Person's True log[Cholesterol Level]")), cex=1,adj=c(0,0))
+                 " = A Specific Person's True log[Cholesterol Level]")), cex=1.5,adj=c(0,0))
 
 segments(0,2.7, 3,2.5,lty="dotted",lwd=2)
 
 segments(v0,0,v1,0,lwd=0.5,col="lightblue")
-text(1,1.75,"Distrn.: True log[Level]s in all such persons", cex=0.6,adj=c(0,0))
-text(1,0.7,"[ Vertical axis such that a.u.c. = 1 ]", cex=0.5,adj=c(0,0))
+text(1,1.75,"Distrn.: True log[Level]s in all such persons", cex=0.8,adj=c(0,0),,col="red")
+text(1,0.7,"[ Vertical axis such that a.u.c. = 1 ]", cex=0.75,adj=c(0,0),,col="red")
 
-text(2.0,1.4,
+
+
+text(1.9,1.4,
  expression(
    paste(
      "Before observing ", 
@@ -715,9 +720,9 @@ text(2.0,1.4,
       ", this distribution" 
       ) 
   ),
- cex=0.5,adj=c(0,0))
+ cex=0.85,adj=c(0,-0.25),col="red")
  
- text(2.0,0.7,
+ text(1.9,0.7,
  expression(
    paste(
       "serves as ", 
@@ -727,13 +732,16 @@ text(2.0,1.4,
       " )" 
       ) 
   ),
- cex=0.5,adj=c(0,0))
+ cex=1.25,adj=c(0,0.15),col="red")
+ # text(c(mu.log.chol.Pop.A),-1,
+ #    toString(round(exp(mu.log.chol.Pop.A),2)),
+ #  cex=1.5,col="red", adj=c(0.5,1))
  
 
 
 for (v in seq(v0,v1,dv)) {
 	segments(v,-0.1,v,0)
-	text(v,-0.15,toString(v),cex=0.5,adj=c(0.5,1))
+	text(v,-0.15,toString(v),cex=0.8,adj=c(0.5,1))
 	} 
 	
 text(v1+0.5*dv,0,
@@ -742,26 +750,30 @@ text(v1+0.5*dv,0,
      theta,
       ) 
   ),
- cex=1,adj=c(0,0.5))
+ cex=1.5,adj=c(0,0.5))
 
 segments(0, -1, 3, - 1,lty="dotted",lwd=2)	
 y0 = -2
 segments(v0,y0,v1,y0,lwd=0.5,col="lightblue")
 for (v in seq(v0,v1,dv)) {
 	segments(v,y0-0.1,v,y0)
-	text(v,y0-0.2,toString(v),cex=0.5,adj=c(0.5,1))
+	text(v,y0-0.2,toString(v),cex=0.8,adj=c(0.5,1))
 	} 
-text(observed.log.chol,y0-1,"y",cex=0.6,adj=c(0.5,0.5),font=3)
-text(1,y0-1,"Observed log[level] for person in question",  
-   cex=0.6,adj=c(0,0.5))
-points(c(observed.log.chol),y0,pch=19,cex=0.5)
+text(observed.log.chol,y0-1,"y",cex=1.1,adj=c(0.5,0.25),
+     font=3,col="blue" )
+text(c(observed.log.chol),y0-3,
+     toString(round(exp(observed.log.chol),2)),
+  cex=1.5,col="blue", adj=c(0.5,0.5))
+text(1.25,y0-1,"Observed log[level] for person in question",  
+   cex=1.0,adj=c(0,0.9),col="blue")
+points(c(observed.log.chol),y0,pch=19,cex=0.75,col="blue")
 text(v1+0.5*dv,y0,
  expression(
    paste(
      italic(Y)
       ) 
   ),
- cex=1,adj=c(0,0.5))
+ cex=1.25,adj=c(0,0.5))
 
 segments(0, -4, 3, -4,lty="dotted",lwd=2)
 
@@ -772,7 +784,7 @@ text(1, y0-10, expression(
        " ) for selected values of ", 
        theta, 
        "  ..." )),
-   cex = 0.6,adj=c(0,0.5))    
+   cex = 1.0,adj=c(0,0.5))    
 
    
 int=floor((observed.log.chol-v0)/dv)
@@ -806,9 +818,9 @@ text(1, y0-1.5, expression(
        " ), based on observed data, ",
        italic(y)
         )),
-   cex = 0.6,adj=c(0,0.5))
+   cex = 1.0,adj=c(0,0.5))
 text(1, y0-2.5, "[ same (arbitrary) scale for vertical axis ]",
-   cex = 0.5,adj=c(0,0.5))
+   cex = 1.0,adj=c(0,0.5))
 
 for (j in 1:length(theta))
  segments(theta[j],(y0-3.5),
@@ -820,17 +832,25 @@ text(1, y0, expression(
        theta, 
        " ):"
         )),
-   cex = 0.6,adj=c(0,0.5))
-   
+   cex = 1.0,adj=c(0,0.5),col="blue")
+
+
+
 text(1, y0-1, "[ vertical axis scaled so a.u.c. = 1 ]",
-   cex = 0.5,adj=c(0,0.5))
+   cex = 0.8,adj=c(0,0.5))
 
 
 
 y0=y0-2.5
 points(finer.values,
       y0+dnorm(finer.values,observed.log.chol,sigma.e),
-      type="l")
+      type="l", col="blue")
+
+points(c(observed.log.chol),y0,pch=19,cex=0.75,col="blue")
+text(c(observed.log.chol),y0-1,
+     toString(round(exp(observed.log.chol),2)),
+  cex=1.5,col="blue", adj=c(0.5,0.5))
+
 segments(observed.log.chol,y0, 
          observed.log.chol,y0+
            dnorm(observed.log.chol,observed.log.chol,sigma.e),
@@ -842,10 +862,10 @@ segments(observed.log.chol               ,y0+h,
    lty="dotted",lwd=0.5)
 text(observed.log.chol+sigma.e/2,y0+h, 
      toString(round(sigma.e,3)),
-        cex=0.5,col="darkgrey",adj=c(0.5,1.5))
+        cex=0.7,col="darkgrey",adj=c(0.5,1.5))
 text(observed.log.chol+sigma.e/2,y0+h/2, 
      paste("[", toString(round(1/sigma.e^2,2)) ,"]"),
-        cex=0.4,col="darkgrey",adj=c(0.5,1.5))
+        cex=0.6,col="darkgrey",adj=c(0.5,1.5))
         
 text(v1+0.5*dv,y0,
  expression(
@@ -853,12 +873,12 @@ text(v1+0.5*dv,y0,
      theta,
       ) 
   ),
- cex=1,adj=c(0,0.5))
+ cex=1.5,adj=c(0,0.5))
 
-segments(v0,y0,v1,y0,lwd=0.5,col="lightblue")
+segments(v0,y0,v1,y0,lwd=0.5,col="blue")
 for (v in seq(v0,v1,dv)) {
 	segments(v,y0-0.1,v,y0)
-	text(v,y0-0.2,toString(v),cex=0.5,adj=c(0.5,1))
+	text(v,y0-0.2,toString(v),cex=0.8,adj=c(0.5,1))
 	} 
 
 y0=y0-2.5;
@@ -879,7 +899,7 @@ text(1, y0,
       " ) "
       )
      ),
-   cex = 0.6,adj=c(0,0.5)
+   cex = 1.75,adj=c(0,0.25), font=2,col="green"
 )
 text(1, y0-1, 
      expression(
@@ -903,18 +923,18 @@ text(1, y0-1,
       " )"
       )
      ),
-   cex = 0.6,adj=c(0,0.5)
+   cex = 0.9,adj=c(0,0.5)
 )
 text(1, y0-2.5, "[ S.F. = Scaling Factor, chosen so a.u.c. = 1 ]",
-   cex = 0.5,adj=c(0,0.5))
+   cex = 0.9,adj=c(0,0.5))
 
 
 y0=y0-5
 
-segments(v0,y0,v1,y0,lwd=0.5,col="lightblue")
+segments(v0,y0,v1,y0,lwd=0.5,col="blue")
 for (v in seq(v0,v1,dv)) {
 	segments(v,y0-0.1,v,y0)
-	text(v,y0-0.2,toString(v),cex=0.5,adj=c(0.5,1))
+	text(v,y0-0.2,toString(v),cex=0.8,adj=c(0.5,1))
 	}
 
 sigma.combined = sqrt(1/precision.revised.est) 
@@ -925,7 +945,11 @@ weight.e = precision.e / (precision.e + precision.p)
 weight.p = precision.p / (precision.e + precision.p)
 points(finer.values,
       y0+    dnorm(finer.values,mu.combined,sigma.combined),
-      type="l")
+      type="l",lwd=2.5,col="green")
+points(c(mu.combined),y0,pch=19,cex=0.75,col="green")
+
+text(c(mu.combined),y0-1,toString(round(exp(mu.combined),2)),
+  cex=1.5,col="green", adj=c(0.5,1))
       
 segments(mu.combined,y0, 
          mu.combined,y0+
@@ -938,10 +962,10 @@ segments(mu.combined               ,y0+h,
    lty="dotted",lwd=0.5)
 text(mu.combined+sigma.combined/2,y0+h, 
      toString(round(sigma.combined,3)),
-        cex=0.5,col="darkgrey",adj=c(0.5,1.5))
+        cex=0.7,col="darkgrey",adj=c(0.5,1.5))
 text(mu.combined+sigma.combined/2,y0+h/2, 
      paste("[",toString(round(1/sigma.combined^2,2)),"]"),
-        cex=0.4,col="darkgrey",adj=c(0.5,1.5))
+        cex=0.6,col="darkgrey",adj=c(0.5,1.5))
 
 text(v1+0.5*dv,y0,
  expression(
@@ -949,12 +973,13 @@ text(v1+0.5*dv,y0,
      theta,
       ) 
   ),
- cex=1,adj=c(0,0.5))
+ cex=1.5,adj=c(0,0.5))
  
- text(1, y0-2,"Adapted from Irwig et al, JAMA 1991",cex=0.6,adj=c(0,0),
+ text(1, y0-2,"Adapted from Irwig et al, JAMA 1991",cex=0.75,adj=c(0,0),
  font=3)
  
  ```
+
 	
 ## Frequentist approach
 
@@ -967,6 +992,6 @@ Thus, an explanation of a p-value must start with the conditional "IF the parame
 
 
 
-## Does it matter?
+## Does the approach matter?
 
 semantics
