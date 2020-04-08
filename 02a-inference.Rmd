@@ -979,6 +979,63 @@ text(v1+0.5*dv,y0,
  font=3)
  
  ```
+ 
+**combine estimates of different precisions** into one more precise estimate, and do so using the same mathematical laws that are used in the Bayesian approach!]
+
+
+**Example 4** 
+
+We end with a strking example of the limitations of using one-at-a-time frequentist intervals, each in isolation from the next. It is based on the older baseball example in this [classic article](http://www.medicine.mcgill.ca/epidemiology/hanley/bios602/MultilevelData/EfronMorrisJASA1975.pdf).
+
+
+The task is to predict each player's batting average over the remainder of the season using  only the data from the first 4 weeks of the season. Since it proved  difficult to replicate their selection croteria, we used instead the first 40 of [these players](http://mlb.mlb.com/stats/sortable.jsp#elem=%5Bobject+Object%5D&tab_level=child&click_text=Sortable+Player+hitting&game_type='R'&season=2019&season_type=ANY&league_code='MLB'&sectionType=sp&statType=hitting&page=1&ts=1586307216206&playerType=ALL&timeframe=&last_x_days=&split=&sortColumn=ab&sortOrder='desc'&extended=0).
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+
+ 
+path ="http://www.biostat.mcgill.ca/hanley/statbook/MLBatBats.txt"
+
+players=read.table(path)
+
+v.tot = round(var(players$ave),6)
+
+v.binomial = round( mean(players$ave*(1-players$ave)/players$ab), 6)
+
+v.net = v.tot - v.binomial
+
+
+```
+
+The numbers of at bats per player up to mid April ranged from  `r round(summary(players$ab))[1]` to  `r round(summary(players$ab))[6]` (median `r round(summary(players$ab))[3]` ). Efron and Morris used a constant 45. The numbers from mid April to the end of September ranged from `r round(summary(players$AB))[1]` to  `r round(summary(players$AB))[6]` (median `r round(summary(players$AB))[3]` ), or about 9 times as many as in the initial sample.
+
+
+
+Clearly, the extreme results in these first 4 weeks were poor estimates of the perfornmances during the rest of the season. They 'shrink' quite a bit.
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="Batting averages of selected Major League baseball players, 2019"}
+
+
+par(mfrow=c(1,1),mar = c(5,1,1,1))
+
+plot(c(0.15,0.5),c(0,1.1),col="white",
+     ylab="", yaxt="n",
+     xlab="Batting Average, April 16 to end of September",
+     cex.lab=1.75, cex.axis=1.75)
+segments(players$ave, players$y, players$AVE, players$Y,
+         col=2:20)
+segments(seq(.15,.50,0.01),0,seq(.15,.50,0.01),1,col="grey85")
+segments(seq(.15,.50,0.05),0,seq(.15,.50,0.05),1,col="grey65")
+text(0.325,1.085,"Batting averages, March 20 to April 15, 2019",cex=1.75)
+
+```
+
+Clearly, not all of the variance of `r format(v.tot, nsmall = 4)` is 'real'. Much of it, about `r format(v.binomial,nsmall = 4)` worth, is nothing more than binomial variation -- with $n$'s  of the order of 60, and  player-specific true proportions that vary from maybe 0.225 to 0.325. Thus, only about `r format(v.net,nsmall=4)` of it reflects the variance of the player-specific true (long-term) success rates.
+
+The square root of this, sd = `r format(round(sqrt(v.net),3),nsmall=3)`, broadly fits  with the spead we see in the performances during the remainder of the season: the averages range from `r  round(summary(players$AVE)[1],3)` to `r  round(summary(players$AVE)[6],3)`. 
+
+
 
 	
 ## Frequentist approach
