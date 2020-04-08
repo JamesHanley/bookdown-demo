@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-04-06" />
+<meta name="date" content="2020-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -556,6 +556,20 @@ Figure 3.12: A Person’s estimated true cholesterol level from one measurement 
 Figure 3.13: Worked example, for a person with a measured value of 7.15
 </p>
 </div>
+<p><strong>combine estimates of different precisions</strong> into one more precise estimate, and do so using the same mathematical laws that are used in the Bayesian approach!]</p>
+<p><strong>Example 4</strong></p>
+<p>We end with a strking example of the limitations of using one-at-a-time frequentist intervals, each in isolation from the next. It is based on the older baseball example in this <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios602/MultilevelData/EfronMorrisJASA1975.pdf">classic article</a>.</p>
+<p>The task is to predict each player’s batting average over the remainder of the season using only the data from the first 4 weeks of the season. Since it proved difficult to replicate their selection croteria, we used instead the first 40 of <a href="http://mlb.mlb.com/stats/sortable.jsp#elem=%5Bobject+Object%5D&amp;tab_level=child&amp;click_text=Sortable+Player+hitting&amp;game_type=&#39;R&#39;&amp;season=2019&amp;season_type=ANY&amp;league_code=&#39;MLB&#39;&amp;sectionType=sp&amp;statType=hitting&amp;page=1&amp;ts=1586307216206&amp;playerType=ALL&amp;timeframe=&amp;last_x_days=&amp;split=&amp;sortColumn=ab&amp;sortOrder=&#39;desc&#39;&amp;extended=0">these players</a>.</p>
+<p>The numbers of at bats per player up to mid April ranged from 44 to 73 (median 60 ). Efron and Morris used a constant 45. The numbers from mid April to the end of September ranged from 511 to 611 (median 542 ), or about 9 times as many as in the initial sample.</p>
+<p>Clearly, the extreme results in these first 4 weeks were poor estimates of the perfornmances during the rest of the season. They ‘shrink’ quite a bit.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-22"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-22-1.png" alt="Batting averages of selected Major League baseball players, 2019" width="864" />
+<p class="caption">
+Figure 3.14: Batting averages of selected Major League baseball players, 2019
+</p>
+</div>
+<p>Clearly, not all of the variance of 0.00464 is ‘real’. Much of it, about 0.00357 worth, is nothing more than binomial variation – with <span class="math inline">\(n\)</span>’s of the order of 60, and player-specific true proportions that vary from maybe 0.225 to 0.325. Thus, only about 0.00107 of it reflects the variance of the player-specific true (long-term) success rates.</p>
+<p>The square root of this, sd = 0.033, broadly fits with the spead we see in the performances during the remainder of the season: the averages range from 0.224 to 0.326.</p>
 </div>
 </div>
 <div id="frequentist-approach" class="section level2">
