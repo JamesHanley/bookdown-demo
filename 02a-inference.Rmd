@@ -51,12 +51,8 @@ that the Bayesian approach `does not  conform to the approved form of analysis' 
 
 The first-established of the two  'schools' (or 'churches') of statistical inference** makes **direct probabilistic statements about the possible parameter values**. This approach goes back at least as far as the mid-1700's essay 'A method of calculating the exact probability of all conclusions based on induction'; ironically the author was a  Presbyterian minister.
 
-The developments since then are  nicely told in the very readable book [_The Theory That Would Not Die: How Bayes' Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy_ ](https://www.amazon.com/Theory-That-Would-Not-Die-ebook/dp/B0050QB3EQ) by Sharon Bertsch McGrayne, and in her Microsoft lecture
-
-<iframe width="720" height="405" src="https://www.youtube.com/embed/2o-_BGqYM5U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-and her Google lecture
-<iframe width="720" height="405" src="https://www.youtube.com/embed/8oD6eBkjF9o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+The developments since then are  nicely told in the very readable book [_The Theory That Would Not Die: How Bayes' Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy_ ](https://www.amazon.com/Theory-That-Would-Not-Die-ebook/dp/B0050QB3EQ) by Sharon Bertsch McGrayne, and in her [Microsoft lecture](https://www.youtube.com/embed/2o-_BGqYM5U)
+and her [Google lecture](https://www.youtube.com/embed/8oD6eBkjF9o).
 
 Maybe, by calling it the more 'orthodox',  all that Clayton and Hills mean is that the frequentist approach is more popular method today. It got a slow start, and dates from the early 20th century. (In one of our sampling exercises, we will try to determine the relative frequencies of the two approaches in the epidemiology and medical literature).
 
@@ -1011,7 +1007,7 @@ The numbers of at bats per player up to mid April ranged from  `r round(summary(
 
 
 
-Clearly, the extreme results in these first 4 weeks were poor estimates of the perfornmances during the rest of the season. They 'shrink' quite a bit.
+Clearly, the **extreme results in these first 4 weeks were poor estimates of the perfornmances during the rest of the season**. They **'shrunk'** quite a bit.
 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="Batting averages of selected Major League baseball players, 2019"}
@@ -1031,9 +1027,57 @@ text(0.325,1.085,"Batting averages, March 20 to April 15, 2019",cex=1.75)
 
 ```
 
-Clearly, not all of the variance of `r format(v.tot, nsmall = 4)` is 'real'. Much of it, about `r format(v.binomial,nsmall = 4)` worth, is nothing more than binomial variation -- with $n$'s  of the order of 60, and  player-specific true proportions that vary from maybe 0.225 to 0.325. Thus, only about `r format(v.net,nsmall=4)` of it reflects the variance of the player-specific true (long-term) success rates.
+Across the performances **up to mid April**,  the (rounded) variance of `r format(round(v.tot,4), nsmall = 4)` is  **a lot more than** the variances in their **'real'** (longer-term, remaining) performances. Much of the initial variation, about `r format(round(v.binomial,4),nsmall = 4)` worth, is nothing more than binomial variation that you would see with $n$'s  of the order of 60, and  player-specific true proportions that vary from maybe 0.225 to 0.325. [for example, at $\pi$ =0.3 and $n$ = 60, the binomial variance is 0.3 * 0.7 / 60 = `r format(round(0.3*0.7/60,6),nsmall=4)`. Thus, only about `r format(round(v.net,4),nsmall=4)` of it (about `r round(100*v.net/v.tot)`%) reflects the variance of the player-specific true (long-term) success rates.
 
 The square root of this, sd = `r format(round(sqrt(v.net),3),nsmall=3)`, broadly fits  with the spead we see in the performances during the remainder of the season: the averages range from `r  round(summary(players$AVE)[1],3)` to `r  round(summary(players$AVE)[6],3)`. 
+
+Clearly,  most of the many of individual binomial-based point estimates and many of the individual binomial-based frequentist confidence intervals (which we will consider in the next section) that do not use the knowledge that individual season-long averages are confined to a narror band between say 0.250 and 0.325 will not come close to or 'trap' the eventual individual longer-term batting averages. The correct way to make better frequentist intervals is to consider the family of players as an ensemble. If we label a randomly selected player as '_rs_' say, then the long-run average $\pi_{rs}$  is thought of (modelled) as drawn from the distribution (family) of long-run averages. Then  _rs_'s short-term average can be though of as  drawn from (as a realization of) a binomial distribution with parameter $\pi_{rs}$ and sample size $n_{rs}$.
+
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F, fig.cap="Batting averages of selected Major League baseball players, 2019"}
+
+
+library(RColorBrewer)
+
+par(mfrow=c(1,1),mar = c(5,5,1,1))
+
+S =0.04; M=0.29
+
+P = seq(M-2.25*S, M+2.25*S, 0.02)
+
+d = dnorm(P,M,S)
+yMax= max(d)
+nP = length(P)
+
+plot(P, d, ylim=c(-yMax, yMax),
+  xlim=c(0.025,0.575), col="white",
+  ylab="", #yaxt="n",
+     xlab="Longer-term Batting Average",
+     cex.lab=1.75, cex.axis=1.75 )
+
+
+n=60
+dx=0.005
+x = (0:n)
+hc = brewer.pal(10,"Paired"  )
+d0=rep(-yMax,n+1)
+for(i in 1:length(P)) { 	 
+	fr = d[i]
+	segments(P[i],0,  P[i], fr, col=hc[i], lwd=5,lend=2,lend=2 )
+	extra = dbinom(x,n,P[i]) * fr * 1.85 ; 
+	#print(round(max(extra),4))
+	d1 = d0 + extra
+	#print( round(cbind(d0,extra),2 ) )
+	for(j in 1:(n+1)) rect(x[j]/n-dx, d0[j], 
+	                       x[j]/n+dx, d1[j], 
+	                     col=hc[i], border=NA)
+    d0 = d1 
+}
+
+
+
+```
 
 
 
