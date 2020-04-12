@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-04-08" />
+<meta name="date" content="2020-04-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -270,8 +270,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>So you <strong>cannot say</strong> that the true height is <strong>exactly</strong> 275 metres. What <strong>can</strong> you say? And with what certainty?</p>
 <p>You can put <strong>limits</strong> on the true height by asking <strong>what are the minimum and maximum heights that could have produced the observed reading of 70 degrees?</strong></p>
 <p>To do this you need to take the limits one at a time. The <strong>minimum</strong> angle that could have given the (rounded) readout of 70 degrees is 65 degrees, and this corresponds to a minimum height (lower limit) height of <span class="math inline">\(\theta_L\)</span> = 214 metres. The <strong>maximum</strong> angle that could have given the readout of 70 degrees is 75 degrees, and this corresponds to a maximum height (upper limit) of <span class="math inline">\(\theta_U\)</span> = 373 metres. Thus, assuming that the instrument is measuring the angle correctly, and then doing what you are told it does, you are 100% confident that the true height lies in the interval (214, 373). As is clear in the graph, this does not have the typical 275 <span class="math inline">\(\pm\)</span> a single-number (or in sybols, <span class="math inline">\(\hat{\theta} \pm\)</span> ME [‘margin of error’]) that we typically see in reports.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-23"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-23-1.png" alt="Estimating the height of an building by measuring subtended angles. The '70' in the left panel signifies that the real angle was somewhere between 65 and 75 degrees; thus the real height lies between the L and U limits of 214 and 373 metres. In the righ panel, the  interval shown by the thicker black segment to the right of the 3 individual intervals is the  set of parameter values common to all 3." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-24"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-24-1.png" alt="Estimating the height of an building by measuring subtended angles. The '70' in the left panel signifies that the real angle was somewhere between 65 and 75 degrees; thus the real height lies between the L and U limits of 214 and 373 metres. In the righ panel, the  interval shown by the thicker black segment to the right of the 3 individual intervals is the  set of parameter values common to all 3." width="864" />
 <p class="caption">
 Figure 4.1: Estimating the height of an building by measuring subtended angles. The ‘70’ in the left panel signifies that the real angle was somewhere between 65 and 75 degrees; thus the real height lies between the L and U limits of 214 and 373 metres. In the righ panel, the interval shown by the thicker black segment to the right of the 3 individual intervals is the set of parameter values common to all 3.
 </p>
@@ -291,8 +291,8 @@ Figure 4.1: Estimating the height of an building by measuring subtended angles. 
 <p>To do this you need to consider the limits <strong>one scenario at a time</strong>. The <strong>minimum</strong> age that could have given the estimate of 17.6 years is / 1.125 = 15.7 years. The <strong>maximum</strong> age that could have produced this reading is 17.6 / 0.875 = 20.1 years. Thus (assuming the error model is correct!) you are 100% confident that the true age lies in the interval (15.7 , 20.1) years. Again, as is clear in the graph, this does not have the typical 17.6 <span class="math inline">\(\pm\)</span> a single-number margin of error that we typically see in reports. Rather, it is 17.6 <strong>- 2.6</strong> and 17.6 <strong>+ 4.4</strong> !</p>
 <p>But, you can’t arrive at these directly; get there this way. You have to try on various limits, until</p>
 <p><span class="math display">\[ LowerLimit + margin  = 17.6 \ = \   UpperLimit - margin  \]</span></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-25"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-25-1.png" alt="100% Confidence Intervals for a person's chronological age when error distributions (that in this example are wider at the  older ages) are 100% confined within the shaded ranges. Left: based on n = 1 measurement; right: based on n = 4 independent measurements. " width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-26"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-26-1.png" alt="100% Confidence Intervals for a person's chronological age when error distributions (that in this example are wider at the  older ages) are 100% confined within the shaded ranges. Left: based on n = 1 measurement; right: based on n = 4 independent measurements. " width="864" />
 <p class="caption">
 Figure 4.2: 100% Confidence Intervals for a person’s chronological age when error distributions (that in this example are wider at the older ages) are 100% confined within the shaded ranges. Left: based on n = 1 measurement; right: based on n = 4 independent measurements.
 </p>
@@ -314,8 +314,8 @@ Figure 4.2: 100% Confidence Intervals for a person’s chronological age when er
 </blockquote>
 <p>Q: Does this <strong>procedure</strong> for constructing intervals have a 90% success rate, if used up and down all of the ages, say from 10 to 30 years? We could try it out with people of known ages. [answer by simulation]</p>
 <p>You will discover in your simulations that it <strong>might matter</strong> whether you simulate the same number of 16 year olds as 10 years, i.e., what the <strong>mix of real ages</strong> is. This does not matter in the 100% intervals, but it might if you are more nuanced. For example,instead of estimating age by an indirect method, pretend you were were <strong>estimating a person’s height indirectly</strong>, by just <strong>measuring their arm span</strong> (at each height, the mean armspan is very close to the height, but there is a spread of armspans (pardon the pun!)). And (just like in our example 2 where the spread increases with the mean) the spread of armspans is larger in people who are 6 feet tall than it is in people 5 feet tall. BUT, there aren’t as many people 5 feet and 6 feet tall as there are people 5 feet 6 inches. So, the distribution of heights in people with a span of 5 feet 11 might have a different shape than that in people with a span of 5 feet 6, or 5 feet. Simulations (or even some diagrams) could settle the issue as to whether the height-mix (or, in example 2, the age mix) matters. What is your intuition as to whether it affects the perfornace of your nuanced parameter estimates? The point is that your method needs to have the same claimed performance (say 90%) at any age you throw at it.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-27"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-27-1.png" alt="90% Confidence intervals for Chronological Age when only 90% of the error distributions lie within the shaded ranges." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-28"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-28-1.png" alt="90% Confidence intervals for Chronological Age when only 90% of the error distributions lie within the shaded ranges." width="864" />
 <p class="caption">
 Figure 4.3: 90% Confidence intervals for Chronological Age when only 90% of the error distributions lie within the shaded ranges.
 </p>
