@@ -142,6 +142,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="inference.html"><a href="inference.html#frequentist-approach"><i class="fa fa-check"></i><b>3.2</b> Frequentist approach</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="inference.html"><a href="inference.html#frequentist-test-of-a-null-hypothesis"><i class="fa fa-check"></i><b>3.2.1</b> (Frequentist) Test of a Null Hypothesis</a></li>
+<li class="chapter" data-level="3.2.2" data-path="inference.html"><a href="inference.html#the-ingredients-and-the-methods-of-procedure-in-a-statistical-test"><i class="fa fa-check"></i><b>3.2.2</b> The ingredients and the methods of procedure in a statistical test</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="inference.html"><a href="inference.html#does-the-approach-matter"><i class="fa fa-check"></i><b>3.3</b> Does the approach matter?</a></li>
 </ul></li>
@@ -659,9 +660,73 @@ The second problem is that changes in statistical significance are not themselve
 </blockquote>
 <div id="frequentist-test-of-a-null-hypothesis" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> (Frequentist) Test of a Null Hypothesis</h3>
-<p>Use: To assess the evidence provided by sample data in favour of a pre-specified claim or ‘hypothesis’ concerning some parameter(s) or data-generating process. As with confidence intervals, tests of significance make use of the concept of a sampling distribution. Example 1 (see R. A Fisher, Design of Experiments Chapter 2)</p>
+<p>Use: To assess the evidence provided by sample data in favour of a pre-specified claim or ‘hypothesis’ concerning some parameter(s) or data-generating process. As with confidence intervals, tests of significance make use of the concept of a sampling distribution.</p>
+<p><strong>Example 1</strong></p>
+<p>The <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/lady_tasting_tea.pdf">Mathematics of a Lady Tasting Tea.</a> Whether the sensory experiment was actually carried out has been the subject of subsequent <a href="https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2012.00620.x">articles</a>. In 2002, the phrase ‘Lady Tasting Tea’:’ was used as the title, and How Statistics Revolutionized Science in the Twentieth Century the subtitle of <a href="https://www.amazon.ca/Lady-Tasting-Tea-Statistics-Revolutionized/dp/0805071342">this book</a> which you can borrow from the <a href="https://mcgill.overdrive.com/media/E974A53B-3700-474A-9E11-9E8758435E70">McGill Librray</a>. Here is a link to an online copy of <a href="https://www.phil.vt.edu/dmayo/PhilStatistics/b%20Fisher%20design%20of%20experiments.pdf">Fisher’s 1935 book Design of Experiments</a></p>
 <p><img src="statbook_files/figure-html/unnamed-chunk-28-1.png" width="864" style="display: block; margin: auto;" /></p>
 <p><img src="statbook_files/figure-html/unnamed-chunk-29-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-30-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><strong>Example 2</strong></p>
+<blockquote>
+<p>In 1949 a divorce case was heard in which the sole evidence of adultery was that a baby was born almost 50 weeks after the husband had gone abroad on military service. [Preston-Jones vs. Preston-Jones, English House of Lords]. To quote the court “The appeal judges agreed that the limit of credibility had to be drawn somewhere, but on medical evidence 349 (days) while improbable, was scientifically possible.” So the appeal failed. Altman, BMJ 1 November 1980.</p>
+</blockquote>
+<blockquote>
+<p>In Preston-Jones v Preston Jones [1951] 1 All ER 124, the husband was away from the UK from August 17, 1945 to September 2, 1946. On August 13, 1946 the wife gave birth to a normal child and the husband brought a petition for dissolution of marriage on the ground of adultery, the allegation being based on the fact that a period of 360 days elapsed and therefore that the child must have been conceived in adultery. It was held that the court was not entitled to assume judicial knowledge that a child born 360 days after the last coitus between the husband and wife was not the child of marriage. See also Gaskill v Gaskill [1921] page 425 where 331 days could not be regarded as impossible and Hadlum v Hadlum [1948] 2 All ER 412 where in the absence of medical evidence the same conclusion was reached in respect of 348 days. If an interval of 360 days between coitus and birth could not be regarded as a remote possibility, then a fortiori a gestation period of 270-280 days suggested by the appellant could not be said to be abnormal and so the judge could not have been entitled to assume as was urged that Njogu was not the child of the appellant. <a href="http://kenyalaw.org/caselaw/cases/view/8385" class="uri">http://kenyalaw.org/caselaw/cases/view/8385</a></p>
+</blockquote>
+<p>The following is from this <a href="http://www.biostat.mcgill.ca/hanley/statbook/Guttmacher.pdf">‘bible’</a> for those who became parents in the 1970s</p>
+<blockquote>
+<p>What Are the Chances of Delivering on Time?</p>
+</blockquote>
+<blockquote>
+<p>In over 17,000 cases of pregnancy carried beyond the twenty seventh week, 54 per cent delivered before 280 days, 4 percent had their babies either the week before or the week after the calculated date, and 74 per cent within a two-week period before or after the anticipated day of birth.<br />
+On the basis of these data one can calculate the likelihood which the average woman faces when carrying a single infant, not twins, of having her baby, during each week after the twenty-seventh week from the first day of her last menstrual period.</p>
+</blockquote>
+<p>The author then presents a <a href="http://www.biostat.mcgill.ca/hanley/statbook/Guttmacher.pdf#page=7">frequency distribution</a> in 19 rows and 3 columns, with the headers <em>Weeks</em> (27, 28, … 45, 46+), <em>Days</em> (189-196, 196-203, … 308-315, 315+) and <em>Approximate Chance</em> (1:625, 1:625, 1:525, … 1:140, 1:140). We have converted it to a graphic.</p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-31-1.png" width="864" style="display: block; margin: auto;" /> The author does on to say that</p>
+<blockquote>
+<p>Another reliable study has shown that 40 per cent of women go into labor within a ten-day period — five days before and five days after the calculated date, and nearly two thirds within plus or minus ten days of the expected time.</p>
+</blockquote>
+<p>Altman, quoted above, gives a graph based on <a href="http://www.biostat.mcgill.ca/hanley/statbook/Altman1980.pdf#page=2">1970 data from England</a>.</p>
+<p>In that (pre-ultrasound) era, some of the variation was dues to dating errors. But a 2013 article, based on carefully collected daily urine samples found that even with the precise measuremet of the timing of pregranct that these samples provides the <a href="https://www.sciencedaily.com/releases/2013/08/130806203327.htm">length of human pregnancies can vary naturally by as much as five weeks</a></p>
+<blockquote>
+<p>Normally, women are given a date for the likely delivery of their baby that is calculated as 280 days after the onset of their last menstrual period. Yet only four percent of women deliver at 280 days and only 70% deliver within 10 days of their estimated due date, even when the date is calculated with the help of ultrasound.<br />
+Now, for the first time, researchers in the USA have been able to pinpoint the precise point at which a woman ovulates and a fertilised embryo implants in the womb during a naturally conceived pregnancy, and follow the pregnancy through to delivery. Using this information, they have been able to calculate the length of 125 pregnancies.<br />
+“We found that the average time from ovulation to birth was 268 days – 38 weeks and two days,” said Dr Anne Marie Jukic, a postdoctoral fellow in the Epidemiology Branch at the National Institute of Environmental Health Sciences (Durham, USA), part of the National Institutes for Health. “However, even after we had excluded six pre-term births, we found that the length of the pregnancies varied by as much as 37 days.<br />
+”We were a bit surprised by this finding. We know that length of gestation varies among women, but some part of that variation has always been attributed to errors in the assignment of gestational age. Our measure of length of gestation does not include these sources of error, and yet there is still five weeks of variability. It’s fascinating.&quot;<br />
+The possibility that the length of pregnancies can vary naturally has been little researched, as it is impossible to tell the difference between errors in calculations and natural variability without being able to measure correctly the gestational age of a developing fetus. Previous studies conducted as long ago as the 1970s and 1980s had used the slight rise in a woman’s body temperature at waking as a way of detecting when ovulation occurred. This is an inexact measurement and cannot be used to detect when the embryo actually implants in the womb. Science Daily.</p>
+</blockquote>
+<p>But even if the variation is still (naturally) large, the ruling in the Preston-Jones case seems extreme. Altman asks us to look at the distribution of length of gestation in his Fig 1, ‘which the judges apparently did not do.’ Altman himself thought that</p>
+<blockquote>
+<p>most people would feel that the husband was hard done by. Even If this case were heard now, where would you draw the line on the basis of (Altman’s) fig 1 ?<br />
+This case illustrates a failure to use statistical methods when they ought to have been used, a fairly common occurrence. Saying that an event is possible is quite different from saying that it has a probability of, say, one in 100,000. Although not an example from medical research, this case concerne essentially the same difficulty as in many more frequentl encountered problems, such as denning hypertension or obesity Everything varies; it is in trying to draw lines between good and bad, high and low, likely and unlikely, and so on, that many problems arise. Although statistics cannot answer a given question, they can often shed considerable light on the problem. Altman, 1980.</p>
+</blockquote>
+<p>Today, JH would add that we <strong>should <em>also</em> consider any other evidence or testimony presented in the case</strong>. (We will come back to this when discussing the prosecutor’s fallacy.)</p>
+<p><strong>Other Examples</strong>:</p>
+<ul>
+<li>Quality Control (it has given us the terminology)</li>
+<li>Taste-tests (see exercises )</li>
+<li>Jumping the gun in athletics</li>
+<li>Adding water to milk..seeM&amp;M2Example6.6p448</li>
+<li>Water divining..seeM&amp;M2exercise6.44p471</li>
+<li>Randomness of U.S. Draft Lottery of 1970.. see M&amp;M2 Example 6.6 p105-107, and 447-</li>
+<li>Births in New York City after the “Great Blackout”</li>
+<li>John Arbuthnot’s “argument for divine providence”</li>
+<li>US Presidential elections: Taller vs. Shorter Candidate.</li>
+<li>Gelman and Hill, HELP. 50,000 votes</li>
+</ul>
+<p>AM HERE</p>
+</div>
+<div id="the-ingredients-and-the-methods-of-procedure-in-a-statistical-test" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> The ingredients and the methods of procedure in a statistical test</h3>
+<ol style="list-style-type: decimal">
+<li>A claim about a parameter (or about the shape of a distribution, or the way a lottery works, etc.). Note that the null and alternative hypotheses are usually stated using Greek letters, i.e. in terms of population parameters, and in advance of (and indeed without any regard for) sample data. [ Some have been known to write hypotheses of the form H: y– = … , thereby ignoring the fact that the whole point of statistical inference is to say something about the population in general, and not about the sample one happens to study. It is worth remembering that statistical inference is about the individuals one DID NOT study, not about the ones one did. This point is brought out in the absurdity of a null hypothesis that states that in a triangle taste test, exactly p=0.333.. of the n = 10 individuals to be studied will correctly identify the one of the three test items that is different from the two others.]</li>
+<li>A probability model (in its simplest form, a set of assumptions) which allows one to predict how a relevant statistic from a sample of data might be expected to behave under H0.</li>
+<li><p>A probability level or threshold or dividing point below which (i.e. close to a probability of zero) one considers that an event with this low probability ‘is unlikely’ or ‘is not supposed to happen with a single trial’ or ‘just doesn’t happen’. This pre- established limit of extreme-ness is referred to as the “α (alpha) level” of the test.</p></li>
+<li>A sample of data, which under H0 is expected to follow the probability laws in (2).</li>
+<li>The most relevant statistic (e.g. y- if interested in inference about the parameter μ)</li>
+<li>The probability of observing a value of the statistic as extreme or more extreme (relative to that hypothesized under H0) than we observed. This is used to judge whether the value obtained is either ‘close to’ i.e. ‘compatible with’ or ‘far away from’ i.e. ‘incompatible with’, H0. The ‘distance from what is expected under H0’ is usually measured as a tail area or probability and is referred to as the “P-value” of the statistic in relation to H0.</li>
+<li><p>A comparison of this “extreme-ness” or “unusualness” or “amount of evidence against H0” or P-value with the agreed-on “threshold of extreme-ness”. If it is beyond the limit, H0 is said to be “rejected”. If it is not-too-small, H0 is “not rejected”. These two possible decisions about the claim are reported as “the nullhypothesisisrejectedattheP=α significancelevel”or“the null hypothesis is not rejected at a significance level of 5%”.</p></li>
+</ol>
 <p>nificance levels can correspond to small, nonsignificant changes in the underlying variables. 2 separate issues Ho and intervals (treated together in Bayesian)</p>
 <p>• Statistical Quality Control procedures [for Decisions] • Sample survey organizations: Confidence intervals • Statistical Tests of Hypotheses Unlike Bayesian inference, there is no quantified pre-test or pre- data “impression”; the ultimate statements are about data, conditional on an assumed null or other hypothesis. Thus, an explanation of a p-value must start with the conditional “IF the parameter is … the probability that the data woul</p>
 </div>
