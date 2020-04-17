@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-04-12" />
+<meta name="date" content="2020-04-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -137,9 +137,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.1" data-path="inference.html"><a href="inference.html#the-bayesian-approach"><i class="fa fa-check"></i><b>3.1</b> The Bayesian Approach</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="inference.html"><a href="inference.html#example-parameter-is-2-valued-yes-or-no"><i class="fa fa-check"></i><b>3.1.1</b> Example: parameter is 2-valued: yes or no</a></li>
 <li class="chapter" data-level="3.1.2" data-path="inference.html"><a href="inference.html#example-parameter-is-a-proportion"><i class="fa fa-check"></i><b>3.1.2</b> Example: parameter is a proportion</a></li>
-<li class="chapter" data-level="3.1.3" data-path="inference.html"><a href="inference.html#example-parameter-is-a-personal-number-or-population-mean"><i class="fa fa-check"></i><b>3.1.3</b> Example: parameter is a personal number or population mean</a></li>
+<li class="chapter" data-level="3.1.3" data-path="inference.html"><a href="inference.html#examples-parameter-is-a-personal-number-or-population-mean"><i class="fa fa-check"></i><b>3.1.3</b> Examples: parameter is a personal number or population mean</a></li>
+<li class="chapter" data-level="3.1.4" data-path="inference.html"><a href="inference.html#the-bayesian-bottom-line"><i class="fa fa-check"></i><b>3.1.4</b> The Bayesian Bottom Line</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="inference.html"><a href="inference.html#frequentist-approach"><i class="fa fa-check"></i><b>3.2</b> Frequentist approach</a></li>
+<li class="chapter" data-level="3.2" data-path="inference.html"><a href="inference.html#frequentist-approach"><i class="fa fa-check"></i><b>3.2</b> Frequentist approach</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="inference.html"><a href="inference.html#frequentist-test-of-a-null-hypothesis"><i class="fa fa-check"></i><b>3.2.1</b> (Frequentist) Test of a Null Hypothesis</a></li>
+</ul></li>
 <li class="chapter" data-level="3.3" data-path="inference.html"><a href="inference.html#does-the-approach-matter"><i class="fa fa-check"></i><b>3.3</b> Does the approach matter?</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="CI.html"><a href="CI.html"><i class="fa fa-check"></i><b>4</b> Parameter Intervals</a><ul>
@@ -267,6 +270,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <blockquote>
 <p>The drawing of inferences about a population based on data taken from a sample of that population; an inference drawn in this way; the branch of statistics concerned with this procedure.</p>
 </blockquote>
+<p>Gelman and Hills start their regresssion textbook this way:</p>
+<blockquote>
+<p>The goal of statistical inference for the sorts of parametric models that we use is to estimate underlying parameters and summarize our uncertainty in these estimates. We discuss inference more formally in Chapter 18; here it is enough to say that we typically understand a fitted model by plugging in estimates of its parameters, and then we consider the uncertainty in the parameter estimates when <strong>assessing how much we actually have learned from a given dataset.</strong> Gelman and Hills 2007.</p>
+</blockquote>
 <p>We would add to these numerical statements about unknown (and unknowable) constants, as well as the mechanism or process that generated the limited data you got/get to observe.</p>
 <p>Some example parameters – some scientific, some more personal or particularistic – include</p>
 <ul>
@@ -313,6 +320,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="the-bayesian-approach" class="section level2">
 <h2><span class="header-section-number">3.1</span> The Bayesian Approach</h2>
 <p>to probability statements concerning parameter values.</p>
+<blockquote>
+<p>Bayesian inference refers to statistical procedures that <strong>model unknown parameters […] as random variables</strong>. […] Bayesian inference starts with a prior distribution on the unknown parameters and updates this with the likelihood of the data, yielding a posterior distribution which is used for inferences and predictions. Gelman and Hills, 2007, page 143.</p>
+</blockquote>
 <p>This paragraph is taken from this chapter <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/an%20overview%20of%20the%20Bayesian%20approach.pdf">An Overview of the Bayesian Approach</a> in the book Bayesian Approaches to Clinical Trials and Health-Care Evaluation by David Speigelhalter et al, describes it well:</p>
 <blockquote>
 <p>The standard interpretation of probability describes long-run properties of repeated random events (Section 2.1.1). This is known as the frequency interpretation of probability, and standard statistical methods are sometimes referred to as ‘frequentist’. In contrast, the <strong>Bayesian approach</strong> rests on an essentially ‘subjective’ interpretation of probability, which is allowed to express generic uncertainty or ‘degree of belief’ about any unknown but potentially observable quantity, whether or not it is one of a number of repeatable experiments. For example, it is quite reasonable from a subjective perspective to think of a probability of the event ‘Earth will be openly visited by aliens in the next ten years’, whereas it may be difficult to interpret this potential event as part of a ‘long-run’ series. Methods of assessing subjective probabilities and probability distributions will be discussed in Section 5.2.</p>
@@ -464,9 +474,9 @@ Figure 3.6: Prior probability densities for the parameter P, the proportion of t
 </ul>
 <p>We now move on to last parameter genre we will consider.</p>
 </div>
-<div id="example-parameter-is-a-personal-number-or-population-mean" class="section level3">
-<h3><span class="header-section-number">3.1.3</span> Example: parameter is a personal number or population mean</h3>
-<p>We will start with a discrete version of a commonly-wondered-about parameter, the age of a person whom you have just met, or seen a photo of. We will then go on to a full numerical example, your average cholesterol or blood pressure level.</p>
+<div id="examples-parameter-is-a-personal-number-or-population-mean" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> Examples: parameter is a personal number or population mean</h3>
+<p>We will start with a discrete version of a commonly-wondered-about parameter, the age of a person whom you have just met, or seen a photo of. We will then go on to full numerical examples: your average cholesterol or blood pressure level, a baseball player’s batting average</p>
 <p><strong>Example 1</strong></p>
 <p><strong>How old</strong> (or <strong>what age</strong> – if you prefer to avoid speaking of ‘old’) do you think this IBC2006 attendee was when this photo was taken? This is the <em>parameter of interest</em>.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
@@ -555,7 +565,7 @@ Figure 3.13: Worked example, for a person with a measured value of 7.15
 </div>
 <p><strong>combine estimates of different precisions</strong> into one more precise estimate, and do so using the same mathematical laws that are used in the Bayesian approach!]</p>
 <p><strong>Example 4</strong></p>
-<p>We end with a strking example of the limitations of using one-at-a-time frequentist intervals, each in isolation from the next. It is based on the older baseball example in this <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios602/MultilevelData/EfronMorrisJASA1975.pdf">classic article</a>.</p>
+<p>We end with a strking example of the limitations of using one-at-a-time frequentist intervals, each in isolation from the next. It is based on the example in this <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios602/MultilevelData/EfronMorrisJASA1975.pdf">classic article</a>.</p>
 <p>The task is to predict each player’s batting average over the remainder of the season using only the data from the first 4 weeks of the season. Since it proved difficult to replicate their selection croteria, we used instead the first 40 of <a href="http://mlb.mlb.com/stats/sortable.jsp#elem=%5Bobject+Object%5D&amp;tab_level=child&amp;click_text=Sortable+Player+hitting&amp;game_type=&#39;R&#39;&amp;season=2019&amp;season_type=ANY&amp;league_code=&#39;MLB&#39;&amp;sectionType=sp&amp;statType=hitting&amp;page=1&amp;ts=1586307216206&amp;playerType=ALL&amp;timeframe=&amp;last_x_days=&amp;split=&amp;sortColumn=ab&amp;sortOrder=&#39;desc&#39;&amp;extended=0">these players</a>.</p>
 <p>The numbers of at bats per player up to mid April ranged from 44 to 73 (median 60 ). Efron and Morris used a constant 45. The numbers from mid April to the end of September ranged from 511 to 611 (median 542 ), or about 9 times as many as in the initial sample.</p>
 <p>Clearly, the <strong>extreme results in these first 4 weeks were poor estimates of the perfornmances during the rest of the season</strong>. They <strong>‘shrunk’</strong> quite a bit.</p>
@@ -565,21 +575,96 @@ Figure 3.13: Worked example, for a person with a measured value of 7.15
 Figure 3.14: Batting averages of selected Major League baseball players, 2019
 </p>
 </div>
-<p>Across the performances <strong>up to mid April</strong>, the (rounded) variance of 0.0046 is <strong>a lot more than</strong> the variances in their <strong>‘real’</strong> (longer-term, remaining) performances. Much of the initial variation, about 0.0036 worth, is nothing more than binomial variation that you would see with <span class="math inline">\(n\)</span>’s of the order of 60, and player-specific true proportions that vary from maybe 0.225 to 0.325. [for example, at <span class="math inline">\(\pi\)</span> =0.3 and <span class="math inline">\(n\)</span> = 60, the binomial variance is 0.3 * 0.7 / 60 = 0.0035. Thus, only about 0.0011 of it (about 23%) reflects the variance of the player-specific true (long-term) success rates.</p>
-<p>The square root of this, sd = 0.033, broadly fits with the spead we see in the performances during the remainder of the season: the averages range from 0.224 to 0.326.</p>
-<p>Clearly, most of the many of individual binomial-based point estimates and many of the individual binomial-based frequentist confidence intervals (which we will consider in the next section) that do not use the knowledge that individual season-long averages are confined to a narror band between say 0.250 and 0.325 will not come close to or ‘trap’ the eventual individual longer-term batting averages. The correct way to make better frequentist intervals is to consider the family of players as an ensemble. If we label a randomly selected player as ‘<em>rs</em>’ say, then the long-run average <span class="math inline">\(\pi_{rs}\)</span> is thought of (modelled) as drawn from the distribution (family) of long-run averages. Then <em>rs</em>’s short-term average can be though of as drawn from (as a realization of) a binomial distribution with parameter <span class="math inline">\(\pi_{rs}\)</span> and sample size <span class="math inline">\(n_{rs}\)</span>.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-23"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-23-1.png" alt="Batting averages of selected Major League baseball players, 2019" width="864" />
+<p>Across the performances <strong>up to mid April</strong>, the variance is <strong>a lot more than</strong> the variances in their <strong>‘real’</strong> (longer-term, remaining) performances. Thus, only about portion of it reflects the variance of the player-specific true (long-term) success rates. Will will quantify these later, below.</p>
+<p>The individual binomial-based point estimates and frequentist confidence intervals we could construct (see next section) <strong>do not use the knowledge that individual season-long averages are confined to a narror band between say 0.225 and 0.325</strong>. Thus, many of them will not come close to or ‘trap’ the eventual individual longer-term batting averages. The correct way to make better frequentist intervals is to <strong>consider the family of players as an ensemble</strong>. If we label an randomly selected player as ‘<em>rs</em>’ say, then the long-run average <span class="math inline">\(\pi_{rs}\)</span> is thought of (modelled) as drawn from the distribution (family) of long-run averages. A slightly simplified (for display and didactic purposes) version of this is shown in this figure.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-25"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-25-1.png" alt="Simplified Distribution, **for learning purposes**, of Long-term Batting averages of Major League baseball players. Mean = 0.290; SD = 0.040." width="864" />
 <p class="caption">
-Figure 3.15: Batting averages of selected Major League baseball players, 2019
+Figure 3.15: Simplified Distribution, <strong>for learning purposes</strong>, of Long-term Batting averages of Major League baseball players. Mean = 0.290; SD = 0.040.
 </p>
 </div>
+<p>How then should we think of (model) <em>rs</em>’s short-term average? To make it concrete, suppose the number of at bats was <span class="math inline">\(n_{rs}\)</span> = 60, and that we observed 21/60 hits. A natural way is to view the 21/60 as the end-result of (of having come to us in) <strong>two stages</strong>, each involving a random draw <strong>(i)</strong> <span class="math inline">\(\pi_{rs}\)</span> was randomly drawn from the above distribution and then <strong>(ii)</strong> the number of hits was drawn from a binomial(<span class="math inline">\(n\)</span>=60) distribution with the probability/proportion parameter <span class="math inline">\(\pi_{rs}\)</span>. Symbolically, we would describe the <strong>provenance</strong> of the <span class="math inline">\(y\)</span> (= 21 for example) as <span class="math display">\[(i) \ \pi_{rs} \sim distribution \ in \ previous \ figure ; \ \ (ii) \ \ y | \pi_{rs} \sim Binomial(n=60, \pi = \pi_{rs}).\]</span></p>
+<blockquote>
+<p><strong>provenance</strong> : The fact of coming from some particular <strong>source</strong> or quarter; <strong>origin, derivation</strong>. The history of the ownership of a work of art or an antique, used as a guide to authenticity or quality; a documented record of this. A distinction is sometimes drawn between the ‘origin’ and the ‘provenance’ of an article, as in ‘A Canterbury origin is probable, Canterbury provenance is certain.’ Forestry. The geographic source of tree seed; the place of origin of a tree. Also: seed from a specific location. <strong>Oxford English Dictionary</strong></p>
+</blockquote>
+<p>The bottom part of this next figure shows the frequencies of the possible end-results (possible observed short term averages). The colours show their ‘provenance’. The top part shows the provenance of the ‘21/60’ short-term averages in particular. Note the direction of the arrow, showing the reverse-engineering, <strong>from what we observe</strong> (the 21/60) <strong>back to</strong> where (who) it could have arisen from. The use of reverse probabilities is at the heart of the Bayesian approach. In his worked example, when Bayes wrote about ‘the exact probability of all conclusions based on induction’, his <strong>conclusions</strong> referred to the <strong>origin</strong> (original location, unknown) of a billiard ball, and his data referred to the locations where it came to rest in a number of trials.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-26"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-26-1.png" alt="The bottom frequency distribution shows the expected frequencies of Short-term Batting averages from _n_ = 60 at bats by types of players shown in previous figure. For each possible short-term average, the colours of their components  show their 'provenance', i.e., which types of player this average arises from, and the relative contributions from each type. **As an example, highlighted, within the column enclosed by a dashed line,  is the provenance of the short-term averages that equal 21/60 = 0.350**. In a real application, after n=60, IF ALL ONE KNEW WAS THE 21/60, one would not know which type of player, i.e., which colour, one was observing. Nevertheless, the theoretical calculations show that a **short-term average of 21/60 = 0.350 is more likely to have been produced by a player who bats 0.320 or 0.300 or even lower, that one who bats 0.350 or or 0.360 or higher.** Much more of the probability distribution lies to the left of the 0.350 than to the right of it! So we need to 'shrink' the observed 0.350 towards the 0.290." width="864" />
+<p class="caption">
+Figure 3.16: The bottom frequency distribution shows the expected frequencies of Short-term Batting averages from <em>n</em> = 60 at bats by types of players shown in previous figure. For each possible short-term average, the colours of their components show their ‘provenance’, i.e., which types of player this average arises from, and the relative contributions from each type. <strong>As an example, highlighted, within the column enclosed by a dashed line, is the provenance of the short-term averages that equal 21/60 = 0.350</strong>. In a real application, after n=60, IF ALL ONE KNEW WAS THE 21/60, one would not know which type of player, i.e., which colour, one was observing. Nevertheless, the theoretical calculations show that a <strong>short-term average of 21/60 = 0.350 is more likely to have been produced by a player who bats 0.320 or 0.300 or even lower, that one who bats 0.350 or or 0.360 or higher.</strong> Much more of the probability distribution lies to the left of the 0.350 than to the right of it! So we need to ‘shrink’ the observed 0.350 towards the 0.290.
+</p>
+</div>
+<p>Efron and Morris give a specific formula for merging the initial information (the ‘centre’ of 0.290) with the new information (the 21/60 = 0.350). the ‘shrunken’ estimate of the long-term average is a compromise, a weighted average, with the weights determined by the precision of the 21/60 (determined mainly by the 60) and the narrowness of the ‘parent’ distribution. We don’t need to get into these at this stage.</p>
+<p>But, we will address a question some of you may already have concerning the batting average example, compared with the cholesterol example. In the cholesterol example, the ‘prior’ (or population) distribution of individuals’ true levels would be reasonably <strong>well known already</strong>. But in the baseball example, even though they had easy access to all of players’ previous years of data, Efron and Morris <strong>did not use any historical data</strong>. Instead, they use a ‘<strong>contemporaneous</strong>’ prior: they inferred what the location and spread of the distribution shown in the second of our three baseball figures, just from the March to Aril 15, 2019 numbers shown along the top of the first figure. They did this by subtraction. In the simplest case, if all the short-term averages were based on the same number (<span class="math inline">\(n\)</span>) of at bats (Efron and Morris used <span class="math inline">\(n\)</span> = 45), we have the following variance (V) formula<br />
+<span class="math display">\[V[short.term.averages] =  V[long.term.averages] +  \  V[binomial.proportion \ based \ on \ n.]\]</span> They got to measure the left hand quantity empirically from their data on April 26 / May 3, 1970, and they knew from mathematical statistics that the rightmost quantity is of the order of <span class="math inline">\(0.3 \times 0.7 \  / \ 45\)</span> = 0.0047. Thus they could deduce the spread of the long-term averages.</p>
+<p>In <em>our</em> 2019 data, the numbers of early-season at bats vary from player to player, but we will simplify the math by taking a typical <span class="math inline">\(n\)</span>. Across the performances <strong>up to mid April</strong>, the (rounded) variance of the individual batting averages, (i.e., the left-hand <span class="math inline">\(V\)</span> in the above equation) is 0.004640. The binomial variation that you would see with <span class="math inline">\(n\)</span>’s of the order of 60 is approximately 0.003570. Player-specific true proportions vary from maybe 0.225 to 0.325. [for example, at <span class="math inline">\(\pi\)</span> =0.30 and <span class="math inline">\(n\)</span> = 60, the binomial variance is 0.30 * 0.70 / 60 = 0.003500.] Thus, by solving the equation <span class="math display">\[0.004640 =  V[long.term.averages] +  \  0.003500\]</span></p>
+<p>we can back-calculate that the variance of the player-specific true (long-term) success rates is only about 0.001070. [The square root of this, sd = 0.033, broadly fits with the spead we see in the performances during the remainder of the season: the averages range from 0.224 to 0.326.]</p>
+<p>To <strong>distinguish it from the typical Bayes</strong> approach, this <strong>double use of the data</strong> is sometime referred to as an ‘<strong>Empirical Bayes</strong>’ approach.</p>
+<blockquote>
+<p>Empirical Bayes methods are procedures for statistical inference in which the prior distribution is estimated from the data. This approach stands in contrast to <strong>standard</strong> Bayesian methods, for which the <strong>prior distribution is fixed before any data are observed</strong>. Despite this difference in perspective, empirical Bayes may be viewed as an approximation to a fully Bayesian treatment of a hierarchical model wherein the parameters at the highest level of the hierarchy are set to their most likely values, instead of being integrated out. Empirical Bayes, also known as maximum marginal likelihood, represents one approach for setting hyperparameters. Wikipedia, 2020.04.15</p>
+</blockquote>
+</div>
+<div id="the-bayesian-bottom-line" class="section level3">
+<h3><span class="header-section-number">3.1.4</span> The Bayesian Bottom Line</h3>
+<ul>
+<li><p>As the examples all show, the Bayesian approach allows for direct-speak about parameters, without any of the ‘legalese’ we will have to use when using the frequentist approach.</p></li>
+<li>Because the end-product is a probability distribution for the parameter (<span class="math inline">\(\theta\)</span> say), we can directly talk about the (pre-) and post-data <strong>probability that</strong>, say,</li>
+<li><span class="math inline">\(\theta &gt; 0,\)</span> or (for any prespecified values <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>)</li>
+<li><span class="math inline">\(A &lt; \theta &lt; B\)</span>, or</li>
+<li><span class="math inline">\(\theta &gt; A\)</span> or</li>
+<li><span class="math inline">\(\theta &lt; B\)</span>, or, as in the case of hemophilia carriage,</li>
+<li><p><span class="math inline">\(\theta = Yes\)</span> or <span class="math inline">\(\theta = No.\)</span></p></li>
+<li>If <span class="math inline">\(\theta\)</span> = batting average for the remainder of season,</li>
+<li><p>Prob(a 21/60 player will have <span class="math inline">\(\theta \ge\)</span> .350) = 0.11 [see Fig]</p></li>
+<li>Likewise, if we fix a desired probability <span class="math inline">\(P\)</span>, we can calculate <span class="math inline">\(\theta\)</span> values <span class="math inline">\(\theta_{lower}\)</span> and <span class="math inline">\(\theta_{upper}\)</span> such that</li>
+<li>Prob( <span class="math inline">\(\theta &gt; \theta_{lower}) = P\)</span>, or</li>
+<li>Prob( <span class="math inline">\(\theta &lt; \theta_{upper}) = P\)</span>, or</li>
+<li><p>Prob( <span class="math inline">\(\theta_{lower} &lt; \theta &lt; \theta_{upper}) = P\)</span>.</p></li>
+<li>Again, if <span class="math inline">\(\theta\)</span> = batting average for the remainder of season, then, in the case of a 21/60 player,</li>
+<li><p>Prob(0.245 &lt; <span class="math inline">\(\theta\)</span> &lt; 0.377) = 0.95.</p></li>
+<li><strong>Contrast this with the 95% frequentist confidence interval</strong>, based <strong>only on the 21/60</strong>, and <strong>not on the knowledge that</strong> (historically, or even by back-calculation just from the early 2019 data) <strong>most players’ batting averages for a year are between 0.225 and 0.325</strong>,</li>
+<li><p><span class="math inline">\(\theta_{lower}\)</span> = 0.231 ; <span class="math inline">\(\theta_{upper}\)</span> = 0.484) = 0.95.</p></li>
+</ul>
+<p>Can this shrinkage be done without ‘priors’?</p>
 </div>
 </div>
 <div id="frequentist-approach" class="section level2">
 <h2><span class="header-section-number">3.2</span> Frequentist approach</h2>
-<p>2 separate issues Ho and intervals (treated together in Bayesian)</p>
+<p>In their chapter 11, Null hypotheses and p-values, Clayton and Hills tell us</p>
+<blockquote>
+<p>With most probability models there is one particular value of the parameter which corresponds to there being <em>no effect</em>. This value is called the <em>null</em> value, or <em>null hypothesis</em>. For a parameter <span class="math inline">\(\theta\)</span> we will denote this null value by <span class="math inline">\(\theta_0\)</span>. In classical statistical theory, considerable emphasis is placed on the need to disprove (or reject) the null hypothesis before claiming positive findings, and the procedures which are used to this end are called <em>statistical significance tests</em>. However, the emphasis in this theory on accepting or rejecting null hypotheses has led to widespread misunderstanding and misreporting in the medical research literature. In epidemiology, which is not an experimental science, the usefulness of the idea has been particularly questioned. Undoubtedly the idea of statistical significance testing has been overused, at the expense of the more useful procedures for <em>estimation</em> of parameters which we have discussed in previous chapters. However, it remains useful. A null hypotheses is a <em>simplifying</em> hypothesis and measuring the extent to which the data are in conflict with it remains a valuable part of scientific reasoning. In recent years there has been a trend away from a making a straight choice between accepting or rejecting the null hypothesis. Instead, the <em>degree</em> of support for the null hypothesis is measured, for example using the log likelihood ratio at the null value of the parameter. Clayton and Hills, p96. [Their illustration involved an investigation of the possible linkage of the HLA locus to nasopharyngeal cancer susceptibility]</p>
+</blockquote>
+<p>In Chapter 2.4, Classical hypothesis testing, Gelman and Hill tell us</p>
+<blockquote>
+<p>The possible outcomes of a hypothesis test are ‘reject’ or ‘not reject.’ It is never possible to ‘accept’ a statistical hypothesis, only to find that the data are not sufficient to reject it.<br />
+.<br />
+Comparisons of parameters to fixed values and each other: interpreting confidence intervals as hypothesis tests<br />
+.<br />
+The hypothesis that a parameter equals zero (or any other fixed value) is directly tested by fitting the model that includes the parameter in question and examining its 95% interval. If the interval excludes zero (or the specified fixed value), then the hypothesis is rejected at the 5% level.<br />
+Testing whether two parameters are equal is equivalent to testing whether their difference equals zero. We do this by including both parameters in the model and then examining the 95% interval for their difference. As with inference for a single parameter, the confidence interval is commonly of more interest than the hypothesis test. For example, if support for the death penalty has decreased by 6% <span class="math inline">\(\pm\)</span> 2.1%, then the magnitude of this estimated difference is probably as important as that the change is statistically significantly different from zero. The hypothesis of whether a parameter is positive is directly assessed via its confidence interval. If both ends of the 95% confidence interval exceed zero, then we are at least 95% sure (under the assumptions of the model) that the parameter is positive. Testing whether one parameter is greater than the other is equivalent to examining the confidence interval for their difference and testing for whether it is entirely positive.</p>
+</blockquote>
+<p>In section 2.5, Problems with statistical significance, they warn that</p>
+<blockquote>
+<p>A common statistical error is to summarize comparisons by statistical significance and to draw a sharp distinction between significant and nonsignificant results. The approach of summarizing by statistical significance has two pitfalls, one that is obvious and one that is less well known. First, statistical significance does not equal practical significance. For example, if the estimated predictive effect of height on earnings were $10 per inch with a standard error of $2, this would be statistically but not practically significant. Conversely, an estimate of $10,000 per inch with a standard error of $10,000 would not be statistically significant, but it has the possibility of being practically significant (and also the possibility of being zero; that is what “not statistically significant” means).<br />
+.<br />
+The second problem is that changes in statistical significance are not themselves significant. By this, we are not merely making the commonplace observation that any particular threshold is arbitrary — for example, only a small change is required to move an estimate from a 5.1% significance level to 4.9%, thus moving it into statistical significance. Rather, we are pointing out that even large changes in significance levels can correspond to small, nonsignificant changes in the underlying variables.</p>
+</blockquote>
+<p>They illustrate the application of basic statistical methods with a story, in which, a couple of years before, they received a fax, entitled HELP!, from a member of a residential organization:</p>
+<blockquote>
+<p>Last week we had an election for the Board of Directors. Many residents believe, as I do, that the election was rigged and what was supposed to be votes being cast by 5,553 of the 15,372 voting households is instead a fixed vote with fixed percentages being assigned to each and every candidate making it impossible to participate in an honest election.</p>
+</blockquote>
+<p>Gelman and Hill devote 3 pages to their analysis, which led them to</p>
+<blockquote>
+<p>conclude that the intermediate vote tallies are consistent with [the null hypothesis of] random voting. As we explained to the writer of the fax, opinion polls of 1000 people are typically accurate to within 2%, and so, if voters really are arriving at random, it makes sense that batches of 1000 votes are highly stable. This does not rule out the possibility of fraud, but it shows that this aspect of the voting is consistent with the null hypothesis.</p>
+</blockquote>
+<div id="frequentist-test-of-a-null-hypothesis" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> (Frequentist) Test of a Null Hypothesis</h3>
+<p>Use: To assess the evidence provided by sample data in favour of a pre-specified claim or ‘hypothesis’ concerning some parameter(s) or data-generating process. As with confidence intervals, tests of significance make use of the concept of a sampling distribution. Example 1 (see R. A Fisher, Design of Experiments Chapter 2)</p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-28-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-29-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>nificance levels can correspond to small, nonsignificant changes in the underlying variables. 2 separate issues Ho and intervals (treated together in Bayesian)</p>
 <p>• Statistical Quality Control procedures [for Decisions] • Sample survey organizations: Confidence intervals • Statistical Tests of Hypotheses Unlike Bayesian inference, there is no quantified pre-test or pre- data “impression”; the ultimate statements are about data, conditional on an assumed null or other hypothesis. Thus, an explanation of a p-value must start with the conditional “IF the parameter is … the probability that the data woul</p>
+</div>
 </div>
 <div id="does-the-approach-matter" class="section level2">
 <h2><span class="header-section-number">3.3</span> Does the approach matter?</h2>
