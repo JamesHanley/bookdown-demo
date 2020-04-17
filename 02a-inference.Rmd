@@ -1302,8 +1302,12 @@ Gelman and Hill devote 3 pages to their analysis, which led them to
 ### (Frequentist) Test of a Null Hypothesis
 
 Use: To assess the evidence provided by sample data in favour of a pre-specified claim or 'hypothesis' concerning some parameter(s) or data-generating process. As with confidence intervals, tests of significance make use of the concept of a sampling distribution.
-Example 1 (see R. A Fisher, Design of Experiments Chapter 2)
 
+**Example 1** 
+
+The [Mathematics of a Lady Tasting Tea.](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/lady_tasting_tea.pdf) Whether the sensory experiment was actually carried out has been the subject of subsequent [articles](https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2012.00620.x). In 2002, the phrase 'Lady Tasting Tea':' was used as the title, and  How Statistics Revolutionized Science in the Twentieth Century the subtitle of [this book](https://www.amazon.ca/Lady-Tasting-Tea-Statistics-Revolutionized/dp/0805071342) which you can borrow from the [McGill Librray]( 
+https://mcgill.overdrive.com/media/E974A53B-3700-474A-9E11-9E8758435E70).
+Here is a link to an online copy of  [Fisher's 1935 book Design of Experiments](https://www.phil.vt.edu/dmayo/PhilStatistics/b%20Fisher%20design%20of%20experiments.pdf)
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
 
@@ -1435,6 +1439,137 @@ text(DX/7, y+dy/2,"LADY\nSAYS",adj=c(1,0.5),cex=1.5,font=2)
 
 ```
 
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
+
+par(mfrow=c(1,1),mar = rep(0,4) )
+
+plot(c(0,1),c(0,1), ylim=c(0,1),
+     col="white", xaxt="n",yaxt="n",frame=FALSE)
+
+y = 0.99
+text(0.5,y,
+     "What is the PROBABILITY OF DOING THIS WELL IF [H0]\na Person, Aware of the Design, is JUST GUESSING?",
+     adj=c(0.5,1), cex=1.75,font=2)
+
+y=0.25
+x = seq(.3,.9,.15); dx=.15/2.5
+f = c(1,16,36,16,1); dy=0.01
+
+for(j in 1:5){
+   rect(x[j]-dx, y, x[j]+dx, y+f[j]*dy,col="grey90" )
+   text(x[j],y+f[j]*dy, paste(toString(f[j]),"/70",sep=""),
+        adj=c(0.5,-0.25),font=1+(j==5))
+   
+   rect(x[j]-dx, y-0.02, x[j]+dx, y-0.24)
+   segments(x[j]-dx, y-0.13, x[j]+dx, y-0.13)
+   segments(x[j], y-0.02, x[j], y-0.24)
+   A = j-1
+   I=1
+   nn =c(A,4-A,4-A,A)
+   for(yy in c(y-0.07,y-0.17) ) {
+     for(xx in c(x[j]-dx/2,x[j]+dx/2) ) {
+        txt = toString( nn[I] )
+        text(xx,yy,txt,font=1+(j==5))
+        I=I+1
+     }
+   }
+}
+text(0.1,0.65, "Probability\nof This\nResult",
+     adj=c(0.5,1),cex=1.75,font=2)
+segments(0.1, y, 0.1, y-0.13,lwd=2)
+arrows  (0.1, y-0.13, 0.20, y-0.13,length=0.06,angle=40,lwd=2)
+
+```
+
+**Example 2** 
+
+>In 1949 a divorce case was heard in which the sole evidence of adultery was that a baby was born almost 50 weeks after the husband had gone abroad on military service. [Preston-Jones vs. Preston-Jones, English House of Lords]. To quote the court "The appeal judges agreed that the limit of credibility had to be drawn somewhere, but on medical evidence 349 (days) while improbable, was scientifically possible." So the appeal failed. Altman, BMJ 1 November 1980.
+
+> In Preston-Jones v Preston Jones [1951] 1 All ER 124, the husband was away from the UK from August 17, 1945 to September 2, 1946. On August 13, 1946 the wife gave birth to a normal child and the husband brought a petition for dissolution of marriage on the ground of adultery, the allegation being based on the fact that a period of 360 days elapsed and therefore that the child must have been conceived in adultery. It was held that the court was not entitled to assume judicial knowledge that a child born 360 days after the last coitus between the husband and wife was not the child of marriage. See also Gaskill v Gaskill [1921] page 425 where 331 days could not be regarded as impossible and Hadlum v Hadlum [1948] 2 All ER 412 where in the absence of medical evidence the same conclusion was reached in respect of 348 days. If an interval of 360 days between coitus and birth could not be regarded as a remote possibility, then a fortiori a gestation period of 270-280 days suggested by the appellant could not be said to be abnormal and so the judge could not have been entitled to assume as was urged that Njogu was not the child of the appellant. http://kenyalaw.org/caselaw/cases/view/8385
+
+
+
+The following is from this ['bible'](http://www.biostat.mcgill.ca/hanley/statbook/Guttmacher.pdf) for those who became parents in the 1970s
+
+> What Are the Chances of Delivering on Time?
+
+> In over 17,000 cases of pregnancy carried beyond the twenty seventh week, 54 per cent delivered before 280 days, 4 percent had their babies either the week before or the week after the calculated date, and 74 per cent within a two-week period before or after the anticipated day of birth.  
+On the basis of these data one can calculate the likelihood
+which the average woman faces when carrying a single infant,
+not twins, of having her baby, during each week after the
+twenty-seventh week from the first day of her last menstrual
+period.
+
+The author then presents a [frequency distribution](http://www.biostat.mcgill.ca/hanley/statbook/Guttmacher.pdf#page=7) in 19 rows and 3 columns, with the headers _Weeks_ (27, 28, ... 45, 46+), _Days_ (189-196, 196-203, ... 308-315, 315+) and _Approximate Chance_ (1:625, 1:625, 1:525, ... 1:140, 1:140). We have converted it to a graphic.
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
+
+Week = 28:46
+OneinChance=c(625,625,525,240,240, 135,115,58,39,22, 11,5,3.5,5.67,12, 34,74,140,140)
+Percentage = 100/OneinChance; 
+Percentage = 100*Percentage / sum(Percentage)
+
+par(mfrow=c(1,1),mar = c(4,6,0,0) )
+
+plot(Week,Percentage,type="h",lwd=3,cex.lab=2,cex.axis=2)
+abline(h=seq(1,29,1),col="lightblue",lwd=0.5)
+abline(h=seq(5,25,5),col="lightblue",lwd=2)
+
+```
+The author does on to say that
+
+> Another reliable study has shown that 40 per cent of
+women go into labor within a ten-day period — five days before and five days after the calculated date, and nearly two thirds within plus or minus ten days of the expected time.
+
+Altman, quoted above,  gives a graph based on [1970 data from
+England](http://www.biostat.mcgill.ca/hanley/statbook/Altman1980.pdf#page=2).
+
+In that (pre-ultrasound) era, some of the variation was dues to dating errors. But a 2013 article, based on carefully collected daily urine samples found that even with the precise measuremet of the timing of pregranct that these samples provides the [length of human pregnancies can vary naturally by as much as five weeks](https://www.sciencedaily.com/releases/2013/08/130806203327.htm)
+
+ 
+> Normally, women are given a date for the likely delivery of their baby that is calculated as 280 days after the onset of their last menstrual period. Yet only four percent of women deliver at 280 days and only 70% deliver within 10 days of their estimated due date, even when the date is calculated with the help of ultrasound.  
+Now, for the first time, researchers in the USA have been able to pinpoint the precise point at which a woman ovulates and a fertilised embryo implants in the womb during a naturally conceived pregnancy, and follow the pregnancy through to delivery. Using this information, they have been able to calculate the length of 125 pregnancies.  
+"We found that the average time from ovulation to birth was 268 days -- 38 weeks and two days," said Dr Anne Marie Jukic, a postdoctoral fellow in the Epidemiology Branch at the National Institute of Environmental Health Sciences (Durham, USA), part of the National Institutes for Health. "However, even after we had excluded six pre-term births, we found that the length of the pregnancies varied by as much as 37 days.  
+"We were a bit surprised by this finding. We know that length of gestation varies among women, but some part of that variation has always been attributed to errors in the assignment of gestational age. Our measure of length of gestation does not include these sources of error, and yet there is still five weeks of variability. It's fascinating."  
+The possibility that the length of pregnancies can vary naturally has been little researched, as it is impossible to tell the difference between errors in calculations and natural variability without being able to measure correctly the gestational age of a developing fetus. Previous studies conducted as long ago as the 1970s and 1980s had used the slight rise in a woman's body temperature at waking as a way of detecting when ovulation occurred. This is an inexact measurement and cannot be used to detect when the embryo actually implants in the womb.  Science Daily.
+
+But even if the variation is still (naturally) large, the ruling in the Preston-Jones case seems extreme. Altman asks us to look at the distribution of length of gestation in his Fig 1, 'which the judges apparently did not do.'  Altman himself thought that 
+
+>most people would feel that the husband was hard done by. Even If this case were heard now, where would you draw the line on the basis of (Altman's) fig 1 ?  
+This case illustrates a failure to use statistical methods when
+they ought to have been used, a fairly common occurrence. Saying that an event is possible is quite different from saying that it has a probability of, say, one in 100,000. Although not an example from medical research, this case concerne essentially the same difficulty as in many more frequentl encountered problems, such as denning hypertension or obesity
+Everything varies; it is in trying to draw lines between good and bad, high and low, likely and unlikely, and so on, that many problems arise. Although statistics cannot answer a given question, they can often shed considerable light on the problem. Altman, 1980.
+
+Today, JH would add that we **should _also_ consider any other evidence or testimony presented in the case**. (We will come back to this when discussing the prosecutor's fallacy.)
+
+**Other Examples**:
+
+* Quality Control (it has given us the terminology) 
+* Taste-tests (see exercises )
+* Jumping the gun in athletics
+* Adding water to milk..seeM&M2Example6.6p448
+* Water divining..seeM&M2exercise6.44p471
+* Randomness of U.S. Draft Lottery of 1970.. see M&M2
+Example 6.6 p105-107, and 447-
+* Births in New York City after the "Great Blackout"
+* John Arbuthnot's "argument for divine providence"
+* US Presidential elections: Taller vs. Shorter Candidate.
+* Gelman and Hill, HELP. 50,000 votes
+
+AM HERE
+
+### The ingredients and the methods of procedure in a statistical test
+
+1. A claim about a parameter (or about the shape of a distribution, or the way a lottery works, etc.). Note that the null and alternative hypotheses are usually stated using Greek letters, i.e. in terms of population parameters, and in advance of (and indeed without any regard for) sample data. [ Some have been known to write hypotheses of the form H: y– = ... , thereby ignoring the fact that the whole point of statistical inference is to say something about the population in general, and not about the sample one happens to study. It is worth remembering that statistical inference is about the individuals one DID NOT study, not about the ones one did. This point is brought out in the absurdity of a null hypothesis that states that in a triangle taste test, exactly p=0.333.. of the n = 10 individuals to be studied will correctly identify the one of the three test items that is different from the two others.]
+2. A probability model (in its simplest form, a set of assumptions) which allows one to predict how a relevant statistic from a sample of data might be expected to behave under H0.
+3. A probability level or threshold or dividing point below which (i.e. close to a probability of zero) one considers that an event with this low probability 'is unlikely' or 'is not supposed to happen with a single trial' or 'just doesn't happen'. This pre- established limit of extreme-ness is referred to as the "α (alpha) level" of the test.
+
+
+4. A sample of data, which under H0 is expected to follow the probability laws in (2).
+5. The most relevant statistic (e.g. y- if interested in inference about the parameter μ)
+6. The probability of observing a value of the statistic as extreme or more extreme (relative to that hypothesized under H0) than we observed. This is used to judge whether the value obtained is either 'close to' i.e. 'compatible with' or 'far away from' i.e. 'incompatible with', H0. The 'distance from what is expected under H0' is usually measured as a tail area or probability and is referred to as the "P-value" of the statistic in relation to H0.
+7. A comparison of this "extreme-ness" or "unusualness" or "amount of evidence against H0 " or P-value with the agreed-on "threshold of extreme-ness". If it is beyond the limit, H0 is said to be "rejected". If it is not-too-small, H0 is "not rejected". These two possible decisions about the claim are reported as "the nullhypothesisisrejectedattheP=α significancelevel"or"the null hypothesis is not rejected at a significance level of 5%".
 
 
 nificance levels can correspond to small, nonsignificant changes in the underlying variables.
