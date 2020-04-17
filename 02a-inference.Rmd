@@ -8,7 +8,13 @@ The Oxford English Dictionary defines it as
 
 >The drawing of inferences about a population based on data taken from a sample of that population; an inference drawn in this way; the branch of statistics concerned with this procedure.
 
+Gelman and Hills start their regresssion textbook this way:
+
+>The goal of statistical inference for the sorts of parametric models that we use is to estimate underlying parameters and summarize our uncertainty in these estimates. We discuss inference more formally in Chapter 18; here it is enough to say that we typically understand a fitted model by plugging in estimates of its parameters, and then we consider the uncertainty in the parameter estimates when **assessing how much we actually have learned from a given dataset.** Gelman and Hills 2007.
+
 We would add to these numerical statements about unknown (and unknowable) constants, as well as the mechanism or process that generated the limited data you got/get to observe.
+
+
 
 Some example parameters -- some scientific, some more personal or particularistic -- include
 
@@ -78,6 +84,8 @@ leading to this New York Times headline
 ## The Bayesian Approach
 
 to probability statements concerning parameter values.
+
+>Bayesian inference refers to statistical procedures that **model unknown parameters [...] as random variables**. [...] Bayesian inference starts with a prior distribution on the unknown parameters and updates this with the likelihood of the data, yielding a posterior distribution which is used for inferences and predictions. Gelman and Hills, 2007, page 143.
 
 This paragraph is taken from this chapter
 [An Overview of the Bayesian Approach](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/an%20overview%20of%20the%20Bayesian%20approach.pdf)
@@ -421,11 +429,11 @@ text(0.025,1.25*max(posterior.density), "Posterior Probability Density of P afte
 We now move on to last parameter genre we will consider.
 
 
-### Example: parameter is a personal number or population mean
+### Examples: parameter is a personal number or population mean
 
 We will start with a discrete version of a commonly-wondered-about parameter, 
 the age of a person whom you have just met, or seen a photo of.
-We will then go on to a full numerical example, your average cholesterol or blood pressure level.
+We will then go on to  full numerical examples: your average cholesterol or blood pressure level, a baseball player's  batting average
 
 **Example 1**
 
@@ -981,7 +989,7 @@ text(v1+0.5*dv,y0,
 
 **Example 4** 
 
-We end with a strking example of the limitations of using one-at-a-time frequentist intervals, each in isolation from the next. It is based on the older baseball example in this [classic article](http://www.medicine.mcgill.ca/epidemiology/hanley/bios602/MultilevelData/EfronMorrisJASA1975.pdf).
+We end with a strking example of the limitations of using one-at-a-time frequentist intervals, each in isolation from the next. It is based on the example in this [classic article](http://www.medicine.mcgill.ca/epidemiology/hanley/bios602/MultilevelData/EfronMorrisJASA1975.pdf).
 
 
 The task is to predict each player's batting average over the remainder of the season using  only the data from the first 4 weeks of the season. Since it proved  difficult to replicate their selection croteria, we used instead the first 40 of [these players](http://mlb.mlb.com/stats/sortable.jsp#elem=%5Bobject+Object%5D&tab_level=child&click_text=Sortable+Player+hitting&game_type='R'&season=2019&season_type=ANY&league_code='MLB'&sectionType=sp&statType=hitting&page=1&ts=1586307216206&playerType=ALL&timeframe=&last_x_days=&split=&sortColumn=ab&sortOrder='desc'&extended=0).
@@ -999,6 +1007,7 @@ v.tot = round(var(players$ave),6)
 v.binomial = round( mean(players$ave*(1-players$ave)/players$ab), 6)
 
 v.net = v.tot - v.binomial
+
 
 
 ```
@@ -1027,63 +1036,408 @@ text(0.325,1.085,"Batting averages, March 20 to April 15, 2019",cex=1.75)
 
 ```
 
-Across the performances **up to mid April**,  the (rounded) variance of `r format(round(v.tot,4), nsmall = 4)` is  **a lot more than** the variances in their **'real'** (longer-term, remaining) performances. Much of the initial variation, about `r format(round(v.binomial,4),nsmall = 4)` worth, is nothing more than binomial variation that you would see with $n$'s  of the order of 60, and  player-specific true proportions that vary from maybe 0.225 to 0.325. [for example, at $\pi$ =0.3 and $n$ = 60, the binomial variance is 0.3 * 0.7 / 60 = `r format(round(0.3*0.7/60,6),nsmall=4)`. Thus, only about `r format(round(v.net,4),nsmall=4)` of it (about `r round(100*v.net/v.tot)`%) reflects the variance of the player-specific true (long-term) success rates.
+Across the performances **up to mid April**,  the variance  is  **a lot more than** the variances in their **'real'** (longer-term, remaining) performances. Thus, only about portion of it reflects the variance of the player-specific true (long-term) success rates. Will will quantify these later, below. 
 
-The square root of this, sd = `r format(round(sqrt(v.net),3),nsmall=3)`, broadly fits  with the spead we see in the performances during the remainder of the season: the averages range from `r  round(summary(players$AVE)[1],3)` to `r  round(summary(players$AVE)[6],3)`. 
+The individual binomial-based point estimates and frequentist confidence intervals we could construct (see next section) **do not use the knowledge that individual season-long averages are confined to a narror band between say 0.225 and 0.325**. Thus, many of them will not come close to or 'trap' the eventual individual longer-term batting averages. The correct way to make better frequentist intervals is to **consider the family of players as an ensemble**. If we label an randomly selected player as '_rs_' say, then the long-run average $\pi_{rs}$  is thought of (modelled) as drawn from the distribution (family) of long-run averages. A slightly simplified (for display and didactic purposes) version of this is shown in this figure.
 
-Clearly,  most of the many of individual binomial-based point estimates and many of the individual binomial-based frequentist confidence intervals (which we will consider in the next section) that do not use the knowledge that individual season-long averages are confined to a narror band between say 0.250 and 0.325 will not come close to or 'trap' the eventual individual longer-term batting averages. The correct way to make better frequentist intervals is to consider the family of players as an ensemble. If we label a randomly selected player as '_rs_' say, then the long-run average $\pi_{rs}$  is thought of (modelled) as drawn from the distribution (family) of long-run averages. Then  _rs_'s short-term average can be though of as  drawn from (as a realization of) a binomial distribution with parameter $\pi_{rs}$ and sample size $n_{rs}$.
+```{r,eval=T, echo=F, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F}
 
+   M=0.29 ; S =0.04
+   
+   A.plus.B = M*(1-M)/(S^2) - 1
+   
+   A.parameter = A.plus.B *    M
+   B.parameter = A.plus.B * (1-M)
+   
+    n=60
+   
+   highlighted.ave = 21/n
+   
+   a.para = highlighted.ave*n
+   b.para = n - a.para
+   
+```
 
-
-```{r,eval=T, echo=F, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F, fig.cap="Batting averages of selected Major League baseball players, 2019"}
-
-
-library(RColorBrewer)
-
-par(mfrow=c(1,1),mar = c(5,5,1,1))
-
-S =0.04; M=0.29
-
-P = seq(M-2.25*S, M+2.25*S, 0.02)
-
-d = dnorm(P,M,S)
-yMax= max(d)
-nP = length(P)
-
-plot(P, d, ylim=c(-yMax, yMax),
-  xlim=c(0.025,0.575), col="white",
-  ylab="", #yaxt="n",
-     xlab="Longer-term Batting Average",
-     cex.lab=1.75, cex.axis=1.75 )
+```{r,eval=T, echo=F, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F}
 
 
-n=60
-dx=0.005
-x = (0:n)
-hc = brewer.pal(10,"Paired"  )
-d0=rep(-yMax,n+1)
-for(i in 1:length(P)) { 	 
-	fr = d[i]
-	segments(P[i],0,  P[i], fr, col=hc[i], lwd=5,lend=2,lend=2 )
-	extra = dbinom(x,n,P[i]) * fr * 1.85 ; 
-	#print(round(max(extra),4))
-	d1 = d0 + extra
-	#print( round(cbind(d0,extra),2 ) )
-	for(j in 1:(n+1)) rect(x[j]/n-dx, d0[j], 
-	                       x[j]/n+dx, d1[j], 
-	                     col=hc[i], border=NA)
-    d0 = d1 
+battingAverageRainbow = function(part){
+  
+   library(RColorBrewer)
+  
+   P = seq(M-2.25*S, M+2.25*S, 0.02)
+   
+   dx=0.004
+   x = (0:n)
+   
+   d = dnorm(P,M,S)
+   yMax= 1.05*max(d)
+   if(part == 2) yMax = 6
+   nP = length(P)
+   d0=rep(0,n+1)
+
+   par(mfrow=c(1,1),mar = c(5,5,1,1))
+
+   YLIM = c(0,yMax)
+   XLAB = "Longer-term Batting Average"
+   if(part==2) XLAB = "Short-term Batting Average"
+
+   plot(P, d, ylim=c(0, yMax),
+      xlim=c(0.025,0.575), col="white",
+      ylab="Frequency",xlab=XLAB, yaxt="n",
+      cex.lab=1.75, cex.axis=1.75 )
+
+   hc = brewer.pal(10,"Paired"  )
+   
+   where.from = rep(0,nP)
+
+   for(i in 1:nP) { 
+     
+	    fr = d[i]
+	    
+	    if(part==1) segments(P[i],0,  
+	                         P[i], fr, col=hc[i],                                      lwd=5,lend=2,lend=2 )
+	    
+	    if(part==2) {
+          
+          extra = dbinom(x,n,P[i]) * fr  ;
+          d1 = d0 + extra
+	        for(j in 1:(n+1)){
+	          
+	           rect(x[j]/n-dx, d0[j], 
+	                            x[j]/n+dx, d1[j], 
+	                            col=hc[i], border=NA)
+	          
+	           if( x[j]/n == highlighted.ave & i == nP){
+	           	   rect( 
+	                 x[j]/n-2*dx, -0.035*yMax, 
+	                 x[j]/n+2*dx, 1.025*d1[j],lwd=1,
+	                 lty="dotted",border="grey25")
+	                 
+	                 arrows(x[j]/n, 1.025*d1[j],
+	                        x[j]/n, 0.800*yMax,
+	                        length=0.07, angle=30, lwd=1)
+	           } 
+	          
+	       if( x[j]/n == highlighted.ave) where.from[i] = 
+	                 extra[j]
+	          
+	       if(i==1 & j < 36) text(x[j]/n,0,toString(x[j]),
+	                     adj=c(0.5,1.5),
+	                     cex=0.6+0.2*(j==22),
+	                     font=1+(j==22))
+	       if(i==1 & j == 36) text(x[j]/n,0,
+	               paste("/",toString(n)),
+	                     adj=c(0.5,1.5),cex=0.8,
+	                     font=2)
+          
+	       } # j
+          
+        
+	          
+         d0 = d1 
+             
+    	}  #part 2
+    	
+  } # i
+   
+  if(part==1) text(0.175,2*yMax/3,
+          paste("SD =",toString(round(S,2))),cex=1.25)
+   
+   
+ybar = sum(d0*x/n)/sum(d0)
+sd   =  sqrt(sum(d0* (x/n - ybar)^2 ) / sum(d0))
+
+  
+  if(part==2){
+      ybar = sum(d0*x/n)/sum(d0)
+      sd   =  sqrt(sum(d0* (x/n - ybar)^2 ) / sum(d0))
+      txt = paste("sd =", toString(round(sd,3)) )
+      text(0.175,2*max(d0)/3,txt,cex=1.25)
+
+  	  y = 0.890*yMax
+  	  
+  	  continuous.P  = seq(0.2,0.4,0.005)
+  	  a.para = highlighted.ave*n
+  	  b.para = n - a.para
+  	  
+  	  d.continuous.P = dbeta(continuous.P,
+  	                         A.parameter+a.para,
+  	                         B.parameter+b.para)/16
+  	  lines(continuous.P,y+d.continuous.P,lwd=0.6)
+  	  
+      for(i in 1:nP){
+        rect(P[i]-dx/2,y,   
+             P[i]+dx/2,y+where.from[i],
+                          col=hc[i],border=NA)
+        text(P[i], y - 0.010*yMax , toString(P[i]),
+              adj=c(0.5,1),cex=0.8, srt=30)
+      } 
+      rect( P[1] -5*dx,  y- 0.085*yMax, 
+	        P[nP]+5*dx,  y+ 1.1*max(where.from),lwd=1,
+	                     lty="dotted",border="grey25")
+      text(0.3, y - 0.045*yMax , "Long-Term Average",
+              adj=c(0.5,1),cex=0.8)
+      
+      txt = paste("Probability Distribution\nof types of players\nfrom which\nshort-term averages\nof", toString(n*highlighted.ave),"/",
+              toString(n),"arise")
+      text(P[nP]+7*dx, y+ 1.0*max(where.from),
+           txt, adj=c(0,1) )
+
+  }
+    
+
+} # fn
+	
+
+```
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Simplified Distribution, **for learning purposes**, of Long-term Batting averages of Major League baseball players. Mean = 0.290; SD = 0.040."}
+
+battingAverageRainbow(1)
+
+```
+
+How then should we think of (model)  _rs_'s short-term average? To make it concrete, suppose the number of at bats was $n_{rs}$ = 60, and that we observed 21/60 hits. A natural way is to view the 21/60 as the end-result of (of having come to us in) **two stages**, each involving a random draw **(i)** $\pi_{rs}$ was randomly drawn from the above distribution and then **(ii)** the number of hits was drawn from a binomial($n$=60) distribution with the probability/proportion parameter $\pi_{rs}$. Symbolically, we would describe the **provenance** of the $y$ (= 21 for example) as
+$$(i) \ \pi_{rs} \sim distribution \ in \ previous \ figure ; \ \ (ii) \ \ y | \pi_{rs} \sim Binomial(n=60, \pi = \pi_{rs}).$$
+
+>**provenance** : The fact of coming from some particular **source** or quarter; **origin, derivation**.
+The history of the ownership of a work of art or an antique, used as a guide to authenticity or quality; a documented record of this.
+A distinction is sometimes drawn between the ‘origin’ and the ‘provenance’ of an article, as in 'A Canterbury origin is probable, Canterbury provenance is certain.'
+Forestry. The geographic source of tree seed; the place of origin of a tree. Also: seed from a specific location. **Oxford English Dictionary**
+
+The bottom part of this next figure shows the frequencies of the possible end-results (possible observed short term averages). The colours show their 'provenance'. The top  part shows the provenance of the '21/60' short-term averages in particular. Note the direction of the arrow, showing the reverse-engineering, **from what we observe** (the 21/60) **back to** where (who) it could have arisen from. The use of reverse probabilities is at the heart of the Bayesian approach. In his worked example, when Bayes wrote about 'the exact probability of all conclusions based on induction', his **conclusions** referred to the **origin** (original location, unknown) of a billiard ball, and his data referred to the locations where it came to rest in a number of trials. 
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F, fig.cap="The bottom frequency distribution shows the expected frequencies of Short-term Batting averages from _n_ = 60 at bats by types of players shown in previous figure. For each possible short-term average, the colours of their components  show their 'provenance', i.e., which types of player this average arises from, and the relative contributions from each type. **As an example, highlighted, within the column enclosed by a dashed line,  is the provenance of the short-term averages that equal 21/60 = 0.350**. In a real application, after n=60, IF ALL ONE KNEW WAS THE 21/60, one would not know which type of player, i.e., which colour, one was observing. Nevertheless, the theoretical calculations show that a **short-term average of 21/60 = 0.350 is more likely to have been produced by a player who bats 0.320 or 0.300 or even lower, that one who bats 0.350 or or 0.360 or higher.** Much more of the probability distribution lies to the left of the 0.350 than to the right of it! So we need to 'shrink' the observed 0.350 towards the 0.290."}
+
+battingAverageRainbow(2)
+
+```
+
+Efron and Morris give a specific formula for merging the initial information (the  'centre' of 0.290) with the new information (the 21/60 = 0.350). the 'shrunken' estimate of the long-term average is a compromise, a weighted average, with the weights determined by the precision  of the  21/60 (determined mainly by the 60) and the narrowness of the 'parent' distribution. We don't need to get into these at this stage. 
+
+But, we will address a question some of you may already have concerning the batting average example, compared with the cholesterol example. In the cholesterol example, the 'prior' (or population) distribution of individuals' true levels would be reasonably **well known already**. But in the baseball example, even though they had easy access to all of players' previous years of data, Efron and Morris **did not use any historical data**. Instead, they use a '**contemporaneous**' prior: they inferred what the location and spread of the distribution shown in the second of our three baseball figures, just from the March to Aril 15, 2019 numbers shown along the top of the first figure. They did this by subtraction. In the simplest case, if all the short-term averages were based on the same number ($n$) of at bats (Efron and Morris used $n$ = 45), we have the following variance (V) formula  
+$$V[short.term.averages] =  V[long.term.averages] +  \  V[binomial.proportion \ based \ on \ n.]$$
+They got to measure the left hand quantity empirically from their data on April 26 / May 3, 1970, and they knew from mathematical statistics that the rightmost quantity is of the order of  $0.3 \times 0.7 \  / \ 45$ = 
+`r format(round(0.3 * 0.7 / 45,4), nsmall=4 ) `. Thus they could deduce the spread of the long-term averages.
+
+In _our_ 2019 data, the numbers of early-season at bats vary from player to player, but we will simplify the math by taking a typical $n$. 
+Across the performances **up to mid April**,  the (rounded) variance of the individual batting averages, (i.e., the left-hand $V$ in the above equation) is `r format(round(v.tot,6), nsmall = 6)`. The binomial variation that you would see with $n$'s  of the order of 60 is approximately `r format(round(v.binomial,6),nsmall = 6)`.  Player-specific true proportions vary from maybe 0.225 to 0.325. [for example, at $\pi$ =0.30 and $n$ = 60, the binomial variance is 0.30 * 0.70 / 60 = `r format(round(0.30*0.70/60,6),nsmall=6)`.] Thus, 
+by solving the equation
+$$0.004640 =  V[long.term.averages] +  \  0.003500$$
+
+we can back-calculate that the variance of the player-specific true (long-term) success rates is only about `r format(round(v.net,6),nsmall=6)`. [The square root of this, sd = `r format(round(sqrt(v.net),3),nsmall=3)`, broadly fits  with the spead we see in the performances during the remainder of the season: the averages range from `r  round(summary(players$AVE)[1],3)` to `r  round(summary(players$AVE)[6],3)`.] 
+
+To **distinguish it  from the typical Bayes** approach, this **double use of the data** is sometime referred to as an '**Empirical Bayes**' approach.
+
+> Empirical Bayes methods are procedures for statistical inference in which the prior distribution is estimated from the data. This approach stands in contrast to **standard** Bayesian methods, for which the **prior distribution is fixed before any data are observed**. Despite this difference in perspective, empirical Bayes may be viewed as an approximation to a fully Bayesian treatment of a hierarchical model wherein the parameters at the highest level of the hierarchy are set to their most likely values, instead of being integrated out. Empirical Bayes, also known as maximum marginal likelihood, represents one approach for setting hyperparameters. Wikipedia, 2020.04.15
+
+
+### The Bayesian Bottom Line
+
+* As the examples all show, the Bayesian approach allows for direct-speak about parameters, without any of the 'legalese' we will have to use when using the frequentist approach.
+
+* Because the end-product is a probability distribution for the parameter ($\theta$ say), we can directly talk about the (pre-) and post-data **probability that**, say,
+   + $\theta > 0,$ 
+or (for any prespecified values $A$ and $B$)
+   + $A < \theta < B$, or 
+   + $\theta > A$ or 
+   + $\theta < B$, or, as in the case of hemophilia carriage, 
+   + $\theta = Yes$ or $\theta = No.$
+   
+* If $\theta$ = batting average for the remainder of season,
+   + Prob(a 21/60 player will have $\theta \ge$ .350) = `r round(1-pbeta(21/60, A.parameter+a.para, B.parameter+b.para),2)` [see Fig]
+
+* Likewise, if we fix a desired probability $P$, we can calculate  $\theta$ values $\theta_{lower}$ and $\theta_{upper}$ such that
+   + Prob( $\theta > \theta_{lower}) = P$, or
+   + Prob( $\theta < \theta_{upper})  = P$, or
+   + Prob( $\theta_{lower} < \theta < \theta_{upper})  = P$.
+   
+* Again, if $\theta$ = batting average for the remainder of season, then, in the case of a 21/60 player,
+   + Prob(`r round(qbeta(0.025, A.parameter+a.para, B.parameter+b.para),3)` < $\theta$ < `r round(qbeta(0.975, A.parameter+a.para, B.parameter+b.para),3)`) = 0.95.
+
+* **Contrast this with the 95% frequentist confidence interval**, based **only on the 21/60**, and **not on the  knowledge that** (historically, or even by back-calculation just from the early 2019 data) **most players'  batting averages for a year are between 0.225 and 0.325**,
+   + $\theta_{lower}$ = `r round(qbeta(0.025, a.para, b.para+1),3)` ; $\theta_{upper}$ =  `r round(qbeta(0.975, a.para+1, b.para),3)`) = 0.95.
+
+Can this shrinkage be done without 'priors'?
+	
+## Frequentist approach
+
+In their chapter 11, Null hypotheses and p-values, Clayton and Hills tell us
+
+> With most probability models there is one particular value of the parameter which corresponds to there being _no effect_. This value is called the _null_ value, or _null hypothesis_. For a parameter $\theta$ we will denote this null value by $\theta_0$. In classical statistical theory, considerable emphasis is placed on the need to disprove (or reject) the null hypothesis before claiming positive findings, and the procedures which are used to this end are called _statistical significance tests_. However, the emphasis in this theory on accepting or
+rejecting null hypotheses has led to widespread misunderstanding and misreporting in the medical research literature. In epidemiology, which is not an 
+experimental science, the usefulness of the idea has been particularly questioned. Undoubtedly the idea of statistical significance testing has been overused, at the expense of the more useful procedures for _estimation_
+of parameters which we have discussed in previous chapters. However, it remains useful. A null hypotheses is a _simplifying_ hypothesis and measuring the extent to which the data are in conflict with it remains a valuable part of scientific reasoning. In recent years there has been a trend away from a making a straight choice between accepting or rejecting the null
+hypothesis. Instead, the _degree_ of support for the null hypothesis is measured, for example using the log likelihood ratio at the null value of the
+parameter. Clayton and Hills, p96. [Their illustration involved an investigation of the possible linkage of the HLA locus to nasopharyngeal cancer susceptibility] 
+
+In Chapter 2.4, Classical hypothesis testing, Gelman and Hill tell us
+
+>The possible outcomes of a hypothesis test are 'reject' or 'not reject.' It is never possible to 'accept' a statistical hypothesis, only to find that the data are not sufficient to reject it.   
+.   
+Comparisons of parameters to fixed values and each other: interpreting confidence intervals as hypothesis tests   
+.   
+The hypothesis that a parameter equals zero (or any other fixed value) is directly tested by fitting the model that includes the parameter in question and examining its 95% interval. If the interval excludes zero (or the specified fixed value), then the hypothesis is rejected at the 5% level.   
+Testing whether two parameters are equal is equivalent to testing whether their difference equals zero. We do this by including both parameters in the model and then examining the 95% interval for their difference. As with inference for a single parameter, the confidence interval is commonly of more interest than the hypothesis test. For example, if support for the death penalty has decreased by 6% $\pm$ 2.1%, then the magnitude of this estimated difference is probably as important as that the change is statistically significantly different from zero.
+The hypothesis of whether a parameter is positive is directly assessed via its confidence interval. If both ends of the 95% confidence interval exceed zero, then we are at least 95% sure (under the assumptions of the model) that the parameter is positive. Testing whether one parameter is greater than the other is equivalent to examining the confidence interval for their difference and testing for whether it is entirely positive.
+
+In section 2.5, Problems with statistical significance, they warn that
+
+>A common statistical error is to summarize comparisons by statistical significance and to draw a sharp distinction between significant and nonsignificant results. The approach of summarizing by statistical significance has two pitfalls, one that is obvious and one that is less well known.
+First, statistical significance does not equal practical significance. For example, if the estimated predictive effect of height on earnings were $10 per inch with a standard error of $2, this would be statistically but not practically significant. Conversely, an estimate of $10,000 per inch with a standard error of $10,000 would not be statistically significant, but it has the possibility of being practically significant (and also the possibility of being zero; that is what “not statistically significant” means).   
+.   
+The second problem is that changes in statistical significance are not themselves significant. By this, we are not merely making the commonplace observation that any particular threshold is arbitrary — for example, only a small change is required to move an estimate from a 5.1% significance level to 4.9%, thus moving it into statistical significance. Rather, we are pointing out that even large changes in significance levels can correspond to small, nonsignificant changes in the underlying variables.
+
+They illustrate the application of basic statistical methods with a story, in which, a couple of years before, they received a fax, entitled HELP!, from a member of a residential organization:
+
+>Last week we had an election for the Board of Directors. Many residents believe, as I do, that the election was rigged and what was supposed to be votes being cast by 5,553 of the 15,372 voting households is instead a fixed vote with fixed percentages being assigned to each and every candidate making it impossible to participate in an honest election.
+
+Gelman and Hill devote 3 pages to their analysis, which led them to 
+
+>conclude that the intermediate vote tallies are consistent with [the null hypothesis of] random voting. As we explained to the writer of the fax, opinion polls of 1000 people are typically accurate to within 2%, and so, if voters really are arriving at random, it makes sense that batches of 1000 votes are highly stable. This does not rule out the possibility of fraud, but it shows that this aspect of the voting is consistent with the null hypothesis.
+
+
+### (Frequentist) Test of a Null Hypothesis
+
+Use: To assess the evidence provided by sample data in favour of a pre-specified claim or 'hypothesis' concerning some parameter(s) or data-generating process. As with confidence intervals, tests of significance make use of the concept of a sampling distribution.
+Example 1 (see R. A Fisher, Design of Experiments Chapter 2)
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
+
+X = 0.4; DX = 0.4
+
+cup=function(xc, yctop, rxtop, rytop,
+             h, rybottom,   low, text){
+             	
+     #side (1/2 of an ellipse with long vertical axis)
+     
+        a = seq(pi/2,0.85*pi,length.out=61)
+        x = rxtop*sin(a)
+        y =     h*cos(a)
+        lines(xc + x, yctop+y)
+        lines(xc - x, yctop+y)
+        
+     # top, suucer rim and inside
+     
+        a = seq(0,2*pi,length.out=61)
+        lines(xc+rxtop*cos(a), yctop+rytop*sin(a))
+        inside.rc = x[61]
+        ybottom = yctop+y[61]
+        lines(xc + inside.rc*cos(a),   ybottom + rybottom*sin(a)/2)
+        lines(xc +1.25*rxtop*cos(a),   ybottom + rybottom*sin(a)  )
+        
+        I=6 ; II=26
+        xx = xc +   c(x[I       ]*1.0, 
+                      x[I+1     ]*1.25,
+                      x[(I+II)/2]*1.30,
+                      x[II-1    ]*1.25, 
+                      x[II      ]*1.0 ) 
+        yy = yctop + c(y[I],
+                       y[I+1],
+                       y[(I+II)/2],
+                       y[II-1],
+                       y[II])
+        lines(xx,yy)
+
+        if(!low) i = 15
+        if(low)  i  = 45
+        xr = x[i] 
+        yy = yctop+y[i]
+        lines(xc+xr*cos(a), yy+ (2/3 - (1/3)*low) * rytop*sin(a))
+        ADJ=adj=c(0.5,0.5)
+        if(low) ADJ=adj=c(0.5,1.75)
+        if(text) text(xc,yy,"MILK",adj=ADJ)
 }
-
 
 
 ```
 
 
+```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
 
-	
-## Frequentist approach
+par(mfrow=c(1,1),mar = rep(0,4) )
+plot(c(0,1),c(0,1), ylim=c(0,0.9),
+     col="white", xaxt="n",yaxt="n",frame=FALSE)
 
+y =0.9
+text(X+DX/2,y,
+     "LADY CLAIMS SHE CAN TELL WHETHER",
+     adj=c(0.5,1), cex=1.75,font=2)
+
+y=0.75
+WHEN = c("FIRST","SECOND")
+XR = 0.12
+for(j in 1:2){
+   txt = paste("MILK WAS POURED IN\n",WHEN[j])
+   xc = X + DX*(j==2)
+   text(xc,y,txt,adj=c(0.5,1),cex=1.25, font=2)
+   
+   cup(xc,  0.5, XR, 0.04, 0.4, 0.02, j==1, TRUE)  
+}
+  
+
+```
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F}
+
+par(mfrow=c(1,1),mar = rep(0,4) )
+
+plot(c(0,1),c(0,1), ylim=c(0,1),
+     col="white", xaxt="n",yaxt="n",frame=FALSE)
+
+y = 0.99
+text(0.6,y,
+     "BLIND TEST OF HER CLAIM",
+     adj=c(0.5,1), cex=1.75,font=2)
+
+y=0.85
+WHEN = c("FIRST","SECOND")
+XR = 0.12
+Y0 = 0.825 ; DY=0.4
+
+scale = 2.75
+
+for(j in 1:2){
+   Xc = X +DX/4 + DX*(j==2)
+   for(ir in 1:2){
+     for (ic in 1:2){
+       xcc = Xc + (ic-2)*DX/2
+       ycc = Y0 + (ir-2)*DY/2
+       
+       
+       cup(xcc, ycc, XR/scale, 0.04/scale, 0.4/scale, 0.02/scale, j==1, FALSE) 
+       
+     }
+   } 
+}
+
+y = 0.1 ; dy=0.35
+rect(X-DX/2, y,  X+3*DX/2, y+dy)
+segments(X-DX/2, y+dy/2,  X+3*DX/2, y+dy/2)
+segments(X+DX/2, y     ,  X+DX/2,   y+dy)
+
+xcc = DX/3
+f = matrix(c(4,0,0,4),2,2)
+for(ir in 1:2){
+       ycc = y + 0.9*dy - (ir==2)* dy/2
+       cup(xcc, ycc, XR/scale, 0.04/scale, 0.4/scale, 0.02/scale, ir==1, FALSE)
+       for(ic in 1:2){
+       	   Xcc = X + (ic-1)*DX
+       	   text(Xcc, y+dy - dy/4 -(dy/2)*(ir==2),toString(f[ir,ic]),cex=2)   	
+       }
+}
+text(DX/7, y+dy/2,"LADY\nSAYS",adj=c(1,0.5),cex=1.5,font=2)
+  
+
+```
+
+
+
+nificance levels can correspond to small, nonsignificant changes in the underlying variables.
 2 separate issues  Ho and intervals
 (treated together in Bayesian)
 

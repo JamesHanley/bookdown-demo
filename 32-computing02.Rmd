@@ -17,6 +17,9 @@ The **'statistical' objectives** of this exercise are to
 The ultimate objective is to be able to use these laws to help  investigators, such as Henry Cavendish [see below], to (probabilistically) quantify 'how far off' their parameter estimates might be.
 
 
+Gelman and Hills distinguish the more common **sampling model**, where 'we are interested in learning some characteristics of a population' from a '**measurement error**' model. We start with the simpler context. 
+
+
 
 ## Scientific background
 
