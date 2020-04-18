@@ -1482,13 +1482,30 @@ arrows  (0.1, y-0.13, 0.20, y-0.13,length=0.06,angle=40,lwd=2)
 
 ```
 
-**Example 2** 
+**Example 2**
 
->In 1949 a divorce case was heard in which the sole evidence of adultery was that a baby was born almost 50 weeks after the husband had gone abroad on military service. [Preston-Jones vs. Preston-Jones, English House of Lords]. To quote the court "The appeal judges agreed that the limit of credibility had to be drawn somewhere, but on medical evidence 349 (days) while improbable, was scientifically possible." So the appeal failed. Altman, BMJ 1 November 1980.
+Preston-Jones vs. Preston-Jones (1946-1951), excerpted from [here](https://learning.uonbi.ac.ke/courses/GPR201/document/Selected_Cases/Preston-Jones_v_Preston-Jones_-Human_Gestation_Period-.pdf).
 
-> In Preston-Jones v Preston Jones [1951] 1 All ER 124, the husband was away from the UK from August 17, 1945 to September 2, 1946. On August 13, 1946 the wife gave birth to a normal child and the husband brought a petition for dissolution of marriage on the ground of adultery, the allegation being based on the fact that a period of 360 days elapsed and therefore that the child must have been conceived in adultery. It was held that the court was not entitled to assume judicial knowledge that a child born 360 days after the last coitus between the husband and wife was not the child of marriage. See also Gaskill v Gaskill [1921] page 425 where 331 days could not be regarded as impossible and Hadlum v Hadlum [1948] 2 All ER 412 where in the absence of medical evidence the same conclusion was reached in respect of 348 days. If an interval of 360 days between coitus and birth could not be regarded as a remote possibility, then a fortiori a gestation period of 270-280 days suggested by the appellant could not be said to be abnormal and so the judge could not have been entitled to assume as was urged that Njogu was not the child of the appellant. http://kenyalaw.org/caselaw/cases/view/8385
+The facts  were as follows: The husband (the appellant) was married to the wife (the respondent) on April 14, 1941, at Brymbo in the county of Denbigh. Jean, a child of the marriage, was born on April 15, 1942. On August 13, 1946, a second child was born to the wife. The husband, alleging that this child was not his child and founding on the circumstances of his birth a charge of adultery against the wife, on November 8, 1946, presented a petition to the High Court for the dissolution of his marriage. **He alleged that the said child was conceived some time between August 29, 1945, and February 13, 1946, during the whole of which period of time [he] was absent from the United Kingdom and . . . the [wife] was resident in the United Kingdom and that the child must therefore have been conceived as the result of an act of adultery.**
+
+The **petition was first heard** by His Honour Commissioner Burgis, who **dismissed** it. The husband appealed to the Court of Appeal and that court allowed the appeal, [...] set aside the order of the commissioner and directed the petition to be reheard before another judge.
+
+The **petition was reheard** on March 24, 1949, by Mr. Commissioner Blanco White, K.C. He concluded: 
+
+> I am **not satisfied beyond a reasonable doubt that adultery has been committed**. ... The question reduces itself to the simple question as to **whether** the court's judicial knowledge of natural laws **enables it to say** without any satisfactory evidence **that 360 days between coition and birth is an impossible period** and whether, if that period elapsed, a woman, who is, so far as the rest of the evidence goes, a respectable woman, is to be convicted of adultery. **I think not**. 
+
+He **dismissed the petition**.
+
+The husband appealed to the Court of Appeal, which on July 22, 1949, set aside the commissioner's order and ordered the cause to be reheard by a judge of the High Court if possible. **The husband appealed to the House of Lords, asking that a decree for dissolution of the marriage should be made. The wife cross-appealed, asking that the petition should be dismissed.**
+
+The final paragraph of the lengthy of opinions of the five Lords at the end of 1950:
 
 
+> My Lords, I do not think it open to doubt that a time must come when, with the period far in excess of the normal, the court may properly regard its length as proving the wife's adultery beyond reasonable doubt, and decree accordingly. But, as has so often been pointed out, the difficulty is to know where to draw the line. The reported cases naturally tend to creep up on each other and there is little sound guidance to be gleaned from authority. If a line has to be drawn I think it should be drawn so as to allow an ample and generous margin, for it may be as difficult for the wife to prove a freak of nature as for anyone else; and it need hardly be added that, before acting on the length of the period, due regard must be paid to any other relevant evidence. But I do not find it possible to go further and lay down any hard and fast rule capable of general application. In my opinion there is nothing in the testimony here, or in the facts of which judicial notice may be taken, to justify fixing a specific period and holding that, in the absence of evidence to the contrary, anything more would, but anything less would not, prove adultery beyond reasonable doubt. If, in the light of a full and exhaustive inquiry, the line could be thus fixed it might well be that the period of 360 days would come near or even cross it. But, however that may be, I am not prepared to decide this case merely on the fact that a period of that duration has been established. **I prefer to relate my conclusion to the evidence as a whole and, for the reasons already given, I think it should have satisfied the learned commissioner beyond reasonable doubt.
+I would therefore allow the appeal and 
+dismiss the cross- appeal.**  
+
+> **Appeal allowed**.
 
 The following is from this ['bible'](http://www.biostat.mcgill.ca/hanley/statbook/Guttmacher.pdf) for those who became parents in the 1970s
 
@@ -1522,21 +1539,20 @@ The author does on to say that
 > Another reliable study has shown that 40 per cent of
 women go into labor within a ten-day period — five days before and five days after the calculated date, and nearly two thirds within plus or minus ten days of the expected time.
 
-Altman, quoted above,  gives a graph based on [1970 data from
+Altman, writing in the BMJ in 1980,  gives a graph based on [1970 data from
 England](http://www.biostat.mcgill.ca/hanley/statbook/Altman1980.pdf#page=2).
 
 In that (pre-ultrasound) era, some of the variation was dues to dating errors. But a 2013 article, based on carefully collected daily urine samples found that even with the precise measuremet of the timing of pregranct that these samples provides the [length of human pregnancies can vary naturally by as much as five weeks](https://www.sciencedaily.com/releases/2013/08/130806203327.htm)
 
- 
 > Normally, women are given a date for the likely delivery of their baby that is calculated as 280 days after the onset of their last menstrual period. Yet only four percent of women deliver at 280 days and only 70% deliver within 10 days of their estimated due date, even when the date is calculated with the help of ultrasound.  
 Now, for the first time, researchers in the USA have been able to pinpoint the precise point at which a woman ovulates and a fertilised embryo implants in the womb during a naturally conceived pregnancy, and follow the pregnancy through to delivery. Using this information, they have been able to calculate the length of 125 pregnancies.  
 "We found that the average time from ovulation to birth was 268 days -- 38 weeks and two days," said Dr Anne Marie Jukic, a postdoctoral fellow in the Epidemiology Branch at the National Institute of Environmental Health Sciences (Durham, USA), part of the National Institutes for Health. "However, even after we had excluded six pre-term births, we found that the length of the pregnancies varied by as much as 37 days.  
 "We were a bit surprised by this finding. We know that length of gestation varies among women, but some part of that variation has always been attributed to errors in the assignment of gestational age. Our measure of length of gestation does not include these sources of error, and yet there is still five weeks of variability. It's fascinating."  
 The possibility that the length of pregnancies can vary naturally has been little researched, as it is impossible to tell the difference between errors in calculations and natural variability without being able to measure correctly the gestational age of a developing fetus. Previous studies conducted as long ago as the 1970s and 1980s had used the slight rise in a woman's body temperature at waking as a way of detecting when ovulation occurred. This is an inexact measurement and cannot be used to detect when the embryo actually implants in the womb.  Science Daily.
 
-But even if the variation is still (naturally) large, the ruling in the Preston-Jones case seems extreme. Altman asks us to look at the distribution of length of gestation in his Fig 1, 'which the judges apparently did not do.'  Altman himself thought that 
+But even if the variation is still (naturally) large, the original (1849) ruling in the Preston-Jones case seems extreme. Altman asks us to look at the distribution of length of gestation in his Fig 1, 'which the judges apparently did not do.'  Altman himself thought that 
 
->most people would feel that the husband was hard done by. Even If this case were heard now, where would you draw the line on the basis of (Altman's) fig 1 ?  
+> most people would feel that the husband was hard done by. Even If this case were heard now, where would you draw the line on the basis of (Altman's) fig 1 ?  
 This case illustrates a failure to use statistical methods when
 they ought to have been used, a fairly common occurrence. Saying that an event is possible is quite different from saying that it has a probability of, say, one in 100,000. Although not an example from medical research, this case concerne essentially the same difficulty as in many more frequentl encountered problems, such as denning hypertension or obesity
 Everything varies; it is in trying to draw lines between good and bad, high and low, likely and unlikely, and so on, that many problems arise. Although statistics cannot answer a given question, they can often shed considerable light on the problem. Altman, 1980.
@@ -1548,6 +1564,7 @@ Today, JH would add that we **should _also_ consider any other evidence or testi
 * Quality Control (it has given us the terminology) 
 * Taste-tests (see exercises )
 * Jumping the gun in athletics
+* After having had 3 NL sons, is potential-carrier mother a carrier?
 * Adding water to milk..seeM&M2Example6.6p448
 * Water divining..seeM&M2exercise6.44p471
 * Randomness of U.S. Draft Lottery of 1970.. see M&M2
@@ -1559,17 +1576,53 @@ Example 6.6 p105-107, and 447-
 
 AM HERE
 
-### The ingredients and the methods of procedure in a statistical test
-
-1. A claim about a parameter (or about the shape of a distribution, or the way a lottery works, etc.). Note that the null and alternative hypotheses are usually stated using Greek letters, i.e. in terms of population parameters, and in advance of (and indeed without any regard for) sample data. [ Some have been known to write hypotheses of the form H: y– = ... , thereby ignoring the fact that the whole point of statistical inference is to say something about the population in general, and not about the sample one happens to study. It is worth remembering that statistical inference is about the individuals one DID NOT study, not about the ones one did. This point is brought out in the absurdity of a null hypothesis that states that in a triangle taste test, exactly p=0.333.. of the n = 10 individuals to be studied will correctly identify the one of the three test items that is different from the two others.]
-2. A probability model (in its simplest form, a set of assumptions) which allows one to predict how a relevant statistic from a sample of data might be expected to behave under H0.
-3. A probability level or threshold or dividing point below which (i.e. close to a probability of zero) one considers that an event with this low probability 'is unlikely' or 'is not supposed to happen with a single trial' or 'just doesn't happen'. This pre- established limit of extreme-ness is referred to as the "α (alpha) level" of the test.
+### Ingredients and  methods of procedure in a statistical test
 
 
-4. A sample of data, which under H0 is expected to follow the probability laws in (2).
-5. The most relevant statistic (e.g. y- if interested in inference about the parameter μ)
-6. The probability of observing a value of the statistic as extreme or more extreme (relative to that hypothesized under H0) than we observed. This is used to judge whether the value obtained is either 'close to' i.e. 'compatible with' or 'far away from' i.e. 'incompatible with', H0. The 'distance from what is expected under H0' is usually measured as a tail area or probability and is referred to as the "P-value" of the statistic in relation to H0.
-7. A comparison of this "extreme-ness" or "unusualness" or "amount of evidence against H0 " or P-value with the agreed-on "threshold of extreme-ness". If it is beyond the limit, H0 is said to be "rejected". If it is not-too-small, H0 is "not rejected". These two possible decisions about the claim are reported as "the nullhypothesisisrejectedattheP=α significancelevel"or"the null hypothesis is not rejected at a significance level of 5%".
+```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
+
+
+library(kableExtra)
+
+text_tbl <- data.frame(
+  ElementsOfaStatisticalTest = c(
+"A claim about a parameter (or about the shape of a distribution,
+or the way a lottery works, etc.). Note that the null and alternative
+hypotheses are usually stated using Greek letters, i.e. in terms of
+population parameters, and in advance of (and indeed without
+any regard for) sample data.",
+"A probability model (in its simplest form, a set of assumptions) which allows one to predict how a relevant statistic from a sample
+of data might be expected to behave under H0.",
+"A probability level or threshold or dividing point below which
+(i.e. close to a probability of zero) one considers that an event
+with this low probability 'is unlikely' or 'is not supposed to
+happen with a single trial' or 'just doesn't happen'. This pre-established limit of extreme-ness is referred to as the $\\alpha$
+level of the test.",
+"A sample of data, which under H0 is expected to follow the probability laws in (2)",
+"The most relevant statistic (e.g. $\\bar{y}$ if interested in inference about the parameter $\\mu$)",
+"The probability of observing a value of the statistic as extreme or more extreme (relative to that hypothesized under H0) than we observed. This is used to judge whether the value obtained is either 'close to' i.e. 'compatible with' or 'far away from' i.e. 'incompatible with', H0. The 'distance from what is expected under H0' is usually measured as a tail area or probability and is referred to as the 'P-value' of the statistic in relation to H0.",
+"A comparison of this 'extreme-ness' or 'unusualness' or 'amount of evidence against H0' or P-value with the agreed-on 'threshold of extreme-ness'. If it is beyond the limit, H0 is said to be 'rejected'. If it is not-too-small, H0 is 'not rejected'. These two possible decisions about the claim are reported as 'the null hypothesis is rejected at the P = $\\alpha$ significance level' or 'the null hypothesis is not rejected at a significance level of 5%'."
+),
+  InThePrestonJonesCase
+   = c(
+    "Parameter (unknown)..... Date of Conception (DC) .... ........CLAIMS................ H0: DC < HUSBAND LEFT HA: DC > HUSBAND LEFT",
+    "A probability model for statistic.... ? Gaussian........ ? Empirical", 
+    "A probability level or threshold (a priori ) 'limit of extreme-ness' relative to the null ypothesis (H0) - this  is for the judges to decide",
+"Date of delivery (and  how long since the husband left)",
+"Date of delivery; same as raw data: n=1.",
+"The probability of observing a value of the statistic as extreme or more extreme (relative to H0) than we observed P-value = Upper tail area : Prob[ 349 or 350 or 351 ...] : quite small",
+"The Judge didn't tell us his threshold, but it must have been smaller than that calculated. Yhe p-value does not take into account any other 'facts', prior beliefs, testimonials, etc."
+  )
+)
+
+kable(text_tbl) %>%
+  kable_styling(full_width = F) %>%
+  column_spec(1, bold = F, border_right = T) %>%
+  column_spec(2, width = "15em", background = "white")
+
+```
+
+
 
 
 nificance levels can correspond to small, nonsignificant changes in the underlying variables.
