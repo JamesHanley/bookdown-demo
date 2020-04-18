@@ -1579,49 +1579,32 @@ AM HERE
 ### Ingredients and  methods of procedure in a statistical test
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
+1. A claim about a parameter (or about the shape of a distribution,
+or the way a lottery works, etc.). Note that the null and alternative hypotheses are usually stated using Greek letters, i.e. in terms of population parameters, and in advance of (and indeed without any regard for) sample data.
+   + Parameter (unknown)..... Date of Conception (DC) .... ........CLAIMS................ H0: DC < HUSBAND LEFT HA: DC > HUSBAND LEFT
 
+2. A probability model (in its simplest form, a set of assumptions) which allows one to predict how a relevant statistic from a sample
+of data might be expected to behave under H0.
+   + A probability model for statistic.... ? Gaussian........ ? Empirical
 
-library(kableExtra)
-
-text_tbl <- data.frame(
-  ElementsOfaStatisticalTest = c(
-"A claim about a parameter (or about the shape of a distribution,
-or the way a lottery works, etc.). Note that the null and alternative
-hypotheses are usually stated using Greek letters, i.e. in terms of
-population parameters, and in advance of (and indeed without
-any regard for) sample data.",
-"A probability model (in its simplest form, a set of assumptions) which allows one to predict how a relevant statistic from a sample
-of data might be expected to behave under H0.",
-"A probability level or threshold or dividing point below which
+3. A probability level or threshold or dividing point below which
 (i.e. close to a probability of zero) one considers that an event
 with this low probability 'is unlikely' or 'is not supposed to
-happen with a single trial' or 'just doesn't happen'. This pre-established limit of extreme-ness is referred to as the $\\alpha$
-level of the test.",
-"A sample of data, which under H0 is expected to follow the probability laws in (2)",
-"The most relevant statistic (e.g. $\\bar{y}$ if interested in inference about the parameter $\\mu$)",
-"The probability of observing a value of the statistic as extreme or more extreme (relative to that hypothesized under H0) than we observed. This is used to judge whether the value obtained is either 'close to' i.e. 'compatible with' or 'far away from' i.e. 'incompatible with', H0. The 'distance from what is expected under H0' is usually measured as a tail area or probability and is referred to as the 'P-value' of the statistic in relation to H0.",
-"A comparison of this 'extreme-ness' or 'unusualness' or 'amount of evidence against H0' or P-value with the agreed-on 'threshold of extreme-ness'. If it is beyond the limit, H0 is said to be 'rejected'. If it is not-too-small, H0 is 'not rejected'. These two possible decisions about the claim are reported as 'the null hypothesis is rejected at the P = $\\alpha$ significance level' or 'the null hypothesis is not rejected at a significance level of 5%'."
-),
-  InThePrestonJonesCase
-   = c(
-    "Parameter (unknown)..... Date of Conception (DC) .... ........CLAIMS................ H0: DC < HUSBAND LEFT HA: DC > HUSBAND LEFT",
-    "A probability model for statistic.... ? Gaussian........ ? Empirical", 
-    "A probability level or threshold (a priori ) 'limit of extreme-ness' relative to the null ypothesis (H0) - this  is for the judges to decide",
-"Date of delivery (and  how long since the husband left)",
-"Date of delivery; same as raw data: n=1.",
-"The probability of observing a value of the statistic as extreme or more extreme (relative to H0) than we observed P-value = Upper tail area : Prob[ 349 or 350 or 351 ...] : quite small",
-"The Judge didn't tell us his threshold, but it must have been smaller than that calculated. Yhe p-value does not take into account any other 'facts', prior beliefs, testimonials, etc."
-  )
-)
+happen with a single trial' or 'just doesn't happen'. This pre-established limit of extreme-ness is referred to as the $\alpha$
+level of the test.
+   + A probability level or threshold (a priori ) 'limit of extreme-ness' relative to the null ypothesis (H0) - this  is for the judges to decide
 
-kable(text_tbl) %>%
-  kable_styling(full_width = F) %>%
-  column_spec(1, bold = F, border_right = T) %>%
-  column_spec(2, width = "15em", background = "white")
+4. A sample of data, which under H0 is expected to follow the probability laws in (2)
+   + Date of delivery (and  how long since the husband left)
 
-```
+5. The most relevant statistic (e.g. $\\bar{y}$ if interested in inference about the parameter $\\mu$)
+   + Date of delivery; same as raw data: n=1.
 
+6. The probability of observing a value of the statistic as extreme or more extreme (relative to that hypothesized under H0) than we observed. This is used to judge whether the value obtained is either 'close to' i.e. 'compatible with' or 'far away from' i.e. 'incompatible with', H0. The 'distance from what is expected under H0' is usually measured as a tail area or probability and is referred to as the 'P-value' of the statistic in relation to H0.
+   + The probability of observing a value of the statistic as extreme or more extreme (relative to H0) than we observed P-value = Upper tail area : Prob[ 349 or 350 or 351 ...] : quite small
+
+7. A comparison of this 'extreme-ness' or 'unusualness' or 'amount of evidence against H0' or P-value with the agreed-on 'threshold of extreme-ness'. If it is beyond the limit, H0 is said to be 'rejected'. If it is not-too-small, H0 is 'not rejected'. These two possible decisions about the claim are reported as 'the null hypothesis is rejected at the P = $\alpha$ significance level' or 'the null hypothesis is not rejected at a significance level of 5%'.
+   + The Judge didn't tell us his threshold, but it must have been smaller than that calculated. Yhe p-value does not take into account any other 'facts', prior beliefs, testimonials, etc."
 
 
 
