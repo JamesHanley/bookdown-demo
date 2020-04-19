@@ -118,7 +118,7 @@
 
 \title{Introduction to Statistical Analysis: a regression-from-the-outset approach}
 \author{Sahir, Shirin and Jim}
-\date{2020-03-30}
+\date{2020-04-18}
 
 \begin{document}
 \maketitle
@@ -622,7 +622,29 @@ Chapter 7: The Logistic Regression Model (The Precursors of the General Linear M
 \hypertarget{inference}{%
 \chapter{Statistical Inference}\label{inference}}
 
-Google gives the following defintion
+The \textbf{objectives} of this chapter are to
+
+\begin{itemize}
+\item
+  Understand what is meant by statistical inference
+\item
+  Appreciate the fundamental difference between the Bayesian and Frequentist approaches
+
+  \begin{itemize}
+  \item
+    In the Bayesian approach, the parameter is the subject of the statement. Statements are of the form: if, before observing the data, the parameter \(\theta\) was thought to have this probability distribution, then post-data, \(\theta\) should be thought of as having THIS probability distribution.
+  \item
+    In the Frequentist approach, the statements are \textbf{indirect}. They are (conditional) probabilistic statements about the \textbf{data} and about the performance of the \textbf{procedure} used to bracket parameter values. A variant ranks the possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves.
+  \end{itemize}
+\item
+  See several examples of both, and understood how they the numerical results are arrived at
+\item
+  Learn to be statisticallly/politically correct in interpreting these results
+\item
+  Appreciate that in practice, the purely numerical differences between the results of the two approaches are often small.
+\end{itemize}
+
+Google gives the following \textbf{definition} for \textbf{statistical inference}
 
 \begin{quote}
 The theory, methods, and practice of forming judgments about the parameters of a population and the reliability of statistical relationships, typically on the basis of random sampling.
@@ -634,9 +656,15 @@ The Oxford English Dictionary defines it as
 The drawing of inferences about a population based on data taken from a sample of that population; an inference drawn in this way; the branch of statistics concerned with this procedure.
 \end{quote}
 
+Gelman and Hills start their regresssion textbook this way:
+
+\begin{quote}
+The goal of statistical inference for the sorts of parametric models that we use is to estimate underlying parameters and summarize our uncertainty in these estimates. We discuss inference more formally in Chapter 18; here it is enough to say that we typically understand a fitted model by plugging in estimates of its parameters, and then we consider the uncertainty in the parameter estimates when \textbf{assessing how much we actually have learned from a given dataset.} Gelman and Hills 2007.
+\end{quote}
+
 We would add to these numerical statements about unknown (and unknowable) constants, as well as the mechanism or process that generated the limited data you got/get to observe.
 
-Some example parameters -- some scientific, some more personal or particularistic -- include
+Examples of parameters we would like to quantify probabilistically -- some scientific, some more personal or particularistic -- include
 
 \begin{itemize}
 \tightlist
@@ -668,7 +696,11 @@ Some example parameters -- some scientific, some more personal or particularisti
   \item
     your driving time that you are on the phone
   \item
-    your time that you spend inside
+    your time (over the entire year) that you spend inside
+  \item
+    patients whose disease would respond to a medication
+  \item
+    people who would volunteer for a demanding survey or long-term research study
   \end{itemize}
 \item
   The numerical value for
@@ -690,26 +722,45 @@ Some example parameters -- some scientific, some more personal or particularisti
   \end{itemize}
 \end{itemize}
 
-To address the uncertainties involved in the judgements/inferences, some use of probabililies is required.
+To address the uncertainties involved in the judgements/inferences, some use of probabilities is required.
 
-There are \textbf{two `schools' of statistical inference}. One of them makes \textbf{direct probabilistic statements about the possible parameter values}. This approach goes back at least as far as the mid-1700's essay `A method of calculating the exact probability of all conclusions based on induction'.
+In their preamble to their chapter on inferemce, Clayton and Hills tell us that
 
-The more popular method today, dating from the early 20th century, is \textbf{indirect}. It makes (conditional) probabilistic statements about the \textbf{data} and about the performance of the procedure used to bracket the parameter values. A variant on it ranks the various possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves. Because it is indirect, conditional, the results are often interpreted incorrectly.
+\begin{quote}
+There are \textbf{two radically different approaches} to associating a probability with a range of parameter values, reflecting a deep philosophical division amongst mathematicians and scientists about the nature of probability. We shall start with the more orthodox view within biomedical science.
+\end{quote}
 
-We begin with the direct method, one that studies tell us we are born with, and use throughout our lives, both consciously and subconsciously, to continue to learn/update.
+Clayton and Hills completed their book in 1993.
+Since then, propelled by greater computer power, and by people like
+Clayton's Cambridge colleague David Spiegelhalter, whose book we will start with, the Bayesian approach to \textbf{'associating a probability with a range of parameter values}' has become more common. It has not yet reached the status of `customary or conventional, as a means or method; established.' that the dictionaries give as the meaning of orthodox. In any case, we should not take Clayton and Hills' use of the phrase `more orthodox' to describe the \emph{frequentist} approach to mean
+that the Bayesian approach `does not conform to the approved form of analysis' or is in some sense `wrong.'
+
+The first-established of the two `schools' (or `churches') of statistical inference** makes \textbf{direct probabilistic statements about the possible parameter values}. This approach goes back at least as far as the mid-1700's essay `A method of calculating the exact probability of all conclusions based on induction'; ironically the author was a Presbyterian minister.
+
+The developments since then are nicely told in the very readable book \href{https://www.amazon.com/Theory-That-Would-Not-Die-ebook/dp/B0050QB3EQ}{\emph{The Theory That Would Not Die: How Bayes' Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy}} by Sharon Bertsch McGrayne, and in her \href{https://www.youtube.com/embed/2o-_BGqYM5U}{Microsoft lecture}
+and her \href{https://www.youtube.com/embed/8oD6eBkjF9o}{Google lecture}.
+
+Maybe, by calling it the more `orthodox', all that Clayton and Hills mean is that the frequentist approach is more popular method today. It got a slow start, and dates from the early 20th century. (In one of our sampling exercises, we will try to determine the relative frequencies of the two approaches in the epidemiology and medical literature).
+
+Interestingly, if you use
+\href{https://books.google.com/ngrams/graph?content=frequentist+approach\%2C+bayesian+approach\&case_insensitive=on\&year_start=1800\&year_end=2008\&corpus=15\&smoothing=3\&share=\&direct_url=t4\%3B\%2Cfrequentist\%20approach\%3B\%2Cc0\%3B\%2Cs0\%3B\%3Bfrequentist\%20approach\%3B\%2Cc0\%3B\%3BFrequentist\%20approach\%3B\%2Cc0\%3B\%3BFrequentist\%20Approach\%3B\%2Cc0\%3B.t4\%3B\%2Cbayesian\%20approach\%3B\%2Cc0\%3B\%2Cs0\%3B\%3BBayesian\%20approach\%3B\%2Cc0\%3B\%3BBayesian\%20Approach\%3B\%2Cc0\%3B\%3BBAYESIAN\%20APPROACH\%3B\%2Cc0\%3B\%3Bbayesian\%20approach\%3B\%2Cc0}{Google Books Ngram Viewer} you get a different sense. Maybe this is because the majority don't need to justify the methods they use!
+
+Frequentist statements are \textbf{indirect}. They are (conditional) probabilistic statements about the \textbf{data} and about the performance of the \textbf{procedure} used to bracket the parameter values. A variant on it ranks the various possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves. Because it is indirect, conditional, the results are often interpreted incorrectly.
+
+We \textbf{begin with the direct method}, one that studies tell us we are born with, and use throughout our lives, both consciously and subconsciously, to continue to learn/update.
 
 \begin{quote}
 When we learn a new motor skill, such as playing an approaching
 tennis ball, both our sensors and the task possess variability.
 {[}\ldots{}{]} We show that subjects internally represent both the statistical
 distribution of the task and their sensory uncertainty,
-combining them in a manner consistent with a performance-optimizing bayesian process. The central nervous system therefore employs probabilistic models during sensorimotor learning. Bayesian integration in sensorimotor learning. Nature 427; 15 Jan 2004.
+combining them in a manner consistent with a performance-optimizing bayesian process. The central nervous system therefore employs probabilistic models during sensorimotor learning. \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/nature02169.pdf}{Bayesian integration in sensorimotor learning}
 \end{quote}
 
-leading to this headline
+leading to this New York Times headline
 
 \begin{quote}
-Subconsciously, Athletes May Play Like Statisticians - The New York Times
+\href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/AthletesStatisticians.pdf}{Subconsciously, Athletes May Play Like Statisticians}
 \end{quote}
 
 \hypertarget{the-bayesian-approach}{%
@@ -717,9 +768,13 @@ Subconsciously, Athletes May Play Like Statisticians - The New York Times
 
 to probability statements concerning parameter values.
 
-This paragraph is taken from this chapter
+\begin{quote}
+Bayesian inference refers to statistical procedures that \textbf{model unknown parameters {[}\ldots{}{]} as random variables}. {[}\ldots{}{]} Bayesian inference starts with a prior distribution on the unknown parameters and updates this with the likelihood of the data, yielding a posterior distribution which is used for inferences and predictions. Gelman and Hills, 2007, page 143.
+\end{quote}
+
+This paragraph, taken from this chapter
 \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/an\%20overview\%20of\%20the\%20Bayesian\%20approach.pdf}{An Overview of the Bayesian Approach}
-in the book Bayesian Approaches to Clinical Trials and Health-Care Evaluation by David Speigelhalter at al, describes it well:
+in the book Bayesian Approaches to Clinical Trials and Health-Care Evaluation by David Speigelhalter et al, describes it well:
 
 \begin{quote}
 The standard interpretation of probability describes long-run properties of repeated random events (Section 2.1.1). This is known as the frequency interpretation of probability, and standard statistical methods are sometimes referred to as `frequentist'. In contrast, the \textbf{Bayesian approach} rests on an essentially `subjective' interpretation of probability, which is allowed to express generic uncertainty or `degree of belief' about any unknown but potentially observable quantity, whether or not it is one of a number of repeatable experiments. For example, it is quite reasonable from a subjective perspective to think of a probability of the event `Earth will be openly visited by aliens in the next ten years', whereas it may be difficult to interpret this potential event as part of a `long-run' series. Methods of assessing subjective probabilities and probability distributions will be discussed in Section 5.2.
@@ -728,7 +783,7 @@ The standard interpretation of probability describes long-run properties of repe
 Section 3.1 SUBJECTIVITY AND CONTEXT emphasizes that
 `the vital point of the subjective interpretation is that \textbf{Your probability} for an event is a property of \textbf{Your} relationship to that event, and not an objective property of the event itself.' Moreover, `pedantically speaking, one should always refer to probabilities \textbf{for} events rather than probabilities \textbf{of} events, and the \textbf{conditioning context} used in Section 2.1.1 \textbf{includes the observer and all their background knowledge and assumptions.}'
 
-That there is `always a context' goes along with what we read in Alan Turing's recently de-classified essay The Applications of Probability to Cryptography. Under section 1.2 (`Meaning of probability and odds') he starts out
+That there is `\textbf{always a context}' goes along with what we read in Alan Turing's \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/CandH-ch0102/TuringProbability.pdf}{recently de-classified essay The Applications of Probability to Cryptography}. Under section 1.2 (`Meaning of probability and odds') he starts out
 
 \begin{quote}
 I shall not attempt to give a systematic account of the theory of probability, but it may be worth while to define shortly probability and odds. The probability of an event \textbf{on certain evidence} is the proportion of cases in which that event may be expected to happen given that evidence. For instance if it is known the 20\% of men live to the age of 70, then knowing of Hitler only Hitler is a man we can say that the probability of Hitler living to the age of 70 is 0.2. Suppose that we know that Hitler is now of age 52 the probability will be quite different, say 0.5, because 50\% of men of 52 live to 70.
@@ -736,7 +791,56 @@ I shall not attempt to give a systematic account of the theory of probability, b
 
 \textbf{Not all context is subjective}. We will start with a context where the initial (starting out, pre-new-data) probability is \textbf{objective}.
 
-\textbf{Without getting into the details of the calculations, we will apply this approach to the first example in each of the parameter genres listed above. The point is to illustrate how direct and unambigous the answer is in each case.}
+Just before we do, we include this passage from Clayton and Hills, in subchapter 10.2 Subjective probablity, which they denote as optional material.
+
+\begin{quote}
+The second approach to the problem of assigning a probability to a range of
+values for a parameter is based on the philosophical position that probability is a subjective measure of ignorance. The investigator uses probability
+as a measure of subjective degree of belief in the different values which the
+parameter might take. With this view it is perfectly logical to say that
+there is a probability of 0.9 that the parameter lies within a stated range.\\
+Before observing the data, the investigator will have certain beliefs
+about the parameter value and these can be measured by a priori probabilities. Because they are subjective every scientist would be permitted
+to give different probabilities to different parameter values. However, the
+idea of scientific objectivity is not completely rejected. In this approach
+objectivity lies in the rule used to modify the a priori probabilities in the
+light of the data from the study. This is Bayes' rule and statisticians who
+take this philosophical position call themselves Bayesians.\\
+Bayes' rule was described in Chapter 2, where it was used to calcu-
+late the probabilities of exposure given outcome from the probabilities of
+outcome given exposure. Once we are prepared to assign probabilities to
+parameter values, Bayes' rule can be used to calculate the probability of
+each value of a parameter (\(\theta\)) given the data, from the probability of the data given the value of the parameter.\\
+The argument is illustrated by two tree diagrams. Fig. 10.2 illustrates
+the direction in which probabilities are specified in the statistical model
+--- given the choice of the value of the parameter, \(\theta\), the model tells us
+the probability of the data. The probability of any particular combination
+of data and parameter value is then the product of the probability of the
+parameter value and the probability of data given the parameter value. In
+this product, the first term, Pr(\(\theta\)), represents the a priori degree of belief for the value of \(\theta\) and the second term, Pr(Data \textbar{} \(\theta\) ), is the likelihood. Fig. 10.3 reverses the conditioning argument, and expresses the joint probabilityas the product of the overall probability of the data multiplied by the probability of the parameter given the data. This latter term, Pr( \(\theta\) \textbar{} Data), represents the posterior degree of belief in the parameter value once the data have been observed. Since the joint probability of data and parameter value is the same no matter which way we argue,
+so that
+\[Pr(\theta) \times Pr(Data | \theta) = Pr(Data) \times Pr(\theta | Data),\]
+so that
+\[Pr(\theta | Data) = \frac{Pr(\theta) \times Pr(Data | \theta)}{Pr(Data)}\]
+Thus elementary probability theory tells us how prior beliefs about the
+value of a parameter should be modified after the observation of data.
+\end{quote}
+
+Their 2 figures nicely show that the difference is in the directionality or conditioning, i.e.~is the object \[Pr(\theta | data) \ \ \ OR \ \ \   Pr(data | \theta) \ \ ?\]
+
+\begin{figure}
+
+{\centering \includegraphics[width=6.29in]{images/ClaytonHillsFig102103} 
+
+}
+
+\caption{From Chapter 10.2 of Clayton and Hills}\label{fig:unnamed-chunk-6}
+\end{figure}
+
+\textbf{Without getting into the details of the calculations, we will apply the Bayesian approach to the first example in each of the parameter genres listed above. The point is to illustrate how direct and unambigous the answer is in each case.} To avoid being distracted by the details, you might wish to skip the detailed mathematical calculations involved, as well as the asides/tangents.
+
+\hypertarget{example-parameter-is-2-valued-yes-or-no}{%
+\subsection{Example: parameter is 2-valued: yes or no}\label{example-parameter-is-2-valued-yes-or-no}}
 
 In the first genre, the parameter is personal or particular. In each of the examples, the true state is binary. The potential hemophilia carrier \textbf{is} a hemophia carrier or \textbf{is not}; the particular email is either malicious or is not; the person in question either committed the crime ot did not. So, there are just two possible parameter values: yes or no, \textbf{is} or \textbf{is not}.
 
@@ -756,44 +860,761 @@ The \textbf{continued updating} as the women with a NL son gave birth to a secon
 
 \textbackslash{}begin\{figure\}
 
-\{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-6-1}
+\{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-7-1}
 
 \}
 
-\textbackslash{}caption\{At the outset, each woman had a 50:50 chance of being a haemophilia carrier. Accumulating information from the hemophilia status of the sons increasingly `sorts' or segregates the women by moving their probabilities of being a carrier TO 1 (100\%) or FURTHER TOWARDS 0 (0\%). It `updates' the probablity of being a carrier, P{[}C{]}. For brevity, the ' \textbar{} data' in each P{[}C \textbar{} data{]} is omitted.\}\label{fig:unnamed-chunk-6}
+\textbackslash{}caption\{At the outset, each woman had a 50:50 chance of being a haemophilia carrier. Accumulating information from the hemophilia status of the sons increasingly `sorts' or segregates the women by moving their probabilities of being a carrier TO 1 (100\%) or FURTHER TOWARDS 0 (0\%). It `updates' the probablity of being a carrier, P{[}C{]}. For brevity, the ' \textbar{} data' in each P{[}C \textbar{} data{]} is omitted.\}\label{fig:unnamed-chunk-7}
 \textbackslash{}end\{figure\}
 
+Before moving on the the next type of parameter, a few points
+
+\begin{itemize}
+\item
+  In both the hemophilia and transgenic mice examples, the `starting' probability is objective and the post-data
+  probabilities have a `long-run' or `in large numbers of similar instances' interpretation. One could make a diagram that shows the expected numbers `in every 100 women like this.'
+\item
+  There is nothing special about the `starting out' probability P{[}\textbf{C}{]} of 0.5. Before a pregnancy test, or a pre-natal diagnostic test, for example, the probability of the target \textbf{C}ondition/state of interest/concern would be a function of many other factors, and could in theory take on any value between 0 and 1. The (starting out, pre-filter) proportion of malicious emails would depend on which of a person's email accounts it was.
+\item
+  In the language of diagnostic tests, each `Son as a test of the mother's carrier status' has 50\% sensitivity and 100\% `specificity'. For sensitivity, this puts it on par with the Pap test for cervical cancer: the main problem withe latter is in the sampling. For specificity, it is better than most tests.
+\item
+  The shiny app \href{https://jameshanley.shinyapps.io/FromPreTestToPostTestProbabilities/}{From Pre-test to Post-test Probabilities} shows how the initial average (pre-test) probability is segregated into 2 post-test probabilities by the 2 possible test results, and the role of the 2 error-probabilities (just about all tests are fallible) in how well they push them out.
+\item
+  The `starting out' probability could be subjective. For example it could be one's impression (before getting to see up close how wrinkled their face is) as whether the person is a smoker, or one's assessment of the probability that the accused is guilty (before getting to hear the DNA expert, or lie detection report) based on how credible the accused appears to be, and all of the other evidence to date.
+\item
+  The main point is that we are merging (adding) two sources of information.
+\end{itemize}
+
+\hypertarget{example-parameter-is-a-proportion}{%
+\subsection{Example: parameter is a proportion}\label{example-parameter-is-a-proportion}}
+
+In theory, in this genre, the true parameter value could in theory lie anywhere between 0 and 1, But again, just like in Turing's example, we seldom start from complete ignorance, or with -- in the title of pscychologist Stephen Pinker's book -- a blank slate. Even if you have never seen thumbtacks tossed onto on a surface, you can reason informally, and indicate what proportions are unlikely and likely, and where along the (0,1) scale you would `put your money'.
+
+You could do the same when asked what proportions of your time that you are being productive, or on the phone, or sedentary, or indoors. Mind you, you might be `way off' with your claims, but the nice thing is that --- and this is the point of this course -- you can generate data to narrow down the true proportion.
+
+The other nice thing with the Bayesian approach in particular is that -- no matter whether you believe the proportion is low or medium or high, we can work out what your post-data beliefs should be. It is a matter of mathematics. If, before collecting any new data, we have `no idea' -- a common phrase among todays's generation, one that, if it is uttered with empahsis on the `no', irks JH to no end -- what the true parameter value is, that is easily handled. Moreover, enough valid data will (or should!) trump the pre-data beliefs.
+
 \begin{quote}
-ASIDE: This is similar to how researchers develop strains of ``transgenic'' mice, by introducing an altered gene (transgene) into the genome. In order to breed true, theanimals must be made to be homozygous, i.e., to have two copies of the introduced gene (+ +). Molecular biology techniques can detect whether the transgene is present in an individual animal (without having to sacrifice the animal), but cannot distinguish a hemizygote, with one copy of the gene (+ -), from a homozygote (+ +). This difference can only be detected by breeding strategies. First generations: A copy of the transgene is injected into the pronucleus of a newly fertilized ovum, prior to fusion with the male pronucleus. Thus all animals that develop from these zygotes can have at most one copy of the gene, from the ovum. After birth, screening is performed to detect these `positive' animals, called founders. After sexual maturation, all founders are bred to normal `wild type' (WT) animals, to ensure that the transgene has been incorporated in such a way as to be heritable. Pairs of positive (hemizygous) animals in this F1 generation are then bred to each other. By Mendelian genetics, the distri- bution of F2 offspring should be 1:2:1, homozygous transgenic : hemizygous transgenic : homozygous normal. The homozygous normal animals are not used. The question is, how to tell the homozygous transgenic mice (the desired ones) from the hemizygous transgenic ones? Note that the mix in this reduced population is 1 homozygous transgenic to 2 hemizygous transgenic. F2 breeding: All 'positive' F2 animals (i.e.~all homozygous and hemizygous animals) are bred to wild type. Possible F3 genotypes are as follows: (by Mendelian genetics) Hemizygous (which comprise 2/3 of the F2 animals used) x wild type = 50:50, hemizygous (and therefore `positive') : normal (and therefore `negative'), Homozygous (which comprise 1/3 of the F2 animals used) x wild type = all hemizygous (and therefore `positive').
-That is, while only half of the offspring from a Hemi x WT pair will be `positive' when screened, all of the offspring of a Homo x WT pair will be `positive'.
-The question: How many F3 offspring from a particular pairing does the researcher have to screen before declaring the positive parent as homozygous? Note: as soon as an offspring is screened as `negative,' one knows the parent must have been hemizygous. A variant on the above diagram can help withe probabilities. Furthe details are avilable on the bios601 website, in the `probability' chapter.
+On a side note: Dick Pound, a former chancellor of McGill University, and first president of the World Anti-Doping Agency is a staunch advocate of strict drug testing for athletes.
+Discussing the National Hockey League in November 2005, Pound said, `you wouldn't be far wrong if you said a third of hockey players are gaining some pharmaceutical assistance.' Pound would later admit that he completely invented the figure. Both the NHL and NHLPA have denied the claims, demanding Pound provide evidence rather than make what they term unsubstantiated claims. Since his comments were made, some NHL players have tested positive for banned substances, including Bryan Berard, José Théodore, and two of 250 players involved in Olympic testing. As of June 2006, there had been 1,406 tests in the program jointly administered by the league and the union, and none has come up with banned substances under NHL rules. Pound remained skeptical, claiming the NHL rules were too lax and unclear, as they do not test for some banned substance, including certain stimulants. In an interview with hockey blogger, B. D. Gallof, of Hockeybuzz on December 19, 2007, Pound was asked to expand on the 30\% comment and subsequent reaction, expounded that stimulants was `the NHL's drug of choice'. He also cited that the NHL will have no credibility on a drug policy if it, and other sports, continue to run things `in-house'. \url{https://en.wikipedia.org/wiki/Dick_Pound} and \url{https://www.cbc.ca/sports/hockey/dick-pound-slams-nhl-s-drug-policy-1.557993}
 \end{quote}
 
-Able to say the probability is.. and in these instance sit has a `long-run' or average interpretaion.
+Even before studying/asking them, investigators would have some sense of the proportions of patients whose disease would respond to a medication, or people who would volunteer for a survey or research study. These iimpressions would probably be based on previous analogous situations, and the `literature', but would vary from pundit to pundit. But ultimately, they could be much improved and narrowed (and even replaced entirely) by new-data-based ones.
 
-one can make a diagram that stats with 100 women and
-say what the expected numbers are
+The proportion of the earth's surface that is covered by water is easy to determine: just look up a reputable source. But what if you weren't able to, but did have access to the database of 933 million recordings in the \href{https://topex.ucsd.edu/cgi-bin/get_srtm30.cg}{SRTM30PLUS database}. It has altitude/depth measurements for 43,200 x 21,600 = 933,120,000 locations. This database is so large that you would have to sample from it. From a thousand randomly chosen loactions, you would be able to `trust' the first decimal in your estimate; from a million you should be able to trust the second -- and maybe the third.
 
-In both the hemophilia and transgenic mice examples, the objective prior
+Since we already know/remember from high school `roughly' what the proportion is, we will leave it for an exercsie in another chapter. In this chapter, following the advice of master-teacher Fred Mosteller, we use examples where the \textbf{correct answer is not known with any precision}. The proportion of these we probably know the least about is the thumbtack one. However, it has fewer personal benefits than knowing what proportion of your time you are being productive. Moreover, we have a nice written account of how you might go about learning this personal proportion.
 
-.5
+In his book Elementary Bayesian Statistics, Gordon Antelman informally introduces and illustrate a Bayesian analysis of an uncertain proportion with a slightly modified version of a novel and useful application of work sampling discussed by Fuller (1985). We have changed his notation for the proportion of your time spent in productive work, and called it \(\pi\), and also modified some of his words.
 
-or \ldots{}.. it might be
+\begin{quote}
+Suppose you, as a good up-to-date manager practicing continuous quality and productivity improvement, have some ideas on improving your own productivity. To see if these ideas have any merit, you would like to compare some `before' measure of productivity with a comparable `after' measure of productivity.\\
+For now --- we shall come back to this example several times --- let us focus on just a `before' measure.
+The measure to be used is the proportion of your time spent in productive work, call it \(\pi\), as opposed to time spent doing something that would not have needed doing if things had been done right the first time. Examples of the latter might include searching for a misplaced document, recreating a deleted computer file, following up on a customer's complaint, or waiting past a scheduled time for a meeting to start. {[}Today, we would add being on social media, or browsing the web for non-work-related matters{]}
+Rather than saying \(\pi\) is not (precisely) `known', it is better to say that `\(\pi\) is uncertain'; from your job experience, you would really know quite a lot about p.~For example, you might be almost certain that it is greater than 0.50, less than 0.90, and you might assess
+your odds that \(\pi\) is between, say, 0.60 and 0.80 to be about 9 to 1. A precise statement of these beliefs will be your prior distribution for \(\pi\).\\
+You would probably feel uncomfortable --- most people do --- about assessing this prior distribution, especially since there are an infinite number of states; viz., all of the values between zero and one. But, without any real loss, you can bypass the infinite-number problem by rounding the values of \(\pi\) to the nearest 5\% or 10\%, making the problem discrete. Then you have a contemplatable Bayes' theorem, like those discussed in Chapter 4, with the finitely many \(\pi\)-values as the possible ``states''. (When we reconsider this example later in this chapter, you will see that, with a little theory, the infinite number of \(\pi\)-values can almost always be handled very neatly and more easily.)
+\end{quote}
 
-nothing magic about 0.5
+\textbf{PRIOR BELIEFS} For illustration, he supposes you choose just five possible values for \(\pi\), and assess your prior distribution.
+Since \texttt{R} does not allow Greek symbols, we will refer to it by uppercase P and assess your prior distribution. This possible prior distribution, shown below, would reflect, for example, that your judgment is that there is only about one chance in 20 that \(\pi\) rounds to 0.50, about one chance in 20 that \(\pi\) rounds to 0.90, about one chance in four that it rounds to 0.60, a little more than one chance in three that it rounds to 0.70, and a little less than one chance in three that it rounds to 0.80.
 
-some subjective trials. dx tests. ehistory,. e
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{P =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.50}\NormalTok{, }\FloatTok{0.60}\NormalTok{, }\FloatTok{0.70}\NormalTok{, }\FloatTok{0.80}\NormalTok{, }\FloatTok{0.90}\NormalTok{)}
+\NormalTok{PriorProbForP =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\FloatTok{0.25}\NormalTok{, }\FloatTok{0.35}\NormalTok{, }\FloatTok{0.30}\NormalTok{, }\FloatTok{0.05}\NormalTok{)}
 
-\hypertarget{freq}{%
-\section{Freq}\label{freq}}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(P, PriorProbForP, }\DataTypeTok{type=}\StringTok{"h"}\NormalTok{, }\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+     \DataTypeTok{lwd=}\DecValTok{20}\NormalTok{, }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{),  }\DataTypeTok{lend=}\DecValTok{1}\NormalTok{, }\DataTypeTok{col=}\StringTok{"grey80"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"P: Proportion of time that I am being productive"}\NormalTok{,}
+     \DataTypeTok{ylab=}\StringTok{"My probability that P rounds to... "}\NormalTok{,}
+     \DataTypeTok{cex.lab =} \FloatTok{1.25}\NormalTok{, }\DataTypeTok{cex.axis =} \FloatTok{1.25}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.25}\NormalTok{, }\StringTok{"Prior Probabilities"}\NormalTok{, }\DataTypeTok{font=}\DecValTok{2}\NormalTok{,}
+     \DataTypeTok{col=}\StringTok{"grey75"}\NormalTok{, }\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{cex=}\FloatTok{1.75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-8-1} 
+
+}
+
+\caption{Prior Probabilities for the parameter P, the proportion of time that I am being productive.}\label{fig:unnamed-chunk-8}
+\end{figure}
+
+\textbf{DATA}: Suppose you are fitted with a beeper set to beep at random times; when the beeper beeps, you classify the task being worked on as \textbf{W} --- for `productive \textbf{Work}', or \textbf{F} --- for `\textbf{Fixing}' (or today we mght say `\textbf{F}iddling' or `\textbf{F}ooling around' or wasting time).
+
+Although we will skip the technicalities, it is important that the experiment be designed so that the trials are independent. Beeps should be unpredictable so you do not arrange, possibly subconsciously, to be doing productive work at the beep. They probably also should not be too close together to make the independence assumption more reasonable.
+
+\textbf{Suppose the first four trials give the data \(F_1, F_2, W_3\), and \(F_4\).}
+
+Below is a picture showing the effects of the data FFWF on the prior distribution. Three F's in four trials increase your probabilities for the two smaller values of P and decrease your probabilities for the three larger ones.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lik =}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{P)}\OperatorTok{^}\DecValTok{3} \OperatorTok{*}\StringTok{ }\NormalTok{P}
+\NormalTok{PosteriorProbForP =}\StringTok{ }\NormalTok{(PriorProbForP }\OperatorTok{*}\StringTok{ }\NormalTok{Lik) }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(PriorProbForP }\OperatorTok{*}\StringTok{ }\NormalTok{Lik)}
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(P, PriorProbForP, }\DataTypeTok{type=}\StringTok{"h"}\NormalTok{, }\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+     \DataTypeTok{lwd=}\DecValTok{20}\NormalTok{, }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.5}\NormalTok{),  }\DataTypeTok{lend=}\DecValTok{1}\NormalTok{, }\DataTypeTok{col=}\StringTok{"grey80"}\NormalTok{,}
+     \DataTypeTok{xlab=}\StringTok{"P: Proportion of time that I am being productive"}\NormalTok{,}
+     \DataTypeTok{ylab=}\StringTok{"My probability that P rounds to... "}\NormalTok{,}
+     \DataTypeTok{cex.lab =} \FloatTok{1.25}\NormalTok{, }\DataTypeTok{cex.axis =} \FloatTok{1.25}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.25}\NormalTok{, }\StringTok{"Prior Probabilities"}\NormalTok{, }\DataTypeTok{font=}\DecValTok{2}\NormalTok{,}
+     \DataTypeTok{col=}\StringTok{"grey75"}\NormalTok{, }\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{cex=}\FloatTok{1.75}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(P, PosteriorProbForP, }\DataTypeTok{type=}\StringTok{"h"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{6}\NormalTok{, }\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}\DataTypeTok{lend=}\DecValTok{1}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.4}\NormalTok{, }\StringTok{"Posterior Probabilities}\CharTok{\textbackslash{}n}\StringTok{after observing 1W, 3F"}\NormalTok{, }\DataTypeTok{font=}\DecValTok{2}\NormalTok{,}
+     \DataTypeTok{col=}\StringTok{"red"}\NormalTok{, }\DataTypeTok{adj=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{cex=}\FloatTok{1.75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-9-1} 
+
+}
+
+\caption{Prior Probabilities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior probabilities, after observing that in n = 4 randomly sampled occasions, I was actually productive in only 1 of the 4.}\label{fig:unnamed-chunk-9}
+\end{figure}
+
+The sample alone most strongly supports a value for P of 0.25 (one W in four trials); had the prior included a value of P of 0.25, the (relative) increase in going from prior to posterior would have been greatest for that value.
+
+For the assumed prior, in which only p's of 0.50, 0.60, 0.70, 0.80, or 0.90 are considered, the sample evidence FFWF in favor of a P near 0.25 can only push up the posterior probabilities for the nearest possible values - 0.50 and 0.60. (The seemingly harder consideration of \textbf{all possible p's between zero and one} will handle this kind of situation more logically.)
+
+Below we show the `\textbf{continuous P }' version Antelman refers to. To make this, we calculated the mean and variance of his discrete (5-point) prior distribution, and converted them to the 2 parameters, \(a\) and \(b\), of the beta distribution with the same mean and variance.
+
+Conveniently, the posterior density is also a beta distribution, but with parameters \(a+1\) and \(b+3\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean.P.prior =}\StringTok{ }\KeywordTok{sum}\NormalTok{( P}\OperatorTok{*}\StringTok{ }\NormalTok{PriorProbForP )}
+\NormalTok{var.P.prior  =}\StringTok{ }\KeywordTok{sum}\NormalTok{( (P}\OperatorTok{-}\NormalTok{mean.P.prior)}\OperatorTok{^}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{PriorProbForP )}
+
+\NormalTok{a.plus.b =}\StringTok{ }\NormalTok{mean.P.prior }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{mean.P.prior) }\OperatorTok{/}\StringTok{ }\NormalTok{var.P.prior  }\OperatorTok{-}\StringTok{ }\DecValTok{1}
+\NormalTok{a =}\StringTok{ }\NormalTok{mean.P.prior }\OperatorTok{*}\StringTok{ }\NormalTok{a.plus.b}
+\NormalTok{b =}\StringTok{ }\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{mean.P.prior) }\OperatorTok{*}\StringTok{ }\NormalTok{a.plus.b}
+
+\NormalTok{P =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{0.01}\NormalTok{)}
+\NormalTok{prior.density =}\StringTok{ }\KeywordTok{dbeta}\NormalTok{(P,a,b)}
+\NormalTok{posterior.density =}\StringTok{ }\KeywordTok{dbeta}\NormalTok{(P,a}\OperatorTok{+}\DecValTok{1}\NormalTok{,b}\OperatorTok{+}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-11-1} 
+
+}
+
+\caption{Prior probability densities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior densities, after observing that in n = 4 randomly sampled occasions, I was actually productive  (W) in only 1 of the 4.}\label{fig:unnamed-chunk-11}
+\end{figure}
+
+Before moving on the the next type of parameter, a few points:
+
+\begin{itemize}
+\item
+  The beta distribution nicely shows \textbf{how the prior information/impression and the new data get combined}. The \(a\) and \(b\) parameters of the prior distribution are 14.8 and 6.2. Together, they determine the mean, \(a/(a=b)\), the median, the mode, \((a-1)/(a+b-2)\), and the variance,
+  \(a^2b^2/(a+b+1)^2\) of the prior distribution.
+  Their conterparts in the data-likelihood are 1 and 3. The `\(a\)' and `\(b\)' parameters of the posterior distribution are 15.8 and 9.2: the \(a\)'s \textbf{add}, and the \(b\)'s \textbf{add}. In other words, the distribution of one's pre-data beliefs is the distribution one would have after `seeing' 14.8 W's and 6.2 F's; the distribution of one's post-data beliefs is the distribution one would have after `seeing' 15.8 W's and 9.2 F's. \textbf{The (synthetic) experience-equivalent of the numbers of Ws and F's in the prior are added to the actual (observed) numbers of Ws and F's in the data to arrive at the (new) posterior distribution.}
+\item
+  You are probably wondering what the posterior distribution would look like \textbf{with more data}. Here is what it would look like after observing 7 out of 25 or 13 out of 25. The modes of the posterior distributions are still somewhat influenced by the prior -- as they are still well above P=7/25 = 0.28 and P=13/25 = 0.52. If the data were 70/250 or 13/250, the modes would be closer to P= 0.28 or P = 0.52; in other words, the data would `swamp' -- or `trump' -- the prior.
+\end{itemize}
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-12-1} 
+
+}
+
+\caption{Prior probability densities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior densities, after observing that in n = 25 randomly sampled occasions, I was actually productive (W) in only 7 of the 25, or 13 of the 25.}\label{fig:unnamed-chunk-12}
+\end{figure}
+
+\begin{itemize}
+\item
+  Be thinking about your prior for the proportion of thumbtacks that land on their back, and the proportion of the Earth's surface that is covered by water, or {[}these words written on March 30, 2020, before any trial data{]} the proportion of patients with mild symptoms of covid-19 who would benefit from chloroquine.
+\item
+  Think about how you might elicit a prior distribution. You might want to Google `tools for eliciting prior distributions' -- or consult Chapter 5 of Spiegelhalter's book.
+\end{itemize}
+
+We now move on to last parameter genre we will consider.
+
+\hypertarget{examples-parameter-is-a-personal-number-or-population-mean}{%
+\subsection{Examples: parameter is a personal number or population mean}\label{examples-parameter-is-a-personal-number-or-population-mean}}
+
+We will start with a discrete version of a commonly-wondered-about parameter,
+the age of a person whom you have just met, or seen a photo of.
+We will then go on to full numerical examples: your average cholesterol or blood pressure level, a baseball player's batting average
+
+\textbf{Example 1}
+
+\textbf{How old} (or \textbf{what age} -- if you prefer to avoid speaking of `old') do you think this IBC2006 attendee was when this photo was taken? This is the \emph{parameter of interest}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=9.51in]{images/IMG_DS} 
+
+}
+
+\caption{An attendee at the International Biometrics Conference, held at McGill in July 2006}\label{fig:unnamed-chunk-13}
+\end{figure}
+
+He tells you he \textbf{got his PhD 32 years earlier}. Based on the distribution of ages at which people get their PhD (shown in grey below), that puts his current age somewhere in the blue distribution.
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-14-1} 
+
+}
+
+\caption{Current ages of persons who obtained PhD 32 years earlier.}\label{fig:unnamed-chunk-14}
+\end{figure}
+
+This is a somewhat unusual example, as the blue distribution is very wide -- partly because we could not find age-at-graduation data specific to PhD graduates in statistics in 1974. We suspect that that specific distribution is a good deal narrower than the one shown. In the next chapter, you will see that other indirect measures of age are a good bit tighter than this.
+
+Nevertheless, it emphasizes that, depending on what impression you got form the photo alone, you may now wish to revise your estimate of the person's age. We suspect that many of you would have initially though he \textbf{looks like he was in mid 50s}, and so would have made guesses like those shown in red in the top panel. If you are one of those, then you will want to \textbf{revise the age upwards}, as we do in the green in the bottom panel.
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-16-1} 
+
+}
+
+\caption{If he looked like he was in mid 50s}\label{fig:unnamed-chunk-16}
+\end{figure}
+
+If you initially thought he looked like he was `around 60' you would have made guesses like those shown in red in the top panel. If you did, then you will want to \textbf{revise upwards a little}, as is shown in green, and now put hime him somewhere around 60, or a bit above.
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-17-1} 
+
+}
+
+\caption{If If he looked like he was around 60.}\label{fig:unnamed-chunk-17}
+\end{figure}
+
+If you initially thought he looked like he was `in his mid 60s' your estimate is more in line with the age-at-PhD data, and so you would not revise as much. You might bet a bit more on the `around 60' age-bracket.
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-18-1} 
+
+}
+
+\caption{If If he looked like he was in his mid 60s.}\label{fig:unnamed-chunk-18}
+\end{figure}
+
+As we noted, the PhD data have too much of a right tail, and so it is driving up the estimates. If you are now curious as how keen your `age-estimation' skills are, here is a link to the Google Scholar page of the \href{https://scholar.google.com/citations?user=e8DARmEAAAAJ\&hl=en}{statistician whose age we have been trying to determine}.
+
+Age estimation via face images (image-based age estimation) is a growing research area, with many possible applications.
+
+We now describe 2 more classical examples
+
+\textbf{Example 2}
+
+Spiegelhalter et al.~address this in their Example 3.4: `Suppose we are interested in the \textbf{long-term systolic blood pressure (SBP)
+in mmHg of a particular 60-year-old female}.'
+
+\begin{quote}
+We take two independent readings 6 weeks apart, and their mean is 130. We know that SBP is measured with a standard deviation \(\sigma = 5.\) What should we estimate her SBP to be?
+\end{quote}
+
+They then go on to give the \textbf{frequentist} (`standard', `orthodox') \textbf{95\% confidence interval},
+of \textbf{123.1 to 136.9}, \textbf{centered on the measured value of 130} {[}we will come later to how they calculated this{]}. They continue, \ldots{}
+
+\begin{quote}
+\textbf{However}, we may have \textbf{considerable additional information about SBPs
+which we can express as a prior distribution}. Suppose that a survey in the
+\textbf{same population} revealed that females aged 60 had a mean long-term
+SBP of 120 with standard deviation 10. \textbf{This population distribution can be
+considered as a prior distribution for the specific individual}.
+\end{quote}
+
+The \textbf{posterior distribution}, computed from the combination of the 130 measured on the woman,
+and the prior, is \textbf{centered on 128.9} and
+the 95\% interval is \textbf{122.4 to 135.4}.
+
+\begin{quote}
+This posterior distribution reveals some \textbf{`shrinkage' towards the population mean}, and a small increase in precision from not using the data alone.\\
+\textbf{Intuitively}, we can say that the woman has somewhat higher measurements than we would expect for someone her age, and hence we slightly adjust our estimate to allow for the possibility that her two measureshappened by chance to be on the high side. As additional measures are made, this possibility becomes less plausible and the prior knowledge will be systematically downgraded.
+\end{quote}
+
+Before going on to example 3, we emphasize that the 128.9 is a \textbf{compromize} between the persnal mean of 130, and the (prior) poulation mean of 120: it is a weighted average, with (relative) weights that are the reciprocals of the squares of the 2 standard deviations, the reciprocals of \(\frac{5^2}{2}\) and \(10^2,\) i.e., \(\frac{2}{25} = 0.08\) and \(\frac{1}{10^2} = 0.01.\) The
+128.9 is \textbf{8/9ths closer to the measured 130} than it is to the \textbf{population mean of 120}. It is slightly `shrunk' toawards the population. This is why physicians might not believe that the 130 is correct, and might ask for more measurements before putting this woman on blood pressure-lowering drugs.
+
+{[}The already cited `Bayesian integration in sensorimotor learning' illustrates how as humans, we automatically \textbf{combine estimates of different precisions} into one more precise estimate, and do so using the same mathematical laws that are used in the Bayesian approach!{]}
+
+\textbf{Example 3}
+
+One article that does go into some detail about a similar situation is the very nice medically-useful -- and didactic article \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/Irwig-1991-cholesterol.pdf}{Estimating an Individual's True Cholesterol Level and Response to Intervention} by Les Irwig, Paul Glasziou, Andrew Wilson and Petra Macaskill.
+
+It begins with a single measurement, before dealing with an average of several measurements on the same person. It also gives separate charts for persons of different ages, and deals not just with point and interval estimates, but also derives probability statements for the possibility that the person's true cholesterol is above some threshold that should trigger intervention. The appendix is a nice tutorial for combining information.
+
+Their \emph{abstract} begins:
+
+\begin{quote}
+An individual's blood cholesterol measurement may differ from the true level because of short-term biological and technical measurement variability. Using data on the within-individual and population variance of serum cholesterol, we addressed the following \textbf{clinical concerns: Given a cholesterol measurement, what is the individual's likely true level?} The confidence interval for the true level is wide and asymmetrical around extreme measurements because of regres-sion to the mean. Of particular concern is the misclassification of people with a screening measurement below 5.2 mmol/L who may be advised that their cholesterol level is `desirable' when their true level warrants further action.
+\end{quote}
+
+The first half of the paper, which deals with two related topics, (a) Estimating the True Cholesterol Level, and (b) assesing the Probability of Misclassification shows the primary elements, and these notes will focus on the highlights. {[}after these, extensive excerpts will be included{]}
+
+The results for (a) and (b) were presented as 2 Figures. The first gave the (posterior) credible interval for a person's true cholesterol level based on either 1, or an average of 3, measurements, using on the horizontal axis the measured value, and on the vertical one the point and 95\% credible interval. Using a graph (rather than a formula) allows the clinician to use it for all possible `what if's.
+
+Below, we will \textbf{illustrate} it using one specific example, a \textbf{person whose measured value was 7.15}.
+
+The second uses the (posterior) credible interval to calculate the \textbf{probability that someone with a specific measured value has a true level that is above a certain threshold level used in treatment guidelines.}
+Thus, the key tool is the posterior distribution itself, and so we give the statistical basis for this.
+
+\emph{Reasons to take a Bayesian approach}
+
+The reason this problem arises in the first place is because of short term biological variability in the quantity of interest in the person in question. If we were measuring a person's height, we could do so carefully at just one time-point: it would not be different a week or month from now; it remains quite stable over several years. {[}it does vary slightly over the day, but, be keep it simple, we could speak of one's height at mid-day{]}. The same is not the case for a person's cholesterol level: even if we measured it very carefully at one time, it would be genuinely different a week or month later, even in the absence of any intervention of lifestyle change. (The same applies, more strikingly, for other blood levels such as C-reactive protein (CRP), which is a marker of inflammation).
+
+Thus any single measurement, or any average of a finite number of determinations, is imprecise. \textbf{So what's new?} Don't we meet this issue all the time in statistics?
+
+The \textbf{point of Irwig's article} is that we should \textbf{not rely solely on the estimate based on the \emph{person}'s measurements}, but rather \textbf{should combine it with an
+estimate based on \emph{outside information}.}
+
+The same reasoning is at work when a physician repeats a measurement that seems extreme. In so doing, (s)he is not relying only on the point or interval estimate provided by the measurement itself: rather (s)he is \textbf{also using knowledge of how this measurement behaves in other similar persons}! And what we know about others, even if collectively, can help us with an individual.
+
+All of the technical details are available in these notes, prepared for \href{}{bios601}
+Here we will skip to the `botom line' diagrams.
+
+\textbackslash{}begin\{figure\}
+
+\{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-19-1}
+
+\}
+
+\textbackslash{}caption\{A Person's estimated true cholesterol level from one measurement for a population of individuals where the mean is 5.2 mmol/L (i.e, at the time of the article, men less than 35 and women less than 45 years old). The thicker solid line indicates the estimated true level, the thinner solid lines are 80\% confidence intervals. The dotted diagonal line is an equivalence line. The arrow shows the amount by which a single measurement of 7.15 mmol/L is shrunk towards the population mean, to a rcorrected value of 6.8 mmol/L.\}\label{fig:unnamed-chunk-19}
+\textbackslash{}end\{figure\}
+
+Below, we show the detailed calculations for a person with a single measurement of 7.15 mmol/L. For now, just focus on the items shown in red (the prior distribution for \(\theta\), blue (the 7.15 for the individual, and the associated likelihood function) and green (the posterior distribution of \(\theta\)). All the calculations are on the log scale.
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-20-1} 
+
+}
+
+\caption{Worked example, for a person with a measured value of 7.15}\label{fig:unnamed-chunk-20}
+\end{figure}
+
+\textbf{combine estimates of different precisions} into one more precise estimate, and do so using the same mathematical laws that are used in the Bayesian approach!{]}
+
+\textbf{Example 4}
+
+We end with a strking example of the limitations of using one-at-a-time frequentist intervals, each in isolation from the next. It is based on the example in this \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios602/MultilevelData/EfronMorrisJASA1975.pdf}{classic article}.
+
+The task is to predict each player's batting average over the remainder of the season using only the data from the first 4 weeks of the season. Since it proved difficult to replicate their selection croteria, we used instead the first 40 of \href{http://mlb.mlb.com/stats/sortable.jsp\#elem=\%5Bobject+Object\%5D\&tab_level=child\&click_text=Sortable+Player+hitting\&game_type='R'\&season=2019\&season_type=ANY\&league_code='MLB'\&sectionType=sp\&statType=hitting\&page=1\&ts=1586307216206\&playerType=ALL\&timeframe=\&last_x_days=\&split=\&sortColumn=ab\&sortOrder='desc'\&extended=0}{these players}.
+
+The numbers of at bats per player up to mid April ranged from 44 to 73 (median 60 ). Efron and Morris used a constant 45. The numbers from mid April to the end of September ranged from 511 to 611 (median 542 ), or about 9 times as many as in the initial sample.
+
+Clearly, the \textbf{extreme results in these first 4 weeks were poor estimates of the perfornmances during the rest of the season}. They \textbf{`shrunk'} quite a bit.
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-22-1} 
+
+}
+
+\caption{Batting averages of selected Major League baseball players, 2019}\label{fig:unnamed-chunk-22}
+\end{figure}
+
+Across the performances \textbf{up to mid April}, the variance is \textbf{a lot more than} the variances in their \textbf{`real'} (longer-term, remaining) performances. Thus, only about portion of it reflects the variance of the player-specific true (long-term) success rates. Will will quantify these later, below.
+
+The individual binomial-based point estimates and frequentist confidence intervals we could construct (see next section) \textbf{do not use the knowledge that individual season-long averages are confined to a narror band between say 0.225 and 0.325}. Thus, many of them will not come close to or `trap' the eventual individual longer-term batting averages. The correct way to make better frequentist intervals is to \textbf{consider the family of players as an ensemble}. If we label an randomly selected player as `\emph{rs}' say, then the long-run average \(\pi_{rs}\) is thought of (modelled) as drawn from the distribution (family) of long-run averages. A slightly simplified (for display and didactic purposes) version of this is shown in this figure.
+
+\begin{figure}
+
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-25-1} 
+
+}
+
+\caption{Simplified Distribution, **for learning purposes**, of Long-term Batting averages of Major League baseball players. Mean = 0.290; SD = 0.040.}\label{fig:unnamed-chunk-25}
+\end{figure}
+
+How then should we think of (model) \emph{rs}'s short-term average? To make it concrete, suppose the number of at bats was \(n_{rs}\) = 60, and that we observed 21/60 hits. A natural way is to view the 21/60 as the end-result of (of having come to us in) \textbf{two stages}, each involving a random draw \textbf{(i)} \(\pi_{rs}\) was randomly drawn from the above distribution and then \textbf{(ii)} the number of hits was drawn from a binomial(\(n\)=60) distribution with the probability/proportion parameter \(\pi_{rs}\). Symbolically, we would describe the \textbf{provenance} of the \(y\) (= 21 for example) as
+\[(i) \ \pi_{rs} \sim distribution \ in \ previous \ figure ; \ \ (ii) \ \ y | \pi_{rs} \sim Binomial(n=60, \pi = \pi_{rs}).\]
+
+\begin{quote}
+\textbf{provenance} : The fact of coming from some particular \textbf{source} or quarter; \textbf{origin, derivation}.
+The history of the ownership of a work of art or an antique, used as a guide to authenticity or quality; a documented record of this.
+A distinction is sometimes drawn between the `origin' and the `provenance' of an article, as in `A Canterbury origin is probable, Canterbury provenance is certain.'
+Forestry. The geographic source of tree seed; the place of origin of a tree. Also: seed from a specific location. \textbf{Oxford English Dictionary}
+\end{quote}
+
+The bottom part of this next figure shows the frequencies of the possible end-results (possible observed short term averages). The colours show their `provenance'. The top part shows the provenance of the `21/60' short-term averages in particular. Note the direction of the arrow, showing the reverse-engineering, \textbf{from what we observe} (the 21/60) \textbf{back to} where (who) it could have arisen from. The use of reverse probabilities is at the heart of the Bayesian approach. In his worked example, when Bayes wrote about `the exact probability of all conclusions based on induction', his \textbf{conclusions} referred to the \textbf{origin} (original location, unknown) of a billiard ball, and his data referred to the locations where it came to rest in a number of trials.
+
+\textbackslash{}begin\{figure\}
+
+\{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-26-1}
+
+\}
+
+\textbackslash{}caption\{The bottom frequency distribution shows the expected frequencies of Short-term Batting averages from \emph{n} = 60 at bats by types of players shown in previous figure. For each possible short-term average, the colours of their components show their `provenance', i.e., which types of player this average arises from, and the relative contributions from each type. \textbf{As an example, highlighted, within the column enclosed by a dashed line, is the provenance of the short-term averages that equal 21/60 = 0.350}. In a real application, after n=60, IF ALL ONE KNEW WAS THE 21/60, one would not know which type of player, i.e., which colour, one was observing. Nevertheless, the theoretical calculations show that a \textbf{short-term average of 21/60 = 0.350 is more likely to have been produced by a player who bats 0.320 or 0.300 or even lower, that one who bats 0.350 or or 0.360 or higher.} Much more of the probability distribution lies to the left of the 0.350 than to the right of it! So we need to `shrink' the observed 0.350 towards the 0.290.\}\label{fig:unnamed-chunk-26}
+\textbackslash{}end\{figure\}
+
+Efron and Morris give a specific formula for merging the initial information (the `centre' of 0.290) with the new information (the 21/60 = 0.350). the `shrunken' estimate of the long-term average is a compromise, a weighted average, with the weights determined by the precision of the 21/60 (determined mainly by the 60) and the narrowness of the `parent' distribution. We don't need to get into these at this stage.
+
+But, we will address a question some of you may already have concerning the batting average example, compared with the cholesterol example. In the cholesterol example, the `prior' (or population) distribution of individuals' true levels would be reasonably \textbf{well known already}. But in the baseball example, even though they had easy access to all of players' previous years of data, Efron and Morris \textbf{did not use any historical data}. Instead, they use a `\textbf{contemporaneous}' prior: they inferred what the location and spread of the distribution shown in the second of our three baseball figures, just from the March to Aril 15, 2019 numbers shown along the top of the first figure. They did this by subtraction. In the simplest case, if all the short-term averages were based on the same number (\(n\)) of at bats (Efron and Morris used \(n\) = 45), we have the following variance (V) formula\\
+\[V[short.term.averages] =  V[long.term.averages] +  \  V[binomial.proportion \ based \ on \ n.]\]
+They got to measure the left hand quantity empirically from their data on April 26 / May 3, 1970, and they knew from mathematical statistics that the rightmost quantity is of the order of \(0.3 \times 0.7 \  / \ 45\) =
+0.0047. Thus they could deduce the spread of the long-term averages.
+
+In \emph{our} 2019 data, the numbers of early-season at bats vary from player to player, but we will simplify the math by taking a typical \(n\).
+Across the performances \textbf{up to mid April}, the (rounded) variance of the individual batting averages, (i.e., the left-hand \(V\) in the above equation) is 0.004640. The binomial variation that you would see with \(n\)'s of the order of 60 is approximately 0.003570. Player-specific true proportions vary from maybe 0.225 to 0.325. {[}for example, at \(\pi\) =0.30 and \(n\) = 60, the binomial variance is 0.30 * 0.70 / 60 = 0.003500.{]} Thus,
+by solving the equation
+\[0.004640 =  V[long.term.averages] +  \  0.003500\]
+
+we can back-calculate that the variance of the player-specific true (long-term) success rates is only about 0.001070. {[}The square root of this, sd = 0.033, broadly fits with the spead we see in the performances during the remainder of the season: the averages range from 0.224 to 0.326.{]}
+
+To \textbf{distinguish it from the typical Bayes} approach, this \textbf{double use of the data} is sometime referred to as an `\textbf{Empirical Bayes}' approach.
+
+\begin{quote}
+Empirical Bayes methods are procedures for statistical inference in which the prior distribution is estimated from the data. This approach stands in contrast to \textbf{standard} Bayesian methods, for which the \textbf{prior distribution is fixed before any data are observed}. Despite this difference in perspective, empirical Bayes may be viewed as an approximation to a fully Bayesian treatment of a hierarchical model wherein the parameters at the highest level of the hierarchy are set to their most likely values, instead of being integrated out. Empirical Bayes, also known as maximum marginal likelihood, represents one approach for setting hyperparameters. Wikipedia, 2020.04.15
+\end{quote}
+
+\hypertarget{the-bayesian-bottom-line}{%
+\subsection{The Bayesian Bottom Line}\label{the-bayesian-bottom-line}}
+
+\begin{itemize}
+\item
+  As the examples all show, the Bayesian approach allows for direct-speak about parameters, without any of the `legalese' we will have to use when using the frequentist approach.
+\item
+  Because the end-product is a probability distribution for the parameter (\(\theta\) say), we can directly talk about the (pre-) and post-data \textbf{probability that}, say,
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\theta > 0,\)
+    or (for any prespecified values \(A\) and \(B\))
+  \item
+    \(A < \theta < B\), or
+  \item
+    \(\theta > A\) or
+  \item
+    \(\theta < B\), or, as in the case of hemophilia carriage,
+  \item
+    \(\theta = Yes\) or \(\theta = No.\)
+  \end{itemize}
+\item
+  If \(\theta\) = batting average for the remainder of season,
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Prob(a 21/60 player will have \(\theta \ge\) .350) = 0.11 {[}see Fig{]}
+  \end{itemize}
+\item
+  Likewise, if we fix a desired probability \(P\), we can calculate \(\theta\) values \(\theta_{lower}\) and \(\theta_{upper}\) such that
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Prob( \(\theta > \theta_{lower}) = P\), or
+  \item
+    Prob( \(\theta < \theta_{upper}) = P\), or
+  \item
+    Prob( \(\theta_{lower} < \theta < \theta_{upper}) = P\).
+  \end{itemize}
+\item
+  Again, if \(\theta\) = batting average for the remainder of season, then, in the case of a 21/60 player,
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Prob(0.245 \textless{} \(\theta\) \textless{} 0.377) = 0.95.
+  \end{itemize}
+\item
+  \textbf{Contrast this with the 95\% frequentist confidence interval}, based \textbf{only on the 21/60}, and \textbf{not on the knowledge that} (historically, or even by back-calculation just from the early 2019 data) \textbf{most players' batting averages for a year are between 0.225 and 0.325},
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\theta_{lower}\) = 0.231 ; \(\theta_{upper}\) = 0.484) = 0.95.
+  \end{itemize}
+\end{itemize}
+
+Can this shrinkage be done without `priors'?
+
+\hypertarget{frequentist-approach}{%
+\section{Frequentist approach}\label{frequentist-approach}}
+
+2 activities that are seamless in the Bayesian approach have to be separated in the Frequentist approach.
+
+tests CI's
+
+whereas tests are being downgraded and CI's elevated,
+it is easier to start with tests. We do warn that this is not starting with the more important, but because it is difficult to learn what is behind frequentist CIs without knowing waht p-values are.
+
+In their chapter 11, Null hypotheses and p-values, Clayton and Hills tell us
+
+\begin{quote}
+With most probability models there is one particular value of the parameter which corresponds to there being \emph{no effect}. This value is called the \emph{null} value, or \emph{null hypothesis}. For a parameter \(\theta\) we will denote this null value by \(\theta_0\). In classical statistical theory, considerable emphasis is placed on the need to disprove (or reject) the null hypothesis before claiming positive findings, and the procedures which are used to this end are called \emph{statistical significance tests}. However, the emphasis in this theory on accepting or
+rejecting null hypotheses has led to widespread misunderstanding and misreporting in the medical research literature. In epidemiology, which is not an
+experimental science, the usefulness of the idea has been particularly questioned. Undoubtedly the idea of statistical significance testing has been overused, at the expense of the more useful procedures for \emph{estimation}
+of parameters which we have discussed in previous chapters. However, it remains useful. A null hypotheses is a \emph{simplifying} hypothesis and measuring the extent to which the data are in conflict with it remains a valuable part of scientific reasoning. In recent years there has been a trend away from a making a straight choice between accepting or rejecting the null
+hypothesis. Instead, the \emph{degree} of support for the null hypothesis is measured, for example using the log likelihood ratio at the null value of the
+parameter. Clayton and Hills, p96. {[}Their illustration involved an investigation of the possible linkage of the HLA locus to nasopharyngeal cancer susceptibility{]}
+\end{quote}
+
+In Chapter 2.4, Classical hypothesis testing, Gelman and Hill tell us
+
+\begin{quote}
+The possible outcomes of a hypothesis test are `reject' or `not reject.' It is never possible to `accept' a statistical hypothesis, only to find that the data are not sufficient to reject it.\\
+.\\
+Comparisons of parameters to fixed values and each other: interpreting confidence intervals as hypothesis tests\\
+.\\
+The hypothesis that a parameter equals zero (or any other fixed value) is directly tested by fitting the model that includes the parameter in question and examining its 95\% interval. If the interval excludes zero (or the specified fixed value), then the hypothesis is rejected at the 5\% level.\\
+Testing whether two parameters are equal is equivalent to testing whether their difference equals zero. We do this by including both parameters in the model and then examining the 95\% interval for their difference. As with inference for a single parameter, the confidence interval is commonly of more interest than the hypothesis test. For example, if support for the death penalty has decreased by 6\% \(\pm\) 2.1\%, then the magnitude of this estimated difference is probably as important as that the change is statistically significantly different from zero.
+The hypothesis of whether a parameter is positive is directly assessed via its confidence interval. If both ends of the 95\% confidence interval exceed zero, then we are at least 95\% sure (under the assumptions of the model) that the parameter is positive. Testing whether one parameter is greater than the other is equivalent to examining the confidence interval for their difference and testing for whether it is entirely positive.
+\end{quote}
+
+In section 2.5, Problems with statistical significance, they warn that
+
+\begin{quote}
+A common statistical error is to summarize comparisons by statistical significance and to draw a sharp distinction between significant and nonsignificant results. The approach of summarizing by statistical significance has two pitfalls, one that is obvious and one that is less well known.
+First, statistical significance does not equal practical significance. For example, if the estimated predictive effect of height on earnings were \$10 per inch with a standard error of \$2, this would be statistically but not practically significant. Conversely, an estimate of \$10,000 per inch with a standard error of \$10,000 would not be statistically significant, but it has the possibility of being practically significant (and also the possibility of being zero; that is what ``not statistically significant'' means).\\
+.\\
+The second problem is that changes in statistical significance are not themselves significant. By this, we are not merely making the commonplace observation that any particular threshold is arbitrary --- for example, only a small change is required to move an estimate from a 5.1\% significance level to 4.9\%, thus moving it into statistical significance. Rather, we are pointing out that even large changes in significance levels can correspond to small, nonsignificant changes in the underlying variables.
+\end{quote}
+
+They illustrate the application of basic statistical methods with a story, in which, a couple of years before, they received a fax, entitled HELP!, from a member of a residential organization:
+
+\begin{quote}
+Last week we had an election for the Board of Directors. Many residents believe, as I do, that the election was rigged and what was supposed to be votes being cast by 5,553 of the 15,372 voting households is instead a fixed vote with fixed percentages being assigned to each and every candidate making it impossible to participate in an honest election.
+\end{quote}
+
+Gelman and Hill devote 3 pages to their analysis, which led them to
+
+\begin{quote}
+conclude that the intermediate vote tallies are consistent with {[}the null hypothesis of{]} random voting. As we explained to the writer of the fax, opinion polls of 1000 people are typically accurate to within 2\%, and so, if voters really are arriving at random, it makes sense that batches of 1000 votes are highly stable. This does not rule out the possibility of fraud, but it shows that this aspect of the voting is consistent with the null hypothesis.
+\end{quote}
+
+\hypertarget{frequentist-test-of-a-null-hypothesis}{%
+\subsection{(Frequentist) Test of a Null Hypothesis}\label{frequentist-test-of-a-null-hypothesis}}
+
+Use: To assess the evidence provided by sample data in favour of a pre-specified claim or `hypothesis' concerning some parameter(s) or data-generating process. As with confidence intervals, tests of significance make use of the concept of a sampling distribution.
+
+\textbf{Example 1}
+
+The \href{http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/lady_tasting_tea.pdf}{Mathematics of a Lady Tasting Tea.} Whether the sensory experiment was actually carried out has been the subject of subsequent \href{https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2012.00620.x}{articles}. In 2002, the phrase `Lady Tasting Tea':' was used as the title, and How Statistics Revolutionized Science in the Twentieth Century the subtitle of \href{https://www.amazon.ca/Lady-Tasting-Tea-Statistics-Revolutionized/dp/0805071342}{this book} which you can borrow from the \href{https://mcgill.overdrive.com/media/E974A53B-3700-474A-9E11-9E8758435E70}{McGill Librray}.
+Here is a link to an online copy of \href{https://www.phil.vt.edu/dmayo/PhilStatistics/b\%20Fisher\%20design\%20of\%20experiments.pdf}{Fisher's 1935 book Design of Experiments}
+
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-28-1} \end{center}
+
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-29-1} \end{center}
+
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-30-1} \end{center}
+
+\textbf{Example 2}
+
+Preston-Jones vs.~Preston-Jones (1946-1951), excerpted from \href{https://learning.uonbi.ac.ke/courses/GPR201/document/Selected_Cases/Preston-Jones_v_Preston-Jones_-Human_Gestation_Period-.pdf}{here}.
+
+The facts were as follows: The husband (the appellant) was married to the wife (the respondent) on April 14, 1941, at Brymbo in the county of Denbigh. Jean, a child of the marriage, was born on April 15, 1942. On August 13, 1946, a second child was born to the wife. The husband, alleging that this child was not his child and founding on the circumstances of his birth a charge of adultery against the wife, on November 8, 1946, presented a petition to the High Court for the dissolution of his marriage. \textbf{He alleged that the said child was conceived some time between August 29, 1945, and February 13, 1946, during the whole of which period of time {[}he{]} was absent from the United Kingdom and . . . the {[}wife{]} was resident in the United Kingdom and that the child must therefore have been conceived as the result of an act of adultery.}
+
+The \textbf{petition was first heard} by His Honour Commissioner Burgis, who \textbf{dismissed} it. The husband appealed to the Court of Appeal and that court allowed the appeal, {[}\ldots{}{]} set aside the order of the commissioner and directed the petition to be reheard before another judge.
+
+The \textbf{petition was reheard} on March 24, 1949, by Mr.~Commissioner Blanco White, K.C. He concluded:
+
+\begin{quote}
+I am \textbf{not satisfied beyond a reasonable doubt that adultery has been committed}. \ldots{} The question reduces itself to the simple question as to \textbf{whether} the court's judicial knowledge of natural laws \textbf{enables it to say} without any satisfactory evidence \textbf{that 360 days between coition and birth is an impossible period} and whether, if that period elapsed, a woman, who is, so far as the rest of the evidence goes, a respectable woman, is to be convicted of adultery. \textbf{I think not}.
+\end{quote}
+
+He \textbf{dismissed the petition}.
+
+The husband appealed to the Court of Appeal, which on July 22, 1949, set aside the commissioner's order and ordered the cause to be reheard by a judge of the High Court if possible. \textbf{The husband appealed to the House of Lords, asking that a decree for dissolution of the marriage should be made. The wife cross-appealed, asking that the petition should be dismissed.}
+
+The final paragraph of the lengthy of opinions of the five Lords at the end of 1950:
+
+\begin{quote}
+My Lords, I do not think it open to doubt that a time must come when, with the period far in excess of the normal, the court may properly regard its length as proving the wife's adultery beyond reasonable doubt, and decree accordingly. But, as has so often been pointed out, the difficulty is to know where to draw the line. The reported cases naturally tend to creep up on each other and there is little sound guidance to be gleaned from authority. If a line has to be drawn I think it should be drawn so as to allow an ample and generous margin, for it may be as difficult for the wife to prove a freak of nature as for anyone else; and it need hardly be added that, before acting on the length of the period, due regard must be paid to any other relevant evidence. But I do not find it possible to go further and lay down any hard and fast rule capable of general application. In my opinion there is nothing in the testimony here, or in the facts of which judicial notice may be taken, to justify fixing a specific period and holding that, in the absence of evidence to the contrary, anything more would, but anything less would not, prove adultery beyond reasonable doubt. If, in the light of a full and exhaustive inquiry, the line could be thus fixed it might well be that the period of 360 days would come near or even cross it. But, however that may be, I am not prepared to decide this case merely on the fact that a period of that duration has been established. \textbf{I prefer to relate my conclusion to the evidence as a whole and, for the reasons already given, I think it should have satisfied the learned commissioner beyond reasonable doubt.
+I would therefore allow the appeal and
+dismiss the cross- appeal.}
+\end{quote}
+
+\begin{quote}
+\textbf{Appeal allowed}.
+\end{quote}
+
+The following is from this \href{http://www.biostat.mcgill.ca/hanley/statbook/Guttmacher.pdf}{`bible'} for those who became parents in the 1970s
+
+\begin{quote}
+What Are the Chances of Delivering on Time?
+\end{quote}
+
+\begin{quote}
+In over 17,000 cases of pregnancy carried beyond the twenty seventh week, 54 per cent delivered before 280 days, 4 percent had their babies either the week before or the week after the calculated date, and 74 per cent within a two-week period before or after the anticipated day of birth.\\
+On the basis of these data one can calculate the likelihood
+which the average woman faces when carrying a single infant,
+not twins, of having her baby, during each week after the
+twenty-seventh week from the first day of her last menstrual
+period.
+\end{quote}
+
+The author then presents a \href{http://www.biostat.mcgill.ca/hanley/statbook/Guttmacher.pdf\#page=7}{frequency distribution} in 19 rows and 3 columns, with the headers \emph{Weeks} (27, 28, \ldots{} 45, 46+), \emph{Days} (189-196, 196-203, \ldots{} 308-315, 315+) and \emph{Approximate Chance} (1:625, 1:625, 1:525, \ldots{} 1:140, 1:140). We have converted it to a graphic.
+
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-31-1} \end{center}
+
+The author does on to say that
+
+\begin{quote}
+Another reliable study has shown that 40 per cent of
+women go into labor within a ten-day period --- five days before and five days after the calculated date, and nearly two thirds within plus or minus ten days of the expected time.
+\end{quote}
+
+Altman, writing in the BMJ in 1980, gives a graph based on \href{http://www.biostat.mcgill.ca/hanley/statbook/Altman1980.pdf\#page=2}{1970 data from
+England}.
+
+In that (pre-ultrasound) era, some of the variation was dues to dating errors. But a 2013 article, based on carefully collected daily urine samples found that even with the precise measuremet of the timing of pregranct that these samples provides the \href{https://www.sciencedaily.com/releases/2013/08/130806203327.htm}{length of human pregnancies can vary naturally by as much as five weeks}
+
+\begin{quote}
+Normally, women are given a date for the likely delivery of their baby that is calculated as 280 days after the onset of their last menstrual period. Yet only four percent of women deliver at 280 days and only 70\% deliver within 10 days of their estimated due date, even when the date is calculated with the help of ultrasound.\\
+Now, for the first time, researchers in the USA have been able to pinpoint the precise point at which a woman ovulates and a fertilised embryo implants in the womb during a naturally conceived pregnancy, and follow the pregnancy through to delivery. Using this information, they have been able to calculate the length of 125 pregnancies.\\
+``We found that the average time from ovulation to birth was 268 days -- 38 weeks and two days,'' said Dr Anne Marie Jukic, a postdoctoral fellow in the Epidemiology Branch at the National Institute of Environmental Health Sciences (Durham, USA), part of the National Institutes for Health. ``However, even after we had excluded six pre-term births, we found that the length of the pregnancies varied by as much as 37 days.\\
+''We were a bit surprised by this finding. We know that length of gestation varies among women, but some part of that variation has always been attributed to errors in the assignment of gestational age. Our measure of length of gestation does not include these sources of error, and yet there is still five weeks of variability. It's fascinating."\\
+The possibility that the length of pregnancies can vary naturally has been little researched, as it is impossible to tell the difference between errors in calculations and natural variability without being able to measure correctly the gestational age of a developing fetus. Previous studies conducted as long ago as the 1970s and 1980s had used the slight rise in a woman's body temperature at waking as a way of detecting when ovulation occurred. This is an inexact measurement and cannot be used to detect when the embryo actually implants in the womb. Science Daily.
+\end{quote}
+
+But even if the variation is still (naturally) large, the original (1849) ruling in the Preston-Jones case seems extreme. Altman asks us to look at the distribution of length of gestation in his Fig 1, `which the judges apparently did not do.' Altman himself thought that
+
+\begin{quote}
+most people would feel that the husband was hard done by. Even If this case were heard now, where would you draw the line on the basis of (Altman's) fig 1 ?\\
+This case illustrates a failure to use statistical methods when
+they ought to have been used, a fairly common occurrence. Saying that an event is possible is quite different from saying that it has a probability of, say, one in 100,000. Although not an example from medical research, this case concerne essentially the same difficulty as in many more frequentl encountered problems, such as denning hypertension or obesity
+Everything varies; it is in trying to draw lines between good and bad, high and low, likely and unlikely, and so on, that many problems arise. Although statistics cannot answer a given question, they can often shed considerable light on the problem. Altman, 1980.
+\end{quote}
+
+Today, JH would add that we \textbf{should \emph{also} consider, as those who heard the case did, the other evidence and testimony presented in the case}. (We will come back to this when discussing the prosecutor's fallacy.)
+
+\textbf{Other Examples}:
+
+\begin{itemize}
+\tightlist
+\item
+  Quality Control (it has given us the terminology)
+\item
+  Taste-tests (see exercises )
+\item
+  Jumping the gun in athletics
+\item
+  After having had 3 NL sons, is potential-carrier mother a carrier?
+\item
+  Adding water to milk..seeM\&M2Example6.6p448
+\item
+  Water divining..seeM\&M2exercise6.44p471
+\item
+  Randomness of U.S. Draft Lottery of 1970.. see M\&M2
+  Example 6.6 p105-107, and 447-
+\item
+  Births in New York City after the ``Great Blackout''
+\item
+  John Arbuthnot's ``argument for divine providence''
+\item
+  US Presidential elections: Taller vs.~Shorter Candidate.
+\item
+  Gelman and Hill, HELP. 50,000 votes
+\item
+  Laplace average depth of the oceans is of the same order as the average height of the continents.
+\item
+  Under the null hypothesis of the independence of the row and column factors, the expected value of the chi-square statistic calculated from a 2 \(\times\) 2 table is 4 - 1 = 3 (said Karl Pearson in 1900) or (2 - 1)\(\times\) (2 - 1) = 1 (said Ronald Fisher, and G Udny Yule in 1922).
+\end{itemize}
+
+\hypertarget{ingredients-and-methods-of-procedure-in-a-statistical-test}{%
+\subsection{Ingredients and methods of procedure in a statistical test}\label{ingredients-and-methods-of-procedure-in-a-statistical-test}}
+
+The bullet point following each item is specific to the \textbf{Preston-Jones case}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A \textbf{claim about a parameter} (or about the shape of a distribution,
+  or the way a lottery works, etc.). Note that the null and alternative hypotheses are usually stated using Greek letters, i.e.~in terms of population parameters, and in advance of (and indeed without any regard for) sample data.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Parameter (unknown): \textbf{Date of Conception}\\
+    CLAIMS by husband (h) and by wife (w)\\
+    H\(_0\)(w): Date of Conception \textless{} HUSBAND LEFT\\
+    H\(_A\)(h): Date of Conception \textgreater{} HUSBAND LEFT
+  \end{itemize}
+\item
+  A \textbf{probability model} (in its simplest form, a set of assumptions) which allows one to predict how a relevant statistic from a sample
+  of data might be expected to behave under H\(_0\).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A probability model for statistic; examples: Gaussian, \textbf{Empirical} (common wisdom, and expert testimony at the time). In the 1949 hearing, the Commissioner referred to the 'court's judicial knowledge of natural laws
+  \end{itemize}
+\item
+  A \textbf{probability level or threshold} or dividing point below which (i.e.~close to a probability of zero) one considers that an event with this low probability `is unlikely' or `is not supposed to
+  happen' or `just doesn't happen'. This pre-established limit of extreme-ness is referred to as the \(\alpha\) level of the test.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    None of those who pronounced on the case ever gave a value for this.
+  \end{itemize}
+
+  Denning, L.J., `thought that, according to the ordinary knowledge of mankind, a 360-day normal baby is
+  impossible; and the courts should not assert that it is possible unless there is direct medical evidence to that effect.'
+\item
+  A sample of \textbf{data}, which under H\(_0\) is expected to follow the probability laws in (2)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{\(y\) = 360 days between when husband left and baby was born} {[}the House of Lords account mentions 3 different departure dates, August 13, 17, and 29, but the Lords all spoke of 360 days in their deliberations{]}
+  \end{itemize}
+\item
+  The most relevant \textbf{statistic} (e.g. \(\bar{y}\) if interested in inference about the parameter \(\mu\))
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{360 - 280 = 80 days}
+  \end{itemize}
+\item
+  The \textbf{probability of observing a value of the statistic as extreme or more extreme (relative to that hypothesized under H\(_0\)) than we observed}. This is used to judge whether the value obtained is either `close to' i.e. `compatible with' or `far away from' i.e. `incompatible with', H\(_0\). The `distance from what is expected under H0' is usually measured as a tail area or probability and is referred to as the `P-value' of the statistic in relation to H\(_0\).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{P = Prob{[} 360 or 361 \ldots{} \textbar{} \(\mu\) = 280{]}}. Although it was not quantified, it was taken to be quite small.
+  \end{itemize}
+\item
+  A \textbf{comparison} of this `extreme-ness' or `unusualness' or `amount of evidence against H\(_0\)' or P-value \textbf{with the agreed-on `threshold of extreme-ness'}. If it is beyond the limit, H\(_0\) is said to be `rejected'. If it is not-too-small, H0 is `not rejected'. These two possible decisions about the claim are reported as `the null hypothesis is rejected at the P = \(\alpha\) significance level' or `the null hypothesis is not rejected at a significance level of 5\%'.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Mr.~Commissioner Blanco \textbf{White}, K.C., who heard the petition in 1949, didn't tell us his threshold, but his use of the word `impossible' suggests it might have been zero.\\
+    \textbf{Bucknill}, L.J. of the Court of Appeal noted that the commissioner in his judgment said it appeared to be a pure question of law whether 360 days is an impossible period without any satisfactory scientific evidence to that effect.' Bucknill saw the case `not in that light but rather as one where the court must balance the probabilities one against the other. On the one hand there is the \textbf{very great improbability}, I will not put it any higher, that a woman can, 360 days after coitus, give birth to a normal full-time child of 8 and a quarter pounds without any ifficult labour, and after a pregnancy which, according to the wife, was not unduly prolonged, but, on the contrary, was cut short. As against this high improbability there is the fact that the wife has put forward the case of a visit by the husband to her in November, a case which the commissioner has not
+    accepted. If the matter rested there I should be in favour of allowing this appeal {[}siding wth the husband{]}. {[}if interested, see the origibal for why he ordered a re-hearing.{]}
+    \textbf{Denning}, L.J., of the same Court of Appeal dissented, saying that 'the \textbf{irresistible inference} was that it was conceived in adultery. {[}\ldots{}{]} \textbf{according to the ordinary knowledge of mankind, a 360-day normal baby is impossible}; and the courts should not assert that it is possible unless there is direct medical evidence to that effect.'\\
+    In his summary, \textbf{Lord Simonds} said that since `The result of a finding of adultery in such a case as this is in effect to bastardize the child', it 'is a matter in which from time out of mind strict proof has been required. But \textbf{that does not mean that a degree of proof is demanded such as in a scientific inquiry would justify the conclusion that such and such an event is impossible.}
+    In this context at least \textbf{no higher proof of a fact is demanded than that it is established beyond all reasonable doubt}: see Head v. Head (18). \textbf{To prove that a period of so many days between fruitful coition and the time of conception is in a scientific sense impossible is itself, I suppose, a scientific impossibility}. The utmost that a court of law can demand is that it should be established beyond all reasonable doubt that a child conceived so many days after a particular coitus cannot be the result of that coitus.
+  \end{itemize}
+\end{enumerate}
+
+nificance levels can correspond to small, nonsignificant changes in the underlying variables.
+2 separate issues Ho and intervals
+(treated together in Bayesian)
 
 • Statistical Quality Control procedures {[}for Decisions{]} • Sample survey organizations: Confidence intervals • Statistical Tests of Hypotheses
 Unlike Bayesian inference, there is no quantified pre-test or pre- data ``impression''; the ultimate statements are about data, conditional on an assumed null or other hypothesis.
 Thus, an explanation of a p-value must start with the conditional "IF the parameter is \ldots{} the probability that the data woul
 
-Bayes Theorem : Haemophilia
-Brother has haemophilia =\textgreater{} Probability (WOMAN is Carrier) = 0.5 New Data: Her Son is Normal (NL) .
-Update: Prob{[}Woman is Carrier, given her son is NL{]} = ??
+\hypertarget{does-the-approach-matter}{%
+\section{Does the approach matter?}\label{does-the-approach-matter}}
+
+semantics
 
 \hypertarget{CI}{%
 \chapter{Parameter Intervals}\label{CI}}
@@ -822,11 +1643,11 @@ To do this you need to take the limits one at a time. The \textbf{minimum} angle
 
 \begin{figure}
 
-{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-7-1} 
+{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-32-1} 
 
 }
 
-\caption{Estimating the height of an building by measuring subtended angles. The '70' in the left panel signifies that the real angle was somewhere between 65 and 75 degrees; thus the real height lies between the L and U limits of 214 and 373 metres. In the righ panel, the  interval shown by the thicker black segment to the right of the 3 individual intervals is the  set of parameter values common to all 3.}\label{fig:unnamed-chunk-7}
+\caption{Estimating the height of an building by measuring subtended angles. The '70' in the left panel signifies that the real angle was somewhere between 65 and 75 degrees; thus the real height lies between the L and U limits of 214 and 373 metres. In the righ panel, the  interval shown by the thicker black segment to the right of the 3 individual intervals is the  set of parameter values common to all 3.}\label{fig:unnamed-chunk-32}
 \end{figure}
 
 \textbf{\emph{More data}}
@@ -866,11 +1687,11 @@ But, you can't arrive at these directly; get there this way. You have to try on 
 
 \textbackslash{}begin\{figure\}
 
-\{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-9-1}
+\{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-34-1}
 
 \}
 
-\textbackslash{}caption\{100\% Confidence Intervals for a person's chronological age when error distributions (that in this example are wider at the older ages) are 100\% confined within the shaded ranges. Left: based on n = 1 measurement; right: based on n = 4 independent measurements. \}\label{fig:unnamed-chunk-9}
+\textbackslash{}caption\{100\% Confidence Intervals for a person's chronological age when error distributions (that in this example are wider at the older ages) are 100\% confined within the shaded ranges. Left: based on n = 1 measurement; right: based on n = 4 independent measurements. \}\label{fig:unnamed-chunk-34}
 \textbackslash{}end\{figure\}
 
 \textbf{\emph{More data}}
@@ -907,11 +1728,11 @@ BUT, there aren't as many people 5 feet and 6 feet tall as there are people 5 fe
 
 \textbackslash{}begin\{figure\}
 
-\{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-11-1}
+\{\centering \includegraphics{statbook_files/figure-latex/unnamed-chunk-36-1}
 
 \}
 
-\textbackslash{}caption\{90\% Confidence intervals for Chronological Age when only 90\% of the error distributions lie within the shaded ranges.\}\label{fig:unnamed-chunk-11}
+\textbackslash{}caption\{90\% Confidence intervals for Chronological Age when only 90\% of the error distributions lie within the shaded ranges.\}\label{fig:unnamed-chunk-36}
 \textbackslash{}end\{figure\}
 
 When we have \(n = 3\) observations (right panel), it is not so easy to say how confident we should be about the overlap of the 3 intervals.
@@ -1352,10 +2173,55 @@ In the plot below, the values of the \textbf{p} function are shown on the vertic
 
 The \textbf{q} function (in blue) goes into the opposite direction. You enter at some proportion on the vertical axis, and exit with a value of the characteristic (a quantile) on the horizontal axis. In our plot, the proportions on the vertical axis are equally-spaced. Percentiles and quartiles are a very specific sets of quantiles: they are obtained by finding the values that divide the distribution into 100 or into 4.
 
-\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-13-1} \end{center}
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-38-1} \end{center}
+
+\hypertarget{shapes-of-distributions}{%
+\section{Shapes of Distributions}\label{shapes-of-distributions}}
+
+There are a lot of misconceptions here. Part of the confusion stems from not \textbf{distinguishing} distributions of \textbf{individual values} (the theme in this chapter) from the (conceptual) distributions of \textbf{statistics} (summaries such as means, proportions, regression slopes) computed from samples of individual values.
+
+Distributions of the second type are called sampling distributions, and their shapes cannot be observed \ldots{} unless we simulate them, or work them out using the mathematical statistics. Otherwise, they are unseen, virtual, conceptual. The sample size (the \(n\)) plays a central (pun intended) role in the shape, even more so than the shape of the distribution being sampled from. Sampling distributions are the topic of the next computing chapter.
+
+For now, in this chapter, we are only concentrate on distributions of individual values. The variation of these individual values can be due just to measurement error, or to genuine biological variation, or -- in the case of the pedictions about the date of the ice break-up -- differences in individual perrceptions and knowledge.
+
+The main points concerning the \textbf{shape of a distribution of individual values} are that:
+
+\begin{itemize}
+\item
+  The \textbf{size of the population has nothing to do with the shape}. If we could measure the distribution of the \emph{diameters} of one's red blood cells, the size distribution should look the same whether you are smaller person or a larger person, or male or female. Moreover, the distribution of individuals' red bllod cell \emph{concentrations} would be the same in provinces/states/countries with larger/smaller populations of persons.
+\item
+  There is \textbf{no default shape.} The shape is determined by the context
+\item
+  This is especially the case if the values are \textbf{determined/generated by humans} and human behaviour/choice and by circumstances. A good example is the distribution of finishing times of marathon runs. In one setting you might find peculiarities such as seen in
+  \href{http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/HumanBehaviourDistributionsMarathons.pdf\#page=14}{this dataset}. In another, it might have \href{https://susanli2016.github.io/Boston-Marathon/}{very different shapes in those who are and are not elite runners} and whether there is a `qualifying' time requirement -- see `Elite and the rest of us' in the link.
+\item
+  Another example are the distributions of hospital size (no. of beds) in different countries or states. {[}Likewise with the sizes of schools and universities{]} These might be determined by government policy. In former communist countries, there are often cookie-cutter hospitals, all the same size within a region, and given the names hospital \# 1, hospital \# 2, etc. In other countries, they might reflect variations in population density, or historical reasons.
+\item
+  Yet another examples are age-distributions: \textbf{many factors determine the age-structure} of a country or region of a country. It used to be like a pyramid, and still is in less developed countries. See here for some historical and modern
+  \href{https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/pyramid/pyramid.cfm?type=1\&geo1=01}{Canadian} and \href{https://www.visualcapitalist.com/animation-population-pyramids-10-biggest-countries/}{world} examples.
+\item
+  The \textbf{distribution of age-at-death} is determined by the age-distribution of the living -- and by the many factors that drive age-specific death rates.
+\item
+  The (sex-specific) distribution of \textbf{adult heights} of a homogeneous population might be close to symmetric (and even close to Gaussian), since the heights are determined by a large number of both `nature' and `nurture' factors. But, the (sex-specific) distribution of \textbf{adult weights} would not. Weight is determined in part by height, but also by a large number of `elective' factors that are determined by one's own lifestyle, and by the environment one lives in. In over-nourished North America, the distribution has a long right tail, whereas in some under-nourished parts of the world, it would have a long left tail.
+\item
+  Why does the distribution of \textbf{blood levels of lead} in
+  \href{http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch01/homegrown_exercises_01.pdf\#page=2}{women of child bearing age} have a long right tail, and why is it better fiot by a log-`normal' than a `normal' curve? Note that the shape would not change much if a bigger sample had been taken. The histogram would just be smoother. Might it have to do with subpopulations of persons with different other sources of exposure besides Glasgow's drinking water? For older distributions of blood lead, see here. For modern ones, use Google.
+\item
+  The distribution of the lengths of flight delays might well be determined by competition, regulation, location, etc.
+\item
+  `Then God said, 'Let there be a firmament in the midst of the waters, and let it divide the waters from the waters.' Thus God made the firmament, and divided the waters which were under the firmament from the waters which were above the firmament; and it was so. And God called the firmament Heaven. So the evening and the morning were the second day' (Genesis 1:6-8). Did `God' try to make it so that the \textbf{distribution of the depths of the ocean} would have a Gaussian curve?
+\item
+  The distribution is a property of the population or the owner.
+\item
+  The testing for normality that is so common needs to stop. There are \textbf{a few individual-based contexts} (such as with growth curves, where the percentile where an individual is located on a growth curve critical, or in tests to detect doping in sports, where an athlete's \href{http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/TestingForHumanIGFdoping.pdf}{test value is located in a reference distribution}) where the \textbf{shape is critical.} However, when we are interested in \textbf{estimating the mean} or another measure of (covariate-patten-specific) distributions, the shape of the distribution of individaul values is not that relevant.
+\item
+  See here for \href{http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/DescriptiveStatistics/}{shapes -- some odd -- of distributions of individual values -- and material on graphics}.
+\end{itemize}
 
 \hypertarget{exercises-1}{%
-\subsection{Exercises}\label{exercises-1}}
+\section{Exercises}\label{exercises-1}}
+
+Refer again to the guesses about the time of the ice-breakup.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1522,7 +2388,7 @@ Some more links on the `Wisdom of Crowds'
 \begin{itemize}
 \tightlist
 \item
-  The is no \emph{default} shape for the distributions of random variables, especially those generated by humans.
+  The is \textbf{no default shape} for the distributions of random variables, especially those representing \textbf{individual values} generated by, or concerning, humans. The shape is determined by the context.
 \end{itemize}
 
 \hypertarget{computing02}{%
@@ -1549,6 +2415,8 @@ The \textbf{`statistical' objectives} of this exercise are to
 \end{itemize}
 
 The ultimate objective is to be able to use these laws to help investigators, such as Henry Cavendish {[}see below{]}, to (probabilistically) quantify `how far off' their parameter estimates might be.
+
+Gelman and Hills distinguish the more common \textbf{sampling model}, where `we are interested in learning some characteristics of a population' from a `\textbf{measurement error}' model. We start with the simpler context.
 
 \hypertarget{scientific-background}{%
 \section{Scientific background}\label{scientific-background}}
@@ -1578,14 +2446,14 @@ Although it is possible to mathematically enumerate/calculate the exact probalit
 
 The panels in the following figure shows the probability of obtaining various possible sums and various possible sample means. Clearly, the patterns of the probabilities are strong functions of \(n.\)
 
-\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-16-1} \end{center}
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-41-1} \end{center}
 
 Instead of a 2-point error distribution, the next Figure shows how variable the sample totals and sample means would be if the errors were distributed a bit differently, as in the first row below. There, a quarter of the measurements have errors of +\(\sqrt{2} \approx\) +1.4cm, half have no error, and a quarter have errors of -\(\sqrt{2} \approx\) -1.4cm. Thus the error variance, the average of the squared deviations, is
 \[\sigma_e^2 = \frac{1}{4} \times (-1.4)^2  +  \frac{1}{2} \times (0)^2 +  \frac{1}{4} \times (1.4)^2 = 1,\] so that the standard deviation is again \(\sigma_e = 1.\)
 
 The row- (i.e., n-) specific distributions in the two Figures are not exactly the same. For example, the possible means in samples of size \(n\) = 2 have a 3-point distribution in the first one, but a 5-point distribution in the second one. But, as you will be asked to verify in the exercises below, the row-specific variances are the same in the two figures.
 
-\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-17-1} \end{center}
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-42-1} \end{center}
 
 More important than this are the statistical laws governing how widely the sums deviate from \(\mu_{sum}\) = \(n \times\) 100cm, and the means deviate from \(\mu\) = 100cm. Clearly, the possible \textbf{sums} of 5 copies have a \textbf{wider} spread than the possible sums of 2, and the sums of 10 a wider spread than the sums of 5. Conversely, the \textbf{means} of 5 copies have a \textbf{narrower} spread than the means of 2, and the means of 10 a narrower spread than the means of 5.
 
@@ -1959,7 +2827,7 @@ In the following code, AGES refers to the ages (0 to 109) and Proportions the pr
 ## The remaining ones show the  distributions of the sample sums and means.
 \end{verbatim}
 
-\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-20-1} \end{center}
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-45-1} \end{center}
 
 \hypertarget{exercises-2}{%
 \subsubsection{Exercises}\label{exercises-2}}
@@ -2103,7 +2971,7 @@ The frequency distribution of the self-reported \textbf{weights} of a population
 ## The remaining ones show the  distributions of the sample sums and means.
 \end{verbatim}
 
-\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-22-1} \end{center}
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-47-1} \end{center}
 
 \hypertarget{exercises-3}{%
 \subsubsection{Exercises}\label{exercises-3}}
@@ -2123,7 +2991,7 @@ In these panels, it's the same elevator, and the same population. \textbf{But wh
 
 ```
 
-\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-24-1} \end{center}
+\begin{center}\includegraphics{statbook_files/figure-latex/unnamed-chunk-49-1} \end{center}
 
 \hypertarget{summary-3}{%
 \section{SUMMARY}\label{summary-3}}

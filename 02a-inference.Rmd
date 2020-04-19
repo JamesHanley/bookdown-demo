@@ -1,6 +1,24 @@
 # Statistical Inference {#inference}
 
-Google gives the following defintion
+
+The **objectives** of this chapter are  to
+
+* Understand what is meant by statistical inference
+
+* Appreciate the fundamental difference between the Bayesian and Frequentist approaches
+
+   + In the Bayesian approach, the parameter is the subject of the statement. Statements are of the form: if, before observing the data, the parameter $\theta$ was thought to have this probability distribution, then post-data,  $\theta$ should  be thought of as having THIS probability distribution.  
+   
+   + In the Frequentist approach, the statements are  **indirect**. They are (conditional) probabilistic statements about the **data** and about the performance of the **procedure** used to bracket  parameter values. A variant ranks the  possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves.
+
+* See several examples of both, and understood how  the numerical results are arrived at
+
+* Learn to be statisticallly/politically correct in interpreting these results 
+
+* Appreciate that in practice, the purely numerical differences between the results of the two approaches are often small. 
+ 
+
+Google gives the following **definition** for **statistical inference**
 
 >The theory, methods, and practice of forming judgments about the parameters of a population and the reliability of statistical relationships, typically on the basis of random sampling.
 
@@ -14,9 +32,17 @@ Gelman and Hills start their regresssion textbook this way:
 
 We would add to these numerical statements about unknown (and unknowable) constants, as well as the mechanism or process that generated the limited data you got/get to observe.
 
+David Cox begins  his book Principles of Statistical Inference
+by taking the family of models as given and aims to:
 
+> 1. give intervals or in general sets of values within which the parameter (or parameter set) is in some sense likely to lie;
+2. assess the consistency of the data with a particular parameter value
+3. predict as yet unobserved random variables from the same random system that generated the data;
+4. use the data to choose one of a given set of decisions, requiring the specification of the consequences of various decisions.
 
-Some example parameters -- some scientific, some more personal or particularistic -- include
+He refers to the first two of these as _interval estimation_ and _measuring consistency with specified values of the parameter(s)_.
+
+Examples of parameters we would like to quantify probabilistically -- some scientific, some more personal or particularistic -- include
 
 * Whether
    + a potential hemophilia carrier is in fact a carrier
@@ -43,7 +69,9 @@ Some example parameters -- some scientific, some more personal or particularisti
 
 To address the uncertainties involved in the judgements/inferences, some use of probabilities is required.
 
+When considering the first objective, namely  **providing intervals or sets of values likely in some sense to contain the parameter of interest,** Cox tells us
 
+> There are two broad approaches, called frequentist and Bayesian, respectively, both with variants. Alternatively the former approach may be said to be based on sampling theory and an older term for the latter is that it uses inverse probability.
 
 In their preamble to their chapter on inferemce, Clayton and Hills tell us that
 
@@ -51,8 +79,8 @@ In their preamble to their chapter on inferemce, Clayton and Hills tell us that
 
 Clayton and Hills completed  their book in 1993.
 Since then, propelled by greater  computer power, and by people like
-Clayton's Cambridge colleague David Spiegelhalter, whose book we will start with, the Bayesian approach to 'associating a  probability with a range of parameter values' has become more common. It has not yet reached the status of 'customary or conventional, as a means or method; established.' that the dictionaries give as the meaning of orthodox. In any case, we should not take Clayton and Hills'  use of the phrase 'more orthodox' to describe the _frequentist_ approach to mean 
-that the Bayesian approach `does not  conform to the approved form of analysis' or is in some sense `wrong.' 
+Clayton's Cambridge colleague David Spiegelhalter, whose book we will start with, the Bayesian approach to **'associating a  probability with a range of parameter values**' has become more common. It has not yet reached the status of 'customary or conventional, as a means or method; established.' that the dictionaries give as the meaning of orthodox. In any case, we should not take Clayton and Hills'  use of the phrase 'more orthodox' to describe the _frequentist_ approach to mean 
+that the Bayesian approach 'does not  conform to the approved form of analysis' or is in some sense `wrong.' 
 
 
 The first-established of the two  'schools' (or 'churches') of statistical inference** makes **direct probabilistic statements about the possible parameter values**. This approach goes back at least as far as the mid-1700's essay 'A method of calculating the exact probability of all conclusions based on induction'; ironically the author was a  Presbyterian minister.
@@ -68,7 +96,7 @@ https://books.google.com/ngrams/graph?content=frequentist+approach%2C+bayesian+a
 
 Frequentist statements are  **indirect**. They are (conditional) probabilistic statements about the **data** and about the performance of the **procedure** used to bracket the parameter values. A variant on it ranks the various  possible parameter values according to how probable the observed data would be under each of these, but does not make direct probabilistic statements about the parameter values themselves. Because it is indirect, conditional, the results are often interpreted incorrectly. 
 
-We begin with the direct method, one that studies tell us we are born with, and use throughout our lives, both consciously and subconsciously, to continue to learn/update.
+We **begin with the direct method**, one that studies tell us we are born with, and use throughout our lives, both consciously and subconsciously, to continue to learn/update.
 
 > When we learn a new motor skill, such as playing an approaching
 tennis ball, both our sensors and the task possess variability. 
@@ -87,7 +115,7 @@ to probability statements concerning parameter values.
 
 >Bayesian inference refers to statistical procedures that **model unknown parameters [...] as random variables**. [...] Bayesian inference starts with a prior distribution on the unknown parameters and updates this with the likelihood of the data, yielding a posterior distribution which is used for inferences and predictions. Gelman and Hills, 2007, page 143.
 
-This paragraph is taken from this chapter
+This paragraph, taken from this chapter
 [An Overview of the Bayesian Approach](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch10Bayes/an%20overview%20of%20the%20Bayesian%20approach.pdf)
 in the book Bayesian Approaches to Clinical Trials and Health-Care Evaluation by David Speigelhalter et al, describes it well:
 
@@ -96,7 +124,7 @@ in the book Bayesian Approaches to Clinical Trials and Health-Care Evaluation by
 Section 3.1 SUBJECTIVITY AND CONTEXT emphasizes that
 'the vital point of the subjective interpretation is that **Your probability** for an event is a property of **Your** relationship to that event, and not an objective property of the event itself.' Moreover, 'pedantically speaking, one should always refer to probabilities **for** events rather than probabilities **of** events, and the **conditioning context**  used in Section 2.1.1 **includes the observer and all their background knowledge and assumptions.**'
 
-That there is 'always a context' goes along with what we read in Alan Turing's recently de-classified essay The Applications of Probability to Cryptography. Under section 1.2 ('Meaning of probability and odds') he starts out
+That there is '**always a context**' goes along with what we read in Alan Turing's [recently de-classified essay The Applications of Probability to Cryptography](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/CandH-ch0102/TuringProbability.pdf). Under section 1.2 ('Meaning of probability and odds') he starts out
 
 >I shall not attempt to give a systematic account of the theory of probability, but it may be worth while to define shortly probability and odds. The probability of an event **on certain evidence** is the proportion of cases in which that event may be expected to happen given that evidence. For instance if it is known the 20% of men live to the age of 70, then knowing of Hitler only Hitler is a man we can say that the probability of Hitler living to the age of 70 is 0.2. Suppose that we know that Hitler is now of age 52 the probability will be quite different, say 0.5, because 50% of men of 52 live to 70.
 
@@ -145,7 +173,7 @@ knitr::include_graphics("images/ClaytonHillsFig102103.png",dpi=96)
 ```
 
 
-**Without getting into the details of the calculations, we will apply this approach to the  first example in each of the parameter genres listed above. The point is to illustrate how direct and unambigous the answer is in each case.**
+**Without getting into the details of the calculations, we will apply the Bayesian approach to the  first example in each of the parameter genres listed above. The point is to illustrate how direct and unambigous the answer is in each case.** To avoid being distracted by the details, you might wish to skip the detailed mathematical calculations involved, as well as the asides/tangents. 
 
 ### Example: parameter is 2-valued: yes  or no
 
@@ -159,7 +187,7 @@ Just knowing this, the  probability that the woman is a hemophilia carrier is 50
 
 Today, genetic testing of the carrier can help determine whether the woman is a carrier. But when JH first taught 607, the only time to learn more about her carrier status (and move her probability to  1, or towards 0) was after the births of her sons: their status was knowable virtually immedediately. 
 
-If it is determined that the first son has hemophilia, it establishes that she IS a carrier, thereby moving the probability up to 1. If he was not, it moves the probability down  to 1/3: in other words, among 'women like her', i.e, other potential carriers who also have had 1 son who turned out to be Normal (NL), 1/3 of the sons are  the sons of carriers, and 2/3 are the sons of non-carriers.   
+If it is determined that the first son has hemophilia, it establishes that she IS a carrier, thereby moving the probability up to 1. If he does not, it moves the probability down  to 1/3: in other words, **among 'women like her'**, i.e,  potential carriers who also have had 1 son who turned out to be Normal (NL), 1/3 of the sons are  the sons of carriers, and 2/3 are the sons of non-carriers.   
 
 The **continued updating** as the women with a NL son gave birth to a second son, and so on, is shown in the diagram below, with **C**  used as shorthand for '**Is** a **C**arrier.'  Technically speaking, each sequential P[C] should indicate that it is 'conditioned on' -- and thus reflects the information in -- the history up to that point. In other words, the 1/5 probability refers to P[C | both sons are NL], where "|" stands for 'given that', or -- to use Turing's phrase -- 'on the evidence that'.
 
@@ -242,16 +270,17 @@ srt=90,adj=c(0.5,0))
 
 ```
 
+<!-- 
 > ASIDE: This is similar to how researchers develop strains of “transgenic” mice, by introducing an altered gene (transgene) into the genome. In order to breed true, theanimals must be made to be homozygous, i.e., to have two copies of the introduced gene (+ +). Molecular biology techniques can detect whether the transgene is present in an individual animal (without having to sacrifice the animal), but cannot distinguish a hemizygote, with one copy of the gene (+ -), from a homozygote (+ +). This difference can only be detected by breeding strategies. First generations: A copy of the transgene is injected into the pronucleus of a newly fertilized ovum, prior to fusion with the male pronucleus. Thus all animals that develop from these zygotes can have at most one copy of the gene, from the ovum. After birth, screening is performed to detect these 'positive' animals, called founders. After sexual maturation, all founders are bred to normal 'wild type' (WT) animals, to ensure that the transgene has been incorporated in such a way as to be heritable. Pairs of positive (hemizygous) animals in this F1 generation are then bred to each other. By Mendelian genetics, the distri- bution of F2 offspring should be 1:2:1, homozygous transgenic : hemizygous transgenic : homozygous normal. The homozygous normal animals are not used. The question is, how to tell the homozygous transgenic mice (the desired ones) from the hemizygous transgenic ones? Note that the mix in this reduced population is 1 homozygous transgenic to 2 hemizygous transgenic. F2 breeding: All ’positive’ F2 animals (i.e. all homozygous and hemizygous animals) are bred to wild type. Possible F3 genotypes are as follows: (by Mendelian genetics) Hemizygous (which comprise 2/3 of the F2 animals used) x wild type = 50:50, hemizygous (and therefore ‘positive’) : normal (and therefore ‘negative’), Homozygous (which comprise 1/3 of the F2 animals used) x wild type = all hemizygous (and therefore ‘positive’).
 That is, while only half of the offspring from a Hemi x WT pair will be ‘positive’ when screened, all of the offspring of a Homo x WT pair will be ‘positive’.
-The question: How many F3 offspring from a particular pairing does the researcher have to screen before declaring the positive parent as homozygous? Note: as soon as an offspring is screened as 'negative,' one knows the parent must have been hemizygous. A variant on the above diagram can help withe probabilities. Furthe details are avilable on the bios601 website, in the 'probability' chapter. 
+The question: How many F3 offspring from a particular pairing does the researcher have to screen before declaring the positive parent as homozygous? Note: as soon as an offspring is screened as 'negative,' one knows the parent must have been hemizygous. A variant on the above diagram can help withe probabilities. Furthe details are avilable on the bios601 website, in the 'probability' chapter.  -->
 
 Before moving on the the next type of parameter, a few points
 
-* In both the hemophilia and transgenic mice examples, the 'starting' probability is objective and the post-data
+* In the hemophilia (and if interested, the transgenic mice) example, the **'starting' probability is objective** and the post-data
 probabilities  have a 'long-run' or 'in large numbers of similar instances' interpretation. One could make a diagram that shows the expected numbers  'in every 100 women like this.' 
 
-* There is nothing special about the 'starting out' probability P[**C**] of 0.5. Before a pregnancy test, or a pre-natal diagnostic test, for example, the probability  of the target **C**ondition/state of interest/concern would be a function of many other factors, and could in theory take on any value between 0 and 1. The (starting out, pre-filter) proportion of malicious emails would depend on which of a person's email accounts it was. 
+* There is nothing special about the 'starting out' probability P[**C**] of **0.5**. Before a pregnancy test, or a pre-natal diagnostic test, for example, the probability  of the target **C**ondition/state of interest/concern would be a function of many other factors, and could in theory take on any value between 0 and 1. The (starting out, pre-filter) proportion of malicious emails would depend on which of a person's email accounts it was. 
 
 * In the language of diagnostic tests, each 'Son as a test of the mother's carrier status' has 50% sensitivity and 100% 'specificity'. For sensitivity, this puts it on par with the Pap test for cervical cancer: the main problem withe latter is in the sampling. For specificity, it is better than most tests.  
 
@@ -260,14 +289,17 @@ probabilities  have a 'long-run' or 'in large numbers of similar instances' inte
 
 * The 'starting out' probability could  be  subjective. For example it could be one's impression (before getting to see up close how wrinkled their face is) as whether the person is a smoker, or one's assessment of the probability that the accused is guilty (before getting to hear the  DNA expert, or lie detection report)  based on how credible the accused appears to be, and all of the other evidence to date.
 
-* The main point is that we are merging (adding) two sources of information. 
+* The posterior distribution for the parameter merges (adds) two sources of information. 
+
+* But the focus is less on where we start, and more on **how much we have learned** from the new data.
+
 
 
 ### Example: parameter is a proportion
 
 In theory, in this genre, the true parameter value could in theory lie anywhere between 0 and 1, But again, just like in Turing's example, we seldom start from complete ignorance, or with -- in the title of pscychologist Stephen Pinker's book -- a blank slate. Even if you have never seen thumbtacks tossed onto on a surface, you can reason informally, and indicate what proportions are unlikely and likely, and where along the (0,1) scale you would 'put your money'.
 
-You could do the same when asked what proportions of your time that you are being productive, or on the phone, or sedentary, or indoors. Mind you, you might be 'way off' with your claims, but the nice thing is that --- and this is the point of this course -- you can generate data to narrow down the true proportion.
+You could do the same when asked what **proportions of your time that you are being productive**, or on the phone, or sedentary, or indoors. Mind you, you might be 'way off' with your claims, but the nice thing is that --- and this is the point of this course -- you can generate data to narrow down the true proportion.
 
 The other nice thing with the Bayesian approach in particular is that -- no matter whether you believe  the proportion is low or medium or high, we can work out what your post-data beliefs should be. It is a matter of mathematics. If, before collecting any new data, we have 'no idea' -- a common phrase among todays's generation, one that, if it is uttered with empahsis on the 'no', irks JH to no end  -- what the true parameter value is, that is easily handled. Moreover, enough valid data will (or should!) trump the pre-data beliefs. 
 
@@ -281,6 +313,7 @@ The proportion of the earth's surface that is covered by water is easy to determ
 
 Since we already know/remember from high school 'roughly' what the proportion is, we will leave it for an exercsie in another chapter. In this chapter,  following the advice of master-teacher Fred Mosteller, we use  examples where the **correct answer is not known with any precision**. The proportion of these we probably know the least about is the thumbtack one. However, it has fewer personal benefits than knowing what proportion of  your time  you are being productive. Moreover, we have a nice written account of how you might go about learning this personal proportion.  
 
+**Worked example** (productivity)
 
 In his book Elementary Bayesian Statistics, Gordon Antelman  informally introduces and illustrate a Bayesian analysis of an uncertain proportion with a slightly modified version of a novel and useful application of work sampling discussed by Fuller (1985). We have changed his notation for the proportion of your time spent in productive work, and called it $\pi$, and also modified some of his words. 
 
@@ -295,7 +328,7 @@ You would probably feel uncomfortable — most people do — about assessing thi
 Since `R` does not allow Greek symbols, we will refer to it by uppercase P and assess your prior distribution. This possible prior distribution, shown below, would reflect, for example, that your judgment is that there is only about one chance in 20 that $\pi$ rounds to 0.50, about one chance in 20 that $\pi$ rounds to 0.90, about one chance in four that it rounds to 0.60, a little more than one chance in three that it rounds to 0.70, and a little less than one chance in three that it rounds to 0.80.
 
 
-```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Prior Probabilities for the parameter P, the proportion of time that I am being productive."}
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Prior Probabilities for the parameter P, the proportion of time that I am being productive."}
  
 P = c(0.50, 0.60, 0.70, 0.80, 0.90)
 PriorProbForP = c(0.05, 0.25, 0.35, 0.30, 0.05)
@@ -320,7 +353,7 @@ Although we will skip the technicalities, it is important that  the experiment  
 
 Below is a picture showing the effects of the data FFWF on the prior distribution.  Three F's in four trials increase your  probabilities for the two smaller values of P  and decrease your probabilities for the three larger ones.
 
-```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Prior Probabilities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior probabilities, after observing that in n = 4 randomly sampled occasions, I was actually productive in only 1 of the 4."}
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Prior Probabilities for the parameter P, the proportion of time that I am being productive, together with the corresponding posterior probabilities, after observing that in n = 4 randomly sampled occasions, I was actually productive in only 1 of the 4."}
  
 Lik = (1-P)^3 * P
 PosteriorProbForP = (PriorProbForP * Lik) / sum(PriorProbForP * Lik)
@@ -348,7 +381,7 @@ Below we show the '**continuous P **' version Antelman refers to. To make this, 
 Conveniently, the posterior density is also a beta distribution, but with parameters $a+1$ and $b+3$. 
 
 
-```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="."}
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="."}
  
 mean.P.prior = sum( P* PriorProbForP )
 var.P.prior  = sum( (P-mean.P.prior)^2 * PriorProbForP )
@@ -388,8 +421,8 @@ text(0.25,max(prior.density)/1.25, "Posterior Probability Density\nafter observi
 
 Before moving on the the next type of parameter, a few points:
 
-* The beta distribution nicely shows **how the prior information/impression and the new data get combined**. The $a$ and $b$ parameters of the prior distribution are `r round(a,1)` and `r round(b,1)`. Together, they determine the mean, $a/(a=b)$, the median, the  mode, $(a-1)/(a+b-2)$, and the variance,
-$a^2b^2/(a+b+1)^2$ of the prior distribution. 
+* The beta distribution nicely shows **how the prior information/impression and the new data get combined**. The $a$ and $b$ parameters of the prior distribution are `r round(a,1)` and `r round(b,1)`. Together, they determine the mean, $a/(a+b)$, the median, the  mode, $(a-1)/(a+b-2)$, and the variance,
+$mean(1-mean)/(a+b+1)$ of the prior distribution. 
 Their conterparts in the data-likelihood are 1 and 3. The '$a$' and '$b$' parameters of the posterior distribution are `r round(a+1,1)` and `r round(b+3,1)`: the $a$'s **add**, and the  $b$'s **add**. In other words, the distribution of one's pre-data beliefs is the distribution one would have after 'seeing' `r round(a,1)` W's and `r round(b,1)` F's;  the distribution of one's post-data beliefs is the distribution one would have after 'seeing' `r round(a+1,1)` W's and `r round(b+3,1)` F's. **The (synthetic) experience-equivalent of the numbers of Ws and F's in the prior are added to the  actual (observed) numbers of Ws and F's in the data to arrive at  the (new) posterior distribution.**
 
 * You are probably wondering what the posterior distribution would look like **with more data**. Here is what it would look like after observing 7 out of 25 or 13 out of 25. The modes of the posterior distributions are still  somewhat influenced by the prior -- as they are still well above P=7/25 = 0.28 and P=13/25 = 0.52. If the data were 70/250 or 13/250, the modes would be closer to  P= 0.28 or P = 0.52; in other words, the data would 'swamp' -- or 'trump' -- the prior. 
@@ -576,7 +609,7 @@ and the prior, is **centered on 128.9** and
 >This posterior distribution reveals some **'shrinkage' towards the population mean**, and a small increase in precision from not using the data alone.  
 **Intuitively**, we can say that the woman has somewhat higher measurements than we would expect for someone her age, and hence we slightly adjust our estimate to allow for the possibility that her two measureshappened by chance to be on the high side. As additional measures are made, this possibility becomes less plausible and the prior knowledge will be systematically downgraded.
 
-Before going on to example 3, we emphasize that the 128.9 is a **compromize** between the persnal mean of 130, and the (prior)  poulation mean of 120: it is a weighted average, with (relative) weights that are the reciprocals of the squares of the 2 standard deviations, the reciprocals of $\frac{5^2}{2}$ and $10^2,$ i.e., $\frac{2}{25} = 0.08$ and $\frac{1}{10^2} = 0.01.$ The 
+Before going on to example 3, we emphasize that the 128.9 is a **compromize** between the personal mean of 130, and the (prior)  poulation mean of 120: it is a weighted average, with (relative) weights that are the reciprocals of the squares of the 2 standard deviations, the reciprocals of $\frac{5^2}{2}$ and $10^2,$ i.e., $\frac{2}{25} = 0.08$ and $\frac{1}{10^2} = 0.01.$ The 
 128.9 is **8/9ths closer to the measured 130** than it is to the **population mean of 120**. It is slightly 'shrunk' toawards the population. This is why physicians might not believe that the 130 is correct, and might ask for more measurements before putting this woman on  blood pressure-lowering drugs.
 
 [The already cited 'Bayesian integration in sensorimotor learning'  illustrates how as humans, we automatically **combine estimates of different precisions** into one more precise estimate, and do so using the same mathematical laws that are used in the Bayesian approach!]
@@ -1264,6 +1297,11 @@ Can this shrinkage be done without 'priors'?
 	
 ## Frequentist approach
 
+In contrast to the seamless and unified Bayesian approach, the Frequentist approach is more fragmented, and is typically taught in two parts:  tests of null hypotheses concerning a parameter or process, and confidence intervals (CI's).
+
+whereas tests are being downgraded and CI's elevated,
+it is easier to start with tests. We do warn that this is not starting with the more important, but because it is difficult to learn what is behind frequentist CIs without knowing waht p-values are.
+
 In their chapter 11, Null hypotheses and p-values, Clayton and Hills tell us
 
 > With most probability models there is one particular value of the parameter which corresponds to there being _no effect_. This value is called the _null_ value, or _null hypothesis_. For a parameter $\theta$ we will denote this null value by $\theta_0$. In classical statistical theory, considerable emphasis is placed on the need to disprove (or reject) the null hypothesis before claiming positive findings, and the procedures which are used to this end are called _statistical significance tests_. However, the emphasis in this theory on accepting or
@@ -1557,7 +1595,7 @@ This case illustrates a failure to use statistical methods when
 they ought to have been used, a fairly common occurrence. Saying that an event is possible is quite different from saying that it has a probability of, say, one in 100,000. Although not an example from medical research, this case concerne essentially the same difficulty as in many more frequentl encountered problems, such as denning hypertension or obesity
 Everything varies; it is in trying to draw lines between good and bad, high and low, likely and unlikely, and so on, that many problems arise. Although statistics cannot answer a given question, they can often shed considerable light on the problem. Altman, 1980.
 
-Today, JH would add that we **should _also_ consider any other evidence or testimony presented in the case**. (We will come back to this when discussing the prosecutor's fallacy.)
+Today, JH would add that we **should _also_ consider, as those who heard the case did,  the other evidence and testimony presented in the case**.  (We will come back to this when discussing the prosecutor's fallacy.)
 
 **Other Examples**:
 
@@ -1573,38 +1611,49 @@ Example 6.6 p105-107, and 447-
 * John Arbuthnot's "argument for divine providence"
 * US Presidential elections: Taller vs. Shorter Candidate.
 * Gelman and Hill, HELP. 50,000 votes
+* Laplace average depth of the oceans is of the same order as the average height of the continents.
+* Under the null hypothesis of the independence of the row and column factors, the expected value of the chi-square statistic calculated from a 2 $\times$ 2 table is 4 - 1 = 3 (said Karl Pearson in 1900) or (2 - 1)$\times$ (2 - 1) = 1 (said Ronald Fisher, and G Udny Yule in 1922). 
 
-AM HERE
 
 ### Ingredients and  methods of procedure in a statistical test
 
+The bullet point following each item is specific to the **Preston-Jones case**.  
 
-1. A claim about a parameter (or about the shape of a distribution,
+1. A **claim about a parameter** (or about the shape of a distribution,
 or the way a lottery works, etc.). Note that the null and alternative hypotheses are usually stated using Greek letters, i.e. in terms of population parameters, and in advance of (and indeed without any regard for) sample data.
-   + Parameter (unknown)..... Date of Conception (DC) .... ........CLAIMS................ H0: DC < HUSBAND LEFT HA: DC > HUSBAND LEFT
+   + Parameter (unknown): **Date of Conception**  
+   CLAIMS by husband (h) and by wife (w)  
+   H$_0$(w): Date of Conception < HUSBAND LEFT  
+   H$_A$(h): Date of Conception > HUSBAND LEFT
 
-2. A probability model (in its simplest form, a set of assumptions) which allows one to predict how a relevant statistic from a sample
-of data might be expected to behave under H0.
-   + A probability model for statistic.... ? Gaussian........ ? Empirical
+2. A **probability model** (in its simplest form, a set of assumptions) which allows one to predict how a relevant statistic from a sample
+of data might be expected to behave under H$_0$.
+   + A probability model for statistic; examples: Gaussian, **Empirical** (common wisdom, and expert testimony at the time). In the 1949 hearing, the Commissioner referred to the  'court's judicial knowledge of natural laws 
 
-3. A probability level or threshold or dividing point below which
-(i.e. close to a probability of zero) one considers that an event
-with this low probability 'is unlikely' or 'is not supposed to
-happen with a single trial' or 'just doesn't happen'. This pre-established limit of extreme-ness is referred to as the $\alpha$
-level of the test.
-   + A probability level or threshold (a priori ) 'limit of extreme-ness' relative to the null ypothesis (H0) - this  is for the judges to decide
+3. A **probability level or threshold** or dividing point below which (i.e. close to a probability of zero) one considers that an event with this low probability 'is unlikely' or 'is not supposed to
+happen' or 'just doesn't happen'. This pre-established limit of extreme-ness is referred to as the $\alpha$ level of the test.
+   + None of those who pronounced on the case ever gave a value for this.
+   
+   Denning, L.J.,  'thought that, according to the ordinary knowledge of mankind, a 360-day normal baby is
+impossible; and the courts should not assert that it is possible unless there is direct medical evidence to that effect.'
 
-4. A sample of data, which under H0 is expected to follow the probability laws in (2)
-   + Date of delivery (and  how long since the husband left)
+   
+4. A sample of **data**, which under H$_0$ is expected to follow the probability laws in (2)
+   +  **$y$ = 360 days between when  husband left and baby was born** [the House of Lords account mentions 3 different departure dates, August 13, 17, and 29, but the Lords all spoke of 360 days in their deliberations]
 
-5. The most relevant statistic (e.g. $\\bar{y}$ if interested in inference about the parameter $\\mu$)
-   + Date of delivery; same as raw data: n=1.
+5. The most relevant **statistic** (e.g. $\bar{y}$ if interested in inference about the parameter $\mu$)
+   + **360 - 280 = 80 days**
 
-6. The probability of observing a value of the statistic as extreme or more extreme (relative to that hypothesized under H0) than we observed. This is used to judge whether the value obtained is either 'close to' i.e. 'compatible with' or 'far away from' i.e. 'incompatible with', H0. The 'distance from what is expected under H0' is usually measured as a tail area or probability and is referred to as the 'P-value' of the statistic in relation to H0.
-   + The probability of observing a value of the statistic as extreme or more extreme (relative to H0) than we observed P-value = Upper tail area : Prob[ 349 or 350 or 351 ...] : quite small
+6. The **probability of observing a value of the statistic as extreme or more extreme (relative to that hypothesized under H$_0$) than we observed**. This is used to judge whether the value obtained is either 'close to' i.e. 'compatible with' or 'far away from' i.e. 'incompatible with', H$_0$. The 'distance from what is expected under H0' is usually measured as a tail area or probability and is referred to as the 'P-value' of the statistic in relation to H$_0$.
+   + **P = Prob[ 360 or 361 ... | $\mu$ = 280]**. Although it was not quantified, it was taken to be quite small.
 
-7. A comparison of this 'extreme-ness' or 'unusualness' or 'amount of evidence against H0' or P-value with the agreed-on 'threshold of extreme-ness'. If it is beyond the limit, H0 is said to be 'rejected'. If it is not-too-small, H0 is 'not rejected'. These two possible decisions about the claim are reported as 'the null hypothesis is rejected at the P = $\alpha$ significance level' or 'the null hypothesis is not rejected at a significance level of 5%'.
-   + The Judge didn't tell us his threshold, but it must have been smaller than that calculated. Yhe p-value does not take into account any other 'facts', prior beliefs, testimonials, etc."
+7. A **comparison** of this 'extreme-ness' or 'unusualness' or 'amount of evidence against H$_0$' or P-value **with the agreed-on 'threshold of extreme-ness'**. If it is beyond the limit, H$_0$ is said to be 'rejected'. If it is not-too-small, H0 is 'not rejected'. These two possible decisions about the claim are reported as 'the null hypothesis is rejected at the P = $\alpha$ significance level' or 'the null hypothesis is not rejected at a significance level of 5%'.
+   + Mr. Commissioner Blanco **White**, K.C., who heard the petition in  1949, didn't tell us his threshold, but his use of the word 'impossible' suggests it might have been zero.  
+**Bucknill**, L.J. of the Court of Appeal noted that the commissioner in his judgment said it appeared to be a pure question of law whether 360 days is an impossible period without any satisfactory scientific evidence to that effect.' Bucknill saw the case 'not in that light but rather as one where the court must balance the probabilities one against the other. On the one hand there is the **very great improbability**, I will not put it any higher, that a woman can, 360 days after coitus, give birth to a normal full-time child of 8 and a quarter pounds without any ifficult labour, and after a pregnancy which, according to the wife, was not unduly prolonged, but, on the contrary, was cut short. As against this high improbability there is the fact that the wife has put forward the case of a visit by the husband to  her in November, a case which the commissioner has not
+accepted. If the matter rested there I should be in favour of allowing this appeal [siding wth the husband]. [if interested, see the origibal for why he ordered a re-hearing.]
+**Denning**, L.J., of the same Court of Appeal dissented,  saying that 'the **irresistible inference** was that it was conceived in adultery. [...] **according to the ordinary knowledge of mankind, a 360-day normal baby is impossible**; and the courts should not assert that it is possible unless there is direct medical evidence to that effect.'   
+In his summary, **Lord Simonds** said that since 'The result of a finding of adultery in such a case as this is in effect to bastardize the child', it 'is a matter in which from time out of mind strict proof has been required. But **that does not mean that a degree of proof is demanded such as in a scientific inquiry would justify the conclusion that such and such an event is impossible.**
+In this context at least **no higher proof of a fact is demanded than that it is established beyond all reasonable doubt**: see Head v. Head (18). **To prove that a period of so many days between fruitful coition and the time of conception is in a scientific sense impossible is itself, I suppose, a scientific impossibility**. The utmost that a court of law can demand is that it should be established beyond all reasonable doubt that a child conceived so many days after a particular coitus cannot be the result of that coitus.
 
 
 
