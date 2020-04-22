@@ -2,6 +2,365 @@
 
 # Probability {#Probability}
 
+The **objectives** of this chapter are to
+
+* Understand the meanings, uses and ways of arriving at, numerical values for probabilities.
+
+* Appreciate the context for a  probability, and that context (conditioning, information relied on) matters. 
+
+* See the basic rules for calculating probabilities in a few examples, but appreciate that calculating non-standard probabilities should be left to experts. Most of our probability values come from some pDistribution function.
+
+* Be warned against calculating the wrong probability. 
+
+* Beware of intuition, especially with 'after the fact' calculations for non-standard situations
+
+
+**Probability**
+
+* Meaning
+
+   + Long Run Proportion
+   + Estimate of (Un)certainty
+   + Amount prepared to bet
+
+* Use
+
+   + Communicate one's (un)certainty about the value of a parameter
+   + Describe the randomness of data
+   + Measure how far data are from some hypothesized model
+   
+* How Arrived At
+
+   + Subjectively
+   + Intuition, Informal calculation, consensus Empirically
+Experience (actuarial, ...) 
+   + Pure Thought
+   + Elementary Statistical Principles; if necessary, by breaking complex outcomes into simpler ones
+   + Advanced Statistical Theory, e.g.. Gauss' Law of Errors
+   
+ 
+Death and Taxes • Rain tomorrow • Cancer in your lifetime • Win lottery in single try • Win lottery twice • Get back 11/20 pilot questionnaires • Treat 14 patients get 0 successes • Duplicate Birthdays • Canada will use $US before the year 2030  
+
+• OJ murdered his wife • DNA matched
+• OJ murdered wife | DNA matched
+" | " is shorthand for "given that.."
+
+Often, we work in **other scales that spread out the probability scale**. The **odds** scale runs from 0 to in finity, while the **logit** and **probit** scales -- important for regression modeling -- span the entire real line, from minus infinity to infinity. You will need to become confortable with these wider scales.
+
+## Probability Scales
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F, fig.cap="The probability scale, along with 3 equivalent scales derived from it. The probit scale transforms P into a Z score: thus P = 0.025 becomes Z = -1.96, and P = 0.975 becomes Z = +1.96; to reverse direction, if Z = qnorm(P), then P = pnorm(Z). To convert a LOGIT back to an odds, ODDS = anti-log(LOGIT) = exp(LOGIT), and to convert an odds back to a probability,  P = ODDS/(1+ODDS)."}
+
+par(mfrow=c(1,1),mar = rep(0,4))
+
+
+plot(0:1,ylim=c(-0.1,1.15),xlim=c(1/9,8/9),fram=FALSE)
+
+scale= c("PROBABILITY\n(P)","ODDS\n{ P/(1-P) }",
+         "LOG-ODDS\n{ LOGIT }", "qNORM(P)\n{ PROBIT }")
+X = (1:4)/5 ; dx=0.01 ;
+CEX = 1.3
+for (j in 1:4){
+  x = X[j]
+  text(x,1.075,scale[j],adj=c(0.5,0),cex=1.5)
+  segments(x,0,x,1)
+  if(j==1) {
+    dy=0.05
+    V = seq(0,1,2*dy); v=seq(0,1,dy);
+    segments(x, V, x-dx , V, col="lightblue",lwd=2)
+    segments(x, v, x-dx , v ,col="lightblue")
+    segments(x, V, X[4] , V ,lwd=1.5,
+             col="lightblue", lty="dotted")
+    segments(x, v, X[4] , v ,lwd=1,col="lightblue",lty="dotted")
+    for (iy in 1:length(V)){
+      txt = toString(V[iy])
+      if(j==2) txt = paste(txt,"[:1]",sep="")
+      text(x-1.25*dx,V[iy],txt,adj=c(1,0.5),
+           cex=CEX)
+    }
+  }
+  
+  if(j==2) {
+    x = X[j]
+    dy = 0.5
+    O = c(20,10,4,3,2)
+    O = c(O, 1, 1/O)
+    o=9:2; o=c(o,1,1/o) 
+    P = O/(O+1) ; p=o/(o+1)
+    
+    text(x+1.25*dx,1.01, bquote(+ infinity),        
+         adj=c(0,0), cex=1.5*CEX  )
+    text(x+1.25*dx,-0.005, "0",        
+         adj=c(0,1), cex=CEX  )
+    
+    segments(x, P, x+dx , P, lwd=2)
+    segments(x, p, x+dx/2 , p ,lwd=1)
+    
+    for (iy in 1:length(O)){
+      txt = toString(O[iy])
+      if(O[iy] == 1/3) txt = "0.33" 
+      txt = paste(txt,"[:1]",sep="")
+      text(x+1.25*dx,P[iy],txt,adj=c(0,0.5),
+           cex=CEX)
+    }
+  }
+  
+  if(j==3) {
+    x = X[j]
+    LOGIT = seq(2.5,-2.5,-0.5)
+    logit = seq(2.5,-2.5,-0.25)
+    O = exp(LOGIT)
+    o = exp(logit)
+    o=9:2; o=c(o,1,1/o) 
+    P = O/(O+1) ; p=o/(o+1)
+    
+    text(x+1.25*dx,1.01, bquote(+ infinity),        
+         adj=c(0,0), cex=1.5*CEX  )
+    text(x+1.25*dx,-0.01, bquote(-infinity),        
+         adj=c(0,1), cex=1.5*CEX  )
+    segments(x, P, x+dx , P, lwd=2)
+    segments(x, p, x+dx/2 , p ,lwd=1)
+    
+    for (iy in 1:length(LOGIT) ){
+      txt = toString(LOGIT[iy])
+      P = exp( LOGIT[iy] ) / (1 + exp(LOGIT[iy]) )
+      text(x+1.75*dx,P,txt,adj=c(0,0.5),cex=CEX)
+    }
+  }
+  
+  if(j==4) {
+    x = X[j]
+    PROBIT = seq(2,-2,-0.5)
+    probit = seq(2,-2,-0.25)
+    P = pnorm(PROBIT)
+    p = pnorm(probit)
+    
+    text(x+1.25*dx,1.01, bquote(+ infinity),        
+         adj=c(0,0), cex=1.5*CEX  )
+    text(x+1.25*dx,-0.01, bquote(- infinity),        
+         adj=c(0,1), cex=1.5*CEX  )
+    segments(x, P, x+dx , P, lwd=2)
+    segments(x, p, x+dx/2 , p ,lwd=1)
+    
+    for (iy in 1:length(PROBIT) ){
+      txt = toString(PROBIT[iy])
+      P = pnorm( PROBIT[iy] )
+      text(x+1.75*dx,P,txt,adj=c(0,0.5),cex=CEX)
+    }
+  }
+  
+}
+
+```
+
+• 50 year old has colon ca
+• 50 year old with +ve haemoccult test has colon ca
+• child is Group A Strep B positive
+• 8 yr old with fever & v. inflamed nodes is Gp A Strep B positive • There is life on Mars
+
+
+ References
+• WMS5, Chapter 2 • Moore & McCabe Chapter 4 •Colton, Ch 3
+• Freedman et al. Chapters 13,14,15 •Armitage and Berry, Ch 2
+• Kong A, Barnett O, Mosteller F, and Youtz C. "How Medical Professionals Evaluate Expressions of Probability" NEJM 315: 740-744, 1986
+• Death and Taxes • Rain tomorrow • Cancer in your lifetime • Win lottery in single try • Win lottery twice • Get back 11/20 pilot questionnaires • Treat 14 patients get 0 successes • Duplicate Birthdays • Canada will use $US before the year 2010
+
+
+## Basic rules  for probability calculations
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="Basic Probablity Axioms and Rules. 'B | A' means 'B GIVEN A' or 'B CONDITIONAL ON A'."}
+
+par(mfrow=c(1,1),mar = rep(0,4))
+
+
+plot(10:11,ylim=c(0,0.85),xlim=c(0,2),frame=FALSE)
+
+I=0
+CEX=1.25
+x0=1/10; x1=4/10; dx=0.05
+dy = 1/12
+for (y in (1:4)/5 ) {
+  I = I+1
+  rect(x0, y-dy,  x1, y+dy)
+  if(I==4) { 
+    text((x0+x1)/2,y,"1",cex=CEX)
+    text( x1+dx,y,"Total Prob. = 1",
+          cex=CEX,adj=c(0,0.5)) 
+  }
+  if(I==3) { 
+    segments(x0+(x0+x1)/5, y-dy, x0+(x0+x1)/3,y+dy )
+    text((x0+x1)/3,y,"Prob.",cex=CEX,adj=c(0.5,0))
+    text((x0+x1)/1.6,y,"1-Prob.",adj=c(0.5,2),cex=CEX)
+    text( x1+dx,y,"Prob[A] = 1 -\n Prob[not.A]",
+          cex=CEX,adj=c(0,0.5)) 
+  }
+  if(I <= 2) { 
+    a = seq(0,2*pi,length.out=37)
+    xx = 1.3*dx*cos(a) ; yy = 0.5*dy*sin(a)
+    CA = rgb(red = 1, green = 0, blue = 0, alpha = 0.5)
+    CB = rgb(red = 0, green = 0, blue = 1, alpha = 0.5)
+    xc = x0+(x0+x1)/5
+    if(I==2) xc = xc - dx/2
+    polygon(xc + xx, y+dy/5+yy,col=CA )
+    text(xc-dx,y-dy/2,"A",cex=CEX, 
+         col=rgb(red = 1, green = 0, blue = 0) )
+    xc = x0+(x0+x1)/3
+    if(I==2) xc = xc + dx
+    polygon(xc + xx, y-dy/5+yy,col=CB )
+    text(xc+1.3*dx,y-dy/1.3,"B",cex=CEX, 
+         col=rgb(red = 0, green = 0, blue = 1) )
+    txt = "Prob[A or B] =\nProb[A] + Prob[B]\n - Prob[A and B]"
+    if(I==2) txt = "Prob[A or B] =\nProb[A] + Prob[B]"
+    text( x1+dx,y, txt,cex=CEX,adj=c(0,0.5))
+    
+    if(I==1){
+      y00 = y-2*dy
+      text( x0-2*dx,y00, 
+      "'PARALLEL': Addition for A or B [or both]\n[in broader (non-exclusive) meaning of 'or']",
+            cex=CEX,adj=c(0,0.5))
+      
+    } 
+  }
+}
+
+x0=1+1/7;  dx=0.4
+
+Y = 0.6 ; DY = 0.13 ; dy =DY/1.25
+
+a =c("Not A","A")
+b =c("Not B","B")
+I=0
+
+for( Y.end in Y + c(-1,1)*DY ){
+  segments(x0, Y, x0+dx, Y.end)
+  I=I+1
+  text(x0+2*dx/3, Y+2*(Y.end-Y)/3, a[I],cex=1.5*CEX,
+       adj=c(1,0+1*(Y.end<Y)))
+  J=0
+  for( y.end in Y.end + c(-1,1)*dy ){
+     J=J+1
+     segments(x0 + dx, Y.end, x0+dx+dx, y.end)
+     text(x0+5*dx/3, Y.end+2*(y.end-Y.end)/3, b[J],cex=1.5*CEX,
+       adj=c(1,0+1*(y.end<Y.end)))
+  }
+  
+  text(x0, 0.2,
+       "IF INDEPENDENT\n     P[A and B] = P[A] x P[B]\n\nIF DEPENDENT\n     P[A and B] = P[A] x P[B | A]\n\n",
+       adj=c(0,0.5),cex=CEX)
+  text( x0, y00, 
+            "'SERIAL': Multiplication for A and B\n[or A THEN B]",
+                   cex=CEX,adj=c(0,0.5))
+  
+}
+
+
+```
+
+## Conditional probabilities
+
+It is surprising how few textbooks use 'trees' (such as shown above) to explain conditional probabilities. Probability trees make it easy to see  the  **direction** in which one is
+preceeding, or looking,  where simply (and often arbitrarily chosen) algebraic symbols like A and B can not; trees make it easier
+to distinguish 'forward' from 'reverse' probabilities. Tip: try to order letters so it is $A\rightarrow B$,  rather than $B\rightarrow A.$
+
+The following examples cover 
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="Basic Probablity Axioms and Rules. 'B | A' means 'B GIVEN A' or 'B CONDITIONAL ON A'."}
+
+drawPanel = function(title,col.labels,
+           values,
+           col1.probs,col2.probs,
+           end.probs,
+           xl,xr,yb,yt,CEX) {
+  
+  YC = yb + 0.4*(yt-yb)
+  DY = 0.25 ; dy = DY/2.5
+  DX = xr-xl ; dx = DX/3
+  x0 = xl+0.11*DX
+  
+  text(x0+dx,yt - DY/6,title,font=2,cex=CEX)
+  
+  text(x0+dx/2,yt - DY/1.75,
+       col.labels[1],font=2,cex=CEX)
+  text(x0+dx+dx/2,yt - DY/1.75,
+       col.labels[2],font=2,cex=CEX)
+  segments(x0-dx/12,YC,x0,YC)
+  text(x0-dx/10,YC,"100%",adj=c(1,0.5),cex=CEX)
+
+  
+  segments(x0,YC-DY,x0,YC+DY)
+  I = 0
+  for(Y in (YC + c(-1,1)*DY) ){
+  	 I=I+1
+     segments(x0, Y, x0+dx, Y)
+     text(x0+dx/2,Y,values[I],
+          adj=c(0.5, 1.3  -(Y>YC)*1.6),cex=CEX)
+     text(x0+dx/2,Y,col1.probs[I],
+       adj=c(0.5,-0.3+(Y>YC)*1.6),font=3,cex=CEX)
+     segments(x0+dx,Y-dy,x0+dx,Y+dy)
+     J=0 
+     for(y in (Y + c(-1,1)*dy) ){
+     	J=J+1
+        segments(x0+dx, y, x0+dx+dx, y)
+        text(x0+dx+dx/2,y,values[J],
+          adj=c(0.5, 1.3 -(y>Y)*1.6),cex=CEX)
+        IJ=(I-1)*2+J
+        text(x0+dx+dx/2,y,col2.probs[IJ],
+          adj=c(0.5,-0.3+(y>Y)*1.6),font=3,cex=CEX)
+        text(x0+dx+dx*1.05,y,end.probs[IJ],
+          adj=c(0,0.5),font=3,cex=CEX)
+     }
+  }
+  
+}
+
+```
+  
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Gender Distribution in a sample of size $n$=2. LEFT: 2 independent Births; RIGHT: Randomly sampling 2 persons from 10 persons (5M 5F),  without replacenent. In both examples, the terminal probabilities are obtained by multiplication. In the second example, the second probability  depends on the outcome of the first selection."}
+
+  
+  par(mfrow=c(1,1),mar = rep(0,4))
+  
+  xl=0.1 ; xr=1.1 ; yb=0 ; yt=1
+  title="G E N D E R  :\n2 Births"
+  col.labels=c("1st","2nd")
+  values=c("M","F")
+  
+  col.labels=c("1st Birth","2nd Birth")
+  values=c("M","F")
+  col1.probs=c("1/2","1/2")
+  col2.probs=rep("1/2",4)
+  end.probs=rep("1/4",4)
+
+  plot(10:11,ylim=c(yb,yt),xlim=c(0,2.5),frame=FALSE)
+  
+  drawPanel(title,col.labels,
+           values,
+           col1.probs,col2.probs,
+           end.probs,
+           xl,xr,yb,yt,CEX=1.2)
+  
+  title="G E N D E R  :\nselect 2 persons from 10 (5M &  5F)"
+  col.labels=c("1st\nselected","2nd\nselected")
+  values=c("M","F")
+  col1.probs=c("5/10","5/10")
+  col2.probs=c("4/9","5/9", "5/9","4/9")
+  end.probs=c("20/90","25/90", "25/90","20/90")
+  
+  xl=1.45 ; xr=2.45
+  
+  
+  drawPanel(title,col.labels,
+           values,
+           col1.probs,col2.probs,
+           end.probs,
+           xl,xr,yb,yt,CEX=1.2)
+
+
+````
+
 ## Conditional -- forwards 
 
 *

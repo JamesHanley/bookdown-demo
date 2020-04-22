@@ -1,13 +1,56 @@
 # Computing Week3 {#computing03}
 
+
+The **'computing' objective** is to learn how to use `R` to evaluate probabilities by (Monte Carlo) simulation.
+
+The **'statistical' objective** of this exercise is to learn some of the probability laws that which random processes by seeing how frequently certain events occur  
+
 (Probabilities, evaluated by simulation)
 
-## Ages of books
-
-## ngrams
 
 
-## Ice Breakup Dates
+* Duplicate Birthdays
+
+
+
+* A simplified epidemic. An infectious disease has a one-day infectious period, and after that day the patient is immune. Six hermits (numbered 1,2, 3, 4, 5, 6) live on an island, and if one has the disease he randomly visits another hermit for help during his infectious period. If the visited hermit has not had the disease, he catches it and is infectious the next day. Assume hermit 1 has the disease today, and the rest have not had it. In the pre-R era students were asked to throw a die  to choose which hermit he visits (ignore face 1) Today you are asked to use `R` to choose which hermit he visits. That hermit is infectious tomorrow. Then throw again to see which hermit he visits, and so on. Continue the process until a sick hermit visits an immune one and the disease dies out. Repeat the experiment several times and find (a) the average number who get the disease (b) the probability that (the proportion of experiments in which)  everyone gets the disease. Can you anticipate the answer to (b)?
+
+
+
+* Chevalier de Méré
+
+From here https://www.cut-the-knot.org/Probability/ChevalierDeMere.shtml
+
+Gamblers in  17th century France used to bet on the event of getting at least one 1 'six' in four rolls of a dice. As a more trying variation, two die were rolled 24 times with a bet on having at least one double six. Chevalier de Méré who expected a couple of aces to turn up in 24 double rolls with the frequency of an ace in 4 single rolls. However, he lost consistently.
+
+
+Simulate a large number of each of these games, and estimate the probability of getting (a) at least one ace in four rolls of a dice  (b) at least one "double ace" when a pair of dice is thrown 24 times
+
+Why does it take a large number of simulations to determine which game offers the better chance of winning?
+
+Can you work out the probabilities directly?
+
+https://www.casino-games-online.biz/dice/chevalier-de-mere.html
+
+
+* HIV transmission, probability per act 
+
+* Life Tables
+
+
+Galton
+
+Greenwood
+
+Mosteller
+
+
+ Ages of books
+
+ ngrams
+
+
+ Ice Breakup Dates
 
 
 Here are some details on the 
@@ -376,21 +419,20 @@ METHODS/RESULTS/COMMENTS:
 Put all of the program steps and output into a single .txt file. JH will use a mono-spaced font such as Courier to view it -- that way the alignment should be ok. Interleave DATA and PROC statements with output and conclusions, and use helpful titles (produced by SAS, but to your specifications) over top of each output. Get SAS to set up the output so that there are no more that 65 horizontal characters per line -- that way, lines won't wrap-around even when the font used to view your file is increased. Show relevant excerpts rather than entire listings of datafiles. Annotate liberally. Submit the text file electronically (i.e., by email) to JH by 9 am on Monday October 30.
   
 
-## Epidemics
+
 
 ## Duplicate Birthdays
 
 ## Lottery payoffs
 
-## Chevalier de Méré
+
 
 ## Detecting a fake Bernoulli sequenece
 
 ## Cell occupancy
 
-## Life Tables
+
 
 ## Carrier Status (genetics)
 
-## Diagnostic and statistical tests
 

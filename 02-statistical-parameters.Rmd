@@ -335,7 +335,7 @@ $$\log(A \times B) = \log(A) + \log(B); \ \  \log(y^x) = x \times \log(y).$$
 Thus, we can rewrite the equation in panel (c) as
 
 $$\log(\mu_S) = \log(\mu \ | \ S)  \ = \underbrace{\log(\mu_0)} \ +  \underbrace{\log(Ratio)} \times \ S.$$
-This has the same `linear in the two parameters' form as the one for the parameter difference: the parameters are
+This has the same 'linear in the two parameters' form as the one for the parameter difference: the parameters are
 $\underbrace{\log(\mu_0)}$ and $\underbrace{\log(Ratio)}$ and they are made into the following 'linear compound' or 'linear predictor' (see Remarks below) :
 $$\log(\mu_S) = \log(\mu \ | \ S)  \ = \underbrace{\log(\mu_0)} \times \ 1 \ + \underbrace{\log(Ratio)} \times \ S.$$
 
