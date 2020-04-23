@@ -80,7 +80,7 @@ A few teachers, when they introduce regression, do so by describing/teaching it 
 
 There is a lot to commend this approach. It reminds epidemiologists -- and even statisticians -- that statistical inference is about parameters. Before addressing  data and data-summaries, we need to specify what the estimands are -- i.e, what parameter(s) is(are) we pursuing.
 
-Fisher, when introducing Likelihood in 1922, was one of the earliest statisticians to disntinguish parameters from statistics. he decried 'the obscurity which envelops the theoretical bases of statistical methods' and  ascribed it to two considerations. (**emphasis ours**)
+Fisher, when introducing Likelihood in 1922, was one of the earliest statisticians to distinguish parameters from statistics. he decried 'the obscurity which envelops the theoretical bases of statistical methods' and  ascribed it to two considerations. (**emphasis ours**)
 
 > In the first place, it appears to be widely thought, or rather felt, that in a subject in which all results are liable to greater or smaller errors, precise definition of ideas or concepts is, if not impossible, at least not a practical necessity.  
 
