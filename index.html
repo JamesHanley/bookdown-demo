@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-04-22" />
+<meta name="date" content="2020-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,9 +176,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11" data-path="Probability.html"><a href="Probability.html"><i class="fa fa-check"></i><b>11</b> Probability</a><ul>
 <li class="chapter" data-level="11.1" data-path="Probability.html"><a href="Probability.html#probability-scales"><i class="fa fa-check"></i><b>11.1</b> Probability Scales</a></li>
 <li class="chapter" data-level="11.2" data-path="Probability.html"><a href="Probability.html#basic-rules-for-probability-calculations"><i class="fa fa-check"></i><b>11.2</b> Basic rules for probability calculations</a></li>
-<li class="chapter" data-level="11.3" data-path="Probability.html"><a href="Probability.html#conditional-probabilities"><i class="fa fa-check"></i><b>11.3</b> Conditional probabilities</a></li>
-<li class="chapter" data-level="11.4" data-path="Probability.html"><a href="Probability.html#conditional-forwards"><i class="fa fa-check"></i><b>11.4</b> Conditional – forwards</a></li>
-<li class="chapter" data-level="11.5" data-path="Probability.html"><a href="Probability.html#conditional-reverse"><i class="fa fa-check"></i><b>11.5</b> Conditional – reverse</a></li>
+<li class="chapter" data-level="11.3" data-path="Probability.html"><a href="Probability.html#conditional-probabilities-and-independence"><i class="fa fa-check"></i><b>11.3</b> Conditional probabilities, and (in)dependence</a></li>
+<li class="chapter" data-level="11.4" data-path="Probability.html"><a href="Probability.html#changing-the-conditioning-the-direction-matters"><i class="fa fa-check"></i><b>11.4</b> Changing the Conditioning: the direction matters</a></li>
+<li class="chapter" data-level="11.5" data-path="Probability.html"><a href="Probability.html#summary-slides"><i class="fa fa-check"></i><b>11.5</b> Summary Slides</a></li>
+<li class="chapter" data-level="11.6" data-path="Probability.html"><a href="Probability.html#exercises-1"><i class="fa fa-check"></i><b>11.6</b> Exercises:</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="Distributions.html"><a href="Distributions.html"><i class="fa fa-check"></i><b>12</b> Distributions /Random Variables</a><ul>
 <li class="chapter" data-level="12.1" data-path="Distributions.html"><a href="Distributions.html#gaussian-bernoulli-binomial-poisson"><i class="fa fa-check"></i><b>12.1</b> Gaussian Bernoulli-Binomial Poisson</a></li>
@@ -196,7 +197,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="14.2.1" data-path="computing01.html"><a href="computing01.html#the-p-and-q-functions-an-orientation"><i class="fa fa-check"></i><b>14.2.1</b> The p and q functions: an orientation</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="computing01.html"><a href="computing01.html#shapes-of-distributions"><i class="fa fa-check"></i><b>14.3</b> Shapes of Distributions</a></li>
-<li class="chapter" data-level="14.4" data-path="computing01.html"><a href="computing01.html#exercises-1"><i class="fa fa-check"></i><b>14.4</b> Exercises</a></li>
+<li class="chapter" data-level="14.4" data-path="computing01.html"><a href="computing01.html#exercises-2"><i class="fa fa-check"></i><b>14.4</b> Exercises</a></li>
 <li class="chapter" data-level="14.5" data-path="computing01.html"><a href="computing01.html#summary-2"><i class="fa fa-check"></i><b>14.5</b> SUMMARY</a><ul>
 <li class="chapter" data-level="14.5.1" data-path="computing01.html"><a href="computing01.html#computing"><i class="fa fa-check"></i><b>14.5.1</b> Computing</a></li>
 <li class="chapter" data-level="14.5.2" data-path="computing01.html"><a href="computing01.html#statistical-concepts-and-principles"><i class="fa fa-check"></i><b>14.5.2</b> Statistical Concepts and Principles</a></li>
@@ -258,10 +259,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Introduction to Statistical Analysis: a regression-from-the-outset approach</h1>
 <p class="author"><em>Sahir, Shirin and Jim</em></p>
-<p class="date"><em>2020-04-22</em></p>
+<p class="date"><em>2020-04-23</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
+<p><strong>The order in which we are proceeding with the writing, and what we have completed this far</strong></p>
+<p>We are proceeding somewhat non-linearly in the writing. After completing a first draft of Chaper 2 (an overview of Stastical parameters, parameter constrast and parameter functions) we began on the mother-of-all-regressions chapter for a single mean (ch. 5), and planned to move on the the corresponding ones for a single proportion (ch 6) and event-rate (ch 7). However, we realized that to get through these, students would need the concepts of interval estimates of parameters, and these in turn need other preliminaries. So we are now working on chapters 11 (probability) and 12 (random variables), but we are hoping to motivate the various statistical concepts and laws by simulation and to use the <strong>parallel sessions on computing</strong> in <code>R</code> to make these laws more concrete, and less as products of calculus and mathematical statistics. This way we hope to get to serious regression applications sooner than most intro. courses do. And we are also hoping to have the parismony of a regression approach become evident much sooner than in the traditional t-test chi-sq. regression sequence that only raeches regression 3 weeks before the end of the course.</p>
+<p>We have completed 1st drafts of the first 2 computing chapters (each with dual learning objectives – computing, and statistical concepts). Once we complete the (theoretical) chapter on probabilities, we will a third computing chapter that shows several applications of probability. Following this we will move on to a theoretical chapter on random variables, and an accompanyiong 4th computing chapter.</p>
+<p>Once these are done, we will move back to interval estimation, and then back to regression models.</p>
+<p>In practice, we plan to intruduce the regression early, and use the computing to reinforce/(?replace) the theoretical pre-requisite chapters that (traditionally) seem to hold up so many inytroductory statistics courses.</p>
+<p>So we see part II as a sidebar^ for part I – i.e., to be consulted as we go along.</p>
+<p>^ secondary article accompanying a larger one in a newspaper,&quot; 1948, from side (adj.) + bar (n.1).</p>
+<p>^ a typographically distinct section of a page, as in a book or magazine, that amplifies or highlights the main text.</p>
+<p>^ a conference between the judge and lawyers out of the presence of the jury.</p>
+<p>^ a subordinate or incidental issue, remark, activity, etc.</p>
+<p><em>Comments welcomed at any stage!</em></p>
 <div id="target" class="section level2">
 <h2><span class="header-section-number">0.1</span> Target</h2>
 <p>The target is graduate students in population health sciences in their first year. Concurrently, they take their first courses on epidemiologic methods. The department is known for its emphasis on quantitative methods, and students’ ability to carry out their own quantitative work. Since most of the data they will deal with are non-experimental, there is a strong emphasis on multivariable regression. While some students will have had some statistical courses as undergraduates, the courses start at the beginning, and are pitched at the Master’s level.</p>

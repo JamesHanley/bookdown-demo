@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-04-22" />
+<meta name="date" content="2020-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,9 +176,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11" data-path="Probability.html"><a href="Probability.html"><i class="fa fa-check"></i><b>11</b> Probability</a><ul>
 <li class="chapter" data-level="11.1" data-path="Probability.html"><a href="Probability.html#probability-scales"><i class="fa fa-check"></i><b>11.1</b> Probability Scales</a></li>
 <li class="chapter" data-level="11.2" data-path="Probability.html"><a href="Probability.html#basic-rules-for-probability-calculations"><i class="fa fa-check"></i><b>11.2</b> Basic rules for probability calculations</a></li>
-<li class="chapter" data-level="11.3" data-path="Probability.html"><a href="Probability.html#conditional-probabilities"><i class="fa fa-check"></i><b>11.3</b> Conditional probabilities</a></li>
-<li class="chapter" data-level="11.4" data-path="Probability.html"><a href="Probability.html#conditional-forwards"><i class="fa fa-check"></i><b>11.4</b> Conditional – forwards</a></li>
-<li class="chapter" data-level="11.5" data-path="Probability.html"><a href="Probability.html#conditional-reverse"><i class="fa fa-check"></i><b>11.5</b> Conditional – reverse</a></li>
+<li class="chapter" data-level="11.3" data-path="Probability.html"><a href="Probability.html#conditional-probabilities-and-independence"><i class="fa fa-check"></i><b>11.3</b> Conditional probabilities, and (in)dependence</a></li>
+<li class="chapter" data-level="11.4" data-path="Probability.html"><a href="Probability.html#changing-the-conditioning-the-direction-matters"><i class="fa fa-check"></i><b>11.4</b> Changing the Conditioning: the direction matters</a></li>
+<li class="chapter" data-level="11.5" data-path="Probability.html"><a href="Probability.html#summary-slides"><i class="fa fa-check"></i><b>11.5</b> Summary Slides</a></li>
+<li class="chapter" data-level="11.6" data-path="Probability.html"><a href="Probability.html#exercises-1"><i class="fa fa-check"></i><b>11.6</b> Exercises:</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="Distributions.html"><a href="Distributions.html"><i class="fa fa-check"></i><b>12</b> Distributions /Random Variables</a><ul>
 <li class="chapter" data-level="12.1" data-path="Distributions.html"><a href="Distributions.html#gaussian-bernoulli-binomial-poisson"><i class="fa fa-check"></i><b>12.1</b> Gaussian Bernoulli-Binomial Poisson</a></li>
@@ -196,7 +197,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="14.2.1" data-path="computing01.html"><a href="computing01.html#the-p-and-q-functions-an-orientation"><i class="fa fa-check"></i><b>14.2.1</b> The p and q functions: an orientation</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="computing01.html"><a href="computing01.html#shapes-of-distributions"><i class="fa fa-check"></i><b>14.3</b> Shapes of Distributions</a></li>
-<li class="chapter" data-level="14.4" data-path="computing01.html"><a href="computing01.html#exercises-1"><i class="fa fa-check"></i><b>14.4</b> Exercises</a></li>
+<li class="chapter" data-level="14.4" data-path="computing01.html"><a href="computing01.html#exercises-2"><i class="fa fa-check"></i><b>14.4</b> Exercises</a></li>
 <li class="chapter" data-level="14.5" data-path="computing01.html"><a href="computing01.html#summary-2"><i class="fa fa-check"></i><b>14.5</b> SUMMARY</a><ul>
 <li class="chapter" data-level="14.5.1" data-path="computing01.html"><a href="computing01.html#computing"><i class="fa fa-check"></i><b>14.5.1</b> Computing</a></li>
 <li class="chapter" data-level="14.5.2" data-path="computing01.html"><a href="computing01.html#statistical-concepts-and-principles"><i class="fa fa-check"></i><b>14.5.2</b> Statistical Concepts and Principles</a></li>
@@ -281,7 +282,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The ‘<strong>q</strong>’ (or quantile) function tells us, for a given proportion p, what is the value of the characteristic such that that specified proportion p of the distribution lies to the left of this ‘q’ value.</p>
 <p>In the plot below, the values of the <strong>p</strong> function are shown on the vertical axis, in red, against the (in this case, equally-spaced) values of the characteristic, shown on the horizontal axis. You enter on the horizontal axis, and exit with an answer on the vertical axis.</p>
 <p>The <strong>q</strong> function (in blue) goes into the opposite direction. You enter at some proportion on the vertical axis, and exit with a value of the characteristic (a quantile) on the horizontal axis. In our plot, the proportions on the vertical axis are equally-spaced. Percentiles and quartiles are a very specific sets of quantiles: they are obtained by finding the values that divide the distribution into 100 or into 4.</p>
-<p><img src="statbook_files/figure-html/unnamed-chunk-42-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-47-1.png" width="864" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="shapes-of-distributions" class="section level2">
@@ -306,7 +307,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>See here for <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/DescriptiveStatistics/">shapes – some odd – of distributions of individual values – and material on graphics</a>.</p></li>
 </ul>
 </div>
-<div id="exercises-1" class="section level2">
+<div id="exercises-2" class="section level2">
 <h2><span class="header-section-number">14.4</span> Exercises</h2>
 <p>Refer again to the guesses about the time of the ice-breakup.</p>
 <ol style="list-style-type: decimal">

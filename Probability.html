@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-04-22" />
+<meta name="date" content="2020-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,9 +176,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11" data-path="Probability.html"><a href="Probability.html"><i class="fa fa-check"></i><b>11</b> Probability</a><ul>
 <li class="chapter" data-level="11.1" data-path="Probability.html"><a href="Probability.html#probability-scales"><i class="fa fa-check"></i><b>11.1</b> Probability Scales</a></li>
 <li class="chapter" data-level="11.2" data-path="Probability.html"><a href="Probability.html#basic-rules-for-probability-calculations"><i class="fa fa-check"></i><b>11.2</b> Basic rules for probability calculations</a></li>
-<li class="chapter" data-level="11.3" data-path="Probability.html"><a href="Probability.html#conditional-probabilities"><i class="fa fa-check"></i><b>11.3</b> Conditional probabilities</a></li>
-<li class="chapter" data-level="11.4" data-path="Probability.html"><a href="Probability.html#conditional-forwards"><i class="fa fa-check"></i><b>11.4</b> Conditional – forwards</a></li>
-<li class="chapter" data-level="11.5" data-path="Probability.html"><a href="Probability.html#conditional-reverse"><i class="fa fa-check"></i><b>11.5</b> Conditional – reverse</a></li>
+<li class="chapter" data-level="11.3" data-path="Probability.html"><a href="Probability.html#conditional-probabilities-and-independence"><i class="fa fa-check"></i><b>11.3</b> Conditional probabilities, and (in)dependence</a></li>
+<li class="chapter" data-level="11.4" data-path="Probability.html"><a href="Probability.html#changing-the-conditioning-the-direction-matters"><i class="fa fa-check"></i><b>11.4</b> Changing the Conditioning: the direction matters</a></li>
+<li class="chapter" data-level="11.5" data-path="Probability.html"><a href="Probability.html#summary-slides"><i class="fa fa-check"></i><b>11.5</b> Summary Slides</a></li>
+<li class="chapter" data-level="11.6" data-path="Probability.html"><a href="Probability.html#exercises-1"><i class="fa fa-check"></i><b>11.6</b> Exercises:</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="Distributions.html"><a href="Distributions.html"><i class="fa fa-check"></i><b>12</b> Distributions /Random Variables</a><ul>
 <li class="chapter" data-level="12.1" data-path="Distributions.html"><a href="Distributions.html#gaussian-bernoulli-binomial-poisson"><i class="fa fa-check"></i><b>12.1</b> Gaussian Bernoulli-Binomial Poisson</a></li>
@@ -196,7 +197,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="14.2.1" data-path="computing01.html"><a href="computing01.html#the-p-and-q-functions-an-orientation"><i class="fa fa-check"></i><b>14.2.1</b> The p and q functions: an orientation</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="computing01.html"><a href="computing01.html#shapes-of-distributions"><i class="fa fa-check"></i><b>14.3</b> Shapes of Distributions</a></li>
-<li class="chapter" data-level="14.4" data-path="computing01.html"><a href="computing01.html#exercises-1"><i class="fa fa-check"></i><b>14.4</b> Exercises</a></li>
+<li class="chapter" data-level="14.4" data-path="computing01.html"><a href="computing01.html#exercises-2"><i class="fa fa-check"></i><b>14.4</b> Exercises</a></li>
 <li class="chapter" data-level="14.5" data-path="computing01.html"><a href="computing01.html#summary-2"><i class="fa fa-check"></i><b>14.5</b> SUMMARY</a><ul>
 <li class="chapter" data-level="14.5.1" data-path="computing01.html"><a href="computing01.html#computing"><i class="fa fa-check"></i><b>14.5.1</b> Computing</a></li>
 <li class="chapter" data-level="14.5.2" data-path="computing01.html"><a href="computing01.html#statistical-concepts-and-principles"><i class="fa fa-check"></i><b>14.5.2</b> Statistical Concepts and Principles</a></li>
@@ -260,10 +261,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The <strong>objectives</strong> of this chapter are to</p>
 <ul>
 <li><p>Understand the meanings, uses and ways of arriving at, numerical values for probabilities.</p></li>
-<li><p>Appreciate the context for a probability, and that context (conditioning, information relied on) matters.</p></li>
-<li><p>See the basic rules for calculating probabilities in a few examples, but appreciate that calculating non-standard probabilities should be left to experts. Most of our probability values come from some pDistribution function.</p></li>
+<li><p>Appreciate the context for a probability, and that context (the conditioning, the information relied on) matters.</p></li>
+<li><p>See the basic rules for calculating probabilities in a few examples, but appreciate that calculating non-standard probabilities should be left to experts. In practice, most of our probability values come from some pDistribution function, and we will encounter some of the ‘off the shelf’ ones in the next chapter.</p></li>
 <li><p>Be warned against calculating the wrong probability.</p></li>
-<li><p>Beware of intuition, especially with ‘after the fact’ calculations for non-standard situations</p></li>
+<li><p>Beware of intuition, especially with ‘after the fact’ calculations for non-standard situations.</p></li>
 </ul>
 <p><strong>Probability</strong></p>
 <ul>
@@ -282,15 +283,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Elementary Statistical Principles; if necessary, by breaking complex outcomes into simpler ones</li>
 <li><p>Advanced Statistical Theory, e.g.. Gauss’ Law of Errors</p></li>
 </ul>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-38"></span>
+<img src="images/40PercentChanceOfShowers.png" alt="In this older cartoon, these experts qualify their probability statement." width="458" />
+<p class="caption">
+Figure 11.1: In this older cartoon, these experts qualify their probability statement.
+</p>
+</div>
 <p>Death and Taxes • Rain tomorrow • Cancer in your lifetime • Win lottery in single try • Win lottery twice • Get back 11/20 pilot questionnaires • Treat 14 patients get 0 successes • Duplicate Birthdays • Canada will use $US before the year 2030</p>
 <p>• OJ murdered his wife • DNA matched • OJ murdered wife | DNA matched &quot; | &quot; is shorthand for “given that..”</p>
 <p>Often, we work in <strong>other scales that spread out the probability scale</strong>. The <strong>odds</strong> scale runs from 0 to in finity, while the <strong>logit</strong> and <strong>probit</strong> scales – important for regression modeling – span the entire real line, from minus infinity to infinity. You will need to become confortable with these wider scales.</p>
 <div id="probability-scales" class="section level2">
 <h2><span class="header-section-number">11.1</span> Probability Scales</h2>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-38"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-38-1.png" alt="The probability scale, along with 3 equivalent scales derived from it. The probit scale transforms P into a Z score: thus P = 0.025 becomes Z = -1.96, and P = 0.975 becomes Z = +1.96; to reverse direction, if Z = qnorm(P), then P = pnorm(Z). To convert a LOGIT back to an odds, ODDS = anti-log(LOGIT) = exp(LOGIT), and to convert an odds back to a probability,  P = ODDS/(1+ODDS)." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-39"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-39-1.png" alt="The probability scale, along with 3 equivalent scales derived from it. The probit scale transforms P into a Z score: thus P = 0.025 becomes Z = -1.96, and P = 0.975 becomes Z = +1.96; to reverse direction, if Z = qnorm(P), then P = pnorm(Z). To convert a LOGIT back to an odds, ODDS = anti-log(LOGIT) = exp(LOGIT), and to convert an odds back to a probability,  P = ODDS/(1+ODDS)." width="864" />
 <p class="caption">
-Figure 11.1: The probability scale, along with 3 equivalent scales derived from it. The probit scale transforms P into a Z score: thus P = 0.025 becomes Z = -1.96, and P = 0.975 becomes Z = +1.96; to reverse direction, if Z = qnorm(P), then P = pnorm(Z). To convert a LOGIT back to an odds, ODDS = anti-log(LOGIT) = exp(LOGIT), and to convert an odds back to a probability, P = ODDS/(1+ODDS).
+Figure 11.2: The probability scale, along with 3 equivalent scales derived from it. The probit scale transforms P into a Z score: thus P = 0.025 becomes Z = -1.96, and P = 0.975 becomes Z = +1.96; to reverse direction, if Z = qnorm(P), then P = pnorm(Z). To convert a LOGIT back to an odds, ODDS = anti-log(LOGIT) = exp(LOGIT), and to convert an odds back to a probability, P = ODDS/(1+ODDS).
 </p>
 </div>
 <p>• 50 year old has colon ca • 50 year old with +ve haemoccult test has colon ca • child is Group A Strep B positive • 8 yr old with fever &amp; v. inflamed nodes is Gp A Strep B positive • There is life on Mars</p>
@@ -298,36 +305,84 @@ Figure 11.1: The probability scale, along with 3 equivalent scales derived from 
 </div>
 <div id="basic-rules-for-probability-calculations" class="section level2">
 <h2><span class="header-section-number">11.2</span> Basic rules for probability calculations</h2>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-39"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-39-1.png" alt="Basic Probablity Axioms and Rules. 'B | A' means 'B GIVEN A' or 'B CONDITIONAL ON A'." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-40"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-40-1.png" alt="Basic Probablity Axioms and Rules. 'B | A' means 'B GIVEN A' or 'B CONDITIONAL ON A'." width="864" />
 <p class="caption">
-Figure 11.2: Basic Probablity Axioms and Rules. ‘B | A’ means ‘B GIVEN A’ or ‘B CONDITIONAL ON A’.
+Figure 11.3: Basic Probablity Axioms and Rules. ‘B | A’ means ‘B GIVEN A’ or ‘B CONDITIONAL ON A’.
 </p>
 </div>
 </div>
-<div id="conditional-probabilities" class="section level2">
-<h2><span class="header-section-number">11.3</span> Conditional probabilities</h2>
+<div id="conditional-probabilities-and-independence" class="section level2">
+<h2><span class="header-section-number">11.3</span> Conditional probabilities, and (in)dependence</h2>
 <p>It is surprising how few textbooks use ‘trees’ (such as shown above) to explain conditional probabilities. Probability trees make it easy to see the <strong>direction</strong> in which one is preceeding, or looking, where simply (and often arbitrarily chosen) algebraic symbols like A and B can not; trees make it easier to distinguish ‘forward’ from ‘reverse’ probabilities. Tip: try to order letters so it is <span class="math inline">\(A\rightarrow B\)</span>, rather than <span class="math inline">\(B\rightarrow A.\)</span></p>
-<p>The following examples cover</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-41"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-41-1.png" alt="Gender Distribution in a sample of size $n$=2. LEFT: 2 independent Births; RIGHT: Randomly sampling 2 persons from 10 persons (5M 5F),  without replacenent. In both examples, the terminal probabilities are obtained by multiplication. In the second example, the second probability  depends on the outcome of the first selection." width="864" />
+<p>Trees show that – no matter whether the events are independent or dependent – <strong>the probability of a particular sequence is always a fraction of a fraction of a fraction … </strong>. Moreover we start with the full probability of 1 at the single entry point on the extreme left, so we need at the right hand side to account for all of this (i.e., the same ‘total’) probability. Just like the law of the conservation of mass, there is also a law on the conservation of probability; it cannot be lost or destroyed along the way.</p>
+<p>This <strong>first example</strong> highlights the difference between independent events (left) and non-independent events (right).</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-42"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-42-1.png" alt="Gender Distribution in a sample of size $n$=2. LEFT: 2 independent Births; RIGHT: Randomly sampling 2 persons from 10 persons (5M 5F),  without replacenent. In both examples, the terminal probabilities are obtained by multiplication. In the second example, the second probability  depends on the outcome of the first selection." width="864" />
 <p class="caption">
-Figure 11.3: Gender Distribution in a sample of size <span class="math inline">\(n\)</span>=2. LEFT: 2 independent Births; RIGHT: Randomly sampling 2 persons from 10 persons (5M 5F), without replacenent. In both examples, the terminal probabilities are obtained by multiplication. In the second example, the second probability depends on the outcome of the first selection.
+Figure 11.4: Gender Distribution in a sample of size <span class="math inline">\(n\)</span>=2. LEFT: 2 independent Births; RIGHT: Randomly sampling 2 persons from 10 persons (5M 5F), without replacenent. In both examples, the terminal probabilities are obtained by multiplication. In the second example, the second probability depends on the outcome of the first selection.
+</p>
+</div>
+<p>With <strong>independence, one doesn’t have to look over one’s shoulder to the previous event to know which probability to use for the second portion of the product.</strong> In the example on the gender composition of 2 independent births, when one comes to the second component (birth) in the probability product, Prob(2nd birth is a male) is <strong>the same whether</strong> one has got to there via the ‘upper’ path, or the ‘lower’ one. ‘Contitioning on’ or ‘knowing the result of’ the first event does not alter the second probability.</p>
+<p>With <strong>non-dependence, one does have to look at where one has come from</strong>. In the example on the gender composition of a sample of 2 persons sampled (without replacement) from a pool of 5 males and 5 females, the Prob(2nd person selected is a male) is <strong>differs depending on</strong> which path you have already taken.</p>
+<p>The multiplication rules also apply to pairs of events that are not strictly serial in nature: the pairs can be assembled in other ways, such as in this <strong>second example</strong>.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-43"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-43-1.png" alt="Another example of the difference between 'independent' and 'related' results. At issue is the composition of a make-female pair with respect to the number of sampled persons (out of $n$ = 2) that smoke (0, 1, or 2). **Left**: the pair are formed **at random**, the Male selected randomly from all adult males, and the Female selected randomly from all adult females. Prob that F smokes is not realted to whether M does or does not. **Right**: a (**related**) M:F **couple** is selected from among all M:F couples,  'F, M+' denotes a Female whose M partner does smoke, and 'F, M-' denotes a Female whose M partner does not. These probabilities that these 2 types of Females smoke will differ from each other." width="864" />
+<p class="caption">
+Figure 11.5: Another example of the difference between ‘independent’ and ‘related’ results. At issue is the composition of a make-female pair with respect to the number of sampled persons (out of <span class="math inline">\(n\)</span> = 2) that smoke (0, 1, or 2). <strong>Left</strong>: the pair are formed <strong>at random</strong>, the Male selected randomly from all adult males, and the Female selected randomly from all adult females. Prob that F smokes is not realted to whether M does or does not. <strong>Right</strong>: a (<strong>related</strong>) M:F <strong>couple</strong> is selected from among all M:F couples, ‘F, M+’ denotes a Female whose M partner does smoke, and ‘F, M-’ denotes a Female whose M partner does not. These probabilities that these 2 types of Females smoke will differ from each other.
 </p>
 </div>
 </div>
-<div id="conditional-forwards" class="section level2">
-<h2><span class="header-section-number">11.4</span> Conditional – forwards</h2>
-<ul>
-<li></li>
-</ul>
+<div id="changing-the-conditioning-the-direction-matters" class="section level2">
+<h2><span class="header-section-number">11.4</span> Changing the Conditioning: the direction matters</h2>
+<p><strong>Example: Medical Diagnostic Tests</strong></p>
+<p>The left side of this next panel is an example where, when evaluating the performance of a new diagnostic test, we test selected numbers of persons known to have and not have the medical condition in question. To get reliable data on both the detection rate (or ‘sensitivity’, here assumed to be 90%), and the false positive rate (here 1%, making the ‘specificity’ 99%), we might (artificially) test roughly equal numbers of persons with and without the condition (here 40% and 60% of the total tested, making the ‘prevalence’ 40%). The right hand side reverses the process, so that it mimics clinical practice, where the test result is known, but the presence/absence of the condition is not. When the test result is positive, say, the question then, naturally, is the probability that the patient with the positive result has the condition of concern. If the prevalence were truly 40%, then we would have the numbers shown in the right hand panel. Clearly, in this setting, <span class="math display">\[Prob[Disease \ is \ present \ | \ Test \ is \ Positive] \ne Prob[Test is Positive | Disease is present]\]</span></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-44"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-44-1.png" alt="A first example of  **two very different sets of probabilities**: LEFT The probabilities that a potential diagnostic test would be positive in persons who, respectively, do and do not have the medical condition of concern. RIGHT The probabilities that a medical condition of concern is present in persons whose diagnostic test is, respectively, positive and negative. **It is assumed that the overall prevalence of the condition is 40%, just like in the population mix (left) it was evaluated on.** Prob[Test is positive given that the Condition is Present] = 80%, but Prob[Condition is Present given that the Test is positive] is 87%." width="864" />
+<p class="caption">
+Figure 11.6: A first example of <strong>two very different sets of probabilities</strong>: LEFT The probabilities that a potential diagnostic test would be positive in persons who, respectively, do and do not have the medical condition of concern. RIGHT The probabilities that a medical condition of concern is present in persons whose diagnostic test is, respectively, positive and negative. <strong>It is assumed that the overall prevalence of the condition is 40%, just like in the population mix (left) it was evaluated on.</strong> Prob[Test is positive given that the Condition is Present] = 80%, but Prob[Condition is Present given that the Test is positive] is 87%.
+</p>
 </div>
-<div id="conditional-reverse" class="section level2">
-<h2><span class="header-section-number">11.5</span> Conditional – reverse</h2>
-<ul>
-<li>Application: medical diagnostic tests</li>
-</ul>
-<p>Exercises: Efron, Monty Hall, Economist, Wald : CF screening</p>
+<p>In the following Figure, the detection rate and false positive rates are as before, but the <strong>prevalence of the condition being tested for is now only half as high, ie., 12.5%</strong>.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-45"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-45-1.png" alt="A second example of  two differing different sets of probabilities: the detection rate and false positive rates are as before, but the prevalence of the condition being tested for is now only half as high. Prob[Test is positive given that the Condition is Present] = 80%, but Prob[Condition is Present given that the Test is positive] is 74%." width="864" />
+<p class="caption">
+Figure 11.7: A second example of two differing different sets of probabilities: the detection rate and false positive rates are as before, but the prevalence of the condition being tested for is now only half as high. Prob[Test is positive given that the Condition is Present] = 80%, but Prob[Condition is Present given that the Test is positive] is 74%.
+</p>
+</div>
+<p>The 74% is called the ‘positive predictive value’ of the (positive) test. Sometimes the 74% is referred to as post-test (or more accurately the post-positive-test) probability.</p>
+<p>The positive predictive value is lower still if the prevalence of the condition being tested for is lower again.</p>
+<p><strong>Example: The Etiologic Study</strong></p>
+<p>This ‘hockey-epidemiology’ example is based on data from 51 goals allowed by Canadiens goalie Patrick Roy in NHL games palyed again the Boston Bruins, and on the headline of the La Presse article: ‘Pour battre Roy, mieux lancer bas’ [to beat Roy, it’s better to shoot low]</p>
+<p>Since we don’t have full data, the left side of this next panel is theoretical, and uses symbols for the unknown probabilities. We would like to know the <strong>difference</strong> between Prob[Goal | Shoot Low] and Prob[Goal | Shoot Low], but if worst comes to the worst, we would settle for the <strong>ratio</strong> Prob[Goal | Shoot Low] : Prob[Goal | Shoot High],</p>
+<p>The RIGHT hand side illustrates the modern conception of THE etiologic study, using a case series (in this example, the series is 51 goals) and a base series (100 random shots selected from the videotapes of the games in question: it would take too long to examine and classify all 100% of the shots as low/high).</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-46"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-46-1.png" alt="A first example of the difference between two very different sets of probabilities. The LEFT panel allows one to estimate (in the 2nd column) the exposure-specific rates (incidence densities) of developing lung cancer, The RIGHT panel begins from a case series of size n, and couples it with a base (denominator) series K times that size that estimates the distribution of smoking histories in (from a representative sample of) the base -- the experience from which the cases arose. The exposure-specific numerators (numbers of cases) and estimated exposure-specific relative-denominators allow for the estimation of an incidence density ratio." width="864" />
+<p class="caption">
+Figure 11.8: A first example of the difference between two very different sets of probabilities. The LEFT panel allows one to estimate (in the 2nd column) the exposure-specific rates (incidence densities) of developing lung cancer, The RIGHT panel begins from a case series of size n, and couples it with a base (denominator) series K times that size that estimates the distribution of smoking histories in (from a representative sample of) the base – the experience from which the cases arose. The exposure-specific numerators (numbers of cases) and estimated exposure-specific relative-denominators allow for the estimation of an incidence density ratio.
+</p>
+</div>
+<p>Similar</p>
+<p>Adult size soccer ball</p>
+<p>Medical School admission rates, by gender.</p>
+<p>Vietnam war deaths, by month of birth</p>
+<p>NHL success, by month of birth</p>
+<p>John Snow, cholera deaths Soutrh London, by source of drinking water</p>
+<p>The difference between ‘forward’ and ‘reverse’ probabilities distinguishes frequentist p-values (probabilities) from Bayesian posterior probabilities.</p>
+<p><span class="math display">\[Probability[ data \ | \ Hypothesis ] \neq Probability[ Hypothesis \ | \ data ]\]</span></p>
+<p>or, if you prefer something that rhymes,</p>
+<p><span class="math display">\[Probability[ \ data \ | \  theta ] \neq Probability[ \ theta \ | \ data ].\]</span></p>
+<p>Two striking – and frightening – examples of misunderstandings about them are given on the next page.</p>
+</div>
+<div id="summary-slides" class="section level2">
+<h2><span class="header-section-number">11.5</span> Summary Slides</h2>
+</div>
+<div id="exercises-1" class="section level2">
+<h2><span class="header-section-number">11.6</span> Exercises:</h2>
+<p>Efron, Monty Hall, Economist, Wald : CF screening</p>
+<p>adult soccer ball</p>
+<p>Vietnam</p>
+<p>NHL</p>
 
 </div>
 </div>
