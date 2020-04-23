@@ -80,9 +80,17 @@ A few teachers, when they introduce regression, do so by describing/teaching it 
 
 There is a lot to commend this approach. It reminds epidemiologists -- and even statisticians -- that statistical inference is about parameters. Before addressing  data and data-summaries, we need to specify what the estimands are -- i.e, what parameter(s) is(are) we pursuing.
 
+Fisher, when introducing Likelihood in 1922, was one of the earliest statisticians to disntinguish parameters from statistics. he decried 'the obscurity which envelops the theoretical bases of statistical methods' and  ascribed it to two considerations. (**emphasis ours**)
+
+> In the first place, it appears to be widely thought, or rather felt, that in a subject in which all results are liable to greater or smaller errors, precise definition of ideas or concepts is, if not impossible, at least not a practical necessity.  
+
+> In the second place, it has happened that in statistics a purely verbal confusion has hindered the distinct formulation of statistical problems; for **it is customary to apply the same name, mean, standard deviation, correlation coefficient, etc., both to the true value which we should like to know, but can only estimate, and to the particular value at which we happen to arrive by our methods of estimation.** [R. A. Fisher. On the Mathematical Foundations of Theoretical Statistics. Philosophical Transactions of the Royal Society of London. Series A, Containing Papers of a Mathematical or Physical Character, Vol. 222 (1922), pp. 309-368]
+
 It is  easy and tempting to start with data, since the form of the summary statistic is usually easy to write down directly. It can also be used to motivate a definition: for example, we could define an odds ratio by its empirical computational form ad/bc. However, this 'give me the answer first, and the question later' approach comes up short as soon as one asks how statistically stable this estimate is. To derive a standard error or confidence interval, one has to appeal to a sampling distribution. To do this, one needs to identify the random variables involvced, and the parameters that determine/modulate their statistical distributions.
 
-Once students master the big picture (the parameter(s) being pursued), the task of estimating them by fitting these equations to data is considerably simplified, and becomes more generic. In this approach more upfront thinking is devoted to the parameters -- to what Miettinen calls the design of the study object -- with the focus on a pre-specified 'deliverable.'  
+Once students master the big picture (the parameter(s) being pursued), the task of estimating them by fitting these equations to data is considerably simplified, and becomes more generic. In this approach more upfront thinking is devoted to the parameters -- to what Miettinen calls the design of the study object -- with the focus on a pre-specified 'deliverable.'
+
+ 
 
 ## Let's switch to "y-bar", and drop  "x-bar".
 
