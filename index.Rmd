@@ -14,6 +14,28 @@ description: "A regression-from-the-outset based approach"
 
 # Preface {-}
 
+**The order in which we are proceeding with the writing, and what we have completed this far** 
+
+We are proceeding somewhat non-linearly in the writing. After completing a first draft of Chaper 2 (an overview of Stastical parameters,  parameter constrast and parameter functions) we began on the mother-of-all-regressions chapter for a single mean (ch. 5), and planned to move on the the corresponding ones for a single proportion (ch 6) and event-rate (ch 7). However, we  realized that to get through these, students would need the concepts of interval estimates of parameters, and these in turn need other preliminaries. So we are now working on chapters 11 (probability) and 12 (random variables), but we are hoping to motivate the various statistical concepts and laws by simulation and to use the **parallel sessions on computing** in `R` to  make these laws more concrete, and less as products of calculus and mathematical statistics. This way we hope to get to serious regression applications sooner than most intro. courses do. And we are also hoping to have the parismony of a regression approach become evident much sooner than in the traditional t-test chi-sq. regression sequence that only raeches regression 3 weeks before the end of the course.
+
+We have completed 1st drafts of the first 2 computing chapters (each with dual learning objectives -- computing, and statistical concepts). Once we complete the (theoretical) chapter on probabilities, we will a third computing chapter that shows several applications of probability. Following this we will move on to a theoretical chapter on random variables, and an accompanyiong 4th computing chapter.
+
+Once these are done, we will move back to interval estimation, and then back to regression models.
+
+In practice, we plan to intruduce the regression early, and use the computing to reinforce/(?replace) the theoretical pre-requisite chapters that (traditionally) seem to hold up so many inytroductory statistics courses.
+
+So we see part II as a sidebar^ for part I -- i.e., to be consulted as we go along.
+
+^ secondary article accompanying a larger one in a newspaper," 1948, from side (adj.) + bar (n.1).
+
+^ a typographically distinct section of a page, as in a book or magazine, that amplifies or highlights the main text.
+
+^ a conference between the judge and lawyers out of the presence of the jury.
+
+^ a subordinate or incidental issue, remark, activity, etc.
+
+_Comments welcomed at any stage!_
+
 ## Target
 
 

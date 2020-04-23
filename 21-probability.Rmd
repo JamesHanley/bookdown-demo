@@ -6,13 +6,13 @@ The **objectives** of this chapter are to
 
 * Understand the meanings, uses and ways of arriving at, numerical values for probabilities.
 
-* Appreciate the context for a  probability, and that context (conditioning, information relied on) matters. 
+* Appreciate the context for a  probability, and that context (the conditioning, the information relied on) matters. 
 
-* See the basic rules for calculating probabilities in a few examples, but appreciate that calculating non-standard probabilities should be left to experts. Most of our probability values come from some pDistribution function.
+* See the basic rules for calculating probabilities in a few examples, but appreciate that calculating non-standard probabilities should be left to experts. In practice, most of our probability values come from some pDistribution function, and we will encounter some of the 'off the shelf' ones in the next chapter.
 
 * Be warned against calculating the wrong probability. 
 
-* Beware of intuition, especially with 'after the fact' calculations for non-standard situations
+* Beware of intuition, especially with 'after the fact' calculations for non-standard situations.
 
 
 **Probability**
@@ -37,6 +37,15 @@ Experience (actuarial, ...)
    + Pure Thought
    + Elementary Statistical Principles; if necessary, by breaking complex outcomes into simpler ones
    + Advanced Statistical Theory, e.g.. Gauss' Law of Errors
+   
+   
+   
+   
+   ```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=3, warning=FALSE, message=F, fig.cap="In this older cartoon, these experts qualify their probability statement."}
+
+knitr::include_graphics("images/40PercentChanceOfShowers.png",dpi=120)
+
+```
    
  
 Death and Taxes • Rain tomorrow • Cancer in your lifetime • Win lottery in single try • Win lottery twice • Get back 11/20 pilot questionnaires • Treat 14 patients get 0 successes • Duplicate Birthdays • Canada will use $US before the year 2030  
@@ -258,44 +267,48 @@ for( Y.end in Y + c(-1,1)*DY ){
 
 ```
 
-## Conditional probabilities
+## Conditional probabilities, and (in)dependence
 
 It is surprising how few textbooks use 'trees' (such as shown above) to explain conditional probabilities. Probability trees make it easy to see  the  **direction** in which one is
 preceeding, or looking,  where simply (and often arbitrarily chosen) algebraic symbols like A and B can not; trees make it easier
 to distinguish 'forward' from 'reverse' probabilities. Tip: try to order letters so it is $A\rightarrow B$,  rather than $B\rightarrow A.$
 
-The following examples cover 
 
+Trees show that -- no matter whether the events are independent or dependent -- **the probability of a particular sequence is always a fraction of a fraction of a fraction ... **. Moreover we start with the full probability of 1 at the single entry point on the extreme left, so we need at the right hand side to account for all of this (i.e., the same ‘total’) probability. Just like the law of the conservation of mass, there is also a law on the conservation of probability; it cannot be lost or destroyed along the way.
+
+This **first example** highlights the difference between independent events (left) and non-independent events (right).
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="Basic Probablity Axioms and Rules. 'B | A' means 'B GIVEN A' or 'B CONDITIONAL ON A'."}
 
 drawPanel = function(title,col.labels,
-           values,
+           col1.values,col2.values,
            col1.probs,col2.probs,
            end.probs,
-           xl,xr,yb,yt,CEX) {
+           xl,xr,yb,yt,CEX,show100andProducts) {
   
-  YC = yb + 0.4*(yt-yb)
-  DY = 0.25 ; dy = DY/2.5
+  YC = yb + 0.35*(yt-yb)
+  DY = 0.225 ; dy = DY/2.5
   DX = xr-xl ; dx = DX/3
   x0 = xl+0.11*DX
   
   text(x0+dx,yt - DY/6,title,font=2,cex=CEX)
   
-  text(x0+dx/2,yt - DY/1.75,
+  text(x0+dx/2,yt - DY/1.25,
        col.labels[1],font=2,cex=CEX)
-  text(x0+dx+dx/2,yt - DY/1.75,
+  text(x0+dx+dx/2,yt - DY/1.25,
        col.labels[2],font=2,cex=CEX)
-  segments(x0-dx/12,YC,x0,YC)
-  text(x0-dx/10,YC,"100%",adj=c(1,0.5),cex=CEX)
-
   
-  segments(x0,YC-DY,x0,YC+DY)
+  if(show100andProducts) {
+  	segments(x0-dx/12,YC,x0,YC)
+    text(x0-dx/10,YC,"100%",adj=c(1,0.5),cex=CEX)
+    segments(x0,YC-DY,x0,YC+DY)
+  }
+  
   I = 0
   for(Y in (YC + c(-1,1)*DY) ){
   	 I=I+1
      segments(x0, Y, x0+dx, Y)
-     text(x0+dx/2,Y,values[I],
+     text(x0+dx/2,Y,col1.values[I],
           adj=c(0.5, 1.3  -(Y>YC)*1.6),cex=CEX)
      text(x0+dx/2,Y,col1.probs[I],
        adj=c(0.5,-0.3+(Y>YC)*1.6),font=3,cex=CEX)
@@ -303,13 +316,13 @@ drawPanel = function(title,col.labels,
      J=0 
      for(y in (Y + c(-1,1)*dy) ){
      	J=J+1
+     	  IJ=(I-1)*2+J
         segments(x0+dx, y, x0+dx+dx, y)
-        text(x0+dx+dx/2,y,values[J],
+        text(x0+dx+dx/2,y,col2.values[IJ],
           adj=c(0.5, 1.3 -(y>Y)*1.6),cex=CEX)
-        IJ=(I-1)*2+J
         text(x0+dx+dx/2,y,col2.probs[IJ],
           adj=c(0.5,-0.3+(y>Y)*1.6),font=3,cex=CEX)
-        text(x0+dx+dx*1.05,y,end.probs[IJ],
+        if(show100andProducts)  text(x0+dx+dx*1.05,y,end.probs[IJ],
           adj=c(0,0.5),font=3,cex=CEX)
      }
   }
@@ -329,7 +342,8 @@ drawPanel = function(title,col.labels,
   values=c("M","F")
   
   col.labels=c("1st Birth","2nd Birth")
-  values=c("M","F")
+  col1.values=c("M","F")
+  col2.values=rep(c("M","F"),2)
   col1.probs=c("1/2","1/2")
   col2.probs=rep("1/2",4)
   end.probs=rep("1/4",4)
@@ -337,14 +351,15 @@ drawPanel = function(title,col.labels,
   plot(10:11,ylim=c(yb,yt),xlim=c(0,2.5),frame=FALSE)
   
   drawPanel(title,col.labels,
-           values,
+           col1.values,col2.values,
            col1.probs,col2.probs,
            end.probs,
-           xl,xr,yb,yt,CEX=1.2)
+           xl,xr,yb,yt,CEX=1.2,TRUE)
   
   title="G E N D E R  :\nselect 2 persons from 10 (5M &  5F)"
   col.labels=c("1st\nselected","2nd\nselected")
-  values=c("M","F")
+  col1.values=c("M","F")
+  col2.values=rep(c("M","F"),2)
   col1.probs=c("5/10","5/10")
   col2.probs=c("4/9","5/9", "5/9","4/9")
   end.probs=c("20/90","25/90", "25/90","20/90")
@@ -353,21 +368,270 @@ drawPanel = function(title,col.labels,
   
   
   drawPanel(title,col.labels,
-           values,
+           col1.values,col2.values,
            col1.probs,col2.probs,
            end.probs,
-           xl,xr,yb,yt,CEX=1.2)
+           xl,xr,yb,yt,CEX=1.2,TRUE)
 
 
-````
+```
 
-## Conditional -- forwards 
+With **independence, one doesn’t have to look over one’s shoulder to the previous event to know which probability to use for the second portion of the product.** In the example on the gender composition of 2 independent births, when one comes to the second component (birth) in the probability product, Prob(2nd birth is a male) is **the same whether** one has got to there via the 'upper' path, or the 'lower' one. 'Contitioning on' or 'knowing the result of' the first event does not alter the second probability.
 
-*
+With **non-dependence, one does have to look at where one has come from**. In the example on the gender composition of a sample of 2 persons sampled (without replacement) from a pool of 5 males and 5 females, the Prob(2nd person selected is a male) is **differs depending on** which path you have already taken.
 
-## Conditional -- reverse
+The multiplication rules also apply to pairs of events that are not strictly serial in nature: the pairs can be assembled in other ways, such as in this **second example**.
 
-* Application: medical diagnostic tests
 
-Exercises: Efron, Monty Hall, Economist, 
-Wald : CF screening    
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Another example of the difference between 'independent' and 'related' results. At issue is the composition of a make-female pair with respect to the number of sampled persons (out of $n$ = 2) that smoke (0, 1, or 2). **Left**: the pair are formed **at random**, the Male selected randomly from all adult males, and the Female selected randomly from all adult females. Prob that F smokes is not realted to whether M does or does not. **Right**: a (**related**) M:F **couple** is selected from among all M:F couples,  'F, M+' denotes a Female whose M partner does smoke, and 'F, M-' denotes a Female whose M partner does not. These probabilities that these 2 types of Females smoke will differ from each other."}
+
+  
+  par(mfrow=c(1,1),mar = rep(0,4))
+  
+  xl=0.1 ; xr=1.1 ; yb=0 ; yt=1
+  title="SMOKING STATUS IN SAMPLE OF 2  :\nrandomly selected M, randomly selected M"
+  col.labels=c("M","F")
+  col1.values=c("Does Not","Smokes")
+  col2.values=rep(col1.values,2)
+  col1.probs=c("1-P[S|M]","P[S|M]")
+  col2.probs=rep(c("1-P[S|F]","P[S|F]"),2)
+  end.probs=rep("Product",4)
+
+  plot(10:11,ylim=c(yb,yt),xlim=c(0,2.5),frame=FALSE)
+  
+  drawPanel(title,col.labels,
+           col1.values,col2.values,
+           col1.probs,col2.probs,
+           end.probs,
+           xl,xr,yb,yt,CEX=1.2,TRUE)
+  
+  title="SMOKING STATUS IN SAMPLED PAIR  :\nrandomly selected (M,F) pair"
+  col.labels=c("M of pair","F of pair")
+  
+  xl=1.45 ; xr=2.45
+  
+  col2.probs=c(" "," "," "," ")
+  
+  col2.values=c("NO","YES","NO","YES")
+  
+  
+  drawPanel(title,col.labels,
+           col1.values,col2.values,
+           col1.probs,col2.probs,
+           end.probs,
+           xl,xr,yb,yt,CEX=1.2,TRUE)
+
+
+```
+
+
+
+## Changing the Conditioning: the direction matters
+
+
+**Example: Medical Diagnostic Tests**
+
+The left side of this next panel is an example where, when evaluating the performance of a new diagnostic test, we test selected numbers of persons known to have and not have the medical condition in question. To get reliable data on both the detection rate (or 'sensitivity', here assumed to be 90%), and the false positive rate (here 1%, making the 'specificity' 99%), we might (artificially) test roughly equal numbers of persons with and without the condition (here 40% and 60% of the total tested, making the 'prevalence' 40%). The right hand side reverses the process, so that it mimics clinical practice, where the test result is known, but the presence/absence of the condition is not. When the test result is positive, say, the  question then, naturally, is the probability that the patient with the positive result has the condition of concern. If the prevalence were truly 40%, then we would have the numbers shown in the right hand panel. Clearly, in this setting,
+$$Prob[Disease \ is \ present \ | \ Test \ is \ Positive] \ne Prob[Test is Positive | Disease is present]$$
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F, fig.cap="A first example of  **two very different sets of probabilities**: LEFT The probabilities that a potential diagnostic test would be positive in persons who, respectively, do and do not have the medical condition of concern. RIGHT The probabilities that a medical condition of concern is present in persons whose diagnostic test is, respectively, positive and negative. **It is assumed that the overall prevalence of the condition is 40%, just like in the population mix (left) it was evaluated on.** Prob[Test is positive given that the Condition is Present] = 80%, but Prob[Condition is Present given that the Test is positive] is 87%."}
+
+  
+  par(mfrow=c(1,1),mar = rep(0,4))
+  
+  xl=0.05 ; xr=1.25 ; yb=0 ; yt=1
+  title="TESTING A DIAGNOSTIC TEST"
+  col.labels=c("Condition\nPresent","Test\nResult?")
+  col1.values=c("NO","YES")
+  col2.values=c("Negative","Positive","Negative","Positive" )
+  col1.probs=c("75%","25%")
+  col2.probs=c("96%","4%",
+               "20%","80%")
+
+  end.probs=c("72%","3%","5%", "20%" )
+
+  plot(10:11,ylim=c(yb,yt),xlim=c(0,2.5),frame=FALSE)
+  
+  drawPanel(title,col.labels,
+           col1.values, col2.values,
+           col1.probs,col2.probs,
+           end.probs,
+           xl,xr,yb,yt,CEX=1.2,TRUE)
+  
+  title="DIAGNOSTIC TEST IN PRACTICE"
+  col.labels=c("Test\nResult","Condition\nPresent?")
+  
+  xl=1.3 ; xr=2.5
+  
+  col1.values=c("NEGATIVE","POSITIVE")
+  col2.values=rep(c("No","Yes"),2)
+  
+  col1.probs=c("77%","23%")
+  
+  col2.probs=c("93.5%","6.5%","13%","87%")
+  
+  end.probs=c("72%","5%","3%", "20%" )
+  
+  
+  drawPanel(title,col.labels,
+           col1.values, col2.values,
+           col1.probs,col2.probs,
+           end.probs,
+           xl,xr,yb,yt,CEX=1.2,TRUE)
+
+
+```
+
+In the following Figure, the detection rate and false positive rates are as before, but the **prevalence of the condition being tested for is now only half as high, ie., 12.5%**. 
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F, fig.cap="A second example of  two differing different sets of probabilities: the detection rate and false positive rates are as before, but the prevalence of the condition being tested for is now only half as high. Prob[Test is positive given that the Condition is Present] = 80%, but Prob[Condition is Present given that the Test is positive] is 74%."}
+
+  
+  par(mfrow=c(1,1),mar = rep(0,4))
+  
+  xl=0.05 ; xr=1.25 ; yb=0 ; yt=1
+  title="TESTING A DIAGNOSTIC TEST"
+  col.labels=c("Condition\nPresent","Test\nResult?")
+  col1.values=c("NO","YES")
+  col2.values=c("Negative","Positive","Negative","Positive" )
+  col1.probs=c("87.5%","12.5%")
+  col2.probs=c("96%","4%",
+               "20%","80%")
+
+  end.probs=c("84%","3.5%","2.5%", "10%" )
+
+  plot(10:11,ylim=c(yb,yt),xlim=c(0,2.5),frame=FALSE)
+  
+  drawPanel(title,col.labels,
+           col1.values, col2.values,
+           col1.probs,col2.probs,
+           end.probs,
+           xl,xr,yb,yt,CEX=1.2,TRUE)
+  
+  title="DIAGNOSTIC TEST IN PRACTICE"
+  col.labels=c("Test\nResult","Condition\nPresent?")
+  
+  xl=1.3 ; xr=2.5
+  
+  col1.values=c("NEGATIVE","POSITIVE")
+  col2.values=rep(c("No","Yes"),2)
+  
+  col1.probs=c("77%","23%")
+  
+  col2.probs=c("96.6%","3.4%","26%","74%")
+  
+  end.probs=c("84%","2.5%","3.5%", "10%" )
+  
+  
+  drawPanel(title,col.labels,
+           col1.values, col2.values,
+           col1.probs,col2.probs,
+           end.probs,
+           xl,xr,yb,yt,CEX=1.2,TRUE)
+
+
+```
+The 74% is  called the 'positive predictive value' of the (positive) test. Sometimes the 74% is referred to as post-test (or more accurately the post-positive-test) probability.
+
+The positive predictive value is lower still if the
+prevalence of the condition being tested for is lower again. 
+
+
+**Example: The Etiologic Study**
+
+This 'hockey-epidemiology' example  is based on data from 51 goals allowed by Canadiens goalie Patrick Roy in NHL games palyed again the Boston Bruins, and on the headline of the La Presse article: 'Pour battre  Roy, mieux lancer bas' [to beat Roy, it's better to shoot low]
+
+Since we don't have full data, the left side of this next panel is theoretical, and uses symbols for the unknown probabilities. We would like to know the **difference** between Prob[Goal | Shoot Low] and Prob[Goal | Shoot Low], but if worst comes to the worst, we would settle for the **ratio**  Prob[Goal | Shoot Low] : Prob[Goal | Shoot High],
+
+The RIGHT hand side illustrates the modern conception of THE etiologic study, using a case series (in this example, the series is 51 goals) and a base series (100 random shots selected from the videotapes of the games in question: it would take too long to examine and classify all 100% of the shots as low/high).
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="A first example of the difference between two very different sets of probabilities. The LEFT panel allows one to estimate (in the 2nd column) the exposure-specific rates (incidence densities) of developing lung cancer, The RIGHT panel begins from a case series of size n, and couples it with a base (denominator) series K times that size that estimates the distribution of smoking histories in (from a representative sample of) the base -- the experience from which the cases arose. The exposure-specific numerators (numbers of cases) and estimated exposure-specific relative-denominators allow for the estimation of an incidence density ratio."}
+
+  
+  par(mfrow=c(1,1),mar = rep(0,4))
+  
+  xl=0.1 ; xr=1.2 ; yb=0 ; yt=1
+  title="Is Prob[Goal] larger if Shoot Low?"
+  col.labels=c("Shoot","Result")
+  col1.values=c("[H]igh","[L]ow")
+  col2.values=rep(c("No Goal","[G]oal"),2)
+  col1.probs=c("100 - ? %","? %")
+  col2.probs=c("1-P[G|High]","P[G|High]",
+               "1-P[G|Low]","P[G|Low]")
+
+  end.probs=rep(" ",4)
+
+  plot(10:11,ylim=c(yb,yt),xlim=c(0,2.5),frame=FALSE)
+  
+  drawPanel(title,col.labels,
+           col1.values, col2.values,
+           col1.probs,col2.probs,
+           end.probs,
+           xl,xr,yb,yt,CEX=1.1,TRUE)
+  
+  title="Position Of Shots in..."
+  col.labels=c("SERIES","Shot was\nLow/High?")
+  
+  xl=1.4 ; xr=2.5
+  
+  col1.values=c("SHOTS","GOALS")
+  col2.values=rep(c("High","Low"),2)
+  
+  col1.probs=c("n=100","n=51")
+  
+  col2.probs=c("?","?","15","36")
+  
+  
+  drawPanel(title,col.labels,
+           col1.values, col2.values,
+           col1.probs,col2.probs,
+           end.probs,
+           xl,xr,yb,yt,CEX=1.2,FALSE)
+
+
+```
+
+Similar
+
+Adult size soccer ball
+
+Medical School admission rates, by gender.
+
+Vietnam war deaths, by month of birth
+
+NHL success, by month of birth
+
+John Snow, cholera deaths Soutrh London, by source of drinking water
+
+The difference between  'forward' and  'reverse' probabilities
+distinguishes frequentist p-values (probabilities) from Bayesian
+posterior probabilities.
+
+$$Probability[ data \ | \ Hypothesis ] \neq Probability[ Hypothesis \ | \ data ]$$ 
+
+or, if you prefer something that rhymes, 
+
+$$Probability[ \ data \ | \  theta ] \neq Probability[ \ theta \ | \ data ].$$
+
+
+
+Two striking  -- and frightening -- examples of misunderstandings about them are given on the next page.
+
+
+## Summary Slides
+
+
+## Exercises: 
+
+Efron, Monty Hall, Economist, 
+Wald : CF screening
+
+adult soccer ball
+
+Vietnam
+
+NHL
+
