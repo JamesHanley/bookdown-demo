@@ -626,12 +626,31 @@ Two striking  -- and frightening -- examples of misunderstandings about them are
 
 ## Exercises: 
 
-Efron, Monty Hall, Economist, 
-Wald : CF screening
+1. Convert the proportion of males born to a sex ratio, and to the log of the sex ratio. If, because of natural year to year variations, the proportion varies from 0.49 to 0.53, what does the ratio from from? the log of the ratio?  What if proportion were 3/4. scales SDs See John Arbuthnot's data.
 
-adult soccer ball
+2. In a recent report, the focus was on the proportion of persons who would detect added (spiked) alcohol in a drink. The authors fitted a logistic S curve, and arrived at the equation $$ logit[proportion \ if  \ X \  = \ x] \ = \ x.x - y.y \ Dose.$$. From this, calculate the fitted proportion if X = zzz.  
+The authors alos fitted a probit-based S curve, and arrived at the equation $$ probit[proportion \ if  \ X \  = \ x] \ = \ w.w - q.q \ Dose.$$. From this, calculate the fitted proportion if X = zzz.
 
-Vietnam
+3. In an older report, the focus was on the proportion of persons who had reached menarche by a given age. The authors fitted a logistic S curve, and arrived at the equation $$ logit[proportion \ if  \ X \  = \ x] \ = \ x.x - y.y \ Age.$$. From this, calculate the fitted proportion if X = zzz.  
+The authors alos fitted a probit-based S curve, and arrived at the equation $$ probit[proportion \ if  \ X \  = \ x] \ = \ w.w - q.q \ Age.$$. From this, calculate the fitted proportion if X = zzz.
 
-NHL
+4. Prob of 
+ 
+   + duplicate birthdays in a sample of $n$ persons
+   + surviving from 80th to 95th birthday if the 1-year at a time proportions dying are ...
+   + Chevalier de Méré no 6, at least 1 six.
+
+5. Efron
+
+6. Monty Hall
+
+7. The Economist
+
+8. Wald : CF screening
+
+9. Adult soccer ball.. wrong probability
+
+10. Vietnam deaths
+
+11. NHL birthdays
 
