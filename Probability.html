@@ -216,7 +216,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="15.4.2" data-path="computing02.html"><a href="computing02.html#statistical-concepts-and-principles-1"><i class="fa fa-check"></i><b>15.4.2</b> Statistical Concepts and Principles</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="computing03.html"><a href="computing03.html"><i class="fa fa-check"></i><b>16</b> Computing Week3</a><ul>
+<li class="chapter" data-level="16" data-path="computing03.html"><a href="computing03.html"><i class="fa fa-check"></i><b>16</b> Computing: Session No. 3</a><ul>
 <li class="chapter" data-level="16.0.1" data-path="computing03.html"><a href="computing03.html#the-2018-book-of-guesses"><i class="fa fa-check"></i><b>16.0.1</b> The 2018 Book of Guesses</a></li>
 <li class="chapter" data-level="16.0.2" data-path="computing03.html"><a href="computing03.html#trends-over-the-last-100-years"><i class="fa fa-check"></i><b>16.0.2</b> Trends over the last 100 years</a></li>
 <li class="chapter" data-level="16.1" data-path="computing03.html"><a href="computing03.html#galtons-data-on-family-heights"><i class="fa fa-check"></i><b>16.1</b> Galton’s data on family heights</a></li>
@@ -362,12 +362,6 @@ Figure 11.7: A second example of two differing different sets of probabilities: 
 Figure 11.8: A first example of the difference between two very different sets of probabilities. The LEFT panel allows one to estimate (in the 2nd column) the exposure-specific rates (incidence densities) of developing lung cancer, The RIGHT panel begins from a case series of size n, and couples it with a base (denominator) series K times that size that estimates the distribution of smoking histories in (from a representative sample of) the base – the experience from which the cases arose. The exposure-specific numerators (numbers of cases) and estimated exposure-specific relative-denominators allow for the estimation of an incidence density ratio.
 </p>
 </div>
-<p>Similar</p>
-<p>Adult size soccer ball</p>
-<p>Medical School admission rates, by gender.</p>
-<p>Vietnam war deaths, by month of birth</p>
-<p>NHL success, by month of birth</p>
-<p>John Snow, cholera deaths Soutrh London, by source of drinking water</p>
 <p>The difference between ‘forward’ and ‘reverse’ probabilities distinguishes frequentist p-values (probabilities) from Bayesian posterior probabilities.</p>
 <p><span class="math display">\[Probability[ data \ | \ Hypothesis ] \neq Probability[ Hypothesis \ | \ data ]\]</span></p>
 <p>or, if you prefer something that rhymes,</p>
@@ -380,7 +374,7 @@ Figure 11.8: A first example of the difference between two very different sets o
 <div id="exercises-1" class="section level2">
 <h2><span class="header-section-number">11.6</span> Exercises:</h2>
 <ol style="list-style-type: decimal">
-<li><p>Convert the proportion of males born to a sex ratio, and to the log of the sex ratio. If, because of natural year to year variations, the proportion varies from 0.49 to 0.53, what does the ratio from from? the log of the ratio? What if proportion were 3/4. scales SDs See John Arbuthnot’s data.</p></li>
+<li><p>Convert the proportion of males born to a sex ratio, and to the log of the sex ratio. If, because of natural year to year variations, the proportion varies from 0.49 to 0.53, what does the ratio vary from? the log of the ratio? What if proportion were 3/4. scales SDs See John Arbuthnot’s data.</p></li>
 <li><p>In a recent report, the focus was on the proportion of persons who would detect added (spiked) alcohol in a drink. The authors fitted a logistic S curve, and arrived at the equation <span class="math display">\[ logit[proportion \ if  \ X \  = \ x] \ = \ x.x - y.y \ Dose.\]</span>. From this, calculate the fitted proportion if X = zzz.<br />
 The authors alos fitted a probit-based S curve, and arrived at the equation <span class="math display">\[ probit[proportion \ if  \ X \  = \ x] \ = \ w.w - q.q \ Dose.\]</span>. From this, calculate the fitted proportion if X = zzz.</p></li>
 <li><p>In an older report, the focus was on the proportion of persons who had reached menarche by a given age. The authors fitted a logistic S curve, and arrived at the equation <span class="math display">\[ logit[proportion \ if  \ X \  = \ x] \ = \ x.x - y.y \ Age.\]</span>. From this, calculate the fitted proportion if X = zzz.<br />
@@ -393,14 +387,27 @@ The authors alos fitted a probit-based S curve, and arrived at the equation <spa
 <li>Chevalier de Méré no 6, at least 1 six.</li>
 </ul>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Efron</p></li>
-<li><p>Monty Hall</p></li>
+<li><p>Variation with and without constraints</p></li>
+<li><p>Suppose you measure the heights of a randomly chosen adult male and a randomly chosen adult female, and record where each one is relative to the (a) Q25 (b) Q50 (median) and (c) Q75 value of their same-sex peers, and mark the result on a 3 x 3 grid (like the grid <a href="http://www.biostat.mcgill.ca/hanley/statbook/GaltonHeightCouples.png">Galton</a> used). For each of the 9 cells, what is the probability that they will be that cell?</p></li>
+</ol>
+<p>-2- “Clustering” of Cardiovascular Risk Factors ?</p>
+<p>A Santé Quebec survey found the prevalence of 4 heart disease risk factors in a certain age-sex group to be: smoking: 32%; family history: 32%; SBP&gt;155mmHg: 12%; diabetes: 5%. If risk factors are distributed independently of each other, what is the proportion of the age-sex group with (a) 4 risk factors (b) 0 risk factors (c) 1 or more risk factors?. A tree diagram may help.</p>
+<p>-3- “Duplicate Numbers” [mini-version of birthday problem] To appreciate the high probability of duplicate birthdays, take a simpler case of drawing single digit numbers at random from a Random Number Table or spreadsheet until one gets a duplicate. (also, try actually doing it to see how many draws it takes) a Calculate the probability that in 5 draws one will not obtain a duplicate, i.e., the probability of a sequence 1st# ; 2nd# [≠ 1st#] 3rd# [≠ 2nd# ≠ 1st#] 4th# [≠ 3rd# ≠ 2nd# ≠ 1st#] 5th# [≠ 4th# ≠3rd# ≠ 2nd# ≠ 1st#] b Calculate, by successive subtractions* or otherwise, the probability that the first duplicate will show up on the [Y =] 2nd, 3rd, …11th draw. Plot the frequency distribution of the # draws, Y, until a duplicate.</p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Efron Monty Hall</p></li>
 <li><p>The Economist</p></li>
 <li><p>Wald : CF screening</p></li>
+<li><p>OJ p-value</p></li>
 <li><p>Adult soccer ball.. wrong probability</p></li>
 <li><p>Vietnam deaths</p></li>
 <li><p>NHL birthdays</p></li>
 </ol>
+<p>Similar</p>
+<p>Adult size soccer ball</p>
+<p>Medical School admission rates, by gender.</p>
+<p>Vietnam war deaths, by month of birth</p>
+<p>NHL success, by month of birth</p>
+<p>John Snow, cholera deaths South London, by source of drinking water</p>
 
 </div>
 </div>
