@@ -1,41 +1,208 @@
-# Computing Week3 {#computing03}
+# Computing: Session No. 3 {#computing03}
 
 
 The **'computing' objective** is to learn how to use `R` to evaluate probabilities by (Monte Carlo) simulation.
 
-The **'statistical' objective** of this exercise is to learn some of the probability laws that which random processes by seeing how frequently certain events occur  
+The **'statistical' objective** of this exercise is to learn some of the probability laws that which random processes by seeing how frequently certain events occur in computer  simulations, and to deduce the laws from the (long-run) frequencies.
 
-(Probabilities, evaluated by simulation)
+1. **Pooled Blood** [from Chapter 3 of Colton's 1974 book  Statistics in Medicine]  
+'Each time an individual receives pooled blood products, there is a 2% chance of his developing serum hepatitis. An individual receives pooled blood products on 45 occasions. What is his chance of developing serum hepatitis?' (JH to 1980s classes: Note that the chance is not 45 $\times$ 0.02 = 0.9. To keep it simple, assume that there is a 2% chance that a unit is contaminated and calculate the chance that at least one of the 45 units is contaminated.)  
+$\bullet$ For this computing class, simulate several sets of 45 occasions and estimate the chance that at least one of the 45 units is contaminated.  
+$\bullet$ By experimantation, see if you can arrive at the formula the epi607 students in the 9180s would have used.
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+
+n.times = 45 ; prob.per.time = 0.02 ; N.SIMS = 100
+sims = matrix(runif(N.SIMS*n.times)<prob.per.time,
+              N.SIMS, n.times) # N.SIMS rows, n.times columns
+head(sims,2)
+str(sims)
+
+positive = apply(sims,1,any)  # applies the 'any' function to each row
+str(positive)
+proportion.of.sims.with.a.hit = mean(positive)
+
+cat(paste("Proportion.of.sims.with.a.hit", toString(proportion.of.sims.with.a.hit),";\nfor a more stable estimate, uses a larger N.SIMS"))
+
+```
+
+2. **Duplicate Numbers** [mini-version of 'the birthday problem']  
+To appreciate the high probability of duplicate birthdays, take a simpler case of drawing the numbers 0:9 at random (and with replacement) until one gets a duplicate.
+
+      + [1980s] Calculate, by successive subtractions^ or otherwise, the probability that the first duplicate will show up on the [$Y$ =] 2nd, 3rd, ...11th draw. Plot the frequency distribution of the number of draws, $Y$, until one gets a duplicate. 
+      
+      + [2020] By simulation, estimate the probability that 'in 4 draws one will not obtain a duplicate' ^^.
+      
+^ Let $Y$ = which draw produces 1st duplicate (so $Y$ = 2,... , 11). e.g. 
+
+`Pr[$Y$ > 6] = Pr[Y = 7 or 8 or 9 or 10 or 11]`  
+`Pr[$Y$ > 7] = Pr[Y = .... 8 or 9 or 10 or 11]`  
+`Difference:  = Pr[Y = 7] `
+
+   
+^^ Taking NE as shorthand for 'Not Equal to', the probability of a sequence
+
+`.......1st`  
+`....... ... 2nd NE 1st`  
+`....... ... ... ... ... 3rd NE 1st & NE 2nd`  
+`....... ... ... ... ... ... ... 4th NE 1st & NE 2nd & NE 3rd`
+
+
+3. **A simplified epidemic**. An infectious disease has a one-day infectious period, and after that day the patient is immune. Six hermits (numbered 1,2, 3, 4, 5, 6) live on an island, and if one has the disease he randomly visits another hermit for help during his infectious period. If the visited hermit has not had the disease, he catches it and is infectious the next day. Assume hermit 1 has the disease today, and the rest have not had it. In the pre-R era students were asked to throw a die  to choose which hermit he visits (ignore face 1) Today you are asked to use `R` to choose which hermit he visits. That hermit is infectious tomorrow. Then throw again to see which hermit he visits, and so on. Continue the process until a sick hermit visits an immune one and the disease dies out. Repeat the experiment several times and find (a) the average number who get the disease (b) the probability that (the proportion of experiments in which)  everyone gets the disease. Can you anticipate the answer to (b)?
+
+4. **Chevalier de Méré** [see here}(https://www.cut-the-knot.org/Probability/ChevalierDeMere.shtml) or  
+Gamblers in  17th century France used to bet on the event of getting at least one 1 'six' in four rolls of a [die](https://en.wikipedia.org/wiki/Dice) or in 1 roll of 4 dice [dice is plural for die]. As a more trying variation, two dice were rolled 24 times with a bet on having at least one double six. Chevalier de Méré who expected a couple of sixes to turn up in 24 double rolls with the frequency of a six in 4 single rolls. However, he lost consistently.
+
+   + Simulate a large number of each of these games, and estimate the probability of getting (a) at least one six in four rolls of a dice  (b) at least one "double six" when a pair of dice is thrown 24 times
+
+   +Why does it take a large number of simulations to determine which game offers the better chance of winning?
+
+   + Can you work out the probabilities directly?
+
+   + https://www.casino-games-online.biz/dice/chevalier-de-mere.html
+
+
+4. **HIV transmission**, probability per act 
+
+5. **Life Tables** The following [conditional] probabilities are taken from the
+abridged life tables for males (M) and females (F) computed
+from mortality data for Québec for the year 1990, and published by the Bureau de la statistique du Québec: [the probabilities for 90-year olds have been modified slightly!].  
+In a (**current**) life table, one takes **current** (in this case 1990) i.e. cross-sectional **death rates** and applies them to a **fictitious cohort** to calculate what % of the cohort **would** survive past various birthdays -- if die these rates persisted -- and to calculate the average age at death (also known as life expectancy at birth).
+
+`........ prob that a person who lives to his/her`  
+`........ xth birthday will die during next 10 years`
+
+`.......x .... .M ....... F`  
+`...... 0 ... 0.010 ... 0.008`  
+`..... 10 ... 0.006 ... 0.002`  
+`..... 20 ... 0.012 ... 0.004`  
+`..... 30 ... 0.016 ... 0.007`  
+`..... 40 ... 0.031 ... 0.017`  
+`..... 50 ... 0.080 ... 0.042`  
+`..... 60 ... 0.211 ... 0.104`  
+`..... 70 ... 0.448 ... 0.259`  
+`..... 80 ... 0.750 ... 0.585`  
+`..... 90 ... 1.000 ... 1.000` 
+
+  + Complete the following tree diagram and calculate the proportions of males who survive past their xth birthday (x = 0, 10, 20, 30, ... 100). Do likewise for females. Plot the proportions vs. x (these plots are called survival curves). Make sure to label the axes correctly.
+   
+  + Calculate, by successive subtractions^ or otherwise, the [unconditional] proportions [i.e. proportions of the entire cohort] who will die between their xth and x+10th birthdays (x = 0, 10, 20, 30, ... 90). Plot them as histograms. We will use these proportions to calculate life expectancy in a subsequent exercise.
+
+`e.g.`  
+`Pr[Die after 70th birthday] = 0.wwww`  
+`Pr{Die after 80th birthday] = 0.zzzz`  
+`Pr[die between 70 and 80] = difference`
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
+ 
+ 
+SequentialTenYearRisks=matrix(
+  c(0.010,0.006,0.012,0.016,0.031,0.080,0.211,0.448,0.750,1.000,
+    0.008,0.002,0.004,0.007,0.017,0.042,0.104,0.259,0.585,1.000),
+   10,2) # 10 rows 2 columns
+
+par(mfrow=c(1,1),mar = rep(0,4))
+plot(1:10,ylim=c(-15,109),xlim=c(-1.3,1.3),col="white")
+
+LastBday=100
+selected = c(7,8)
+
+COL = c("lightblue","pink")
+
+
+for(i.col in 1:2) {
+	
+   S.at.end   = cumprod( 1 - SequentialTenYearRisks[,i.col] )
+   S.at.start = c(1,S.at.end[1:9])
+   B = 0
+   text(-0.5+(i.col==2),-10,
+    paste("Number of",c("Males","Females")[i.col],"Alive"),
+   adj=c(0.5,1), col=COL[i.col])
+   text(0,106,"Birthday",adj=c(0.5,0))
+   for(i.Bday in 1:10){
+      S.start = -S.at.start[i.Bday]
+      S.end   = -S.at.end[i.Bday]
+      if(i.col==2) {S.start = -S.start; S.end = -S.end}
+      h.start = (i.Bday-1)*10; h.end = h.start + 10
+      polygon(c(0,       S.end,   S.end,     0),
+              c(h.start, h.start, h.end, h.end),
+              col=COL[i.col],
+              border="grey25",lwd=1)
+      polygon(c(S.end,   S.start, S.end),
+              c(h.start, h.start, h.end),
+             col=COL[i.col],
+             border="grey25",lwd=1)
+     if(i.col==1 ) text(0,h.end+2*(i.Bday==10), toString(i.Bday*10),adj=c(1.1,1.1))
+     xxx = (S.start+S.end)/2 - 0.03 ;
+     if(i.col==2) xxx = (S.start+S.end)/2 + 0.03 ;   
+     surv = 1-SequentialTenYearRisks[i.Bday,i.col]
+     text(xxx,i.Bday*10-5,
+        paste("x",toString(surv)),
+        cex=0.75,adj=c(1-(i.col==2),0.25),font=3)
+     if(i.Bday<10) text(S.end,h.end,toString(round(abs(100*S.end),1) ),
+            adj=c(1.25-1.5*(i.col==2), 0.25), font=2)
+
+     if( i.Bday == selected[2] ){
+       	
+       	  text( (S.start+S.end)/2, h.start, 
+              paste(toString(100*SequentialTenYearRisks[i.Bday,i.col]),
+             "%\nof",
+             round(abs(100*S.start),1)), adj=c(0.5,0.5),cex=0.75 )
+                                    
+          text( S.end/2, h.start, 
+              paste(toString(100*(1-SequentialTenYearRisks[i.Bday,i.col])),
+             "%\nof",
+             round(abs(100*S.start),1)), adj=c(0.5,0.5),cex=0.75) 
+     }
+     
+   } # i.Bday
+   
+} # i.col
+xx=seq(-1,1,0.1)
+segments(xx, 0, xx, 100, col="white",lwd=0.5)
+for(pct in seq(-100,100,20)) text(pct/100,-1,
+                  toString(abs(pct)),adj=c(0.5,1),font=2)
 
 
 
-* Duplicate Birthdays
+```
+
+Napoleon Minard
+http://euclid.psych.yorku.ca/www/psy6135/tutorials/Minard.html
+
+ Efron Monty Hall
+
+7. The Economist
+
+8. Wald : CF screening
+
+8. OJ p-value
+
+9. Adult soccer ball.. wrong probability
+
+10. Vietnam deaths
+
+11. NHL birthdays
+
+Buffon's needle
+
+Estimating Pi
+
+Similar
+
+Adult size soccer ball
+
+Medical School admission rates, by gender.
+
+Vietnam war deaths, by month of birth
+
+NHL success, by month of birth
+
+John Snow, cholera deaths South London, by source of drinking water
 
 
 
-* A simplified epidemic. An infectious disease has a one-day infectious period, and after that day the patient is immune. Six hermits (numbered 1,2, 3, 4, 5, 6) live on an island, and if one has the disease he randomly visits another hermit for help during his infectious period. If the visited hermit has not had the disease, he catches it and is infectious the next day. Assume hermit 1 has the disease today, and the rest have not had it. In the pre-R era students were asked to throw a die  to choose which hermit he visits (ignore face 1) Today you are asked to use `R` to choose which hermit he visits. That hermit is infectious tomorrow. Then throw again to see which hermit he visits, and so on. Continue the process until a sick hermit visits an immune one and the disease dies out. Repeat the experiment several times and find (a) the average number who get the disease (b) the probability that (the proportion of experiments in which)  everyone gets the disease. Can you anticipate the answer to (b)?
-
-
-
-* Chevalier de Méré
-
-From here https://www.cut-the-knot.org/Probability/ChevalierDeMere.shtml
-
-Gamblers in  17th century France used to bet on the event of getting at least one 1 'six' in four rolls of a dice. As a more trying variation, two die were rolled 24 times with a bet on having at least one double six. Chevalier de Méré who expected a couple of aces to turn up in 24 double rolls with the frequency of an ace in 4 single rolls. However, he lost consistently.
-
-
-Simulate a large number of each of these games, and estimate the probability of getting (a) at least one ace in four rolls of a dice  (b) at least one "double ace" when a pair of dice is thrown 24 times
-
-Why does it take a large number of simulations to determine which game offers the better chance of winning?
-
-Can you work out the probabilities directly?
-
-https://www.casino-games-online.biz/dice/chevalier-de-mere.html
-
-
-* HIV transmission, probability per act 
-
-* Life Tables
 
 
 Galton
