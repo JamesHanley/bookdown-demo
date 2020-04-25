@@ -1,32 +1,194 @@
 # Computing: Session No. 3 {#computing03}
 
 
-The **'computing' objective** is to learn how to use `R` to evaluate probabilities by (Monte Carlo) simulation.
+The **'computing' objective** is to learn how to use `R` to evaluate probabilities by (Monte Carlo) simulation. `R` Functions/structures used include `sample`, `matrix`, `apply`, `paste`, `cumprod` (cumulative product) 
 
 The **'statistical' objective** of this exercise is to learn some of the probability laws that which random processes by seeing how frequently certain events occur in computer  simulations, and to deduce the laws from the (long-run) frequencies.
 
-1. **Pooled Blood** [from Chapter 3 of Colton's 1974 book  Statistics in Medicine]  
-'Each time an individual receives pooled blood products, there is a 2% chance of his developing serum hepatitis. An individual receives pooled blood products on 45 occasions. What is his chance of developing serum hepatitis?' (JH to 1980s classes: Note that the chance is not 45 $\times$ 0.02 = 0.9. To keep it simple, assume that there is a 2% chance that a unit is contaminated and calculate the chance that at least one of the 45 units is contaminated.)  
+1. **Pooled Blood** [variation on an exercise from Chapter 3 of Colton's 1974 book  Statistics in Medicine]  
+'Each time an individual receives pooled blood products, there is a 3% chance of his developing serum hepatitis. An individual receives pooled blood products on 45 occasions. What is his chance of developing serum hepatitis?' (JH to 1980s classes: Note that the chance is not 45 $\times$ 0.03 = 1.35! To keep it simple, assume that there is a 3% chance that a unit is contaminated and calculate the chance that at least one of the 45 units is contaminated.)  
 $\bullet$ For this computing class, simulate several sets of 45 occasions and estimate the chance that at least one of the 45 units is contaminated.  
-$\bullet$ By experimantation, see if you can arrive at the formula the epi607 students in the 9180s would have used.
+$\bullet$ By experimentation, see if you can arrive at the formula the epi607 students in the 1980s would have used.  
+$\bullet$ By repeating the process with the same number of simulations (the same `N.SIMS` value), and then experimenting with this same number, come up with a rule of thumb for the number of simulations (the `N.SIMS` value) needed for you to 'trust' the first decimal place in your (Monte Carlo) estimate of the true probability.   
 
 ```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
 
-n.times = 45 ; prob.per.time = 0.02 ; N.SIMS = 100
-sims = matrix(runif(N.SIMS*n.times)<prob.per.time,
+n.times = 45 ; prob.per.time = 0.03 ; N.SIMS = 100
+sims = matrix(sample(c("+","-"),
+                     size=N.SIMS*n.times,
+                     prob=c(prob.per.time,1-prob.per.time),
+                     replace=TRUE),
               N.SIMS, n.times) # N.SIMS rows, n.times columns
-head(sims,2)
+noquote(apply(sims[1:10,],1,paste,collapse=""))
 str(sims)
 
-positive = apply(sims,1,any)  # applies the 'any' function to each row
+positive = apply(sims=="+",1,any)  # applies the 'any' function to each row
 str(positive)
 proportion.of.sims.with.a.hit = mean(positive)
+num = sum(positive) 
 
-cat(paste("Proportion.of.sims.with.a.hit", toString(proportion.of.sims.with.a.hit),";\nfor a more stable estimate, uses a larger N.SIMS"))
+cat(paste("Proportion.of.sims.with.a.hit: ",toString(num),"/",toString(N.SIMS)," = ",toString(proportion.of.sims.with.a.hit),";\nfor a more stable estimate, use a larger N.SIMS",sep=""))
 
 ```
 
-2. **Duplicate Numbers** [mini-version of 'the birthday problem']  
+2. **Life Tables [1990]** The following [conditional] probabilities are taken from the
+abridged life tables for males (M) and females (F) computed
+from mortality data for Québec for the year 1990, and published by the Bureau de la statistique du Québec: [the probabilities for 90-year olds have been modified!].  
+In a (**current**) life table, one takes **current** (in this case 1990) i.e. cross-sectional **death rates** and applies them to a **fictitious cohort** to calculate what % of the cohort **would** survive past various birthdays -- if die these rates persisted -- and to calculate the average age at death (also known as life expectancy at birth).
+
+`........ Probability that a person who lives to his/her`  
+`........ x-th birthday will die during next 10 years`
+
+`.......x .... .M ....... F`  
+`...... 0 ... 0.010 ... 0.008`  
+`..... 10 ... 0.006 ... 0.002`  
+`..... 20 ... 0.012 ... 0.004`  
+`..... 30 ... 0.016 ... 0.007`  
+`..... 40 ... 0.031 ... 0.017`  
+`..... 50 ... 0.080 ... 0.042`  
+`..... 60 ... 0.211 ... 0.104`  
+`..... 70 ... 0.448 ... 0.259`  
+`..... 80 ... 0.750 ... 0.585`  
+`..... 90 ... 1.000 ... 1.000` 
+
+  + Fill in the blanks in the following  diagram, which shows the proportions of males and females who survive past their xth birthday (x = 0, 10, 20, 30, ... 100) (these plots are called survival curves).
+   
+  + Calculate, by successive subtractions^ or otherwise, the [unconditional] proportions [i.e. proportions of the entire cohort] who will die between their xth and x+10th birthdays (x = 0, 10, 20, 30, ... 90). Plot them as histograms. In a later exercise, we will use these proportions to calculate life expectancy.
+
+`e.g.`  
+`Pr[Die after 70th birthday] = 0.wwww`  
+`Pr{Die after 80th birthday] = 0.zzzz`  
+`Pr[die between 70 and 80] = difference`
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F,fig.cap="Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is 'bottom-up' rather than the conventional 'top-down' format, and side by side, in the spirit of population 'pyramids'. Also unusually, the 'survival surve' for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.  "}
+ 
+ 
+SequentialTenYearRisks=matrix(
+  c(0.010,0.006,0.012,0.016,0.031,0.080,0.211,0.448,0.750,1.000,
+    0.008,0.002,0.004,0.007,0.017,0.042,0.104,0.259,0.585,1.000),
+   10,2) # 10 rows 2 columns
+ 
+
+
+par(mfrow=c(1,1),mar = rep(0,4))
+plot(1:10,ylim=c(-15,109),xlim=c(-1.3,1.3),
+     col="white",frame=FALSE)
+
+LastBday=100
+selected = c(7,8)
+
+COL = c("lightblue","pink")
+
+
+for(i.col in 1:2) {
+	
+   S.at.end.decade = cumprod( 1 - SequentialTenYearRisks[,i.col] )
+   S.at.start.decade = c(1,S.at.end.decade[1:9])
+   B = 0
+   text(-0.5+(i.col==2),-10,
+    paste("Proportion of",c("Males","Females")[i.col],"(Still) Alive"),
+   adj=c(0.5,1), col=COL[i.col])
+   text(0,106,"Birthday",adj=c(0.5,0))
+   for(i.Bday in 1:10){
+      S.start = -S.at.start.decade[i.Bday]
+      S.end   = -S.at.end.decade[i.Bday]
+      if(i.col==2) {S.start = -S.start; S.end = -S.end}
+      h.start = (i.Bday-1)*10; h.end = h.start + 10
+      polygon(c(0,       S.end,   S.end,     0),
+              c(h.start, h.start, h.end, h.end),
+              col=COL[i.col],
+              border="grey25",lwd=1)
+      polygon(c(S.end,   S.start, S.end),
+              c(h.start, h.start, h.end),
+             col=COL[i.col],
+             border="grey25",lwd=1)
+     if(i.col==1 ) text(0,h.end+2*(i.Bday==10),
+                      toString(i.Bday*10),adj=c(1.1,1.1))
+     xxx = (S.start+S.end)/2 - 0.03 ;
+     if(i.col==2) xxx = (S.start+S.end)/2 + 0.03 ;   
+     surv = 1-SequentialTenYearRisks[i.Bday,i.col]
+     txt = format(round(surv,3), nsmall=3 )
+     if(i.Bday != selected[2] &
+        i.Bday!=2 ) text(xxx,i.Bday*10-5,
+        paste("x",txt),
+        cex=0.75,adj=c(1-(i.col==2),0.25),font=3)
+     if(i.Bday<10){
+        txt = format(round(abs(S.end),3), nsmall=3 )
+        if(i.Bday!=2) text(S.end,h.end,txt,
+            adj=c(1.25-1.5*(i.col==2), 0.25), font=2)
+     } 
+
+     if( i.Bday == selected[2] ){
+       txt2=format(round(abs(S.start),3),nsamll=3)
+       txt1= format(SequentialTenYearRisks[
+                     i.Bday,i.col],nsmall=3)
+       text( (S.start+S.end)/2, h.start, 
+         paste(txt1, "\nof",txt2), 
+         adj=c(0.5,0.5),cex=0.75 )
+       
+       txt2=format(round(abs(S.start),3),nsamll=3) 
+       txt1= format(1-SequentialTenYearRisks[
+                     i.Bday,i.col],nsmall=3)
+      text( S.end/2, h.start, 
+              paste(txt1,"\nof", txt2),
+              adj=c(0.5,0.5),cex=0.75) 
+     }
+     
+   } # i.Bday
+   
+} # i.col
+xx=seq(-1,1,0.1)
+segments(xx, 0, xx, 100, col="white",lwd=0.5)
+for(proportion in seq(-1,1,0.2)) text(proportion,-1,
+                  toString(abs(proportion)),adj=c(0.5,1),font=2)
+
+
+
+```
+
+
+3. **Life Tables [2018]** For males and females separately, extract the 22  [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this [Institut de la statistique du Quebec](https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55) report. They can be found in the $q_x$ column [ x: age
+q$_x$ : probability of dying between birthday x and birthday x+a, where a, a=1, 4 et 5.]  
+
+   + Use these to compute the surviving fractions at each of the birthdays shown in Table 3.9. As a double check on your answers, you have the $l_x$ columns in Table 3.9 [l$_x$: number surviving at  x-th birthday.] _Hint_: instead of using a loop, you can use the 'cumulative product' function `cumprod`. For example, `cumprod(c(0.9, 0.8, 0.7))` yields the vector of length 3, namely **0.9**,  0.9 $\times$ 0.8 = **0.72**, and 0.9 $\times$ 0.8 $\times$ 0.7 = **0.504**. 
+   +  Plot the fractions against the ages, overlaying one curve on the other. Make sure to label the axes appropriately, and using large enough lettering that people at the right hand of the age scale, where most of the action is, can read them.
+   +  Visually measure the median survival for each gender.
+   + Do you think the mean survival (the life-expectancy at birth) is smaller or larger than the median? Explain your reasoning.
+   + The best way to be sure is to have and plot the frequency distributions of the ages at death. Using the same logic as in question 2, derive these frequencies, and plot them. Note that the first 2 age-bins are narrower than the others, so make wahtever adjustments are needed. 
+
+```{r,eval=F, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
+ 
+ 
+SequentialRisks=matrix(
+c(00465,00066,00035,00065,00167,00278,00298,00355,00431,00613,00980,
+  01577,02523,04027,06508,09955,16528,27068,43560,63605,80498,100000,
+  00388,00052,00040,00041,00082,00115,00142,00160,00239,00370,00642,
+  01089,01825,02881,04460,07066,11796,19942,34244,52976,72467,100000)/
+   100000,
+22,2)  # 22 rows 2 columns
+
+
+Age = c(1,5,seq(10,105,5) )
+
+plot(c(0,10),xlim=c(0,110),ylim=c(0,1),
+     xlab="Age",ylab="Proportion Stll Alive",
+     cex.axis=1.5,cex.lab=1.5,col="white")
+abline(v=seq(0,110,10),col="lightblue")
+abline(h=seq(0.0,1,0.1),col="lightblue")
+
+for(i.col in 1:2) {
+	
+ S.at.end.interval = cumprod( 
+          1 - SequentialRisks[,i.col] )
+ lines(c(0,Age),c(1,S.at.end.interval),col=i.col)
+   
+}
+
+```
+
+
+4. **Duplicate Numbers** [mini-version of 'the birthday problem']  
 To appreciate the high probability of duplicate birthdays, take a simpler case of drawing the numbers 0:9 at random (and with replacement) until one gets a duplicate.
 
       + [1980s] Calculate, by successive subtractions^ or otherwise, the probability that the first duplicate will show up on the [$Y$ =] 2nd, 3rd, ...11th draw. Plot the frequency distribution of the number of draws, $Y$, until one gets a duplicate. 
@@ -64,109 +226,7 @@ Gamblers in  17th century France used to bet on the event of getting at least on
 
 4. **HIV transmission**, probability per act 
 
-5. **Life Tables** The following [conditional] probabilities are taken from the
-abridged life tables for males (M) and females (F) computed
-from mortality data for Québec for the year 1990, and published by the Bureau de la statistique du Québec: [the probabilities for 90-year olds have been modified slightly!].  
-In a (**current**) life table, one takes **current** (in this case 1990) i.e. cross-sectional **death rates** and applies them to a **fictitious cohort** to calculate what % of the cohort **would** survive past various birthdays -- if die these rates persisted -- and to calculate the average age at death (also known as life expectancy at birth).
 
-`........ prob that a person who lives to his/her`  
-`........ xth birthday will die during next 10 years`
-
-`.......x .... .M ....... F`  
-`...... 0 ... 0.010 ... 0.008`  
-`..... 10 ... 0.006 ... 0.002`  
-`..... 20 ... 0.012 ... 0.004`  
-`..... 30 ... 0.016 ... 0.007`  
-`..... 40 ... 0.031 ... 0.017`  
-`..... 50 ... 0.080 ... 0.042`  
-`..... 60 ... 0.211 ... 0.104`  
-`..... 70 ... 0.448 ... 0.259`  
-`..... 80 ... 0.750 ... 0.585`  
-`..... 90 ... 1.000 ... 1.000` 
-
-  + Complete the following tree diagram and calculate the proportions of males who survive past their xth birthday (x = 0, 10, 20, 30, ... 100). Do likewise for females. Plot the proportions vs. x (these plots are called survival curves). Make sure to label the axes correctly.
-   
-  + Calculate, by successive subtractions^ or otherwise, the [unconditional] proportions [i.e. proportions of the entire cohort] who will die between their xth and x+10th birthdays (x = 0, 10, 20, 30, ... 90). Plot them as histograms. We will use these proportions to calculate life expectancy in a subsequent exercise.
-
-`e.g.`  
-`Pr[Die after 70th birthday] = 0.wwww`  
-`Pr{Die after 80th birthday] = 0.zzzz`  
-`Pr[die between 70 and 80] = difference`
-
-
-```{r,eval=T, echo=T, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
- 
- 
-SequentialTenYearRisks=matrix(
-  c(0.010,0.006,0.012,0.016,0.031,0.080,0.211,0.448,0.750,1.000,
-    0.008,0.002,0.004,0.007,0.017,0.042,0.104,0.259,0.585,1.000),
-   10,2) # 10 rows 2 columns
-
-par(mfrow=c(1,1),mar = rep(0,4))
-plot(1:10,ylim=c(-15,109),xlim=c(-1.3,1.3),col="white")
-
-LastBday=100
-selected = c(7,8)
-
-COL = c("lightblue","pink")
-
-
-for(i.col in 1:2) {
-	
-   S.at.end   = cumprod( 1 - SequentialTenYearRisks[,i.col] )
-   S.at.start = c(1,S.at.end[1:9])
-   B = 0
-   text(-0.5+(i.col==2),-10,
-    paste("Number of",c("Males","Females")[i.col],"Alive"),
-   adj=c(0.5,1), col=COL[i.col])
-   text(0,106,"Birthday",adj=c(0.5,0))
-   for(i.Bday in 1:10){
-      S.start = -S.at.start[i.Bday]
-      S.end   = -S.at.end[i.Bday]
-      if(i.col==2) {S.start = -S.start; S.end = -S.end}
-      h.start = (i.Bday-1)*10; h.end = h.start + 10
-      polygon(c(0,       S.end,   S.end,     0),
-              c(h.start, h.start, h.end, h.end),
-              col=COL[i.col],
-              border="grey25",lwd=1)
-      polygon(c(S.end,   S.start, S.end),
-              c(h.start, h.start, h.end),
-             col=COL[i.col],
-             border="grey25",lwd=1)
-     if(i.col==1 ) text(0,h.end+2*(i.Bday==10), toString(i.Bday*10),adj=c(1.1,1.1))
-     xxx = (S.start+S.end)/2 - 0.03 ;
-     if(i.col==2) xxx = (S.start+S.end)/2 + 0.03 ;   
-     surv = 1-SequentialTenYearRisks[i.Bday,i.col]
-     text(xxx,i.Bday*10-5,
-        paste("x",toString(surv)),
-        cex=0.75,adj=c(1-(i.col==2),0.25),font=3)
-     if(i.Bday<10) text(S.end,h.end,toString(round(abs(100*S.end),1) ),
-            adj=c(1.25-1.5*(i.col==2), 0.25), font=2)
-
-     if( i.Bday == selected[2] ){
-       	
-       	  text( (S.start+S.end)/2, h.start, 
-              paste(toString(100*SequentialTenYearRisks[i.Bday,i.col]),
-             "%\nof",
-             round(abs(100*S.start),1)), adj=c(0.5,0.5),cex=0.75 )
-                                    
-          text( S.end/2, h.start, 
-              paste(toString(100*(1-SequentialTenYearRisks[i.Bday,i.col])),
-             "%\nof",
-             round(abs(100*S.start),1)), adj=c(0.5,0.5),cex=0.75) 
-     }
-     
-   } # i.Bday
-   
-} # i.col
-xx=seq(-1,1,0.1)
-segments(xx, 0, xx, 100, col="white",lwd=0.5)
-for(pct in seq(-100,100,20)) text(pct/100,-1,
-                  toString(abs(pct)),adj=c(0.5,1),font=2)
-
-
-
-```
 
 Napoleon Minard
 http://euclid.psych.yorku.ca/www/psy6135/tutorials/Minard.html
@@ -215,6 +275,28 @@ Mosteller
  Ages of books
 
  ngrams
+
+
+4. Prob of 
+ 
+   + duplicate birthdays in a sample of $n$ persons
+   + surviving from 80th to 85th birthday if the (conditional) 1-year at a time proportions dying (risks) are ...
+   + Chevalier de Méré no 6, at least 1 six.
+
+5. Variation with and without constraints
+
+
+
+
+-3- "Duplicate Numbers" [mini-version of birthday problem]
+To appreciate the high probability of duplicate birthdays, take a simpler case of drawing single digit numbers at random from a Random Number Table or spreadsheet until one gets a duplicate. (also, try actually doing it to see how many draws it takes)
+a Calculate the probability that in 5 draws one will not obtain a duplicate, i.e., the probability of a sequence
+1st# ;
+2nd# [≠ 1st#]
+3rd# [≠ 2nd# ≠ 1st#]
+4th# [≠ 3rd# ≠ 2nd# ≠ 1st#]
+5th# [≠ 4th# ≠3rd# ≠ 2nd# ≠ 1st#]
+b Calculate, by successive subtractions* or otherwise, the probability that the first duplicate will show up on the [Y =] 2nd, 3rd, ...11th draw. Plot the frequency distribution of the # draws, Y, until a duplicate.
 
 
  Ice Breakup Dates

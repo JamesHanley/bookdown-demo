@@ -616,7 +616,7 @@ Two striking  -- and frightening -- examples of misunderstandings about them are
 
 ## Exercises: 
 
-1. Convert the proportion of males born to a sex ratio, and to the log of the sex ratio. If, because of natural year to year variations, the proportion varies from 0.49 to 0.53, what does the ratio vary from? the log of the ratio?  What if proportion were 3/4. scales SDs See John Arbuthnot's data.
+1. Convert the proportion of male births to a sex ratio, and to the log of the sex ratio. If, because of natural year to year variations, the proportion varies from 0.49 to 0.53, what does the ratio vary from? the log of the ratio?  What if proportion were 3/4. scales SDs See John Arbuthnot's data.
 
 2. In a recent report, the focus was on the proportion of persons who would detect added (spiked) alcohol in a drink. The authors fitted a logistic S curve, and arrived at the equation $$ logit[proportion \ if  \ X \  = \ x] \ = \ x.x - y.y \ Dose.$$. From this, calculate the fitted proportion if X = zzz.  
 The authors alos fitted a probit-based S curve, and arrived at the equation $$ probit[proportion \ if  \ X \  = \ x] \ = \ w.w - q.q \ Dose.$$. From this, calculate the fitted proportion if X = zzz.
@@ -624,29 +624,10 @@ The authors alos fitted a probit-based S curve, and arrived at the equation $$ p
 3. In an older report, the focus was on the proportion of persons who had reached menarche by a given age. The authors fitted a logistic S curve, and arrived at the equation $$ logit[proportion \ if  \ X \  = \ x] \ = \ x.x - y.y \ Age.$$. From this, calculate the fitted proportion if X = zzz.  
 The authors alos fitted a probit-based S curve, and arrived at the equation $$ probit[proportion \ if  \ X \  = \ x] \ = \ w.w - q.q \ Age.$$. From this, calculate the fitted proportion if X = zzz.
 
-4. Prob of 
- 
-   + duplicate birthdays in a sample of $n$ persons
-   + surviving from 80th to 95th birthday if the 1-year at a time proportions dying are ...
-   + Chevalier de Méré no 6, at least 1 six.
+4. Suppose you measure the heights of a randomly chosen adult male and a randomly chosen adult female, and record where each one is relative to the (a) Q25 (b) Q50 (median) and (c) Q75 value of their same-sex peers, and mark the result on a 3 x 3 grid (like the grid [Galton](http://www.biostat.mcgill.ca/hanley/statbook/GaltonHeightCouples.png) used). For each of the 9 cells, what is the probability that they will be that cell?
 
-5. Variation with and without constraints
-
-5. Suppose you measure the heights of a randomly chosen adult male and a randomly chosen adult female, and record where each one is relative to the (a) Q25 (b) Q50 (median) and (c) Q75 value of their same-sex peers, and mark the result on a 3 x 3 grid (like the grid [Galton](http://www.biostat.mcgill.ca/hanley/statbook/GaltonHeightCouples.png) used). For each of the 9 cells, what is the probability that they will be that cell? 
-
--2- "Clustering" of Cardiovascular Risk Factors ?
-
+5. "Clustering" of Cardiovascular Risk Factors ?  
 A Santé Quebec survey found the prevalence of 4 heart disease risk factors in a certain age-sex group to be: smoking: 32%; family history: 32%; SBP>155mmHg: 12%; diabetes: 5%. If risk factors are distributed independently of each other, what is the proportion of the age-sex group with (a) 4 risk factors (b) 0 risk factors (c) 1 or more risk factors?. A tree diagram may help.
-
--3- "Duplicate Numbers" [mini-version of birthday problem]
-To appreciate the high probability of duplicate birthdays, take a simpler case of drawing single digit numbers at random from a Random Number Table or spreadsheet until one gets a duplicate. (also, try actually doing it to see how many draws it takes)
-a Calculate the probability that in 5 draws one will not obtain a duplicate, i.e., the probability of a sequence
-1st# ;
-2nd# [≠ 1st#]
-3rd# [≠ 2nd# ≠ 1st#]
-4th# [≠ 3rd# ≠ 2nd# ≠ 1st#]
-5th# [≠ 4th# ≠3rd# ≠ 2nd# ≠ 1st#]
-b Calculate, by successive subtractions* or otherwise, the probability that the first duplicate will show up on the [Y =] 2nd, 3rd, ...11th draw. Plot the frequency distribution of the # draws, Y, until a duplicate.
 
 
 6. Efron Monty Hall
