@@ -629,6 +629,12 @@ The authors alos fitted a probit-based S curve, and arrived at the equation $$ p
 5. "Clustering" of Cardiovascular Risk Factors ?  
 A Santé Quebec survey found the prevalence of 4 heart disease risk factors in a certain age-sex group to be: smoking: 32%; family history: 32%; SBP>155mmHg: 12%; diabetes: 5%. If risk factors are distributed independently of each other, what is the proportion of the age-sex group with (a) 4 risk factors (b) 0 risk factors (c) 1 or more risk factors?. A tree diagram may help.
 
+Suppose that the probability that HIV will be passed from an infected person to an uninfected person during a single sexual contact is 0.01. Suppose that there are 50 such contacts.
+Show how to calculate (or obtain via software) the probability that HIV will be passed on in at least one of the 50 contacts.
+
+An auto insurance company notes whether drivers under 25 years old have had a driver’s education course. Some 40% of its policyholders under 25 have had a driver's education course and 5% of this subset have an accident in a one-year period. Of those under 25 who have not had a driver’s education course, 10% have an accident within a one-year period.
+A 20-year-old takes out a policy with this company and within one year has an accident. What is the probability that the person did not have a driver’ s education course? [a probability tree may help]
+607 midtern 2001
 
 6. Efron Monty Hall
 
