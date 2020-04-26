@@ -2,7 +2,7 @@
 
 ## Objectives
 
-The **'computing' objective** is to learn how to use `R` to evaluate probabilities by (Monte Carlo) simulation. `R` Functions/structures used include `sample`, `matrix`, `apply`, `paste`, `cumprod` (cumulative product), `duplicated`, `unique` 
+The **'computing' objective** is to learn how to use `R` to evaluate probabilities by (Monte Carlo) simulation. `R` Functions/structures used include `sample`, `matrix`, `apply`, `paste`, `cumprod` (cumulative product), `duplicated`, `unique`, `cbind` (stack columns) 
 
 The **'statistical' objective** of this exercise is to learn some of the probability laws that which random processes by seeing how frequently certain events occur in computer  simulations, and to deduce the laws from the (long-run) frequencies.
 
@@ -234,7 +234,12 @@ for(i.row in 1:N.SIMS ){
    sequences[i.row,1:6] = one.random.sequence(n.hermits)
 }
 
-first.duplicate = function(x) min( (1:n.hermits)[duplicated(x)] )
+first.duplicate = function(x){
+   d = duplicated(x)
+   result = length(x)+1 
+   if(any(d)) result = min( (1:n.hermits)[duplicated(x)] )
+   return(result)
+} 
 
 when.first.dup.happens = apply(sequences,1,first.duplicate)
 
@@ -243,17 +248,81 @@ table(when.first.dup.happens)
 
 ```
 
+###  Duplicate Birthdays
+
+For 13 years in the 607 course from 1981 to 1993, JH handed out a page with a 12 x 31 grid and asked the students to indicate their birthday (month and day). The numbers of students in the class ('n') varied from 19 to 52 (mean 32, median 33) 
+The results, [in 'raw' form here,](http://www.medicine.mcgill.ca/epidemiology/hanley/c323/excel/birthdays_607.pdf), may surprize you. **In 10 of the 13 classes, there was at least one duplicate birthday.** 
+
+http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/LotteriesProbabilitiesHANLEY1984TeachingStatistics.pdf#page=3
 
 
-###  Duplicate Numbers
 
-[mini-version of 'the birthday problem'] 
+```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+
+year=c(0.8+(1981:1984),0.8+(1986:1988),
+       1989.4,1989.8,0.4+(1990:1992),1993.8)
+n = c(27,37,33,20,21,19,39,31,31,52,43,49,32)
+at.least.one.duplicate.birthday =
+   c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE,TRUE,TRUE,
+     FALSE,TRUE,TRUE,TRUE,TRUE) 
+cbind(year,n,at.least.one.duplicate.birthday)
+sum(at.least.one.duplicate.birthday)
+
+cat("n's in the classes without a duplicate:")
+
+n[!at.least.one.duplicate.birthday]
+
+```
+Leaving out people born on Feb. 29, and assuming [FOR NOW] all of the 365 birthdays are equally likely, we have the following formula for the probability of NO duplicate birthday in a sample of $n$, and by subtracting this probability from 1, the the probability of AT LEAST ONE duplicate birthday:
+
+$$Prob[all \ n \ birthdays \ are \ different] = \frac{365}{365} \times \frac{364}{365} \times \frac{363}{365} \times \dots \times \frac{365-(n-1)}{365}.$$
+
+Lets work this out (or tell `R` to work it out) for n's all the way from 1 to 365, and show the probabilities for the 13 classes, overlaid on all of the probabilities for $n$ from 1 to 60.
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+
+prob.all.n.different = cumprod( (365:1) / rep(365,365) )
+
+prob.all.different = round(prob.all.n.different[n],2)
+prob.at.least.1.duplicate = 1 - prob.all.different
+
+par(mfrow=c(1,1),mar = c(4.5,5,0,0))
+plot(1:60,prob.all.n.different[1:60],type="l",
+     cex.axis=1.25,cex.lab=1.25,
+     xlab="n",col="blue",ylab="Probability")
+
+abline(h=seq(0,1,0.1),col="lightblue")
+abline(h=0.5,col="lightblue",lwd=2)
+abline(v=seq(0,60,5),col="lightblue")
+
+lines(1:60,1-prob.all.n.different[1:60],col="red")
+
+points(n,prob.all.different,pch=19,cex=0.5)
+points(n,1-prob.all.different,pch=19,cex=0.5)
+
+points(n,at.least.one.duplicate.birthday,
+       pch="X",cex=1.0,
+       col=c("blue","red")[1+at.least.one.duplicate.birthday])
+
+text(35,1-prob.all.n.different[35],
+     "Prob. at least 1 duplicate",
+     cex=1.5,col="red",adj=c(0,1.25))
+
+text(35,prob.all.n.different[35],
+     "Prob. all n are different",
+     cex=1.5,col="blue",adj=c(0,-0.25))
+                                          
+```
+
+
+https://en.wikipedia.org/wiki/Birthday_problem
 
 To appreciate the high probability of duplicate birthdays, take a simpler case of drawing the numbers 0:9 at random (and with replacement) until one gets a duplicate.
 
-      + [1980s] Calculate, by successive subtractions^ or otherwise, the probability that the first duplicate will show up on the [$Y$ =] 2nd, 3rd, ...11th draw. Plot the frequency distribution of the number of draws, $Y$, until one gets a duplicate. 
+   + [1980s] Calculate, by successive subtractions^ or otherwise, the probability that the first duplicate will show up on the [$Y$ =] 2nd, 3rd, ...11th draw. Plot the frequency distribution of the number of draws, $Y$, until one gets a duplicate. 
       
-      + [2020] By simulation, estimate the probability that 'in 4 draws one will not obtain a duplicate' ^^.
+   + [2020] By simulation, estimate the probability that 'in 4 draws one will not obtain a duplicate' ^^.
       
 ^ Let $Y$ = which draw produces 1st duplicate (so $Y$ = 2,... , 11). e.g. 
 
@@ -380,10 +449,10 @@ We are keen to establish the distribution of guesses, with the guessed times mea
 
 It would be tedious to apply optical character recognition (OCR) to each of the  1210 pages in order to be able to computerize all 240,000 guesses. Instead, you are asked to reconstruct the distribution of the guesses in two more economical ways: 
 
-* By determining, for (the beginning of) each  day, from April 01 to June 01 inclusive, the proportion, p, of guesses that predede that date. [ In `R', if p = 39.6% of the guesses were below 110 days, we would write this as pGuessDistribution(110) = 0.396. Thus, if we were dealing with the location  of a  value in a Gaussian ('normal') distribution, we would write `pnorm(q=110, mean = , sd = )` ] Once you have determined them, plot these 62 p's (on the vertical axis) against the numbers of elapsed days (90-152) on the horizontal axis.
+* By determining, for (the beginning of) each  day, from April 01 to June 01 inclusive, the proportion, p, of guesses that predede that date. [ In `R`, if p = 39.6% of the guesses were below 110 days, we would write this as pGuessDistribution(110) = 0.396. Thus, if we were dealing with the location  of a  value in a Gaussian ('normal') distribution, we would write `pnorm(q=110, mean = , sd = )` ] Once you have determined them, plot these 62 p's (on the vertical axis) against the numbers of elapsed days (90-152) on the horizontal axis.
 
 
-* By determining the 1st, 2nd, ... , 98th, 99th percentiles. These are specific examples of 'quantiles', or q's. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all values are below this value, and 1-q are above it. [ In `R', if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a  Gaussian distribution with mean 130 and standard deviation 15, we would write `qnorm(p=0.4, mean = 130, sd = 15)`. ] Once you have determined them, plot the 99 p's (on the vertical axis) against the 99 (elapsed) times on the horizontal axis.
+* By determining the 1st, 2nd, ... , 98th, 99th percentiles. These are specific examples of 'quantiles', or q's. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all values are below this value, and 1-q are above it. [ In `R`, if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a  Gaussian distribution with mean 130 and standard deviation 15, we would write `qnorm(p=0.4, mean = 130, sd = 15)`. ] Once you have determined them, plot the 99 p's (on the vertical axis) against the 99 (elapsed) times on the horizontal axis.
 
 * Compare the Q$_{25}$, Q$_{50}$, and Q$_{75}$ obtained directly with the ones obtained by interpolation of the curve showing the results of the other method.
 
@@ -471,7 +540,7 @@ Working in teams of two ...
 
 *Is there visual evidence that over the last 91 years, the breakup is occurring at an earlier date?
 
-*Extract the date and ice thickness measurements for the years 1989-2007 from the website and use `your software of choice`R` to create a single dataset with the 3 variable, year, day and thickness. From this, fit a separate trendline for each year, and calculate the variability of these within-year slopes.
+*Extract the date and ice thickness measurements for the years 1989-2007 from the website and use (your software of choice) `R` to create a single dataset with the 3 variable, year, day and thickness. From this, fit a separate trendline for each year, and calculate the variability of these within-year slopes.
 
 * Galton’s data on family heights
 
