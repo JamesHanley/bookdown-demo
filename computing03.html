@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-04-25" />
+<meta name="date" content="2020-04-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -223,7 +223,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.2.2" data-path="computing03.html"><a href="computing03.html#life-tables-1990"><i class="fa fa-check"></i><b>16.2.2</b> Life Tables [1990]</a></li>
 <li class="chapter" data-level="16.2.3" data-path="computing03.html"><a href="computing03.html#life-tables-2018"><i class="fa fa-check"></i><b>16.2.3</b> Life Tables [2018]</a></li>
 <li class="chapter" data-level="16.2.4" data-path="computing03.html"><a href="computing03.html#a-simplified-epidemic"><i class="fa fa-check"></i><b>16.2.4</b> A simplified epidemic</a></li>
-<li class="chapter" data-level="16.2.5" data-path="computing03.html"><a href="computing03.html#duplicate-numbers"><i class="fa fa-check"></i><b>16.2.5</b> Duplicate Numbers</a></li>
+<li class="chapter" data-level="16.2.5" data-path="computing03.html"><a href="computing03.html#duplicate-birthdays"><i class="fa fa-check"></i><b>16.2.5</b> Duplicate Birthdays</a></li>
 <li class="chapter" data-level="16.2.6" data-path="computing03.html"><a href="computing03.html#chevalier-de-méré"><i class="fa fa-check"></i><b>16.2.6</b> Chevalier de Méré</a></li>
 </ul></li>
 <li class="chapter" data-level="16.3" data-path="computing03.html"><a href="computing03.html#other-exercises-under-construction"><i class="fa fa-check"></i><b>16.3</b> Other Exercises (under construction)</a><ul>
@@ -260,7 +260,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 16</span> Computing: Session No. 3</h1>
 <div id="objectives" class="section level2">
 <h2><span class="header-section-number">16.1</span> Objectives</h2>
-<p>The <strong>‘computing’ objective</strong> is to learn how to use <code>R</code> to evaluate probabilities by (Monte Carlo) simulation. <code>R</code> Functions/structures used include <code>sample</code>, <code>matrix</code>, <code>apply</code>, <code>paste</code>, <code>cumprod</code> (cumulative product), <code>duplicated</code>, <code>unique</code></p>
+<p>The <strong>‘computing’ objective</strong> is to learn how to use <code>R</code> to evaluate probabilities by (Monte Carlo) simulation. <code>R</code> Functions/structures used include <code>sample</code>, <code>matrix</code>, <code>apply</code>, <code>paste</code>, <code>cumprod</code> (cumulative product), <code>duplicated</code>, <code>unique</code>, <code>cbind</code> (stack columns)</p>
 <p>The <strong>‘statistical’ objective</strong> of this exercise is to learn some of the probability laws that which random processes by seeing how frequently certain events occur in computer simulations, and to deduce the laws from the (long-run) frequencies.</p>
 </div>
 <div id="exercises-5" class="section level2">
@@ -377,23 +377,91 @@ sequences  =<span class="st"> </span><span class="kw">matrix</span>(<span class=
    sequences[i.row,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>] =<span class="st"> </span><span class="kw">one.random.sequence</span>(n.hermits)
 }
 
-first.duplicate =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">min</span>( (<span class="dv">1</span><span class="op">:</span>n.hermits)[<span class="kw">duplicated</span>(x)] )
+first.duplicate =<span class="st"> </span><span class="cf">function</span>(x){
+   d =<span class="st"> </span><span class="kw">duplicated</span>(x)
+   result =<span class="st"> </span><span class="kw">length</span>(x)<span class="op">+</span><span class="dv">1</span> 
+   <span class="cf">if</span>(<span class="kw">any</span>(d)) result =<span class="st"> </span><span class="kw">min</span>( (<span class="dv">1</span><span class="op">:</span>n.hermits)[<span class="kw">duplicated</span>(x)] )
+   <span class="kw">return</span>(result)
+} 
 
 when.first.dup.happens =<span class="st"> </span><span class="kw">apply</span>(sequences,<span class="dv">1</span>,first.duplicate)
 
 <span class="kw">table</span>(when.first.dup.happens)</code></pre></div>
 <pre><code>## when.first.dup.happens
-##   3   4   5   6 Inf 
-##  21  39  23  16   1</code></pre>
+##  3  4  5  6  7 
+## 21 39 23 16  1</code></pre>
 </div>
-<div id="duplicate-numbers" class="section level3">
-<h3><span class="header-section-number">16.2.5</span> Duplicate Numbers</h3>
-<p>[mini-version of ‘the birthday problem’]</p>
+<div id="duplicate-birthdays" class="section level3">
+<h3><span class="header-section-number">16.2.5</span> Duplicate Birthdays</h3>
+<p>For 13 years in the 607 course from 1981 to 1993, JH handed out a page with a 12 x 31 grid and asked the students to indicate their birthday (month and day). The numbers of students in the class (‘n’) varied from 19 to 52 (mean 32, median 33) The results, <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c323/excel/birthdays_607.pdf">in ‘raw’ form here,</a>, may surprize you. <strong>In 10 of the 13 classes, there was at least one duplicate birthday.</strong></p>
+<p><a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/LotteriesProbabilitiesHANLEY1984TeachingStatistics.pdf#page=3" class="uri">http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/LotteriesProbabilitiesHANLEY1984TeachingStatistics.pdf#page=3</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">year=<span class="kw">c</span>(<span class="fl">0.8</span><span class="op">+</span>(<span class="dv">1981</span><span class="op">:</span><span class="dv">1984</span>),<span class="fl">0.8</span><span class="op">+</span>(<span class="dv">1986</span><span class="op">:</span><span class="dv">1988</span>),
+       <span class="fl">1989.4</span>,<span class="fl">1989.8</span>,<span class="fl">0.4</span><span class="op">+</span>(<span class="dv">1990</span><span class="op">:</span><span class="dv">1992</span>),<span class="fl">1993.8</span>)
+n =<span class="st"> </span><span class="kw">c</span>(<span class="dv">27</span>,<span class="dv">37</span>,<span class="dv">33</span>,<span class="dv">20</span>,<span class="dv">21</span>,<span class="dv">19</span>,<span class="dv">39</span>,<span class="dv">31</span>,<span class="dv">31</span>,<span class="dv">52</span>,<span class="dv">43</span>,<span class="dv">49</span>,<span class="dv">32</span>)
+at.least.one.duplicate.birthday =
+<span class="st">   </span><span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">TRUE</span>,<span class="ot">TRUE</span>,<span class="ot">FALSE</span>,<span class="ot">TRUE</span>,<span class="ot">FALSE</span>,<span class="ot">TRUE</span>,<span class="ot">TRUE</span>,
+     <span class="ot">FALSE</span>,<span class="ot">TRUE</span>,<span class="ot">TRUE</span>,<span class="ot">TRUE</span>,<span class="ot">TRUE</span>) 
+<span class="kw">cbind</span>(year,n,at.least.one.duplicate.birthday)</code></pre></div>
+<pre><code>##         year  n at.least.one.duplicate.birthday
+##  [1,] 1981.8 27                               1
+##  [2,] 1982.8 37                               1
+##  [3,] 1983.8 33                               1
+##  [4,] 1984.8 20                               0
+##  [5,] 1986.8 21                               1
+##  [6,] 1987.8 19                               0
+##  [7,] 1988.8 39                               1
+##  [8,] 1989.4 31                               1
+##  [9,] 1989.8 31                               0
+## [10,] 1990.4 52                               1
+## [11,] 1991.4 43                               1
+## [12,] 1992.4 49                               1
+## [13,] 1993.8 32                               1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(at.least.one.duplicate.birthday)</code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;n&#39;s in the classes without a duplicate:&quot;</span>)</code></pre></div>
+<pre><code>## n&#39;s in the classes without a duplicate:</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n[<span class="op">!</span>at.least.one.duplicate.birthday]</code></pre></div>
+<pre><code>## [1] 20 19 31</code></pre>
+<p>Leaving out people born on Feb. 29, and assuming [FOR NOW] all of the 365 birthdays are equally likely, we have the following formula for the probability of NO duplicate birthday in a sample of <span class="math inline">\(n\)</span>, and by subtracting this probability from 1, the the probability of AT LEAST ONE duplicate birthday:</p>
+<p><span class="math display">\[Prob[all \ n \ birthdays \ are \ different] = \frac{365}{365} \times \frac{364}{365} \times \frac{363}{365} \times \dots \times \frac{365-(n-1)}{365}.\]</span></p>
+<p>Lets work this out (or tell <code>R</code> to work it out) for n’s all the way from 1 to 365, and show the probabilities for the 13 classes, overlaid on all of the probabilities for <span class="math inline">\(n\)</span> from 1 to 60.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prob.all.n.different =<span class="st"> </span><span class="kw">cumprod</span>( (<span class="dv">365</span><span class="op">:</span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="kw">rep</span>(<span class="dv">365</span>,<span class="dv">365</span>) )
+
+prob.all.different =<span class="st"> </span><span class="kw">round</span>(prob.all.n.different[n],<span class="dv">2</span>)
+prob.at.least.<span class="fl">1.</span>duplicate =<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>prob.all.different
+
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">4.5</span>,<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">0</span>))
+<span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">60</span>,prob.all.n.different[<span class="dv">1</span><span class="op">:</span><span class="dv">60</span>],<span class="dt">type=</span><span class="st">&quot;l&quot;</span>,
+     <span class="dt">cex.axis=</span><span class="fl">1.25</span>,<span class="dt">cex.lab=</span><span class="fl">1.25</span>,
+     <span class="dt">xlab=</span><span class="st">&quot;n&quot;</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Probability&quot;</span>)
+
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.1</span>),<span class="dt">col=</span><span class="st">&quot;lightblue&quot;</span>)
+<span class="kw">abline</span>(<span class="dt">h=</span><span class="fl">0.5</span>,<span class="dt">col=</span><span class="st">&quot;lightblue&quot;</span>,<span class="dt">lwd=</span><span class="dv">2</span>)
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">60</span>,<span class="dv">5</span>),<span class="dt">col=</span><span class="st">&quot;lightblue&quot;</span>)
+
+<span class="kw">lines</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">60</span>,<span class="dv">1</span><span class="op">-</span>prob.all.n.different[<span class="dv">1</span><span class="op">:</span><span class="dv">60</span>],<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)
+
+<span class="kw">points</span>(n,prob.all.different,<span class="dt">pch=</span><span class="dv">19</span>,<span class="dt">cex=</span><span class="fl">0.5</span>)
+<span class="kw">points</span>(n,<span class="dv">1</span><span class="op">-</span>prob.all.different,<span class="dt">pch=</span><span class="dv">19</span>,<span class="dt">cex=</span><span class="fl">0.5</span>)
+
+<span class="kw">points</span>(n,at.least.one.duplicate.birthday,
+       <span class="dt">pch=</span><span class="st">&quot;X&quot;</span>,<span class="dt">cex=</span><span class="fl">1.0</span>,
+       <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>)[<span class="dv">1</span><span class="op">+</span>at.least.one.duplicate.birthday])
+
+<span class="kw">text</span>(<span class="dv">35</span>,<span class="dv">1</span><span class="op">-</span>prob.all.n.different[<span class="dv">35</span>],
+     <span class="st">&quot;Prob. at least 1 duplicate&quot;</span>,
+     <span class="dt">cex=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">1.25</span>))
+
+<span class="kw">text</span>(<span class="dv">35</span>,prob.all.n.different[<span class="dv">35</span>],
+     <span class="st">&quot;Prob. all n are different&quot;</span>,
+     <span class="dt">cex=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="op">-</span><span class="fl">0.25</span>))</code></pre></div>
+<p><img src="statbook_files/figure-html/unnamed-chunk-64-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><a href="https://en.wikipedia.org/wiki/Birthday_problem" class="uri">https://en.wikipedia.org/wiki/Birthday_problem</a></p>
 <p>To appreciate the high probability of duplicate birthdays, take a simpler case of drawing the numbers 0:9 at random (and with replacement) until one gets a duplicate.</p>
-<pre><code>  + [1980s] Calculate, by successive subtractions^ or otherwise, the probability that the first duplicate will show up on the [$Y$ =] 2nd, 3rd, ...11th draw. Plot the frequency distribution of the number of draws, $Y$, until one gets a duplicate. 
-  
-  + [2020] By simulation, estimate the probability that &#39;in 4 draws one will not obtain a duplicate&#39; ^^.
-  </code></pre>
+<ul>
+<li><p>[1980s] Calculate, by successive subtractions^ or otherwise, the probability that the first duplicate will show up on the [<span class="math inline">\(Y\)</span> =] 2nd, 3rd, …11th draw. Plot the frequency distribution of the number of draws, <span class="math inline">\(Y\)</span>, until one gets a duplicate.</p></li>
+<li><p>[2020] By simulation, estimate the probability that ‘in 4 draws one will not obtain a duplicate’ ^^.</p></li>
+</ul>
 <p>^ Let <span class="math inline">\(Y\)</span> = which draw produces 1st duplicate (so <span class="math inline">\(Y\)</span> = 2,… , 11). e.g.</p>
 <p><code>Pr[$Y$ &gt; 6] = Pr[Y = 7 or 8 or 9 or 10 or 11]</code><br />
 <code>Pr[$Y$ &gt; 7] = Pr[Y = .... 8 or 9 or 10 or 11]</code><br />
@@ -466,8 +534,8 @@ Gamblers in 17th century France used to bet on the event of getting at least one
 <p>We are keen to establish the distribution of guesses, with the guessed times measured from midnight on December 31, 2017. Thus a guess of April 06, at 5:15 p.m. would be measured as 31 + 28 + 31 + 5 + 12/24 + (5+ 15/60)/24 = 95.71875 days into the year 2018.</p>
 <p>It would be tedious to apply optical character recognition (OCR) to each of the 1210 pages in order to be able to computerize all 240,000 guesses. Instead, you are asked to reconstruct the distribution of the guesses in two more economical ways:</p>
 <ul>
-<li><p>By determining, for (the beginning of) each day, from April 01 to June 01 inclusive, the proportion, p, of guesses that predede that date. [ In <code>R', if p = 39.6% of the guesses were below 110 days, we would write this as pGuessDistribution(110) = 0.396. Thus, if we were dealing with the location  of a  value in a Gaussian ('normal') distribution, we would write</code>pnorm(q=110, mean = , sd = )` ] Once you have determined them, plot these 62 p’s (on the vertical axis) against the numbers of elapsed days (90-152) on the horizontal axis.</p></li>
-<li><p>By determining the 1st, 2nd, … , 98th, 99th percentiles. These are specific examples of ‘quantiles’, or q’s. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all values are below this value, and 1-q are above it. [ In <code>R', if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a  Gaussian distribution with mean 130 and standard deviation 15, we would write</code>qnorm(p=0.4, mean = 130, sd = 15)`. ] Once you have determined them, plot the 99 p’s (on the vertical axis) against the 99 (elapsed) times on the horizontal axis.</p></li>
+<li><p>By determining, for (the beginning of) each day, from April 01 to June 01 inclusive, the proportion, p, of guesses that predede that date. [ In <code>R</code>, if p = 39.6% of the guesses were below 110 days, we would write this as pGuessDistribution(110) = 0.396. Thus, if we were dealing with the location of a value in a Gaussian (‘normal’) distribution, we would write <code>pnorm(q=110, mean = , sd = )</code> ] Once you have determined them, plot these 62 p’s (on the vertical axis) against the numbers of elapsed days (90-152) on the horizontal axis.</p></li>
+<li><p>By determining the 1st, 2nd, … , 98th, 99th percentiles. These are specific examples of ‘quantiles’, or q’s. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all values are below this value, and 1-q are above it. [ In <code>R</code>, if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a Gaussian distribution with mean 130 and standard deviation 15, we would write <code>qnorm(p=0.4, mean = 130, sd = 15)</code>. ] Once you have determined them, plot the 99 p’s (on the vertical axis) against the 99 (elapsed) times on the horizontal axis.</p></li>
 <li><p>Compare the Q<span class="math inline">\(_{25}\)</span>, Q<span class="math inline">\(_{50}\)</span>, and Q<span class="math inline">\(_{75}\)</span> obtained directly with the ones obtained by interpolation of the curve showing the results of the other method.</p></li>
 <li><p>Compare the directly-obtained proportions of guesses that are before April 15, April 30, and May 15 with the ones obtained by interpolation of the curve showing the results of the other method.</p></li>
 <li><p>By successive subtractions, calculate the numbers of guesses in each 1-day bin, and make a histogram of them. From them, calculate the mean, the mode, and the standard deviation.</p></li>
@@ -510,7 +578,7 @@ Gamblers in 17th century France used to bet on the event of getting at least one
 <p>*From the decimal portion of the Julian time, use <code>R</code> to create a frequency table of the hour of the day at which the breakup occurred.</p>
 <p>*From the month and day, use <code>R</code> to calculate your own version of the Julian day (and the decimal portion if you want to go further and use the hour and minute)</p>
 <p>*Is there visual evidence that over the last 91 years, the breakup is occurring at an earlier date?</p>
-<p>*Extract the date and ice thickness measurements for the years 1989-2007 from the website and use <code>your software of choice</code>R` to create a single dataset with the 3 variable, year, day and thickness. From this, fit a separate trendline for each year, and calculate the variability of these within-year slopes.</p>
+<p>*Extract the date and ice thickness measurements for the years 1989-2007 from the website and use (your software of choice) <code>R</code> to create a single dataset with the 3 variable, year, day and thickness. From this, fit a separate trendline for each year, and calculate the variability of these within-year slopes.</p>
 <ul>
 <li>Galton’s data on family heights</li>
 </ul>
