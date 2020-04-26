@@ -155,6 +155,11 @@ for(proportion in seq(-1,1,0.2)) text(proportion,-1,
 
 ```
 
+For population pyramids, see https://www.populationpyramid.net/world/2019/
+
+For dynamic ones, see
+https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/pyramid/pyramid.cfm?geo1=01&type=1
+
 ###  Life Tables [2018]
 
 For males and females separately, extract the 22  [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this [Institut de la statistique du Quebec](https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55) report. They can be found in the $q_x$ column [ x: age
@@ -250,10 +255,14 @@ table(when.first.dup.happens)
 
 ###  Duplicate Birthdays
 
+[The exercises are found at the end of this sub-section]
+
 For 13 years in the 607 course from 1981 to 1993, JH handed out a page with a 12 x 31 grid and asked the students to indicate their birthday (month and day). The numbers of students in the class ('n') varied from 19 to 52 (mean 32, median 33) 
-The results, [in 'raw' form here,](http://www.medicine.mcgill.ca/epidemiology/hanley/c323/excel/birthdays_607.pdf), may surprize you. **In 10 of the 13 classes, there was at least one duplicate birthday.** 
+The results, [in 'raw' form here](http://www.medicine.mcgill.ca/epidemiology/hanley/c323/excel/birthdays_607.pdf), may surprize you. **In 10 of the 13 classes, there was at least one duplicate birthday.** 
 
 http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/LotteriesProbabilitiesHANLEY1984TeachingStatistics.pdf#page=3
+
+By the way, the ['Birthday Problem'](https://en.wikipedia.org/wiki/Birthday_problem) is a classic in probability classes.
 
 
 
@@ -273,11 +282,11 @@ cat("n's in the classes without a duplicate:")
 n[!at.least.one.duplicate.birthday]
 
 ```
-Leaving out people born on Feb. 29, and assuming [FOR NOW] all of the 365 birthdays are equally likely, we have the following formula for the probability of NO duplicate birthday in a sample of $n$, and by subtracting this probability from 1, the the probability of AT LEAST ONE duplicate birthday:
+Leaving out people born on Feb. 29, and **assuming [FOR NOW] all of the 365 birthdays are equally likely**, we have the following formula for the probability of NO duplicate birthday in a sample of $n$. By subtracting this probability from 1 (a common 'trick' when working with the probability of 'at least' ... ), we obtain the probability of AT LEAST ONE duplicate birthday:
 
 $$Prob[all \ n \ birthdays \ are \ different] = \frac{365}{365} \times \frac{364}{365} \times \frac{363}{365} \times \dots \times \frac{365-(n-1)}{365}.$$
 
-Lets work this out (or tell `R` to work it out) for n's all the way from 1 to 365, and show the probabilities for the 13 classes, overlaid on all of the probabilities for $n$ from 1 to 60.
+Let's work this out (or tell `R` to work it out) for n's all the way from 1 to 365, and show the probabilities for the 13 classes, overlaid on all of the probabilities for $n$ from 1 to 60.
 
 
 ```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
@@ -316,28 +325,119 @@ text(35,prob.all.n.different[35],
 ```
 
 
-https://en.wikipedia.org/wiki/Birthday_problem
 
-To appreciate the high probability of duplicate birthdays, take a simpler case of drawing the numbers 0:9 at random (and with replacement) until one gets a duplicate.
 
-   + [1980s] Calculate, by successive subtractions^ or otherwise, the probability that the first duplicate will show up on the [$Y$ =] 2nd, 3rd, ...11th draw. Plot the frequency distribution of the number of draws, $Y$, until one gets a duplicate. 
+**Why is the probability so much higher than you would naively think?**
+
+If in a class of 30, we ask you what the probability is, you are likley to reason like this ... 
+
+> '30 out of 365, so about 1 chance in 12 or so, or about 8%'.
+
+BUT, by reasoning this way, you are just thinking about the probability that YOUR birthday will match the birthday of someone else. But then EVERYONE ELSE has to go through the same calculation, so there are a lot of possibilities for a match, between someone else and someone else.
+
+An easy way to **appreciate the large number opportunities there are for a match** is to look at a random sample of 30 birthdays, and see if they contain a match. If you can't sort them first, you will have to compare the 2nd with the 1st (thats 1), the 3rd with the 1st and the 2nd (2 more), the  4rd with the 1st and the 2nd and 3rd (3 more), and so on, so 1 + 2+ ... + 29 = `r sum(1:29)` in all! But if you are the first to call out your birth, and then look/listen for a match with YOUR birthday, thats just 29 others. So instead of 1/12, the probability of SOME match (anyone with anyone else) os a LOT higher than 1/12. (From the blue graph, it's about 70%!). 
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+
+all.birthdays =
+read.table(
+   "http://www.biostat.mcgill.ca/hanley/statbook/BirthdayProbabilities.txt",
+   as.is=TRUE)
+
+# (as.is=TRUE doesn't convert alphabetic variables into factors)
+
+plot(1:366,all.birthdays$prob,
+      ylim=c(0,max(all.birthdays$prob)),
+      cex = 0.5,pch=19,
+      xlab="Days of Year (1=Jan 1, 366=Dec 31)")
+abline(h= c(0, 1/(365:366)))
+abline(v= seq(0,366,30),col="lightblue")
+sample.of.30 = sample(all.birthdays$Birthday,30,replace=TRUE)
+
+noquote(sample.of.30)
+
+```
+
+
+If you have the software, you would **sort** this list first, 
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+
+noquote( sort(sample.of.30) )
+
+```
+
+so its easier to spot any duplicates. And, **if this is too laborious to do manually**, you can use the `unique` and `duplicated` functions in `R`  
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
+
+unique.birthdays = unique(sample.of.30) 
+( n.unique = length(unique.birthdays) )
+
+duplicated(sample.of.30)
+
+( sample.of.30[ duplicated(sample.of.30) ] )
+
+
+```
+
+But, as computer science people will tell you, sorting large lists takes a lot of computing. Just think about how you would manually sort a list of 1 million or 1 billion! The book 
+[Algorithms to Live By](https://www.audible.ca/fr_CA/pd/Algorithms-to-Live-By-Livre-Audio/B0711GFR5F?qid=1587911410&sr=1-1&ref=a_fr-CA_sea_c3_lProduct_1_1&pf_rd_p=65c74350-6dfb-47fa-85fd-1459a4762abd&pf_rd_r=40KVQ9NQZ0W4702QDX6E) explains this  well.
+
+
+In the early 1980s, Loto Quebec did not realize that there is a high chance of duplicates when the sample size is sizeable, and, as we tell in our case III, they were [embarrassed](http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/LotteriesProbabilitiesHANLEY1984TeachingStatistics.pdf#page=4).
+We tell more of the story [here](http://www.medicine.mcgill.ca/epidemiology/hanley/BionanoWorkshop/coincidencesEXAMPLES.pdf#page=11). They now SORT the list first, to find duplicates.
+
+**Exercises**
+
+   + By splitting 4 successive nodes into FirstDuplicate = YES or NO, draw a probability tree for the first 4 birthdays announced (Such a tree, with each node splitting into an **I**nfected hermit visit a **S**usceptible hermit or visit an immune/recovered hermit, can help you think through the simulated mini-epidemic. BTW: you hear a lot abot **SIR** models thse days, and you will have seen the '**R**' category displated in many of the covid-19 epidemic graphs)
+   + Using the `prob.all.n.different` vector derived above, calculate, by successive subtractions^ or otherwise, the probability that the first duplicate will show up on the [$Y$ =] 2nd, 3rd, ... birthday announced. Plot the frequency distribution of $Y$. 
+   + By simulation, estimate the probability that 'in 20 draws one will not obtain a duplicate' ^^.
+   + In every class where this Birthday Problem is addressed, students object that leaving out Feb 29 and assuming all of the 365 birthdays are equally likely are not realistic. Births vary somewhat by [season](https://www.significancemagazine.com/science/542-most-popular-birthday-england-wales) and more so by [day of the week](https://www.significancemagazine.com/585)
+So, **in reality**, are the probabilities of at least one duplicate birthday higher or lower than you have calculated above? Or is it impossible to say in which direction they are moved?  
+To investigate this use the `all.birthdays` dataset created in the `R` code above. you can visualize the variation in the 366 probabilites by using this statement `plot(1:366,all.birthdays$prob,
+      ylim=c(0,max(all.birthdays$prob)),
+      cex = 0.5,pch=19,
+      xlab="Days of Year (1=Jan 1, 366=Dec 31)")` and drawing grids with these ones `abline(h= c(0, 1/(365:366)))` and `abline(v= seq(0,366,30),col="lightblue")`.  
+This distribution is based on all births in a certain country from 1990-1999 [the years when many of you were born]. From it, draw several samples of 20 birthdays, and calculate the proportion of these sets in which the 20 birthdays are unique, and conversely, contain at least 1 duplicate.  Some `R` code is given below.
+   + Try to figure out from the features of the plot what country the birthday data are from? Explain your reasoning.
+   + Just from how much the 366 probabilities 'wobble' around 1/365 or 1/366, try to figure out (approximately, to within an order of magnitude) how many births were used to derive the 366 proportions. For example, is it a country with a population size such as [China, India, USA, Germany, New Zealand, Iceland, Prince Edward Island, the Yukon Territory, etc?](https://www.worldometers.info/world-population/population-by-country/)
+   
+
+https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2013.00705.x
       
-   + [2020] By simulation, estimate the probability that 'in 4 draws one will not obtain a duplicate' ^^.
-      
-^ Let $Y$ = which draw produces 1st duplicate (so $Y$ = 2,... , 11). e.g. 
+^ If $Y$ = which draw produces 1st duplicate (so $Y$ = 2,... 365). e.g. 
 
-`Pr[$Y$ > 6] = Pr[Y = 7 or 8 or 9 or 10 or 11]`  
-`Pr[$Y$ > 7] = Pr[Y = .... 8 or 9 or 10 or 11]`  
+`Pr[$Y$ > 6] = Pr[Y = 7 or 8 or 9 or .. or 365 ]`  
+`Pr[$Y$ > 7] = Pr[Y = .... 8 or 9 or .. or 365 ]`  
 `Difference:  = Pr[Y = 7] `
 
-   
-^^ Taking NE as shorthand for 'Not Equal to', the probability of a sequence
 
-`.......1st`  
-`....... ... 2nd NE 1st`  
-`....... ... ... ... ... 3rd NE 1st & NE 2nd`  
-`....... ... ... ... ... ... ... 4th NE 1st & NE 2nd & NE 3rd`
+```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F,fog.cap="20 Birthdays from an uneven (non-uniform) distibution."}
 
+N.SIMS=100
+n = 23
+#PROBS = rep(1/366,366)    # ON  for comparison
+PROBS  = all.birthdays$prob # OFF for comparison
+B = matrix(     
+      sample(all.birthdays$Birthday,
+             size = N.SIMS*n,
+             prob = PROBS,
+             replace=TRUE),
+      nrow = N.SIMS,  ncol = n)
+head(B,2)
+
+duplicate = apply(B,1,
+   function(x) sum(duplicated(x)) > 0 )
+
+noquote(paste(sum(duplicate), "duplicates /", 
+   N.SIMS,
+   " ; larger N.SIMS: more precise probability estimate.",collapse=" "))
+
+
+
+```
 
 
 ### Chevalier de Méré 
