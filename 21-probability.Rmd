@@ -2,7 +2,9 @@
 
 # Probability {#Probability}
 
-The **objectives** of this chapter are to
+## Objectives
+
+The objectives of this chapter are to
 
 * Understand the meanings, uses and ways of arriving at, numerical values for probabilities.
 
@@ -39,20 +41,16 @@ Experience (actuarial, ...)
    + Advanced Statistical Theory, e.g.. Gauss' Law of Errors
    
    
-   
-   
    ```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=3, warning=FALSE, message=F, fig.cap="In this older cartoon, these experts qualify their probability statement."}
 
 knitr::include_graphics("images/40PercentChanceOfShowers.png",dpi=120)
 
 ```
    
- 
-Death and Taxes • Rain tomorrow • Cancer in your lifetime • Win lottery in single try • Win lottery twice • Get back 11/20 pilot questionnaires • Treat 14 patients get 0 successes • Duplicate Birthdays • Canada will use $US before the year 2030  
+**What is the probability of/that ? ...** 
 
-• OJ murdered his wife • DNA matched
-• OJ murdered wife | DNA matched
-" | " is shorthand for "given that.."
+[Death | Taxes](https://en.wikipedia.org/wiki/Death_and_taxes_(idiom)) | [Rain tomorrow](https://www.ncbi.nlm.nih.gov/pubmed/16022695) | [Cancer in your lifetime](https://www.cancer.org/cancer/cancer-basics/lifetime-probability-of-developing-or-dying-from-cancer.html) | [Win lottery in single try](https://loteries.lotoquebec.com/en/lotteries/quebec-49) | [Win lottery twice](http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/jumping_to_coincidences.pdf) | [Get back 11/20 pilot questionnaires](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/mm_ch_06.pdf#page=6) | [If treat 14 patients, get 0 successes](https://books.google.ca/books?id=WdDKBQAAQBAJ&pg=PA65&dq=0/14+phase+2+trials+gehan+design&hl=en&sa=X&ved=0ahUKEwiioNy7s4fpAhUjmXIEHagrCZQQ6AEILjAB#v=onepage&q=0%2F14%20phase%202%20trials%20gehan%20design&f=false) | [Duplicate Birthdays\(http://www.medicine.mcgill.ca/epidemiology/hanley/c323/excel/birthdays_607.pdf) | Canada will use $US before the year 2030 | another new/different pandemic by 2030 | [OJ Simpson](https://en.wikipedia.org/wiki/O._J._Simpson_murder_case) murdered his wife | DNA from a random (innocent) person would match blood found at crime scene
+
 
 Often, we work in **other scales that spread out the probability scale**. The **odds** scale runs from 0 to in finity, while the **logit** and **probit** scales -- important for regression modeling -- span the entire real line, from minus infinity to infinity. You will need to become confortable with these wider scales.
 
@@ -629,16 +627,51 @@ The authors alos fitted a probit-based S curve, and arrived at the equation $$ p
 5. "Clustering" of Cardiovascular Risk Factors ?  
 A Santé Quebec survey found the prevalence of 4 heart disease risk factors in a certain age-sex group to be: smoking: 32%; family history: 32%; SBP>155mmHg: 12%; diabetes: 5%. If risk factors are distributed independently of each other, what is the proportion of the age-sex group with (a) 4 risk factors (b) 0 risk factors (c) 1 or more risk factors?. A tree diagram may help.
 
-Suppose that the probability that HIV will be passed from an infected person to an uninfected person during a single sexual contact is 0.01. Suppose that there are 50 such contacts.
+6. Suppose that the probability that HIV will be passed from an infected person to an uninfected person during a single sexual contact is 0.01. Suppose that there are 50 such contacts.
 Show how to calculate (or obtain via software) the probability that HIV will be passed on in at least one of the 50 contacts.
 
-An auto insurance company notes whether drivers under 25 years old have had a driver’s education course. Some 40% of its policyholders under 25 have had a driver's education course and 5% of this subset have an accident in a one-year period. Of those under 25 who have not had a driver’s education course, 10% have an accident within a one-year period.
-A 20-year-old takes out a policy with this company and within one year has an accident. What is the probability that the person did not have a driver’ s education course? [a probability tree may help]
-607 midtern 2001
+7. An auto insurance company notes whether drivers under 21 years old have had a driver’s education course. Some 40% of its policyholders under 21 have had a driver's education course and 5% of this subset have an accident in a one-year period. Of those under 21 who have not had a driver’s education course, 10% have an accident within a one-year period.  
+A 20-year-old takes out a policy with this company and within one year has an accident. What is the probability that the person did not have a driver's education course? [a probability tree may help] 607 midtern 2001
 
-6. Efron Monty Hall
+8. Twins: [Real story from a real statistician]  
+$\bullet$ Depict Efron’s calculations using a probability tree. Here is his story
 
-7. The Economist
+> Here is a real-life example I used to illustrate Bayesian virtues to the physicists. A physicist friend of mine and her husband found out, thanks to the miracle of sonograms, that they were going to have twin boys. One day at breakfast in the student union she suddenly asked me what was the probability that the twins would be identical rather than fraternal. This seemed like a tough question, especially at breakfast. Stalling for time, I asked if the doctor had given her any more information. 'Yes', she said, 'he told me that the proportion of identical twins was one third'. This is the population proportion of course, and my friend wanted to know the probability that her twins would be identical.  
+Bayes would have lived in vain if I didn’t answer my friend using Bayes' rule. According to the doctor the prior odds ratio of identical to nonidentical is one-third to two-thirds, or one half. Because identical twins are always the same sex but fraternal twins are random, the likelihood ratio for seeing 'both boys' in the sonogram is a factor of two in favor of Identical. Bayes' rule says to multiply the prior odds by the likelihood ratio to get the current odds: in this case 1/2 times 2 equals 1; in other words, equal odds on identical or nonidentical given the sonogram results. So I told my friend that her odds were 50-50 (wishing the answer had come out something else, like 63-37, to make me seem more clever.) Incidentally, the twins are a couple of years old now, and 'couldn’t be more non-identical' according to their mom. [Bradley Efron]  
+
+   
+9. The Economist article [Problems with scientific research: HOW SCIENCE GOES WRONG](http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/HowScienceGoesWrong.pdf)
+
+It has a very nice graphical explanation of why some many 
+studies get it wrong, and cannot be reproduced -- the topic of the Reproducibility Project in Psychology referred to on same page.
+
+One reason is that even if all studies were published, regardless of  whether the p-value was less than 0.05 (a common screening/filtering criterion) or greater than 0.05, then, of all the hypotheses tested, only 
+a small percentage of the hypotheses are  'true'. Thus many or most of the 'positive' tests (_published_ results)  will be false positives. It is just like when using mammography to screen for breast cancer: in maybe 4 of every 5 women referred for biopsy, the biopsy will
+come back negative. 
+
+   + Represent the information in their Figure as
+a  tree. Then present the  same information in a different tree, with data on left, and  hypothesis on the right
+(rather than the conventional $\theta \rightarrow$ data' direction) -- as JH has done in the three rightmost instances 
+in Figure 2 on page 6 above.
+
+   + What percentage of positive tests would be correct/not if, instead, 1 in **2** of the hypotheses interesting enough to test were true?
+
+   + Come up with a general formula for what in medicine is called the '_positive predictive value_' of a positive medical test.
+
+   + Try to simplify it so that the characteristics of the _test($\alpha \ and \ \beta$ are isolated in one factor, and the testing _\underline{_context_ (the 1 in 10 or 1 in 2, etc.) is in another.
+_Hint_: use odds rather than probabilities, so that you
+are addressing the ratio of true positives to false positives, and the ratio of true hypothesis to false hypotheses. And use the _Likelihood Ratio_
+
+   + On the same Resources web page is another (but longer)
+attempt to explain these concepts graphically to [left brain and right brain doctors](http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/RightSideLeftSide.pdf).
+JH was impressed with this, and wanted to share it with 
+the Court for Arbitration in Sport, when explaining the interpretation
+of positive doping tests. But he found that the
+'teaser' sentence immediately following the title, ''Can you explain why a test with 95% sensitivity might identify only 1% of affected people in the general population?''
+is misleading, and so he make his own diagram (available on request). Exercise: Revise this misleading phrase.
+and
+[see this shiny app](http://shinyapps.org/apps/PPV/).
+
 
 8. Wald : CF screening
 
@@ -650,9 +683,6 @@ A 20-year-old takes out a policy with this company and within one year has an ac
 
 11. NHL birthdays
 
-Similar
-
-Adult size soccer ball
 
 Medical School admission rates, by gender.
 
