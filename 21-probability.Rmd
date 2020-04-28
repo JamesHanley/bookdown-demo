@@ -516,7 +516,7 @@ In the following Figure, the detection rate and false positive rates are as befo
   col1.values=c("NEGATIVE","POSITIVE")
   col2.values=rep(c("No","Yes"),2)
   
-  col1.probs=c("77%","23%")
+  col1.probs=c("86.5%","13.5%")
   
   col2.probs=c("96.6%","3.4%","26%","74%")
   
@@ -604,13 +604,56 @@ or, if you prefer something that rhymes,
 
 $$Probability[ \ data \ | \  theta ] \neq Probability[ \ theta \ | \ data ].$$
 
+**Example: The Prosecutor's Fallacy**
 
+Here, in the context of criminal trials involving DNA evidence, are two striking  -- and worrysome -- [examples of misunderstandings about them](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch-01-02-PlusNotesSept2019.pdf#page=19). This misunderstanding is often referred to as the 'Prosecutor's Fallacy'.
 
-Two striking  -- and frightening -- examples of misunderstandings about them are given on the next page.
+In the 1995 [OJ Simpson trial](https://www.britannica.com/event/O-J-Simpson-trial)
+- the subject of this [recent tv series](https://en.wikipedia.org/wiki/The_People_v._O._J._Simpson:_American_Crime_Story) -- 
+the (very very small) probability that the blood of a randomly-selected innocent person would match that found at the crime scene was mistaken as (confused with) the probability that the person accused of murder was innocent. It is worth repeating an excerpt from JH's bios601 notes, just cited.
 
+>In this case the statistician Peter Donnelly opened a new area of debate. He remarked that  
+.  
+**forensic evidence** answers the question: **What is the probability that the defendant’s DNA profile matches that of the crime sample, assuming that the defendant is innocent?**  
+.  
+while **the jury** must try to answer the question  
+.  
+**What is the probability that the defendant is innocent, [in the light of ALL of the OTHER EVIDENCE and] assuming that the DNA profiles of the defendant and the crime sample match?**
+
+The OJ Simpson case also features a well-known Harvard law professor Alan Dershowitz-- who was in the news again in the Trump impeachment case -- whose insunuations and misuse of probabilites spurred the renowned and respected statistician IJ Good (who and worked with Alan Turing) to write [this article](http://www.biostat.mcgill.ca/hanley/statbook/WhenBattererTurnsMurdererIJGOOD.pdf) in the journal Nature. It begins:
+
+> SIR - Alan M. Dershowitz, who advises the defence lawyers in the 0. J. Simpson trial, stated on US television in early March that only about a tenth of 1% of batterers actually murder their wives. His statement, though presumably true, is highly misleading for the woman in the street. A probability of greater relevance for legal purposes would be based on the knowledge that the woman was both battered by her husband and also murdered by somebody. An approximate estimate of this probability will now be made, based on Dershowitz's statement.
+
+Some statistical articles, having to do with lie detection tests, have also mixed up the probability of innocence given data with the (much easier to calculate) probability of data given innocence.  
+
+**Naive Measures of diagnostic/prognostic accuracy**
+
+Many [claims of high accuracy of diagnostic or screening tests](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/CandH-ch0102/EyesHeatCamera.pdf) rely on artificially-high rates of the target condition, and/or [combine the 'sensitivity' and 'specificity' performance measures into one number](https://www.swpc.noaa.gov/sites/default/files/images/u30/Murphy%2C%20A.H.%2C%201996%20-%20The%20Finely%20Affair.pdf).
 
 ## Summary Slides
 
+* Probablities can be viewed as long-run frequencies, or as degrees of belief.
+
+* We often map probabilities into, and work with, other scales. 
+
+* The 'calculus' of probabilities relies on additions and subtractions, and multiplications.
+
+* There is always a context for a  probability.
+
+* Trees  can help to keep things (and directions!) straight.  
+
+* When things are more complex, simulations can help.
+
+* It is  easy to confuse contexts, and to calculate the wrong probability. 
+
+* $$Probability[ data \ | \ Hypothesis ] \neq Probability[ Hypothesis \ | \ data ]$$ 
+ 
+
+* $$Probability[ \ data \ | \  theta ] \neq Probability[ \ theta \ | \ data ].$$
+
+* Don't fall into the 'prosecutor's fallacy' trap, and mistake a p-value for the probability that the (null) hypothesis is true.
+
+* Be suspicious of small (extreme) probabilities: they may well have been incorrectly calculated, or not all that revevant. 
 
 ## Exercises: 
 
@@ -634,25 +677,32 @@ Show how to calculate (or obtain via software) the probability that HIV will be 
 A 20-year-old takes out a policy with this company and within one year has an accident. What is the probability that the person did not have a driver's education course? [a probability tree may help] 607 midtern 2001
 
 8. Twins: [Real story from a real statistician]  
-$\bullet$ Depict Efron’s calculations using a probability tree. Here is his story
+Depict Efron’s calculations using a probability tree. Here is his story
 
 > Here is a real-life example I used to illustrate Bayesian virtues to the physicists. A physicist friend of mine and her husband found out, thanks to the miracle of sonograms, that they were going to have twin boys. One day at breakfast in the student union she suddenly asked me what was the probability that the twins would be identical rather than fraternal. This seemed like a tough question, especially at breakfast. Stalling for time, I asked if the doctor had given her any more information. 'Yes', she said, 'he told me that the proportion of identical twins was one third'. This is the population proportion of course, and my friend wanted to know the probability that her twins would be identical.  
 Bayes would have lived in vain if I didn’t answer my friend using Bayes' rule. According to the doctor the prior odds ratio of identical to nonidentical is one-third to two-thirds, or one half. Because identical twins are always the same sex but fraternal twins are random, the likelihood ratio for seeing 'both boys' in the sonogram is a factor of two in favor of Identical. Bayes' rule says to multiply the prior odds by the likelihood ratio to get the current odds: in this case 1/2 times 2 equals 1; in other words, equal odds on identical or nonidentical given the sonogram results. So I told my friend that her odds were 50-50 (wishing the answer had come out something else, like 63-37, to make me seem more clever.) Incidentally, the twins are a couple of years old now, and 'couldn’t be more non-identical' according to their mom. [Bradley Efron]  
 
-   
-9. The Economist article [Problems with scientific research: HOW SCIENCE GOES WRONG](http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/HowScienceGoesWrong.pdf)
+9. Screening for HIV: [Can we afford the false 
+positive rate?](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/CandH-ch0102/MeyerPaukerHIVscreening.pdf)
 
-It has a very nice graphical explanation of why some many 
+   + Represent the information they use in their Meaning of Postive Tests section (starting on page 239, second column) as a  tree. 
+   + Then present the  same information in a different tree, with data [test result] on left, and  hypothesis on the right
+(rather than the conventional $\theta \rightarrow$ data' direction)  
+.
+
+
+10. The Economist article [Problems with scientific research: HOW SCIENCE GOES WRONG](http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/HowScienceGoesWrong.pdf)
+
+has a very nice graphical explanation of why some many 
 studies get it wrong, and cannot be reproduced -- the topic of the Reproducibility Project in Psychology referred to on same page.
 
-One reason is that even if all studies were published, regardless of  whether the p-value was less than 0.05 (a common screening/filtering criterion) or greater than 0.05, then, of all the hypotheses tested, only 
-a small percentage of the hypotheses are  'true'. Thus many or most of the 'positive' tests (_published_ results)  will be false positives. It is just like when using mammography to screen for breast cancer: in maybe 4 of every 5 women referred for biopsy, the biopsy will
+One reason is that even if all studies were published, regardless of  whether the p-value was less than 0.05 (a common screening/filtering criterion) or greater than 0.05, **of all the hypotheses tested, only 
+a small percentage of the hypotheses are  'true'**. Thus many or most of the 'positive' tests (_published_ results)  will be false positives. It is just like when using mammography to screen for breast cancer: in maybe 4 of every 5 women referred for biopsy, the biopsy will
 come back negative. 
 
    + Represent the information in their Figure as
 a  tree. Then present the  same information in a different tree, with data on left, and  hypothesis on the right
-(rather than the conventional $\theta \rightarrow$ data' direction) -- as JH has done in the three rightmost instances 
-in Figure 2 on page 6 above.
+(rather than the conventional $\theta \rightarrow$ data' direction) -- as JH has done in a few instances above.
 
    + What percentage of positive tests would be correct/not if, instead, 1 in **2** of the hypotheses interesting enough to test were true?
 

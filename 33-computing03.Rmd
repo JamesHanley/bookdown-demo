@@ -253,6 +253,18 @@ table(when.first.dup.happens)
 
 ```
 
+
+### Screening for HIV 
+
+See Figure 1 'Meaning of Positive HIV Tests for HIV') in the article [Can we afford the false 
+positive rate?](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/CandH-ch0102/MeyerPaukerHIVscreening.pdf)
+
+   +  Use `R` to redraw their Figure 
+
+   + Add on top of it a curve for a population with a 1% prevalence.
+
+   + Add a curve for a prevalence of 0.16%, but assuming sensitivity is only 90%.
+   
 ###  Duplicate Birthdays
 
 [The exercises are found at the end of this sub-section]
@@ -440,6 +452,7 @@ noquote(paste(sum(duplicate), "duplicates /",
 ```
 
 
+
 ### Chevalier de Méré 
 
 [see here}(https://www.cut-the-knot.org/Probability/ChevalierDeMere.shtml) or  
@@ -455,7 +468,7 @@ Gamblers in  17th century France used to bet on the event of getting at least on
 
 ## Other Exercises (under construction)
 
-(some belong in other chapters)
+
 
 ### HIV transmission
 
