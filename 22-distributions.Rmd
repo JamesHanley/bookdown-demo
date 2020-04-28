@@ -1,7 +1,6 @@
 # Distributions /Random Variables {#Distributions}
 
 
-
 ## Random Variables
 
 **Textbook definitions of RANDOM VARIABLE**
@@ -67,7 +66,7 @@ Y =  Number of correctly identified Cans
 `.... 1 ............ 4/6`  
 `.... 2 ............ 1/6`  
 
-* Chose a random word and count how many characters it contains  
+* Choose a random word and count how many characters it contains  
 Y =  Number of characters in word
 
 `.... y   Probability(Y = y)`
@@ -124,10 +123,10 @@ Y = how many of the balls drawn show numbers that match the numbers selected by 
 `......... 6 .......... 0.0000001`  
 
 
-http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/banco.pdf
+> http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/banco.pdf
 
 
-http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/Keno(20-spot).pdf
+> http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/Keno(20-spot).pdf
 
 
 ## Gaussian Bernoulli-Binomial  Poisson 

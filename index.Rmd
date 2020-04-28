@@ -14,7 +14,7 @@ description: "A regression-from-the-outset based approach"
 
 # Preface {-}
 
-**The order in which we are proceeding with the writing, and what we have completed this far** 
+**The order in which we are proceeding with the writing, and what we have completed this far**  
 
 We are proceeding somewhat non-linearly in the writing. After completing a first draft of Chaper 2 (an overview of Stastical parameters,  parameter constrast and parameter functions) we began on the mother-of-all-regressions chapter for a single mean (ch. 5), and planned to move on the the corresponding ones for a single proportion (ch 6) and event-rate (ch 7). However, we  realized that to get through these, students would need the concepts of interval estimates of parameters, and these in turn need other preliminaries. So we are now working on chapters 11 (probability) and 12 (random variables), but we are hoping to motivate the various statistical concepts and laws by simulation and to use the **parallel sessions on computing** in `R` to  make these laws more concrete, and less as products of calculus and mathematical statistics. This way we hope to get to serious regression applications sooner than most intro. courses do. And we are also hoping to have the parismony of a regression approach become evident much sooner than in the traditional t-test chi-sq. regression sequence that only raeches regression 3 weeks before the end of the course.
 
