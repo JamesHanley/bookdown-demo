@@ -4,6 +4,7 @@ pandoc_version: 1.19.2.1
 
 install:
   - Rscript -e "install.packages('mosaic')"
+  - Rscript -e "install.packages('bookdown')"
 
 
 before_script:
