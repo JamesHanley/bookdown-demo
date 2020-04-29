@@ -1,0 +1,216 @@
+# Distributions /Random Variables {#Distributions}
+
+
+## Random Variables
+
+**Textbook definitions of RANDOM VARIABLE**
+
+(Note: JH has changed the usual $X$ to $Y$) 
+
+> A variable ($Y$) whose value is a number determined by the outcome of an experiment
+
+> A variable ($Y$) whose value is a numerical outcome of a random phenomenon
+ 
+ 
+**Textbook definitions: DISCRETE Random Variable**
+ 
+> A random variable that assumes only a finite (or countably infinite) number of distinct values
+ 
+> Discrete random variables have "a finite or countably infinite number of possible values, each with positive or zero probability.
+
+> A discrete random variable $Y$ has a finite number of possible values
+  
+  
+Random Variable: DISCRETE or CONTINUOUS ?
+
+* _How long_ you have to wait for bus / elevator / surgery/ download to complete
+* the _blood group_ of n = 1 randomly selected person
+* _how many tries_ before pass a course
+* _how many_ of n = 20 randomly selected persons will return questionnaire in pilot study
+* _length of song_ on a CD
+* _mean cholesterol level_ in sample of n = 30 randomly selected persons
+* _how hot_ it is going to be today
+* _how much_ snow we will get next winter
+* _time_ someone called (on answering machine)
+* _value of test-statistic_ if 2 populations sampled from have the same mean
+* _how much_ ice McDonalds puts in soft drink 
+* _how many_ calories in hamburger 
+* _how many_ numbers you get correct in 6/49? 
+* _where_ roulette wheel stops
+* _how many_ "wrong number" calls received
+* _how many_ keys you have to try before get the right one 
+* _how much_ water consumed by 100 homes
+
+**PROBABILITY DISTRIBUTION $p(y)$ associated with (Discrete) Random Variable $Y$**
+
+The ordered pairs {y, Probability($Y$ = $y$) } , where $y$ ranges over the possible values of $Y$
+
+* Probability($Y$ = $y$) is often shortened to Prob($Y$ = $y$) or P($Y$ = $y$)
+
+* Can display distribution as formula, table, graph, etc.
+
+EXAMPLES
+
+(Note: the only reason we start with lotteries is that we can give the exact (mathematically-known) probabilities of each possible result. In most of the other examples, the probabilities will be context-specific.)
+
+* Y = Winnings on a $1 wager on la Quotidienne 3
+(same distribution for exact order and any order)
+ 
+`....... ($)`  
+`........  y .. Probability(Y = y)`
+
+`........ 0 ............... 0.999`  
+`...... 450 ............... 0.001`  
+`.......................... =====`  
+`...... AL................. 1.000`  
+
+* Randomly select n = 1  person  
+Y = the person's Blood Group
+
+`.... y   Probability(Y = y)`
+
+`.... A .............. p(A)`  
+`.... B .............. p(B)`  
+`.... AB ............ p(AB)`  
+`.... O .............. p(O)`  
+`.................... =====`  
+`....ALL ............ 1.000`  
+
+
+* Choose a random word and count how many characters it contains  
+Y =  Number of characters in word
+
+`.... y . Probability(Y = y)`
+
+`.... 1 .............. p(1)`  
+`.... 2 .............. p(2)`  
+`.... etc. ........... etc.`  
+`.................... =====`  
+`... ALL ............ 1.000`  
+
+
+* Choose a random hospital admission and count how many days it lasted
+
+Y =  Length of Stay (LOS)
+
+`.... y ..... Probability(Y = y)`
+
+`.... 1 day ............... p(1)`  
+`.... 2 days .............. p(2)`  
+`.... etc. ................ etc.`  
+`......................... =====`  
+`.... ALL ................ 1.000`  
+
+
+Note 1: The probabilities (or if you prefer to think of them as proportions) add to 1. We use probabilities or fractions as relative frequencies (like a histogram with an infinite number of entries)
+
+Note 2: typically, the random quantity is obtained from an aggregate of elements e.g. a sum, mean , proportion, regression slope
+
+MORE EXAMPLES OF PROBABILITY DISTRIBUTIONS
+
+(Some are on a continuous scale, but for convenience, the possible values are shown 'binned' into intervals)
+
+* To pilot-test what the return rate of a mail survey is going to be, you mail the questionnaire to n = 20 randomly selected persons.  
+Y = the number who will return questionnaire
+
+`...... y  Probability(Y = y)`  
+`...... 0 ............. p(0)`  
+`...... 1 ............. p(1)`  
+`...... 2 ............. p(1)`  
+`....... .............. ....`  
+`..... 19 ............ p(19)`  
+`..... 20 ............ p(20)`  
+`..................... =====`  
+`..... ALL ........... 1.000`  
+
+
+* People call out their birthdays:  
+Y = when get 1st duplicate
+
+`...... y  Probability(Y = y)`
+
+`...... 2 ............. p(2)`  
+`...... 3 ............. p(3)`  
+`....... ...................`  
+`.... 366 ........... p(366)`  
+`.................... =====`  
+`..... ALL .......... 1.000`  
+
+* Y = Winnings on a $1 wager on la Quotidienne 4
+(same distribution for exact order and any order)
+ 
+`....... ($)`  
+`........ y .. Probability(Y = y)`  
+
+`........ 0 ............... 0.999`  
+`..... 4500 ............... 0.001`  
+`.......................... =====`  
+`..... ALL ................ 1.000`  
+
+
+* Y.bar = Mean cholesterol level in randomly selected sample of n = 30 persons
+
+`.... y.bar .. Probability(y.bar would be...)`
+
+`.. <  4.5 mmol/L ............. p( . )`  
+`.... 4.5 - 4.6 .............. p( . )`  
+`.... 4.6 - 4.7 .............. p( . )`  
+`.... 4.7 - 4.8 .............. p( . )`  
+`.... 4.9 - 4.9 .............. p( . )`  
+`.... 4.9 - 5.0 .............. p( . )`  
+`.... 5.0 - 5.1 .............. p( . )`    
+`.... 5.1 - 5.2 .............. p( . )`  
+`.... etc`  
+`.... 5.6 - 5.7 .............. p( . )`  
+`.... 5.7 - 5.8 .............. p( . )`  
+`.... 5.8 - 5.9 .............. p( . )`  
+`.... 5.9 - 6.0 .............. p( . )`  
+`........ > 6.0 .............. p( . )`  
+`............................. =====`  
+`..... ALL ................... 1.000`  
+
+
+* Y = the value of the test- statistic if 2 populations sampled from had the same population mean
+
+`.... test.statistic (Z) .. Probability(Z would be...)`
+
+`.. < -2 ........................... 0.028`  
+`.... -2 to -1 ..................... 0.136`  
+`.... -1 to 0 ...................... 0.341`  
+`..... 0 to +1 ..................... 0.341`  
+`.... +1 to +2 ..................... 0.341`  
+`.........> +2 ..................... 0.028`  
+`................................... =====`  
+`..... ALL ......................... 1.000`  
+
+
+* In 6/49 lottery, player selects 6 distinct numbers on a grid showing the numbers 1 to 49.  
+49 otherwise identical balls, but numbered 1 to 49, are thoroughly mixed in an urn  
+6 balls are drawn without replacement.  
+.  
+Y = how many of the balls drawn show numbers that match the numbers selected by player
+
+
+`......... y .. Probability(Y = y)`
+
+`......... 0 .......... 0.4359650`  
+`......... 1 .......... 0.4130195`  
+`......... 2 .......... 0.1323780`  
+`......... 3 .......... 0.0176504`  
+`......... 4 .......... 0.0009686`  
+`......... 5 .......... 0.0000184`  
+`......... 6 .......... 0.0000001`  
+`...................... =========`  
+`....... ALL .......... 1.0000000`  
+
+> http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/banco.pdf
+
+
+> http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/Keno(20-spot).pdf
+
+
+## Gaussian Bernoulli-Binomial  Poisson 
+
+## Expectation and Variance
+
+## Functions/combinations of random variables
