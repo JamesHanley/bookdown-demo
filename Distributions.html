@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Distributions /Random Variables | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
+  <title>Chapter 1 Distributions /Random Variables | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
   <meta name="description" content="A regression-from-the-outset based approach" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Distributions /Random Variables | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta property="og:title" content="Chapter 1 Distributions /Random Variables | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Distributions /Random Variables | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta name="twitter:title" content="Chapter 1 Distributions /Random Variables | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   
   <meta name="twitter:description" content="A regression-from-the-outset based approach" />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-04-27" />
+<meta name="date" content="2020-04-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="Probability.html"/>
-<link rel="next" href="math.html"/>
+<link rel="prev" href="index.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,43 +52,6 @@
 
 
 
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -115,127 +78,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#computing-from-the-outset"><i class="fa fa-check"></i><b>0.6</b> Computing from the outset</a></li>
 <li class="chapter" data-level="0.7" data-path="index.html"><a href="index.html#appendix"><i class="fa fa-check"></i><b>0.7</b> Appendix:</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#goals"><i class="fa fa-check"></i><b>1.1</b> Goals</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#structure"><i class="fa fa-check"></i><b>1.2</b> Structure</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#attitudes-etc."><i class="fa fa-check"></i><b>1.3</b> Attitudes, etc….</a></li>
-</ul></li>
-<li class="part"><span><b>I Part I</b></span></li>
-<li class="chapter" data-level="2" data-path="paras.html"><a href="paras.html"><i class="fa fa-check"></i><b>2</b> Statistical Parameters</a><ul>
-<li class="chapter" data-level="2.1" data-path="paras.html"><a href="paras.html#parameters"><i class="fa fa-check"></i><b>2.1</b> Parameters</a></li>
-<li class="chapter" data-level="2.2" data-path="paras.html"><a href="paras.html#parameter-contrasts"><i class="fa fa-check"></i><b>2.2</b> Parameter Contrasts</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="paras.html"><a href="paras.html#parameter-relations-in-numbers-and-words"><i class="fa fa-check"></i><b>2.2.1</b> Parameter relations in numbers and words</a></li>
-<li class="chapter" data-level="2.2.2" data-path="paras.html"><a href="paras.html#parameter-relations-in-symbols-and-with-the-help-of-an-index-category-indicator"><i class="fa fa-check"></i><b>2.2.2</b> Parameter relations in symbols, and with the help of an index-category indicator</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="paras.html"><a href="paras.html#parameter-functions"><i class="fa fa-check"></i><b>2.3</b> Parameter functions</a></li>
-<li class="chapter" data-level="2.4" data-path="paras.html"><a href="paras.html#phraseology-to-avoid"><i class="fa fa-check"></i><b>2.4</b> Phraseology to avoid</a></li>
-<li class="chapter" data-level="2.5" data-path="paras.html"><a href="paras.html#summary"><i class="fa fa-check"></i><b>2.5</b> SUMMARY</a></li>
-<li class="chapter" data-level="2.6" data-path="paras.html"><a href="paras.html#exercises"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
-<li class="chapter" data-level="2.7" data-path="paras.html"><a href="paras.html#references"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>3</b> Statistical Inference</a><ul>
-<li class="chapter" data-level="3.1" data-path="inference.html"><a href="inference.html#the-bayesian-approach"><i class="fa fa-check"></i><b>3.1</b> The Bayesian Approach</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="inference.html"><a href="inference.html#example-parameter-is-2-valued-yes-or-no"><i class="fa fa-check"></i><b>3.1.1</b> Example: parameter is 2-valued: yes or no</a></li>
-<li class="chapter" data-level="3.1.2" data-path="inference.html"><a href="inference.html#example-parameter-is-a-proportion"><i class="fa fa-check"></i><b>3.1.2</b> Example: parameter is a proportion</a></li>
-<li class="chapter" data-level="3.1.3" data-path="inference.html"><a href="inference.html#examples-parameter-is-a-personal-number-or-population-mean"><i class="fa fa-check"></i><b>3.1.3</b> Examples: parameter is a personal number or population mean</a></li>
-<li class="chapter" data-level="3.1.4" data-path="inference.html"><a href="inference.html#the-bayesian-bottom-line"><i class="fa fa-check"></i><b>3.1.4</b> The Bayesian Bottom Line</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="inference.html"><a href="inference.html#frequentist-approach"><i class="fa fa-check"></i><b>3.2</b> Frequentist approach</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="inference.html"><a href="inference.html#frequentist-test-of-a-null-hypothesis"><i class="fa fa-check"></i><b>3.2.1</b> (Frequentist) Test of a Null Hypothesis</a></li>
-<li class="chapter" data-level="3.2.2" data-path="inference.html"><a href="inference.html#ingredients-and-methods-of-procedure-in-a-statistical-test"><i class="fa fa-check"></i><b>3.2.2</b> Ingredients and methods of procedure in a statistical test</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="inference.html"><a href="inference.html#does-the-approach-matter"><i class="fa fa-check"></i><b>3.3</b> Does the approach matter?</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="CI.html"><a href="CI.html"><i class="fa fa-check"></i><b>4</b> Parameter Intervals</a><ul>
-<li class="chapter" data-level="4.1" data-path="CI.html"><a href="CI.html#confidence-intervals"><i class="fa fa-check"></i><b>4.1</b> ‘100% confidence’ intervals</a></li>
-<li class="chapter" data-level="4.2" data-path="CI.html"><a href="CI.html#more-nuanced-intervals"><i class="fa fa-check"></i><b>4.2</b> More-nuanced intervals</a></li>
-<li class="chapter" data-level="4.3" data-path="CI.html"><a href="CI.html#summary-1"><i class="fa fa-check"></i><b>4.3</b> SUMMARY</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="paraMu.html"><a href="paraMu.html"><i class="fa fa-check"></i><b>5</b> The ‘mean’ parameter <span class="math inline">\(\mu\)</span></a><ul>
-<li class="chapter" data-level="5.1" data-path="paraMu.html"><a href="paraMu.html#two-genres"><i class="fa fa-check"></i><b>5.1</b> Two genres</a></li>
-<li class="chapter" data-level="5.2" data-path="paraMu.html"><a href="paraMu.html#fitting-these-to-data-estimating-them-from-data"><i class="fa fa-check"></i><b>5.2</b> Fitting these to data / Estimating them from data</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="paraPi.html"><a href="paraPi.html"><i class="fa fa-check"></i><b>6</b> The (proportion) parameter</a><ul>
-<li class="chapter" data-level="6.1" data-path="paraPi.html"><a href="paraPi.html#example-one"><i class="fa fa-check"></i><b>6.1</b> Example one</a></li>
-<li class="chapter" data-level="6.2" data-path="paraPi.html"><a href="paraPi.html#example-two"><i class="fa fa-check"></i><b>6.2</b> Example two</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="paraLambda.html"><a href="paraLambda.html"><i class="fa fa-check"></i><b>7</b> The (event rate) parameter</a><ul>
-<li class="chapter" data-level="7.1" data-path="paraLambda.html"><a href="paraLambda.html#etc"><i class="fa fa-check"></i><b>7.1</b> Etc</a></li>
-<li class="chapter" data-level="7.2" data-path="paraLambda.html"><a href="paraLambda.html#etc-1"><i class="fa fa-check"></i><b>7.2</b> ETC</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="contrast2Muparas.html"><a href="contrast2Muparas.html"><i class="fa fa-check"></i><b>8</b> Contrast: 2 mean parameters</a><ul>
-<li class="chapter" data-level="8.1" data-path="contrast2Muparas.html"><a href="contrast2Muparas.html#estimand-estimator-estimate"><i class="fa fa-check"></i><b>8.1</b> Estimand, estimator, estimate</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="contrast2Piparas.html"><a href="contrast2Piparas.html"><i class="fa fa-check"></i><b>9</b> Contrast: 2 proportion parameters</a><ul>
-<li class="chapter" data-level="9.1" data-path="contrast2Piparas.html"><a href="contrast2Piparas.html#estimand-estimator-estimate-1"><i class="fa fa-check"></i><b>9.1</b> Estimand, estimator, estimate</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="contrast2Lambdaparas.html"><a href="contrast2Lambdaparas.html"><i class="fa fa-check"></i><b>10</b> Contrast: 2 speed parameters</a><ul>
-<li class="chapter" data-level="10.1" data-path="contrast2Lambdaparas.html"><a href="contrast2Lambdaparas.html#estimand-estimator-estimate-2"><i class="fa fa-check"></i><b>10.1</b> Estimand, estimator, estimate</a></li>
-</ul></li>
-<li class="part"><span><b>II Part II</b></span></li>
-<li class="chapter" data-level="11" data-path="Probability.html"><a href="Probability.html"><i class="fa fa-check"></i><b>11</b> Probability</a><ul>
-<li class="chapter" data-level="11.1" data-path="Probability.html"><a href="Probability.html#objectives"><i class="fa fa-check"></i><b>11.1</b> Objectives</a></li>
-<li class="chapter" data-level="11.2" data-path="Probability.html"><a href="Probability.html#probability-scales"><i class="fa fa-check"></i><b>11.2</b> Probability Scales</a></li>
-<li class="chapter" data-level="11.3" data-path="Probability.html"><a href="Probability.html#basic-rules-for-probability-calculations"><i class="fa fa-check"></i><b>11.3</b> Basic rules for probability calculations</a></li>
-<li class="chapter" data-level="11.4" data-path="Probability.html"><a href="Probability.html#conditional-probabilities-and-independence"><i class="fa fa-check"></i><b>11.4</b> Conditional probabilities, and (in)dependence</a></li>
-<li class="chapter" data-level="11.5" data-path="Probability.html"><a href="Probability.html#changing-the-conditioning-the-direction-matters"><i class="fa fa-check"></i><b>11.5</b> Changing the Conditioning: the direction matters</a></li>
-<li class="chapter" data-level="11.6" data-path="Probability.html"><a href="Probability.html#summary-slides"><i class="fa fa-check"></i><b>11.6</b> Summary Slides</a></li>
-<li class="chapter" data-level="11.7" data-path="Probability.html"><a href="Probability.html#exercises-1"><i class="fa fa-check"></i><b>11.7</b> Exercises:</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="Distributions.html"><a href="Distributions.html"><i class="fa fa-check"></i><b>12</b> Distributions /Random Variables</a><ul>
-<li class="chapter" data-level="12.1" data-path="Distributions.html"><a href="Distributions.html#gaussian-bernoulli-binomial-poisson"><i class="fa fa-check"></i><b>12.1</b> Gaussian Bernoulli-Binomial Poisson</a></li>
-<li class="chapter" data-level="12.2" data-path="Distributions.html"><a href="Distributions.html#expectation-and-variance"><i class="fa fa-check"></i><b>12.2</b> Expectation and Variance</a></li>
-<li class="chapter" data-level="12.3" data-path="Distributions.html"><a href="Distributions.html#functionscombinations-of-random-variables"><i class="fa fa-check"></i><b>12.3</b> Functions/combinations of random variables</a></li>
-</ul></li>
-<li class="part"><span><b>III Part III</b></span></li>
-<li class="chapter" data-level="13" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>13</b> Mathematics</a><ul>
-<li class="chapter" data-level="13.1" data-path="math.html"><a href="math.html#notation"><i class="fa fa-check"></i><b>13.1</b> Notation</a></li>
-<li class="chapter" data-level="13.2" data-path="math.html"><a href="math.html#powers-logarithms-and-antilogarithms"><i class="fa fa-check"></i><b>13.2</b> Powers, Logarithms and Anti–logarithms</a></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="computing01.html"><a href="computing01.html"><i class="fa fa-check"></i><b>14</b> Computing Session 1</a><ul>
-<li class="chapter" data-level="14.1" data-path="computing01.html"><a href="computing01.html#biological-background"><i class="fa fa-check"></i><b>14.1</b> Biological background</a></li>
-<li class="chapter" data-level="14.2" data-path="computing01.html"><a href="computing01.html#statistical-task"><i class="fa fa-check"></i><b>14.2</b> Statistical Task</a><ul>
-<li class="chapter" data-level="14.2.1" data-path="computing01.html"><a href="computing01.html#the-p-and-q-functions-an-orientation"><i class="fa fa-check"></i><b>14.2.1</b> The p and q functions: an orientation</a></li>
-</ul></li>
-<li class="chapter" data-level="14.3" data-path="computing01.html"><a href="computing01.html#shapes-of-distributions"><i class="fa fa-check"></i><b>14.3</b> Shapes of Distributions</a></li>
-<li class="chapter" data-level="14.4" data-path="computing01.html"><a href="computing01.html#exercises-2"><i class="fa fa-check"></i><b>14.4</b> Exercises</a></li>
-<li class="chapter" data-level="14.5" data-path="computing01.html"><a href="computing01.html#summary-2"><i class="fa fa-check"></i><b>14.5</b> SUMMARY</a><ul>
-<li class="chapter" data-level="14.5.1" data-path="computing01.html"><a href="computing01.html#computing"><i class="fa fa-check"></i><b>14.5.1</b> Computing</a></li>
-<li class="chapter" data-level="14.5.2" data-path="computing01.html"><a href="computing01.html#statistical-concepts-and-principles"><i class="fa fa-check"></i><b>14.5.2</b> Statistical Concepts and Principles</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="computing02.html"><a href="computing02.html"><i class="fa fa-check"></i><b>15</b> Computing: Session No. 2</a><ul>
-<li class="chapter" data-level="15.1" data-path="computing02.html"><a href="computing02.html#scientific-background"><i class="fa fa-check"></i><b>15.1</b> Scientific background</a></li>
-<li class="chapter" data-level="15.2" data-path="computing02.html"><a href="computing02.html#random-variation"><i class="fa fa-check"></i><b>15.2</b> Random Variation</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="computing02.html"><a href="computing02.html#measurement-errors"><i class="fa fa-check"></i><b>15.2.1</b> Measurement errors</a></li>
-<li class="chapter" data-level="15.2.2" data-path="computing02.html"><a href="computing02.html#biological-variation"><i class="fa fa-check"></i><b>15.2.2</b> Biological variation</a></li>
-<li class="chapter" data-level="15.2.3" data-path="computing02.html"><a href="computing02.html#example-2"><i class="fa fa-check"></i><b>15.2.3</b> Example 2</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="computing02.html"><a href="computing02.html#when-these-laws-dont-apply"><i class="fa fa-check"></i><b>15.3</b> When these Laws don’t apply</a></li>
-<li class="chapter" data-level="15.4" data-path="computing02.html"><a href="computing02.html#summary-3"><i class="fa fa-check"></i><b>15.4</b> SUMMARY</a><ul>
-<li class="chapter" data-level="15.4.1" data-path="computing02.html"><a href="computing02.html#computing-1"><i class="fa fa-check"></i><b>15.4.1</b> Computing</a></li>
-<li class="chapter" data-level="15.4.2" data-path="computing02.html"><a href="computing02.html#statistical-concepts-and-principles-1"><i class="fa fa-check"></i><b>15.4.2</b> Statistical Concepts and Principles</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="computing03.html"><a href="computing03.html"><i class="fa fa-check"></i><b>16</b> Computing: Session No. 3</a><ul>
-<li class="chapter" data-level="16.1" data-path="computing03.html"><a href="computing03.html#objectives-1"><i class="fa fa-check"></i><b>16.1</b> Objectives</a></li>
-<li class="chapter" data-level="16.2" data-path="computing03.html"><a href="computing03.html#exercises-5"><i class="fa fa-check"></i><b>16.2</b> Exercises</a><ul>
-<li class="chapter" data-level="16.2.1" data-path="computing03.html"><a href="computing03.html#pooled-blood"><i class="fa fa-check"></i><b>16.2.1</b> Pooled Blood</a></li>
-<li class="chapter" data-level="16.2.2" data-path="computing03.html"><a href="computing03.html#life-tables-1990"><i class="fa fa-check"></i><b>16.2.2</b> Life Tables [1990]</a></li>
-<li class="chapter" data-level="16.2.3" data-path="computing03.html"><a href="computing03.html#life-tables-2018"><i class="fa fa-check"></i><b>16.2.3</b> Life Tables [2018]</a></li>
-<li class="chapter" data-level="16.2.4" data-path="computing03.html"><a href="computing03.html#a-simplified-epidemic"><i class="fa fa-check"></i><b>16.2.4</b> A simplified epidemic</a></li>
-<li class="chapter" data-level="16.2.5" data-path="computing03.html"><a href="computing03.html#duplicate-birthdays"><i class="fa fa-check"></i><b>16.2.5</b> Duplicate Birthdays</a></li>
-<li class="chapter" data-level="16.2.6" data-path="computing03.html"><a href="computing03.html#chevalier-de-méré"><i class="fa fa-check"></i><b>16.2.6</b> Chevalier de Méré</a></li>
-</ul></li>
-<li class="chapter" data-level="16.3" data-path="computing03.html"><a href="computing03.html#other-exercises-under-construction"><i class="fa fa-check"></i><b>16.3</b> Other Exercises (under construction)</a><ul>
-<li class="chapter" data-level="16.3.1" data-path="computing03.html"><a href="computing03.html#hiv-transmission"><i class="fa fa-check"></i><b>16.3.1</b> HIV transmission</a></li>
-<li class="chapter" data-level="16.3.2" data-path="computing03.html"><a href="computing03.html#the-2018-book-of-guesses"><i class="fa fa-check"></i><b>16.3.2</b> The 2018 Book of Guesses</a></li>
-<li class="chapter" data-level="16.3.3" data-path="computing03.html"><a href="computing03.html#trends-over-the-last-100-years"><i class="fa fa-check"></i><b>16.3.3</b> Trends over the last 100 years</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="dalite.html"><a href="dalite.html"><i class="fa fa-check"></i><b>17</b> DALITE</a><ul>
-<li class="chapter" data-level="17.1" data-path="dalite.html"><a href="dalite.html#aim"><i class="fa fa-check"></i><b>17.1</b> Aim</a></li>
-<li class="chapter" data-level="17.2" data-path="dalite.html"><a href="dalite.html#how-it-works"><i class="fa fa-check"></i><b>17.2</b> How it works</a></li>
+<li class="chapter" data-level="1" data-path="Distributions.html"><a href="Distributions.html"><i class="fa fa-check"></i><b>1</b> Distributions /Random Variables</a><ul>
+<li class="chapter" data-level="1.1" data-path="Distributions.html"><a href="Distributions.html#random-variables"><i class="fa fa-check"></i><b>1.1</b> Random Variables</a></li>
+<li class="chapter" data-level="1.2" data-path="Distributions.html"><a href="Distributions.html#gaussian-bernoulli-binomial-poisson"><i class="fa fa-check"></i><b>1.2</b> Gaussian Bernoulli-Binomial Poisson</a></li>
+<li class="chapter" data-level="1.3" data-path="Distributions.html"><a href="Distributions.html#expectation-and-variance"><i class="fa fa-check"></i><b>1.3</b> Expectation and Variance</a></li>
+<li class="chapter" data-level="1.4" data-path="Distributions.html"><a href="Distributions.html#functionscombinations-of-random-variables"><i class="fa fa-check"></i><b>1.4</b> Functions/combinations of random variables</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -258,28 +105,206 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="Distributions" class="section level1">
-<h1><span class="header-section-number">Chapter 12</span> Distributions /Random Variables</h1>
+<h1><span class="header-section-number">Chapter 1</span> Distributions /Random Variables</h1>
+<div id="random-variables" class="section level2">
+<h2><span class="header-section-number">1.1</span> Random Variables</h2>
+<p><strong>Textbook definitions of RANDOM VARIABLE</strong></p>
+<p>(Note: JH has changed the usual <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>)</p>
+<blockquote>
+<p>A variable (<span class="math inline">\(Y\)</span>) whose value is a number determined by the outcome of an experiment</p>
+</blockquote>
+<blockquote>
+<p>A variable (<span class="math inline">\(Y\)</span>) whose value is a numerical outcome of a random phenomenon</p>
+</blockquote>
+<p><strong>Textbook definitions: DISCRETE Random Variable</strong></p>
+<blockquote>
+<p>A random variable that assumes only a finite (or countably infinite) number of distinct values</p>
+</blockquote>
+<blockquote>
+<p>Discrete random variables have “a finite or countably infinite number of possible values, each with positive or zero probability.</p>
+</blockquote>
+<blockquote>
+<p>A discrete random variable <span class="math inline">\(Y\)</span> has a finite number of possible values</p>
+</blockquote>
+<p>Random Variable: DISCRETE or CONTINUOUS ?</p>
+<ul>
+<li><em>How long</em> you have to wait for bus / elevator / surgery/ download to complete</li>
+<li>the <em>blood group</em> of n = 1 randomly selected person</li>
+<li><em>how many tries</em> before pass a course</li>
+<li><em>how many</em> of n = 20 randomly selected persons will return questionnaire in pilot study</li>
+<li><em>length of song</em> on a CD</li>
+<li><em>mean cholesterol level</em> in sample of n = 30 randomly selected persons</li>
+<li><em>how hot</em> it is going to be today</li>
+<li><em>how much</em> snow we will get next winter</li>
+<li><em>time</em> someone called (on answering machine)</li>
+<li><em>value of test-statistic</em> if 2 populations sampled from have the same mean</li>
+<li><em>how much</em> ice McDonalds puts in soft drink</li>
+<li><em>how many</em> calories in hamburger</li>
+<li><em>how many</em> numbers you get correct in 6/49?</li>
+<li><em>where</em> roulette wheel stops</li>
+<li><em>how many</em> “wrong number” calls received</li>
+<li><em>how many</em> keys you have to try before get the right one</li>
+<li><em>how much</em> water consumed by 100 homes</li>
+</ul>
+<p><strong>PROBABILITY DISTRIBUTION <span class="math inline">\(p(y)\)</span> associated with (Discrete) Random Variable <span class="math inline">\(Y\)</span></strong></p>
+<p>The ordered pairs {y, Probability(<span class="math inline">\(Y\)</span> = <span class="math inline">\(y\)</span>) } , where <span class="math inline">\(y\)</span> ranges over the possible values of <span class="math inline">\(Y\)</span></p>
+<ul>
+<li><p>Probability(<span class="math inline">\(Y\)</span> = <span class="math inline">\(y\)</span>) is often shortened to Prob(<span class="math inline">\(Y\)</span> = <span class="math inline">\(y\)</span>) or P(<span class="math inline">\(Y\)</span> = <span class="math inline">\(y\)</span>)</p></li>
+<li><p>Can display distribution as formula, table, graph, etc.</p></li>
+</ul>
+<p>EXAMPLES</p>
+<p>(Note: the only reason we start with lotteries is that we can give the exact (mathematically-known) probabilities of each possible result. In most of the other examples, the probabilities will be context-specific.)</p>
+<ul>
+<li>Y = Winnings on a $1 wager on la Quotidienne 3 (same distribution for exact order and any order)</li>
+</ul>
+<p><code>....... ($)</code><br />
+<code>........  y .. Probability(Y = y)</code></p>
+<p><code>........ 0 ............... 0.999</code><br />
+<code>...... 450 ............... 0.001</code><br />
+<code>.......................... =====</code><br />
+<code>...... AL................. 1.000</code></p>
+<ul>
+<li>Randomly select n = 1 person<br />
+Y = the person’s Blood Group</li>
+</ul>
+<p><code>.... y   Probability(Y = y)</code></p>
+<p><code>.... A .............. p(A)</code><br />
+<code>.... B .............. p(B)</code><br />
+<code>.... AB ............ p(AB)</code><br />
+<code>.... O .............. p(O)</code><br />
+<code>.................... =====</code><br />
+<code>....ALL ............ 1.000</code></p>
+<ul>
+<li>Choose a random word and count how many characters it contains<br />
+Y = Number of characters in word</li>
+</ul>
+<p><code>.... y . Probability(Y = y)</code></p>
+<p><code>.... 1 .............. p(1)</code><br />
+<code>.... 2 .............. p(2)</code><br />
+<code>.... etc. ........... etc.</code><br />
+<code>.................... =====</code><br />
+<code>... ALL ............ 1.000</code></p>
+<ul>
+<li>Choose a random hospital admission and count how many days it lasted</li>
+</ul>
+<p>Y = Length of Stay (LOS)</p>
+<p><code>.... y ..... Probability(Y = y)</code></p>
+<p><code>.... 1 day ............... p(1)</code><br />
+<code>.... 2 days .............. p(2)</code><br />
+<code>.... etc. ................ etc.</code><br />
+<code>......................... =====</code><br />
+<code>.... ALL ................ 1.000</code></p>
+<p>Note 1: The probabilities (or if you prefer to think of them as proportions) add to 1. We use probabilities or fractions as relative frequencies (like a histogram with an infinite number of entries)</p>
+<p>Note 2: typically, the random quantity is obtained from an aggregate of elements e.g. a sum, mean , proportion, regression slope</p>
+<p>MORE EXAMPLES OF PROBABILITY DISTRIBUTIONS</p>
+<p>(Some are on a continuous scale, but for convenience, the possible values are shown ‘binned’ into intervals)</p>
+<ul>
+<li>To pilot-test what the return rate of a mail survey is going to be, you mail the questionnaire to n = 20 randomly selected persons.<br />
+Y = the number who will return questionnaire</li>
+</ul>
+<p><code>...... y  Probability(Y = y)</code><br />
+<code>...... 0 ............. p(0)</code><br />
+<code>...... 1 ............. p(1)</code><br />
+<code>...... 2 ............. p(1)</code><br />
+<code>....... .............. ....</code><br />
+<code>..... 19 ............ p(19)</code><br />
+<code>..... 20 ............ p(20)</code><br />
+<code>..................... =====</code><br />
+<code>..... ALL ........... 1.000</code></p>
+<ul>
+<li>People call out their birthdays:<br />
+Y = when get 1st duplicate</li>
+</ul>
+<p><code>...... y  Probability(Y = y)</code></p>
+<p><code>...... 2 ............. p(2)</code><br />
+<code>...... 3 ............. p(3)</code><br />
+<code>....... ...................</code><br />
+<code>.... 366 ........... p(366)</code><br />
+<code>.................... =====</code><br />
+<code>..... ALL .......... 1.000</code></p>
+<ul>
+<li>Y = Winnings on a $1 wager on la Quotidienne 4 (same distribution for exact order and any order)</li>
+</ul>
+<p><code>....... ($)</code><br />
+<code>........ y .. Probability(Y = y)</code></p>
+<p><code>........ 0 ............... 0.999</code><br />
+<code>..... 4500 ............... 0.001</code><br />
+<code>.......................... =====</code><br />
+<code>..... ALL ................ 1.000</code></p>
+<ul>
+<li>Y.bar = Mean cholesterol level in randomly selected sample of n = 30 persons</li>
+</ul>
+<p><code>.... y.bar .. Probability(y.bar would be...)</code></p>
+<p><code>.. &lt;  4.5 mmol/L ............. p( . )</code><br />
+<code>.... 4.5 - 4.6 .............. p( . )</code><br />
+<code>.... 4.6 - 4.7 .............. p( . )</code><br />
+<code>.... 4.7 - 4.8 .............. p( . )</code><br />
+<code>.... 4.9 - 4.9 .............. p( . )</code><br />
+<code>.... 4.9 - 5.0 .............. p( . )</code><br />
+<code>.... 5.0 - 5.1 .............. p( . )</code><br />
+<code>.... 5.1 - 5.2 .............. p( . )</code><br />
+<code>.... etc</code><br />
+<code>.... 5.6 - 5.7 .............. p( . )</code><br />
+<code>.... 5.7 - 5.8 .............. p( . )</code><br />
+<code>.... 5.8 - 5.9 .............. p( . )</code><br />
+<code>.... 5.9 - 6.0 .............. p( . )</code><br />
+<code>........ &gt; 6.0 .............. p( . )</code><br />
+<code>............................. =====</code><br />
+<code>..... ALL ................... 1.000</code></p>
+<ul>
+<li>Y = the value of the test- statistic if 2 populations sampled from had the same population mean</li>
+</ul>
+<p><code>.... test.statistic (Z) .. Probability(Z would be...)</code></p>
+<p><code>.. &lt; -2 ........................... 0.028</code><br />
+<code>.... -2 to -1 ..................... 0.136</code><br />
+<code>.... -1 to 0 ...................... 0.341</code><br />
+<code>..... 0 to +1 ..................... 0.341</code><br />
+<code>.... +1 to +2 ..................... 0.341</code><br />
+<code>.........&gt; +2 ..................... 0.028</code><br />
+<code>................................... =====</code><br />
+<code>..... ALL ......................... 1.000</code></p>
+<ul>
+<li>In 6/49 lottery, player selects 6 distinct numbers on a grid showing the numbers 1 to 49.<br />
+49 otherwise identical balls, but numbered 1 to 49, are thoroughly mixed in an urn<br />
+6 balls are drawn without replacement.<br />
+.<br />
+Y = how many of the balls drawn show numbers that match the numbers selected by player</li>
+</ul>
+<p><code>......... y .. Probability(Y = y)</code></p>
+<p><code>......... 0 .......... 0.4359650</code><br />
+<code>......... 1 .......... 0.4130195</code><br />
+<code>......... 2 .......... 0.1323780</code><br />
+<code>......... 3 .......... 0.0176504</code><br />
+<code>......... 4 .......... 0.0009686</code><br />
+<code>......... 5 .......... 0.0000184</code><br />
+<code>......... 6 .......... 0.0000001</code><br />
+<code>...................... =========</code><br />
+<code>....... ALL .......... 1.0000000</code></p>
+<blockquote>
+<p><a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/banco.pdf" class="uri">http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/banco.pdf</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/Keno(20-spot).pdf" class="uri">http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/Keno(20-spot).pdf</a></p>
+</blockquote>
+</div>
 <div id="gaussian-bernoulli-binomial-poisson" class="section level2">
-<h2><span class="header-section-number">12.1</span> Gaussian Bernoulli-Binomial Poisson</h2>
+<h2><span class="header-section-number">1.2</span> Gaussian Bernoulli-Binomial Poisson</h2>
 </div>
 <div id="expectation-and-variance" class="section level2">
-<h2><span class="header-section-number">12.2</span> Expectation and Variance</h2>
+<h2><span class="header-section-number">1.3</span> Expectation and Variance</h2>
 </div>
 <div id="functionscombinations-of-random-variables" class="section level2">
-<h2><span class="header-section-number">12.3</span> Functions/combinations of random variables</h2>
+<h2><span class="header-section-number">1.4</span> Functions/combinations of random variables</h2>
 
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="Probability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="math.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
