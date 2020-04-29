@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Probability | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
   <meta name="description" content="A regression-from-the-outset based approach" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Probability | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-04-27" />
+<meta name="date" content="2020-04-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -183,9 +183,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.7" data-path="Probability.html"><a href="Probability.html#exercises-1"><i class="fa fa-check"></i><b>11.7</b> Exercises:</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="Distributions.html"><a href="Distributions.html"><i class="fa fa-check"></i><b>12</b> Distributions /Random Variables</a><ul>
-<li class="chapter" data-level="12.1" data-path="Distributions.html"><a href="Distributions.html#gaussian-bernoulli-binomial-poisson"><i class="fa fa-check"></i><b>12.1</b> Gaussian Bernoulli-Binomial Poisson</a></li>
-<li class="chapter" data-level="12.2" data-path="Distributions.html"><a href="Distributions.html#expectation-and-variance"><i class="fa fa-check"></i><b>12.2</b> Expectation and Variance</a></li>
-<li class="chapter" data-level="12.3" data-path="Distributions.html"><a href="Distributions.html#functionscombinations-of-random-variables"><i class="fa fa-check"></i><b>12.3</b> Functions/combinations of random variables</a></li>
+<li class="chapter" data-level="12.1" data-path="Distributions.html"><a href="Distributions.html#random-variables"><i class="fa fa-check"></i><b>12.1</b> Random Variables</a></li>
+<li class="chapter" data-level="12.2" data-path="Distributions.html"><a href="Distributions.html#gaussian-bernoulli-binomial-poisson"><i class="fa fa-check"></i><b>12.2</b> Gaussian Bernoulli-Binomial Poisson</a></li>
+<li class="chapter" data-level="12.3" data-path="Distributions.html"><a href="Distributions.html#expectation-and-variance"><i class="fa fa-check"></i><b>12.3</b> Expectation and Variance</a></li>
+<li class="chapter" data-level="12.4" data-path="Distributions.html"><a href="Distributions.html#functionscombinations-of-random-variables"><i class="fa fa-check"></i><b>12.4</b> Functions/combinations of random variables</a></li>
 </ul></li>
 <li class="part"><span><b>III Part III</b></span></li>
 <li class="chapter" data-level="13" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>13</b> Mathematics</a><ul>
@@ -224,8 +225,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.2.2" data-path="computing03.html"><a href="computing03.html#life-tables-1990"><i class="fa fa-check"></i><b>16.2.2</b> Life Tables [1990]</a></li>
 <li class="chapter" data-level="16.2.3" data-path="computing03.html"><a href="computing03.html#life-tables-2018"><i class="fa fa-check"></i><b>16.2.3</b> Life Tables [2018]</a></li>
 <li class="chapter" data-level="16.2.4" data-path="computing03.html"><a href="computing03.html#a-simplified-epidemic"><i class="fa fa-check"></i><b>16.2.4</b> A simplified epidemic</a></li>
-<li class="chapter" data-level="16.2.5" data-path="computing03.html"><a href="computing03.html#duplicate-birthdays"><i class="fa fa-check"></i><b>16.2.5</b> Duplicate Birthdays</a></li>
-<li class="chapter" data-level="16.2.6" data-path="computing03.html"><a href="computing03.html#chevalier-de-méré"><i class="fa fa-check"></i><b>16.2.6</b> Chevalier de Méré</a></li>
+<li class="chapter" data-level="16.2.5" data-path="computing03.html"><a href="computing03.html#screening-for-hiv"><i class="fa fa-check"></i><b>16.2.5</b> Screening for HIV</a></li>
+<li class="chapter" data-level="16.2.6" data-path="computing03.html"><a href="computing03.html#duplicate-birthdays"><i class="fa fa-check"></i><b>16.2.6</b> Duplicate Birthdays</a></li>
+<li class="chapter" data-level="16.2.7" data-path="computing03.html"><a href="computing03.html#chevalier-de-méré"><i class="fa fa-check"></i><b>16.2.7</b> Chevalier de Méré</a></li>
 </ul></li>
 <li class="chapter" data-level="16.3" data-path="computing03.html"><a href="computing03.html#other-exercises-under-construction"><i class="fa fa-check"></i><b>16.3</b> Other Exercises (under construction)</a><ul>
 <li class="chapter" data-level="16.3.1" data-path="computing03.html"><a href="computing03.html#hiv-transmission"><i class="fa fa-check"></i><b>16.3.1</b> HIV transmission</a></li>
@@ -370,10 +372,41 @@ Figure 11.8: A first example of the difference between two very different sets o
 <p><span class="math display">\[Probability[ data \ | \ Hypothesis ] \neq Probability[ Hypothesis \ | \ data ]\]</span></p>
 <p>or, if you prefer something that rhymes,</p>
 <p><span class="math display">\[Probability[ \ data \ | \  theta ] \neq Probability[ \ theta \ | \ data ].\]</span></p>
-<p>Two striking – and frightening – examples of misunderstandings about them are given on the next page.</p>
+<p><strong>Example: The Prosecutor’s Fallacy</strong></p>
+<p>Here, in the context of criminal trials involving DNA evidence, are two striking – and worrysome – <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch-01-02-PlusNotesSept2019.pdf#page=19">examples of misunderstandings about them</a>. This misunderstanding is often referred to as the ‘Prosecutor’s Fallacy’.</p>
+<p>In the 1995 <a href="https://www.britannica.com/event/O-J-Simpson-trial">OJ Simpson trial</a> - the subject of this <a href="https://en.wikipedia.org/wiki/The_People_v._O._J._Simpson:_American_Crime_Story">recent tv series</a> – the (very very small) probability that the blood of a randomly-selected innocent person would match that found at the crime scene was mistaken as (confused with) the probability that the person accused of murder was innocent. It is worth repeating an excerpt from JH’s bios601 notes, just cited.</p>
+<blockquote>
+<p>In this case the statistician Peter Donnelly opened a new area of debate. He remarked that<br />
+.<br />
+<strong>forensic evidence</strong> answers the question: <strong>What is the probability that the defendant’s DNA profile matches that of the crime sample, assuming that the defendant is innocent?</strong><br />
+.<br />
+while <strong>the jury</strong> must try to answer the question<br />
+.<br />
+<strong>What is the probability that the defendant is innocent, [in the light of ALL of the OTHER EVIDENCE and] assuming that the DNA profiles of the defendant and the crime sample match?</strong></p>
+</blockquote>
+<p>The OJ Simpson case also features a well-known Harvard law professor Alan Dershowitz– who was in the news again in the Trump impeachment case – whose insunuations and misuse of probabilites spurred the renowned and respected statistician IJ Good (who and worked with Alan Turing) to write <a href="http://www.biostat.mcgill.ca/hanley/statbook/WhenBattererTurnsMurdererIJGOOD.pdf">this article</a> in the journal Nature. It begins:</p>
+<blockquote>
+<p>SIR - Alan M. Dershowitz, who advises the defence lawyers in the 0. J. Simpson trial, stated on US television in early March that only about a tenth of 1% of batterers actually murder their wives. His statement, though presumably true, is highly misleading for the woman in the street. A probability of greater relevance for legal purposes would be based on the knowledge that the woman was both battered by her husband and also murdered by somebody. An approximate estimate of this probability will now be made, based on Dershowitz’s statement.</p>
+</blockquote>
+<p>Some statistical articles, having to do with lie detection tests, have also mixed up the probability of innocence given data with the (much easier to calculate) probability of data given innocence.</p>
+<p><strong>Naive Measures of diagnostic/prognostic accuracy</strong></p>
+<p>Many <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/CandH-ch0102/EyesHeatCamera.pdf">claims of high accuracy of diagnostic or screening tests</a> rely on artificially-high rates of the target condition, and/or <a href="https://www.swpc.noaa.gov/sites/default/files/images/u30/Murphy%2C%20A.H.%2C%201996%20-%20The%20Finely%20Affair.pdf">combine the ‘sensitivity’ and ‘specificity’ performance measures into one number</a>.</p>
 </div>
 <div id="summary-slides" class="section level2">
 <h2><span class="header-section-number">11.6</span> Summary Slides</h2>
+<ul>
+<li><p>Probablities can be viewed as long-run frequencies, or as degrees of belief.</p></li>
+<li><p>We often map probabilities into, and work with, other scales.</p></li>
+<li><p>The ‘calculus’ of probabilities relies on additions and subtractions, and multiplications.</p></li>
+<li><p>There is always a context for a probability.</p></li>
+<li><p>Trees can help to keep things (and directions!) straight.</p></li>
+<li><p>When things are more complex, simulations can help.</p></li>
+<li><p>It is easy to confuse contexts, and to calculate the wrong probability.</p></li>
+<li><p><span class="math display">\[Probability[ data \ | \ Hypothesis ] \neq Probability[ Hypothesis \ | \ data ]\]</span></p></li>
+<li><p><span class="math display">\[Probability[ \ data \ | \  theta ] \neq Probability[ \ theta \ | \ data ].\]</span></p></li>
+<li><p>Don’t fall into the ‘prosecutor’s fallacy’ trap, and mistake a p-value for the probability that the (null) hypothesis is true.</p></li>
+<li><p>Be suspicious of small (extreme) probabilities: they may well have been incorrectly calculated, or not all that revevant.</p></li>
+</ul>
 </div>
 <div id="exercises-1" class="section level2">
 <h2><span class="header-section-number">11.7</span> Exercises:</h2>
@@ -390,19 +423,27 @@ A Santé Quebec survey found the prevalence of 4 heart disease risk factors in 
 <li><p>An auto insurance company notes whether drivers under 21 years old have had a driver’s education course. Some 40% of its policyholders under 21 have had a driver’s education course and 5% of this subset have an accident in a one-year period. Of those under 21 who have not had a driver’s education course, 10% have an accident within a one-year period.<br />
 A 20-year-old takes out a policy with this company and within one year has an accident. What is the probability that the person did not have a driver’s education course? [a probability tree may help] 607 midtern 2001</p></li>
 <li><p>Twins: [Real story from a real statistician]<br />
-<span class="math inline">\(\bullet\)</span> Depict Efron’s calculations using a probability tree. Here is his story</p></li>
+Depict Efron’s calculations using a probability tree. Here is his story</p></li>
 </ol>
 <blockquote>
 <p>Here is a real-life example I used to illustrate Bayesian virtues to the physicists. A physicist friend of mine and her husband found out, thanks to the miracle of sonograms, that they were going to have twin boys. One day at breakfast in the student union she suddenly asked me what was the probability that the twins would be identical rather than fraternal. This seemed like a tough question, especially at breakfast. Stalling for time, I asked if the doctor had given her any more information. ‘Yes’, she said, ‘he told me that the proportion of identical twins was one third’. This is the population proportion of course, and my friend wanted to know the probability that her twins would be identical.<br />
 Bayes would have lived in vain if I didn’t answer my friend using Bayes’ rule. According to the doctor the prior odds ratio of identical to nonidentical is one-third to two-thirds, or one half. Because identical twins are always the same sex but fraternal twins are random, the likelihood ratio for seeing ‘both boys’ in the sonogram is a factor of two in favor of Identical. Bayes’ rule says to multiply the prior odds by the likelihood ratio to get the current odds: in this case 1/2 times 2 equals 1; in other words, equal odds on identical or nonidentical given the sonogram results. So I told my friend that her odds were 50-50 (wishing the answer had come out something else, like 63-37, to make me seem more clever.) Incidentally, the twins are a couple of years old now, and ‘couldn’t be more non-identical’ according to their mom. [Bradley Efron]</p>
 </blockquote>
 <ol start="9" style="list-style-type: decimal">
+<li>Screening for HIV: <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/CandH-ch0102/MeyerPaukerHIVscreening.pdf">Can we afford the false positive rate?</a></li>
+</ol>
+<ul>
+<li>Represent the information they use in their Meaning of Postive Tests section (starting on page 239, second column) as a tree.</li>
+<li>Then present the same information in a different tree, with data [test result] on left, and hypothesis on the right (rather than the conventional <span class="math inline">\(\theta \rightarrow\)</span> data’ direction)<br />
+.</li>
+</ul>
+<ol start="10" style="list-style-type: decimal">
 <li>The Economist article <a href="http://www.biostat.mcgill.ca/hanley/bios601/CandH-ch0102/HowScienceGoesWrong.pdf">Problems with scientific research: HOW SCIENCE GOES WRONG</a></li>
 </ol>
-<p>It has a very nice graphical explanation of why some many studies get it wrong, and cannot be reproduced – the topic of the Reproducibility Project in Psychology referred to on same page.</p>
-<p>One reason is that even if all studies were published, regardless of whether the p-value was less than 0.05 (a common screening/filtering criterion) or greater than 0.05, then, of all the hypotheses tested, only a small percentage of the hypotheses are ‘true’. Thus many or most of the ‘positive’ tests (<em>published</em> results) will be false positives. It is just like when using mammography to screen for breast cancer: in maybe 4 of every 5 women referred for biopsy, the biopsy will come back negative.</p>
+<p>has a very nice graphical explanation of why some many studies get it wrong, and cannot be reproduced – the topic of the Reproducibility Project in Psychology referred to on same page.</p>
+<p>One reason is that even if all studies were published, regardless of whether the p-value was less than 0.05 (a common screening/filtering criterion) or greater than 0.05, <strong>of all the hypotheses tested, only a small percentage of the hypotheses are ‘true’</strong>. Thus many or most of the ‘positive’ tests (<em>published</em> results) will be false positives. It is just like when using mammography to screen for breast cancer: in maybe 4 of every 5 women referred for biopsy, the biopsy will come back negative.</p>
 <ul>
-<li><p>Represent the information in their Figure as a tree. Then present the same information in a different tree, with data on left, and hypothesis on the right (rather than the conventional <span class="math inline">\(\theta \rightarrow\)</span> data’ direction) – as JH has done in the three rightmost instances in Figure 2 on page 6 above.</p></li>
+<li><p>Represent the information in their Figure as a tree. Then present the same information in a different tree, with data on left, and hypothesis on the right (rather than the conventional <span class="math inline">\(\theta \rightarrow\)</span> data’ direction) – as JH has done in a few instances above.</p></li>
 <li><p>What percentage of positive tests would be correct/not if, instead, 1 in <strong>2</strong> of the hypotheses interesting enough to test were true?</p></li>
 <li><p>Come up with a general formula for what in medicine is called the ‘<em>positive predictive value</em>’ of a positive medical test.</p></li>
 <li><p>Try to simplify it so that the characteristics of the <em>test(<span class="math inline">\(\alpha \ and \ \beta\)</span> are isolated in one factor, and the testing </em>\underline{<em>context</em> (the 1 in 10 or 1 in 2, etc.) is in another. <em>Hint</em>: use odds rather than probabilities, so that you are addressing the ratio of true positives to false positives, and the ratio of true hypothesis to false hypotheses. And use the <em>Likelihood Ratio</em></p></li>

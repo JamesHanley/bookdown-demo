@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 16 Computing: Session No. 3 | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
   <meta name="description" content="A regression-from-the-outset based approach" />
-  <meta name="generator" content="bookdown 0.18.1 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 16 Computing: Session No. 3 | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-04-27" />
+<meta name="date" content="2020-04-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -183,9 +183,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.7" data-path="Probability.html"><a href="Probability.html#exercises-1"><i class="fa fa-check"></i><b>11.7</b> Exercises:</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="Distributions.html"><a href="Distributions.html"><i class="fa fa-check"></i><b>12</b> Distributions /Random Variables</a><ul>
-<li class="chapter" data-level="12.1" data-path="Distributions.html"><a href="Distributions.html#gaussian-bernoulli-binomial-poisson"><i class="fa fa-check"></i><b>12.1</b> Gaussian Bernoulli-Binomial Poisson</a></li>
-<li class="chapter" data-level="12.2" data-path="Distributions.html"><a href="Distributions.html#expectation-and-variance"><i class="fa fa-check"></i><b>12.2</b> Expectation and Variance</a></li>
-<li class="chapter" data-level="12.3" data-path="Distributions.html"><a href="Distributions.html#functionscombinations-of-random-variables"><i class="fa fa-check"></i><b>12.3</b> Functions/combinations of random variables</a></li>
+<li class="chapter" data-level="12.1" data-path="Distributions.html"><a href="Distributions.html#random-variables"><i class="fa fa-check"></i><b>12.1</b> Random Variables</a></li>
+<li class="chapter" data-level="12.2" data-path="Distributions.html"><a href="Distributions.html#gaussian-bernoulli-binomial-poisson"><i class="fa fa-check"></i><b>12.2</b> Gaussian Bernoulli-Binomial Poisson</a></li>
+<li class="chapter" data-level="12.3" data-path="Distributions.html"><a href="Distributions.html#expectation-and-variance"><i class="fa fa-check"></i><b>12.3</b> Expectation and Variance</a></li>
+<li class="chapter" data-level="12.4" data-path="Distributions.html"><a href="Distributions.html#functionscombinations-of-random-variables"><i class="fa fa-check"></i><b>12.4</b> Functions/combinations of random variables</a></li>
 </ul></li>
 <li class="part"><span><b>III Part III</b></span></li>
 <li class="chapter" data-level="13" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>13</b> Mathematics</a><ul>
@@ -224,8 +225,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.2.2" data-path="computing03.html"><a href="computing03.html#life-tables-1990"><i class="fa fa-check"></i><b>16.2.2</b> Life Tables [1990]</a></li>
 <li class="chapter" data-level="16.2.3" data-path="computing03.html"><a href="computing03.html#life-tables-2018"><i class="fa fa-check"></i><b>16.2.3</b> Life Tables [2018]</a></li>
 <li class="chapter" data-level="16.2.4" data-path="computing03.html"><a href="computing03.html#a-simplified-epidemic"><i class="fa fa-check"></i><b>16.2.4</b> A simplified epidemic</a></li>
-<li class="chapter" data-level="16.2.5" data-path="computing03.html"><a href="computing03.html#duplicate-birthdays"><i class="fa fa-check"></i><b>16.2.5</b> Duplicate Birthdays</a></li>
-<li class="chapter" data-level="16.2.6" data-path="computing03.html"><a href="computing03.html#chevalier-de-méré"><i class="fa fa-check"></i><b>16.2.6</b> Chevalier de Méré</a></li>
+<li class="chapter" data-level="16.2.5" data-path="computing03.html"><a href="computing03.html#screening-for-hiv"><i class="fa fa-check"></i><b>16.2.5</b> Screening for HIV</a></li>
+<li class="chapter" data-level="16.2.6" data-path="computing03.html"><a href="computing03.html#duplicate-birthdays"><i class="fa fa-check"></i><b>16.2.6</b> Duplicate Birthdays</a></li>
+<li class="chapter" data-level="16.2.7" data-path="computing03.html"><a href="computing03.html#chevalier-de-méré"><i class="fa fa-check"></i><b>16.2.7</b> Chevalier de Méré</a></li>
 </ul></li>
 <li class="chapter" data-level="16.3" data-path="computing03.html"><a href="computing03.html#other-exercises-under-construction"><i class="fa fa-check"></i><b>16.3</b> Other Exercises (under construction)</a><ul>
 <li class="chapter" data-level="16.3.1" data-path="computing03.html"><a href="computing03.html#hiv-transmission"><i class="fa fa-check"></i><b>16.3.1</b> HIV transmission</a></li>
@@ -394,8 +396,17 @@ when.first.dup.happens =<span class="st"> </span><span class="kw">apply</span>(s
 ##  3  4  5  6  7 
 ## 21 39 23 16  1</code></pre>
 </div>
+<div id="screening-for-hiv" class="section level3">
+<h3><span class="header-section-number">16.2.5</span> Screening for HIV</h3>
+<p>See Figure 1 ‘Meaning of Positive HIV Tests for HIV’) in the article <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/CandH-ch0102/MeyerPaukerHIVscreening.pdf">Can we afford the false positive rate?</a></p>
+<ul>
+<li><p>Use <code>R</code> to redraw their Figure</p></li>
+<li><p>Add on top of it a curve for a population with a 1% prevalence.</p></li>
+<li><p>Add a curve for a prevalence of 0.16%, but assuming sensitivity is only 90%.</p></li>
+</ul>
+</div>
 <div id="duplicate-birthdays" class="section level3">
-<h3><span class="header-section-number">16.2.5</span> Duplicate Birthdays</h3>
+<h3><span class="header-section-number">16.2.6</span> Duplicate Birthdays</h3>
 <p>[The exercises are found at the end of this sub-section]</p>
 <p>For 13 years in the 607 course from 1981 to 1993, JH handed out a page with a 12 x 31 grid and asked the students to indicate their birthday (month and day). The numbers of students in the class (‘n’) varied from 19 to 52 (mean 32, median 33) The results, <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c323/excel/birthdays_607.pdf">in ‘raw’ form here</a>, may surprize you. <strong>In 10 of the 13 classes, there was at least one duplicate birthday.</strong></p>
 <p><a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/LotteriesProbabilitiesHANLEY1984TeachingStatistics.pdf#page=3" class="uri">http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/LotteriesProbabilitiesHANLEY1984TeachingStatistics.pdf#page=3</a></p>
@@ -550,7 +561,7 @@ B =<span class="st"> </span><span class="kw">matrix</span>(
 <pre><code>## [1] 52 duplicates / 100  ; larger N.SIMS: more precise probability estimate.</code></pre>
 </div>
 <div id="chevalier-de-méré" class="section level3">
-<h3><span class="header-section-number">16.2.6</span> Chevalier de Méré</h3>
+<h3><span class="header-section-number">16.2.7</span> Chevalier de Méré</h3>
 <p>[see here}(<a href="https://www.cut-the-knot.org/Probability/ChevalierDeMere.shtml" class="uri">https://www.cut-the-knot.org/Probability/ChevalierDeMere.shtml</a>) or<br />
 Gamblers in 17th century France used to bet on the event of getting at least one 1 ‘six’ in four rolls of a <a href="https://en.wikipedia.org/wiki/Dice">die</a> or in 1 roll of 4 dice [dice is plural for die]. As a more trying variation, two dice were rolled 24 times with a bet on having at least one double six. Chevalier de Méré who expected a couple of sixes to turn up in 24 double rolls with the frequency of a six in 4 single rolls. However, he lost consistently.</p>
 <ul>
@@ -563,7 +574,6 @@ Gamblers in 17th century France used to bet on the event of getting at least one
 </div>
 <div id="other-exercises-under-construction" class="section level2">
 <h2><span class="header-section-number">16.3</span> Other Exercises (under construction)</h2>
-<p>(some belong in other chapters)</p>
 <div id="hiv-transmission" class="section level3">
 <h3><span class="header-section-number">16.3.1</span> HIV transmission</h3>
 <p>[ probability per act ]</p>
