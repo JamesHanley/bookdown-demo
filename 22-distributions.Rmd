@@ -208,9 +208,317 @@ Y = how many of the balls drawn show numbers that match the numbers selected by 
 
 > http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/Keno(20-spot).pdf
 
+## Expectation (mean)  of a Random Variable
 
-## Gaussian Bernoulli-Binomial  Poisson 
+**DEFINITION**
 
-## Expectation and Variance
+If $Y$ takes on the DISCRETE values
 
+... $y_1$ with probability $p_1$,  
+... $y_2$ with probability $p_2$,  
+... $y_3$ with probability $p_3$,  
+... etc
+... $y_k$ with probability $p_k$,  
+
+then the **expected value of $Y$ (written 'E($Y$)' )** is
+
+$$E[Y] = y_1 \times p_1 + y_2 \times p_2 + \dots + y_k \times p_k = \sum y_i \times p_i.$$  
+
+E($Y$) is a mean that uses expected (i.e. unobservable or theoretical or long run) relative frequencies ($p$'s). ( $\bar{y}$ uses observed relative frequencies. )
+
+Can think of E($Y$) as 'center of mass' of $p().$
+
+If $Y$ takes on the CONTINUOUS values $y$ - $\delta y/2$ to $y$ - $\delta y/2$ with probability
+$p = f(y) \delta y$, then
+$$ E[Y] = \int f(y) dy.$$
+
+**RELEVANCE** of Expectation of a Random Variable
+
+* IT ACTS AS A MEAN FOR A VARIABLE THAT HAS A (CONCEPTUAL) REPETITION OR AN INFINITE N
+
+* THE EXPECTED VALUE OF A RANDOM VARIABLE Y WILL USUALLY BE IN TERMS OF POPULATION PARAMETERS.  
+.  
+A STATISTIC WITH EXPECTED VALUE $\theta$ IS AN 'UNBIASED ESTIMATOR' OF $\theta$.
+
+   + example 1:  
+Y = Proportion of 'YES' in sample on $n$  
+E($Y$) = $\pi$ = PROPORTION of YES' in POPULATION  
+Then $\hat{\pi}$ = $Y,$  and Y is an unbiased estimator of $\pi.$
+
+   + example 2:  
+If we use a divisor of $n - 1$ to calculate the sample variance $s^2 = \frac{\sum(y-\bar{y})^2}{n-1},$ then  
+E($s^2) = \sigma^2$, so
+$s^2$ is an unbiased estimator of $\sigma^2$. ( $\widehat{\sigma^2}$ stands for 'estimate/estimator of' $\sigma^2.$)  
+If we use a divisor of $n$, then  
+$$E\bigg(\frac{\sum(y-\bar{y})^2}{n}\bigg) = \frac{n-1}{n} \times \sigma^2.$$  
+This estimator produces estiamtes that, on average, are too small.
+
+**EXAMPLES** of EXPECTED VALUE of Random Variable
+
+* Y = Winnings on a $1 wager on la Quotidienne 3
+
+ 
+`..... y($) ... p(y) ...... y x p(y)`
+
+`........ 0 .. 0.999 ....... $0.00`  
+`...... 450 ...0.001 ....... $0.45`  
+`.......................... =====`  
+`...... ..............SUM .. $0.45`  
+
+Some may find it easier to think of averaging the winnings of 1 person who won 450 dollars and 999 persons who won 0 dollars.
+
+* Keno: Y = Winnings on a $3 wager  
+.  
+E(Winnings) = $2.12 (> 70%) [see here.]( http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/Keno(20-spot).pdf) 
+  
+*  Banco: Winnings on a $1 wager  
+.  
+42% ≤ E(Winnings) ≤ 55%, depending on how many numbers played [see here.](http://www.medicine.mcgill.ca/epidemiology/hanley/c323/lotteries/banco.pdf)
+
+* **Longevity of a fictitious  birth cohort** if they were to experience age-specific death rates observed in Quebec in 1990 [see exercises in 3rd computing session]
+
+   + Y = Length of life = age at death.  
+Y = Age at death (or Longevity or length of Life, or lifetime, if you prefer to be positive)  .
+.
+E(Y) = E(Lifetime) = '**LIFE EXPECTANCY AT BIRTH**'  
+.  
+Assume for sake of illustration that deaths in a decade are all at midpoint of interval (calculations done using one-year-wide age-bins rather than one-decade-wide would be more exact)
+
+`age = mid-point of decade (for simplicity)`  
+` p = proportion dying in decade `  
+`....................MALES .............. FEMALES`  
+
+`decade .... age ..... p .... age x p ...... p ...... age x p `  
+.  
+`00-10 ...... 05 .... 0.010 ... 0.050 ..... 0.080 ..... 0.040`  
+`10-20 ...... 15 .... 0.006 ... 0.089 ..... 0.002 ..... 0.030  `  
+`20-30 ...... 25 .... 0.012 ... 0.295 ..... 0.004 ......y.yyy `  
+`30-40 ...... 35 .... 0.016 ... 0.544 ..... 0.007 ......y.yyy `  
+`40-50 ...... 45 .... 0.030 ... 1.335 ..... 0.017 ......y.yyy `  
+`50-60 ...... 55 .... 0.074 ... 4.079 ..... 0.040 ......y.yyy `  
+`60-70 ...... 65 .... 0.180 .. 11.697 ..... 0.096 ......y.yyy `  
+`70-80 ...... 75 .... 0.301 .. 22.610 ..... 0.214 ......y.yyy `  
+`80-90 .. ... 85 .... 0.279 .. 23.680 ..... 0.358 ......y.yyy `  
+`90-100 ..... 95 .... 0.093 ... 8.822 ..... 0.254 .....24.136 `  
+`.................... =.=== .. ==.=== ..... =.=== .... ==.=== `  
+`.ALL ............... 1.000 .. 73.2 ....... 1.000 .... xx.x`
+
+
+* If you want to start **your own Insurance Company** 
+Y = Payout (from -99,750 to +$1250)  
+
+E(Payout on single policy) > 0 BUT...
+Variance(Payout) is VERY LARGE  
+
+
+see MM3 p 341
+
+* Distance Where to wait if 3 unequally spaced elevators ?
+prob(it's #1) = p(it's #2)=p(it's #3) = 1/3
+
+
+## Expected value  of a FUNCTION of a  random variable
+
+* If $Y \ \sim  \ p(y)$, i.e., $Y$ has probability distribution p($y$), and if $g(Y)$ is some real-valued function of $Y$, then
+$$E[ g(Y) ] = \sum g(y)  \times p(y),$$
+i.e. it is a weighted mean of the $g(y)$'s, with $p(y)$'s as weights.
+
+* **Examples** 
+
+   + $Y$ = Temperature (C) on May 6 in Mtl on a randomly selected day of the year;  
+$g(Y)$ = Temperature (F) = 32 + (9/5) $Y$
+
+   + $Y$ = Weight in Kg (or Height in cm) of a randomly selected person;  
+g(Y) = Weight in Kg (or Height in inches)
+
+   + $Y_1$ and $Y_2$ are two random variables that might or might not be related;  
+.  
+if $g(Y_1, Y_2) = Y_1 + Y_2,$ then  $E[g(Y_1, Y_2)] = E[Y_1] + E[Y_2].$  
+.  
+if $g(Y_1, Y_2) = \frac{Y_1 + Y_2}{2},$  then $E[g(Y_1, Y_2)] = \frac{E[Y_1] + E[Y_2]}{2},$  
+.  
+and, by analogy, for a sum or mean of $n$ related or unrelated random variables.
+
+   + $Y$ = diameter of a randomly chosen sphere;  
+$g(Y)$ = Volume of sphere = $\frac{\pi}{6}  Y^3.$
+
+   + $Y$ = fuel consumption, in liters/100km, of  a randomly selected make of car;  
+$g(Y)$ =  miles per gallon or Km per liter (reciprocal)
+
+   + $Y$ =  which of 3 [**unequally spaced elevators**](http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/median-elevator.pdf) shows up next.  
+Prob(it is #1) = prop(it is #2) = prob(it's #3) = 1/3.  
+.  
+$g(Y)$ = Distance to elevator. How to mimimize E(distance)?  
+.  
+$g(Y)$ = **Squared Distance** to elevator. How to mimimize E($g(Y)$)?  
+
+
+   + Random Variable Y with Expectation or Mean $\mu$  
+.  
+$g(Y) = (Y - \mu)^2$, the **squared deviation from the mean**
+
+**The following is in bold to emphasize one of the most fundamental concepts in statistics, namely VARIANCE.**
+
+## Variance (and thus, SD) of a random variable
+
+### Definitions
+
+* E[$(Y - \mu)^2$] is called the VARIANCE of the random variable $Y$. It is usually shortened to Var($Y$) or even to V($Y$).
+
+* **It, and its positive square root, called the _standard deviation_ of $Y$, or SD($Y$), are two of the most commonly used measures of variability or spread or uncertainty.**
+
+*  Computationally, Variance($Y$) = E[ $(Y - \mu)^2$ ] = $\sum(y - \mu)^2 \times f(y),$ or **Mean Squared Deviation**, and
+
+* Standard Deviation, SD($Y) = \sqrt{(Var(Y)}= \sqrt{E[ (Y — \mu)^2]},$ or **Root Mean Squared Deviation**
+
+* In **French**, the Standard Deviation is called [**écart type**](https://fr.wikipedia.org/wiki/Écart_type).  
+This [French->English dictionary](http://www.french-linguistics.co.uk/dictionary/type.html) translates (the noun) `écart` as space, gap, distance between objects, interval, gap between dates, difference between numbers, opinions; à l'~ isolated, remote, out-of-the-way; à l'~ de well away from; ~ de conduite misdemeanour; ~ d'inflation inflation differential; ~ de langage strong language, bad language; ~ type standard deviation and  
+(the adjective) `type` translates as typical, standard; lettre ~ standard letter; (Maths) écart ~ standard deviation. JH thinks this adjective better describes the meaning that 'standard' does. See here for the **history of the term** [`standard` deviation](https://en.wikipedia.org/wiki/Standard_deviation#History). 
+
+
+Here, graphically and numerically illustrated, are three (of the many) ways to measure the variability of a random variable.
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="6 symmetrically distributed random variables, and 3  ways of measuring their spreads about a common mean. [After Mosteller, Rourke and Thomas. Probability with statistical applications 2nd Ed, p205] "}
+
+Y.values = list(y1 = (-1):1,
+                y2 = (-1):1,
+                y3 = c(-1,1),
+                y4 = (-2):2,
+                y5 = c(-2,2),
+                y6 = c(-3,-2, 2,3))
+
+Probs = list(p1 = c(1,6,1),
+             p2 = rep(1,3),
+             p3 = rep(1,2),
+             p4 = rep(1,5),
+             p5 = rep(1,2),
+             p6 = rep(1,4) )
+
+par(mfrow=c(1,1),mar = rep(0,4))
+
+plot(1, ylim=c(0.5,7.45),xlim=c(-3.75,11.25),
+     col="white", frame=FALSE)
+
+measure = c("Mean\nAbsolute\nDeviation",
+            "Mean\nSquared\nDeviation\n(Variance)",
+            "Root\nMean\nSquared\nDeviation\n(SD; \u{E9}cart type)")
+for(i.r in 1:6) {
+  segments(-3,i.r, 3,i.r)
+  v = Y.values[[i.r]]
+  h = Probs[[i.r]]
+  h.sum = sum(h)
+  pr = h/h.sum 
+  for (i in 1:length(v)){
+     text(v[i], 7-i.r, toString(v[i]), adj=c(0.5,1.25))
+     segments(v[i],7-i.r,v[i], 7-i.r + pr[i], lwd=2.5  )
+     text(v[i], 7-i.r + h[i]/h.sum, 
+         paste(toString(h[i]),"/", toString(h.sum) ),
+         adj = c(1.1,0),font=3)
+     for(j in 1:3){
+       if(j==1) spread = sum(abs(v)*pr) 
+       if(j==2) spread = sum((v^2)*pr)
+       if(j==3) spread = sqrt( sum((v^2)*pr)  )
+       text(2.5 + 2.5*j,7-i.r, toString(round(spread,2)))
+       if(i==1) text(2.5+2.5*j, 6.85, measure[j], cex=1 )
+     }
+  }
+
+}
+
+```
+
+In practice, the mean absolute deviation is often quite close to the SD, and certainly easier to explain to explain to non-statisticians. However, when computig was by ahnd and laborious, it took two passes through the data to compute it, whereas, the SD could be computed in one.  
+
+
+**Which is primary, Standard Deviation or Variance?**
+
+* Although we first define variance and then take the square root to reach the SD, we should think of the SD as primary, at least for descriptive purposes (Mosteller et al. use the natural order "...standard deviation and variance (either of these measures determines the other because the variance is the square of the SD"...  However, there are _good mathematical reasons_ to work with variance.
+
+### Some (good) reasons for using variance, which averages the squares of the deviations from the mean.
+
+   + ADDITIVITY  
+The variance of the sum of two independent random variables is the sum of their variances, and even when the two variables are dependent the variability of their sum has a simple formula. SD;s dont add; their squares do. Or to quote the physicists, errors '**Errors add in quadrature**, like the lengths of the sides of Pythogoras' traingle. It took mathematicains a long time to discover, this, and some of the blunders along the way are told in a fascinating chapter in this very readable book [The Seven Pillars of 
+Statistical Wisdom](https://www-degruyter-com.proxy3.library.mcgill.ca/view/title/521193).  
+
+   + THE CENTRAL LIMIT THEOREM  
+The limiting behavior of a random variable that is the sum of a large number of independent random variables depends on the variances of these random variables.
+
+
+* USEFUL RELATIONSHIP (for hand computation, 'back when', and in mathematical statistics, still today):  
+$$Variance(Y) = E(Y^2) — \mu^2.$$
+$$\textrm{Variance =  average  square  minus   squared average}.$$
+
+
+
+
+### But, for  end-users today ....
+
+Jerry Hill, who wrote 
+[this PhD thesis](https://www.collectionscanada.gc.ca/obj/s4/f2/dsk2/ftp02/NQ26855.pdf) 'at the end of a career in medicine and epidemiology' commuted from Ottawa and taught the 607 course a few times in the 1980s. In the course, he used to joke about  the (many) mathematical statisticians who refer to a random variable having a  Normal (Gaussian) distribution with standard deviation $\sigma$ as $Y \sim N(\mu, \sigma^2)$, i.e., who **defined the spread of the distribution (any distribution, not just Gaussian ones) using its variance**. [Note that the `dnorm`, `pnorm` `qnorm` and `rnorm` functions in `R` all use the argument `sd`, as do all applied textbooks, writing $Y \sim N(\mu, \sigma)$]. Gerry would then go on to give a numerical example, using the  commonly used metric the Total Fertility Rate (TFR) – or often simply 'fertility rate' – which (as per Goggle) `measures the **average number of children per woman**.' The global average fertility rate is just below **2.5 children per woman** today'. He would them say, 'Suppose the variation from country to country had a **standard deviation of 1.2**'. Then, reminding his class to use appropriate units when reporting statistical measures, he would ask that they give the appropriate units for the 2.5, the 1.2, and the $1.2^2$ = 1.44, forcing them to say the **variance was 1.44 square children per square woman**. 
+
+ 
 ## Functions/combinations of random variables
+
+## Named Disributions
+
+Gaussian Bernoulli-Binomial  Poisson
+
+## Exercises
+
+1. SD of longevity  from 1st principles (using `R`)
+
+2. Suppose you get into the life insurance business in a small way, just taking on one client. The client pays you a premium of $100 at the beginning of each year for 5 years. If the client dies within the next 5 years, you will pay client's estate $20,000. Thus, at the end of 5 years, your possible earnings from this single client, along with the associated (actuarily-based) probablities are:
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+
+possible.earnings = c( seq(-19900,-19500,100), 500 ) 
+probability = c(183,186,189,191,193,99058)/100000 
+
+cbind(possible.earnings,probability)
+      
+``` 
+   + Compute the expected earnings
+   + Compute the variance (and thus the SD) of the possible earnings (a) using the definition (b) using the computational shortcut
+   + Compute the 'risk',  the SD as a percentage of the mean, as do investors ranking how risky various stocks are.
+   + In statistics, and especially in applied statistics, what is the name for the SD as a percentage of the mean?
+
+3. Above you saw the possible outcomes of the 6/49 game. You could also put the possibilities into this 2 x 2 table
+
+Frequencies of numbers selected/not selected by you (rows) and drawn/not by Loto Machine (columns)
+
+|        |       |      |      |      |      |      |  |
+|-----:|-------:|-------:|-------:|-----:|-----:|:----:|:----:|:----:|
+|        |       |       |     | LOTO |      |      |      |   |
+|        |       |       |   Yes |      | No   |      | ALL     |    |
+|        |       |       |      |      |      |      |    |
+|        |       | .      | ........     | ........     |  ........    |   .   |    |
+|        |  Yes  | : |   y   |      | 6-y  |  !   |  6  |    |
+|  YOU   |       |       |      |      |      |      |    |
+|        |  No   | : | 6 - y |      | 37+y |   !  |  43    |    |
+|        |    |  .  |  ........    | ........  |  ........    |  .    |    |
+|        | ALL   |  |  6   |      | 43   |      |  49  |    |
+
+   + Use  your searching skills to find the formal statistical name for the distribution of $Y$, which can take on the values $y$ = 0, 1, $\dots$, 6. 
+   + Likewise, find the name of the `R` functions (`d??p?r` , `p??p?r`, `q??p?r` and `r??p?r`) that allow you to obtain the 7 probabilities, the 7 cumulative provabilities, the quantiles, and the `r??p?r` function that draws random values from this distribution.  
+   
+4. The chapter on inference possible relates  the 'Lady Tasting Tea' story. You could put the possible outcomes of the trial into this 2 x 2 table involving 8 cups of tea, into which the milk had been poured first in 4 instances, and second in the other 4. The lady was told there were 4 of each, so she indicated the 4 into which she jusged the milk was poured 1st, and the 4 into which she jusged the milk was poured 2nd.  
+
+Frequencies of the correctness/incorrecness of the replies by the lady (rows) in relation to the truth arranged by experimenter (columns)
+
+possible outcomes of
+
+|        |       |      |      |      |      |      |  |
+|-----:|-------:|-------:|-------:|-----:|-----:|:----:|:----:|:----:|
+|        |       |       |     | TRUTH |      |      |      |   |
+|        |       |       |   Milk 1st |      | Milk 2nd   |      | ALL     |    |
+|        |       |       |      |      |      |      |    |
+|        |       | .      | ........     | ........     |  ........    |   .   |    |
+|        |  Milk 1st  | : |   y   |      | 4-y  |  !   |  4 cups  |    |
+|  LADY   |       |       |      |      |      |      |    |
+|        |  Milk 2nd   | : | 4 - y |      | 4+y |   !  |  4 cups    |    |
+|        |    |  .  |  ........    | ........  |  ........    |  .    |    |
+|        | ALL   |  |  4 cups   |      | 4 cups   |      |  8 cups  |    |
+
+   + Use the `R` function `d??p?r` to obtain, under the null hypothesis, the 5 probabilities for $y$.
+
