@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-04-30" />
+<meta name="date" content="2020-05-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -242,9 +242,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.3.3" data-path="computing03.html"><a href="computing03.html#trends-over-the-last-100-years"><i class="fa fa-check"></i><b>16.3.3</b> Trends over the last 100 years</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="dalite.html"><a href="dalite.html"><i class="fa fa-check"></i><b>17</b> DALITE</a><ul>
-<li class="chapter" data-level="17.1" data-path="dalite.html"><a href="dalite.html#aim"><i class="fa fa-check"></i><b>17.1</b> Aim</a></li>
-<li class="chapter" data-level="17.2" data-path="dalite.html"><a href="dalite.html#how-it-works"><i class="fa fa-check"></i><b>17.2</b> How it works</a></li>
+<li class="chapter" data-level="17" data-path="computing04.html"><a href="computing04.html"><i class="fa fa-check"></i><b>17</b> Computing: Session No. 4</a><ul>
+<li class="chapter" data-level="17.1" data-path="computing04.html"><a href="computing04.html#objectives-2"><i class="fa fa-check"></i><b>17.1</b> Objectives</a></li>
+<li class="chapter" data-level="17.2" data-path="computing04.html"><a href="computing04.html#exercises-7"><i class="fa fa-check"></i><b>17.2</b> Exercises</a><ul>
+<li class="chapter" data-level="17.2.1" data-path="computing04.html"><a href="computing04.html#lengths-of-babies-names"><i class="fa fa-check"></i><b>17.2.1</b> Lengths of Babies’ Names</a></li>
+<li class="chapter" data-level="17.2.2" data-path="computing04.html"><a href="computing04.html#life-tables-1990-1"><i class="fa fa-check"></i><b>17.2.2</b> Life Tables [1990]</a></li>
+<li class="chapter" data-level="17.2.3" data-path="computing04.html"><a href="computing04.html#life-tables-2018-1"><i class="fa fa-check"></i><b>17.2.3</b> Life Tables [2018]</a></li>
+<li class="chapter" data-level="17.2.4" data-path="computing04.html"><a href="computing04.html#chevalier-de-méré-1"><i class="fa fa-check"></i><b>17.2.4</b> Chevalier de Méré</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="computing04.html"><a href="computing04.html#other-exercises-under-construction-1"><i class="fa fa-check"></i><b>17.3</b> Other Exercises (under construction)</a><ul>
+<li class="chapter" data-level="17.3.1" data-path="computing04.html"><a href="computing04.html#hiv-transmission-1"><i class="fa fa-check"></i><b>17.3.1</b> HIV transmission</a></li>
+<li class="chapter" data-level="17.3.2" data-path="computing04.html"><a href="computing04.html#the-2018-book-of-guesses-1"><i class="fa fa-check"></i><b>17.3.2</b> The 2018 Book of Guesses</a></li>
+<li class="chapter" data-level="17.3.3" data-path="computing04.html"><a href="computing04.html#trends-over-the-last-100-years-1"><i class="fa fa-check"></i><b>17.3.3</b> Trends over the last 100 years</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="dalite.html"><a href="dalite.html"><i class="fa fa-check"></i><b>18</b> DALITE</a><ul>
+<li class="chapter" data-level="18.1" data-path="dalite.html"><a href="dalite.html#aim"><i class="fa fa-check"></i><b>18.1</b> Aim</a></li>
+<li class="chapter" data-level="18.2" data-path="dalite.html"><a href="dalite.html#how-it-works"><i class="fa fa-check"></i><b>18.2</b> How it works</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -612,8 +626,14 @@ The limiting behavior of a random variable that is the sum of a large number of 
 <div id="exercises-2" class="section level2">
 <h2><span class="header-section-number">12.7</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li><p>SD of longevity from 1st principles (using <code>R</code>)</p></li>
-<li><p>Suppose you get into the life insurance business in a small way, just taking on one client. The client pays you a premium of $100 at the beginning of each year for 5 years. If the client dies within the next 5 years, you will pay client’s estate $20,000. Thus, at the end of 5 years, your possible earnings from this single client, along with the associated (actuarily-based) probablities are:</p></li>
+<li>Refer to the <strong>fictitious cohort</strong> (shown above), constructed from the 1990 Quebec mortality rates.</li>
+</ol>
+<ul>
+<li>Use 1st principles (together with <code>R</code>) to calculate the standard deviation of the longevity of the male cohort. Do so in two ways, using (a) the definition (b) the ‘shortcut’.</li>
+<li>For <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/Hanley_Article_Galton_Data.pdf#page=7">human ‘computers’</a> back in the days before there were ‘electronic’ computers, what is the advantage of the shortcut?</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Suppose you get into the <strong>life insurance</strong> business in a small way, just taking on one client. The client pays you a premium of $100 at the beginning of each year for 5 years. If the client dies within the next 5 years, you will pay client’s estate $20,000. Thus, at the end of 5 years, your possible earnings from this single client, along with the associated (actuarily-based) probablities are:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">possible.earnings =<span class="st"> </span><span class="kw">c</span>( <span class="kw">seq</span>(<span class="op">-</span><span class="dv">19900</span>,<span class="op">-</span><span class="dv">19500</span>,<span class="dv">100</span>), <span class="dv">500</span> ) 
 probability =<span class="st"> </span><span class="kw">c</span>(<span class="dv">183</span>,<span class="dv">186</span>,<span class="dv">189</span>,<span class="dv">191</span>,<span class="dv">193</span>,<span class="dv">99058</span>)<span class="op">/</span><span class="dv">100000</span> 
@@ -626,6 +646,9 @@ probability =<span class="st"> </span><span class="kw">c</span>(<span class="dv"
 ## [4,]            -19600     0.00191
 ## [5,]            -19500     0.00193
 ## [6,]               500     0.99058</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>continued</li>
+</ol>
 <ul>
 <li>Compute the expected earnings</li>
 <li>Compute the variance (and thus the SD) of the possible earnings (a) using the definition (b) using the computational shortcut</li>
@@ -633,7 +656,7 @@ probability =<span class="st"> </span><span class="kw">c</span>(<span class="dv"
 <li>In statistics, and especially in applied statistics, what is the name for the SD as a percentage of the mean?</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
-<li>Above you saw the possible outcomes of the 6/49 game. You could also put the possibilities into this 2 x 2 table</li>
+<li>Above you saw the possible outcomes of the <strong>6/49</strong> game. You could also put the possibilities into this 2 x 2 table</li>
 </ol>
 <p>Frequencies of numbers selected/not selected by you (rows) and drawn/not by Loto Machine (columns)</p>
 <table>
@@ -711,7 +734,7 @@ probability =<span class="st"> </span><span class="kw">c</span>(<span class="dv"
 <td align="right">6 - y</td>
 <td align="right"></td>
 <td align="right">37+y</td>
-<td align="center">!</td>
+<td align="center">:</td>
 <td align="center">43</td>
 <td align="center"></td>
 </tr>
@@ -739,15 +762,19 @@ probability =<span class="st"> </span><span class="kw">c</span>(<span class="dv"
 </tr>
 </tbody>
 </table>
+<ol start="3" style="list-style-type: decimal">
+<li>continued</li>
+</ol>
 <ul>
 <li>Use your searching skills to find the formal statistical name for the distribution of <span class="math inline">\(Y\)</span>, which can take on the values <span class="math inline">\(y\)</span> = 0, 1, <span class="math inline">\(\dots\)</span>, 6.</li>
 <li>Likewise, find the name of the <code>R</code> functions (<code>d??p?r</code> , <code>p??p?r</code>, <code>q??p?r</code> and <code>r??p?r</code>) that allow you to obtain the 7 probabilities, the 7 cumulative provabilities, the quantiles, and the <code>r??p?r</code> function that draws random values from this distribution.</li>
+<li>Even with knowing what the full (numerical) probability distribution of <span class="math inline">\(Y\)</span> is, it is possible, just from the marginal totals for the 2 x 2 table, to calculate the expected value of <span class="math inline">\(Y.\)</span> Do so. (<em>Hint</em>: look up ‘expected values for r x c tables’)</li>
+<li>Just by imagining what the full probablility distibution on the integers 0 to 6 must look like [or by looking at the material earlier on this page], come up with an approximate value of the variance of Y. [If you look up this distribution in Wikipedia, you wiull find the exact formula for it.]</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
-<li>The chapter on inference possible relates the ‘Lady Tasting Tea’ story. You could put the possible outcomes of the trial into this 2 x 2 table involving 8 cups of tea, into which the milk had been poured first in 4 instances, and second in the other 4. The lady was told there were 4 of each, so she indicated the 4 into which she jusged the milk was poured 1st, and the 4 into which she jusged the milk was poured 2nd.</li>
+<li>The chapter on inference possible relates the ‘<strong>Lady Tasting Tea</strong>’ story. You could put the possible outcomes of the trial into this 2 x 2 table involving 8 cups of tea, into which the milk had been poured first in 4 instances, and second in the other 4. The lady was told there were 4 of each, so she indicated the 4 into which she jusged the milk was poured 1st, and the 4 into which she judged the milk was poured 2nd.</li>
 </ol>
-<p>Frequencies of the correctness/incorrecness of the replies by the lady (rows) in relation to the truth arranged by experimenter (columns)</p>
-<p>possible outcomes of</p>
+<p>Frequencies of the correctness/incorrectness of the replies by the lady (rows) in relation to the truth arranged by experimenter (columns)</p>
 <table>
 <tbody>
 <tr class="odd">
@@ -801,7 +828,7 @@ probability =<span class="st"> </span><span class="kw">c</span>(<span class="dv"
 <td align="right">y</td>
 <td align="right"></td>
 <td align="right">4-y</td>
-<td align="center">!</td>
+<td align="center">:</td>
 <td align="center">4 cups</td>
 <td align="center"></td>
 </tr>
@@ -823,7 +850,7 @@ probability =<span class="st"> </span><span class="kw">c</span>(<span class="dv"
 <td align="right">4 - y</td>
 <td align="right"></td>
 <td align="right">4+y</td>
-<td align="center">!</td>
+<td align="center">:</td>
 <td align="center">4 cups</td>
 <td align="center"></td>
 </tr>
@@ -851,9 +878,43 @@ probability =<span class="st"> </span><span class="kw">c</span>(<span class="dv"
 </tr>
 </tbody>
 </table>
+<ol start="4" style="list-style-type: decimal">
+<li>continued</li>
+</ol>
 <ul>
 <li>Use the <code>R</code> function <code>d??p?r</code> to obtain, under the null hypothesis, the 5 probabilities for <span class="math inline">\(y\)</span>.</li>
+<li>Under this null, what is the probability of getting <strong>at least 3</strong> correct?</li>
+<li>What if 12 cups (6 and 6) were used? What then would be the probability of getting <strong>at least 5</strong> correct? <strong>all 6</strong>?</li>
 </ul>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>Saving</strong> on the numbers of binary yests <strong>by pooling</strong>. When a binary blood test [one that yields a positive (‘+ve’) or negative (‘-ve’) result] gives +ve results in only a small proportion, <span class="math inline">\(\pi,\)</span> of blood samples, it may be possible to economize on the costs of testing by pooling m blood samples, according to the following procedure: (i) each blood sample is divided into two portions; one portion is kept in reserve while the other is pooled with the corresponding portions from <span class="math inline">\(m\)</span> - 1 other blood samples (ii) if the result of a single test on the pooled bloods is -ve, each of the <span class="math inline">\(m\)</span> individual blood samples are considered -ve; if the result is +ve, then the <span class="math inline">\(m\)</span> reserve bloods are individually tested.</li>
+</ol>
+<ul>
+<li>With <span class="math inline">\(m\)</span> = 20 and <span class="math inline">\(\pi\)</span> = 0.1, calculate the expected number of tests required to determine the status of eack of the blood samples. (<em>Hint</em>: a tree diagram may help)</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li><strong>Errors caused by rounding</strong>. Suppose one has to analyze a large number of 3 digit numbers. To make the job easier, one rounds each number to the nearest 10, e.g.,<br />
+<code>460 &lt;-- 460 461 462 463 464 ; 465 466 467 468 469 --&gt; 470.</code><br />
+If the ending numbers of the unrounded data were uniformly distributed (each ending digit has a probability of 1/10), calculate:</li>
+</ol>
+<ul>
+<li>the average error per (rounded) number</li>
+<li>the average absolute error per (rounded) number</li>
+<li>the square root of the average squared error per (rounded) number [‘root mean squared error’, or ‘RMSE’ for short]</li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li><strong>Correcting for guessing</strong> on multiple choice exams.<br />
+Suppose one wishes to estimate via a multiple choice examination [with <span class="math inline">\(k\)</span> answers to choose from for each question], what proportion <span class="math inline">\(\pi\)</span> of questions a student <strong>knows</strong> the answer to (excuse the dangling preposition!). Imagine that <span class="math inline">\(\pi\)</span> refers to the N (&gt;&gt; n) questions in the much larger bank of questions from which the <span class="math inline">\(n\)</span> exam questions are randomly selecetd.</li>
+</ol>
+<ul>
+<li>Show that the simple proportion <span class="math inline">\(p\)</span> of correctly answered questions gives a biased (over) estimate of <span class="math inline">\(\pi\)</span> if the student simply randomly guesses among the <span class="math inline">\(k\)</span> answers on questions where (s)he doesn’t know the answer. Do this by calculating the expected value of p (i.e. the average mark per question) when each answer is marked 1 if correct and 0 if not. (<em>Hint</em>: a tree diagram may help).</li>
+<li>One can ‘de-bias’ the estimate by giving each correct answer a mark of 1 and each incorrect answer a negative mark. What negative mark (penalty) will provide an unbiased estimate of <span class="math inline">\(\pi\)</span>? Begin by finding the expected mark per question, then set it to <span class="math inline">\(\pi\)</span> and solve for the penalty. (<em>Hint</em>: If you prefer, use concrete values of <span class="math inline">\(\pi\)</span> and <span class="math inline">\(k\)</span> to see what penalty is needed.)</li>
+</ul>
+<p><a href="https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/phasing-penny.html" class="uri">https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/phasing-penny.html</a></p>
+<p>simulation</p>
+<p><a href="http://www2.ku.edu/~kuwpaper/2013Papers/201309.pdf" class="uri">http://www2.ku.edu/~kuwpaper/2013Papers/201309.pdf</a></p>
+<p><a href="https://www-jstor-org.proxy3.library.mcgill.ca/stable/pdf/3552184.pdf?refreqid=excelsior%3A86597fff2392f0b0d698235434d88c3a">https://www-jstor-org.proxy3.library.mcgill.ca/stable/pdf/3552184.pdf?refreqid=excelsior%3A86597fff2392f0b0d698235434d88c3a</a></p>
+<p>Galton’s way of showing that the heights of the married couples in his dataset were virtually uncorrelated – for computing exercise</p>
 
 </div>
 </div>
