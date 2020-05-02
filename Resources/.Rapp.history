@@ -1,558 +1,817 @@
-str(ds)
-head(ds)
-write.table(ds,"weightsEtc.txt")
-ds = read.table("http://www.biostat.mcgill.ca/hanley/statbook/weightsEtc.txt")#
+txt
+par(mfrow=c(2,3),mar = c(4,4,3,1))#
 #
-MEAN=round(weighted.mean(ds$Weight.lbs,w=ds$Freq))#
-#
-VAR = sum( ds$Freq * (ds$Weight.lbs-MEAN)^2 ) / sum(ds$Freq)#
-#
-SD = sqrt(VAR)
-SD
-WEIGHTS = sort(unique(ds$Weight.lbs))#
-Freq = aggregate(ds$Freq,by=list(ds$Weight.lbs),sum)$x#
-Proportions = Freq/sum(Freq)#
-#
-W.50 = WEIGHTS[min(which(cumsum(Proportions) > 0.50))]#
-mu = sum(WEIGHTS*Proportions)
-no.of.sims = 10000 ;  # no. of samples of each size#
-                      # enough to generate relatively smooth histograms  #
-sample.sizes = c(1,2,4,8,16) ; #
-#
-par(mfrow=c(length(sample.sizes),1),mar = c(0.5,1,0.5,1) )#
-#
-for (n in sample.sizes ){        # loop over the various sample sizes#
-   weights = matrix(sample(WEIGHTS,    # 1 row per simulation#
-              size = n*no.of.sims,     # to save time, do all at once#
-              replace = TRUE,          # only because data compressed#
-              prob = Proportions),     # = FALSE if has indiv. data#
-          nrow = no.of.sims, ncol=n) # put into rows / columns#
-   if(n > 1 & n <= 10){#
-     print( noquote(#
-      paste("Weights (lbs) of sampled persons in first 2 samples of size",  #
-            toString(n)) )   ) #
-     print(head(weights,2))#
-   }#
-   if( n == max(sample.sizes) ){#
-     cat("The first panel shows the weight-distribution of the entire population.\n")#
-     cat("The remaining ones show the  distributions of the sample sums and means.\n")#
-     message("test")#
-   } #
-   # compute the row-specific (simulation-specific) sums and means#
-   # apply sum/mean to MARGIN=1, i.e., to each simulation (each row)#
-#
-   sums.samples.of.size.n = apply(weights,MARGIN=1,FUN=sum)#
-   means.samples.of.size.n = apply(weights,MARGIN=1,FUN=mean)#
-#
-   fr = table(sums.samples.of.size.n)          # fr = frequency#
-   Y = max(Proportions*no.of.sims)/sqrt(0.75*n) # scale the y axis#
-   plot(fr,lw=0.4,xlim=c(n*100,n*(max(WEIGHTS)+50) ), #
-                  ylim=c(-0.25,1)*Y, xaxt="n")#
-   text(n*320,0.55*Y,paste("n =",toString(n)),cex=2,font=3,adj=c(0,1))#
-   for(w in seq(100,300,20)) {#
-     text(n*w, -0.01*Y, toString(n*w),adj=c(0.5,1),cex=1.5)#
-     txts = paste("Sum of",toString(n),"Weights")#
-     if(n==1) txts = "Individual Weights"#
-     if(w==300 ) text(n*310, -0.01*Y,#
-          txts,adj=c(0,1),cex=1.5)#
-     if(n > 1) text(n*w, -0.15*Y, toString(w),adj=c(0.5,1),font=4,cex=1.5)#
-     if(w==300 & n > 1) text(n*310, -0.15*Y,#
-          paste("Mean of",toString(n)," Weights"),adj=c(0,1),font=4,cex=1.5)#
-   }#
-   # how big is the spread (sd) of the simulated sums and means ?#
-   sd.sums  = round( sd(sums.samples.of.size.n), 1 )#
-   sd.means = round( sd(means.samples.of.size.n),1 )#
-   txt.s = paste( "SD of Sum:", toString(sd.sums) )#
-   if(n==1) txt.s = paste("SD of Individual Weights:",toString(sd.sums),"(lbs)" )#
-   txt.m = paste("\n\n  SD of Mean:",toString(sd.means))#
-   if(n==1) txt.m = "\n\n "#
-   text(n*mu +  sd.sums,Y*0.7,#
-        paste(txt.s,txt.m), cex=1.5,adj=c(0,0.5) )#
-   points(n*mu,0,pch=19,col="red",cex=1.5)#
-   if(n==1){#
-     text(W.50-1,0.95*Y,"50% <- | -> 50%",adj=c(0.5,1),cex=1.5,col="blue")#
-     segments(W.50-0.1,0.95*Y, W.50-0.1,0,col="blue")#
-     text(352,-0.175*Y,#
-       "Reported Weights, US Adults, 2014-2018",#
-       adj=c(1,1),cex=1.25)#
-   } #
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year) )#
+  for (i.r in 1:10){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     txt(100,max(d$Fr)-50*i.r,adj=c(0,0), family="mono" )#
+  }#
 }
-WEIGHTS = sort(unique(ds$Weight.lbs))#
-table(ds$Weight.lbs,ds$Sex)
-Freq = aggregate(ds$Freq,by=list(sex=ds$Sex,w=ds$Weight.lbs),sum)
-Freq
-?by
-by(ds$Freq,list(ds$Weight.lbs,ds$Sex),sum)
-fr = by(ds$Freq,list(ds$Weight.lbs,ds$Sex),sum)
-str(fr)
-Freq = by(ds$Freq,list(ds$Weight.lbs,ds$Sex),sum)
-Freq
-str(proportions)
-Proportions = Freq
-str(proportions)
-Freq = by(ds$Freq,list(ds$Weight.lbs,ds$Sex),sum)
-Proportions = Freq
-str(proportions)
-str(Proportions)
-apply(Freq,1,sum)
-apply(Freq,2,sum)
-dim(Freq)
-totals = matrix(apply(Freq,2,sum),dim(Freq))
-totals
-totals = matrix(apply(Freq,2,sum),dim(Freq)[1],dim(Freq)[2])
-totals
-Freq = by(ds$Freq,list(ds$Weight.lbs,ds$Sex),sum)
-Freq
-apply(Freq,2,sum)
-rep(apply(Freq,2,sum), dim(Freq)[1])
-rep(apply(Freq,2,sum), each=dim(Freq)[1])
-matrix( rep(apply(Freq,2,sum), each=dim(Freq)[1]) ,dim(Freq)[1],dim(Freq)[2])
-Freq / totals
-Freq = Freq / totals
-Freq
-Proportions = Freq / totals
-str(Proportions)
-apply(Proportions,2,sum)
-apply(Proportions,1,sum)
-totals = matrix( rep(apply(Freq,2,sum), each=dim(Freq)[1]) ,dim(Freq)[2],dim(Freq)[1])
-Proportions = Freq / totals
-str(Proportions)
-totals = matrix( rep(apply(Freq,2,sum), each=dim(Freq)[1]) ,dim(Freq)[1],dim(Freq)[2])
-totals
-as.matrix(Freq)
-Freq = by(ds$Freq,list(ds$Weight.lbs,ds$Sex),sum)
-Freq = matrix( Freq,dim(Freq)[1],dim(Freq)[2])
-Freq
-Freq = by(ds$Freq,list(ds$Weight.lbs,ds$Sex),sum)#
-totals = matrix( rep(apply(Freq,2,sum), each=dim(Freq)[1]) ,dim(Freq)[1],dim(Freq)[2])#
-Freq = matrix( Freq,dim(Freq)[1],dim(Freq)[2])#
-Proportions = Freq / totals#
-str(Proportions)
-apply(Proportions,2,sum)
-Proportions
-apply(Proportions,2,sum)
-no.of.sims = 10000
-sex = sample[c(1,2),no.of.sims,replace=TRUE)
-sex = sample(c(1,2),no.of.sims,replace=TRUE)
-sex
-WEIGHTS = sort(unique(ds$Weight.lbs))
-WEIGHTS
-no.of.sims = 10000 ;  # no. of samples of each size#
-                      # enough to generate relatively smooth histograms  #
-sample.sizes = c(1,2,4,8,16) ;
-n=5
-sex = sample(c(1,2),no.of.sims,replace=TRUE)
-weights = matrix(sample(WEIGHTS,      # 1 row per simulation#
-              size = n*no.of.sims,       # to save time, do all at once#
-              replace = TRUE,            # only because data compressed#
-              prob = Proportions[,sex]), # = FALSE if has indiv. data#
-          nrow = no.of.sims, ncol=n) # put into rows / columns
-sex
-Proportions[,sex]
-?rbinom
-totals
-apply(Freq,2,sum)
-Freq = by(ds$Freq,list(ds$Weight.lbs,ds$Sex),sum)#
-totals = matrix( rep(apply(Freq,2,sum), each=dim(Freq)[1]) ,dim(Freq)[1],dim(Freq)[2])#
-Freq = matrix( Freq,dim(Freq)[1],dim(Freq)[2])#
-Proportions = Freq / totals#
-WEIGHTS = sort(unique(ds$Weight.lbs))#
+i.r
+txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")
+txt
+par(mfrow=c(2,3),mar = c(4,4,3,1))#
 #
-apply(Freq,2,sum)
-n.each = apply(Freq,2,sum)
-?rbinom
-n.each = apply(Freq,2,sum)
-p.each = n.each / sum(n.each)
-p.each
-no.of.sims
-s1 = rbinom(1,no.of.sims,prob=p.each[1])
-s1
-Proportions[,1]
-weights = matrix(NA,nrow = no.of.sims, ncol=n)
-n
-s1 = rbinom(1,no.of.sims,prob=p.each[1])
-weights = matrix(sample(WEIGHTS,      # 1 row per simulation#
-              size    = n*s1,            # to save time, do all at once#
-              replace = TRUE,            # only because data compressed#
-              prob = Proportions[,1]),   # = FALSE if has indiv. data#
-             nrow = s1, ncol=n)
-weights
-w1      = matrix(sample(WEIGHTS,      # 1 row per simulation#
-               size    = n*s1,            # to save time, do all at once#
-               replace = TRUE,            # only because data compressed#
-               prob = Proportions[,1]),   # = FALSE if has indiv. data#
-             nrow = s1, ncol=n)
-w2      = matrix(sample(WEIGHTS,      # 1 row per simulation#
-               size    = n*s2,            # to save time, do all at once#
-               replace = TRUE,            # only because data compressed#
-               prob = Proportions[,1]),   # = FALSE if has indiv. data#
-             nrow = s2, ncol=n)          # put into rows / columns
-s1
-s2
-s2 = no.of.sims - s1
-s2
-w2      = matrix(sample(WEIGHTS,      # 1 row per simulation#
-               size    = n*s2,            # to save time, do all at once#
-               replace = TRUE,            # only because data compressed#
-               prob = Proportions[,2]),   # = FALSE if has indiv. data#
-             nrow = s2, ncol=n)
-weights = rbind(w1,w2)
-str(weights)
-no.of.sims = 1000 ;  # no. of samples of each size#
-                      # enough to generate relatively smooth histograms  #
-sample.sizes = c(1,2,4,8,16) ; #
-#
-par(mfrow=c(length(sample.sizes),1),mar = c(0.5,1,0.5,1) )#
-#
-for (n in sample.sizes ){        # loop over the various sample sizes#
-   s1 = rbinom(1,no.of.sims,prob=p.each[1])#
-   w1      = matrix(sample(WEIGHTS,      # 1 row per simulation#
-               size    = n*s1,            # to save time, do all at once#
-               replace = TRUE,            # only because data compressed#
-               prob = Proportions[,1]),   # = FALSE if has indiv. data#
-             nrow = s1, ncol=n)          # put into rows / columns#
-   s2 = no.of.sims - s1#
-   w2      = matrix(sample(WEIGHTS,      # 1 row per simulation#
-               size    = n*s2,            # to save time, do all at once#
-               replace = TRUE,            # only because data compressed#
-               prob = Proportions[,2]),   # = FALSE if has indiv. data#
-             nrow = s2, ncol=n)          # put into rows / columns#
-   weights = rbind(w1,w2)#
-   str(weights)     #
-   if(n > 1 & n <= 10){#
-     print( noquote(#
-      paste("Weights (lbs) of sampled persons in first 2 samples of size",  #
-            toString(n)) )   ) #
-     print(head(weights,2))#
-   }#
-   if( n == max(sample.sizes) ){#
-     cat("The first panel shows the weight-distribution of the entire population.\n")#
-     cat("The remaining ones show the  distributions of the sample sums and means.\n")#
-     message("test")#
-   } #
-   # compute the row-specific (simulation-specific) sums and means#
-   # apply sum/mean to MARGIN=1, i.e., to each simulation (each row)#
-#
-   sums.samples.of.size.n = apply(weights,MARGIN=1,FUN=sum)#
-   means.samples.of.size.n = apply(weights,MARGIN=1,FUN=mean)#
-#
-   fr = table(sums.samples.of.size.n)          # fr = frequency#
-   Y = max(Proportions*no.of.sims)/sqrt(0.75*n) # scale the y axis#
-   plot(fr,lw=0.4,xlim=c(n*100,n*(max(WEIGHTS)+50) ), #
-                  ylim=c(-0.25,1)*Y, xaxt="n")#
-   text(n*320,0.55*Y,paste("n =",toString(n)),cex=2,font=3,adj=c(0,1))#
-   for(w in seq(100,300,20)) {#
-     text(n*w, -0.01*Y, toString(n*w),adj=c(0.5,1),cex=1.5)#
-     txts = paste("Sum of",toString(n),"Weights")#
-     if(n==1) txts = "Individual Weights"#
-     if(w==300 ) text(n*310, -0.01*Y,#
-          txts,adj=c(0,1),cex=1.5)#
-     if(n > 1) text(n*w, -0.15*Y, toString(w),adj=c(0.5,1),font=4,cex=1.5)#
-     if(w==300 & n > 1) text(n*310, -0.15*Y,#
-          paste("Mean of",toString(n)," Weights"),adj=c(0,1),font=4,cex=1.5)#
-   }#
-   # how big is the spread (sd) of the simulated sums and means ?#
-   sd.sums  = round( sd(sums.samples.of.size.n), 1 )#
-   sd.means = round( sd(means.samples.of.size.n),1 )#
-   txt.s = paste( "SD of Sum:", toString(sd.sums) )#
-   if(n==1) txt.s = paste("SD of Individual Weights:",toString(sd.sums),"(lbs)" )#
-   txt.m = paste("\n\n  SD of Mean:",toString(sd.means))#
-   if(n==1) txt.m = "\n\n "#
-   text(n*mu +  sd.sums,Y*0.7,#
-        paste(txt.s,txt.m), cex=1.5,adj=c(0,0.5) )#
-   points(n*mu,0,pch=19,col="red",cex=1.5)#
-   if(n==1){#
-     text(W.50-1,0.95*Y,"50% <- | -> 50%",adj=c(0.5,1),cex=1.5,col="blue")#
-     segments(W.50-0.1,0.95*Y, W.50-0.1,0,col="blue")#
-     text(352,-0.175*Y,#
-       "Reported Weights, US Adults, 2014-2018",#
-       adj=c(1,1),cex=1.25)#
-   } #
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year) )#
+  for (i.r in 1:10){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     txt(100,max(d$Fr)-50*i.r,txt,adj=c(0,0), family="mono" )#
+  }#
 }
-getwd()
-setwd("/Users/jameshanley/git_repos/statbook/Resources")
-ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv")
-str(ds)
-ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv",#
-             as.is=TRUE)#
-str(ds)
-summary(ds)
-ds=ds[ds$Month==12,]
-str(ds)
-ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv",#
-             as.is=TRUE)#
-str(ds) #
-summary(ds)#
+text(100,max(d$Fr)-50*i.r,txt,adj=c(0,0), family="mono" )
+par(mfrow=c(2,3),mar = c(4,4,3,1))#
 #
-ds=ds[ds$Month==12,c("Mean.Max.Temp...C.") ]
-summary(ds)
-ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv",#
-             as.is=TRUE)#
-str(ds) #
-summary(ds)#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year) )#
+  for (i.r in 1:10){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(100,max(d$Fr)-50*i.r,txt,adj=c(0,0), family="mono" )#
+  }#
+}
+par(mfrow=c(2,3),mar = c(4,4,3,1))#
 #
-ds=ds[ds$Month==12,c("Mean.Max.Temp...C.",#
-                     "Mean.Min.Temp...C.",#
-                     "Mean.Temp...C.") ]
-ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv",#
-             as.is=TRUE)#
-str(ds) #
-summary(ds)#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year) )#
+  for (i.r in 1:10){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(100,max(d$Fr)-50*i.r,txt,adj=c(0,0), family="mono" , cex=0.5)#
+  }#
+}
+par(mfrow=c(2,3),mar = c(4,4,3,1))#
 #
-ds=ds[ds$Month==12,c("Year",#
-                      "Mean.Max.Temp...C.",#
-                     "Mean.Min.Temp...C.",#
-                     "Mean.Temp...C.") ]
-ds
-ds=read.csv("en_climate_monthly_QC_7027320_1928-2015_P1M.csv",#
-             as.is=TRUE)#
-str(ds) #
-summary(ds)#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year) )#
+  for (i.r in 1:10){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(25,max(d$Fr)-50*i.r,txt,adj=c(0,0), family="mono" , cex=0.5)#
+  }#
+}
+par(mfrow=c(2,3),mar = c(4,4,3,1))#
 #
-ds=ds[ds$Month==12 & !is.na(ds$Mean.Temp...C.),c("Year",#
-                      "Mean.Max.Temp...C.",#
-                     "Mean.Min.Temp...C.",#
-                     "Mean.Temp...C.") ]
-ds
-summary(ds)
-dim(ds)
-plot(ds$Year,ds$Mean.Temp...C.")
-plot(ds$Year,ds$Mean.Temp...C.)
-ds$Mean.Temp...C.
-ds=ds[ds$Month==12 & !is.na(ds$Mean.Temp...C.),c("Year",#
-                      "Mean.Max.Temp...C.",#
-                     "Mean.Min.Temp...C.",#
-                     "Mean.Temp...C.") ]#
-dim(ds)#
-summary(ds)#
-plot(ds$Year,ds$Mean.Temp...C.)
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,0))
-points(ds$Year,Mean.Min.Temp...C.)
-summary(ds)#
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10))#
-points(ds$Year,Mean.Min.Temp...C.)
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10))#
-points(ds$Year,Mean.Min.Temp...C.,pch=19)
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10))#
-points(ds$Year,ds$Mean.Min.Temp...C.,pch=19)
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10),cex=0.5)#
-points(ds$Year,ds$Mean.Min.Temp...C.,pch=19,cex=0.5)
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10),cex=0.5,type="l")
-dim(ds)#
-summary(ds)#
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10))#
-lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10),type="l")#
-lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)
-summary(ds)#
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,10),type="l")#
-lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)#
-lines(ds$Year,ds$Mean.Max.Temp...C.,pch=19)
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,5),type="l")#
-lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)#
-lines(ds$Year,ds$Mean.Max.Temp...C.,pch=19)
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-21,5),type="l")
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,5),type="l")
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,5),type="l")#
-lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)#
-lines(ds$Year,ds$Mean.Max.Temp...C.,pch=19)
-abline(h=25)
-abline(h=-25)
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,5),type="l")#
-lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)#
-lines(ds$Year,ds$Mean.Max.Temp...C.,pch=19)#
-abline(h = seq(-25,5,5))
-summary(ds)#
-plot(ds$Year,ds$Mean.Temp...C., ylim=c(-25,5),type="l")#
-lines(ds$Year,ds$Mean.Min.Temp...C.,pch=19)#
-lines(ds$Year,ds$Mean.Max.Temp...C.,pch=19)#
-abline(h = seq(-25,5,5),lwd=0.5,col="blue")
-summary( lm(ds$Mean.Temp...C. ~ ds$Year))
-summary( lm(ds$Mean.Temp...C. ~ ds$Year-mean(ds$Year)))
-ds$Year.c = ds$Year-mean(ds$Year)
-summary( lm(ds$Mean.Temp...C. ~ ds$Year.c))
-sd(ds$Mean.Temp...C.)
-mean(ds$Mean.Temp...C.)
-cor(ds)
-covar(ds)
-cov(ds)
-cov(ds[,2:4])
-V = cov(ds[,2:4])
-str(V)
-V[1,1]/4 + V[2,2]/4
-cor(ds[,2:4])
-cor(ds[,2:3])
-( V = cov(ds[,2:4]) )
-mean(ds$Mean.Temp...C.)
-sd(ds$Mean.Temp...C.)
-9*3/7
-9*3/5
-summary(ds)
-path="https://docs.google.com/spreadsheets/d/1nfQuBoAPoPPuXCthfze5XU3dZWw0ugdTrm-0yXL3JXU/edit?usp=sharing"
-library(readxl)#
-library(xlsx)
-library(readxl)
-ds=read_xlsx(path)
-library(googlesheets)
-gs_ls()
-path="https://docs.google.com/spreadsheets/d/1nfQuBoAPoPPuXCthfze5XU3dZWw0ugdTrm-0yXL3JXU/edit#gid=0"
-library(readxl)
-ds=read_xlsx(path)
-path='https://docs.google.com/spreadsheets/d/1nfQuBoAPoPPuXCthfze5XU3dZWw0ugdTrm-0yXL3JXU/edit#gid=0'
-library(readxl)
-ds=read_xlsx(path)
-ds=read.xlsx("https://docs.google.com/spreadsheets/d/1lAhFCtGGWJUoFXkXwLe7zyiXM8LRhM-TfgukYVtykuw/export?format=xlsx")
-library(readxl)
-ds=read.xlsx("https://docs.google.com/spreadsheets/d/1lAhFCtGGWJUoFXkXwLe7zyiXM8LRhM-TfgukYVtykuw/export?format=xlsx")
-library(xlsx)
-library(xlsx)
-dest = .libPaths()[1]
-install.packages("xlsx",lib=dest)
-library(xlsx)
-ds=read.csv("pFile.csv")
-str(ds)
-ds=read.csv("pFile.csv",as.is=TRUE)
-str(ds)
-ds#entry.no = (ds$page.no-1.   ) * 200  + #
-              (ds$column.no -1) * 100  +#
-               ds$row.no
-head(ds)
-head(ds)
-head(ds) ; tail(ds)
-ds$entry.no = (ds$page.no-1.   ) * 200  + #
-              (ds$column.no -1) * 100  +#
-               ds$row.no#
-head(ds) ; tail(ds)
-ds=read.csv("pFile.csv",as.is=TRUE)#
-str(ds)#
-ds$CDF =  ( (ds$page.no-1.   ) * 200  + #
-            (ds$column.no -1) * 100  +#
-               ds$row.no. ) / 241929#
-head(ds) ; tail(ds)
-ds=read.csv("pFile.csv",as.is=TRUE)#
-str(ds)
-head(ds) ; tail(ds)
-ds$CDF =  ( (ds$page.no-1.   ) * 200  + #
-            (ds$column.no -1) * 100  +#
-               ds$row.no. )
-ds=read.csv("pFile.csv",as.is=TRUE)#
-str(ds)#
-ds$CDF =  ( (ds$page.no   - 1) * 200  + #
-            (ds$column.no - 1) * 100  +#
-               ds$row.no. ) / 241929#
-head(ds) ; tail(ds)
-ds$CDF =  ( (ds$page.no   - 1) * 200  + #
-            (ds$column.no - 1) * 100  +#
-               ds$row.no. )
-head(ds) ; tail(ds)
-ds=read.csv("pFile.csv",as.is=TRUE)#
-str(ds)#
-ds$CDF =  ( (ds$page.no   - 1) * 200  + #
-            (ds$column.no - 1) * 100  +#
-               ds$row.no ) / 241929#
-head(ds) ; tail(ds)
-ds$day = (ds$Day -1)   #
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year) )#
+  for (i.r in 1:20){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(5,max(d$Fr)-30*i.r,txt,adj=c(0,0), family="mono" , cex=0.45)#
+  }#
+}
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year) )#
+  for (i.r in 1:25){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(5,max(d$Fr)-30*i.r,txt,adj=c(0,0), family="mono" , cex=0.45)#
+  }#
+}
+nchar(txt)
+par(mfrow=c(2,3),mar = c(4,4,3,1))#
 #
-ds$CDF =  ( (ds$page.no   - 1) * 200  + #
-            (ds$column.no - 1) * 100  +#
-               ds$row.no ) / 241929#
-head(ds) ; tail(ds)
-ds$day = (ds$Month + (1/2)*(ds$AMorPM=="PM") +ds$Hour/12
-ds$day = (ds$Month-4) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/12
-head(ds) ; tail(ds)
-ds$AMorPM=="PM"
-ds$day = (ds$Month-4) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/12
-ds$day
-ds$day = (ds$Month-4) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/24
-hist(ds$day)
-ds$day = (ds$Month-4)*30 + (ds$Day-1) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/24
-hist(ds$day)
-ds$CDF =  ( (ds$page.no   - 1) * 200  + #
-            (ds$column.no - 1) * 100  +#
-               ds$row.no ) / 241929#
-head(ds) ; tail(ds)
-head(ds) ; tail(ds)
-plot(ds#day,ds$CDF)
-plot(ds$day,ds$CDF)
-plot(ds$day,ds$CDF)
-plot(ds$day,ds$CDF,type="l")
-abline(h=1/2)
-L = length(ds$CDF)
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year) )#
+  for (i.r in 1:25){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(5,max(d$Fr)-30*i.r,txt,adj=c(0,0), family="mono" , cex=0.45)#
+     sum = nchar(txt)-9#
+     text(490,max(d$Fr)-30*i.r,toString(sum),adj=c(1,0), family="mono")#
+  }#
+}
+par(mfrow=c(2,3),mar = c(4,4,3,1))#
+#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year) )#
+  for (i.r in 1:25){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(5,max(d$Fr)-30*i.r,txt,adj=c(0,0), family="mono" , cex=0.45)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.r,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.45)#
+  }#
+}
+par(mfrow=c(2,3),mar = c(4,4,3,1))#
+#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year) )#
+  for (i.r in 1:25){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(5,max(d$Fr)-30*i.r,txt,adj=c(0,0), family="mono" , cex=0.4)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.r,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.4)#
+  }#
+}
+par(mfrow=c(2,3),mar = c(4,4,3,1))#
+#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n" )#
+  for (i.r in 1:25){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(5,max(d$Fr)-30*i.r,txt,adj=c(0,0), family="mono" , cex=0.4)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.r,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.4)#
+  }#
+}
+par(mfrow=c(2,3),mar = c(1,1,1))#
+#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" )#
+  for (i.r in 1:25){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(5,max(d$Fr)-30*i.r,txt,adj=c(0,0), family="mono" , cex=0.4)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.r,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.4)#
+  }#
+}
+par(mfrow=c(2,3),mar = c(1,1,1))#
+#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.r in 1:25){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(5,max(d$Fr)-30*i.r,txt,adj=c(0,0), family="mono" , cex=0.4)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.r,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.4)#
+  }#
+}
+par(mfrow=c(2,3),mar = c(0,0,1,0))#
+#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.r in 1:25){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(5,max(d$Fr)-30*i.r,txt,adj=c(0,0), family="mono" , cex=0.4)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.r,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.4)#
+  }#
+}
+par(mfrow=c(2,3),mar = c(0,0,1,0))#
+#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.r in 1:25){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(5,max(d$Fr)-30*i.r,txt,adj=c(0,0), family="mono" , cex=0.55)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.r,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.55)#
+  }#
+}
+par(mfrow=c(2,3),mar = c(0,0,1,0))#
+#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.r in 1:25){#
+     txt	 = paste( d$Name[(i.r-1)*10 + 1:10], collapse=" ")#
+     text(5,max(d$Fr)-30*i.r,txt,adj=c(0,0), family="mono" , cex=0.5)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.r,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.5)#
+  }#
+}
+names = d$Name[(i.r-1)*10 + 1:10]
+names
+nchar(names)
+cumsum( nchar(names) )
+sum = nchar(txt)-9
+sum
+random.letter = sample(1:sum,1)
+random.letter
+SUM = cumsum( nchar(names) )
+SUM
+which(SUM < random.letter)
+random.letter
+SUM
+random.letter
+which(SUM < random.letter)
+which(SUM < random.letter) + 1
+max( which(SUM < random.letter) + 1)
+random.letter = sample(1:sum,1)#
+     max( which(SUM < random.letter) + 1)
+random.letter = sample(1:sum,1)#
+     max( which(SUM < random.letter) )
+SUM
+random.letter
+SUM
+SUM = cumsum( nchar(names) )
+SUM
+which(SUM < 1:61)
+which(SUM < (1:sum) )
+which(SUM <= (1:sum)
+which(SUM <= (1:sum) )
+SUM
+(1:sum)
+(1:sum) <= SUM
+which( (1:sum) <= SUM  )
+nchar(names)
+names
+nchar(names)
+rep(1:10,each=L)
+L = nchar(names)
+rep(1:10,each=L)
+L = nchar(names)
+rep(1:10,L)
+cums(rep(1:10,L))
+cumsum(rep(1:10,L))
+rep(1:10,L)
+random.letter = sample(1:sum,1)
+random.letter
+random.letter = sample(1:sum,1)
+random.letter
+I[random.letter]
+I = rep(1:10,L)
+I[random.letter]
+random.letter
+SUM
+I[random.letter]
+L[1:I[random.letter]]
+cumsum( L[1:I[random.letter]]
+cumsum( L[1:I[random.letter]] )
+random.letter
 L
-ds$d = ds$CDF - c(0, ds$CDF[1:(L-1)])
-ds$d
-ds$d
-ds
-plot(ds$day, ds$d, type="h" )
-abline(v=30)
-abline(v=30.1,col="blue")
-abline(v=30.1,col="blue",lwd=0.2)
-ds
-ds=read.csv("pFile.csv",as.is=TRUE)#
-str(ds)#
+L[1:I[random.letter]]
+cumsum( L[1:I[random.letter]]
+random.letter = sample(1:sum,1)
+cumsum( L[1:I[random.letter]] )
+random.letter
+position = max( cumsum( L[1:I[random.letter]] ) ) -  random.letter + 1
+position
+random.letter = sample(1:sum,1)#
+     cumsum( L[1:I[random.letter]] )#
+     ( position = max( cumsum( L[1:I[random.letter]] ) ) -  random.letter + 1 )
+( random.letter = sample(1:sum,1) )
+( random.letter = sample(1:sum,1) )#
+     cumsum( L[1:I[random.letter]] )#
+     ( position = max( cumsum( L[1:I[random.letter]] ) ) -  random.letter + 1 )
+( random.letter = sample(1:sum,1) )
+i.n = I[random.letter]]
+( random.letter = sample(1:sum,1) )
+i.n = I[random.letter]
+( i.n = I[random.letter] )
+( random.letter = sample(1:sum,1) )
+( i.n = I[random.letter] )
+cumsum( L[1:I[random.letter]] )
+L[i.n]
+( random.letter = sample(1:sum,1) )
+( i.n = I[random.letter] )
+cumsum( L[1:I[random.letter]] )
+max( cumsum( L[1:I[random.letter]] ) )
+L[i.n]
+max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]
+random.letter - (max( cumsum( L[1:I[random.letter]] ) ) - L[i.n])
+( position = random.letter - (max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     L[i.n]#
+     cumsum( L[1:I[random.letter]] )#
+     ( position = random.letter - (max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )#
+)
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     L[i.n]#
+     cumsum( L[1:I[random.letter]] )#
+     ( position = random.letter - (max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )
+( random.letter = sample(1:sum,1) )
+( i.n = I[random.letter] )
+L[i.n]
+cumsum( L[1:I[random.letter]] )
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     L[i.n]#
+     cumsum( L[1:I[random.letter]] )
+(max( cumsum( L[1:I[random.letter]] ) )
+max( cumsum( L[1:I[random.letter]] )
+max( cumsum( L[1:I[random.letter]] ) )
+L[i.n]
+i.n
+L[i.n]
+max( cumsum( L[1:I[random.letter]] ) )
+max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]
+( position = random.letter - ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) +1 )
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     L[i.n]#
+     cumsum( L[1:I[random.letter]] )#
+     P = ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n])
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     L[i.n]#
+     cumsum( L[1:I[random.letter]] )#
+     ( P = ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )
+( position = random.letter - P  +1 )
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     L[i.n]#
+     cumsum( L[1:I[random.letter]] )#
+     ( P = ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )
+( position = random.letter - P  +1 )
+( position = random.letter - P   )
+( P = ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )
+P
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     L[i.n]#
+     cumsum( L[1:I[random.letter]] )#
+     ( P = ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )
+L[i.n]
+i.n
+( position = random.letter - SUM[i.n]   )
+( P = ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     L[i.n]#
+     cumsum( L[1:I[random.letter]] )#
+     ( P = ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     ( L[i.n] )
+cumsum( L[1:I[random.letter]] )
+SUM
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     ( L[i.n] )
+cumsum( L[1:I[random.letter]] )
+( P = ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     ( L[i.n] )#
+     cumsum( L[1:I[random.letter]] )#
+     ( P = ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )
+( random.letter - P   )
+P + ( random.letter - P   )
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     ( L[i.n] )#
+     cumsum( L[1:I[random.letter]] )#
+     ( P = ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )#
+     position = random.letter - P
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     ( L[i.n] )#
+     cumsum( L[1:I[random.letter]] )#
+     ( Prev = ( max( cumsum( L[1:I[random.letter]] ) ) - L[i.n]) )
+random.letter - Prev
+( Sum = cumsum( L[1:I[random.letter]] ) )
+( Prev = ( max( Sum ) - L[i.n]) )
+max( Sum )
+random.letter
+Prev
+(random.letter - Prev)
+max( Sum ) - (random.letter - Prev)
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     ( L[i.n] )#
+     ( Sum = cumsum( L[1:I[random.letter]] ) )#
+     ( Prev = ( max( Sum ) - L[i.n]) )
+L[1:I[random.letter]]
+( random.letter = sample(1:sum,1) )
+( i.n = I[random.letter] )
+( L[i.n] )
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     ( L[i.n] )
+( random.letter = sample(1:sum,1) )#
+     ( i.n = I[random.letter] )#
+     ( L[i.n] )#
+     ( Sum = cumsum( L[1:I[random.letter]] ) )
+( random.letter = sample(1:sum,1) )
+( i.n = I[random.letter] )
+( random.letter = sample(1:sum,1)  )
+( random.letter + I[random.letter] -1 )
+( random.letter = sample(1:sum,1)  )#
+     ( random.letter = random.letter + I[random.letter] -1 )
+par(mfrow=c(2,3),mar = c(0,0,1,0))#
 #
-ds$day = (ds$Month-4)*30 + (ds$Day-1) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/24#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.row in 1:25){#
+  	 names = d$Name[(i.row-1)*10 + 1:10]#
+     txt	 = paste( names, collapse=" ")#
+     L = nchar(names)#
+     I = rep(1:10,L)#
+     text(5,max(d$Fr)-30*i.row,txt,adj=c(0,0), family="mono" , cex=0.5)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.row,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.5)#
+     SUM = cumsum( nchar(names) )#
+     ( random.letter = sample(1:sum,1)  )#
+     ( random.letter = random.letter + I[random.letter] -1 )#
+     txt = rep(".",random.letter)#
+     text(5,max(d$Fr)-30*i.row-15,txt,adj=c(0,0), family="mono" , cex=0.5)#
+  }#
+}
+par(mfrow=c(1,1),mar = c(0,0,1,0))
+par(mfrow=c(1,1),mar = c(0,0,1,0))#
 #
-hist(ds$day)   #
+# for( year in unique(ds$Year) ) {#
+for( year in 2018 ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.row in 1:25){#
+  	 names = d$Name[(i.row-1)*10 + 1:10]#
+     txt	 = paste( names, collapse=" ")#
+     L = nchar(names)#
+     I = rep(1:10,L)#
+     text(5,max(d$Fr)-30*i.row,txt,adj=c(0,0), family="mono" , cex=0.5)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.row,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.5)#
+     SUM = cumsum( nchar(names) )#
+     ( random.letter = sample(1:sum,1)  )#
+     ( random.letter = random.letter + I[random.letter] -1 )#
+     txt = rep(".",random.letter)#
+     text(5,max(d$Fr)-30*i.row-15,txt,adj=c(0,0), family="mono" , cex=0.5)#
+  }#
+}
+txt
+for( year in 2018 ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.row in 1:25){#
+  	 names = d$Name[(i.row-1)*10 + 1:10]#
+     txt	 = paste( names, collapse=" ")#
+     L = nchar(names)#
+     I = rep(1:10,L)#
+     text(5,max(d$Fr)-30*i.row,txt,adj=c(0,0), family="mono" , cex=0.5)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.row,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.5)#
+     SUM = cumsum( nchar(names) )#
+     ( random.letter = sample(1:sum,1)  )#
+     ( random.letter = random.letter + I[random.letter] -1 )#
+     txt = paste(rep(".",random.letter),collapse=" ")#
+     text(5,max(d$Fr)-30*i.row-15,txt,adj=c(0,0), family="mono" , cex=0.5)#
+  }#
+}
+txt
+for( year in 2018 ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.row in 1:25){#
+  	 names = d$Name[(i.row-1)*10 + 1:10]#
+     txt	 = paste( names, collapse=" ")#
+     L = nchar(names)#
+     I = rep(1:10,L)#
+     text(5,max(d$Fr)-30*i.row,txt,adj=c(0,0), family="mono" , cex=0.5)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.row,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.5)#
+     SUM = cumsum( nchar(names) )#
+     ( random.letter = sample(1:sum,1)  )#
+     ( random.letter = random.letter + I[random.letter] -1 )#
+     txt = paste(rep(".",random.letter),collapse="")#
+     text(5,max(d$Fr)-30*i.row-15,txt,adj=c(0,0), family="mono" , cex=0.5)#
+  }#
+}
+txt = paste(paste(rep(" ",random.letter),collapse=""),"^")
+txt
+txt = c(rep(" ",random.letter),"^")
+txt
+txt = txt[-1]
+txt
+txt = paste(txt,collapse="")
+txt
+par(mfrow=c(1,1),mar = c(0,0,1,0))#
 #
-ds$CDF =  ( (ds$page.no   - 1) * 200  + #
-            (ds$column.no - 1) * 100  +#
-               ds$row.no ) / 241929#
-head(ds) ; tail(ds)#
+# for( year in unique(ds$Year) ) {#
+for( year in 2018 ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.row in 1:25){#
+  	 names = d$Name[(i.row-1)*10 + 1:10]#
+     txt	 = paste( names, collapse=" ")#
+     L = nchar(names)#
+     I = rep(1:10,L)#
+     text(5,max(d$Fr)-30*i.row,txt,adj=c(0,0), family="mono" , cex=0.5)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.row,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.5)#
+     SUM = cumsum( nchar(names) )#
+     ( random.letter = sample(1:sum,1)  )#
+     ( random.letter = random.letter + I[random.letter] -1 )#
+     txt = c(rep(" ",random.letter),"^")#
+     txt = txt[-1]#
+     txt = paste(txt,collapse="")#
+     text(5,max(d$Fr)-30*i.row-15,txt,adj=c(0,0), family="mono" , cex=0.5)#
+  }#
+}
+for( year in 2018 ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.row in 1:25){#
+  	 names = d$Name[(i.row-1)*10 + 1:10]#
+     txt	 = paste( names, collapse=" ")#
+     L = nchar(names)#
+     I = rep(1:10,L)#
+     text(5,max(d$Fr)-30*i.row,txt,adj=c(0,0), family="mono" , cex=0.5)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.row,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.5)#
+     SUM = cumsum( nchar(names) )#
+     ( random.letter = sample(1:sum,1)  )#
+     ( random.letter = random.letter + I[random.letter] -1 )#
+     txt = c(rep(" ",random.letter),"^")#
+     txt = txt[-1]#
+     txt = paste(txt,collapse="")#
+     text(5,max(d$Fr)-30*i.row-5,txt,adj=c(0,0), family="mono" , cex=0.5)#
+  }#
+}
+for( year in 2018 ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.row in 1:25){#
+  	 names = d$Name[(i.row-1)*10 + 1:10]#
+     txt	 = paste( names, collapse=" ")#
+     L = nchar(names)#
+     I = rep(1:10,L)#
+     text(5,max(d$Fr)-30*i.row,txt,adj=c(0,0), family="mono" , cex=0.5)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.row,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.5)#
+     SUM = cumsum( nchar(names) )#
+     ( random.letter = sample(1:sum,1)  )#
+     ( random.letter = random.letter + I[random.letter] -1 )#
+     txt = c(rep(" ",random.letter),"^")#
+     txt = txt[-1]#
+     txt = paste(txt,collapse="")#
+     text(5,max(d$Fr)-30*i.row-10,txt,adj=c(0,0), family="mono" , cex=0.5)#
+  }#
+}
+summary(ds)#
 #
-plot(ds$day,ds$CDF,type="l")#
-abline(h=1/2)#
+par(mfrow=c(2,3),mar = c(0,0,1,0))#
 #
-L = length(ds$CDF)#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  plot(d$Rank, d$Fr, #
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.row in 1:25){#
+  	 names = d$Name[(i.row-1)*10 + 1:10]#
+     txt	 = paste( names, collapse=" ")#
+     L = nchar(names)#
+     I = rep(1:10,L)#
+     text(5,max(d$Fr)-30*i.row,txt,adj=c(0,0), family="mono" , cex=0.5)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-30*i.row,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.5)#
+     SUM = cumsum( nchar(names) )#
+     ( random.letter = sample(1:sum,1)  )#
+     ( random.letter = random.letter + I[random.letter] -1 )#
+     txt = c(rep(" ",random.letter),"^")#
+     txt = txt[-1]#
+     txt = paste(txt,collapse="")#
+     text(5,max(d$Fr)-30*i.row-12,txt,adj=c(0,0), family="mono" , cex=0.5)#
+  }#
+}
+par(mfrow=c(2,3),mar = c(0,0,1,0))#
 #
-ds$d = ds$CDF - c(0, ds$CDF[1:(L-1)])#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  ymax = max(d$Fr)#
+  dy = ymax/26#
+  plot(d$Rank, d$Fr,  ylim=c(0,ymax),#
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.row in 1:25){#
+  	 names = d$Name[(i.row-1)*10 + 1:10]#
+     txt	 = paste( names, collapse=" ")#
+     L = nchar(names)#
+     I = rep(1:10,L)#
+     text(5,max(d$Fr)-dy*i.row,txt,adj=c(0,0), family="mono" , cex=0.5)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-dy*i.row,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.5)#
+     SUM = cumsum( nchar(names) )#
+     ( random.letter = sample(1:sum,1)  )#
+     ( random.letter = random.letter + I[random.letter] -1 )#
+     txt = c(rep(" ",random.letter),"^")#
+     txt = txt[-1]#
+     txt = paste(txt,collapse="")#
+     text(5,max(d$Fr)-dy*i.row-12,txt,adj=c(0,0), family="mono" , cex=0.5)#
+  }#
+}
+par(mfrow=c(2,3),mar = c(0,0,1,0))#
 #
-plot(ds$day, ds$d, type="h" )#
-abline(v=30.1,col="blue",lwd=0.2)
-ds=read.csv("pFile.csv",as.is=TRUE)#
-str(ds)#
+for( year in unique(ds$Year) ) {#
+  d = ds[ds$Year==year,]#
+  ymax = max(d$Fr)#
+  dy = ymax/26#
+  plot(d$Rank, d$Fr,  ylim=c(0,ymax),#
+     col=c("red","blue")[1 + (d$Gender=="M")],#
+     pch = 19, cex = 0.1, main=toString(year),#
+     xaxt = "n", yaxt="n" , xlab="", ylab="")#
+  for (i.row in 1:25){#
+  	 names = d$Name[(i.row-1)*10 + 1:10]#
+     txt	 = paste( names, collapse=" ")#
+     L = nchar(names)#
+     I = rep(1:10,L)#
+     text(5,max(d$Fr)-dy*i.row,txt,adj=c(0,0), family="mono" , cex=0.45)#
+     sum = nchar(txt)-9#
+     text(495,max(d$Fr)-dy*i.row,toString(sum),adj=c(1,0),#
+      family="mono", cex=0.5)#
+     SUM = cumsum( nchar(names) )#
+     ( random.letter = sample(1:sum,1)  )#
+     ( random.letter = random.letter + I[random.letter] -1 )#
+     txt = c(rep(" ",random.letter),"^")#
+     txt = txt[-1]#
+     txt = paste(txt,collapse="")#
+     text(5,max(d$Fr)-dy*i.row-12,txt,adj=c(0,0), family="mono" , cex=0.45)#
+  }#
+}
+?head
+library(RCurl)#
 #
-ds$day = (ds$Month-4)*30 + (ds$Day-1) + (1/2)*(ds$AMorPM=="PM") +ds$Hour/24#
+url.pre="https://www.retraitequebec.gouv.qc.ca/en/services-en-ligne-outils/banque-de-prenoms/Pages/recherche_par_popularite.aspx?AnRefBp="#
 #
-hist(ds$day)   #
+url.post = "&NbPre=0&ChAff=PPMP&NbPrePag=500"#
 #
-ds$CDF =  ( (ds$page.no   - 1) * 200  + #
-            (ds$column.no - 1) * 100  +#
-               ds$row.no ) / 241929#
-head(ds) ; tail(ds)#
+ds = NULL#
 #
-plot(ds$day,ds$CDF,type="l")#
-abline(h=1/2)#
+for( Year in 2013:2018) {#
+   url = paste(url.pre,toString(Year),url.post,sep="")#
 #
-L = length(ds$CDF)#
+   TXT = getURL(url)#
+   txt=strsplit(TXT,"\n")[[1]]; length(txt)#
 #
-ds$d = ds$CDF - c(0, ds$CDF[1:(L-1)])#
+  txt[grep("Next",txt)]#
+   extract.names = function(gender) {#
+     target = paste("SexRec=",gender,"&amp;PreRec=",sep="")#
+     I = grep(target,txt)#
+     N = unlist(strsplit(txt[I],target))#
+     N = N[seq(2,length(N),2)] #
+     N = unlist(strsplit(N,">"))#
+     N = N[seq(2,length(N),3)]   #
+     N = unlist(strsplit(N,"<"))#
+     N = N[seq(1,length(N),2)]#
+     L = nchar(N) #
+     Frequency = txt[I+2]#
+     k = nchar( fr )#
+     fr= as.numeric(substr(fr,1,k-1))#
+     return( list(Name=N,Fr=fr,Length=L) )#
+   }#
+  f = data.frame( extract.names("F"), stringsAsFactors=FALSE ) ; #
+  m = data.frame( extract.names("M"), stringsAsFactors=FALSE ) ; #
+  f$Year = Year ; f$Gender="F" ; f$Rank=1:500#
+  m$Year = Year ; m$Gender="M" ; m$Rank=1:500#
 #
-plot(ds$day, ds$d, type="h" )#
-abline(v=30.1,col="blue",lwd=0.2)
-plot(ds$day, ds$d, type="l")
-plot(ds$day, ds$d, type="h")
-plot(ds$day, ds$d, type="h",lwd=2)
-plot(ds$day, ds$d, type="h",lwd=3)
-plot(ds$day, ds$d, type="h",lwd=4)
-plot(ds$day, ds$d, type="h",lwd=3.5)
-plot(ds$day, ds$d, type="h",lwd=3)
-abline(v=30.1,col="blue",lwd=0.2)
-sum(ds$d)
-ds$p = ds$CDF - c(0, ds$CDF[1:(L-1)])
-plot(ds$day, ds$p, type="h",lwd=3)
-sum(ds$p*ds$Day)
-# sum(ds$p*ds$d)
-sum(ds$p*ds$d)
-sum(ds$p*ds$day)
-var  = sum(ds$p* (ds$day-mean)^2
-var
-var  = sum(ds$p* (ds$day-mean)^2 )
-var
-var  = sum(ds$p* (ds$day-mean)^2 )
-(ds$day-mean)^2
-mean = sum(ds$p*ds$day)
-var  = sum( ds$p * (ds$day-mean)^2 )
-var
-sd  = sqrt( sum( ds$p * (ds$day-mean)^2 ) )
-sd
+  ds=rbind(ds,f)#
+  ds=rbind(ds,m)#
+#
+} # year
+url.pre="https://www.retraitequebec.gouv.qc.ca/en/services-en-ligne-outils/banque-de-prenoms/Pages/recherche_par_popularite.aspx?AnRefBp="#
+#
+url.post = "&NbPre=0&ChAff=PPMP&NbPrePag=500"#
+#
+ds = NULL#
+#
+for( Year in 2013:2018) {#
+   url = paste(url.pre,toString(Year),url.post,sep="")#
+#
+   TXT = getURL(url)#
+   txt=strsplit(TXT,"\n")[[1]]; length(txt)#
+#
+  txt[grep("Next",txt)]#
+   extract.names = function(gender) {#
+     target = paste("SexRec=",gender,"&amp;PreRec=",sep="")#
+     I = grep(target,txt)#
+     N = unlist(strsplit(txt[I],target))#
+     N = N[seq(2,length(N),2)] #
+     N = unlist(strsplit(N,">"))#
+     N = N[seq(2,length(N),3)]   #
+     N = unlist(strsplit(N,"<"))#
+     N = N[seq(1,length(N),2)]#
+     L = nchar(N) #
+     Frequency = txt[I+2]#
+     k = nchar( Frequency )#
+     Frequency = as.numeric(substr(Frequency,1,k-1))#
+     return( list(Name=N,Fr=fr,Length=L) )#
+   }#
+  f = data.frame( extract.names("F"), stringsAsFactors=FALSE ) ; #
+  m = data.frame( extract.names("M"), stringsAsFactors=FALSE ) ; #
+  f$Year = Year ; f$Gender="F" ; f$Rank=1:500#
+  m$Year = Year ; m$Gender="M" ; m$Rank=1:500#
+#
+  ds=rbind(ds,f)#
+  ds=rbind(ds,m)#
+#
+} # year
+url.post = "&NbPre=0&ChAff=PPMP&NbPrePag=500"#
+#
+ds = NULL#
+#
+for( Year in 2013:2018) {#
+   url = paste(url.pre,toString(Year),url.post,sep="")#
+#
+   TXT = getURL(url)#
+   txt=strsplit(TXT,"\n")[[1]]; length(txt)#
+#
+  txt[grep("Next",txt)]#
+   extract.names = function(gender) {#
+     target = paste("SexRec=",gender,"&amp;PreRec=",sep="")#
+     I = grep(target,txt)#
+     N = unlist(strsplit(txt[I],target))#
+     N = N[seq(2,length(N),2)] #
+     N = unlist(strsplit(N,">"))#
+     N = N[seq(2,length(N),3)]   #
+     N = unlist(strsplit(N,"<"))#
+     N = N[seq(1,length(N),2)]#
+     L = nchar(N) #
+     Frequency = txt[I+2]#
+     k = nchar( Frequency )#
+     Frequency = as.numeric(substr(Frequency,1,k-1))#
+     return( list(Name=N, Frequency = Frequency,Length=L) )#
+   }#
+  f = data.frame( extract.names("F"), stringsAsFactors=FALSE ) ; #
+  m = data.frame( extract.names("M"), stringsAsFactors=FALSE ) ; #
+  f$Year = Year ; f$Gender="F" ; f$Rank=1:500#
+  m$Year = Year ; m$Gender="M" ; m$Rank=1:500#
+#
+  ds=rbind(ds,f)#
+  ds=rbind(ds,m)#
+#
+} # year
+head(ds)
+setwd("/Users/jameshanley/git_repos/statbook/Resources")#
+write.table(ds,"QuebecBabyNames2013to2018.txt")
