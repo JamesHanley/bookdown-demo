@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-05-02" />
+<meta name="date" content="2020-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -285,7 +285,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="objectives-2" class="section level2">
 <h2><span class="header-section-number">17.1</span> Objectives</h2>
 <p>The <strong>‘computing’ objective</strong> is to learn how to use <code>R</code> to evaluate probabilities by (Monte Carlo) simulation. <code>R</code> Functions/structures used include <code>sample</code>, <code>matrix</code>, <code>apply</code>, <code>paste</code>, <code>cumprod</code> (cumulative product), <code>duplicated</code>, <code>unique</code>, <code>cbind</code> (stack columns)</p>
-<p>The <strong>‘statistical’ objective</strong> of this exercise is to learn some of the probability laws that which random processes by seeing how frequently certain events occur in computer simulations, and to deduce the laws from the (long-run) frequencies.</p>
+<p>The <strong>‘statistical’ objective</strong> of this exercise is to learn some of the laws that describe/quantify the <strong>variation</strong> (variance, SD) of the <strong>difference of 2 random variables</strong>. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don’t get to see the individuals – or collections of individuals – that were nor selected, the laws are based on the thoery of mathematical statistics, and thus not easy to visualize/imagine. So, we will use simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising ‘reasons why’ they take the form they do.</p>
 </div>
 <div id="exercises-7" class="section level2">
 <h2><span class="header-section-number">17.2</span> Exercises</h2>
@@ -390,136 +390,60 @@ ds =<span class="st"> </span><span class="kw">read.table</span>(
 ## 5501 WILLIAM       739      7 2018      M    1
 ## 5502   LOGAN       636      5 2018      M    2
 ## 5503    LIAM       629      4 2018      M    3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))
-
-<span class="cf">for</span>( year <span class="cf">in</span> <span class="kw">max</span>(ds<span class="op">$</span>Year) ) {
- <span class="cf">for</span>( g <span class="cf">in</span> <span class="kw">unique</span>(ds<span class="op">$</span>Gender) ) {
-
-  d =<span class="st"> </span>ds[ds<span class="op">$</span>Year <span class="op">==</span><span class="st"> </span>year <span class="op">&amp;</span><span class="st">  </span>ds<span class="op">$</span>Gender <span class="op">==</span><span class="st"> </span>g,]
-  
-  COL=<span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>)[<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(d<span class="op">$</span>Gender<span class="op">==</span><span class="st">&quot;M&quot;</span>)]
-  
-  ymax =<span class="st"> </span><span class="kw">max</span>(d<span class="op">$</span>Frequency)
-  dy =<span class="st"> </span>ymax<span class="op">/</span><span class="dv">55</span>
-  
-  CEX=<span class="fl">0.85</span>
-  
-  S =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>,<span class="dv">50</span>,<span class="dv">2</span>)
-  
-  <span class="kw">plot</span>(d<span class="op">$</span>Rank, d<span class="op">$</span>Frequency,
-       <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">0.025</span>,<span class="fl">1.03</span>)<span class="op">*</span>ymax,<span class="dt">col=</span>COL,
-       <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">510</span>),
-     <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">lwd=</span><span class="dv">1</span>,<span class="dt">main=</span><span class="kw">toString</span>(year),
-     <span class="dt">xaxt =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">yaxt=</span><span class="st">&quot;n&quot;</span> , <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>)
-  
-  <span class="cf">for</span>(rank <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">seq</span>(<span class="dv">25</span>,<span class="dv">500</span>,<span class="dv">25</span>) ) ) {
-     <span class="kw">text</span>(rank,<span class="dv">1</span>, <span class="kw">toString</span>(rank),<span class="dt">cex=</span><span class="fl">0.75</span>,<span class="dt">col=</span>COL)
-  }
-  <span class="kw">text</span>(<span class="dv">250</span>,<span class="op">-</span><span class="dv">10</span>, <span class="st">&quot;Rank&quot;</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.5</span>,<span class="dv">1</span>),<span class="dt">cex=</span><span class="dv">1</span>,<span class="dt">col=</span>COL)
-  
-  <span class="cf">for</span>(fr <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">seq</span>(<span class="dv">0</span>,ymax,<span class="dv">50</span>) ) ) {
-     <span class="kw">text</span>(<span class="op">-</span><span class="dv">5</span>,fr, <span class="kw">toString</span>(fr),<span class="dt">cex=</span><span class="fl">0.75</span>,
-          <span class="dt">col=</span>COL, <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="fl">0.5</span>))
-  }
-  <span class="kw">text</span>(<span class="op">-</span><span class="dv">5</span>,ymax<span class="op">*</span><span class="fl">1.01</span>, <span class="st">&quot;Frequency&quot;</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.5</span>,<span class="dv">0</span>),<span class="dt">cex=</span><span class="dv">1</span>,<span class="dt">col=</span>COL)
-  
-  
-  <span class="kw">text</span>(<span class="dv">485</span>,<span class="kw">max</span>(d<span class="op">$</span>Fr)<span class="op">+</span>dy<span class="op">/</span><span class="dv">10</span>,
-    <span class="st">&quot;Sum and Mean of Numbers of Letters in 10 Names in Row</span><span class="ch">\n</span><span class="st">^^  ^^^&quot;</span> ,
-      <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), <span class="dt">col=</span>COL,
-      <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX,<span class="dt">font=</span><span class="dv">2</span>)
-  
-  <span class="cf">for</span> (i.row <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>){
-     names =<span class="st"> </span>d<span class="op">$</span>Name[(i.row<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]
-     txt     =<span class="st"> </span><span class="kw">paste</span>( names, <span class="dt">collapse=</span><span class="st">&quot; &quot;</span>)
-     L =<span class="st"> </span><span class="kw">nchar</span>(names)
-     I =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,L)
-     <span class="kw">text</span>(<span class="dv">5</span>,<span class="kw">max</span>(d<span class="op">$</span>Frequency)<span class="op">-</span>dy<span class="op">*</span>i.row,txt,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),
-          <span class="dt">family=</span><span class="st">&quot;mono&quot;</span> , <span class="dt">cex=</span>CEX, <span class="dt">col=</span>COL)
-     sum =<span class="st"> </span><span class="kw">nchar</span>(txt)<span class="op">-</span><span class="dv">9</span>
-     S[i.row,<span class="dv">1</span>] =<span class="st">  </span>sum
-     
-     ( <span class="dt">random.letter =</span> <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>sum,<span class="dv">1</span>)  )
-     length.random.name  =<span class="st"> </span>L[ I[random.letter] ]
- 
-     S[i.row,<span class="dv">2</span>] =<span class="st"> </span>length.random.name
-     random.letter =<span class="st"> </span>random.letter <span class="op">+</span><span class="st"> </span>I[random.letter] <span class="op">-</span><span class="dv">1</span> 
-     txt =<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot; &quot;</span>,random.letter),<span class="st">&quot;^&quot;</span>)
-     txt =<span class="st"> </span>txt[<span class="op">-</span><span class="dv">1</span>]
-     txt =<span class="st"> </span><span class="kw">paste</span>(txt,<span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)
-     <span class="kw">text</span>(<span class="dv">5</span>,<span class="kw">max</span>(d<span class="op">$</span>Frequency)<span class="op">-</span>dy<span class="op">*</span>i.row<span class="op">-</span>dy<span class="op">/</span><span class="fl">1.75</span>,txt,
-          <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="dt">family=</span><span class="st">&quot;mono&quot;</span> , <span class="dt">cex=</span>CEX)
-
-     <span class="kw">text</span>(<span class="dv">485</span>,<span class="kw">max</span>(d<span class="op">$</span>Frequency)<span class="op">-</span>dy<span class="op">*</span>i.row,
-          <span class="kw">paste</span>(<span class="kw">toString</span>(sum), <span class="st">&quot;&quot;</span>, 
-          <span class="kw">format</span>(sum<span class="op">/</span><span class="dv">10</span>,<span class="dt">nsmall=</span><span class="dv">1</span>)) ,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),
-      <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX, <span class="dt">col=</span>COL)
-      
-      <span class="kw">text</span>(<span class="dv">5</span>,<span class="kw">max</span>(d<span class="op">$</span>Frequency)<span class="op">-</span>dy<span class="op">*</span>i.row<span class="op">-</span>dy<span class="op">/</span><span class="fl">1.5</span>,txt,
-          <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="dt">family=</span><span class="st">&quot;mono&quot;</span> , <span class="dt">cex=</span>CEX)
-
-      <span class="kw">text</span>(<span class="dv">505</span>,<span class="kw">max</span>(d<span class="op">$</span>Frequency)<span class="op">-</span>dy<span class="op">*</span>i.row,
-          <span class="kw">format</span>(length.random.name, <span class="dt">width=</span><span class="dv">2</span>) ,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),
-      <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX, <span class="dt">font =</span> <span class="dv">3</span>,<span class="dt">col=</span>COL)
-     
-                  
-  } <span class="co"># row</span>
-  
-  y =<span class="st"> </span><span class="fl">3.5</span><span class="op">*</span>dy
-  <span class="kw">text</span>(<span class="dv">430</span>,y,<span class="st">&quot;Across the 50 Rows:&quot;</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),
-       <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX, <span class="dt">font =</span> <span class="dv">4</span>,<span class="dt">col=</span>COL)
-  
-  y=<span class="fl">2.5</span><span class="op">*</span>dy
-  <span class="kw">text</span>(<span class="dv">505</span>,y,<span class="kw">format</span>(<span class="kw">round</span>(<span class="kw">mean</span>(S[,<span class="dv">2</span>]),<span class="dv">1</span>),<span class="dt">nsmall=</span><span class="dv">1</span>),<span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.35</span>,<span class="dv">0</span>),
-       <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX, <span class="dt">font =</span> <span class="dv">4</span>,<span class="dt">col=</span>COL)
-  
-  <span class="kw">text</span>(<span class="dv">485</span>,y,<span class="kw">format</span>(<span class="kw">mean</span>(S[,<span class="dv">1</span>]<span class="op">/</span><span class="dv">10</span>),<span class="dt">nsmall=</span><span class="dv">1</span>),<span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.75</span>,<span class="dv">0</span>),
-       <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX, <span class="dt">font =</span> <span class="dv">4</span>,<span class="dt">col=</span>COL)
-  
-  <span class="kw">text</span>(<span class="dv">460</span>,y,<span class="kw">format</span>(<span class="kw">mean</span>(S[,<span class="dv">1</span>]),<span class="dt">nsmall=</span><span class="dv">1</span>),<span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.75</span>,<span class="dv">0</span>),
-       <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX, <span class="dt">font =</span> <span class="dv">4</span>,<span class="dt">col=</span>COL)
-  
-  <span class="kw">text</span>(<span class="dv">430</span>,y,<span class="st">&quot;Mean:&quot;</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),
-       <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX, <span class="dt">font =</span> <span class="dv">4</span>,<span class="dt">col=</span>COL)
-  
-  y =<span class="st"> </span><span class="fl">1.5</span><span class="op">*</span>dy
-  <span class="kw">text</span>(<span class="dv">485</span>,y,
-       <span class="kw">format</span>(<span class="kw">round</span>(<span class="kw">sd</span>(S[,<span class="dv">1</span>]<span class="op">/</span><span class="dv">10</span>),<span class="dv">1</span>),<span class="dt">nsmall=</span><span class="dv">1</span>),
-       <span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.75</span>,<span class="dv">0</span>),
-       <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX, <span class="dt">font =</span> <span class="dv">4</span>,<span class="dt">col=</span>COL)
-  
-  <span class="kw">text</span>(<span class="dv">460</span>,y,
-       <span class="kw">format</span>(<span class="kw">round</span>(<span class="kw">sd</span>(S[,<span class="dv">1</span>]),<span class="dv">1</span>),<span class="dt">nsmall=</span><span class="dv">1</span>),
-       <span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.75</span>,<span class="dv">0</span>),
-       <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX, <span class="dt">font =</span> <span class="dv">4</span>,<span class="dt">col=</span>COL)
-  
-  <span class="kw">text</span>(<span class="dv">505</span>,y,
-       <span class="kw">format</span>(<span class="kw">round</span>(<span class="kw">sd</span>(S[,<span class="dv">2</span>]),<span class="dv">1</span>),<span class="dt">nsmall=</span><span class="dv">1</span>),
-       <span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">0.35</span>,<span class="dv">0</span>),
-       <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX, <span class="dt">font =</span> <span class="dv">4</span>,<span class="dt">col=</span>COL)
-  
-  <span class="kw">text</span>(<span class="dv">430</span>,y,<span class="st">&quot;SD:&quot;</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),
-       <span class="dt">family=</span><span class="st">&quot;mono&quot;</span>, <span class="dt">cex=</span>CEX, <span class="dt">font =</span> <span class="dv">4</span>,<span class="dt">col=</span>COL)
-  
-} <span class="co"># gender</span>
-
-} <span class="co"># year</span></code></pre></div>
-<p><img src="statbook_files/figure-html/unnamed-chunk-72-1.png" width="864" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">0</span>))
-
- <span class="cf">for</span>( g <span class="cf">in</span> <span class="kw">unique</span>(ds<span class="op">$</span>Gender) ) {
-
-  d =<span class="st"> </span>ds[ds<span class="op">$</span>Gender <span class="op">==</span><span class="st"> </span>g,]
-  
-  COL=<span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>)[<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(d<span class="op">$</span>Gender<span class="op">==</span><span class="st">&quot;M&quot;</span>)]
-
-  <span class="kw">plot</span>(d<span class="op">$</span>Length,d<span class="op">$</span>Rank,<span class="dt">pch=</span><span class="dv">19</span>,<span class="dt">col=</span> COL, <span class="dt">cex=</span><span class="fl">0.25</span>,
-       <span class="dt">ylab=</span><span class="st">&quot;Rank&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Number of Letters in Name&quot;</span>)
-  <span class="kw">abline</span>(<span class="dt">h=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">500</span>,<span class="dv">50</span>),<span class="dt">col=</span><span class="st">&quot;lightblue&quot;</span>)
-  <span class="kw">lines</span>(<span class="kw">aggregate</span>(d<span class="op">$</span>Rank,<span class="dt">by=</span><span class="kw">list</span>(<span class="dt">Length=</span>d<span class="op">$</span>Length),mean))
-
-}</code></pre></div>
-<p><img src="statbook_files/figure-html/unnamed-chunk-73-1.png" width="864" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-73"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-73-1.png" alt="Frequency distribution of the 500 most popular names for babies born in Quebec in 2018. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma. 2. Alice, .. 1. William, 2. Logan, ... ). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column." width="864" />
+<p class="caption">
+Figure 17.1: Frequency distribution of the 500 most popular names for babies born in Quebec in 2018. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma. 2. Alice, .. 1. William, 2. Logan, … ). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by ‘sticking a pin’ (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column.
+</p>
+</div>
+<p><img src="statbook_files/figure-html/unnamed-chunk-74-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-75-1.png" width="864" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-76"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-76-1.png" alt="Just lines" width="864" />
+<p class="caption">
+Figure 17.2: Just lines
+</p>
+</div>
+<pre><code>##   [1]  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  4  4  4
+##  [26]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4
+##  [51]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4
+##  [76]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4
+## [101]  4  4  4  4  4  4  4  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
+## [126]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
+## [151]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
+## [176]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
+## [201]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
+## [226]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  6  6  6  6  6  6  6  6  6  6  6
+## [251]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
+## [276]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
+## [301]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
+## [326]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
+## [351]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  7  7  7  7  7  7  7
+## [376]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7
+## [401]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7
+## [426]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7
+## [451]  7  7  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8
+## [476]  8  8  9  9  9  9  9  9  9  9  9 10 10 11 11 12 12 13 13 13 14 15 15 15 15
+##   [1]  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4
+##  [26]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4
+##  [51]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4
+##  [76]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  5  5  5  5  5
+## [101]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
+## [126]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
+## [151]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
+## [176]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
+## [201]  5  5  5  5  5  5  5  5  5  5  5  5  6  6  6  6  6  6  6  6  6  6  6  6  6
+## [226]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
+## [251]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
+## [276]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
+## [301]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
+## [326]  6  6  6  6  6  6  6  6  6  6  6  6  6  7  7  7  7  7  7  7  7  7  7  7  7
+## [351]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7
+## [376]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7
+## [401]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  8  8  8  8  8  8  8  8
+## [426]  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8
+## [451]  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  9  9  9  9  9  9  9  9  9
+## [476]  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9 10 10 10 10 12</code></pre>
 </div>
 <div id="life-tables-1990-1" class="section level3">
 <h3><span class="header-section-number">17.2.2</span> Life Tables [1990]</h3>
@@ -546,10 +470,10 @@ In a (<strong>current</strong>) life table, one takes <strong>current</strong> (
 <code>Pr[Die after 70th birthday] = 0.wwww</code><br />
 <code>Pr{Die after 80th birthday] = 0.zzzz</code><br />
 <code>Pr[die between 70 and 80] = difference</code></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-74"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-74-1.png" alt="Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is 'bottom-up' rather than the conventional 'top-down' format, and side by side, in the spirit of population 'pyramids'. Also unusually, the 'survival surve' for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.  " width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-77"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-77-1.png" alt="Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is 'bottom-up' rather than the conventional 'top-down' format, and side by side, in the spirit of population 'pyramids'. Also unusually, the 'survival surve' for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.  " width="864" />
 <p class="caption">
-Figure 17.1: Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is ‘bottom-up’ rather than the conventional ‘top-down’ format, and side by side, in the spirit of population ‘pyramids’. Also unusually, the ‘survival surve’ for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.
+Figure 17.3: Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is ‘bottom-up’ rather than the conventional ‘top-down’ format, and side by side, in the spirit of population ‘pyramids’. Also unusually, the ‘survival surve’ for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.
 </p>
 </div>
 <p>For population pyramids, see <a href="https://www.populationpyramid.net/world/2019/" class="uri">https://www.populationpyramid.net/world/2019/</a></p>
