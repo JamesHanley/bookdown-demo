@@ -4,7 +4,7 @@
 
 The **'computing' objective** is to learn how to use `R` to evaluate probabilities by (Monte Carlo) simulation. `R` Functions/structures used include `sample`, `matrix`, `apply`, `paste`, `cumprod` (cumulative product), `duplicated`, `unique`, `cbind` (stack columns) 
 
-The **'statistical' objective** of this exercise is to learn some of the probability laws that which random processes by seeing how frequently certain events occur in computer  simulations, and to deduce the laws from the (long-run) frequencies.
+The **'statistical' objective** of this exercise is to learn some of the laws that describe/quantify the **variation** (variance, SD) of the **difference of 2 random variables**. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don't get to see the individuals -- or collections of individuals -- that were nor selected, the laws are based on the thoery of mathematical statistics, and thus not easy to visualize/imagine. So, we will use  simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising 'reasons why' they take the form they do.     
 
 ## Exercises 
 
@@ -25,6 +25,11 @@ str(ds)
 
 by(ds,list(g=ds$Gender,y=ds$Year),head,n=3)
 
+```
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=18, fig.width=9, warning=FALSE, message=F,fig.cap="Frequency distribution of the 500 most popular names for babies born in Quebec in 2018. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma. 2. Alice, .. 1. William, 2. Logan, ... ). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column."}
+
+
 par(mfrow=c(2,1),mar = c(0,0,1,0))
 
 for( year in max(ds$Year) ) {
@@ -39,18 +44,21 @@ for( year in max(ds$Year) ) {
   
   CEX=0.85
   
-  S = matrix(NA,50,2)
+  n.rows = 50
+  
+  S = matrix(NA,n.rows,2)
   
   plot(d$Rank, d$Frequency,
        ylim=c(-0.025,1.03)*ymax,col=COL,
-       xlim=c(-12,510),
+       xlim=c(-12,525),
      type="l", lwd=1,main=toString(year),
-     xaxt = "n", yaxt="n" , xlab="", ylab="")
+     xaxt = "n", yaxt="n" , xlab="", ylab="",
+     frame = FALSE)
   
   for(rank in c(1, seq(25,500,25) ) ) {
      text(rank,1, toString(rank),cex=0.75,col=COL)
   }
-  text(250,-10, "Rank",adj=c(0.5,1),cex=1,col=COL)
+  text(250,-10, "Rank [1: Most Popular]",adj=c(0.5,1),cex=1,col=COL)
   
   for(fr in c(1, seq(0,ymax,50) ) ) {
      text(-5,fr, toString(fr),cex=0.75,
@@ -63,8 +71,8 @@ for( year in max(ds$Year) ) {
     "Sum and Mean of Numbers of Letters in 10 Names in Row\n^^  ^^^" ,
       adj=c(1,0), col=COL,
       family="mono", cex=CEX,font=2)
-  
-  for (i.row in 1:50){
+
+  for (i.row in 1:n.rows){
   	 names = d$Name[(i.row-1)*10 + 1:10]
      txt	 = paste( names, collapse=" ")
      L = nchar(names)
@@ -85,7 +93,7 @@ for( year in max(ds$Year) ) {
      text(5,max(d$Frequency)-dy*i.row-dy/1.75,txt,
           adj=c(0,0),family="mono" , cex=CEX)
 
-     text(485,max(d$Frequency)-dy*i.row,
+     text(495,max(d$Frequency)-dy*i.row,
           paste(toString(sum), "", 
           format(sum/10,nsmall=1)) ,adj=c(1,0),
       family="mono", cex=CEX, col=COL)
@@ -93,7 +101,7 @@ for( year in max(ds$Year) ) {
       text(5,max(d$Frequency)-dy*i.row-dy/1.5,txt,
           adj=c(0,0),family="mono" , cex=CEX)
 
-      text(505,max(d$Frequency)-dy*i.row,
+      text(520,max(d$Frequency)-dy*i.row,
           format(length.random.name, width=2) ,adj=c(1,0),
       family="mono", cex=CEX, font = 3,col=COL)
      
@@ -101,25 +109,27 @@ for( year in max(ds$Year) ) {
   } # row
   
   y = 3.5*dy
-  text(430,y,"Across the 50 Rows:",adj=c(1,0),
+  text(430,y,"Down the 50 Rows:",adj=c(1,0),
        family="mono", cex=CEX, font = 4,col=COL)
   
   y=2.5*dy
-  text(505,y,format(round(mean(S[,2]),1),nsmall=1),adj=c(0.35,0),
+  
+  text(520,y,format(round(mean(S[,2]),1),nsmall=1),adj=c(0.35,0),
        family="mono", cex=CEX, font = 4,col=COL)
   
-  text(485,y,format(mean(S[,1]/10),nsmall=1),adj=c(0.75,0),
+  text(495,y,format(round(mean(S[,1]/10),3),nsmall=3),adj=c(0.75,0),
        family="mono", cex=CEX, font = 4,col=COL)
   
-  text(460,y,format(mean(S[,1]),nsmall=1),adj=c(0.75,0),
+  text(460,y,format(round(mean(S[,1]),2),nsmall=2),adj=c(0.75,0),
        family="mono", cex=CEX, font = 4,col=COL)
   
   text(430,y,"Mean:",adj=c(1,0),
        family="mono", cex=CEX, font = 4,col=COL)
   
   y = 1.5*dy
-  text(485,y,
-       format(round(sd(S[,1]/10),1),nsmall=1),
+  
+  text(495,y,
+       format(round(sd(S[,1]/10),2),nsmall=2),
        adj=c(0.75,0),
        family="mono", cex=CEX, font = 4,col=COL)
   
@@ -128,13 +138,19 @@ for( year in max(ds$Year) ) {
        adj=c(0.75,0),
        family="mono", cex=CEX, font = 4,col=COL)
   
-  text(505,y,
+  text(520,y,
        format(round(sd(S[,2]),1),nsmall=1),
        adj=c(0.35,0),
        family="mono", cex=CEX, font = 4,col=COL)
   
   text(430,y,"SD:",adj=c(1,0),
        family="mono", cex=CEX, font = 4,col=COL)
+  
+  txt = format(round(sd(d$Length),2),nsmall=2)
+  text(175,y,
+       paste("SD[lengths of 500 names]:",
+            txt,"letters") ,
+       cex=CEX, col=COL,adj=c(1,0))
   
 } # gender
 
@@ -145,7 +161,7 @@ for( year in max(ds$Year) ) {
 ```
 
 
-```{r,eval=T, echo=T, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
 
 par(mfrow=c(2,1),mar = c(5,5,0,0))
 
@@ -160,9 +176,143 @@ par(mfrow=c(2,1),mar = c(5,5,0,0))
   abline(h=seq(0,500,50),col="lightblue")
   lines(aggregate(d$Rank,by=list(Length=d$Length),mean))
 
-}
+ }
+
 ```
 
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=10, fig.width=9, warning=FALSE, message=F}
+
+ds = read.table(  # str(ds)        
+"http://www.biostat.mcgill.ca/hanley/statbook/QuebecBabyNames2013to2018.txt", as.is=TRUE)
+
+
+par(mfrow=c(1,1),mar = c(0,0,1,0))
+
+for( year in max(ds$Year) ) {
+  
+   m = matrix(c( ds$Name[ds$Year == year & ds$Gender == "M"],
+               ds$Name[ds$Year == year & ds$Gender == "F"] ),
+               500,2)
+   
+   n = 50 ; dy=3
+   X = 20
+   CEX = 0.5
+   
+   plot(-11, -11,
+       ylim=c(0,n*1.05*dy),
+       xlim=c(-12,50))
+   
+   dx = strwidth("1", units = "user", 
+                cex = CEX, font = 1, family= "mono")
+   
+   segments(0,1,0,(n+1)*dy)
+   segments(X,1,X,(n+1)*dy)
+   
+   
+   ADJ = rep(1,n)
+   str = rep("",n)
+   Diff = rep(NA,n)
+   
+   for(i in 1:n){
+     
+   	   M.minus.F = nchar(m[i,1]) - nchar(m[i,2])
+   	   Diff[i] = M.minus.F
+   	   
+       if(M.minus.F>=0){
+         
+       	   text(0+M.minus.F*dx, i*dy+2,m[i,1],
+       	        adj=c(1,0),family="mono",cex=CEX)
+ 		       text(0,              i*dy+1,m[i,2],
+ 		              adj=c(1,0),family="mono",cex=CEX)
+ 		   
+ 		       
+ 		       if(M.minus.F > 0){
+ 		           ss = substr(m[i,1], nchar(m[i,2])+1,
+ 		                      nchar(m[i,1]) )
+ 		           text(0,i*dy+2,ss,
+ 		              adj=c(0,0),family="mono",
+ 		              cex=CEX,col="blue")
+ 		       
+ 		           str[i] = ss
+ 		           ADJ[i] = 0
+ 		       } 
+ 		       
+ 		       
+       }
+       
+       if(M.minus.F < 0){
+       	   text(0,               i*dy+2,m[i,1],
+       	        adj=c(0,0),family="mono",cex=CEX)
+ 		       text(0+M.minus.F*dx,  i*dy+1,m[i,2],
+ 		            adj=c(0,0),family="mono",cex=CEX)
+ 		       ss = substr(m[i,2],1,-M.minus.F)
+ 		       text(0,i*dy+1,ss,
+ 		            adj=c(1,0),family="mono",
+ 		            cex=CEX,col="red" )
+ 		       str[i] = ss
+ 		       ADJ[i] = 1
+       }
+   	   
+   	   text(X, i*dy+1.5, str[i], 
+   	        adj=c(ADJ[i],0), family="mono",
+ 		            cex=CEX,
+   	            col= c("red","blue")[ 2-ADJ[i] ] 
+   	        )
+   	   
+   } # i
+   
+   sorted.d = data.frame(Diff,str)
+   sorted.d = sorted.d[order(sorted.d$Diff),]
+   w = max(abs( sorted.d$Diff ))
+   
+   XX = 40
+   segments(XX,1.5,XX,(n+1)*dy)
+   Dx = w * dx
+   segments(XX-Dx,(n/2+1)*dy, XX+Dx,(n/2+1)*dy)
+   rect( XX-Dx, 0.5*dy, XX+Dx,(n+1)*dy )
+   
+   for(i in 1:n){
+       e = sorted.d$Diff[i]
+       text(XX+(e<0)*e*dx, i*dy+1.5,
+            toString( sorted.d$str[i] ),
+            cex=CEX,  family="mono",adj=c(0,0))
+   }
+
+} # year
+
+```
+
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=10, fig.width=9, warning=FALSE, message=F,fig.cap="Just lines"}
+
+par(mfrow=c(1,1),mar = c(0,0,1,0))
+
+   n = 500 ; 
+   X = 20
+   CEX = 0.5
+   
+   plot(-11, -11,
+       ylim=c(-0.025,1.05)*n,
+       xlim=c(-12,50))
+   
+   dx = strwidth("1", units = "user", 
+                cex = CEX, font = 1, family= "mono")
+   
+   for (g in 1:2) {
+   
+      segments(0,1,0,n+1)
+      segments(X,1,X,n+1)
+      
+      val = sort(nchar(m[,g]))
+      print(val)
+   
+   
+   }
+   
+  
+```
 
 ###  Life Tables [1990] 
 
