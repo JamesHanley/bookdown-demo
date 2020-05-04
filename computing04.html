@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-05-03" />
+<meta name="date" content="2020-05-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -249,6 +249,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="17.2.2" data-path="computing04.html"><a href="computing04.html#life-tables-1990-1"><i class="fa fa-check"></i><b>17.2.2</b> Life Tables [1990]</a></li>
 <li class="chapter" data-level="17.2.3" data-path="computing04.html"><a href="computing04.html#life-tables-2018-1"><i class="fa fa-check"></i><b>17.2.3</b> Life Tables [2018]</a></li>
 <li class="chapter" data-level="17.2.4" data-path="computing04.html"><a href="computing04.html#chevalier-de-méré-1"><i class="fa fa-check"></i><b>17.2.4</b> Chevalier de Méré</a></li>
+<li class="chapter" data-level="17.2.5" data-path="computing04.html"><a href="computing04.html#section"><i class="fa fa-check"></i><b>17.2.5</b> </a></li>
+<li class="chapter" data-level="17.2.6" data-path="computing04.html"><a href="computing04.html#height-differences-of-random-m-f-pairs"><i class="fa fa-check"></i><b>17.2.6</b> Height differences of random M-F pairs</a></li>
+<li class="chapter" data-level="17.2.7" data-path="computing04.html"><a href="computing04.html#box-minus-bowl"><i class="fa fa-check"></i><b>17.2.7</b> Box minus bowl</a></li>
+<li class="chapter" data-level="17.2.8" data-path="computing04.html"><a href="computing04.html#car-parking-fixed-and-variable"><i class="fa fa-check"></i><b>17.2.8</b> car parking fixed and variable</a></li>
 </ul></li>
 <li class="chapter" data-level="17.3" data-path="computing04.html"><a href="computing04.html#other-exercises-under-construction-1"><i class="fa fa-check"></i><b>17.3</b> Other Exercises (under construction)</a><ul>
 <li class="chapter" data-level="17.3.1" data-path="computing04.html"><a href="computing04.html#hiv-transmission-1"><i class="fa fa-check"></i><b>17.3.1</b> HIV transmission</a></li>
@@ -404,46 +408,6 @@ Figure 17.1: Frequency distribution of the 500 most popular names for babies bor
 Figure 17.2: Just lines
 </p>
 </div>
-<pre><code>##   [1]  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4  4  4  4  4  4
-##  [26]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4
-##  [51]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4
-##  [76]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4
-## [101]  4  4  4  4  4  4  4  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
-## [126]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
-## [151]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
-## [176]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
-## [201]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
-## [226]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  6  6  6  6  6  6  6  6  6  6  6
-## [251]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
-## [276]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
-## [301]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
-## [326]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
-## [351]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  7  7  7  7  7  7  7
-## [376]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7
-## [401]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7
-## [426]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7
-## [451]  7  7  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8
-## [476]  8  8  9  9  9  9  9  9  9  9  9 10 10 11 11 12 12 13 13 13 14 15 15 15 15
-##   [1]  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  3  4
-##  [26]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4
-##  [51]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4
-##  [76]  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  4  5  5  5  5  5
-## [101]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
-## [126]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
-## [151]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
-## [176]  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5  5
-## [201]  5  5  5  5  5  5  5  5  5  5  5  5  6  6  6  6  6  6  6  6  6  6  6  6  6
-## [226]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
-## [251]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
-## [276]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
-## [301]  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6  6
-## [326]  6  6  6  6  6  6  6  6  6  6  6  6  6  7  7  7  7  7  7  7  7  7  7  7  7
-## [351]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7
-## [376]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7
-## [401]  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  7  8  8  8  8  8  8  8  8
-## [426]  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8
-## [451]  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  8  9  9  9  9  9  9  9  9  9
-## [476]  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9  9 10 10 10 10 12</code></pre>
 </div>
 <div id="life-tables-1990-1" class="section level3">
 <h3><span class="header-section-number">17.2.2</span> Life Tables [1990]</h3>
@@ -508,6 +472,19 @@ Gamblers in 17th century France used to bet on the event of getting at least one
 <li><p>Can you work out the probabilities directly?</p></li>
 <li><p><a href="https://www.casino-games-online.biz/dice/chevalier-de-mere.html" class="uri">https://www.casino-games-online.biz/dice/chevalier-de-mere.html</a></p></li>
 </ul>
+</div>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">17.2.5</span> </h3>
+<p>Half of a large number of orders were placed on Tuesday and half on Thursday. They all jumbled together and shipped in 3 equal sized shipments on Monday Wednesday and Friday of the following week, arriving the same day. Calculate the mean and standard deviation of the number of days between ordering and arrival.</p>
+</div>
+<div id="height-differences-of-random-m-f-pairs" class="section level3">
+<h3><span class="header-section-number">17.2.6</span> Height differences of random M-F pairs</h3>
+</div>
+<div id="box-minus-bowl" class="section level3">
+<h3><span class="header-section-number">17.2.7</span> Box minus bowl</h3>
+</div>
+<div id="car-parking-fixed-and-variable" class="section level3">
+<h3><span class="header-section-number">17.2.8</span> car parking fixed and variable</h3>
 </div>
 </div>
 <div id="other-exercises-under-construction-1" class="section level2">
