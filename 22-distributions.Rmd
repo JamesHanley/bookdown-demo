@@ -552,7 +552,19 @@ Suppose one wishes to estimate via a multiple choice examination [with $k$ answe
    + Show that the simple proportion $p$ of correctly answered questions gives a biased (over) estimate of $\pi$ if the student simply randomly guesses among the $k$ answers on questions where (s)he doesn't know the answer. Do this by calculating the expected value of p (i.e. the average mark per question) when each answer is marked 1 if correct and 0 if not. (_Hint_: a tree diagram may help).
    + One can 'de-bias' the estimate by giving each correct answer a mark of 1 and each incorrect  answer a negative mark. What negative mark (penalty) will provide an unbiased estimate of $\pi$? Begin by finding the expected mark per question, then set it to $\pi$ and solve for the penalty. (_Hint_: If you prefer, use concrete values of $\pi$ and $k$ to see what penalty is needed.)
    
-   
+8. Suppose a random variable takes on the integer values 1 to 5 inclusive, each with probability 1/5. Compute the variance and SD of this random variable. 
+
+9. Half the purchases of eggs in a market are for 6 eggs and half are for 12. What percentage of purchases are for a quantity that is more than 1 SD from the mean? less than 1 SD? 
+
+10. Half the people in a population have 2 organs and half have none. What is the standard deviation of the number of organs a ranomly selecetd person has? 
+
+11. Consider children of parents who both carry a single copy of the CF gene. (In the absence of ..) How many of their offspring will have 0, 1 or 2 copies? 
+
+
+12. No. copies of wild type if frequency is 1/5. Mean/Var.? 
+
+
+
 https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/phasing-penny.html
 
 simulation

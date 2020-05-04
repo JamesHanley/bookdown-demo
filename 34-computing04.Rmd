@@ -285,32 +285,61 @@ for( year in max(ds$Year) ) {
 
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=10, fig.width=9, warning=FALSE, message=F,fig.cap="Just lines"}
+```{r,eval=T, echo=F, fig.align="center", fig.height=15, fig.width=9, warning=FALSE, message=F,fig.cap="Just lines"}
+
 
 par(mfrow=c(1,1),mar = c(0,0,1,0))
 
-   n = 500 ; 
+
+   N = 500 ; 
    X = 20
    CEX = 0.5
    
    plot(-11, -11,
-       ylim=c(-0.025,1.05)*n,
-       xlim=c(-12,50))
+       ylim=c(-0.025,1.05)*N,
+       xlim=c(-1,110))
    
    dx = strwidth("1", units = "user", 
                 cex = CEX, font = 1, family= "mono")
+
+for(n in c(1,4)){
+	
+   M = m
+   if(n==4){
+   	   M1 = matrix( c(m[,1],m[,1],m[,1],m[,1])[sample(1:(4*N))], 500,4)
+   	   M1=apply(M1,1,paste,collapse="")
+   	   M2 = matrix( c(m[,2],m[,2],m[,2],m[,2])[sample(1:(4*N))], 500,4)
+   	   M2=apply(M2,1,paste,collapse="")
+   	   M = cbind(M1,M2) 
+   } 
    
-   for (g in 1:2) {
-   
-      segments(0,1,0,n+1)
-      segments(X,1,X,n+1)
+   for (g in 1:3) {
       
-      val = sort(nchar(m[,g]))
-      print(val)
-   
+      every = 1
+      
+      O = 35*(n==4) + ( 15+5*(n==4) )*(g==2) + (35+25*(n==4))*(g==3) 
+      
+      II = seq(ceiling(every/2),N,every)
+      
+      if(g <3) val = ( sort( nchar(M[,g]) ) ) [II]
+      if(g==3) val = ( sort( nchar(M[,1]) - nchar(M[,2])  ) ) [II] 
+      if(g <3) Mean = mean( nchar(M[,g]) )
+      if(g==3)  Mean = mean( nchar(M[,1]) ) - mean( nchar(M[,2]) )
+      points(val+O, II, pch=19,cex=0.05)
+      segments(Mean+O, II, val+O, II,lwd=0.15,col="red")
+      text(Mean+O, N, expression(mu))
+      text(Mean+O, 0, expression(mu))
+
+      for( Val in  unique(val)) {
+      	 if(Val <= Mean) text(Val+O,-7-7*(Val %% 3),toString(Val),cex=0.5,adj=c(0.5,1.5))
+      	 if(Val >= Mean) text(Val+O,N+7+7*(Val %% 3),toString(Val),cex=0.5,adj=c(0.5,0))
+
+      } 
    
    }
    
+} # n
+
   
 ```
 
@@ -504,6 +533,17 @@ Gamblers in  17th century France used to bet on the event of getting at least on
 
    + https://www.casino-games-online.biz/dice/chevalier-de-mere.html
 
+
+###
+
+Half of a large number of orders were placed on Tuesday and half on Thursday. They all jumbled together and shipped in 3 equal sized shipments on Monday Wednesday and Friday of the following week, arriving the same day. Calculate  the mean and standard deviation of the number of days between ordering and arrival. 
+
+### Height differences of random M-F pairs
+
+### Box minus bowl
+
+### car parking  fixed and variable
+ 
 ## Other Exercises (under construction)
 
 
