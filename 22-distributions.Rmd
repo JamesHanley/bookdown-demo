@@ -1,6 +1,20 @@
 # Distributions /Random Variables {#Distributions}
 
 
+## Objectives
+
+This **central** chapter addresses a **fundamental concept**, namely the **variance of a random variable**. It gives the laws governing the variance of a sum of 2, or (especially) $n$ random variables  -- and even more importantly -- the laws governing **the variance of a difference of two random variables.** The latter is  central, not just to simple contrasts involving just 2 sample means or proportions, but also in the much wider world of regression, since the variance (sampling variability) of any regression slope can be viewed as the **variance of a linear combination of** random 'errors', or random deviations, or **random variables**.   So, if there is one 'master' formula to pay attention to and to 'own', it is the one for the variance of a linear combination of random variables. All others are special cases of this.
+
+So, the **specific objectives** are to truly understand
+
+* the concept of  a random variable.
+
+* the concept of the (expectation and) variance of a random variable.
+
+* why it is that, when dealing with the sum  of two or more independent random variables, it is not their standard deviations that sum (add), but rather their variances.
+
+* likewise, why it is that, when dealing with the **difference**  of two independent random variables, or some **linear combination** of $n$ independent random variables involving positive and negative weights, **why the component variances add**, and **with what weights**. 
+
 ## Random Variables
 
 **Textbook definitions of RANDOM VARIABLE**
@@ -76,6 +90,32 @@ Y = the person's Blood Group
 `.................... =====`  
 `....ALL ............ 1.000`  
 
+* In a 1911 census, of all households with at least 1 child aged 12 or under, the proportions of households that had 1, 2, ... children.
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+
+fr = c(15273, 11193, 8226, 5761, 3300, 1397, 404, 97)
+
+proportion.of.households =round(fr/sum(fr),3)
+n.children = 1:8
+cbind(n.children,proportion.of.households)
+
+```
+
+
+* Proportions of (currently) married women aged 45 and older who, in a 1911 census, reported this "number of children born alive to the present marriage"
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+
+f=c(4780, 935, 1142, 1331, 1425, 1529, 1522, 1453, 1416, 1214, 1085, 667, 511, 275, 156, 85, 36, 20, 11, 6, 1)
+proportion.of.women =f/sum(f)
+proportion.of.women = round(proportion.of.women,6)
+n.children = 0:20
+cbind(n.children,proportion.of.women)
+
+```
 
 * Choose a random word and count how many characters it contains  
 Y =  Number of characters in word
@@ -304,6 +344,21 @@ Assume for sake of illustration that deaths in a decade are all at midpoint of i
 `.ALL ............... 1.000 .. 73.2 ....... 1.000 .... xx.x`
 
 
+* Mean no. of children 12 years and under in households with at least 1 such child:
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+
+
+
+fr = c(15273, 11193, 8226, 5761, 3300, 1397, 404, 97)
+proportion.of.households =round(fr/sum(fr),3)
+n.children = 1:8
+product = n.children * proportion.of.households
+cbind(n.children,proportion.of.households, product)
+cat(paste(". Sum(products) = Expected Value = Mean = ",round(sum(product),1)))
+
+```
+
 * If you want to start **your own Insurance Company** 
 Y = Payout (from -99,750 to +$1250)  
 
@@ -429,6 +484,27 @@ for(i.r in 1:6) {
 
 In practice, the mean absolute deviation is often quite close to the SD, and certainly easier to explain to explain to non-statisticians. However, when computig was by ahnd and laborious, it took two passes through the data to compute it, whereas, the SD could be computed in one.  
 
+* **Variance & SD of number of children <= 12 years** in households with at least 1 such child:
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+
+fr = c(15273, 11193, 8226, 5761, 3300, 1397, 404, 97)
+proportion.of.households =round(fr/sum(fr),3)
+n.children = 1:8
+
+Mean = sum(product)
+devn. = n.children - Mean
+devn.squared = devn.^2
+product = devn.squared * proportion.of.households
+cbind(n.children, devn.,devn.squared,proportion.of.households, product)
+cat(paste("....... Sum(products) = Mean of Squared Deviations = Variance =",round(sum(product),2)))
+
+cat(paste(". Sq. Root of Mean of Squared Deviations = Standard Deviation =",round(sqrt(sum(product)),1)))
+
+```
+
+
+
 
 **Which is primary, Standard Deviation or Variance?**
 
@@ -444,8 +520,8 @@ Statistical Wisdom](https://www-degruyter-com.proxy3.library.mcgill.ca/view/titl
 The limiting behavior of a random variable that is the sum of a large number of independent random variables depends on the variances of these random variables.
 
 
-* USEFUL RELATIONSHIP (for hand computation, 'back when', and in mathematical statistics, still today):  
-$$Variance(Y) = E(Y^2) — \mu^2.$$
+* USEFUL RELATIONSHIP/SHORTCUT (especially for hand computation, 'back when', and in mathematical statistics, still today):  
+$$Variance(Y) = E(Y^2) - \mu^2.$$
 $$\textrm{Variance =  average  square  minus   squared average}.$$
 
 
@@ -456,10 +532,70 @@ $$\textrm{Variance =  average  square  minus   squared average}.$$
 Jerry Hill, who wrote 
 [this PhD thesis](https://www.collectionscanada.gc.ca/obj/s4/f2/dsk2/ftp02/NQ26855.pdf) 'at the end of a career in medicine and epidemiology' commuted from Ottawa and taught the 607 course a few times in the 1980s. In the course, he used to joke about  the (many) mathematical statisticians who refer to a random variable having a  Normal (Gaussian) distribution with standard deviation $\sigma$ as $Y \sim N(\mu, \sigma^2)$, i.e., who **defined the spread of the distribution (any distribution, not just Gaussian ones) using its variance**. [Note that the `dnorm`, `pnorm` `qnorm` and `rnorm` functions in `R` all use the argument `sd`, as do all applied textbooks, writing $Y \sim N(\mu, \sigma)$]. Gerry would then go on to give a numerical example, using the  commonly used metric the Total Fertility Rate (TFR) – or often simply 'fertility rate' – which (as per Goggle) `measures the **average number of children per woman**.' The global average fertility rate is just below **2.5 children per woman** today'. He would them say, 'Suppose the variation from country to country had a **standard deviation of 1.2**'. Then, reminding his class to use appropriate units when reporting statistical measures, he would ask that they give the appropriate units for the 2.5, the 1.2, and the $1.2^2$ = 1.44, forcing them to say the **variance was 1.44 square children per square woman**. 
 
- 
-## Functions/combinations of random variables
+### Example of Variance-calculation using one-pass formula
 
-## Named Disributions
+**Number of children born alive**
+
+Proportions of (currently) married women aged 45 and older who, in a 1911 census, reported this "number of children born alive to the present marriage"
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+
+f=c(4780, 935, 1142, 1331, 1425, 1529, 1522, 1453, 1416, 1214, 1085, 667, 511, 275, 156, 85, 36, 20, 11, 6, 1)
+proportion.of.women =f/sum(f)
+proportion.of.women = round(proportion.of.women,6)
+n.children = 0:20
+Mean = sum( n.children * proportion.of.women )
+squared.children = n.children^2
+product = squared.children * proportion.of.women
+cbind(n.children,squared.children,
+      proportion.of.women,product)[ 1:3,]
+cbind(n.children,squared.children,
+      proportion.of.women,product)[ 19:21,]
+
+cat(paste("Sum(product) = Mean Squared Value = ", round(sum(product),2), "; Mean Value = ",round(Mean,2)))
+
+cat(paste("Variance = ",
+          round(sum(product),2),
+          " minus the square of" ,
+          round(Mean,2),
+          " = ",
+          round(sum(product)-Mean^2,2)))
+
+cat(paste("Thus, Standard Deviation = sqrt(",
+          round(sum(product)-Mean^2,2),
+          ") = ",
+          round(sqrt( sum(product)-Mean^2 ),2)
+          ))
+
+```
+ 
+## Variances of combinations of random variables
+
+### simple sum
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+
+fr = c(15273, 11193, 8226, 5761, 3300, 1397, 404, 97)
+
+proportion.of.households =round(fr/sum(fr),3)
+n.children = 1:8
+
+noquote(format(outer(n.children,n.children,"+"),w=8))
+
+outer(proportion.of.households,
+      proportion.of.households)
+
+```
+
+### simple difference
+
+### Linear combination
+
+anatomy of a slope.
+
+## Named Distributions
 
 Gaussian Bernoulli-Binomial  Poisson
 

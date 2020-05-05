@@ -1000,9 +1000,10 @@ Put all of the program steps and output into a single .txt file. JH will use a m
 
 * Lottery payoffs
 
+* sampling of children in school
 
 
-* Detecting a fake Bernoulli sequenece
+* Detecting a fake Bernoulli sequence
 
 * Cell occupancy
 
