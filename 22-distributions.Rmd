@@ -574,6 +574,143 @@ cat(paste("Thus, Standard Deviation = sqrt(",
 
 ### simple sum
 
+$$Sum = RV_1 \ (6 \ or \ 12) \ + \ RV_2 \ (8 \ or \ 16) \ = \ 14 \ or \ 20 \ or \ 22 \ or \ 28.$$  
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
+
+plot.rv = function(v,COL){
+   CEX=1.1
+   par(mfrow=c(1,1),mar = rep(0,4))
+   plot(-10,-10,xlim=c(-5,40),ylim=c(0.375,0.57),
+     xaxt="n",yaxt="n",frame=TRUE)
+   #segments(0, 0.5,28,0.5,col=COL)
+   arrows(mean(v),0.45,v,0.45,length=0.06,angle=35,col=COL)
+   points(v,rep(0.505,2),pch=19,col=COL)
+   points(mean(v),0.45,pch=19,cex=CEX/2,col=COL)
+   text(3,0.55, "PROBABILITY:",cex=1.1*CEX,adj=c(1,0.5),col=COL)
+   for(i in v){
+      text(i,0.55,bquote(frac(1, 2)),adj=c(0.5,0.5),col=COL)
+      txt = toString( i-mean(v))
+      if(i> mean(v)) txt = paste("+",toString( i-mean(v)),sep="") 
+      text(i,0.44,txt,adj=c(0.5,1),cex=1.25*CEX,col=COL)
+      txt = bquote(frac(1, 2) ~ (-3)^2)
+      if(v[1]==8) txt = bquote(frac(1, 2) ~ (-4)^2)
+      if(i==v[2]) txt = bquote(frac(1, 2) ~ (+3)^2)
+      if(i==v[2] & v[1]==8) txt = bquote(frac(1, 2) ~ (+4)^2)
+      text(i,0.40, txt,cex=1.25*CEX,col=COL)
+   }
+   text( 3,0.40, "VARIANCE  = ",cex=1.1*CEX,adj=c(1,0.5),col=COL)
+   text( mean(v),0.40, "+",cex=1.1*CEX,col=COL)
+   txt = bquote("= " ~ 3^2)
+   if(v[1]==8) txt = bquote("= " ~ 4^2)
+   text(v[2]+6,0.40, txt,cex=1.4*CEX,col=COL)
+
+   for(i in seq(0,28,1)){
+        segments(i,0.495,i,0.50,col=COL)
+        text(i,0.492,toString(i),cex=CEX/1.5,adj=c(0.5,1),col=COL)
+   }
+   
+} 
+
+```
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
+
+v = c(6,12)
+
+plot.rv(c(6,12),1)
+plot.rv(c(8,16),1)
+
+
+```
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=4.5, fig.width=9, warning=FALSE, message=F}
+
+v=matrix(c(6,12,8,16),2,2)
+
+plot.sum2rvs = function(v){
+   CEX=1.1
+   par(mfrow=c(1,1),mar = rep(0,4))
+   plot(-10,-10,xlim=c(-5,40),ylim=c(-0.10,1),
+     xaxt="n",yaxt="n",frame=TRUE)
+   
+   DY = c(0.45, 0.25)
+   
+   y0 = -0.05
+ 
+   for(i in seq(0,28,1)){
+        segments(i,y0,i,y0+0.01)
+        text(i,y0-0.01,toString(i),cex=CEX/1.5,adj=c(0.5,1))
+   }
+   
+   for (rv1.v in 1:2){
+   	   MEAN = mean(v[,1])
+   	   y = 0.5 + DY[1] * (rv1.v - 1.5)
+   	   txt = bquote(frac(1, 2))
+         text(-0.5,y, txt,cex=CEX/1.5, adj=c(1,0.5))
+   	   segments(0, y , v[rv1.v,1], y)
+   	   points(v[rv1.v,1], y,  pch=19,cex=0.5 )
+   	   txt1 = toString(v[rv1.v,1] - MEAN)
+   	   if(rv1.v==2) txt1 = paste("+",txt1,sep="")
+   	   #text(v[rv1.v,1], y, txt,adj=c(0.5,1.35))
+   	   Mean = mean(v[,2])
+   	   for (rv2.v in 1:2){
+   	      yy = y + DY[2] * (rv2.v - 1.5)
+   	      txt = bquote(frac(1, 2))
+            text(v[rv1.v,1]-0.5,yy, txt,cex=CEX/1.5, adj=c(1,0.5))
+   	      segments(v[rv1.v,1],               yy , 
+   	               v[rv1.v,1]  + v[rv2.v,2], yy )
+   	      points(v[rv1.v,1]  + v[rv2.v,2], yy, 
+   	             pch=19,cex=0.9 )
+   	      points(v[rv1.v,1]  + v[rv2.v,2], y0+0.065, 
+   	             pch=19,cex=0.9 )
+   	      txt2 = toString(v[rv2.v,2] - Mean)
+   	   if(rv2.v==2) txt2 = paste("+",txt2,sep="")
+   	      
+   	   text(v[rv1.v,1]  +v[rv2.v,2], yy-0.035, 
+   	        paste(txt1,txt2,sep=" "),
+   	        adj=c(0.5,0.5))
+   	   
+   	   txt = bquote(frac(1, 4))
+         text(v[rv1.v,1]  + v[rv2.v,2],yy, 
+              txt,cex=CEX/1.5, adj=c(1.05,-0.25))
+         
+       if(rv1.v==1 & rv2.v ==1) Txt = 
+            bquote((-3)^2 + (-4)^2 + 2(-3)(-4) )
+       if(rv1.v==1 & rv2.v ==2) Txt = 
+            bquote((-3)^2 + (+4)^2 + 2(-3)(+4) )
+       if(rv1.v==2 & rv2.v ==1) Txt = 
+            bquote((+3)^2 + (-4)^2 + 2(+3)(-4) )
+       if(rv1.v==2 & rv2.v ==2) Txt = 
+            bquote((+3)^2 + (+4)^2 + 2(+3)(+4) )       
+       text(41, yy-0.035, Txt,adj=c(1,0.5))
+
+       }
+   }
+   text(41,1,"The Squared Deviations",adj=c(1,1))
+   arrows(0, y0+0.065, 13, y0+0.065,length=0.06,angle=25 )
+   text(0, y0+0.065, "Sum of 2\nrandom variables",adj=c(0,0.5) )
+   
+   text(41, y0+0.08, "====================" ,adj=c(1,0.5))
+   
+   text(31, y0+0.02, 
+        bquote(3^2 ~  ~ + ~  ~ 4^2), adj=c(0,0.5),cex=1.5)
+   text(31.25, y0-0.05,"VAR[Sum]", adj=c(0,0.5))
+   
+   segments(41, 0.08, 37, 0.85,lwd=0.6 )
+   segments(37, 0.08, 41, 0.85,lwd=0.6)
+}
+
+plot.sum2rvs(v)
+
+```
+
+BOTTOM LINE
+
+$$ SD_1 = 3; SD_2 =4; BUT \ SD[Sum] \ \ne \ 3 + 4. \ SD[Sum] \ = \ \sqrt{3^2 + 4^2} = 5.$$  
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
 
@@ -582,10 +719,22 @@ fr = c(15273, 11193, 8226, 5761, 3300, 1397, 404, 97)
 proportion.of.households =round(fr/sum(fr),3)
 n.children = 1:8
 
-noquote(format(outer(n.children,n.children,"+"),w=8))
+# noquote(format(outer(n.children,n.children,"+"),w=8))
 
-outer(proportion.of.households,
-      proportion.of.households)
+#outer(proportion.of.households,proportion.of.households)
+
+```
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+
+fr = c(15273, 11193, 8226, 5761, 3300, 1397, 404, 97)
+
+proportion.of.households =round(fr/sum(fr),3)
+n.children = 1:8
+
+# noquote(format(outer(n.children,n.children,"+"),w=8))
+
+#outer(proportion.of.households,proportion.of.households)
 
 ```
 
