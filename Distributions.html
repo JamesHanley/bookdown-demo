@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-05-06" />
+<meta name="date" content="2020-05-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,13 +193,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.5.3" data-path="Distributions.html"><a href="Distributions.html#but-for-end-users-today-."><i class="fa fa-check"></i><b>12.5.3</b> But, for end-users today ….</a></li>
 <li class="chapter" data-level="12.5.4" data-path="Distributions.html"><a href="Distributions.html#example-of-variance-calculation-using-one-pass-formula"><i class="fa fa-check"></i><b>12.5.4</b> Example of Variance-calculation using one-pass formula</a></li>
 </ul></li>
-<li class="chapter" data-level="12.6" data-path="Distributions.html"><a href="Distributions.html#variances-of-combinations-of-random-variables"><i class="fa fa-check"></i><b>12.6</b> Variances of combinations of random variables</a><ul>
-<li class="chapter" data-level="12.6.1" data-path="Distributions.html"><a href="Distributions.html#simple-sum"><i class="fa fa-check"></i><b>12.6.1</b> simple sum</a></li>
-<li class="chapter" data-level="12.6.2" data-path="Distributions.html"><a href="Distributions.html#simple-difference"><i class="fa fa-check"></i><b>12.6.2</b> simple difference</a></li>
-<li class="chapter" data-level="12.6.3" data-path="Distributions.html"><a href="Distributions.html#linear-combination"><i class="fa fa-check"></i><b>12.6.3</b> Linear combination</a></li>
+<li class="chapter" data-level="12.6" data-path="Distributions.html"><a href="Distributions.html#variance-and-sd-of-a-function-of-a-random-variable"><i class="fa fa-check"></i><b>12.6</b> Variance and SD of a FUNCTION of a random variable</a></li>
+<li class="chapter" data-level="12.7" data-path="Distributions.html"><a href="Distributions.html#variances-of-combinations-of-random-variables"><i class="fa fa-check"></i><b>12.7</b> Variances of combinations of random variables</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="Distributions.html"><a href="Distributions.html#a-simple-sum-of-2-or-n"><i class="fa fa-check"></i><b>12.7.1</b> A simple sum (of 2 or <span class="math inline">\(n\)</span>)</a></li>
+<li class="chapter" data-level="12.7.2" data-path="Distributions.html"><a href="Distributions.html#simple-mean-of-2-or-n-rvs"><i class="fa fa-check"></i><b>12.7.2</b> Simple mean (of 2 or <span class="math inline">\(n\)</span> RVs)</a></li>
+<li class="chapter" data-level="12.7.3" data-path="Distributions.html"><a href="Distributions.html#simple-difference"><i class="fa fa-check"></i><b>12.7.3</b> simple difference</a></li>
+<li class="chapter" data-level="12.7.4" data-path="Distributions.html"><a href="Distributions.html#linear-combination"><i class="fa fa-check"></i><b>12.7.4</b> Linear combination</a></li>
 </ul></li>
-<li class="chapter" data-level="12.7" data-path="Distributions.html"><a href="Distributions.html#named-distributions"><i class="fa fa-check"></i><b>12.7</b> Named Distributions</a></li>
-<li class="chapter" data-level="12.8" data-path="Distributions.html"><a href="Distributions.html#exercises-2"><i class="fa fa-check"></i><b>12.8</b> Exercises</a></li>
+<li class="chapter" data-level="12.8" data-path="Distributions.html"><a href="Distributions.html#named-distributions"><i class="fa fa-check"></i><b>12.8</b> Named Distributions</a></li>
+<li class="chapter" data-level="12.9" data-path="Distributions.html"><a href="Distributions.html#exercises-2"><i class="fa fa-check"></i><b>12.9</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>III Part III</b></span></li>
 <li class="chapter" data-level="13" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>13</b> Mathematics</a><ul>
@@ -616,9 +618,12 @@ Assume for sake of illustration that deaths in a decade are all at midpoint of i
 <div id="expected-value-of-a-function-of-a-random-variable" class="section level2">
 <h2><span class="header-section-number">12.4</span> Expected value of a FUNCTION of a random variable</h2>
 <ul>
-<li><p>If <span class="math inline">\(Y \ \sim \ p(y)\)</span>, i.e., <span class="math inline">\(Y\)</span> has probability distribution p(<span class="math inline">\(y\)</span>), and if <span class="math inline">\(g(Y)\)</span> is some real-valued function of <span class="math inline">\(Y\)</span>, then <span class="math display">\[E[ g(Y) ] = \sum g(y)  \times p(y),\]</span> i.e. it is a weighted mean of the <span class="math inline">\(g(y)\)</span>’s, with <span class="math inline">\(p(y)\)</span>’s as weights.</p></li>
+<li>If <span class="math inline">\(Y \ \sim \ p(y)\)</span>, i.e., <span class="math inline">\(Y\)</span> has probability distribution p(<span class="math inline">\(y\)</span>), and if <span class="math inline">\(g(Y)\)</span> is some real-valued function of <span class="math inline">\(Y\)</span>, then <span class="math display">\[E[ g(Y) ] = \sum g(y)  \times p(y),\]</span> i.e. it is a weighted mean of the <span class="math inline">\(g(y)\)</span>’s, with <span class="math inline">\(p(y)\)</span>’s as weights.</li>
+</ul>
+<p><strong>NOTE</strong> In some instances, the expectation of <span class="math inline">\(g(Y)\)</span> is <span class="math inline">\(g(E[Y])\)</span>, while in others it is more complex. Can you figure out when it is/is not in each of the following instances?</p>
+<ul>
 <li><p><strong>Examples</strong></p></li>
-<li><p><span class="math inline">\(Y\)</span> = Temperature (C) on May 6 in Mtl on a randomly selected day of the year;<br />
+<li><p><span class="math inline">\(Y\)</span> = Noon Temperature (C) in Montreal on a randomly selected day of the year;<br />
 <span class="math inline">\(g(Y)\)</span> = Temperature (F) = 32 + (9/5) <span class="math inline">\(Y\)</span></p></li>
 <li><p><span class="math inline">\(Y\)</span> = Weight in Kg (or Height in cm) of a randomly selected person;<br />
 g(Y) = Weight in Kg (or Height in inches)</p></li>
@@ -717,30 +722,143 @@ The limiting behavior of a random variable that is the sum of a large number of 
 <pre><code>## Thus, Standard Deviation = sqrt( 16.11 ) =  4.01</code></pre>
 </div>
 </div>
+<div id="variance-and-sd-of-a-function-of-a-random-variable" class="section level2">
+<h2><span class="header-section-number">12.6</span> Variance and SD of a FUNCTION of a random variable</h2>
+<p>If we go back to some of the <strong>examples listed above</strong> we can reason out what the law must be</p>
+<ul>
+<li><p><span class="math inline">\(Y\)</span> = Noon Temperature (C) in Mtl on a randomly selected day of the year;<br />
+… <span class="math inline">\(g(Y)\)</span> = Temperature (F) = 32 + (9/5) <span class="math inline">\(Y\)</span><br />
+If the SD was say 10 C, then surely the SD is 18 C. After all, Temperature is Temperature, so you are not – as some textbooks are inclined to say – ‘changing’ the fundamental variable, but rather changing the scale of the temperature variable. So, the SD scales up by 9/5, and so, being <strong>an average square</strong>, the <strong>variance scales up by <span class="math inline">\((9/5)^2\)</span>.</strong> If you are going the other way, from the larger F scale to the smaller C scale, the scalings are (5/9) for the SD, and <span class="math inline">\((5/9)^2\)</span> for the variance. More generally,<br />
+<span class="math display">\[SD[constant  \times RV] = constant  \times SD[RV]\]</span><br />
+<span class="math display">\[Var[constant  \times RV] = constant^2  \times Var[RV]\]</span> .<br />
+This example also shows another law related to spread: shifting left or by a constant amount (eg. suppose the conversion was <span class="math inline">\(F = 10 + (9/5)C\)</span> instead of was <span class="math inline">\(F = 32 + (9/5)C,\)</span> it would not alter the spread. Thus,<br />
+.<br />
+<span class="math display">\[SD[ RV + constant ] = SD[RV]\]</span><br />
+<span class="math display">\[Var[ RV + constant ] = Var[RV]\]</span></p></li>
+<li><p><span class="math inline">\(Y\)</span> = Weight in Kg (or Height in cm) of a randomly selected person;<br />
+… g(Y) = Weight in Kg (or Height in inches)<br />
+.<br />
+This involves just a scaling, with no shift. So if the SD were 10 Kg, it would be 22 lbs, and the variances in the 2 scales would be <span class="math inline">\(100 \ Kg^2\)</span> and <span class="math inline">\(484 \ lb^2\)</span>.</p></li>
+<li><p><span class="math inline">\(Y\)</span> = Years of publication of all the books in the McGill Library, with Years measured from AD (Anno Dominini, ‘in the year of the Lord’).<br />
+.<br />
+The SD would be the same if we measured the Year from 1439 AD (<span class="math inline">\(Y&#39; = Y\)</span> - 1439) when Gutenberg was the first European to use movable type, or from 1492 AD when Christopher Columbus reached North America.<br />
+.<br />
+What if, instead, we calcualted the age of each book in the year 2020, i.e. as <span class="math inline">\(Y&#39; = 2020 - Y\)</span>?<br />
+.<br />
+The <strong>scale would now be reversed</strong>. Instead of being at the extreme left, the older books would not be at the right hand of the scale, and vice versa. But the spread would still be the same, even though the shape of the new distribution would be the miorrow inage of the old one.<br />
+.<br />
+What if we measured <strong>age in decades</strong>, i.e., <span class="math inline">\(Y&#39; = \frac{2020 - Y}{10}\)</span> or centuries i.e., <span class="math inline">\(Y&#39; = \frac{2020 - Y}{100}\)</span>?<br />
+.<br />
+The SDs would be scaled down by 10 and by 100, and the variances by <span class="math inline">\(10^2\)</span> and <span class="math inline">\(100^2.\)</span></p></li>
+<li><p><span class="math inline">\(Y\)</span> = Ocean Depth ot a randomly chosen location, measured in metres. If the <strong>‘origin’ is the ocean floor</strong>, all depths will be positive; if it is <strong>the surface of the ocean</strong>, they will all be negative. The <strong>spread, the SD and the Variance stay the same</strong>, but the <strong>shapes of the distributions are mirror inages</strong> of each other.</p></li>
+<li><p><span class="math inline">\(Y\)</span> = diameter of a randomly chosen sphere;<br />
+… <span class="math inline">\(g(Y)\)</span> = Volume of sphere = <span class="math inline">\(\frac{\pi}{6} Y^3.\)</span><br />
+.<br />
+This one is more complicated – as you might have guessed from just trying to compute the expectation. The fact that the scaling is different at different values of <span class="math inline">\(Y\)</span> complicated matters. There is an appriximate formula, that depends on the scaling at some ‘representative’ value of <span class="math inline">\(Y\)</span>, typically the mean or mode. For more on this, see the examples in this <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/jh_dt_tas_2006.pdf">expository piece</a>.</p></li>
+<li><p><span class="math inline">\(Y\)</span> = fuel consumption, in liters/100km, of a randomly selected make of car;<br />
+<span class="math inline">\(g(Y)\)</span> = miles per gallon or Km per liter (reciprocal)<br />
+.<br />
+There is no exact closed form, but the approximation works well because the values are well away from zero, and not too spread out – unless you allow Hummers!</p></li>
+</ul>
+</div>
 <div id="variances-of-combinations-of-random-variables" class="section level2">
-<h2><span class="header-section-number">12.6</span> Variances of combinations of random variables</h2>
-<div id="simple-sum" class="section level3">
-<h3><span class="header-section-number">12.6.1</span> simple sum</h3>
-<p><span class="math display">\[Sum = RV_1 \ (6 \ or \ 12) \ + \ RV_2 \ (8 \ or \ 16) \ = \ 14 \ or \ 20 \ or \ 22 \ or \ 28.\]</span></p>
-<p><img src="statbook_files/figure-html/unnamed-chunk-54-1.png" width="864" style="display: block; margin: auto;" /><img src="statbook_files/figure-html/unnamed-chunk-54-2.png" width="864" style="display: block; margin: auto;" /></p>
-<p><img src="statbook_files/figure-html/unnamed-chunk-55-1.png" width="864" style="display: block; margin: auto;" /></p>
-<p>BOTTOM LINE</p>
-<p><span class="math display">\[ SD_1 = 3; SD_2 =4; BUT \ SD[Sum] \ \ne \ 3 + 4. \ SD[Sum] \ = \ \sqrt{3^2 + 4^2} = 5.\]</span></p>
+<h2><span class="header-section-number">12.7</span> Variances of combinations of random variables</h2>
+<div id="a-simple-sum-of-2-or-n" class="section level3">
+<h3><span class="header-section-number">12.7.1</span> A simple sum (of 2 or <span class="math inline">\(n\)</span>)</h3>
+<p>To keep it simple, and to allow us to see what is going on, Let’s consider two very simple random variables (RV’s), each taking just 2 values, and with equal probabilities. [You can check for yourself later that the same law applies to random variables that take on more than 2 values, and with uneven probability distributions.] The key is that the 2 variables are independent of each other.</p>
+<p>The next panels show the two RV’s. <span class="math inline">\(RV_1\)</span>  (6  or  12)  +  <span class="math inline">\(RV_2\)</span>  (8  or  16)</p>
+<p><span class="math display">\[Sum = RV_1 \ (6 \ or \ 12) \ + \ RV_2 \ (8 \ or \ 16) \ = \ 14 \ or \ 20 \ or \ 22 \ or \ 28.\]</span><br />
+We will come back much later to the choices of the specific values for each of the random variables; for our purposes here, the main point is that both equally-likely values are an even number apart, so the SDs are integers, and all calculations involve integers. Note that an RV with equally likely values 1 and 7 (or 3 and 9, or -1 and + 5) has the same SD as the RV with equally likely values 6 and 12: it is the distance between them that determines the SD. Note also, that with half of the values at one extreme and hald at teh other, all values are exactly one SD from the mean. [If you want to give them some meaning so that you can relate to them, thing of them as the durations of 2 stages in an industrial process, or a service (such as processing online orders, and arrranging shipping and delivery, or waiting for a mammogram, and then a biopsy).]</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-54"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-54-1.png" alt="Variance of RV1" width="864" />
+<p class="caption">
+Figure 12.2: Variance of RV1
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-55"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-55-1.png" alt="Variance of RV2" width="864" />
+<p class="caption">
+Figure 12.3: Variance of RV2
+</p>
+</div>
+<p>We now imagine taking a random value of <span class="math inline">\(RV_1\)</span> and a random value of <span class="math inline">\(RV_2\)</span> and summing them. There are 4 possible sums, and in this case they are all distinct (this is not necessarily be the case, but the values of the two RV’s in this example were deliberately chosen to make them all distict, and to avoid grouping RV combinations with the same sum.) A probability tree (next panel) helps to see the 4 possibilities, but here we add an extra feature: we let the lengths of the branch denote the values of the RVs. (This ‘stacking’ of RV’s can have practical advantages too: when Francis Galton wanted to quickly and precisely get the mean diameter of a large sample of peas, he lined them up in a long groove, and just measured the total width of the entire sample, then divided by the <span class="math inline">\(n\)</span>.)</p>
+<p>In our example, the 4 equally likely sums are 14, 20, 22 and 28, and their mean is <span class="math inline">\(\frac{14+20+22+28}{4} = 21.\)</span> That the mean (expected value) of the sum equals the sum of the 2 individual means or expected values, is hardly surprising [ – and it is even true if the 2 RV’s were not independent.] The 4 equally likely deviations from this 21 are -7, -1, +1, and +7, and so, <strong>from 1st principles</strong>, the <strong>Variance of the sum of the 2 RVs is</strong> <span class="math display">\[\frac{(-7)^2 + (-1)2 +  (+1)^2 +  (+7)^2}{4} = \frac{100}{4} = 25.\]</span><br />
+Thus, the <strong>SD of the sum of the 2 RVs is</strong> <span class="math inline">\(\sqrt{25}\)</span> = 5.</p>
+<p>Fortunately, we don’t have to go back to 1st principles <strong>to calculate the SD of the sum of 2 RVs – but it is NOT by adding the 2 SDs</strong>. IT IS THE VARIANCES THAT ADD!</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-57"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-57-1.png" alt="Variance (and thus SD) of the SUM of the two independent random variables, RV1 and RV2, shown above. Each of the 4 equally likely deviations of the sum from its expectation is decomposed into its 2 components. This, (by the expansion rule for (a+b) squared that you learned in high school), each squared deviation becomes a sum of 2 squares, and a 'cross-product'. But the 4 cross-products cancel each other, and you are left with the sums of two squares, the original 3-squared and the  original 4-squared, i.e. the variances of RV1 and RV2." width="864" />
+<p class="caption">
+Figure 12.4: Variance (and thus SD) of the SUM of the two independent random variables, RV1 and RV2, shown above. Each of the 4 equally likely deviations of the sum from its expectation is decomposed into its 2 components. This, (by the expansion rule for (a+b) squared that you learned in high school), each squared deviation becomes a sum of 2 squares, and a ‘cross-product’. But the 4 cross-products cancel each other, and you are left with the sums of two squares, the original 3-squared and the original 4-squared, i.e. the variances of RV1 and RV2.
+</p>
+</div>
+<p>Whereas one numerical example doesn’t prove the ‘the variances of a sum of independent RVs is the sum of their variances’ rule, you can check out other more complicated examples with more values, and uneven distributions – or use simulation – and satisfy yourself that it is a general rule. Indeed, the formal mathematical statistics ‘proof’ uses the exact same method as that used in the panel, except that it replaces each number by a symbol! (By the way, when students from other disciplines who clain to have taken statistics courses ask JH to enrol in the math-stat based course bios601, one of his standard tests is to give then this problem: ‘Let RV1 and RV2 be two random variables. From 1st principles, derive the formula for the varaince of RV1+RV2’.)</p>
+<p>So we can sum up the forgoing numerical example by saying:</p>
+<p><span class="math display">\[ SD_1 = 3; SD_2 =4;\  but \ SD[Sum] \ \ne \ 3 + 4. \ \ \  SD[Sum] \ = \ \sqrt{3^2 + 4^2} = 5.\]</span><br />
+<strong>BOTTOM LINE : 3 + 4 is not 7! it’s 5! </strong> Or, as physicists say, <strong>Uncertainties ADD IN QUADRATURE’</strong> (that’s the math word for the square root of the sum of squares). Now you can see why mathematical statisticians like to work with squared SD’s. And you can see why we chose the ‘nice’ variance values 3 and 4. Just like for the right-angled triangles in Pythagoras’ theorem, where the length of the hypotenuese is the square root of the squares of the elngths of the sides, so it is also with othogonal or independent random variables: the SD of their sum is the square root of the sum of the squared SD’s of the individual RVs.</p>
+<p><strong>And of course, since the theorem works for the sum of 2 independent RV;s, it also works for the sum of 3, and for the sum of <span class="math inline">\(n\)</span> such RVs.</strong></p>
+</div>
+<div id="simple-mean-of-2-or-n-rvs" class="section level3">
+<h3><span class="header-section-number">12.7.2</span> Simple mean (of 2 or <span class="math inline">\(n\)</span> RVs)</h3>
+<p>AND, if we know how to compute the SD of a SUM of <span class="math inline">\(n\)</span> independent RV’s, we then automatically know how to compute the SD of a MEAN of <span class="math inline">\(n\)</span> independent RV’s. Remember back to an assigment on the SD of a set of temperatures measured in the larger degrees F scale: then the SD of the same set of temperatures measured in the smaller degrees C scale is just 5/9ths of the one in the F scale.</p>
+<p>Going from a <strong>sum</strong> of <span class="math inline">\(n\)</span> RVs to a <strong>mean</strong> of <span class="math inline">\(n\)</span> RVs involves going to a scale that is (1/n)-th the spread of the sum scale.</p>
+<p>So, in the above example, with <span class="math inline">\(n\)</span> = 2, the SD of the mean of the 2 RVs is (1/2) the SD of the sum, i.e.,</p>
+<p><span class="math display">\[ SD\bigg(\frac{RV_1 +RV_2}{2}\bigg) = \frac{SD(RV_1+RV_2)}{2} = \frac{5}{2}.\]</span></p>
+<p><strong>SPECIAL CASE</strong> (quite common) where <strong>SDs are identical</strong>:</p>
+<p>Up to now, to keep things general, we used <span class="math inline">\(n\)</span> non-identical – but independent – random variables. If we consider the Variance and the sum of <span class="math inline">\(n\)</span> IDENTICAL – and independent – random variables, so the the <span class="math inline">\(n\)</span> Variances (each abbreviated to Var) are all equal, the laws simplify</p>
+<p>First, since the variances add, we have that</p>
+<p><span class="math display">\[ Variance(RV_1 + RV_2 + \dots + RV_n) = Var_1 + Var_2 + \dots + Var_n = n \times \ each \ Var.\]</span></p>
+<p>and so, taking square roots,</p>
+<p><span class="math display">\[ SD( \ RV_1 + RV_2 + \dots + RV_n \ ) = \sqrt{ \ n \times \ each \ Var} = \sqrt{n} \ \times \ each \ SD\]</span></p>
+<p>When we go from <strong>sum</strong> of <span class="math inline">\(n\)</span> IDENTICAL independent RVs to a <strong>mean</strong> of <span class="math inline">\(n\)</span> IDENTICAL RVs, we go to a scale that is (1/n)-th the spread of the sum scale. So, again, just as when we went from the larger degrees F scale to the smaller degrees C scale, we have</p>
+<p><span class="math display">\[ SD\bigg(\frac{RV_1 + RV_2 + \dots + RV_n}{n}\bigg) = \frac{\sqrt{n} \ \times \ each \ SD}{n} = \frac{common \ SD}{\sqrt{n}} .\]</span> Sometimes, we will need to work with variances. When we do, we use this law:</p>
+<p>*<span class="math display">\[ VAR\bigg(\frac{RV_1 + RV_2 + \dots + RV_n}{n}\bigg) = \frac{common \ VAR}{n} .\]</span></p>
+<p><strong>EXAMPLE</strong> Lengths of words in a book (“book A”)</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-58"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-58-1.png" alt="Illustrations of SD's of Sums and Means of n = 1, 4 and 9 independent and identically distributed random variables. Each RV is the length of a randomly selected word from a certain book. [Below, we will compare the mean word length in this book with the eman in abook by a competitor]. The distributions in purple were computed theoretically, using convolutions. Each row shows 1 'realization' of each of the  n random variables, with each word in a different color. The rows are sorted according to the values of the total [or mean] numbers of letters (chars) in the sample of n words. In the panels we=here n is 4 or 9, the leftmost n-1 cahracters of the n concatenated words are cropped, put the total/mean length  is correct. The top panel, in which, for better visibility, characters are replaced by dashes, shows the 'per word' variation of all of the words in the book, and its SD, sometimes called the 'unit' variability. You can also think of the length of each unit as the mean of a sample of size n = 1. The second panel shows that to reduce the sampling variation (the SD) of the mean by half, one needs to quadruple the n. The third panel shows that to reduce the sampling variation (the SD) to 1/3, one needs to multiply the n by 9. Note also that at n=9, the Central Limit Theorem is close o " width="864" />
+<p class="caption">
+Figure 12.5: Illustrations of SD’s of Sums and Means of n = 1, 4 and 9 independent and identically distributed random variables. Each RV is the length of a randomly selected word from a certain book. [Below, we will compare the mean word length in this book with the eman in abook by a competitor]. The distributions in purple were computed theoretically, using convolutions. Each row shows 1 ‘realization’ of each of the n random variables, with each word in a different color. The rows are sorted according to the values of the total [or mean] numbers of letters (chars) in the sample of n words. In the panels we=here n is 4 or 9, the leftmost n-1 cahracters of the n concatenated words are cropped, put the total/mean length is correct. The top panel, in which, for better visibility, characters are replaced by dashes, shows the ‘per word’ variation of all of the words in the book, and its SD, sometimes called the ‘unit’ variability. You can also think of the length of each unit as the mean of a sample of size n = 1. The second panel shows that to reduce the sampling variation (the SD) of the mean by half, one needs to quadruple the n. The third panel shows that to reduce the sampling variation (the SD) to 1/3, one needs to multiply the n by 9. Note also that at n=9, the Central Limit Theorem is close o
+</p>
+</div>
 </div>
 <div id="simple-difference" class="section level3">
-<h3><span class="header-section-number">12.6.2</span> simple difference</h3>
+<h3><span class="header-section-number">12.7.3</span> simple difference</h3>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-61"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-61-1.png" alt="Variance (and thus SD) of the DIFFERENCE, RV1 - RV2, of the two independent random variables, RV1 and RV2, shown above. Each of the 4 equally likely deviations of the difference from its expectation is decomposed into its 2 components. Each each squared deviation becomes a sum of 2 squares, and a 'cross-product'. But the 4 cross-products cancel each other, and you are left with the SUMS of two squares, the original 3-squared and the  original 4-squared, i.e. the variances of RV1 and RV2." width="864" />
+<p class="caption">
+Figure 12.6: Variance (and thus SD) of the DIFFERENCE, RV1 - RV2, of the two independent random variables, RV1 and RV2, shown above. Each of the 4 equally likely deviations of the difference from its expectation is decomposed into its 2 components. Each each squared deviation becomes a sum of 2 squares, and a ‘cross-product’. But the 4 cross-products cancel each other, and you are left with the SUMS of two squares, the original 3-squared and the original 4-squared, i.e. the variances of RV1 and RV2.
+</p>
+</div>
+<p><strong>EXAMPLE</strong> Difference in mean length of words in books A (in blue) and B (in red)</p>
+<pre><code>##  Named num [1:111] 2.76e-18 7.40e-17 9.86e-16 8.77e-15 5.89e-14 ...
+##  - attr(*, &quot;names&quot;)= chr [1:111] &quot;-55&quot; &quot;-54&quot; &quot;-53&quot; &quot;-52&quot; ...
+## [1] 55</code></pre>
+<pre><code>##  Named num [1:551] 1.61e-88 2.15e-86 1.44e-84 6.43e-83 2.15e-81 ...
+##  - attr(*, &quot;names&quot;)= chr [1:551] &quot;-275&quot; &quot;-274&quot; &quot;-273&quot; &quot;-272&quot; ...
+## [1] 275</code></pre>
+<pre><code>##  Named num [1:2201] 0 0 0 0 0 0 0 0 0 0 ...
+##  - attr(*, &quot;names&quot;)= chr [1:2201] &quot;-1100&quot; &quot;-1099&quot; &quot;-1098&quot; &quot;-1097&quot; ...
+## [1] 1100</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-62"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-62-1.png" alt="Differences in  mean lengths of  n randomly selected words from each of 2 books. The (sampling) distributions were computed theoretically, using convolutions." width="864" />
+<p class="caption">
+Figure 12.7: Differences in mean lengths of n randomly selected words from each of 2 books. The (sampling) distributions were computed theoretically, using convolutions.
+</p>
+</div>
+<pre><code>##  Named num [1:8801] 0 0 0 0 0 0 0 0 0 0 ...
+##  - attr(*, &quot;names&quot;)= chr [1:8801] &quot;-4400&quot; &quot;-4399&quot; &quot;-4398&quot; &quot;-4397&quot; ...
+## [1] 4400</code></pre>
 </div>
 <div id="linear-combination" class="section level3">
-<h3><span class="header-section-number">12.6.3</span> Linear combination</h3>
+<h3><span class="header-section-number">12.7.4</span> Linear combination</h3>
 <p>anatomy of a slope.</p>
 </div>
 </div>
 <div id="named-distributions" class="section level2">
-<h2><span class="header-section-number">12.7</span> Named Distributions</h2>
+<h2><span class="header-section-number">12.8</span> Named Distributions</h2>
 <p>Gaussian Bernoulli-Binomial Poisson</p>
 </div>
 <div id="exercises-2" class="section level2">
-<h2><span class="header-section-number">12.8</span> Exercises</h2>
+<h2><span class="header-section-number">12.9</span> Exercises</h2>
 <ol style="list-style-type: decimal">
 <li>Refer to the <strong>fictitious cohort</strong> (shown above), constructed from the 1990 Quebec mortality rates.</li>
 </ol>

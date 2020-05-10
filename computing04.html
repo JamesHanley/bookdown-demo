@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-05-06" />
+<meta name="date" content="2020-05-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,13 +193,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.5.3" data-path="Distributions.html"><a href="Distributions.html#but-for-end-users-today-."><i class="fa fa-check"></i><b>12.5.3</b> But, for end-users today ….</a></li>
 <li class="chapter" data-level="12.5.4" data-path="Distributions.html"><a href="Distributions.html#example-of-variance-calculation-using-one-pass-formula"><i class="fa fa-check"></i><b>12.5.4</b> Example of Variance-calculation using one-pass formula</a></li>
 </ul></li>
-<li class="chapter" data-level="12.6" data-path="Distributions.html"><a href="Distributions.html#variances-of-combinations-of-random-variables"><i class="fa fa-check"></i><b>12.6</b> Variances of combinations of random variables</a><ul>
-<li class="chapter" data-level="12.6.1" data-path="Distributions.html"><a href="Distributions.html#simple-sum"><i class="fa fa-check"></i><b>12.6.1</b> simple sum</a></li>
-<li class="chapter" data-level="12.6.2" data-path="Distributions.html"><a href="Distributions.html#simple-difference"><i class="fa fa-check"></i><b>12.6.2</b> simple difference</a></li>
-<li class="chapter" data-level="12.6.3" data-path="Distributions.html"><a href="Distributions.html#linear-combination"><i class="fa fa-check"></i><b>12.6.3</b> Linear combination</a></li>
+<li class="chapter" data-level="12.6" data-path="Distributions.html"><a href="Distributions.html#variance-and-sd-of-a-function-of-a-random-variable"><i class="fa fa-check"></i><b>12.6</b> Variance and SD of a FUNCTION of a random variable</a></li>
+<li class="chapter" data-level="12.7" data-path="Distributions.html"><a href="Distributions.html#variances-of-combinations-of-random-variables"><i class="fa fa-check"></i><b>12.7</b> Variances of combinations of random variables</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="Distributions.html"><a href="Distributions.html#a-simple-sum-of-2-or-n"><i class="fa fa-check"></i><b>12.7.1</b> A simple sum (of 2 or <span class="math inline">\(n\)</span>)</a></li>
+<li class="chapter" data-level="12.7.2" data-path="Distributions.html"><a href="Distributions.html#simple-mean-of-2-or-n-rvs"><i class="fa fa-check"></i><b>12.7.2</b> Simple mean (of 2 or <span class="math inline">\(n\)</span> RVs)</a></li>
+<li class="chapter" data-level="12.7.3" data-path="Distributions.html"><a href="Distributions.html#simple-difference"><i class="fa fa-check"></i><b>12.7.3</b> simple difference</a></li>
+<li class="chapter" data-level="12.7.4" data-path="Distributions.html"><a href="Distributions.html#linear-combination"><i class="fa fa-check"></i><b>12.7.4</b> Linear combination</a></li>
 </ul></li>
-<li class="chapter" data-level="12.7" data-path="Distributions.html"><a href="Distributions.html#named-distributions"><i class="fa fa-check"></i><b>12.7</b> Named Distributions</a></li>
-<li class="chapter" data-level="12.8" data-path="Distributions.html"><a href="Distributions.html#exercises-2"><i class="fa fa-check"></i><b>12.8</b> Exercises</a></li>
+<li class="chapter" data-level="12.8" data-path="Distributions.html"><a href="Distributions.html#named-distributions"><i class="fa fa-check"></i><b>12.8</b> Named Distributions</a></li>
+<li class="chapter" data-level="12.9" data-path="Distributions.html"><a href="Distributions.html#exercises-2"><i class="fa fa-check"></i><b>12.9</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>III Part III</b></span></li>
 <li class="chapter" data-level="13" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>13</b> Mathematics</a><ul>
@@ -400,16 +402,16 @@ ds =<span class="st"> </span><span class="kw">read.table</span>(
 ## 5501 WILLIAM       739      7 2018      M    1
 ## 5502   LOGAN       636      5 2018      M    2
 ## 5503    LIAM       629      4 2018      M    3</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-83"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-83-1.png" alt="Frequency distribution of the 500 most popular names for babies born in Quebec in 2018. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma. 2. Alice, .. 1. William, 2. Logan, ... ). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-88"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-88-1.png" alt="Frequency distribution of the 500 most popular names for babies born in Quebec in 2018. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma. 2. Alice, .. 1. William, 2. Logan, ... ). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column." width="864" />
 <p class="caption">
 Figure 17.1: Frequency distribution of the 500 most popular names for babies born in Quebec in 2018. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma. 2. Alice, .. 1. William, 2. Logan, … ). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by ‘sticking a pin’ (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column.
 </p>
 </div>
-<p><img src="statbook_files/figure-html/unnamed-chunk-84-1.png" width="864" style="display: block; margin: auto;" /></p>
-<p><img src="statbook_files/figure-html/unnamed-chunk-85-1.png" width="864" style="display: block; margin: auto;" /></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-86"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-86-1.png" alt="Just lines" width="864" />
+<p><img src="statbook_files/figure-html/unnamed-chunk-89-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-90-1.png" width="864" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-91"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-91-1.png" alt="Just lines" width="864" />
 <p class="caption">
 Figure 17.2: Just lines
 </p>
@@ -440,8 +442,8 @@ In a (<strong>current</strong>) life table, one takes <strong>current</strong> (
 <code>Pr[Die after 70th birthday] = 0.wwww</code><br />
 <code>Pr{Die after 80th birthday] = 0.zzzz</code><br />
 <code>Pr[die between 70 and 80] = difference</code></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-87"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-87-1.png" alt="Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is 'bottom-up' rather than the conventional 'top-down' format, and side by side, in the spirit of population 'pyramids'. Also unusually, the 'survival surve' for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.  " width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-92"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-92-1.png" alt="Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is 'bottom-up' rather than the conventional 'top-down' format, and side by side, in the spirit of population 'pyramids'. Also unusually, the 'survival surve' for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.  " width="864" />
 <p class="caption">
 Figure 17.3: Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is ‘bottom-up’ rather than the conventional ‘top-down’ format, and side by side, in the spirit of population ‘pyramids’. Also unusually, the ‘survival surve’ for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.
 </p>
