@@ -378,9 +378,11 @@ prob(it's #1) = p(it's #2)=p(it's #3) = 1/3
 $$E[ g(Y) ] = \sum g(y)  \times p(y),$$
 i.e. it is a weighted mean of the $g(y)$'s, with $p(y)$'s as weights.
 
+**NOTE** In some instances, the expectation of $g(Y)$ is $g(E[Y])$, while in others it is more complex. Can you figure out when it is/is not in each of the following instances?
+
 * **Examples** 
 
-   + $Y$ = Temperature (C) on May 6 in Mtl on a randomly selected day of the year;  
+   + $Y$ = Noon Temperature (C) in Montreal on a randomly selected day of the year;  
 $g(Y)$ = Temperature (F) = 32 + (9/5) $Y$
 
    + $Y$ = Weight in Kg (or Height in cm) of a randomly selected person;  
@@ -570,21 +572,70 @@ cat(paste("Thus, Standard Deviation = sqrt(",
 
 ```
  
+## Variance and SD of a FUNCTION of a random variable
+
+If we go back to some of the  **examples listed above** we can reason out what the law must be
+
+   + $Y$ = Noon Temperature (C) in Mtl on a randomly selected day of the year;  
+... $g(Y)$ = Temperature (F) = 32 + (9/5) $Y$  
+If the SD was say 10 C, then surely the SD is 18 C. After all, Temperature is Temperature, so you are not -- as some textbooks are inclined to say -- 'changing' the fundamental variable, but rather changing the scale of the temperature variable. So, the SD scales up by 9/5, and so, being **an average square**, the **variance scales up by $(9/5)^2$.** If you are going the other way, from the larger F scale to the smaller C scale, the scalings are (5/9) for the SD, and $(5/9)^2$ for the variance. More generally,  
+$$SD[constant  \times RV] = constant  \times SD[RV]$$  
+$$Var[constant  \times RV] = constant^2  \times Var[RV]$$
+.  
+This example also shows another law related to spread: shifting left or by a constant amount (eg. suppose the conversion was $F = 10 + (9/5)C$ instead of was $F = 32 + (9/5)C,$ it would not alter the spread. Thus,  
+.  
+$$SD[ RV + constant ] = SD[RV]$$  
+$$Var[ RV + constant ] = Var[RV]$$
+
+   + $Y$ = Weight in Kg (or Height in cm) of a randomly selected person;  
+... g(Y) = Weight in Kg (or Height in inches)  
+.  
+This involves just a scaling, with no shift. So if the SD were 10 Kg, it would be 22 lbs, and the variances in the 2 scales would be $100 \ Kg^2$ and $484 \ lb^2$.
+
+   + $Y$ = Years of publication of all the books in the McGill Library, with Years measured from AD (Anno Dominini, 'in the year of the Lord').  
+.  
+The SD would be the same if we measured the Year from 1439 AD ($Y' = Y$ - 1439) when Gutenberg  was the first European to use movable type, or from 1492 AD when Christopher Columbus reached North America.  
+.  
+What if, instead, we calcualted the age of each book in the year 2020, i.e. as $Y' = 2020 - Y$?  
+.  
+The **scale would now be reversed**. Instead of being at the extreme left, the older books would not be at the right hand of the scale, and vice versa. But the spread would still be the same, even though the shape of the new distribution would be the miorrow inage of the old one.  
+.  
+What if we measured **age in decades**, i.e., $Y' = \frac{2020 - Y}{10}$ or centuries i.e., $Y' = \frac{2020 - Y}{100}$?  
+.  
+The SDs would be scaled down by 10 and by 100, and the variances by $10^2$ and $100^2.$
+
+   + $Y$ = Ocean Depth ot a randomly chosen location, measured in metres. If the **'origin' is the ocean floor**, all depths will be positive; if it is **the surface of the ocean**, they will all be negative. The **spread, the SD and the Variance stay the same**, but the **shapes of the distributions are mirror inages** of each other. 
+
+
+   + $Y$ = diameter of a randomly chosen sphere;  
+... $g(Y)$ = Volume of sphere = $\frac{\pi}{6}  Y^3.$  
+.  
+This one is more complicated -- as you might have guessed from just trying to compute the expectation. The fact that the scaling is different at different values of $Y$ complicated matters. There is an appriximate formula, that depends on the scaling at some 'representative' value of $Y$, typically the mean or mode. For more on this, see the examples in this [expository piece](http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/jh_dt_tas_2006.pdf).  
+
+   + $Y$ = fuel consumption, in liters/100km, of  a randomly selected make of car;  
+$g(Y)$ =  miles per gallon or Km per liter (reciprocal)  
+.  
+There is no exact closed form, but the approximation works well because the values are well away from zero, and not too spread out -- unless you allow Hummers!
+
 ## Variances of combinations of random variables
 
-### simple sum
+### A simple sum (of 2 or $n$)
+
+To keep it simple, and to allow us to see what is going on, Let's consider two very simple random variables (RV's), each taking just 2 values, and with equal probabilities. [You can check for yourself later that the same law applies to random variables that take on more than 2 values, and with uneven probability distributions.] The key is that the 2 variables are independent of each other.
+
+The next panels show the two RV's.  $RV_1$ \ (6 \ or \ 12) \ + \ $RV_2$ \ (8 \ or \ 16)
 
 $$Sum = RV_1 \ (6 \ or \ 12) \ + \ RV_2 \ (8 \ or \ 16) \ = \ 14 \ or \ 20 \ or \ 22 \ or \ 28.$$  
-
+We will come back much later to the choices of the specific values for each of the random variables; for our purposes here, the main point is that both equally-likely values are an even number apart, so the SDs are integers, and all calculations involve integers. Note that an RV with equally likely values 1 and 7 (or 3 and 9, or -1 and + 5) has the same SD as the RV with equally likely values 6 and 12: it is the distance between them that determines the SD. Note also, that with half of the values at one extreme and hald at teh other, all values are exactly one SD from the mean. [If you want to give them some meaning so that you can relate to them, thing of them as the durations of 2 stages in an industrial process, or a service (such as processing online orders, and arrranging shipping and delivery, or waiting for a mammogram, and then a biopsy).]  
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
 
-plot.rv = function(v,COL){
+plot.rv = function(v,COL,LAB){
    CEX=1.1
    par(mfrow=c(1,1),mar = rep(0,4))
    plot(-10,-10,xlim=c(-5,40),ylim=c(0.375,0.57),
      xaxt="n",yaxt="n",frame=TRUE)
-   #segments(0, 0.5,28,0.5,col=COL)
+   text(v[2]+2,0.52,LAB,cex=1.5,adj=c(0,0))
    arrows(mean(v),0.45,v,0.45,length=0.06,angle=35,col=COL)
    points(v,rep(0.505,2),pch=19,col=COL)
    points(mean(v),0.45,pch=19,cex=CEX/2,col=COL)
@@ -616,59 +667,95 @@ plot.rv = function(v,COL){
 ```
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
+```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F,fig.cap="Variance of RV1"}
 
-v = c(6,12)
+plot.rv(c(6,12),1,expression(RV[1]))
 
-plot.rv(c(6,12),1)
-plot.rv(c(8,16),1)
+```
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F,fig.cap="Variance of RV2"}
+
+plot.rv(c(8,16),1,expression(RV[2]))
 
 
 ```
 
+We now imagine taking a random value of $RV_1$ and  a random value of $RV_2$ and summing them. There are 4 possible sums, and in this case they are all distinct (this is not necessarily  be the case, but the values of the two RV's in this example were deliberately chosen to make them all distict, and to avoid grouping RV combinations with the same sum.) A probability tree (next panel) helps to see the 4 possibilities, but here we add an extra feature: we let the lengths of the branch denote the values of the RVs. (This 'stacking' of RV's can have practical advantages too: when Francis Galton wanted to quickly and precisely get the mean diameter of a large sample of peas, he lined them up in a long groove, and just measured the total width of the entire sample, then divided by the $n$.)
+
+In our example, the 4 equally likely sums are 14, 20, 22 and 28, and their mean is $\frac{14+20+22+28}{4} = 21.$ That the mean (expected value) of the sum equals the sum of the 2 individual means or expected values, is hardly surprising [ -- and it is even true if the 2 RV's were not independent.] The 4 equally likely deviations from this 21 are -7, -1, +1, and +7, and so, **from 1st principles**, the **Variance of the sum of the 2 RVs is** 
+$$\frac{(-7)^2 + (-1)2 +  (+1)^2 +  (+7)^2}{4} = \frac{100}{4} = 25.$$  
+Thus, the **SD of the sum of the 2 RVs is** $\sqrt{25}$ = 5.
+
+Fortunately, we don't have to go back to 1st principles **to calculate the SD of the sum of 2 RVs -- but it is NOT by adding the 2 SDs**. IT IS THE VARIANCES THAT ADD! 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=4.5, fig.width=9, warning=FALSE, message=F}
 
-v=matrix(c(6,12,8,16),2,2)
-
-plot.sum2rvs = function(v){
+sum.diff.2rvs = function(v){
+   
    CEX=1.1
+   
+   XLIM=c(-1,42)
+   is.SUM = mean(v[,2]) > 0 
+   if(!is.SUM) XLIM= c(-26, 14) 
+   
    par(mfrow=c(1,1),mar = rep(0,4))
-   plot(-10,-10,xlim=c(-5,40),ylim=c(-0.10,1),
+   plot(-10,-10,xlim=XLIM,ylim=c(-0.10,1),
      xaxt="n",yaxt="n",frame=TRUE)
    
    DY = c(0.45, 0.25)
    
    y0 = -0.05
  
-   for(i in seq(0,28,1)){
+   SEQ = seq(0,28,1)
+   if(!is.SUM) SEQ = seq(-10,12,1)
+   for(i in SEQ){
         segments(i,y0,i,y0+0.01)
-        text(i,y0-0.01,toString(i),cex=CEX/1.5,adj=c(0.5,1))
+        if((i %% 2)==0) text(i,y0-0.01,toString(i),
+             cex=CEX/1.5,adj=c(0.5,1))
    }
    
    for (rv1.v in 1:2){
    	   MEAN = mean(v[,1])
    	   y = 0.5 + DY[1] * (rv1.v - 1.5)
    	   txt = bquote(frac(1, 2))
-         text(-0.5,y, txt,cex=CEX/1.5, adj=c(1,0.5))
-   	   segments(0, y , v[rv1.v,1], y)
+         text(-0.5,y, txt,cex=CEX/1.5, 
+              adj=c(1,0.5))
+   	   arrows(0, y , 0.98*v[rv1.v,1], y, 
+   	          length=0.06, angle=30)
    	   points(v[rv1.v,1], y,  pch=19,cex=0.5 )
+   	   
+   	   text(  v[rv1.v,1]+1, y, "1")
+   	   points(v[rv1.v,1]+1, y, pch=1,cex=2.5 )
+   	   
    	   txt1 = toString(v[rv1.v,1] - MEAN)
    	   if(rv1.v==2) txt1 = paste("+",txt1,sep="")
-   	   #text(v[rv1.v,1], y, txt,adj=c(0.5,1.35))
+   	   text(v[rv1.v,1], y, txt1,adj=c(0.5,1.35))
    	   Mean = mean(v[,2])
    	   for (rv2.v in 1:2){
    	      yy = y + DY[2] * (rv2.v - 1.5)
    	      txt = bquote(frac(1, 2))
-            text(v[rv1.v,1]-0.5,yy, txt,cex=CEX/1.5, adj=c(1,0.5))
-   	      segments(v[rv1.v,1],               yy , 
-   	               v[rv1.v,1]  + v[rv2.v,2], yy )
+            text(v[rv1.v,1]-0.5*is.SUM +
+                            0.5*(1-is.SUM) ,yy,
+                 txt,cex=CEX/1.5, 
+                 adj=c(!is.SUM,0.5))
+   	      arrows(v[rv1.v,1],               yy , 
+   	        0.97*(v[rv1.v,1]  + v[rv2.v,2]), yy,
+   	        length=0.06, angle=30,
+   	        lwd=2)
    	      points(v[rv1.v,1]  + v[rv2.v,2], yy, 
    	             pch=19,cex=0.9 )
+   	      
+   	      xxc = v[rv1.v,1] + v[rv2.v,2] +
+   	               1.5*is.SUM  -1.5*(1-is.SUM)
+   	      text(  xxc, yy, "2")
+   	      points(xxc, yy, pch=1,cex=2.5 )
+   	   
+   	   
    	      points(v[rv1.v,1]  + v[rv2.v,2], y0+0.065, 
    	             pch=19,cex=0.9 )
-   	      txt2 = toString(v[rv2.v,2] - Mean)
-   	   if(rv2.v==2) txt2 = paste("+",txt2,sep="")
+   	      diff = v[rv2.v,2] - Mean
+   	      txt2 = toString(diff)
+   	      if(diff > 0 ) txt2 = paste("+",txt2,sep="")
    	      
    	   text(v[rv1.v,1]  +v[rv2.v,2], yy-0.035, 
    	        paste(txt1,txt2,sep=" "),
@@ -677,40 +764,236 @@ plot.sum2rvs = function(v){
    	   txt = bquote(frac(1, 4))
          text(v[rv1.v,1]  + v[rv2.v,2],yy, 
               txt,cex=CEX/1.5, adj=c(1.05,-0.25))
-         
-       if(rv1.v==1 & rv2.v ==1) Txt = 
+        
+       if(is.SUM){
+           if(rv1.v==1 & rv2.v ==1) Txt = 
             bquote((-3)^2 + (-4)^2 + 2(-3)(-4) )
-       if(rv1.v==1 & rv2.v ==2) Txt = 
+           if(rv1.v==1 & rv2.v ==2) Txt = 
             bquote((-3)^2 + (+4)^2 + 2(-3)(+4) )
-       if(rv1.v==2 & rv2.v ==1) Txt = 
+           if(rv1.v==2 & rv2.v ==1) Txt = 
             bquote((+3)^2 + (-4)^2 + 2(+3)(-4) )
-       if(rv1.v==2 & rv2.v ==2) Txt = 
-            bquote((+3)^2 + (+4)^2 + 2(+3)(+4) )       
-       text(41, yy-0.035, Txt,adj=c(1,0.5))
+           if(rv1.v==2 & rv2.v ==2) Txt = 
+            bquote((+3)^2 + (+4)^2 + 2(+3)(+4) )
+       } 
+         
+      if(!is.SUM){
+           if(rv1.v==1 & rv2.v ==1) Txt = 
+            bquote((-3)^2 + (+4)^2 + 2(-3)(+4) )
+           if(rv1.v==1 & rv2.v ==2) Txt = 
+            bquote((-3)^2 + (-4)^2 + 2(-3)(-4) )
+           if(rv1.v==2 & rv2.v ==1) Txt = 
+            bquote((+3)^2 + (+4)^2 + 2(+3)(+4) )
+           if(rv1.v==2 & rv2.v ==2) Txt = 
+            bquote((+3)^2 + (-4)^2 + 2(+3)(-4) )
+      }
+         
+              
+       text(41*is.SUM - 26*(1-is.SUM), 
+            yy-0.035, Txt,
+            adj=c(is.SUM,0.5))
 
-       }
-   }
-   text(41,1,"The Squared Deviations",adj=c(1,1))
-   arrows(0, y0+0.065, 13, y0+0.065,length=0.06,angle=25 )
-   text(0, y0+0.065, "Sum of 2\nrandom variables",adj=c(0,0.5) )
+       } #rv2 
+   } # rv2
    
-   text(41, y0+0.08, "====================" ,adj=c(1,0.5))
+   text(41*is.SUM -26*(1-is.SUM),1,
+        "The Squared Deviations",
+        adj=c(is.SUM,1))
+   arrows(0 + 13*(1-is.SUM), y0+0.065, 
+         13*is.SUM +6*(1-is.SUM), y0+0.065,
+          length=0.06,angle=25 )
+   txt = "Sum of 2\nrandom variables"
+   if(!is.SUM) txt = "Difference of 2\nrandom variables"
+   text(0 + 13*(1-is.SUM) , y0+0.065,txt,
+        adj=c(1-is.SUM,0.5) )
    
-   text(31, y0+0.02, 
-        bquote(3^2 ~  ~ + ~  ~ 4^2), adj=c(0,0.5),cex=1.5)
-   text(31.25, y0-0.05,"VAR[Sum]", adj=c(0,0.5))
+   text(41*is.SUM -26*(1-is.SUM),
+        y0+0.08, "====================" , 
+        adj=c(is.SUM,0.5))
+   
+   text(31*is.SUM - 21*(1-is.SUM), y0+0.02, 
+        bquote(3^2 ~  ~ + ~  ~ 4^2),
+        adj=c(1-is.SUM,0.5),
+        cex=1.5)
+   
+   txt = "VAR[Sum]"
+   if(!is.SUM) txt = "VAR[Difference]"
+   text(31.25*is.SUM - 20.5*(1-is.SUM), 
+        y0-0.05,txt, adj=c(1-is.SUM,0.5))
    
    segments(41, 0.08, 37, 0.85,lwd=0.6 )
    segments(37, 0.08, 41, 0.85,lwd=0.6)
-}
 
-plot.sum2rvs(v)
+} # fn
 
 ```
 
-BOTTOM LINE
+```{r,eval=T, echo=F, fig.align="center", fig.height=4.5, fig.width=9, warning=FALSE, message=F,fig.cap="Variance (and thus SD) of the SUM of the two independent random variables, RV1 and RV2, shown above. Each of the 4 equally likely deviations of the sum from its expectation is decomposed into its 2 components. This, (by the expansion rule for (a+b) squared that you learned in high school), each squared deviation becomes a sum of 2 squares, and a 'cross-product'. But the 4 cross-products cancel each other, and you are left with the sums of two squares, the original 3-squared and the  original 4-squared, i.e. the variances of RV1 and RV2."}
 
-$$ SD_1 = 3; SD_2 =4; BUT \ SD[Sum] \ \ne \ 3 + 4. \ SD[Sum] \ = \ \sqrt{3^2 + 4^2} = 5.$$  
+v=matrix(c(6,12,8,16),2,2)
+
+sum.diff.2rvs(v)
+
+```
+
+
+Whereas one numerical example doesn't prove the 'the variances of a sum of independent RVs is the sum of their variances' rule, you can check out other more complicated examples with more values, and uneven distributions -- or use simulation -- and satisfy yourself that it is a general rule. Indeed, the formal mathematical statistics 'proof' uses the exact same method as that used in the panel, except that it replaces each number by a symbol!  (By the way, when students from other disciplines who clain to have taken statistics courses ask JH to enrol in the math-stat based course bios601, one of his standard tests is to give then this problem: 'Let RV1 and RV2 be two random variables. From 1st principles, derive the formula for the varaince of RV1+RV2'.)
+
+So we can sum up the forgoing numerical example by saying:
+
+$$ SD_1 = 3; SD_2 =4;\  but \ SD[Sum] \ \ne \ 3 + 4. \ \ \  SD[Sum] \ = \ \sqrt{3^2 + 4^2} = 5.$$  
+**BOTTOM LINE : 3 + 4 is not 7! it's 5! ** Or, as physicists say, **Uncertainties ADD IN QUADRATURE'** (that's the  math word for the square root of the sum of squares). Now you can see why mathematical statisticians like to work with squared SD's. And you can see why we chose the 'nice' variance values 3 and 4. Just like for the right-angled triangles in Pythagoras' theorem, where the length of the hypotenuese is the square root of the squares of the elngths of the sides, so it is also with othogonal or independent random variables: the SD of their sum is the square root of the sum of the squared SD's of the individual RVs.
+
+**And of course, since the theorem works for the sum of 2 independent RV;s, it also works for the sum of 3, and for the sum of $n$ such RVs.**
+
+### Simple mean (of 2 or $n$ RVs)
+
+AND, if we know how to compute the  SD of a SUM of $n$ independent RV's, we then automatically know  how to compute the  SD of a MEAN of $n$ independent RV's. Remember back to an assigment on the SD of a set of temperatures measured in the larger degrees F scale: then the
+SD of the same set of temperatures measured in the smaller degrees C scale is just 5/9ths of the one in the F scale.
+
+Going from a **sum** of $n$ RVs to a **mean** of $n$ RVs involves going to a scale that is (1/n)-th the spread of the sum scale.
+
+So, in the above example, with $n$ = 2, the SD of the mean of the 2 RVs is (1/2) the SD of the sum, i.e.,
+
+$$ SD\bigg(\frac{RV_1 +RV_2}{2}\bigg) = \frac{SD(RV_1+RV_2)}{2} = \frac{5}{2}.$$
+
+**SPECIAL CASE** (quite common) where **SDs are identical**:
+
+Up to now, to keep things general, we used $n$ non-identical -- but independent -- random variables. If we
+consider the Variance and the sum of $n$ IDENTICAL -- and independent -- random variables,  so the the $n$ Variances (each abbreviated to Var) are all equal, the laws simplify
+
+First, since the variances add, we have that
+
+$$ Variance(RV_1 + RV_2 + \dots + RV_n) = Var_1 + Var_2 + \dots + Var_n = n \times \ each \ Var.$$
+
+and so, taking square roots,
+
+$$ SD( \ RV_1 + RV_2 + \dots + RV_n \ ) = \sqrt{ \ n \times \ each \ Var} = \sqrt{n} \ \times \ each \ SD$$
+
+When we go from **sum** of $n$ IDENTICAL independent RVs to a **mean** of $n$ IDENTICAL RVs, we go to a scale that is (1/n)-th the spread of the sum scale. So, again, just as when we went from the larger degrees F scale to the smaller degrees C scale, we have
+
+$$ SD\bigg(\frac{RV_1 + RV_2 + \dots + RV_n}{n}\bigg) = \frac{\sqrt{n} \ \times \ each \ SD}{n} = \frac{common \ SD}{\sqrt{n}} .$$
+Sometimes, we will need to work with variances. When we do, we use this law: 
+
+*$$ VAR\bigg(\frac{RV_1 + RV_2 + \dots + RV_n}{n}\bigg) = \frac{common \ VAR}{n} .$$
+
+**EXAMPLE** Lengths of words in a book ("book A")
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=12, fig.width=9, warning=FALSE, message=F, fig.cap="Illustrations of SD's of Sums and Means of n = 1, 4 and 9 independent and identically distributed random variables. Each RV is the length of a randomly selected word from a certain book. [Below, we will compare the mean word length in this book with the eman in abook by a competitor]. The distributions in purple were computed theoretically, using convolutions. Each row shows 1 'realization' of each of the  n random variables, with each word in a different color. The rows are sorted according to the values of the total [or mean] numbers of letters (chars) in the sample of n words. In the panels we=here n is 4 or 9, the leftmost n-1 cahracters of the n concatenated words are cropped, put the total/mean length  is correct. The top panel, in which, for better visibility, characters are replaced by dashes, shows the 'per word' variation of all of the words in the book, and its SD, sometimes called the 'unit' variability. You can also think of the length of each unit as the mean of a sample of size n = 1. The second panel shows that to reduce the sampling variation (the SD) of the mean by half, one needs to quadruple the n. The third panel shows that to reduce the sampling variation (the SD) to 1/3, one needs to multiply the n by 9. Note also that at n=9, the Central Limit Theorem is close o "}
+
+ds = read.table(
+"http://www.biostat.mcgill.ca/hanley/statbook/WH.txt.words.txt",
+as.is=TRUE)
+
+L.max = 12
+
+w = ds[ nchar(ds$Word) <= L.max, ]
+
+CEX=1
+
+Y = as.numeric( nchar(w) ) 
+E.Y = mean(Y)
+SD.Y = sd(Y)
+VAR.Y = var(Y)
+Max.Y = max(Y)
+
+Fr = table(Y)[1: L.max]
+Fr = Fr/sum(Fr)
+
+to.show = c(1,4,9)
+Max.n   = max(to.show)
+
+P = c(0.025,0.975)
+
+n.rows=25
+
+par(mfrow=c(length(to.show),1), mar = rep(0,4))
+
+for (n in 1:Max.n){
+	
+	if(n==1) { 
+		Prev = Fr; max.y = L.max; range = 1:max.y 
+	}
+	
+	if(n >1) {
+		M = outer(Prev,Fr)
+	    Prev = sapply(split(M, col(M) + row(M)), sum)
+	    range = n:(n*max.y)	
+	}
+	
+	if(n %in% to.show){
+		
+		XLIM = c(n-1, 1.05*L.max*n)
+		YLIM = c(-0.08,1)*max(Prev)
+        plot(range,Prev, type="h",
+             yaxt="n", xaxt="n",
+             xlim=XLIM, ylim=YLIM, 
+             lwd=1, main=toString(n),col="white")
+        
+        for(s in range ) if( (n*floor(s/n)) ==s){
+          text(s, -0.02*max(Prev),toString(s),
+               cex=1.5,adj=c(0.5,1))
+          text(s, -0.07*max(Prev),toString(s/n),
+               cex=1.5,adj=c(0.5,1),font=2)
+        }
+        text(1.025*max(range), -0.02*max(Prev),"SUM",
+               cex=1.5,adj=c(0,1))
+        text(1.025*max(range), -0.07*max(Prev),"MEAN",
+               cex=1.5,adj=c(0,1),font=2)
+        
+        text((9/10)*max(range),0.74*YLIM[2],
+             paste("SD of \nTOTAL Length\nof n =",
+                   toString(n),
+                   "Word(s):\n\n",
+                   format(round(SD.Y*sqrt(n),1),nsmall=1),
+                   "chars"),
+             cex=2)
+        
+        text((9/10)*max(range),0.3*YLIM[2],
+             paste("SD of \nMEAN Length\nof n =",
+                   toString(n),
+                   "Word(s):\n\n",
+                   format(round(SD.Y/sqrt(n),1),nsmall=1),
+                   "chars"),
+             cex=2,font=2)
+        
+        dx = strwidth("1", units = "user", 
+                cex = CEX, font = 1, family= "mono")
+
+        
+        segments(XLIM[1], 0, XLIM[2], 0)
+        points(n*E.Y + SD.Y* qnorm(P)*sqrt(n), rep(0,2),pch=19,cex=.5)
+        
+        dy = YLIM[2] / n.rows
+        
+        mm = matrix(sample(w, n.rows*n,replace=TRUE),
+                     n.rows,n)
+        L = apply(nchar(mm),1,sum)
+        mm=mm[order(L),]
+        for(i.r in 1:n.rows){
+            if(n >1) Words  = mm[i.r,]
+            if(n==1) Words  = mm[i.r]
+            xx = 0.5
+            for(i.w in 1:n) {
+               txt = Words[i.w]
+               if(n==1) txt = paste(
+                  rep("-",nchar(txt)),collapse="")
+               text(xx,i.r*dy, txt,
+                 family="mono",
+                 adj=c(0,0.5),cex=1/dx,
+                 col=i.w)
+               xx = xx+nchar(txt)
+            }
+        } # i.r
+        lines(range,Prev, type="h",
+              lwd=3, col="purple")
+		
+	} # show
+   
+} # n
+
+
+```
+   
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
 
@@ -739,6 +1022,170 @@ n.children = 1:8
 ```
 
 ### simple difference
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=4.5, fig.width=9, warning=FALSE, message=F,fig.cap="Variance (and thus SD) of the DIFFERENCE, RV1 - RV2, of the two independent random variables, RV1 and RV2, shown above. Each of the 4 equally likely deviations of the difference from its expectation is decomposed into its 2 components. Each each squared deviation becomes a sum of 2 squares, and a 'cross-product'. But the 4 cross-products cancel each other, and you are left with the SUMS of two squares, the original 3-squared and the  original 4-squared, i.e. the variances of RV1 and RV2."}
+
+v=matrix(c(6,12,-8,-16),2,2)
+
+sum.diff.2rvs(v)
+
+```
+
+**EXAMPLE** Difference in mean length of words in books A (in blue) and B (in red)
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="Differences in  mean lengths of  n randomly selected words from each of 2 books. The (sampling) distributions were computed theoretically, using convolutions."}
+
+dsA = read.table(
+"http://www.biostat.mcgill.ca/hanley/statbook/WH.txt.words.txt",
+as.is=TRUE)
+
+dsB = read.table(
+"http://www.biostat.mcgill.ca/hanley/statbook/AD.txt.words.txt",
+as.is=TRUE)
+
+L.max = 12
+
+wA = dsA[ nchar(dsA$Word) <= L.max, ]
+wB = dsB[ nchar(dsB$Word) <= L.max, ]
+
+FrA = table(nchar(wA))[1: L.max]
+FrA =  FrA/sum(FrA)
+
+Y = 1: L.max
+
+mA = sum(Y*FrA)
+vA = sum((Y-mA)^2 * FrA)
+sdA = sqrt(vA)
+
+FrB =table(nchar(wB))[1: L.max]
+FrB = FrB/sum(FrB)
+mB = sum(Y*FrB)
+vB = sum((Y-mB)^2*FrB) 
+sdB = sqrt(vB)
+
+Fr = matrix(c(FrA,FrB),L.max,2)
+
+CEX=1
+
+to.show = c(5,25,100,400)
+Max.n   = max(to.show)
+
+par(mfrow=c(length(to.show),1), mar = rep(0,4))
+
+for (n in 1:Max.n){
+	
+  if(n==1) { 
+		PrevA = Fr[,1];
+		PrevB = Fr[,2] 
+		max.y = L.max;
+		range = 1:max.y 
+	 }
+		
+	 if(n >1) {
+		MA = outer(PrevA,Fr[,1])
+	    PrevA = sapply(split(MA, col(MA) + row(MA)), sum)
+	    MB = outer(PrevB,Fr[,2])
+	    PrevB = sapply(split(MB, col(MB) + row(MB)), sum)
+	    range = n:(n*L.max)	
+	 }
+	
+	if(n %in% to.show){
+		
+		XLIM = c(n-1, 1.001*L.max*n)
+		YLIM = c(-0.10,1.05)*max(PrevA)
+        
+        plot(range,PrevA, type="h",
+             yaxt="n", xaxt="n",
+             xlim=XLIM, ylim=YLIM, 
+             lwd=1,col="white")
+        
+        for(s in range ){
+            Int.part = floor(s/n)
+            if ( (n*Int.part) ==s & Int.part < 7 ) text(
+                   s, -0.04*max(PrevA),toString(s/n),
+                  cex=1.25,adj=c(0.5,1),font=2)
+        }
+        
+        lines(range,PrevA, type="h",
+              lwd=0.25, col="blue" )
+        lines(range+0.2,PrevB, type="h",
+              lwd=0.25, col="red" )	
+        
+        MAB = outer(PrevA,PrevB)
+        F = sapply(split(MAB, row(MAB) - col(MAB)), sum)
+        str(F)
+        diff.sum = max(range) - min(range)
+        print(diff.sum)
+        diff.sum = (-diff.sum):diff.sum
+        offset = n*9
+        text(1.1*n, 0.005*max(PrevA),
+        paste(
+         "possible\nmean\nno. of letters\nin samples\nof size n = ",
+        toString(n)),
+               cex=1.25,adj=c(0,-0.1),font=2)
+        lines( (offset + diff.sum), F, 
+               type="h", col="grey60", lwd=0.5)
+        segments(offset, 0,offset, max(F),
+                 col="purple",cex=3)
+        for(dif in seq(-2,2,0.5) ) {
+          text(offset + dif*n, 
+               -0.04*max(PrevA),
+               toString(dif),
+               cex=1,adj=c(0.5,1),font=4)
+        }
+        
+        text(0.99*n*L.max, 
+             0.005*max(PrevA),
+      "possible\ndifferences\nbetween these\nsample means",
+             cex=1.25,adj=c(1,-0.1),font=4)
+        
+        text(5.5*n,1.04*max(PrevA),"A",
+             adj=c(0,1),cex=1.5)
+        text(  3*n,1.04*max(PrevA),"B",
+             adj=c(0,1),cex=1.5)
+        text(  9*n,1.04*max(PrevA),"A-B",
+             adj=c(0,1),cex=1.5)
+        
+        text(7*n,0.9*max(PrevA),"<- VAR - >",
+             adj=c(0,1),cex=1.5)
+        
+        text(5.5*n,0.9*max(PrevA),
+             format(round(sdA^2/n,2),nsmall=2),
+             adj=c(0,1),cex=1.5)
+        
+        text(3*n,0.9*max(PrevA),
+             format(round(sdB^2/n,2),nsmall=2),
+             adj=c(0,1),cex=1.5)
+        
+        text(9*n,0.9*max(PrevA),
+             format(round(sdA^2/n + sdB^2/n,2),
+                    nsmall=2),
+             adj=c(0,1),cex=1.5)
+        
+        
+        text(7*n,0.75*max(PrevA),"<- SD ->",
+             adj=c(0,1),cex=1.5)
+      
+        
+        text(5.5*n,0.75*max(PrevA),
+             format(round(sdA/sqrt(n),2),nsmall=2),
+             adj=c(0,1),cex=1.5)
+        
+        text(3*n,0.75*max(PrevA),
+             format(round(sdB/sqrt(n),2),nsmall=2),
+             adj=c(0,1),cex=1.5)
+        
+        text(9*n,0.75*max(PrevA),
+          format(round(sqrt(sdA^2/n+sdB^2/n),2),
+                    nsmall=2),
+             adj=c(0,1),cex=1.5)
+        
+	} # show	
+	 
+} # n
+
+```
 
 ### Linear combination
 
