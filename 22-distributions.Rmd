@@ -592,11 +592,11 @@ $$Var[ RV + constant ] = Var[RV]$$
 .  
 This involves just a scaling, with no shift. So if the SD were 10 Kg, it would be 22 lbs, and the variances in the 2 scales would be $100 \ Kg^2$ and $484 \ lb^2$.
 
-   + $Y$ = Years of publication of all the books in the McGill Library, with Years measured from AD (Anno Dominini, 'in the year of the Lord').  
+   + $Y$ = **Years of publication** of all the books in the McGill Library, with Years measured from AD (Anno Dominini, 'in the year of the Lord').  
 .  
 The SD would be the same if we measured the Year from 1439 AD ($Y' = Y$ - 1439) when Gutenberg  was the first European to use movable type, or from 1492 AD when Christopher Columbus reached North America.  
 .  
-What if, instead, we calcualted the age of each book in the year 2020, i.e. as $Y' = 2020 - Y$?  
+What if, instead, we calculated the **age of each book in the year 2020**, i.e. as $Y' = 2020 - Y$?  
 .  
 The **scale would now be reversed**. Instead of being at the extreme left, the older books would not be at the right hand of the scale, and vice versa. But the spread would still be the same, even though the shape of the new distribution would be the miorrow inage of the old one.  
 .  
@@ -621,12 +621,12 @@ There is no exact closed form, but the approximation works well because the valu
 
 ### A simple sum (of 2 or $n$)
 
-To keep it simple, and to allow us to see what is going on, Let's consider two very simple random variables (RV's), each taking just 2 values, and with equal probabilities. [You can check for yourself later that the same law applies to random variables that take on more than 2 values, and with uneven probability distributions.] The key is that the 2 variables are independent of each other.
+To keep it simple, and to allow us to see what is going on, Let's consider two very simple random variables (RV's), each taking just 2 values, and with equal probabilities. [You can check for yourself later that the same law applies to random variables that take on more than 2 values, and with uneven probability distributions.] The key is that the 2 variables are _independent_ of each other.
 
-The next panels show the two RV's.  $RV_1$ \ (6 \ or \ 12) \ + \ $RV_2$ \ (8 \ or \ 16)
+The next panels show the two RV's.  $RV_1$ \ (6 \ or \ 12) \ and \ $RV_2$ \ (8 \ or \ 16)
 
 $$Sum = RV_1 \ (6 \ or \ 12) \ + \ RV_2 \ (8 \ or \ 16) \ = \ 14 \ or \ 20 \ or \ 22 \ or \ 28.$$  
-We will come back much later to the choices of the specific values for each of the random variables; for our purposes here, the main point is that both equally-likely values are an even number apart, so the SDs are integers, and all calculations involve integers. Note that an RV with equally likely values 1 and 7 (or 3 and 9, or -1 and + 5) has the same SD as the RV with equally likely values 6 and 12: it is the distance between them that determines the SD. Note also, that with half of the values at one extreme and hald at teh other, all values are exactly one SD from the mean. [If you want to give them some meaning so that you can relate to them, thing of them as the durations of 2 stages in an industrial process, or a service (such as processing online orders, and arrranging shipping and delivery, or waiting for a mammogram, and then a biopsy).]  
+We will come back much later to the choices of the specific values for each of the random variables; for our purposes here, the main point is that both equally-likely values are an even number apart, so the SDs are integers, and all calculations involve integers. Note that an RV with equally likely values 1 and 7 (or 3 and 9, or -1 and + 5) has the same SD as the RV with equally likely values 6 and 12: it is the _distance between them_ that determines the SD. Note also, that with half of the values at one extreme and hald at teh other, all values are exactly one SD from the mean. [If you want to give them some meaning so that you can relate to them, thing of them as the durations of 2 stages in an industrial process, or a service (such as processing online orders, and arrranging shipping and delivery, or waiting for a mammogram, and then a biopsy).]  
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F}
 
@@ -680,13 +680,13 @@ plot.rv(c(8,16),1,expression(RV[2]))
 
 ```
 
-We now imagine taking a random value of $RV_1$ and  a random value of $RV_2$ and summing them. There are 4 possible sums, and in this case they are all distinct (this is not necessarily  be the case, but the values of the two RV's in this example were deliberately chosen to make them all distict, and to avoid grouping RV combinations with the same sum.) A probability tree (next panel) helps to see the 4 possibilities, but here we add an extra feature: we let the lengths of the branch denote the values of the RVs. (This 'stacking' of RV's can have practical advantages too: when Francis Galton wanted to quickly and precisely get the mean diameter of a large sample of peas, he lined them up in a long groove, and just measured the total width of the entire sample, then divided by the $n$.)
+We now imagine taking a random value of $RV_1$ and  a random value of $RV_2$ and summing them. There are 4 possible sums, and in this case they are all distinct (this isn'y always   be the case, but the values of the two RV's in _this example_ were deliberately chosen to make them all distict, and to avoid grouping RV combinations with the same sum.) A probability tree (next panel) helps to see the 4 possibilities, but here we add an extra feature: we let the lengths of the branches denote the values of the RVs. (This 'stacking' of RV's can have practical advantages too: when Francis Galton wanted to quickly and precisely compute the mean diameter of a large sample of peas, he lined them up in a long groove, and just measured the total width of the entire sample, then divided it by the $n$.)
 
 In our example, the 4 equally likely sums are 14, 20, 22 and 28, and their mean is $\frac{14+20+22+28}{4} = 21.$ That the mean (expected value) of the sum equals the sum of the 2 individual means or expected values, is hardly surprising [ -- and it is even true if the 2 RV's were not independent.] The 4 equally likely deviations from this 21 are -7, -1, +1, and +7, and so, **from 1st principles**, the **Variance of the sum of the 2 RVs is** 
 $$\frac{(-7)^2 + (-1)2 +  (+1)^2 +  (+7)^2}{4} = \frac{100}{4} = 25.$$  
 Thus, the **SD of the sum of the 2 RVs is** $\sqrt{25}$ = 5.
 
-Fortunately, we don't have to go back to 1st principles **to calculate the SD of the sum of 2 RVs -- but it is NOT by adding the 2 SDs**. IT IS THE VARIANCES THAT ADD! 
+Fortunately, we don't have to go back to 1st principles **to calculate the SD of the sum of 2 RVs -- but we do NOT do so by adding the 2 SDs**. IT IS THE VARIANCES THAT ADD! 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=4.5, fig.width=9, warning=FALSE, message=F}
 
@@ -836,14 +836,14 @@ sum.diff.2rvs(v)
 ```
 
 
-Whereas one numerical example doesn't prove the 'the variances of a sum of independent RVs is the sum of their variances' rule, you can check out other more complicated examples with more values, and uneven distributions -- or use simulation -- and satisfy yourself that it is a general rule. Indeed, the formal mathematical statistics 'proof' uses the exact same method as that used in the panel, except that it replaces each number by a symbol!  (By the way, when students from other disciplines who clain to have taken statistics courses ask JH to enrol in the math-stat based course bios601, one of his standard tests is to give then this problem: 'Let RV1 and RV2 be two random variables. From 1st principles, derive the formula for the varaince of RV1+RV2'.)
+Whereas one numerical example doesn't prove the 'the variances of a sum of independent RVs is the sum of their variances' rule, you can check out other more complicated examples with more values, and uneven distributions -- or use simulation -- and satisfy yourself that it is a general rule. Indeed, the formal mathematical statistics 'proof' uses the exact same method as that used in the panel, except that it replaces each number by a symbol!  (By the way, when students from other disciplines who claim to have taken statistics courses ask JH for permission to enrol in the math-stat based course bios601, one of his standard tests is to give then this problem: 'Let RV1 and RV2 be two random variables. From 1st principles, derive the formula for the variance of RV1+RV2'.)
 
 So we can sum up the forgoing numerical example by saying:
 
 $$ SD_1 = 3; SD_2 =4;\  but \ SD[Sum] \ \ne \ 3 + 4. \ \ \  SD[Sum] \ = \ \sqrt{3^2 + 4^2} = 5.$$  
 **BOTTOM LINE : 3 + 4 is not 7! it's 5! ** Or, as physicists say, **Uncertainties ADD IN QUADRATURE'** (that's the  math word for the square root of the sum of squares). Now you can see why mathematical statisticians like to work with squared SD's. And you can see why we chose the 'nice' variance values 3 and 4. Just like for the right-angled triangles in Pythagoras' theorem, where the length of the hypotenuese is the square root of the squares of the elngths of the sides, so it is also with othogonal or independent random variables: the SD of their sum is the square root of the sum of the squared SD's of the individual RVs.
 
-**And of course, since the theorem works for the sum of 2 independent RV;s, it also works for the sum of 3, and for the sum of $n$ such RVs.**
+**And of course, since the theorem works for the sum of 2 independent RV's, it also works for the sum of 3, and for the sum of $n$ such RVs.**
 
 ### Simple mean (of 2 or $n$ RVs)
 
@@ -878,7 +878,13 @@ Sometimes, we will need to work with variances. When we do, we use this law:
 
 **EXAMPLE** Lengths of words in a book ("book A")
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=12, fig.width=9, warning=FALSE, message=F, fig.cap="Illustrations of SD's of Sums and Means of n = 1, 4 and 9 independent and identically distributed random variables. Each RV is the length of a randomly selected word from a certain book. [Below, we will compare the mean word length in this book with the eman in abook by a competitor]. The distributions in purple were computed theoretically, using convolutions. Each row shows 1 'realization' of each of the  n random variables, with each word in a different color. The rows are sorted according to the values of the total [or mean] numbers of letters (chars) in the sample of n words. In the panels we=here n is 4 or 9, the leftmost n-1 cahracters of the n concatenated words are cropped, put the total/mean length  is correct. The top panel, in which, for better visibility, characters are replaced by dashes, shows the 'per word' variation of all of the words in the book, and its SD, sometimes called the 'unit' variability. You can also think of the length of each unit as the mean of a sample of size n = 1. The second panel shows that to reduce the sampling variation (the SD) of the mean by half, one needs to quadruple the n. The third panel shows that to reduce the sampling variation (the SD) to 1/3, one needs to multiply the n by 9. Note also that at n=9, the Central Limit Theorem is close o "}
+The number of dashes in of each row in the first panel  is the number of letters in a randomly selected word from the book: dashes are for better visibility. The words (rows) are sorted by length, form shortest to longest.  One cannot judge the full distribution just from this limited set, but (even though shape doesn't matter much in the big scheme of things) you get a sense of its shape. In the entire  book, the mean word length is about 4.5 letters, and the SD is
+2.4 letters. (The fact that the distance between the minimum word length (1 letter) and the mean word length is less than 2 SDs hints that the full distribution has a longe right tail.) 
+
+In each row in the coloured panels, some  4 (or 9) randomly sampled words are (like Galton's peas) pushed right up against each other, without spaces, and shown in  a mono-spaced font, so that where the 'line' ends indicates the total number of letters in the 4 (9) words. Since this small number of rows (possibilies) is too small to give a good sense of the sampling distribution, the smooth purple histograms were calculated exactly. 
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=12, fig.width=9, warning=FALSE, message=F, fig.cap="Illustrations of SD's of Sums and Means of n = 1, 4 and 9 independent and identically distributed random variables. Each RV is the length of a randomly selected word from a certain book. [Below, we will compare the mean word length in this book with the mean in abook by a competitor]. The distributions in purple were computed theoretically, using convolutions. Each row shows 1 'realization' of each of the  n random variables, with each word in a different color. The rows are sorted according to the values of the total [or mean] numbers of letters (chars) in the sample of n words. In the panels where n is 4 or 9, the leftmost n-1 characters of the n concatenated words are cropped, but the total/mean length  is correct. The top panel lists the 'per word' variation of all of the words in the book, and its SD, sometimes called the 'unit' variability. You can also think of the length of each unit as the mean of a sample of size n = 1. The second panel shows that to reduce the sampling variation (the SD) of the mean by half, one needs to quadruple the n. The third panel shows that to reduce the sampling variation (the SD) to 1/3, one needs to multiply the n by 9. Note, in passing, that at $n$ = 9, via the Central Limit Theorem, and the fact that the original distribution is 'CLT friendly' (the mode is not at either extreme, and the tails don't extend indefinitely), the shape of the sampling distribution is already close to Gaussian."}
 
 ds = read.table(
 "http://www.biostat.mcgill.ca/hanley/statbook/WH.txt.words.txt",
@@ -993,7 +999,13 @@ for (n in 1:Max.n){
 
 
 ```
-   
+
+As you would have expected, the  purple **sampling distributions  narrow with increasing sample size**, but the narrowing is **not by a factor of $n$,** but by a **factor of $\sqrt{n}$.** All the billions of _possible means_ of samples of size $n$ = 4
+_would have_ a SD of 2.4/$\sqrt{4}$ = 2.4/2 = 1.2. The _possible means_ of samples of size $n$ = 9 _would have_ a SD of 2.4/$\sqrt{9}$ = 2.4/3 = 0.8.
+**Note the careful choice of the words** in _italics_: in reality, you will only observe **one** of the billions of possibilities, so the sampling distribution is _imaginary_ and thus the SD is also _imaginary_ and so the SD of the **conceptual** sampling distribution is (_would be_) an _imaginary_ 1.2 or 0.8. The only reason we are able to show the purple distributions is because of the laws of statistics, applied to all the words in the book, so we know the mean and the unit SD.
+
+
+
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
 
@@ -1021,8 +1033,21 @@ n.children = 1:8
 
 ```
 
-### simple difference
+### simple difference of 2 RVs
 
+
+To keep it simple, let's consider the two very simple random variables (RV's), each taking just 2 values, and with equal probabilities, and independent of each other. But suppose now that we are interested in their difference
+
+
+$$Difference = RV_1 \ (6 \ or \ 12) \ - \ RV_2 \ (8 \ or \ 16) \ = \ -10 \ or \ -4 \ or \ -2 \ or \ +4.$$  
+
+Now, imagine taking a random value of $RV_1$ and  subtracting from it a random value of $RV_2$. There are 4 possible differences, and in this deliberately constricted example, they are all distinct. A probability tree (next panel) helps to see the 4 possibilities, and the lengths of the branches denote the values of the RVs.
+
+The 4 equally likely differences are -10, -4, -2 and +4, and so their mean is $\frac{-10 -4 -2 +4}{4} = -3.$ That the mean (expected value) of the difference equals the difference of the 2 individual means or expected values, is hardly surprising [ -- and it is even true if the 2 RV's were not independent.] The 4 equally likely deviations from this -3 are -7, -1, +1, and +7, and so, **from 1st principles**, the **Variance of the difference of the 2 RVs is** 
+$$\frac{(-7)^2 + (-1)2 +  (+1)^2 +  (+7)^2}{4} = \frac{100}{4} = 25.$$  
+Thus, the **SD of the difference of the 2 RVs is** $\sqrt{25}$ = 5.
+
+Fortunately, we don't have to go back to 1st principles **to calculate the SD of the differences of 2 RVs -- but we do NOT do so by adding the 2 SDs**. IT IS THE VARIANCES THAT ADD! 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=4.5, fig.width=9, warning=FALSE, message=F,fig.cap="Variance (and thus SD) of the DIFFERENCE, RV1 - RV2, of the two independent random variables, RV1 and RV2, shown above. Each of the 4 equally likely deviations of the difference from its expectation is decomposed into its 2 components. Each each squared deviation becomes a sum of 2 squares, and a 'cross-product'. But the 4 cross-products cancel each other, and you are left with the SUMS of two squares, the original 3-squared and the  original 4-squared, i.e. the variances of RV1 and RV2."}
 
@@ -1031,6 +1056,16 @@ v=matrix(c(6,12,-8,-16),2,2)
 sum.diff.2rvs(v)
 
 ```
+
+
+Again one numerical example doesn't prove the 'the variances of a difference of two independent RVs is the sum of their variances' rule, but you can check out other more complicated examples with more values, and uneven distributions -- or use simulation -- and satisfy yourself that it is a general rule.
+
+So we can sum up the forgoing numerical example by saying:
+
+$$ SD_1 = 3; SD_2 =4;\  but \ SD[Difference] \ \ne \ 3 + 4. \ \ \  SD[Difference] \ = \ \sqrt{3^2 + 4^2} = 5.$$  
+It turns out that, from what we already knew about the sum of 2 independent RVs, we have anticipated this law. We didn't need to go through all the formulae from scratch again.  The reason had to do with the 'mirror image' distributions, such as the depths of the ocean, we saw above. The spread (SD, or variance) is the same, whether one writes/reads/computes from left to right, or right to left! In other words, the variance of the random variable $-RV_2$ is the same as that of the random variable $RV_2.$ So, by writing $RV_1 - RV_2$ as a sum, and using the law for the variance of a sum, we arrive at 
+$$Var[RV_1 - RV_2] = Var[RV_1 + (-RV_2)] = Var[RV_1] + Var[(-RV_2)] = Var[RV_1] + Var[RV_2].$$
+
 
 **EXAMPLE** Difference in mean length of words in books A (in blue) and B (in red)
 
@@ -1114,9 +1149,7 @@ for (n in 1:Max.n){
         
         MAB = outer(PrevA,PrevB)
         F = sapply(split(MAB, row(MAB) - col(MAB)), sum)
-        str(F)
         diff.sum = max(range) - min(range)
-        print(diff.sum)
         diff.sum = (-diff.sum):diff.sum
         offset = n*9
         text(1.1*n, 0.005*max(PrevA),
