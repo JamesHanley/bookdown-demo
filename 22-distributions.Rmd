@@ -1,4 +1,4 @@
-# Distributions /Random Variables {#Distributions}
+# Random Variables/Variation {#RandomVariables}
 
 
 ## Objectives
@@ -617,9 +617,9 @@ $g(Y)$ =  miles per gallon or Km per liter (reciprocal)
 .  
 There is no exact closed form, but the approximation works well because the values are well away from zero, and not too spread out -- unless you allow Hummers!
 
-## Variances of combinations of random variables
+## Sums/means/differences of RVs
 
-### A simple sum (of 2 or $n$)
+### A sum (of 2 or $n$)
 
 To keep it simple, and to allow us to see what is going on, Let's consider two very simple random variables (RV's), each taking just 2 values, and with equal probabilities. [You can check for yourself later that the same law applies to random variables that take on more than 2 values, and with uneven probability distributions.] The key is that the 2 variables are _independent_ of each other.
 
@@ -845,7 +845,7 @@ $$ SD_1 = 3; SD_2 =4;\  but \ SD[Sum] \ \ne \ 3 + 4. \ \ \  SD[Sum] \ = \ \sqrt{
 
 **And of course, since the theorem works for the sum of 2 independent RV's, it also works for the sum of 3, and for the sum of $n$ such RVs.**
 
-### Simple mean (of 2 or $n$ RVs)
+### Mean (of 2 or $n$ RVs)
 
 AND, if we know how to compute the  SD of a SUM of $n$ independent RV's, we then automatically know  how to compute the  SD of a MEAN of $n$ independent RV's. Remember back to an assigment on the SD of a set of temperatures measured in the larger degrees F scale: then the
 SD of the same set of temperatures measured in the smaller degrees C scale is just 5/9ths of the one in the F scale.
@@ -1033,7 +1033,7 @@ n.children = 1:8
 
 ```
 
-### simple difference of 2 RVs
+### Difference of 2 RVs
 
 
 To keep it simple, let's consider the two very simple random variables (RV's), each taking just 2 values, and with equal probabilities, and independent of each other. But suppose now that we are interested in their difference
@@ -1104,6 +1104,7 @@ Fr = matrix(c(FrA,FrB),L.max,2)
 CEX=1
 
 to.show = c(5,25,100,400)
+to.show = c(5,10,25,50)   # for now
 Max.n   = max(to.show)
 
 par(mfrow=c(length(to.show),1), mar = rep(0,4))
@@ -1220,124 +1221,94 @@ for (n in 1:Max.n){
 
 ```
 
-### Linear combination
+## Linear combinations of RVs (regression slopes)
 
-anatomy of a slope.
+In _non-experimental_ research especially, the focus is typically on a fitted regression slope/coefficient, rather that on the simple difference 
+$\bar{y}_1$ - $\bar{y}_0$ between the means of the $y$s observed at each of two investigator-chosen values ($X=1$ and $X=0$) of the determinant ($X$) being studied. 
 
-## Named Distributions
+Even if the estimator  does not have a closed form, the fitted slope(s)/coefficient(s) are linear combinations of the $y$'s and the $x$'s. Thus, since each of the $n$ $y$'s contains a random element, the slope ($\hat{\beta}$) is an $x$-based linear combination of $n$ random variables.
 
-Gaussian Bernoulli-Binomial  Poisson
+Thus one can view all variances (and thus all standard errors) in a unified way, and not have to learn separate laws for separate chapters. To see how this unified view avoids the typical 'silo' approach to statistical tecnniques, see [Sample Size, Precision and Power Calculations: A Unified Approach](http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/UniversalSampleSize.pdf). [Software developers who thrive on separate 'niche' markets are threatened by this parsimonious approach, just as are those who write 800-page textbooks with separate chapters for t-tests,l proportions, regression, multiple regression, logiostic regression, Cox regression, survival analysis,etc.]    
 
-## Exercises
+In the past, when introducing simple linear regression, it was common to learn the formula by heart, and use it compute by hand, the standard error for a fitted slope, namely
+$$SE[ \hat{\beta} ] = \sqrt{\frac{\sum (y-\bar{y})(x-\bar{x})}{ \sum (x-\bar{x})^2}}.$$
+Sadly, [this formidable formula hides what is going on](http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/SimpleMultipleLinearRegressionSampleSize.pdf). 
 
-1. Refer to the **fictitious cohort** (shown above), constructed from the 1990 Quebec mortality rates.
+To truly understand what is going on, lets consider a very simple example. A student from a country that uses the Fahrenheit (F) system moves to Montreal, and wishes to know how to translate the outside temperature, expressed as the number of degrees Celsius (C) and shown in the Metro, and heard on radio stations, back into the F scale (s)he is familiar with. The student knows that the conversion is of the form  F = $\alpha$ + $\beta \times C$ but, rather than look them up on Google, decides to estimate $\alpha$ and $\beta$ from pairs of (C,F) readings, taking the C readings directly from the Metro screen, and the F ones from his/her own portable thermometer. Suppose that the C readings are displayed to 1 decimal place, but that the F thermometer only displays the F to the nearest integer (or more generally, has a random error of -0.5F in half the occasions, and +0.5F in the other half).
 
-   + Use  1st principles (together with `R`) to calculate the standard deviation of the longevity of the male cohort. Do so in two ways, using (a) the definition (b) the 'shortcut'.
-   + For [human 'computers'](http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/Hanley_Article_Galton_Data.pdf#page=7) back in the days before there were 'electronic' computers, what is the advantage of the shortcut?
+Now, knowing that one it just takes 2 data points to draw a line, the student takes F measurements on two occasions, once when the displayed temperature is 12.5 C and one when it is 17.5 C.  (The student didn't know that when the real temperature  was very close to xx.5 F, it had a 50% chance of being rounded up to xx+1 F, thereby creating an error of +0.5 F, and a 50% chance of being rounded down to xx-1 F, and  producing an error of -0.5 F.)
 
-2. Suppose you get into the **life insurance** business in a small way, just taking on one client. The client pays you a premium of $100 at the beginning of each year for 5 years. If the client dies within the next 5 years, you will pay client's estate $20,000. Thus, at the end of 5 years, your possible earnings from this single client, along with the associated (actuarily-based) probablities are:
+Given that these two C settings correspond to 54.5 F and 63.5 F,  what are the possible $\beta$ estimates? And, how variable are they?
 
+The 4 possibilities, shown below, are (64-55)/5, (64-54)/5, (63-55)/5, and (63-54)/5, or, when sorted, 1.6, 1.8, 1.8 and 2.0, each with probability 1/4, so that the variance is
+$$Var[ \hat{\beta} ] =  \frac{(1.6 - 1.8)^2 + (1.8 - 1.8)^2  + (1.8 - 1.8)^2 + (2.0 - 1.8)^2}{4} = 0.02,$$
+and the SE is $\sqrt{0.02} = 0.14$ degrees F per degree C.
 
-```{r,eval=T, echo=T, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+Also shown in the diagram is the 'anatomy' of the 'random slope'. The possible slopes are displayed as a single expression  in which the 2 random elements (i.e the 2 random  variables, or the two 'errors' e$_1$ and e$_2$)  are isolated. The random slope is in the form of a constant (9/5) plus another constant (1/5) times the difference of two independent random errors. Applying all of the variance rules above, we have that
+$$Var[random  \ slope] = (1/5)^2 \times ( Var[e_1] + Var[e_2]).$$ 
 
-possible.earnings = c( seq(-19900,-19500,100), 500 ) 
-probability = c(183,186,189,191,193,99058)/100000 
-
-cbind(possible.earnings,probability)
-      
-``` 
-2. continued
-
-   + Compute the expected earnings
-   + Compute the variance (and thus the SD) of the possible earnings (a) using the definition (b) using the computational shortcut
-   + Compute the 'risk',  the SD as a percentage of the mean, as do investors ranking how risky various stocks are.
-   + In statistics, and especially in applied statistics, what is the name for the SD as a percentage of the mean?
-
-3. Above you saw the possible outcomes of the **6/49** game. You could also put the possibilities into this 2 x 2 table
-
-Frequencies of numbers selected/not selected by you (rows) and drawn/not by Loto Machine (columns)
-
-|        |       |      |      |      |      |      |  |
-|-----:|-------:|-------:|-------:|-----:|-----:|:----:|:----:|:----:|
-|        |       |       |     | LOTO |      |      |      |   |
-|        |       |       |   Yes |      | No   |      | ALL     |    |
-|        |       |       |      |      |      |      |    |
-|        |       | .      | ........     | ........     |  ........    |   .   |    |
-|        |  Yes  | : |   y   |      | 6-y  |  !   |  6  |    |
-|  YOU   |       |       |      |      |      |      |    |
-|        |  No   | : | 6 - y |      | 37+y |   :  |  43    |    |
-|        |    |  .  |  ........    | ........  |  ........    |  .    |    |
-|        | ALL   |  |  6   |      | 43   |      |  49  |    |
-
-3. continued
-
-   + Use  your searching skills to find the formal statistical name for the distribution of $Y$, which can take on the values $y$ = 0, 1, $\dots$, 6. 
-   + Likewise, find the name of the `R` functions (`d??p?r` , `p??p?r`, `q??p?r` and `r??p?r`) that allow you to obtain the 7 probabilities, the 7 cumulative provabilities, the quantiles, and the `r??p?r` function that draws random values from this distribution.
-   + Even with knowing what the full (numerical) probability distribution of $Y$ is, it is possible, just from the marginal totals for the 2 x 2 table, to calculate the expected value of $Y.$ Do so. (_Hint_: look up 'expected values for r x c tables')
-   + Just by imagining what the full probablility distibution on the integers 0 to 6 must look like [or by looking at the material earlier on this page], come up with an approximate value of the variance of Y. [If you look up this distribution in Wikipedia, you wiull find the exact formula for it.]  
-   
-4. The chapter on inference possible relates  the '**Lady Tasting Tea**' story. You could put the possible outcomes of the trial into this 2 x 2 table involving 8 cups of tea, into which the milk had been poured first in 4 instances, and second in the other 4. The lady was told there were 4 of each, so she indicated the 4 into which she jusged the milk was poured 1st, and the 4 into which she judged the milk was poured 2nd.  
-
-Frequencies of the correctness/incorrectness of the replies by the lady (rows) in relation to the truth arranged by experimenter (columns)
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Estimating the using s."}
 
 
-|        |       |      |      |      |      |      |  |
-|-----:|-------:|-------:|-------:|-----:|-----:|:----:|:----:|:----:|
-|        |       |       |     | TRUTH |      |      |      |   |
-|        |       |       |   Milk 1st |      | Milk 2nd   |      | ALL     |    |
-|        |       |       |      |      |      |      |    |
-|        |       | .      | ........     | ........     |  ........    |   .   |    |
-|        |  Milk 1st  | : |   y   |      | 4-y  |  :   |  4 cups  |    |
-|  LADY   |       |       |      |      |      |      |    |
-|        |  Milk 2nd   | : | 4 - y |      | 4+y |   :  |  4 cups    |    |
-|        |    |  .  |  ........    | ........  |  ........    |  .    |    |
-|        | ALL   |  |  4 cups   |      | 4 cups   |      |  8 cups  |    |
+par(mfrow=c(1,1), mar = rep(0,4))
 
-4. continued
+x = c(12.5,17.5)
+Y = 32 + (9/5)*x
 
-   + Use the `R` function `d??p?r` to obtain, under the null hypothesis, the 5 probabilities for $y$.
-   + Under this null, what is the probability of getting **at least 3** correct?
-   + What if 12 cups (6 and 6) were used? What then would be the probability of getting **at least 5** correct? **all 6**?
+XLIM = c(x[1]-1, x[2]+1)
+YLIM = c(Y[1]-2, Y[2]+2)
 
-5. **Saving** on the numbers of binary yests **by pooling**. When a binary blood test [one that yields a positive ('+ve') or negative ('-ve') result] gives +ve results in only a small proportion, $\pi,$ of blood samples, it may be possible to economize on the costs of testing by pooling m blood samples, according to the following procedure: (i) each blood sample is divided into two portions; one portion is kept in reserve while the other is pooled with the corresponding portions from $m$ - 1 other blood samples (ii) if the result of a single test on the pooled bloods is -ve, each of the $m$ individual blood samples are considered -ve; if the result is +ve, then the $m$ reserve bloods are individually tested.
-   
-   + With $m$ = 20 and $\pi$ = 0.1, calculate the expected number of tests required to determine the status of eack of the blood samples. (_Hint_: a tree diagram may help)
+plot(-100,-100,xlim=XLIM,ylim=YLIM)
 
-6. **Errors caused by rounding**. Suppose one has to analyze a large number of 3 digit numbers. To make the job easier, one rounds each number to the nearest 10, e.g.,  
-`460 <-- 460 461 462 463 464 ; 465 466 467 468 469 --> 470.`  
-If the ending numbers of the unrounded data were uniformly distributed (each ending digit has a probability of 1/10), calculate:
-   + the average error per (rounded) number
-   + the average absolute error per (rounded) number
-   + the square root of the average squared error per (rounded)
-number ['root mean squared error', or 'RMSE' for short]
+yy  = seq( floor(YLIM[1]), ceiling(YLIM[2]),1)
+yyy = seq( floor(YLIM[1]), ceiling(YLIM[2]),1/2)
+abline(h=yy, col="lightblue",lwd=1.5)
+abline(h=yyy,col="lightblue",lwd=0.52)
 
-7. **Correcting for guessing** on multiple choice exams.  
-Suppose one wishes to estimate via a multiple choice examination [with $k$ answers to choose from for each question], what proportion $\pi$ of questions a student **knows** the answer to (excuse the dangling preposition!). Imagine that $\pi$ refers to the N (>> n)   questions in the much larger bank of questions from which the $n$ exam questions are randomly selecetd. 
+for(Yy in yy) text(XLIM[1],Yy,
+                  toString(Yy),
+                  adj=c(1,-0.1) )
 
-   + Show that the simple proportion $p$ of correctly answered questions gives a biased (over) estimate of $\pi$ if the student simply randomly guesses among the $k$ answers on questions where (s)he doesn't know the answer. Do this by calculating the expected value of p (i.e. the average mark per question) when each answer is marked 1 if correct and 0 if not. (_Hint_: a tree diagram may help).
-   + One can 'de-bias' the estimate by giving each correct answer a mark of 1 and each incorrect  answer a negative mark. What negative mark (penalty) will provide an unbiased estimate of $\pi$? Begin by finding the expected mark per question, then set it to $\pi$ and solve for the penalty. (_Hint_: If you prefer, use concrete values of $\pi$ and $k$ to see what penalty is needed.)
-   
-8. Suppose a random variable takes on the integer values 1 to 5 inclusive, each with probability 1/5. Compute the variance and SD of this random variable. 
+H = seq(floor(XLIM[1]),ceiling(XLIM[2]),1)
+for(h in H ) text(h,YLIM[1],
+                  toString(h),
+                  adj=c(0.5,-0.1))
+abline(v=H,col="lightblue")
 
-9. Half the purchases of eggs in a market are for 6 eggs and half are for 12. What percentage of purchases are for a quantity that is more than 1 SD from the mean? less than 1 SD? 
+e = c(-0.5,0.5)
+for( i.1  in 1:2  ){
+  y1 =  Y[1]+e[i.1]
+  text(x[1],y1,toString(y1),adj=c(1.25,0.5))
+  for( i.2  in 1:2  ){
+     y2 =  Y[2]+e[i.2]
+  	 if(i.1==1) text(x[2],y2,
+  	               toString(y2),adj=c(-0.25,0.5))
+  	 dy = y2-y1
+  	 slope = dy/(x[2]-x[1])
+     segments(x[1], y1, x[2], y2, lwd=0.5 )
+  }
+}
 
-10. Half the people in a population have 2 organs and half have none. What is the standard deviation of the number of organs a ranomly selecetd person has? 
+y = Y[2]
 
-11. Consider children of parents who both carry a single copy of the CF gene. (In the absence of ..) How many of their offspring will have 0, 1 or 2 copies? 
+  text(x[1],y,
+    bquote("slope = " ~ frac(y[2]-y[1],5) ~ " = " ~ frac(63.5+e[2] - 54.5 - e[1],5 ) ~ " = "  ~ frac(9 + e[2] - e[1],5 ) ~ " = " ~ frac(9,5) + frac(e[2] - e[1],5)  ),
+    adj=c(0,0.5)
+  )
+
+points(x[1],Y[1],cex=0.5,pch=19)
+arrows(x[1],Y[1]-1/2, x[1],Y[1]+1/2,
+       length=0.06, angle=45,code=3,lwd=1)
+text(x[1]-2/5,Y[1],
+    bquote(e[1]),  adj=c(0.5,1), srt=90,
+    cex=1)
+text(x[1]-2/5,Y[1]+5,
+  bquote("Var[" ~ e[1] ~ "] = " ~ frac(-0.5^2+0.5^2)(2) ),
+  adj=c(0,1), cex=1)
+  
+```
+For heuristic reasons, consider first the simplest possible case of just (n =) 2 X locations, Y errors that could equally be +1 or -1 (so that se2 = 1), and estimating a slope (whose true value is B = 4, say) by dividing the observed difference in the 2 y’s by the difference in their X locations. We use ‘y’ to denote an ‘error-containing’ Y.
+If the two Xs are 1 unit apart, then with errors of +/-1 the resulting values of y will differ by one of (4 - 1 - 1) = 2, (4 - 1 + 1) = 4, (4 +1 - 1) = 4, and (4 + 1 + 1) = 6, each with equal probability. So, the slope estimate is equally likely to be 2, 4, 4, or 6; thus, the error in this estimate is equally likelytobe-2,0,0,or2;andsothesamplingvariancewillbe50%of22 +50%of02 =2.If instead, the Xs are two units apart (as they are in the ‘LONG1’ design), so that 2B = 8, the four equally likely slope estimates will now be 6/2, 8/2, 8/2, and 10/2. Thus, the errors in these estimates are equally likely to be -1, 0, 0, and 1, and so their variance will be 50% of (1)2 + 50% of 02 = 1/ 2, four times smaller than if the readings were only 1 X unit apart.
 
 
-12. No. copies of wild type if frequency is 1/5. Mean/Var.? 
-
-
-
-https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/phasing-penny.html
-
-simulation
-
-http://www2.ku.edu/~kuwpaper/2013Papers/201309.pdf
-
-https://www-jstor-org.proxy3.library.mcgill.ca/stable/pdf/3552184.pdf?refreqid=excelsior%3A86597fff2392f0b0d698235434d88c3a
-
-
-Galton's way of showing that the heights of the married couples in his dataset were virtually uncorrelated -- for computing exercise
 
