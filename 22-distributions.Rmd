@@ -1230,24 +1230,26 @@ Even if the estimator  does not have a closed form, the fitted slope(s)/coeffici
 
 Thus one can view all variances (and thus all standard errors) in a unified way, and not have to learn separate laws for separate chapters. To see how this unified view avoids the typical 'silo' approach to statistical tecnniques, see [Sample Size, Precision and Power Calculations: A Unified Approach](http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/UniversalSampleSize.pdf). [Software developers who thrive on separate 'niche' markets are threatened by this parsimonious approach, just as are those who write 800-page textbooks with separate chapters for t-tests,l proportions, regression, multiple regression, logiostic regression, Cox regression, survival analysis,etc.]    
 
-In the past, when introducing simple linear regression, it was common to learn the formula by heart, and use it compute by hand, the standard error for a fitted slope, namely
-$$SE[ \hat{\beta} ] = \sqrt{\frac{\sum (y-\bar{y})(x-\bar{x})}{ \sum (x-\bar{x})^2}}.$$
-Sadly, [this formidable formula hides what is going on](http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/SimpleMultipleLinearRegressionSampleSize.pdf). 
+In the past, when first introduced to simple linear regression, it was common to learn the estimator formula and the Variance formula by heart, and use them to compute the fitted slope and the the standard error for a fitted slope by hand,
+$$\hat{\beta} = \frac{\sum (y-\bar{y})(x-\bar{x})}{ \sum (x-\bar{x})^2} \ ; \ \ Var[ \hat{\beta} ] = \frac{\sigma_e^2}{ \sum (x-\bar{x})^2} \ ; \ SE[ \hat{\beta} ] \ = \sqrt{Var[ \hat{\beta} ]} \ .$$
+In the variance formula, $\sigma_e^2$ is the variance in the 'errors' in the $y$'s. In practice, we have to estimate this quantirty, but in our example, for disdactic purposes, we will pretend to 'know' its value.
 
-To truly understand what is going on, lets consider a very simple example. A student from a country that uses the Fahrenheit (F) system moves to Montreal, and wishes to know how to translate the outside temperature, expressed as the number of degrees Celsius (C) and shown in the Metro, and heard on radio stations, back into the F scale (s)he is familiar with. The student knows that the conversion is of the form  F = $\alpha$ + $\beta \times C$ but, rather than look them up on Google, decides to estimate $\alpha$ and $\beta$ from pairs of (C,F) readings, taking the C readings directly from the Metro screen, and the F ones from his/her own portable thermometer. Suppose that the C readings are displayed to 1 decimal place, but that the F thermometer only displays the F to the nearest integer (or more generally, has a random error of -0.5F in half the occasions, and +0.5F in the other half).
+Sadly, [these formidable formulaa hide what is going on](http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/SimpleMultipleLinearRegressionSampleSize.pdf). 
 
-Now, knowing that one it just takes 2 data points to draw a line, the student takes F measurements on two occasions, once when the displayed temperature is 12.5 C and one when it is 17.5 C.  (The student didn't know that when the real temperature  was very close to xx.5 F, it had a 50% chance of being rounded up to xx+1 F, thereby creating an error of +0.5 F, and a 50% chance of being rounded down to xx-1 F, and  producing an error of -0.5 F.)
+To truly understand what is going on, lets consider a **very simple example** where we can _see_ what is happening. A student from a country that uses the Fahrenheit (F) system moves to Montreal, and wishes to know how to translate the outside temperature, expressed as the number of degrees Celsius (C) and shown in the Metro, and heard on radio stations, back into the F scale (s)he is familiar with. The student knows that the conversion is of the form  F = $\alpha$ + $\beta \times C$ but, rather than look them up on Google, decides to estimate $\alpha$ and $\beta$ from pairs of (C,F) readings, taking the C readings directly from the Metro screen, and the F ones from his/her own portable thermometer. Suppose that the C readings are displayed to 1 decimal place, but that the F thermometer only displays the F to the nearest integer.
 
-Given that these two C settings correspond to 54.5 F and 63.5 F,  what are the possible $\beta$ estimates? And, how variable are they?
+Now, knowing that one it just takes 2 data points to draw a line, the student takes F measurements on two occasions, once when the displayed temperature is 12.5 C and one when it is 17.5 C.  (The student didn't know that when the real temperature  was very close to xx.5 F, it had a 50% chance of being rounded up to xx+1 F, thereby creating an error of +0.5 F, and a 50% chance of being rounded down to xx-1 F, and  producing an error of -0.5 F. Thus, the variance of each error is $(-0.5)^2 \times (1/2)$ + $(+0.5)^2 \times (1/2)$ = $0.5^2,$ and the SD is 0.5. (In the computer exercises, we will treat a broader type of  random errors in the F readings).
 
-The 4 possibilities, shown below, are (64-55)/5, (64-54)/5, (63-55)/5, and (63-54)/5, or, when sorted, 1.6, 1.8, 1.8 and 2.0, each with probability 1/4, so that the variance is
-$$Var[ \hat{\beta} ] =  \frac{(1.6 - 1.8)^2 + (1.8 - 1.8)^2  + (1.8 - 1.8)^2 + (2.0 - 1.8)^2}{4} = 0.02,$$
+Given that these two C settings correspond to 54.5 F and 63.5 F, but that the true temperature may be slightly on one side or the other of thse two values, what are the possible $\beta$ estimates? And, how variable would they be?
+
+The 4 possibilities, shown as the slopes of the 4 fitted lines shown in black below, are (64-55)/5, (64-54)/5, (63-55)/5, and (63-54)/5, or, when sorted, 1.6, 1.8, 1.8 and 2.0 degrees F per degree C, each with probability 1/4, so that the variance of the equally likely slopes is
+$$Var[ \hat{\beta} ] =  \frac{(1.6 - 1.8)^2 + (1.8 - 1.8)^2  + (1.8 - 1.8)^2 + (2.0 - 1.8)^2}{4} = \frac{1}{50} \ =  \ 0.02,$$
 and the SE is $\sqrt{0.02} = 0.14$ degrees F per degree C.
 
-Also shown in the diagram is the 'anatomy' of the 'random slope'. The possible slopes are displayed as a single expression  in which the 2 random elements (i.e the 2 random  variables, or the two 'errors' e$_1$ and e$_2$)  are isolated. The random slope is in the form of a constant (9/5) plus another constant (1/5) times the difference of two independent random errors. Applying all of the variance rules above, we have that
-$$Var[random  \ slope] = (1/5)^2 \times ( Var[e_1] + Var[e_2]).$$ 
+Also shown in the diagram is the **'anatomy' of the 'random slope'**. The possible slopes are displayed as a single expression  in which the 2 random elements (i.e the 2 random  variables, or the two 'errors' e$_1$ and e$_2$)  are isolated. The random slope is in the form of a constant (9/5) plus another constant (1/5) times the difference of two independent random errors. Applying all of the variance rules above, we have that
+$$Var[random  \ slope] = (1/5)^2 \times ( Var[e_1] + Var[e_2])  \ = \ \frac{1}{50} \ .$$ 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="Estimating the using s."}
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F, fig.cap="The 4  lines (in black) fitted to the 4 possible and equally likely pairs of data points (The  <unknown to us> 'true' values are shown in blue). By algebraicly isolating the contributions of the 2 random errors in F to the variation in the 4 slopes, the variance of the (random) slopes is easily computed using the laws for the variance of a combination of 2 independent random variables."}
 
 
 par(mfrow=c(1,1), mar = rep(0,4))
@@ -1267,13 +1269,20 @@ abline(h=yyy,col="lightblue",lwd=0.52)
 
 for(Yy in yy) text(XLIM[1],Yy,
                   toString(Yy),
-                  adj=c(1,-0.1) )
+                  adj=c(1,1) )
+
+text(XLIM[1],YLIM[2] - 0.25, "Temperature (F)",
+                  adj=c(0,0),font=2)
+
+text(mean(x),YLIM[1]-0.25, "Temperature (C)",
+                  adj=c(0.5,0),font=2)
 
 H = seq(floor(XLIM[1]),ceiling(XLIM[2]),1)
-for(h in H ) text(h,YLIM[1],
+for(h in H ) text(h,YLIM[1]+0.25,
                   toString(h),
-                  adj=c(0.5,-0.1))
+                  adj=c(0.5,0))
 abline(v=H,col="lightblue")
+segments(x[1],Y[1],x[2],Y[2],col="blue")
 
 e = c(-0.5,0.5)
 for( i.1  in 1:2  ){
@@ -1292,23 +1301,40 @@ for( i.1  in 1:2  ){
 y = Y[2]
 
   text(x[1],y,
-    bquote("slope = " ~ frac(y[2]-y[1],5) ~ " = " ~ frac(63.5+e[2] - 54.5 - e[1],5 ) ~ " = "  ~ frac(9 + e[2] - e[1],5 ) ~ " = " ~ frac(9,5) + frac(e[2] - e[1],5)  ),
+    bquote("slope = " ~ frac(y[2]-y[1],5) ~ " = " ~ frac(63.5+e[2] - 54.5 - e[1],5 ) ~ " = "  ~ frac(9 + e[2] - e[1],5 ) ~ "  =  " ~ frac(9,5) + frac(e[2] - e[1],5)  ),
     adj=c(0,0.5)
   )
 
-points(x[1],Y[1],cex=0.5,pch=19)
+points(x[1],Y[1],cex=0.5,pch=19,col="blue")
 arrows(x[1],Y[1]-1/2, x[1],Y[1]+1/2,
        length=0.06, angle=45,code=3,lwd=1)
-text(x[1]-2/5,Y[1],
-    bquote(e[1]),  adj=c(0.5,1), srt=90,
+points(x[2],Y[2],cex=0.5,pch=19,col="blue")
+arrows(x[2],Y[2]-1/2, x[2],Y[2]+1/2,
+       length=0.06, angle=45,code=3,lwd=1)
+text(x[1]-1/5,Y[1],
+    bquote(e[1]),  adj=c(1,0.5), 
     cex=1)
-text(x[1]-2/5,Y[1]+5,
-  bquote("Var[" ~ e[1] ~ "] = " ~ frac(-0.5^2+0.5^2)(2) ),
+text(x[2]+2/5,Y[2],
+    bquote(e[2]),  adj=c(1,0.5), 
+    cex=1)
+text(x[1]-4/5,Y[1]+4.5,
+  bquote("Var[" ~ e[1] ~ "] = " ~ frac( (-0.5)^2 + (+0.5)^2,2) ~ " = " ~ 0.5^2 ),
   adj=c(0,1), cex=1)
+
+text(x[2]+1,Y[2]-3.25,
+  bquote("Var[" ~ e[2] ~ "] = " ~ frac( (-0.5)^2 + (+0.5)^2,2) ~ " = " ~ 0.5^2 ),
+  adj=c(1,1), cex=1)
+
+
+text(x[2]+1,Y[1],
+    bquote("Var[possible slopes] = Var[ " ~ frac(9,5) + frac(e[2] - e[1],5) ~ " ] = " ~ frac(Var(e[1])+Var(e[2]),5^2) ~ " = " ~ frac(0.5^2 +0.5^2,5^2) ~ " = " ~ frac(1,50) ),
+    adj=c(1,0.5)
+  )
   
 ```
-For heuristic reasons, consider first the simplest possible case of just (n =) 2 X locations, Y errors that could equally be +1 or -1 (so that se2 = 1), and estimating a slope (whose true value is B = 4, say) by dividing the observed difference in the 2 y’s by the difference in their X locations. We use ‘y’ to denote an ‘error-containing’ Y.
-If the two Xs are 1 unit apart, then with errors of +/-1 the resulting values of y will differ by one of (4 - 1 - 1) = 2, (4 - 1 + 1) = 4, (4 +1 - 1) = 4, and (4 + 1 + 1) = 6, each with equal probability. So, the slope estimate is equally likely to be 2, 4, 4, or 6; thus, the error in this estimate is equally likelytobe-2,0,0,or2;andsothesamplingvariancewillbe50%of22 +50%of02 =2.If instead, the Xs are two units apart (as they are in the ‘LONG1’ design), so that 2B = 8, the four equally likely slope estimates will now be 6/2, 8/2, 8/2, and 10/2. Thus, the errors in these estimates are equally likely to be -1, 0, 0, and 1, and so their variance will be 50% of (1)2 + 50% of 02 = 1/ 2, four times smaller than if the readings were only 1 X unit apart.
 
+The important point of this simple regression example is that even though in practice there would be many more data points, the principle/law used to calculate the sampling variation of a slope based on any number of datapoints remains the same: the slope is still (in this case) an $x$-based linear combination of $y$'s, and thus an $x$-based linear combination of random errors -- or more broadly of random deviations from the $x$-conditional means of the '$Y$' variables. We will return later to all of the factors that influence the narrowness/width of  sampling distributions generally, but you can maybe already see from the 'algebraicly isolated' representation of the slope that the more datapoints -- and the wider apart they are on the $x$ axis and the smaller the magnitudes of the errors --- the more reproducible the slope. The influence of this latter factors is less evident in the textbook formula for the Variance and the SE. This little exercise (next) should help you fiogure out how the factors come into it. JH also covers these is [this piece].  
 
+**Exercise**: (i) What if the student took the F readings at two C values that are 10 C (rather than 5 C) apart?, i.e. at 12.5 C and 22.5 C? How would the Variance and the SE be altered?  (ii) What if the student took the F readings at four equally spaced C values 5 C apart, i.e., at 7.5 C, 12.5 C, 17.5C and 22.5 C?. If you were limited to $n$ C values, how would you decide where to place them? (iii) What if, rather than $0.5^2$, the 'errors' in F had a variance of $1^2$ or $2^2$?  
 
+## Summary Slides
