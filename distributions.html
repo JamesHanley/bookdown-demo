@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 The (proportion) parameter | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
+  <title>Chapter 13 Distributions | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
   <meta name="description" content="A regression-from-the-outset based approach" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 The (proportion) parameter | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta property="og:title" content="Chapter 13 Distributions | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 The (proportion) parameter | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta name="twitter:title" content="Chapter 13 Distributions | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   
   <meta name="twitter:description" content="A regression-from-the-outset based approach" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="paraMu.html"/>
-<link rel="next" href="paraLambda.html"/>
+<link rel="prev" href="RandomVariables.html"/>
+<link rel="next" href="math.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -295,25 +295,335 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="paraPi" class="section level1">
-<h1><span class="header-section-number">Chapter 6</span> The (proportion) parameter</h1>
-<div id="example-one" class="section level2">
-<h2><span class="header-section-number">6.1</span> Example one</h2>
-<p>etc</p>
+<div id="distributions" class="section level1">
+<h1><span class="header-section-number">Chapter 13</span> Distributions</h1>
+<div id="objectives-2" class="section level2">
+<h2><span class="header-section-number">13.1</span> Objectives</h2>
+<p>This <strong>central</strong> chapter addresses a <strong>fundamental concept</strong>, namely the <strong>variance of a random variable</strong>. It gives the laws governing the variance of a sum of 2, or (especially) <span class="math inline">\(n\)</span> random variables – and even more importantly – the laws governing <strong>the variance of a difference of two random variables.</strong> The latter is central, not just to simple contrasts involving just 2 sample means or proportions, but also in the much wider world of regression, since the variance (sampling variability) of any regression slope can be viewed as the <strong>variance of a linear combination of</strong> random ‘errors’, or random deviations, or <strong>random variables</strong>. So, if there is one ‘master’ formula to pay attention to and to ‘own’, it is the one for the variance of a linear combination of random variables. All others are special cases of this.</p>
+<p>So, the <strong>specific objectives</strong> are to truly understand</p>
+<ul>
+<li><p>the concept of a random variable.</p></li>
+<li><p>the concept of the (expectation and) variance of a random variable.</p></li>
+<li><p>why it is that, when dealing with the sum of two or more independent random variables, it is not their standard deviations that sum (add), but rather their variances.</p></li>
+<li><p>likewise, why it is that, when dealing with the <strong>difference</strong> of two independent random variables, or some <strong>linear combination</strong> of <span class="math inline">\(n\)</span> independent random variables involving positive and negative weights, <strong>why the component variances add</strong>, and <strong>with what weights</strong>.</p></li>
+</ul>
 </div>
-<div id="example-two" class="section level2">
-<h2><span class="header-section-number">6.2</span> Example two</h2>
-<p>etc</p>
+<div id="named-distributions" class="section level2">
+<h2><span class="header-section-number">13.2</span> Named Distributions</h2>
+<p>Gaussian Bernoulli-Binomial Poisson</p>
+</div>
+<div id="exercises-2" class="section level2">
+<h2><span class="header-section-number">13.3</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li>Refer to the <strong>fictitious cohort</strong> (shown above), constructed from the 1990 Quebec mortality rates.</li>
+</ol>
+<ul>
+<li>Use 1st principles (together with <code>R</code>) to calculate the standard deviation of the longevity of the male cohort. Do so in two ways, using (a) the definition (b) the ‘shortcut’.</li>
+<li>For <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/Hanley_Article_Galton_Data.pdf#page=7">human ‘computers’</a> back in the days before there were ‘electronic’ computers, what is the advantage of the shortcut?</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Suppose you get into the <strong>life insurance</strong> business in a small way, just taking on one client. The client pays you a premium of $100 at the beginning of each year for 5 years. If the client dies within the next 5 years, you will pay client’s estate $20,000. Thus, at the end of 5 years, your possible earnings from this single client, along with the associated (actuarily-based) probablities are:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">possible.earnings =<span class="st"> </span><span class="kw">c</span>( <span class="kw">seq</span>(<span class="op">-</span><span class="dv">19900</span>,<span class="op">-</span><span class="dv">19500</span>,<span class="dv">100</span>), <span class="dv">500</span> ) 
+probability =<span class="st"> </span><span class="kw">c</span>(<span class="dv">183</span>,<span class="dv">186</span>,<span class="dv">189</span>,<span class="dv">191</span>,<span class="dv">193</span>,<span class="dv">99058</span>)<span class="op">/</span><span class="dv">100000</span> 
+
+<span class="kw">cbind</span>(possible.earnings,probability)</code></pre></div>
+<pre><code>##      possible.earnings probability
+## [1,]            -19900     0.00183
+## [2,]            -19800     0.00186
+## [3,]            -19700     0.00189
+## [4,]            -19600     0.00191
+## [5,]            -19500     0.00193
+## [6,]               500     0.99058</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>continued</li>
+</ol>
+<ul>
+<li>Compute the expected earnings</li>
+<li>Compute the variance (and thus the SD) of the possible earnings (a) using the definition (b) using the computational shortcut</li>
+<li>Compute the ‘risk’, the SD as a percentage of the mean, as do investors ranking how risky various stocks are.</li>
+<li>In statistics, and especially in applied statistics, what is the name for the SD as a percentage of the mean?</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Above you saw the possible outcomes of the <strong>6/49</strong> game. You could also put the possibilities into this 2 x 2 table</li>
+</ol>
+<p>Frequencies of numbers selected/not selected by you (rows) and drawn/not by Loto Machine (columns)</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">LOTO</td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">Yes</td>
+<td align="right"></td>
+<td align="right">No</td>
+<td align="center"></td>
+<td align="center">ALL</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">.</td>
+<td align="right">……..</td>
+<td align="right">……..</td>
+<td align="right">……..</td>
+<td align="center">.</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="right">Yes</td>
+<td align="right">:</td>
+<td align="right">y</td>
+<td align="right"></td>
+<td align="right">6-y</td>
+<td align="center">!</td>
+<td align="center">6</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right">YOU</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="right">No</td>
+<td align="right">:</td>
+<td align="right">6 - y</td>
+<td align="right"></td>
+<td align="right">37+y</td>
+<td align="center">:</td>
+<td align="center">43</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">.</td>
+<td align="right">……..</td>
+<td align="right">……..</td>
+<td align="right">……..</td>
+<td align="center">.</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="right">ALL</td>
+<td align="right"></td>
+<td align="right">6</td>
+<td align="right"></td>
+<td align="right">43</td>
+<td align="center"></td>
+<td align="center">49</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<ol start="3" style="list-style-type: decimal">
+<li>continued</li>
+</ol>
+<ul>
+<li>Use your searching skills to find the formal statistical name for the distribution of <span class="math inline">\(Y\)</span>, which can take on the values <span class="math inline">\(y\)</span> = 0, 1, <span class="math inline">\(\dots\)</span>, 6.</li>
+<li>Likewise, find the name of the <code>R</code> functions (<code>d??p?r</code> , <code>p??p?r</code>, <code>q??p?r</code> and <code>r??p?r</code>) that allow you to obtain the 7 probabilities, the 7 cumulative provabilities, the quantiles, and the <code>r??p?r</code> function that draws random values from this distribution.</li>
+<li>Even with knowing what the full (numerical) probability distribution of <span class="math inline">\(Y\)</span> is, it is possible, just from the marginal totals for the 2 x 2 table, to calculate the expected value of <span class="math inline">\(Y.\)</span> Do so. (<em>Hint</em>: look up ‘expected values for r x c tables’)</li>
+<li>Just by imagining what the full probablility distibution on the integers 0 to 6 must look like [or by looking at the material earlier on this page], come up with an approximate value of the variance of Y. [If you look up this distribution in Wikipedia, you wiull find the exact formula for it.]</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>The chapter on inference possible relates the ‘<strong>Lady Tasting Tea</strong>’ story. You could put the possible outcomes of the trial into this 2 x 2 table involving 8 cups of tea, into which the milk had been poured first in 4 instances, and second in the other 4. The lady was told there were 4 of each, so she indicated the 4 into which she jusged the milk was poured 1st, and the 4 into which she judged the milk was poured 2nd.</li>
+</ol>
+<p>Frequencies of the correctness/incorrectness of the replies by the lady (rows) in relation to the truth arranged by experimenter (columns)</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">TRUTH</td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">Milk 1st</td>
+<td align="right"></td>
+<td align="right">Milk 2nd</td>
+<td align="center"></td>
+<td align="center">ALL</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">.</td>
+<td align="right">……..</td>
+<td align="right">……..</td>
+<td align="right">……..</td>
+<td align="center">.</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="right">Milk 1st</td>
+<td align="right">:</td>
+<td align="right">y</td>
+<td align="right"></td>
+<td align="right">4-y</td>
+<td align="center">:</td>
+<td align="center">4 cups</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right">LADY</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="right">Milk 2nd</td>
+<td align="right">:</td>
+<td align="right">4 - y</td>
+<td align="right"></td>
+<td align="right">4+y</td>
+<td align="center">:</td>
+<td align="center">4 cups</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">.</td>
+<td align="right">……..</td>
+<td align="right">……..</td>
+<td align="right">……..</td>
+<td align="center">.</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="right">ALL</td>
+<td align="right"></td>
+<td align="right">4 cups</td>
+<td align="right"></td>
+<td align="right">4 cups</td>
+<td align="center"></td>
+<td align="center">8 cups</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<ol start="4" style="list-style-type: decimal">
+<li>continued</li>
+</ol>
+<ul>
+<li>Use the <code>R</code> function <code>d??p?r</code> to obtain, under the null hypothesis, the 5 probabilities for <span class="math inline">\(y\)</span>.</li>
+<li>Under this null, what is the probability of getting <strong>at least 3</strong> correct?</li>
+<li>What if 12 cups (6 and 6) were used? What then would be the probability of getting <strong>at least 5</strong> correct? <strong>all 6</strong>?</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>Saving</strong> on the numbers of binary yests <strong>by pooling</strong>. When a binary blood test [one that yields a positive (‘+ve’) or negative (‘-ve’) result] gives +ve results in only a small proportion, <span class="math inline">\(\pi,\)</span> of blood samples, it may be possible to economize on the costs of testing by pooling m blood samples, according to the following procedure: (i) each blood sample is divided into two portions; one portion is kept in reserve while the other is pooled with the corresponding portions from <span class="math inline">\(m\)</span> - 1 other blood samples (ii) if the result of a single test on the pooled bloods is -ve, each of the <span class="math inline">\(m\)</span> individual blood samples are considered -ve; if the result is +ve, then the <span class="math inline">\(m\)</span> reserve bloods are individually tested.</li>
+</ol>
+<ul>
+<li>With <span class="math inline">\(m\)</span> = 20 and <span class="math inline">\(\pi\)</span> = 0.1, calculate the expected number of tests required to determine the status of eack of the blood samples. (<em>Hint</em>: a tree diagram may help)</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li><strong>Errors caused by rounding</strong>. Suppose one has to analyze a large number of 3 digit numbers. To make the job easier, one rounds each number to the nearest 10, e.g.,<br />
+<code>460 &lt;-- 460 461 462 463 464 ; 465 466 467 468 469 --&gt; 470.</code><br />
+If the ending numbers of the unrounded data were uniformly distributed (each ending digit has a probability of 1/10), calculate:</li>
+</ol>
+<ul>
+<li>the average error per (rounded) number</li>
+<li>the average absolute error per (rounded) number</li>
+<li>the square root of the average squared error per (rounded) number [‘root mean squared error’, or ‘RMSE’ for short]</li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li><strong>Correcting for guessing</strong> on multiple choice exams.<br />
+Suppose one wishes to estimate via a multiple choice examination [with <span class="math inline">\(k\)</span> answers to choose from for each question], what proportion <span class="math inline">\(\pi\)</span> of questions a student <strong>knows</strong> the answer to (excuse the dangling preposition!). Imagine that <span class="math inline">\(\pi\)</span> refers to the N (&gt;&gt; n) questions in the much larger bank of questions from which the <span class="math inline">\(n\)</span> exam questions are randomly selecetd.</li>
+</ol>
+<ul>
+<li>Show that the simple proportion <span class="math inline">\(p\)</span> of correctly answered questions gives a biased (over) estimate of <span class="math inline">\(\pi\)</span> if the student simply randomly guesses among the <span class="math inline">\(k\)</span> answers on questions where (s)he doesn’t know the answer. Do this by calculating the expected value of p (i.e. the average mark per question) when each answer is marked 1 if correct and 0 if not. (<em>Hint</em>: a tree diagram may help).</li>
+<li>One can ‘de-bias’ the estimate by giving each correct answer a mark of 1 and each incorrect answer a negative mark. What negative mark (penalty) will provide an unbiased estimate of <span class="math inline">\(\pi\)</span>? Begin by finding the expected mark per question, then set it to <span class="math inline">\(\pi\)</span> and solve for the penalty. (<em>Hint</em>: If you prefer, use concrete values of <span class="math inline">\(\pi\)</span> and <span class="math inline">\(k\)</span> to see what penalty is needed.)</li>
+</ul>
+<ol start="8" style="list-style-type: decimal">
+<li><p>Suppose a random variable takes on the integer values 1 to 5 inclusive, each with probability 1/5. Compute the variance and SD of this random variable.</p></li>
+<li><p>Half the purchases of eggs in a market are for 6 eggs and half are for 12. What percentage of purchases are for a quantity that is more than 1 SD from the mean? less than 1 SD?</p></li>
+<li><p>Half the people in a population have 2 organs and half have none. What is the standard deviation of the number of organs a ranomly selecetd person has?</p></li>
+<li><p>Consider children of parents who both carry a single copy of the CF gene. (In the absence of ..) How many of their offspring will have 0, 1 or 2 copies?</p></li>
+<li><p>No. copies of wild type if frequency is 1/5. Mean/Var.?</p></li>
+</ol>
+<p><a href="https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/phasing-penny.html" class="uri">https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/phasing-penny.html</a></p>
+<p>simulation</p>
+<p><a href="http://www2.ku.edu/~kuwpaper/2013Papers/201309.pdf" class="uri">http://www2.ku.edu/~kuwpaper/2013Papers/201309.pdf</a></p>
+<p><a href="https://www-jstor-org.proxy3.library.mcgill.ca/stable/pdf/3552184.pdf?refreqid=excelsior%3A86597fff2392f0b0d698235434d88c3a">https://www-jstor-org.proxy3.library.mcgill.ca/stable/pdf/3552184.pdf?refreqid=excelsior%3A86597fff2392f0b0d698235434d88c3a</a></p>
+<p>Galton’s way of showing that the heights of the married couples in his dataset were virtually uncorrelated – for computing exercise</p>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="paraMu.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="paraLambda.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="RandomVariables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="math.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -344,7 +654,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-the-parameter-pi.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/23-distributions.Rmd",
 "text": "Edit"
 },
 "history": {
