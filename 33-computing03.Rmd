@@ -2,7 +2,24 @@
 
 ## Objectives
 
-The **'computing' objective** is to learn how to use `R` to evaluate probabilities by (Monte Carlo) simulation. `R` Functions/structures used include `sample`, `matrix`, `apply`, `paste`, `cumprod` (cumulative product), `duplicated`, `unique`, `cbind` (stack columns) 
+The **'computing' objective** is to learn how to use `R` to evaluate probabilities by (Monte Carlo) simulation. Taks, and the `R` Functions/structures used include 
+
+* taking a sample of a specified size from the elements of a vector, either with or without replacement: `sample`, 
+
+* creating a matrix from the given set of values: `matrix`, 
+
+* forming a vector or array or list of values  by applying a function to margins of an array or matrix: `apply`
+
+* concatenating vectors after converting to character: `paste` 
+
+* creating a vector whose elements are the cumulative sums, products, minima or maxima of the elements of the argument: `cumsum`, `cumprod` , 
+`cummax` and `cummin` 
+
+* determining which elements of a vector or data frame are duplicates of elements with smaller subscripts, by returning a logical vector indicating which elements (rows) are duplicates: `duplicated` 
+
+* removing duplicate elements/rows from a vector, data frame or array: `unique`, 
+
+* stacking columns beside each other: `cbind` (`rbind` stacks rows one under the other)
 
 The **'statistical' objective** of this exercise is to learn some of the probability laws that which random processes by seeing how frequently certain events occur in computer  simulations, and to deduce the laws from the (long-run) frequencies.
 

@@ -1,5 +1,7 @@
 # Computing: Session No. 2 {#computing02}
 
+## Objectives
+
 The **'computing' objectives** are to learn how to use `R` to 
 
 * simulate random variation, and random variables

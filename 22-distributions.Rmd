@@ -1,4 +1,4 @@
-# Random Variables/Variation {#RandomVariables}
+# Random Variables/Variation {#randomVariables}
 
 
 ## Objectives
@@ -1377,28 +1377,30 @@ Suppose one wishes to estimate via a multiple choice examination [with $k$ answe
    + Show that the simple proportion $p$ of correctly answered questions gives a biased (over) estimate of $\pi$ if the student simply randomly guesses among the $k$ answers on questions where (s)he doesn't know the answer. Do this by calculating the expected value of p (i.e. the average mark per question) when each answer is marked 1 if correct and 0 if not. (_Hint_: a tree diagram may help).
    + One can 'de-bias' the estimate by giving each correct answer a mark of 1 and each incorrect  answer a negative mark. What negative mark (penalty) will provide an unbiased estimate of $\pi$? Begin by finding the expected mark per question, then set it to $\pi$ and solve for the penalty. (_Hint_: If you prefer, use concrete values of $\pi$ and $k$ to see what penalty is needed.)
    
-5. Suppose a random variable takes on the integer values 1 to 5 inclusive, each with probability 1/5. Compute the variance and SD of this random variable. 
+5. Half the purchases of eggs in a market are for 6 eggs and half are for 12. What percentage of purchases are for a quantity that is more than 1 SD from the mean? less than 1 SD?
 
-6. Half the purchases of eggs in a market are for 6 eggs and half are for 12. What percentage of purchases are for a quantity that is more than 1 SD from the mean? less than 1 SD? 
+6. Half the people in a population have 2 organs of a certain type and half have none. What is the standard deviation of the number of organs a randomly selecetd person has? 
 
-7. Half the people in a population have 2 organs and half have none. What is the standard deviation of the number of organs a ranomly selecetd person has? 
+7. Suppose a random variable takes on the integer values 1 to 5 inclusive, each with probability 1/5. Compute the variance and SD of this random variable. 
 
 8. Consider children of parents who both carry a single copy of the CF gene. (In the absence of ..) How many of their offspring will have 0, 1 or 2 copies? 
 
+9. Half of a large number of orders were placed on Tuesday and half on Thursday. The combined orders were all jumbled together and shipped in 3 equal sized shipments on Monday Wednesday and Friday of the following week, arriving the same day they shipped. Calculate  the mean and standard deviation of the number of days between ordering and arrival. Use a probability tree to depict the randomness, and to show the calculations.
 
 
-* Elevators
-
-* Trial of Pyx
-
-* Diff (order to receipt date)
-
-* Refer to the example where the student tries to estimate the scaling factor between degrees C and degrees F. 
+10. Refer to the example where the student tries to estimate the scaling factor between degrees C and degrees F.
    + What if the student took the F readings at two C values that are 10 C (rather than 5 C) apart?, i.e. at 12.5 C and 22.5 C?
    + How would the Variance and the SE be altered?
    + What if the student took the F readings at four equally spaced C values 5 C apart, i.e., at 7.5 C, 12.5 C, 17.5C and 22.5 C?.
    +If you were limited to $n$ C values, how would you decide where to place them?
-   + What if, rather than $0.5^2$, the 'errors' in F had a variance of $1^2$ or $2^2$?  
+   + What if, rather than $0.5^2$, the 'errors' in F had a variance of $1^2$ or $2^2$?
+
+UNDER CONSTRUCTION
+
+* Elevators (needs normal)
+
+* Trial of Pyx
+  
 
 ## Summary Slides
 
@@ -1414,17 +1416,17 @@ Suppose one wishes to estimate via a multiple choice examination [with $k$ answe
 
 * This law was not understood/appreciated until recent centuries. Statistical historial Stephen Stigler has a very nice example, in [this article](http://www.medicine.mcgill.ca/epidemiology/hanley/c323/pyx.pdf), and retold in his book [The Seven Pillars of Statistical Wisdom](https://www-degruyter-com.proxy3.library.mcgill.ca/view/title/521193), where failure to understand it  wrong gave people quite a bit of leeway to cheat.   
 
-* Its also why statisticians are forced to work with variances when developing the properties of estimators. But as an end user, you will typically work with the square roots of these, and speak about the number of children per parent rather than  square children per square parent.
+* It's also why statisticians are forced to work with variances when developing the properties of estimators. But as an end user, you will typically work with the square roots of these, and speak about the number of children per parent rather than  square children per square parent.
 
-* The law governing the variance of a difference of two random variables is even more important, since we are more often interested in contrasts than in absolute levels.  
+* The law governing the variance of a difference of two random variables is even more important, since we are more often interested in contrasts than the level in a single context.  
 
 * Whether we are add or subtract independent random variables, the result is more variable than its parts. 
 
 * A regression slope can be represented as a linear combination (with varying positive and negative combining weights) of random variables, and so the variance and SD of the sampling distribution of a slope are gioverned by these same fundamental laws.
 
-* Although the main focus was on Variances and SDs, along the way in these above subsections, you saw the Central Limit Theorem (CLT)  trying to exert itself. Although the narrowness/width of a sampling distribution is measured by a variance or Sd, the CLT focuses more on its shape. It is not possible to give a general rule for the $n$ at which the CTL will ensure a sufficiently Gaussian shape for a sampling distribution. How 'close' to Gaussian any particulat sampling distribution is depends on the 'parent' RV and the $n$, but also on what you consider is 'close enough for Government work'.        
+* Although the main focus was on Variances and SDs, along the way in these above sub-sections, you saw the Central Limit Theorem (CLT)  trying to exert itself. Although the narrowness/width of a sampling distribution is measured by a variance or SD, the _CLT focuses more on its shape_. It is not possible to give a general rule for the $n$ at which the CTL will ensure a sufficiently Gaussian shape for a sampling distribution. How 'close' to Gaussian any particular sampling distribution is depends on the 'parent' RV and the $n$, but also on what you consider is 'close enough for Government work'.        
 
-* It is not critical that we 'do' several exercises on the theory (laws) in this chapter. After all, you will seldom have to manually do the SE calculations based on these laws -- the statistical software will do it for you -- but you do need to understand the factors that make the SE's big or small, and the concepts involved in the propagation -- and reduction -- of errors.   But there are several exercises in the computing session that will allow you to 'see' the laws in action, and adopt them as guiding principles for study design, and for appreciating the 'precision' with which you can chase (take a shot at) statistical parameters.
+* It is not critical that we 'do' several exercises on the theory (laws) in this chapter. After all, you will seldom have to manually do the SE calculations based on these laws -- the statistical software will do it for you. But, you do need to understand the factors that make the SE's big or small, and the concepts involved in the propagation -- and reduction -- of errors.   There are several exercises in the computing session that will allow you to 'see' the laws in action, so that you can adopt them as guiding principles for study design, and for appreciating the 'precision' with which you can chase (take a shot at) statistical parameters.
 
 * For now, because the chapter is already a long one, we didn't address sums and differences of _non-independent_ random variables. But some of the computer exercsies will.
 

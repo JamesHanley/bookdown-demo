@@ -1,6 +1,6 @@
 # (PART) Part II {-}
 
-# Probability {#Probability}
+# Probability {#probability}
 
 ## Objectives
 

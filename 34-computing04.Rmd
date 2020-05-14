@@ -2,12 +2,39 @@
 
 ## Objectives
 
-The **'computing' objective** is to learn how to use `R` to evaluate probabilities by (Monte Carlo) simulation. `R` Functions/structures used include `sample`, `matrix`, `apply`, `paste`, `cumprod` (cumulative product), `duplicated`, `unique`, `cbind` (stack columns) 
+The **'computing' objective** is to learn how to use `R` to simulate variation by (Monte Carlo) simulation. Tasks and `R` Functions/structures used include 
 
-The **'statistical' objective** of this exercise is to learn some of the laws that describe/quantify the **variation** (variance, SD) of the **difference of 2 random variables**. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don't get to see the individuals -- or collections of individuals -- that were nor selected, the laws are based on the thoery of mathematical statistics, and thus not easy to visualize/imagine. So, we will use  simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising 'reasons why' they take the form they do.     
+* repeating a procedure for subsets of a dataframe: `by`  
+
+* extracting  the first or last parts of a vector, matrix, table, or data frame: `head` and `tail`
+
+*  removing duplicate elements/rows rfrom a vector, data frame or array: `unique`
+
+* plotting: `plot`
+
+* adding one or more straight lines through the current plot: `abline`
+
+* joining multiple (x,y) points with line segments: `lines`
+
+* Splitting data into subsets, computing summary statistics for each, and returning the result in a convenient form: `aggregate`
+
+* sampling from a  set of values: `sample`
+
+* summing the values in a vector: `sum` 
+
+* applying a function to each of the rows or columns of a matrix, or to some slices of higher-dimensional array: `apply`  
+
+* computing the mean, variance and sd of  a vector: `mean`, `var`, `sd`
+
+* defining a (homemade) function to 'automate' a procedure `function` 
+
+The **'statistical' objective** of this exercise is to learn some of the laws that describe/quantify the **variation** (variance, SD) of the **difference of 2 random variables**. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don't get to see the individuals -- or collections of individuals -- that were nor selected, the laws are based on the theory of mathematical statistics, and thus not easy to visualize/imagine. So, we will use  simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising 'reasons why' they take the form they do.     
 
 ## Exercises 
 
+First, before we get to differences, an example of the sampling variability of sums and means.
+
+The sex-specific panels below shows examples of the sums of the lengths of 10 baby names, placed side by side. (each row included 9 blank spaces, so that doesn't change the variability.)  The fact that they are not randomly ordered, bur rather by popularity, doesnt matter that much, since -- as the subsequent graph shows -- popularity is not strongly related to the length of the name. Had we randomly ordered them, we would still see 'jagged' line endings. (Ignore for now the last column, which shows a type of sampling that is to be discouraged, or that, if used, needs post-hoc adjustment of the results).
 
 ### Lengths of Babies' Names
 
@@ -161,11 +188,11 @@ for( year in max(ds$Year) ) {
 ```
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+```{r,eval=T, echo=T, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
 
-par(mfrow=c(2,1),mar = c(5,5,0,0))
+par(mfrow=c(2,1),mar = c(5,5,0,0)) # splits graph into 2 x 1 grid
 
- for( g in unique(ds$Gender) ) {
+ for( g in unique(ds$Gender) ) { 
 
   d = ds[ds$Gender == g,]
   
@@ -180,168 +207,61 @@ par(mfrow=c(2,1),mar = c(5,5,0,0))
 
 ```
 
+**Exercise**
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=10, fig.width=9, warning=FALSE, message=F}
+* Use the `Length` and `Frequency` columns in the `ds` dataframe (see above) to compute the (gender-specific) mean and  SD of the lengths of the names of all of the Quebec babies born in 2018 having one of these names (For our purposes here, the few percent of babies whose names did not make it into the top 500 are excluded. If interested, they can be found at the link shown above.) _Hint_:  you could rescale the `Frequency` vector so that it sums to 1, and then simply use the `sum` of its product with `Length`. You can think of the rescaled `Frequency` vector as  probabilities.
 
-ds = read.table(  # str(ds)        
-"http://www.biostat.mcgill.ca/hanley/statbook/QuebecBabyNames2013to2018.txt", as.is=TRUE)
+* Rather than do these computations separately for each year, find a way to automate this. _Hint_: maybe put what you did to compute the mean and SD for one year into your own `function` and then use this function in a `by` statement. For example, if all you wanted was the number of babies each year, you could just use the inbuilt function `sum`, and apply it to the frequencies in each year, using the statement `by(ds$Frequency,ds$Year,sum)`.
+
+* Use Monte Carlo simulations -- and the fact that you KNOW the gender-specific mean and SDs of the lengths of names -- to check out the theoretical formulae (laws) for the difference in two sample means. In other words, with $y$ denoting the length of the name of a randomly selected baby, $n$ the size of each sample, and $\sigma$ denoting the unit standard deviation, and $F$ and $M$ denoting female and male, show -- to within Monte Carlo error -- that
+$$ Var[ \bar{y}_{F} - \bar{y}_{M} ] = \frac{\sigma^2_{F}}{n} + \frac{\sigma^2_{M}}{n}.$$
+Use '$n$'s of size 5, 25, 100, and 400. Use the `sample` function with the rescaled frequencies as probabilities, and `replace = TRUE`. To keep the computing simpler, limit yourself to one year. Here is some starter code. You need to modify it to extend the sample size to 400, add code that includes samples of females, and computes the $\bar{y_F} - \bar{y_M}$ fifference. (the `results` matrix has 3 columns, only 1 of which gets filled under the present code.)   You should try a small value of `N.SIMS` first, to be sure everyting is working, and then make it large so that you approach the 'expected' values. (This code uses loops, which are slower, to fill the rows of the `results` matrix, and also samples from the list of 500, instead of from the (many fewer) distinct lengths. But for now, it is more transparent.  Biostatisticians who run very complex simulations are always looking for ways (such as the `apply` functions ) to reduce the time.) 
 
 
-par(mfrow=c(1,1),mar = c(0,0,1,0))
+```{r,eval=T, echo=T, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
 
-for( year in max(ds$Year) ) {
-  
-   m = matrix(c( ds$Name[ds$Year == year & ds$Gender == "M"],
-               ds$Name[ds$Year == year & ds$Gender == "F"] ),
-               500,2)
-   
-   n = 50 ; dy=3
-   X = 20
-   CEX = 0.5
-   
-   plot(-11, -11,
-       ylim=c(0,n*1.05*dy),
-       xlim=c(-12,50))
-   
-   dx = strwidth("1", units = "user", 
-                cex = CEX, font = 1, family= "mono")
-   
-   segments(0,1,0,(n+1)*dy)
-   segments(X,1,X,(n+1)*dy)
-   
-   
-   ADJ = rep(1,n)
-   str = rep("",n)
-   Diff = rep(NA,n)
-   
-   for(i in 1:n){
-     
-   	   M.minus.F = nchar(m[i,1]) - nchar(m[i,2])
-   	   Diff[i] = M.minus.F
-   	   
-       if(M.minus.F>=0){
-         
-       	   text(0+M.minus.F*dx, i*dy+2,m[i,1],
-       	        adj=c(1,0),family="mono",cex=CEX)
- 		       text(0,              i*dy+1,m[i,2],
- 		              adj=c(1,0),family="mono",cex=CEX)
- 		   
- 		       
- 		       if(M.minus.F > 0){
- 		           ss = substr(m[i,1], nchar(m[i,2])+1,
- 		                      nchar(m[i,1]) )
- 		           text(0,i*dy+2,ss,
- 		              adj=c(0,0),family="mono",
- 		              cex=CEX,col="blue")
- 		       
- 		           str[i] = ss
- 		           ADJ[i] = 0
- 		       } 
- 		       
- 		       
-       }
-       
-       if(M.minus.F < 0){
-       	   text(0,               i*dy+2,m[i,1],
-       	        adj=c(0,0),family="mono",cex=CEX)
- 		       text(0+M.minus.F*dx,  i*dy+1,m[i,2],
- 		            adj=c(0,0),family="mono",cex=CEX)
- 		       ss = substr(m[i,2],1,-M.minus.F)
- 		       text(0,i*dy+1,ss,
- 		            adj=c(1,0),family="mono",
- 		            cex=CEX,col="red" )
- 		       str[i] = ss
- 		       ADJ[i] = 1
-       }
-   	   
-   	   text(X, i*dy+1.5, str[i], 
-   	        adj=c(ADJ[i],0), family="mono",
- 		            cex=CEX,
-   	            col= c("red","blue")[ 2-ADJ[i] ] 
-   	        )
-   	   
-   } # i
-   
-   sorted.d = data.frame(Diff,str)
-   sorted.d = sorted.d[order(sorted.d$Diff),]
-   w = max(abs( sorted.d$Diff ))
-   
-   XX = 40
-   segments(XX,1.5,XX,(n+1)*dy)
-   Dx = w * dx
-   segments(XX-Dx,(n/2+1)*dy, XX+Dx,(n/2+1)*dy)
-   rect( XX-Dx, 0.5*dy, XX+Dx,(n+1)*dy )
-   
-   for(i in 1:n){
-       e = sorted.d$Diff[i]
-       text(XX+(e<0)*e*dx, i*dy+1.5,
-            toString( sorted.d$str[i] ),
-            cex=CEX,  family="mono",adj=c(0,0))
-   }
+d = ds[ds$Year == 2018,]
 
-} # year
+lengths.M  = d$Length[d$Gender == "M"]  #  500 long
+probs.M  = d$Frequency[d$Gender == "M"] #  ditto
+probs.M  = probs.M/sum(probs.M)         #  ditto
+
+N.SIMS = 100
+
+nn = c(5, 25,100)
+
+mean.length.in.sample = function(n){
+  y.m = sample(lengths.M,size=n,replace=TRUE,prob=probs.M)
+  ybar.m = mean(y.m)
+  return( c(ybar.m))
+}
+ 
+print(noquote( paste("Across", N.SIMS, "simulated samples ...") ))
+
+for(n in nn){
+  results = matrix(NA,N.SIMS,1,3)
+  for(sim in 1:N.SIMS) results[sim,1] = 
+              mean.length.in.sample(n)
+  E   = apply(results,MARGIN=2,FUN=mean)
+  VAR = apply(results,MARGIN=2,FUN=var)
+  print(noquote(""))
+  print(noquote(paste("n = ",n)))
+  print(noquote(""))
+  print(noquote(
+    paste("Ave of F & M ybar's: and of ybarF - ybarM", 
+           paste(round(E,2),collapse=" ,  ") )  ) )
+  print(noquote(""))
+  print(noquote(
+    paste("Var of ybar's: and of their differences ", 
+           paste(round(VAR,4) ,collapse=", ") ) ) )
+    print(noquote(
+    paste("SD of ybar's: and of their differences   ", 
+           paste(round(sqrt(VAR),2) ,collapse=" ,  ") ) ) )  
+}
 
 ```
 
-
-
-```{r,eval=T, echo=F, fig.align="center", fig.height=15, fig.width=9, warning=FALSE, message=F,fig.cap="Just lines"}
-
-
-par(mfrow=c(1,1),mar = c(0,0,1,0))
-
-
-   N = 500 ; 
-   X = 20
-   CEX = 0.5
-   
-   plot(-11, -11,
-       ylim=c(-0.025,1.05)*N,
-       xlim=c(-1,110))
-   
-   dx = strwidth("1", units = "user", 
-                cex = CEX, font = 1, family= "mono")
-
-for(n in c(1,4)){
-	
-   M = m
-   if(n==4){
-   	   M1 = matrix( c(m[,1],m[,1],m[,1],m[,1])[sample(1:(4*N))], 500,4)
-   	   M1=apply(M1,1,paste,collapse="")
-   	   M2 = matrix( c(m[,2],m[,2],m[,2],m[,2])[sample(1:(4*N))], 500,4)
-   	   M2=apply(M2,1,paste,collapse="")
-   	   M = cbind(M1,M2) 
-   } 
-   
-   for (g in 1:3) {
-      
-      every = 1
-      
-      O = 35*(n==4) + ( 15+5*(n==4) )*(g==2) + (35+25*(n==4))*(g==3) 
-      
-      II = seq(ceiling(every/2),N,every)
-      
-      if(g <3) val = ( sort( nchar(M[,g]) ) ) [II]
-      if(g==3) val = ( sort( nchar(M[,1]) - nchar(M[,2])  ) ) [II] 
-      if(g <3) Mean = mean( nchar(M[,g]) )
-      if(g==3)  Mean = mean( nchar(M[,1]) ) - mean( nchar(M[,2]) )
-      points(val+O, II, pch=19,cex=0.05)
-      segments(Mean+O, II, val+O, II,lwd=0.15,col="red")
-      text(Mean+O, N, expression(mu))
-      text(Mean+O, 0, expression(mu))
-
-      for( Val in  unique(val)) {
-      	 if(Val <= Mean) text(Val+O,-7-7*(Val %% 3),toString(Val),cex=0.5,adj=c(0.5,1.5))
-      	 if(Val >= Mean) text(Val+O,N+7+7*(Val %% 3),toString(Val),cex=0.5,adj=c(0.5,0))
-
-      } 
-   
-   }
-   
-} # n
-
-  
-```
+length-biased sampling ... correcting
 
 ###  Life Tables [1990] 
 
@@ -514,104 +434,25 @@ for(i.col in 1:2) {
 
 **Exercises**
 
-   + By splitting 4 successive nodes into FirstDuplicate = YES or NO, draw a probability tree for the first 4 birthdays announced (Such a tree, with each node splitting into an **I**nfected hermit visit a **S**usceptible hermit or visit an immune/recovered hermit, can help you think through the simulated mini-epidemic. BTW: you hear a lot abot **SIR** models thse days, and you will have seen the '**R**' category displated in many of the covid-19 epidemic graphs)
-   + Using the `prob.all.n.different` vector derived above, calculate, by successive subtractions^ or otherwise, the probability that the first duplicate will show up on the [$Y$ =] 2nd, 3rd, ... birthday announced. Plot the frequency distribution of $Y$. 
-   + By simulation, estimate the probability that 'in 20 draws one will not obtain a duplicate' ^^.
+1. Ages Books
+
+2. Galton F + M
 
 
+3. Height differences of random M-F pairs
 
-### Chevalier de Méré 
+4.  Box minus bowl
 
-[see here}(https://www.cut-the-knot.org/Probability/ChevalierDeMere.shtml) or  
-Gamblers in  17th century France used to bet on the event of getting at least one 1 'six' in four rolls of a [die](https://en.wikipedia.org/wiki/Dice) or in 1 roll of 4 dice [dice is plural for die]. As a more trying variation, two dice were rolled 24 times with a bet on having at least one double six. Chevalier de Méré who expected a couple of sixes to turn up in 24 double rolls with the frequency of a six in 4 single rolls. However, he lost consistently.
+5. car parking  fixed and variable
 
-   + Simulate a large number of each of these games, and estimate the probability of getting (a) at least one six in four rolls of a dice  (b) at least one "double six" when a pair of dice is thrown 24 times
-
-   + Why does it take a large number of simulations to determine which game offers the better chance of winning?
-
-   + Can you work out the probabilities directly?
-
-   + https://www.casino-games-online.biz/dice/chevalier-de-mere.html
-
-
-###
-
-Half of a large number of orders were placed on Tuesday and half on Thursday. They all jumbled together and shipped in 3 equal sized shipments on Monday Wednesday and Friday of the following week, arriving the same day. Calculate  the mean and standard deviation of the number of days between ordering and arrival. 
-
-### Height differences of random M-F pairs
-
-### Box minus bowl
-
-### car parking  fixed and variable
+ 
+ =====================
+ 
  
 ## Other Exercises (under construction)
 
 
-
-### HIV transmission
-
-[ probability per act ] 
-
-
-
-Napoleon 
-
-Minard
-http://euclid.psych.yorku.ca/www/psy6135/tutorials/Minard.html
-
- Efron Monty Hall
-
-7. The Economist
-
-8. Wald : CF screening
-
-8. OJ p-value
-
-9. Adult soccer ball.. wrong probability
-
-10. Vietnam deaths
-
-11. NHL birthdays
-
-Buffon's needle
-
-Estimating Pi
-
-Similar
-
-Adult size soccer ball
-
-Medical School admission rates, by gender.
-
-Vietnam war deaths, by month of birth
-
-NHL success, by month of birth
-
-John Snow, cholera deaths South London, by source of drinking water
-
-
-
-
-
-Galton
-
-Greenwood
-
-Mosteller
-
-
- Ages of books
-
- ngrams
-
-
-4. Prob of 
- 
-   + duplicate birthdays in a sample of $n$ persons
-   + surviving from 80th to 85th birthday if the (conditional) 1-year at a time proportions dying (risks) are ...
-   + Chevalier de Méré no 6, at least 1 six.
-
-5. Variation with and without constraints
+Variation with and without constraints
 
 
 

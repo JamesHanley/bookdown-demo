@@ -1,10 +1,12 @@
 # Computing Session 1 {#computing01}
 
+## Objectives
+
 The **'computing' objectives** are to learn how to use `R` to put series of observations into vectors, and how to plot one series against another.
 
 The **'statistical' objective** of this exercise is to understand the concept of a distribution of a numerical characteristic (here an amount of elapsed time), and the various numbers describing its 'central' location and spread, and other 'landmarks'. You will also be introduced (in the next section) to 2 functions that give a more complete description of a distribution.
 
-## Biological background
+## Example 
 
 Later on we will examine [climate trends using unusual datasets](http://www.medicine.mcgill.ca/epidemiology/hanley/c678/index.html#anthropometricData), which suggest that over the last few centuries, winter tends to end earlier, and plants tend to flower earlier.
 
