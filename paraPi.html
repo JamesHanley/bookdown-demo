@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 The (proportion) parameter | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
   <meta name="description" content="A regression-from-the-outset based approach" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 The (proportion) parameter | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   <meta property="og:type" content="book" />
@@ -196,8 +196,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.6" data-path="randomVariables.html"><a href="randomVariables.html#variance-and-sd-of-a-function-of-a-random-variable"><i class="fa fa-check"></i><b>12.6</b> Variance and SD of a FUNCTION of a random variable</a></li>
 <li class="chapter" data-level="12.7" data-path="randomVariables.html"><a href="randomVariables.html#sumsmeansdifferences-of-rvs"><i class="fa fa-check"></i><b>12.7</b> Sums/means/differences of RVs</a><ul>
 <li class="chapter" data-level="12.7.1" data-path="randomVariables.html"><a href="randomVariables.html#a-sum-of-2-or-n"><i class="fa fa-check"></i><b>12.7.1</b> A sum (of 2 or <span class="math inline">\(n\)</span>)</a></li>
-<li class="chapter" data-level="12.7.2" data-path="randomVariables.html"><a href="randomVariables.html#mean-of-2-or-n-rvs"><i class="fa fa-check"></i><b>12.7.2</b> Mean (of 2 or <span class="math inline">\(n\)</span> RVs)</a></li>
-<li class="chapter" data-level="12.7.3" data-path="randomVariables.html"><a href="randomVariables.html#difference-of-2-rvs"><i class="fa fa-check"></i><b>12.7.3</b> Difference of 2 RVs</a></li>
+<li class="chapter" data-level="12.7.2" data-path="randomVariables.html"><a href="randomVariables.html#measurement-errors"><i class="fa fa-check"></i><b>12.7.2</b> Measurement Errors</a></li>
+<li class="chapter" data-level="12.7.3" data-path="randomVariables.html"><a href="randomVariables.html#mean-of-2-or-n-rvs"><i class="fa fa-check"></i><b>12.7.3</b> Mean (of 2 or <span class="math inline">\(n\)</span> RVs)</a></li>
+<li class="chapter" data-level="12.7.4" data-path="randomVariables.html"><a href="randomVariables.html#difference-of-2-rvs"><i class="fa fa-check"></i><b>12.7.4</b> Difference of 2 RVs</a></li>
 </ul></li>
 <li class="chapter" data-level="12.8" data-path="randomVariables.html"><a href="randomVariables.html#linear-combinations-of-rvs-regression-slopes"><i class="fa fa-check"></i><b>12.8</b> Linear combinations of RVs (regression slopes)</a></li>
 <li class="chapter" data-level="12.9" data-path="randomVariables.html"><a href="randomVariables.html#exercises-2"><i class="fa fa-check"></i><b>12.9</b> Exercises</a></li>
@@ -230,7 +231,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.1" data-path="computing02.html"><a href="computing02.html#objectives-4"><i class="fa fa-check"></i><b>16.1</b> Objectives</a></li>
 <li class="chapter" data-level="16.2" data-path="computing02.html"><a href="computing02.html#scientific-background"><i class="fa fa-check"></i><b>16.2</b> Scientific background</a></li>
 <li class="chapter" data-level="16.3" data-path="computing02.html"><a href="computing02.html#random-variation"><i class="fa fa-check"></i><b>16.3</b> Random Variation</a><ul>
-<li class="chapter" data-level="16.3.1" data-path="computing02.html"><a href="computing02.html#measurement-errors"><i class="fa fa-check"></i><b>16.3.1</b> Measurement errors</a></li>
+<li class="chapter" data-level="16.3.1" data-path="computing02.html"><a href="computing02.html#measurement-errors-1"><i class="fa fa-check"></i><b>16.3.1</b> Measurement errors</a></li>
 <li class="chapter" data-level="16.3.2" data-path="computing02.html"><a href="computing02.html#biological-variation"><i class="fa fa-check"></i><b>16.3.2</b> Biological variation</a></li>
 <li class="chapter" data-level="16.3.3" data-path="computing02.html"><a href="computing02.html#example-2"><i class="fa fa-check"></i><b>16.3.3</b> Example 2</a></li>
 </ul></li>
@@ -262,10 +263,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="18.2" data-path="computing04.html"><a href="computing04.html#exercises-8"><i class="fa fa-check"></i><b>18.2</b> Exercises</a><ul>
 <li class="chapter" data-level="18.2.1" data-path="computing04.html"><a href="computing04.html#lengths-of-babies-names"><i class="fa fa-check"></i><b>18.2.1</b> Lengths of Babies’ Names</a></li>
 <li class="chapter" data-level="18.2.2" data-path="computing04.html"><a href="computing04.html#life-tables-2018-1"><i class="fa fa-check"></i><b>18.2.2</b> Life Tables [2018]</a></li>
+<li class="chapter" data-level="18.2.3" data-path="computing04.html"><a href="computing04.html#galtons-data-on-family-heights"><i class="fa fa-check"></i><b>18.2.3</b> Galton’s data on family heights</a></li>
+<li class="chapter" data-level="18.2.4" data-path="computing04.html"><a href="computing04.html#height-differences-of-random-m-f-pairs"><i class="fa fa-check"></i><b>18.2.4</b> Height differences of random M-F pairs</a></li>
+<li class="chapter" data-level="18.2.5" data-path="computing04.html"><a href="computing04.html#box-minus-bowl"><i class="fa fa-check"></i><b>18.2.5</b> Box minus bowl</a></li>
+<li class="chapter" data-level="18.2.6" data-path="computing04.html"><a href="computing04.html#car-parking-fixed-and-variable"><i class="fa fa-check"></i><b>18.2.6</b> car parking fixed and variable</a></li>
+<li class="chapter" data-level="18.2.7" data-path="computing04.html"><a href="computing04.html#correcting-length-biased-sampling"><i class="fa fa-check"></i><b>18.2.7</b> Correcting length-biased sampling</a></li>
 </ul></li>
 <li class="chapter" data-level="18.3" data-path="computing04.html"><a href="computing04.html#other-exercises-under-construction-1"><i class="fa fa-check"></i><b>18.3</b> Other Exercises (under construction)</a><ul>
-<li class="chapter" data-level="18.3.1" data-path="computing04.html"><a href="computing04.html#the-2018-book-of-guesses-1"><i class="fa fa-check"></i><b>18.3.1</b> The 2018 Book of Guesses</a></li>
-<li class="chapter" data-level="18.3.2" data-path="computing04.html"><a href="computing04.html#trends-over-the-last-100-years-1"><i class="fa fa-check"></i><b>18.3.2</b> Trends over the last 100 years</a></li>
+<li class="chapter" data-level="18.3.1" data-path="computing04.html"><a href="computing04.html#box-minus-bowl-1"><i class="fa fa-check"></i><b>18.3.1</b> Box minus bowl</a></li>
+<li class="chapter" data-level="18.3.2" data-path="computing04.html"><a href="computing04.html#car-parking-fixed-and-variable-1"><i class="fa fa-check"></i><b>18.3.2</b> car parking fixed and variable</a></li>
+<li class="chapter" data-level="18.3.3" data-path="computing04.html"><a href="computing04.html#the-2018-book-of-guesses-1"><i class="fa fa-check"></i><b>18.3.3</b> The 2018 Book of Guesses</a></li>
+<li class="chapter" data-level="18.3.4" data-path="computing04.html"><a href="computing04.html#trends-over-the-last-100-years-1"><i class="fa fa-check"></i><b>18.3.4</b> Trends over the last 100 years</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="dalite.html"><a href="dalite.html"><i class="fa fa-check"></i><b>19</b> DALITE</a><ul>

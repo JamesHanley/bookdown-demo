@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 18 Computing: Session No. 4 | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
   <meta name="description" content="A regression-from-the-outset based approach" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 18 Computing: Session No. 4 | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   <meta property="og:type" content="book" />
@@ -196,8 +196,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.6" data-path="randomVariables.html"><a href="randomVariables.html#variance-and-sd-of-a-function-of-a-random-variable"><i class="fa fa-check"></i><b>12.6</b> Variance and SD of a FUNCTION of a random variable</a></li>
 <li class="chapter" data-level="12.7" data-path="randomVariables.html"><a href="randomVariables.html#sumsmeansdifferences-of-rvs"><i class="fa fa-check"></i><b>12.7</b> Sums/means/differences of RVs</a><ul>
 <li class="chapter" data-level="12.7.1" data-path="randomVariables.html"><a href="randomVariables.html#a-sum-of-2-or-n"><i class="fa fa-check"></i><b>12.7.1</b> A sum (of 2 or <span class="math inline">\(n\)</span>)</a></li>
-<li class="chapter" data-level="12.7.2" data-path="randomVariables.html"><a href="randomVariables.html#mean-of-2-or-n-rvs"><i class="fa fa-check"></i><b>12.7.2</b> Mean (of 2 or <span class="math inline">\(n\)</span> RVs)</a></li>
-<li class="chapter" data-level="12.7.3" data-path="randomVariables.html"><a href="randomVariables.html#difference-of-2-rvs"><i class="fa fa-check"></i><b>12.7.3</b> Difference of 2 RVs</a></li>
+<li class="chapter" data-level="12.7.2" data-path="randomVariables.html"><a href="randomVariables.html#measurement-errors"><i class="fa fa-check"></i><b>12.7.2</b> Measurement Errors</a></li>
+<li class="chapter" data-level="12.7.3" data-path="randomVariables.html"><a href="randomVariables.html#mean-of-2-or-n-rvs"><i class="fa fa-check"></i><b>12.7.3</b> Mean (of 2 or <span class="math inline">\(n\)</span> RVs)</a></li>
+<li class="chapter" data-level="12.7.4" data-path="randomVariables.html"><a href="randomVariables.html#difference-of-2-rvs"><i class="fa fa-check"></i><b>12.7.4</b> Difference of 2 RVs</a></li>
 </ul></li>
 <li class="chapter" data-level="12.8" data-path="randomVariables.html"><a href="randomVariables.html#linear-combinations-of-rvs-regression-slopes"><i class="fa fa-check"></i><b>12.8</b> Linear combinations of RVs (regression slopes)</a></li>
 <li class="chapter" data-level="12.9" data-path="randomVariables.html"><a href="randomVariables.html#exercises-2"><i class="fa fa-check"></i><b>12.9</b> Exercises</a></li>
@@ -230,7 +231,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.1" data-path="computing02.html"><a href="computing02.html#objectives-4"><i class="fa fa-check"></i><b>16.1</b> Objectives</a></li>
 <li class="chapter" data-level="16.2" data-path="computing02.html"><a href="computing02.html#scientific-background"><i class="fa fa-check"></i><b>16.2</b> Scientific background</a></li>
 <li class="chapter" data-level="16.3" data-path="computing02.html"><a href="computing02.html#random-variation"><i class="fa fa-check"></i><b>16.3</b> Random Variation</a><ul>
-<li class="chapter" data-level="16.3.1" data-path="computing02.html"><a href="computing02.html#measurement-errors"><i class="fa fa-check"></i><b>16.3.1</b> Measurement errors</a></li>
+<li class="chapter" data-level="16.3.1" data-path="computing02.html"><a href="computing02.html#measurement-errors-1"><i class="fa fa-check"></i><b>16.3.1</b> Measurement errors</a></li>
 <li class="chapter" data-level="16.3.2" data-path="computing02.html"><a href="computing02.html#biological-variation"><i class="fa fa-check"></i><b>16.3.2</b> Biological variation</a></li>
 <li class="chapter" data-level="16.3.3" data-path="computing02.html"><a href="computing02.html#example-2"><i class="fa fa-check"></i><b>16.3.3</b> Example 2</a></li>
 </ul></li>
@@ -262,10 +263,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="18.2" data-path="computing04.html"><a href="computing04.html#exercises-8"><i class="fa fa-check"></i><b>18.2</b> Exercises</a><ul>
 <li class="chapter" data-level="18.2.1" data-path="computing04.html"><a href="computing04.html#lengths-of-babies-names"><i class="fa fa-check"></i><b>18.2.1</b> Lengths of Babies’ Names</a></li>
 <li class="chapter" data-level="18.2.2" data-path="computing04.html"><a href="computing04.html#life-tables-2018-1"><i class="fa fa-check"></i><b>18.2.2</b> Life Tables [2018]</a></li>
+<li class="chapter" data-level="18.2.3" data-path="computing04.html"><a href="computing04.html#galtons-data-on-family-heights"><i class="fa fa-check"></i><b>18.2.3</b> Galton’s data on family heights</a></li>
+<li class="chapter" data-level="18.2.4" data-path="computing04.html"><a href="computing04.html#height-differences-of-random-m-f-pairs"><i class="fa fa-check"></i><b>18.2.4</b> Height differences of random M-F pairs</a></li>
+<li class="chapter" data-level="18.2.5" data-path="computing04.html"><a href="computing04.html#box-minus-bowl"><i class="fa fa-check"></i><b>18.2.5</b> Box minus bowl</a></li>
+<li class="chapter" data-level="18.2.6" data-path="computing04.html"><a href="computing04.html#car-parking-fixed-and-variable"><i class="fa fa-check"></i><b>18.2.6</b> car parking fixed and variable</a></li>
+<li class="chapter" data-level="18.2.7" data-path="computing04.html"><a href="computing04.html#correcting-length-biased-sampling"><i class="fa fa-check"></i><b>18.2.7</b> Correcting length-biased sampling</a></li>
 </ul></li>
 <li class="chapter" data-level="18.3" data-path="computing04.html"><a href="computing04.html#other-exercises-under-construction-1"><i class="fa fa-check"></i><b>18.3</b> Other Exercises (under construction)</a><ul>
-<li class="chapter" data-level="18.3.1" data-path="computing04.html"><a href="computing04.html#the-2018-book-of-guesses-1"><i class="fa fa-check"></i><b>18.3.1</b> The 2018 Book of Guesses</a></li>
-<li class="chapter" data-level="18.3.2" data-path="computing04.html"><a href="computing04.html#trends-over-the-last-100-years-1"><i class="fa fa-check"></i><b>18.3.2</b> Trends over the last 100 years</a></li>
+<li class="chapter" data-level="18.3.1" data-path="computing04.html"><a href="computing04.html#box-minus-bowl-1"><i class="fa fa-check"></i><b>18.3.1</b> Box minus bowl</a></li>
+<li class="chapter" data-level="18.3.2" data-path="computing04.html"><a href="computing04.html#car-parking-fixed-and-variable-1"><i class="fa fa-check"></i><b>18.3.2</b> car parking fixed and variable</a></li>
+<li class="chapter" data-level="18.3.3" data-path="computing04.html"><a href="computing04.html#the-2018-book-of-guesses-1"><i class="fa fa-check"></i><b>18.3.3</b> The 2018 Book of Guesses</a></li>
+<li class="chapter" data-level="18.3.4" data-path="computing04.html"><a href="computing04.html#trends-over-the-last-100-years-1"><i class="fa fa-check"></i><b>18.3.4</b> Trends over the last 100 years</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="dalite.html"><a href="dalite.html"><i class="fa fa-check"></i><b>19</b> DALITE</a><ul>
@@ -311,7 +319,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>computing the mean, variance and sd of a vector: <code>mean</code>, <code>var</code>, <code>sd</code></p></li>
 <li><p>defining a (homemade) function to ‘automate’ a procedure <code>function</code></p></li>
 </ul>
-<p>The <strong>‘statistical’ objective</strong> of this exercise is to learn-by-seeing some of the laws that describe/quantify the <strong>variation</strong> (variance, SD) of the <strong>difference of 2 random variables</strong>. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don’t get to see the individuals – or collections of individuals – that were nor selected, the laws are based on the theory of mathematical statistics, and thus not easy to visualize/imagine. So, we will use simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising ‘reasons why’ they take the form they do.</p>
+<p>The <strong>‘statistical’ objective</strong> of this exercise is to learn-by-seeing some of the laws that describe/quantify the <strong>variation</strong> (variance, SD) of the sum, and more importantly, the <strong>difference of 2 random variables</strong>. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don’t get to see the individuals – or collections of individuals – that were nor selected, the laws are based on the theory of mathematical statistics, and thus not easy to visualize/imagine. So, we will use simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising ‘reasons why’ they take the form they do.</p>
 <p>The take-home message is that if the two random quantities involved in the difference are statistically independent of each other, the possible variations in the difference are larger than the ones in each of the two components, and that <strong>Variances Add; SDs don’t</strong>. The <strong>variance of a sum or difference is equal to the sum of the (variances of the) parts</strong></p>
 <blockquote>
 <p>In the case of all things which have several parts and in which the totality is not, as it were, a mere heap, but the <strong>whole is something besides the parts</strong>, there is a cause; for even in bodies contact is the cause of unity in some cases, and in others viscosity or some other such quality. Aristotle’s Metaphysics. Book VIII, 1045a.8–10 1908 translation by W. D. Ross:</p>
@@ -430,8 +438,8 @@ ds =<span class="st"> </span><span class="kw">read.table</span>(
 ## 5501 WILLIAM       739      7 2018      M    1
 ## 5502   LOGAN       636      5 2018      M    2
 ## 5503    LIAM       629      4 2018      M    3</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-89"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-89-1.png" alt="Frequency distribution of the 500 most popular names for babies born in Quebec in 2018. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma. 2. Alice, .. 1. William, 2. Logan, ... ). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-90"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-90-1.png" alt="Frequency distribution of the 500 most popular names for babies born in Quebec in 2018. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma. 2. Alice, .. 1. William, 2. Logan, ... ). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column." width="864" />
 <p class="caption">
 Figure 18.1: Frequency distribution of the 500 most popular names for babies born in Quebec in 2018. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma. 2. Alice, .. 1. William, 2. Logan, … ). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by ‘sticking a pin’ (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column.
 </p>
@@ -458,8 +466,8 @@ Figure 18.1: Frequency distribution of the 500 most popular names for babies bor
          <span class="kw">toString</span>( <span class="kw">round</span>( <span class="dv">100</span><span class="op">*</span><span class="kw">cumsum</span>(Fr)<span class="op">/</span><span class="dv">3000</span>) [i] ),
          <span class="dt">adj =</span> <span class="kw">c</span>(<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">0.1</span>), <span class="dt">cex=</span><span class="fl">0.75</span> )
  }</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-90"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-90-1.png" alt="For girls (red) and boys (blue) separately, the mean ranks of names with  a given length are plotted against the length. Each dot in a column is a name. The relative densities of the dots in a column indicates how common these name lengths are." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-91"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-91-1.png" alt="For girls (red) and boys (blue) separately, the mean ranks of names with  a given length are plotted against the length. Each dot in a column is a name. The relative densities of the dots in a column indicates how common these name lengths are." width="864" />
 <p class="caption">
 Figure 18.2: For girls (red) and boys (blue) separately, the mean ranks of names with a given length are plotted against the length. Each dot in a column is a name. The relative densities of the dots in a column indicates how common these name lengths are.
 </p>
@@ -542,14 +550,17 @@ mean.length.in.sample =<span class="st"> </span><span class="cf">function</span>
 </div>
 <div id="life-tables-2018-1" class="section level3">
 <h3><span class="header-section-number">18.2.2</span> Life Tables [2018]</h3>
-<p>In an exercise in the previous session, you used the 22 [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this <a href="https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55">Institut de la statistique du Quebec</a> report to create a life table. The <code>R</code> code below goes a bit further, and creates an <code>R function</code> to interpolate and create a lifetable with increments of 1 year. This is turn allows you to use the inbuilt <code>diff</code> function to compute the 105 (unconditional) probabilities that a person in this fictional cohort will die in their y-th year, where y runs in steps of 1 , from 1st to 105th.</p>
-<ul>
+<p>In an exercise in the previous session, you used the 22 [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this <a href="https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55">Institut de la statistique du Quebec</a> report to create a life table. The <code>R</code> code below goes a bit further, and creates an <code>R function</code> to interpolate and create a lifetable with increments of 1 year. This is turn allows you to use the inbuilt <code>diff</code> function to compute the 105 (unconditional) probabilities that a person in this fictional cohort will die in their y-th year, where y runs in steps of 1 , from 1st to 105th. Even though it isn’t always the case, assume for thse exercises that the deaths occur in the middle of each age-bin. Also, assume that lifetimes don’t extend past 105 i.e, so that the 105 probabilities add to 1 (check this!)</p>
+<ol style="list-style-type: decimal">
 <li>Use these 105 probabilities to compute the (sex-specific) expected duration of life (or mean age at death, if you want to look at it the way the first actuaries did, when they called the tables <strong>Mortality</strong> Tables. Somewhere along the way, the name was switched to <strong>Life</strong> Tables.)</li>
 <li>Use these means, along with the probabilities, to calculate, from its definitional form, the (sex-specific) variance, and SD, of duration of life (age at death)</li>
 <li>It is a theorem in mathematical statistics that the area under the survival curve is the mean duration of life. Verify that this is so in this example, using two versions of the lifetable (i) the one computed from the 22 age-bins, and (ii) the interpolated one with 105.</li>
 <li>How does the L<span class="math inline">\(_x\)</span> column in Table 3.9 relate to the calculations you made in (i)?</li>
+<li>Using the starter <code>R code</code> below, draw a sample of 100 lifetimes from one of the gender-specific ‘cohorts’, sort the lifelines, and plot them as horizontal lines. What pattern do you get if you up the number of lifelines, but can still ‘see’ the lines? What do these heuristics tell you about the theorem in mathematical statistics? If you want to see another version, look at <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch04.pdf#page=8">this page</a>. [8221 years lived by 100 persons; mean = 8221years/100persons = 1 82.21 years/person.]<br />
+</li>
 <li>Consider 10 newborns (5 male and 5 female) from the fictitious cohort. Use simulation to compute the probability that, collectively, the total (or mean) of the 5 female lifetimes will exceed the total (or mean) of the 5 male lifetimes?</li>
-</ul>
+<li>Do you think there might be a faster (less computing-intensive) way to arrive at this probability? If so, would you have to make any assumptions, and how realistic would these assumtipons be? [BTW: statisticians who are nimble with convolutions would be able to provide an exact answer i.e., without Monte Carlo error]</li>
+</ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SequentialRisks=<span class="kw">matrix</span>(
 <span class="kw">c</span>(<span class="dv">00465</span>,<span class="dv">00066</span>,<span class="dv">00035</span>,<span class="dv">00065</span>,<span class="dv">00167</span>,<span class="dv">00278</span>,<span class="dv">00298</span>,<span class="dv">00355</span>,<span class="dv">00431</span>,<span class="dv">00613</span>,<span class="dv">00980</span>,
   <span class="dv">01577</span>,<span class="dv">02523</span>,<span class="dv">04027</span>,<span class="dv">06508</span>,<span class="dv">09955</span>,<span class="dv">16528</span>,<span class="dv">27068</span>,<span class="dv">43560</span>,<span class="dv">63605</span>,<span class="dv">80498</span>,<span class="dv">100000</span>,
@@ -581,14 +592,9 @@ Age.boundaries =<span class="st"> </span><span class="kw">c</span>(<span class="
  Risk =<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>Proportion.Alive
  Risk =<span class="st"> </span><span class="kw">approx</span>(Age.boundaries, Risk,<span class="dv">0</span><span class="op">:</span><span class="dv">105</span>)<span class="op">$</span>y
  Prob[,i.col] =<span class="st"> </span><span class="kw">diff</span>(Risk) 
-}</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-92"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-92-1.png" alt="Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data." width="864" />
-<p class="caption">
-Figure 18.3: Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data.
-</p>
-</div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Check: marginal totals of Prob</span>
+}
+
+<span class="co"># Check: marginal totals of Prob</span>
 <span class="co">#        MARGIN=2: 1 sum for each column</span>
 
 <span class="kw">apply</span>(Prob,<span class="dt">MARGIN=</span><span class="dv">2</span>,<span class="dt">FUN=</span>sum) </code></pre></div>
@@ -599,27 +605,91 @@ Ages =<span class="st"> </span><span class="fl">0.5</span> <span class="op">:</s
 
 <span class="kw">sum</span>( Ages <span class="op">*</span><span class="st"> </span>Prob[,<span class="dv">1</span>] ) <span class="co"># Males</span></code></pre></div>
 <pre><code>## [1] 80.62743</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ..................   # Females</span></code></pre></div>
-<p>length-biased sampling … correcting</p>
-<p><strong>Exercises</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ..................   # Females</span>
+
+
+<span class="co"># code to plot 25 lifelines, sorted from shortest to longest </span>
+
+<span class="co"># Note that these lifelines are drawn from a simplified &#39;fake&#39; </span>
+<span class="co">#  distribution, just to demonstrate the plotting. if you use the</span>
+<span class="co"># function with a large n, you will &#39;see&#39; the shape of the S curve.</span>
+
+draw.from.<span class="fl">2.</span>str.lines.S.curve =<span class="st"> </span>
+<span class="st">   </span><span class="cf">function</span>(<span class="dt">n=</span><span class="dv">25</span>, <span class="dt">x=</span><span class="kw">c</span>(.<span class="dv">90</span>,<span class="dv">60</span>,<span class="dv">105</span>)){
+  s1 =<span class="st"> </span>x[<span class="dv">1</span>]; t1 =<span class="st"> </span>x[<span class="dv">2</span>]; t2 =<span class="st"> </span>x[<span class="dv">3</span>]
+  p =<span class="st"> </span><span class="kw">runif</span>(n,<span class="dv">0</span>,<span class="dv">1</span>)
+  t =<span class="st"> </span>(p <span class="op">&gt;</span><span class="st">  </span>s1)<span class="op">*</span>t1<span class="op">*</span>(p<span class="op">-</span>s1)<span class="op">/</span>(<span class="dv">1</span><span class="op">-</span>s1) <span class="op">+</span><span class="st"> </span>
+<span class="st">      </span>(p <span class="op">&lt;=</span><span class="st"> </span>s1)<span class="op">*</span>(t1 <span class="op">+</span><span class="st"> </span>(t2<span class="op">-</span>t1)<span class="op">*</span>(s1<span class="op">-</span>p)<span class="op">/</span>s1 )
+  <span class="kw">return</span>(t)
+}
+
+n=<span class="dv">25</span>
+
+y.vals  =<span class="st">  </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(<span class="dv">1</span><span class="op">:</span>n)<span class="op">/</span>(n<span class="op">+</span><span class="dv">1</span>)
+
+longevity =<span class="st"> </span><span class="kw">draw.from.2.str.lines.S.curve</span>(n, 
+                            <span class="dt">x=</span><span class="kw">c</span>(.<span class="dv">90</span>,<span class="dv">60</span>,<span class="dv">105</span>))
+longevity =<span class="st"> </span><span class="kw">sort</span>(longevity)
+
+<span class="kw">segments</span>(<span class="dv">0</span>, y.vals , longevity, y.vals, <span class="dt">lwd=</span><span class="fl">0.5</span>, <span class="dt">col=</span><span class="st">&quot;grey25&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-93"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-93-1.png" alt="Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data. The horizontal 'lifelines' are sorted by length, having been randomly drawn from a simplified survival distribution -- just to illustrate the use of the sort and segments functions in R." width="864" />
+<p class="caption">
+Figure 18.3: Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data. The horizontal ‘lifelines’ are sorted by length, having been randomly drawn from a simplified survival distribution – just to illustrate the use of the sort and segments functions in R.
+</p>
+</div>
+</div>
+<div id="galtons-data-on-family-heights" class="section level3">
+<h3><span class="header-section-number">18.2.3</span> Galton’s data on family heights</h3>
+<p>The background to these data can be found <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/galton/">here</a></p>
+<p>So that he could combine the father’s and mother’s heights into a single ‘mid-parent’ height, against which to correlate the offspring height, Francis Galton was keen to establish that height plays a very small part in marriage selection.</p>
+<p>Here are the <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c613/parents.txt">heights of 205 sets of parents</a>, with families numbered 1-135, 136A, 136-204. They are takem directly from <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/galton/notebook/image-html/1_page_1.html">his notebook</a>. [See JH’s notes on why 7 families are ommitted. Several authors have since extracted the data from JH’s webiste, but some (e.g. the authors of the <code>mosaic</code> package) extracted the incomplete version. The Galton dataset in the <a href="https://cran.r-project.org/web/packages/HistData/HistData.pdf"><code>HistData</code> package</a> has all of the families.]</p>
 <ol style="list-style-type: decimal">
-<li><p>Ages Books</p></li>
-<li><p>Galton F + M</p></li>
-<li><p>Height differences of random M-F pairs</p></li>
-<li><p>Box minus bowl</p></li>
-<li><p>car parking fixed and variable</p></li>
+<li><p>Categorize each father’s height into one of 3 subgroups (shortest 1/4, middle 1/2, tallest 1/4). Do likewise for mothers. Then, <a href="http://www.biostat.mcgill.ca/hanley/statbook/GaltonHeightCouples.png">as Galton did</a>, obtain the 2-way frequency distribution and visually assess whether you agree with the conclusion “we may therefor regard…” he draws <a href="http://www.biostat.mcgill.ca/hanley/statbook/GaltonHeightCouples.png">following his Table 9</a></p></li>
+<li><p>Calculate the variance Var[F] and Var[M] of the fathers’ [F] and mothers’ [M] heights respectively. Then create a new variable consisting of the sum of F and M, and calculate Var[F+M]. Comment. Galton called this a “shrewder” test than the “ruder” (coarser) one he used in 1. If the two were unrelated (this is a stronger quality than ‘uncorrelated’), what would you expect? If the variance of the sum is greater than the sum of the variances of the parts, what does it suggest.</p></li>
+<li><p>What if he had subtracted them and calculated the variance of the difefrences?</p></li>
+<li><p>When Galton first analyzed these data in 1885-1886, Galton and Pearson hadn’t yet invented the correlation coefficient. Calculate this coefficient and see how it compares with your impressions in 1 and 2.</p></li>
+<li><p>Compare this correlation with the correlation between parental ages in the Penrose dataset.</p></li>
 </ol>
+</div>
+<div id="height-differences-of-random-m-f-pairs" class="section level3">
+<h3><span class="header-section-number">18.2.4</span> Height differences of random M-F pairs</h3>
+<p>Some new-to-statistics (and even some not so new-to) students reason that because the average male is 4-5 inches taller than the average female, the heights of randomly formed M-F pairs would be positively correlated.</p>
+<ol style="list-style-type: decimal">
+<li><p>In Galton’s parental data, in how many of the couples was the man the taller member of the couple?</p></li>
+<li><p>If you scrambled his data, so as to pair a random father with a random mother, how often would this be the case? you would need to do it several times to get a sense of the proportion.</p></li>
+<li><p>Explain to these new-to-statistics students why their high correlation based on 4-5 inch average difference is not correct.</p></li>
+<li><p>Instead of simulating this probability, how otherwsie would you arrive at the probability/propprtion? If you chose to use a ‘model’, to do so, address the issue of how critical your assumptions are, and whether this approach is robust.</p></li>
+<li><p>data from NHIS on this topic</p></li>
+<li><p>caveats.</p></li>
+<li><p>why did Pearson get correlations that were so much stronger.</p></li>
+</ol>
+</div>
+<div id="box-minus-bowl" class="section level3">
+<h3><span class="header-section-number">18.2.5</span> Box minus bowl</h3>
+</div>
+<div id="car-parking-fixed-and-variable" class="section level3">
+<h3><span class="header-section-number">18.2.6</span> car parking fixed and variable</h3>
+</div>
+<div id="correcting-length-biased-sampling" class="section level3">
+<h3><span class="header-section-number">18.2.7</span> Correcting length-biased sampling</h3>
 <p>=====================</p>
 </div>
 </div>
 <div id="other-exercises-under-construction-1" class="section level2">
 <h2><span class="header-section-number">18.3</span> Other Exercises (under construction)</h2>
-<p>Variation with and without constraints</p>
-<p>-3- “Duplicate Numbers” [mini-version of birthday problem] To appreciate the high probability of duplicate birthdays, take a simpler case of drawing single digit numbers at random from a Random Number Table or spreadsheet until one gets a duplicate. (also, try actually doing it to see how many draws it takes) a Calculate the probability that in 5 draws one will not obtain a duplicate, i.e., the probability of a sequence 1st# ; 2nd# [≠ 1st#] 3rd# [≠ 2nd# ≠ 1st#] 4th# [≠ 3rd# ≠ 2nd# ≠ 1st#] 5th# [≠ 4th# ≠3rd# ≠ 2nd# ≠ 1st#] b Calculate, by successive subtractions* or otherwise, the probability that the first duplicate will show up on the [Y =] 2nd, 3rd, …11th draw. Plot the frequency distribution of the # draws, Y, until a duplicate.</p>
+<p><strong>Exercises</strong></p>
+<div id="box-minus-bowl-1" class="section level3">
+<h3><span class="header-section-number">18.3.1</span> Box minus bowl</h3>
+</div>
+<div id="car-parking-fixed-and-variable-1" class="section level3">
+<h3><span class="header-section-number">18.3.2</span> car parking fixed and variable</h3>
+<p>Variation with and without constraints Pearson vs Fisher</p>
 <p>Ice Breakup Dates</p>
 <p>Here are some details on the <a href="http://www.nenanaakiceclassic.com">Nenana Ice Classic</a> More <a href="http://www.john-daly.com/nenana.htm">here</a></p>
+</div>
 <div id="the-2018-book-of-guesses-1" class="section level3">
-<h3><span class="header-section-number">18.3.1</span> The 2018 Book of Guesses</h3>
+<h3><span class="header-section-number">18.3.3</span> The 2018 Book of Guesses</h3>
 <p>We are keen to establish the distribution of guesses, with the guessed times measured from midnight on December 31, 2017. Thus a guess of April 06, at 5:15 p.m. would be measured as 31 + 28 + 31 + 5 + 12/24 + (5+ 15/60)/24 = 95.71875 days into the year 2018.</p>
 <p>It would be tedious to apply optical character recognition (OCR) to each of the 1210 pages in order to be able to computerize all 240,000 guesses. Instead, you are asked to reconstruct the distribution of the guesses in two more economical ways:</p>
 <ul>
@@ -648,7 +718,7 @@ Ages =<span class="st"> </span><span class="fl">0.5</span> <span class="op">:</s
 <p>Tanana River</p>
 </div>
 <div id="trends-over-the-last-100-years-1" class="section level3">
-<h3><span class="header-section-number">18.3.2</span> Trends over the last 100 years</h3>
+<h3><span class="header-section-number">18.3.4</span> Trends over the last 100 years</h3>
 <p>fill in the data since 200x.</p>
 <p>cbind with …</p>
 <p><a href="https://www.adn.com/alaska-news/2019/04/14/nenana-ice-classic-tripod-goes-down-setting-record-for-earliest-river-break-up/" class="uri">https://www.adn.com/alaska-news/2019/04/14/nenana-ice-classic-tripod-goes-down-setting-record-for-earliest-river-break-up/</a></p>
