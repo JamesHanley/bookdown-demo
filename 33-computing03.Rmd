@@ -179,8 +179,8 @@ https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/pyramid/pyramid.cfm?ge
 
 ###  Life Tables [2018]
 
-For males and females separately, extract the 22  [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this [Institut de la statistique du Quebec](https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55) report. They can be found in the $q_x$ column [ x: age
-q$_x$ : probability of dying between birthday x and birthday x+a, where a, a=1, 4 et 5.]  
+For males and females separately, extract the 22  [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this [Institut de la statistique du Quebec](https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55) report. They can be found in the $q_x$ column [ x: age;
+q$_x$ : given survival to birthday x, probability of dying between birthday x and birthday x+a, where a, a=1, 4 et 5.]  
 
    + Use these to compute the surviving fractions at each of the birthdays shown in Table 3.9. As a double check on your answers, you have the $l_x$ columns in Table 3.9 [l$_x$: number surviving at  x-th birthday.] _Hint_: instead of using a loop, you can use the 'cumulative product' function `cumprod`. For example, `cumprod(c(0.9, 0.8, 0.7))` yields the vector of length 3, namely **0.9**,  0.9 $\times$ 0.8 = **0.72**, and 0.9 $\times$ 0.8 $\times$ 0.7 = **0.504**. 
    +  Plot the fractions against the ages, overlaying one curve on the other. Make sure to label the axes appropriately, and using large enough lettering that people at the right hand of the age scale, where most of the action is, can read them.

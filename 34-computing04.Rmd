@@ -28,13 +28,26 @@ The **'computing' objective** is to learn how to use `R` to simulate variation b
 
 * defining a (homemade) function to 'automate' a procedure `function` 
 
-The **'statistical' objective** of this exercise is to learn some of the laws that describe/quantify the **variation** (variance, SD) of the **difference of 2 random variables**. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don't get to see the individuals -- or collections of individuals -- that were nor selected, the laws are based on the theory of mathematical statistics, and thus not easy to visualize/imagine. So, we will use  simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising 'reasons why' they take the form they do.     
+The **'statistical' objective** of this exercise is to learn-by-seeing some of the laws that describe/quantify the **variation** (variance, SD) of the **difference of 2 random variables**. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don't get to see the individuals -- or collections of individuals -- that were nor selected, the laws are based on the theory of mathematical statistics, and thus not easy to visualize/imagine. So, we will use  simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising 'reasons why' they take the form they do.
+
+The take-home message is that if the two random quantities involved in the difference are statistically independent of each other, the possible variations in the difference are larger than the ones in each of the two components, and that  **Variances Add; SDs don't**. The **variance of a sum or difference is equal to the sum of the (variances of the) parts**
+
+> In the case of all things which have several parts and in which the  totality is not, as it were, a mere heap, but the **whole is something besides the parts**,  there is a cause; for even in bodies contact is the cause of unity in some cases, and in others viscosity or some other such quality. Aristotle’s Metaphysics. Book VIII, 1045a.8–10 1908 translation by W. D. Ross:
+
+> The **whole is greater than the part**. Euclid, Elements, Book I, Common Notion (Euclid is expressing how a whole can be split into parts, and any one of those parts, compared to the whole, is less than the whole. And using the Segment Addition Postulate – If point P is between points A and B, then AP + PB = AB. Ipso facto, the sum of parts equal the whole. 
+
+> that the **whole is not the same as the sum of its parts** are useful in meeting the type just described; for a man who defines in this way seems to assert that the parts are the same as the whole. The arguments are particularly appropriate in cases where the process of putting the parts together is obvious, as in a house and other things of that sort: for there, clearly, you may have the parts and yet not have the whole, so that parts and whole cannot be the same.”  Aristotle. Book VI. (all of the above are from [this URl](http://se-scholar.com/se-blog/2017/6/23/who-said-the-whole-is-greater-than-the-sum-of-the-parts).
+
+
+Likewise, the **SD of a sum or difference is less than the sum of the  (SDs of the) parts**
+
+Although the theoretical chapter does not address the **laws for sums or differences of  _non-independent_ random variables**, the simulations  bring out the fact that the variance of the sum/difference could be bigger or smaller than the variances of the parts: it all depends on how the components are linked. 
 
 ## Exercises 
 
 First, before we get to differences, an example of the sampling variability of sums and means.
 
-The sex-specific panels below shows examples of the sums of the lengths of 10 baby names, placed side by side. (each row included 9 blank spaces, so that doesn't change the variability.)  The fact that they are not randomly ordered, bur rather by popularity, doesnt matter that much, since -- as the subsequent graph shows -- popularity is not strongly related to the length of the name. Had we randomly ordered them, we would still see 'jagged' line endings. (Ignore for now the last column, which shows a type of sampling that is to be discouraged, or that, if used, needs post-hoc adjustment of the results).
+The sex-specific panels below shows examples of the sums of the lengths of 10 baby names, placed side by side. (each row includes 9 blank spaces, so that doesn't change the variability: it just shifts all the sums by 9.)  The fact that they are not randomly ordered, bur rather ordered by popularity, doesn't matter that much, since -- as the subsequent graph shows -- popularity is not strongly related to the length of the name. Had we randomly ordered them, we would still see the 'jagged' line endings and the same anount of variation. (Ignore for now the last column, which shows a type of sampling that is to be discouraged, or that, if used, needs post-hoc adjustment of the results).
 
 ### Lengths of Babies' Names
 
@@ -188,7 +201,7 @@ for( year in max(ds$Year) ) {
 ```
 
 
-```{r,eval=T, echo=T, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+```{r,eval=T, echo=T, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap = "For girls (red) and boys (blue) separately, the mean ranks of names with  a given length are plotted against the length. Each dot in a column is a name. The relative densities of the dots in a column indicates how common these name lengths are."}
 
 par(mfrow=c(2,1),mar = c(5,5,0,0)) # splits graph into 2 x 1 grid
 
@@ -198,27 +211,39 @@ par(mfrow=c(2,1),mar = c(5,5,0,0)) # splits graph into 2 x 1 grid
   
   COL=c("red","blue")[1 + (d$Gender=="M")]
 
-  plot(d$Length,d$Rank,pch=19,col= COL, cex=0.25,
-       ylab="Rank", xlab = "Number of Letters in Name")
+  plot(d$Length,d$Rank, pch=19, col= COL, cex=0.25,
+       ylab="Rank", xlab = "Number of Letters in Name",
+       ylim=c(0,570) )
   abline(h=seq(0,500,50),col="lightblue")
   lines(aggregate(d$Rank,by=list(Length=d$Length),mean))
-
+  Fr = aggregate(!is.na(d$Rank),by=list(Length=d$Length),sum)
+  L = Fr$Length
+  Fr = Fr$x
+  text(min(L),550,"Cum. %",adj=c(0.5,-0.1),cex=0.75)
+  for(i in 1:length(L) ) text(
+         L[i], 510,
+         toString( round( 100*cumsum(Fr)/3000) [i] ),
+         adj = c(0.5,-0.1), cex=0.75 )
  }
 
 ```
 
 **Exercise**
 
-* Use the `Length` and `Frequency` columns in the `ds` dataframe (see above) to compute the (gender-specific) mean and  SD of the lengths of the names of all of the Quebec babies born in 2018 having one of these names (For our purposes here, the few percent of babies whose names did not make it into the top 500 are excluded. If interested, they can be found at the link shown above.) _Hint_:  you could rescale the `Frequency` vector so that it sums to 1, and then simply use the `sum` of its product with `Length`. You can think of the rescaled `Frequency` vector as  probabilities.
+1. Use the `Length` and `Frequency` columns in the `ds` dataframe (see above) to compute the (gender-specific) mean and  SD of the lengths of the names of all of the Quebec babies born in 2018 having one of these names (For our purposes here, the few percent of babies whose names did not make it into the top 500 are excluded. If interested, they can be found at the link shown above.) _Hint_:  you could rescale the `Frequency` vector so that it sums to 1, and then simply use the `sum` of its product with `Length`. You can think of the rescaled `Frequency` vector as  probabilities.
 
-* Rather than do these computations separately for each year, find a way to automate this. _Hint_: maybe put what you did to compute the mean and SD for one year into your own `function` and then use this function in a `by` statement. For example, if all you wanted was the number of babies each year, you could just use the inbuilt function `sum`, and apply it to the frequencies in each year, using the statement `by(ds$Frequency,ds$Year,sum)`.
+2. Rather than do these computations separately for each year, find a way to automate this. _Hint_: maybe put what you did to compute the mean and SD for one year into your own `function` and then use this function in a `by` statement. For example, if all you wanted was the number of babies each year, you could just use the inbuilt function `sum`, and apply it to the frequencies in each year, using the statement `by(ds$Frequency,ds$Year,sum)`.
 
-* Use Monte Carlo simulations -- and the fact that you KNOW the gender-specific mean and SDs of the lengths of names -- to check out the theoretical formulae (laws) for the difference in two sample means. In other words, with $y$ denoting the length of the name of a randomly selected baby, $n$ the size of each sample, and $\sigma$ denoting the unit standard deviation, and $F$ and $M$ denoting female and male, show -- to within Monte Carlo error -- that
+3.  Compare your SD calculations agaist the SD[lengths of 500 names] shown at the bottom left of the red and blue panels of names, and if they are different, explain why they are. 
+
+4.  Using the SD[lengths of 500 names] values shown, explain why the 2 SD's in bold to the right of them (at the feet of the two columns) are so much bigger or smaller. Do these 2 SDs in bold 'fit'  with the laws we are learning about? Explain.  
+
+5. Use Monte Carlo simulations -- and the fact that you KNOW the gender-specific mean and SDs of the lengths of names -- to check out the theoretical formulae (laws) for the **possible variation in the difference of two sample means**. In other words, with $y$ denoting the length of the name of a randomly selected baby, $n$ the size of each sample, and $\sigma$ denoting the unit standard deviation, and $F$ and $M$ denoting female and male, show -- to within Monte Carlo error -- that
 $$ Var[ \bar{y}_{F} - \bar{y}_{M} ] = \frac{\sigma^2_{F}}{n} + \frac{\sigma^2_{M}}{n}.$$
-Use '$n$'s of size 5, 25, 100, and 400. Use the `sample` function with the rescaled frequencies as probabilities, and `replace = TRUE`. To keep the computing simpler, limit yourself to one year. Here is some starter code. You need to modify it to extend the sample size to 400, add code that includes samples of females, and computes the $\bar{y_F} - \bar{y_M}$ fifference. (the `results` matrix has 3 columns, only 1 of which gets filled under the present code.)   You should try a small value of `N.SIMS` first, to be sure everyting is working, and then make it large so that you approach the 'expected' values. (This code uses loops, which are slower, to fill the rows of the `results` matrix, and also samples from the list of 500, instead of from the (many fewer) distinct lengths. But for now, it is more transparent.  Biostatisticians who run very complex simulations are always looking for ways (such as the `apply` functions ) to reduce the time.) 
+Use '$n$'s of size 5, 25, 100, and 400. Use the `sample` function with the rescaled frequencies as probabilities, and `replace = TRUE`. To keep the computing simpler, limit yourself to one year. Here is some starter code. You need to modify it to extend the sample size to 400, add to the `function` code so that it includes samples of females, and computes the $\bar{y_F} - \bar{y_M}$ fifference. (the `results` matrix has 3 columns, only 1 of which gets filled under the present code.)   You should try a small value of `N.SIMS` first, to be sure everyting is working, and then make it large so that you approach the 'expected' values. Note: this code uses loops, which are slower, to fill the rows of the `results` matrix, and also samples from the list of 500, instead of from the (many fewer) distinct lengths. But for now, it is more transparent.  Biostatisticians who run very complex simulations are always looking for ways (such as the `apply` functions ) to reduce the time. 
 
 
-```{r,eval=T, echo=T, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
+```{r,eval=T, echo=T, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F}
 
 d = ds[ds$Year == 2018,]
 
@@ -228,7 +253,7 @@ probs.M  = probs.M/sum(probs.M)         #  ditto
 
 N.SIMS = 100
 
-nn = c(5, 25,100)
+nn = c(5, 25,100)  # the n's you want to use in the 'n' loop
 
 mean.length.in.sample = function(n){
   y.m = sample(lengths.M,size=n,replace=TRUE,prob=probs.M)
@@ -238,169 +263,50 @@ mean.length.in.sample = function(n){
  
 print(noquote( paste("Across", N.SIMS, "simulated samples ...") ))
 
-for(n in nn){
-  results = matrix(NA,N.SIMS,1,3)
-  for(sim in 1:N.SIMS) results[sim,1] = 
-              mean.length.in.sample(n)
-  E   = apply(results,MARGIN=2,FUN=mean)
-  VAR = apply(results,MARGIN=2,FUN=var)
+for(n in nn){                            # loop over n
+  
+  results = matrix(NA,N.SIMS,1,3) # set up matrix
+                            # 3 col.s are for ybarM, ybarF, and diff.
+  
+  for(sim in 1:N.SIMS) results[sim,1] =  # loop 
+              mean.length.in.sample(n)   # fills just the ybarM's
+                                         # ... expand 
+  
+  
+  E   = apply(results,MARGIN=2,FUN=mean) # (approximate)
+                                         # exact if N.SIMS = Infinity
+  
+  VAR = apply(results,MARGIN=2,FUN=var)  # (approximate) 
   print(noquote(""))
   print(noquote(paste("n = ",n)))
   print(noquote(""))
   print(noquote(
-    paste("Ave of F & M ybar's: and of ybarF - ybarM", 
+    paste("Ave of F & M ybar's: and of ybarF - ybarM:", 
            paste(round(E,2),collapse=" ,  ") )  ) )
   print(noquote(""))
   print(noquote(
-    paste("Var of ybar's: and of their differences ", 
+    paste("Var of ybar's: and of their differences:  ", 
            paste(round(VAR,4) ,collapse=", ") ) ) )
     print(noquote(
-    paste("SD of ybar's: and of their differences   ", 
+    paste("SD of ybar's: and of their differences:   ", 
            paste(round(sqrt(VAR),2) ,collapse=" ,  ") ) ) )  
 }
 
 ```
 
-length-biased sampling ... correcting
 
-###  Life Tables [1990] 
-
-The following [conditional] probabilities are taken from the
-abridged life tables for males (M) and females (F) computed
-from mortality data for Québec for the year 1990, and published by the Bureau de la statistique du Québec: [the probabilities for 90-year olds have been modified!].  
-In a (**current**) life table, one takes **current** (in this case 1990) i.e. cross-sectional **death rates** and applies them to a **fictitious cohort** to calculate what % of the cohort **would** survive past various birthdays -- if die these rates persisted -- and to calculate the average age at death (also known as life expectancy at birth).
-
-`........ Probability that a person who lives to his/her`  
-`........ x-th birthday will die during next 10 years`
-
-`.......x .... .M ....... F`  
-`...... 0 ... 0.010 ... 0.008`  
-`..... 10 ... 0.006 ... 0.002`  
-`..... 20 ... 0.012 ... 0.004`  
-`..... 30 ... 0.016 ... 0.007`  
-`..... 40 ... 0.031 ... 0.017`  
-`..... 50 ... 0.080 ... 0.042`  
-`..... 60 ... 0.211 ... 0.104`  
-`..... 70 ... 0.448 ... 0.259`  
-`..... 80 ... 0.750 ... 0.585`  
-`..... 90 ... 1.000 ... 1.000` 
-
-  + Fill in the blanks in the following  diagram, which shows the proportions of males and females who survive past their xth birthday (x = 0, 10, 20, 30, ... 100) (these plots are called survival curves).
-   
-  + Calculate, by successive subtractions^ or otherwise, the [unconditional] proportions [i.e. proportions of the entire cohort] who will die between their xth and x+10th birthdays (x = 0, 10, 20, 30, ... 90). Plot them as histograms. In a later exercise, we will use these proportions to calculate life expectancy.
-
-`e.g.`  
-`Pr[Die after 70th birthday] = 0.wwww`  
-`Pr{Die after 80th birthday] = 0.zzzz`  
-`Pr[die between 70 and 80] = difference`
-
-
-```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F,fig.cap="Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is 'bottom-up' rather than the conventional 'top-down' format, and side by side, in the spirit of population 'pyramids'. Also unusually, the 'survival surve' for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.  "}
- 
- 
-SequentialTenYearRisks=matrix(
-  c(0.010,0.006,0.012,0.016,0.031,0.080,0.211,0.448,0.750,1.000,
-    0.008,0.002,0.004,0.007,0.017,0.042,0.104,0.259,0.585,1.000),
-   10,2) # 10 rows 2 columns
- 
-
-
-par(mfrow=c(1,1),mar = rep(0,4))
-plot(1:10,ylim=c(-15,109),xlim=c(-1.3,1.3),
-     col="white",frame=FALSE)
-
-LastBday=100
-selected = c(7,8)
-
-COL = c("lightblue","pink")
-
-
-for(i.col in 1:2) {
-	
-   S.at.end.decade = cumprod( 1 - SequentialTenYearRisks[,i.col] )
-   S.at.start.decade = c(1,S.at.end.decade[1:9])
-   B = 0
-   text(-0.5+(i.col==2),-10,
-    paste("Proportion of",c("Males","Females")[i.col],"(Still) Alive"),
-   adj=c(0.5,1), col=COL[i.col])
-   text(0,106,"Birthday",adj=c(0.5,0))
-   for(i.Bday in 1:10){
-      S.start = -S.at.start.decade[i.Bday]
-      S.end   = -S.at.end.decade[i.Bday]
-      if(i.col==2) {S.start = -S.start; S.end = -S.end}
-      h.start = (i.Bday-1)*10; h.end = h.start + 10
-      polygon(c(0,       S.end,   S.end,     0),
-              c(h.start, h.start, h.end, h.end),
-              col=COL[i.col],
-              border="grey25",lwd=1)
-      polygon(c(S.end,   S.start, S.end),
-              c(h.start, h.start, h.end),
-             col=COL[i.col],
-             border="grey25",lwd=1)
-     if(i.col==1 ) text(0,h.end+2*(i.Bday==10),
-                      toString(i.Bday*10),adj=c(1.1,1.1))
-     xxx = (S.start+S.end)/2 - 0.03 ;
-     if(i.col==2) xxx = (S.start+S.end)/2 + 0.03 ;   
-     surv = 1-SequentialTenYearRisks[i.Bday,i.col]
-     txt = format(round(surv,3), nsmall=3 )
-     if(i.Bday != selected[2] &
-        i.Bday!=2 ) text(xxx,i.Bday*10-5,
-        paste("x",txt),
-        cex=0.75,adj=c(1-(i.col==2),0.25),font=3)
-     if(i.Bday<10){
-        txt = format(round(abs(S.end),3), nsmall=3 )
-        if(i.Bday!=2) text(S.end,h.end,txt,
-            adj=c(1.25-1.5*(i.col==2), 0.25), font=2)
-     } 
-
-     if( i.Bday == selected[2] ){
-       txt2=format(round(abs(S.start),3),nsamll=3)
-       txt1= format(SequentialTenYearRisks[
-                     i.Bday,i.col],nsmall=3)
-       text( (S.start+S.end)/2, h.start, 
-         paste(txt1, "\nof",txt2), 
-         adj=c(0.5,0.5),cex=0.75 )
-       
-       txt2=format(round(abs(S.start),3),nsamll=3) 
-       txt1= format(1-SequentialTenYearRisks[
-                     i.Bday,i.col],nsmall=3)
-      text( S.end/2, h.start, 
-              paste(txt1,"\nof", txt2),
-              adj=c(0.5,0.5),cex=0.75) 
-     }
-     
-   } # i.Bday
-   
-} # i.col
-xx=seq(-1,1,0.1)
-segments(xx, 0, xx, 100, col="white",lwd=0.5)
-for(proportion in seq(-1,1,0.2)) text(proportion,-1,
-                  toString(abs(proportion)),adj=c(0.5,1),font=2)
-
-
-
-```
-
-For population pyramids, see https://www.populationpyramid.net/world/2019/
-
-For dynamic ones, see
-https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/pyramid/pyramid.cfm?geo1=01&type=1
 
 ###  Life Tables [2018]
 
-For males and females separately, extract the 22  [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this [Institut de la statistique du Quebec](https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55) report. They can be found in the $q_x$ column [ x: age
-q$_x$ : probability of dying between birthday x and birthday x+a, where a, a=1, 4 et 5.]  
+In an exercise in the previous session, you used the 22  [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this [Institut de la statistique du Quebec](https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55) report to create a life table. The `R` code below goes a bit further, and creates an `R function` to interpolate and  create a lifetable with increments of 1 year. This is turn allows you to use the inbuilt `diff` function to compute the 105 (unconditional) probabilities that a person in this fictional cohort will die in their y-th year, where y runs in steps of 1 , from 1st to 105th. 
 
-   + Use these to compute the surviving fractions at each of the birthdays shown in Table 3.9. As a double check on your answers, you have the $l_x$ columns in Table 3.9 [l$_x$: number surviving at  x-th birthday.] _Hint_: instead of using a loop, you can use the 'cumulative product' function `cumprod`. For example, `cumprod(c(0.9, 0.8, 0.7))` yields the vector of length 3, namely **0.9**,  0.9 $\times$ 0.8 = **0.72**, and 0.9 $\times$ 0.8 $\times$ 0.7 = **0.504**. 
-   +  Plot the fractions against the ages, overlaying one curve on the other. Make sure to label the axes appropriately, and using large enough lettering that people at the right hand of the age scale, where most of the action is, can read them.
-   +  Visually measure the median survival for each gender.
-   + Do you think the mean survival (the life-expectancy at birth) is smaller or larger than the median? Explain your reasoning.
-   + The best way to be sure is to have and plot the frequency distributions of the ages at death. Using the same logic as in question 2, derive these frequencies, and plot them. Note that the first 2 age-bins are narrower than the others, so make wahtever adjustments are needed. 
-   + Why don't these frequency distributions match those shown in Figure 3.5 of the report?
-   + Examine Figure 3.15 of the report, and explain why life expectancies calculated from single-calendar-year data can 'wobble' quite a bit from year to year. 
+   + Use these 105 probabilities to compute the (sex-specific) expected duration of life (or mean age at death, if you want to look at it the way the first actuaries did, when they called the tables **Mortality** Tables. Somewhere along the way, the name was switched to **Life** Tables.) 
+   +  Use these means, along with the probabilities, to calculate, from its definitional form, the (sex-specific) variance, and SD, of duration of life (age at death)
+   + It is a theorem in mathematical statistics that the area under the survival curve is the mean duration of life. Verify that this is so in this example, using two versions of the lifetable (i) the one computed from the 22 age-bins, and (ii) the interpolated one with 105.
+   + How does the L$_x$ column in Table 3.9 relate to the calculations you made in (i)?
+   + Consider 10 newborns (5 male and 5 female) from the fictitious cohort. Use simulation to compute the probability that, collectively, the total (or mean) of the 5 female lifetimes will exceed the total (or mean) of the 5 male lifetimes?   
 
-```{r,eval=F, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F}
- 
+```{r,eval=T, echo=T, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F,fig.cap="Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data."}
  
 SequentialRisks=matrix(
 c(00465,00066,00035,00065,00167,00278,00298,00355,00431,00613,00980,
@@ -410,27 +316,49 @@ c(00465,00066,00035,00065,00167,00278,00298,00355,00431,00613,00980,
    100000,
 22,2)  # 22 rows 2 columns
 
-
 Age = c(1,5,seq(10,105,5) )
 
-plot(c(0,10),xlim=c(0,110),ylim=c(0,1),
+par(mfrow=c(1,1),mar = c(5,5,0,0)) 
+
+plot(-10,-10,xlim=c(0,110),ylim=c(0,1.02),
      xlab="Age",ylab="Proportion Stll Alive",
      cex.axis=1.5,cex.lab=1.5,col="white")
 abline(v=seq(0,110,10),col="lightblue")
 abline(h=seq(0.0,1,0.1),col="lightblue")
 
-for(i.col in 1:2) {
-	
- S.at.end.interval = cumprod( 
+Prob = matrix(NA,105,2)
+
+Age.boundaries = c(0,Age)
+
+for(i.col in 1:2) {	 # F then M  loop
+ S.at.end.interval = cumprod(           # cumulative product
           1 - SequentialRisks[,i.col] )
- lines(c(0,Age),c(1,S.at.end.interval),col=i.col)
-   
+ Proportion.Alive = c(1,S.at.end.interval)
+ lines(Age.boundaries,Proportion.Alive,col=i.col)
+ 
+ Risk = 1 - Proportion.Alive
+ Risk = approx(Age.boundaries, Risk,0:105)$y
+ Prob[,i.col] = diff(Risk) 
 }
+
+# Check: marginal totals of Prob
+#        MARGIN=2: 1 sum for each column
+
+apply(Prob,MARGIN=2,FUN=sum) 
+      # marginal totals of Prob
+      
+Ages = 0.5 : 104.5
+
+sum( Ages * Prob[,1] ) # Males
+
+# ..................   # Females
+
+
 
 ```
 
 
-
+length-biased sampling ... correcting
 
 **Exercises**
 
