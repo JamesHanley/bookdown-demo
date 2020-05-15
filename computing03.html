@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-05-14" />
+<meta name="date" content="2020-05-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -261,8 +261,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="18.1" data-path="computing04.html"><a href="computing04.html#objectives-6"><i class="fa fa-check"></i><b>18.1</b> Objectives</a></li>
 <li class="chapter" data-level="18.2" data-path="computing04.html"><a href="computing04.html#exercises-8"><i class="fa fa-check"></i><b>18.2</b> Exercises</a><ul>
 <li class="chapter" data-level="18.2.1" data-path="computing04.html"><a href="computing04.html#lengths-of-babies-names"><i class="fa fa-check"></i><b>18.2.1</b> Lengths of Babies’ Names</a></li>
-<li class="chapter" data-level="18.2.2" data-path="computing04.html"><a href="computing04.html#life-tables-1990-1"><i class="fa fa-check"></i><b>18.2.2</b> Life Tables [1990]</a></li>
-<li class="chapter" data-level="18.2.3" data-path="computing04.html"><a href="computing04.html#life-tables-2018-1"><i class="fa fa-check"></i><b>18.2.3</b> Life Tables [2018]</a></li>
+<li class="chapter" data-level="18.2.2" data-path="computing04.html"><a href="computing04.html#life-tables-2018-1"><i class="fa fa-check"></i><b>18.2.2</b> Life Tables [2018]</a></li>
 </ul></li>
 <li class="chapter" data-level="18.3" data-path="computing04.html"><a href="computing04.html#other-exercises-under-construction-1"><i class="fa fa-check"></i><b>18.3</b> Other Exercises (under construction)</a><ul>
 <li class="chapter" data-level="18.3.1" data-path="computing04.html"><a href="computing04.html#the-2018-book-of-guesses-1"><i class="fa fa-check"></i><b>18.3.1</b> The 2018 Book of Guesses</a></li>
@@ -384,7 +383,7 @@ Figure 17.1: Life Tables based on abbreviated data from 1990 given in above tabl
 </div>
 <div id="life-tables-2018" class="section level3">
 <h3><span class="header-section-number">17.2.3</span> Life Tables [2018]</h3>
-<p>For males and females separately, extract the 22 [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this <a href="https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55">Institut de la statistique du Quebec</a> report. They can be found in the <span class="math inline">\(q_x\)</span> column [ x: age q<span class="math inline">\(_x\)</span> : probability of dying between birthday x and birthday x+a, where a, a=1, 4 et 5.]</p>
+<p>For males and females separately, extract the 22 [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this <a href="https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55">Institut de la statistique du Quebec</a> report. They can be found in the <span class="math inline">\(q_x\)</span> column [ x: age; q<span class="math inline">\(_x\)</span> : given survival to birthday x, probability of dying between birthday x and birthday x+a, where a, a=1, 4 et 5.]</p>
 <ul>
 <li>Use these to compute the surviving fractions at each of the birthdays shown in Table 3.9. As a double check on your answers, you have the <span class="math inline">\(l_x\)</span> columns in Table 3.9 [l<span class="math inline">\(_x\)</span>: number surviving at x-th birthday.] <em>Hint</em>: instead of using a loop, you can use the ‘cumulative product’ function <code>cumprod</code>. For example, <code>cumprod(c(0.9, 0.8, 0.7))</code> yields the vector of length 3, namely <strong>0.9</strong>, 0.9 <span class="math inline">\(\times\)</span> 0.8 = <strong>0.72</strong>, and 0.9 <span class="math inline">\(\times\)</span> 0.8 <span class="math inline">\(\times\)</span> 0.7 = <strong>0.504</strong>.</li>
 <li>Plot the fractions against the ages, overlaying one curve on the other. Make sure to label the axes appropriately, and using large enough lettering that people at the right hand of the age scale, where most of the action is, can read them.</li>
