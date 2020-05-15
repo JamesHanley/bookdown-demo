@@ -28,7 +28,7 @@ The **'computing' objective** is to learn how to use `R` to simulate variation b
 
 * defining a (homemade) function to 'automate' a procedure `function` 
 
-The **'statistical' objective** of this exercise is to learn-by-seeing some of the laws that describe/quantify the **variation** (variance, SD) of the **difference of 2 random variables**. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don't get to see the individuals -- or collections of individuals -- that were nor selected, the laws are based on the theory of mathematical statistics, and thus not easy to visualize/imagine. So, we will use  simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising 'reasons why' they take the form they do.
+The **'statistical' objective** of this exercise is to learn-by-seeing some of the laws that describe/quantify the **variation** (variance, SD) of the sum, and more importantly, the **difference of 2 random variables**. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don't get to see the individuals -- or collections of individuals -- that were nor selected, the laws are based on the theory of mathematical statistics, and thus not easy to visualize/imagine. So, we will use  simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising 'reasons why' they take the form they do.
 
 The take-home message is that if the two random quantities involved in the difference are statistically independent of each other, the possible variations in the difference are larger than the ones in each of the two components, and that  **Variances Add; SDs don't**. The **variance of a sum or difference is equal to the sum of the (variances of the) parts**
 
@@ -298,15 +298,17 @@ for(n in nn){                            # loop over n
 
 ###  Life Tables [2018]
 
-In an exercise in the previous session, you used the 22  [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this [Institut de la statistique du Quebec](https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55) report to create a life table. The `R` code below goes a bit further, and creates an `R function` to interpolate and  create a lifetable with increments of 1 year. This is turn allows you to use the inbuilt `diff` function to compute the 105 (unconditional) probabilities that a person in this fictional cohort will die in their y-th year, where y runs in steps of 1 , from 1st to 105th. 
+In an exercise in the previous session, you used the 22  [conditional] probabilities of dying within the (1, 4 or 5 year) age intervals shown in Table 3.9 of this [Institut de la statistique du Quebec](https://www.stat.gouv.qc.ca/statistiques/population-demographie/bilan2019.pdf#page=55) report to create a life table. The `R` code below goes a bit further, and creates an `R function` to interpolate and  create a lifetable with increments of 1 year. This is turn allows you to use the inbuilt `diff` function to compute the 105 (unconditional) probabilities that a person in this fictional cohort will die in their y-th year, where y runs in steps of 1 , from 1st to 105th. Even though it isn't always the case, assume for thse exercises that the deaths occur in the middle of each age-bin. Also, assume that lifetimes don't extend past 105 i.e, so that the 105 probabilities add to 1 (check this!)
 
-   + Use these 105 probabilities to compute the (sex-specific) expected duration of life (or mean age at death, if you want to look at it the way the first actuaries did, when they called the tables **Mortality** Tables. Somewhere along the way, the name was switched to **Life** Tables.) 
-   +  Use these means, along with the probabilities, to calculate, from its definitional form, the (sex-specific) variance, and SD, of duration of life (age at death)
-   + It is a theorem in mathematical statistics that the area under the survival curve is the mean duration of life. Verify that this is so in this example, using two versions of the lifetable (i) the one computed from the 22 age-bins, and (ii) the interpolated one with 105.
-   + How does the L$_x$ column in Table 3.9 relate to the calculations you made in (i)?
-   + Consider 10 newborns (5 male and 5 female) from the fictitious cohort. Use simulation to compute the probability that, collectively, the total (or mean) of the 5 female lifetimes will exceed the total (or mean) of the 5 male lifetimes?   
+1. Use these 105 probabilities to compute the (sex-specific) expected duration of life (or mean age at death, if you want to look at it the way the first actuaries did, when they called the tables **Mortality** Tables. Somewhere along the way, the name was switched to **Life** Tables.) 
+2.  Use these means, along with the probabilities, to calculate, from its definitional form, the (sex-specific) variance, and SD, of duration of life (age at death)
+3. It is a theorem in mathematical statistics that the area under the survival curve is the mean duration of life. Verify that this is so in this example, using two versions of the lifetable (i) the one computed from the 22 age-bins, and (ii) the interpolated one with 105.
+4.  How does the L$_x$ column in Table 3.9 relate to the calculations you made in (i)?
+5. Using the starter `R code` below, draw a sample of 100 lifetimes from one of the gender-specific 'cohorts', sort the lifelines, and plot them as horizontal lines. What pattern do you get if you up the number of lifelines, but can still 'see' the lines? What do these heuristics tell you about the theorem in mathematical statistics? If you want to see another version, look at [this page](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/ch04.pdf#page=8). [8221 years lived by 100 persons; mean = 8221years/100persons = 1 82.21 years/person.]    
+6. Consider 10 newborns (5 male and 5 female) from the fictitious cohort. Use simulation to compute the probability that, collectively, the total (or mean) of the 5 female lifetimes will exceed the total (or mean) of the 5 male lifetimes? 
+7. Do you think there might be a faster (less computing-intensive) way to arrive at this probability? If so, would you have to make any assumptions, and how realistic would these assumtipons be? [BTW: statisticians who are nimble with convolutions would be able to provide an exact answer i.e., without Monte Carlo error] 
 
-```{r,eval=T, echo=T, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F,fig.cap="Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data."}
+```{r,eval=T, echo=T, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F,fig.cap="Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data. The horizontal 'lifelines' are sorted by length, having been randomly drawn from a simplified survival distribution -- just to illustrate the use of the sort and segments functions in R."}
  
 SequentialRisks=matrix(
 c(00465,00066,00035,00065,00167,00278,00298,00355,00431,00613,00980,
@@ -354,24 +356,79 @@ sum( Ages * Prob[,1] ) # Males
 # ..................   # Females
 
 
+# code to plot 25 lifelines, sorted from shortest to longest 
+
+# Note that these lifelines are drawn from a simplified 'fake' 
+#  distribution, just to demonstrate the plotting. if you use the
+# function with a large n, you will 'see' the shape of the S curve.
+
+draw.from.2.str.lines.S.curve = 
+   function(n=25, x=c(.90,60,105)){
+  s1 = x[1]; t1 = x[2]; t2 = x[3]
+  p = runif(n,0,1)
+  t = (p >  s1)*t1*(p-s1)/(1-s1) + 
+      (p <= s1)*(t1 + (t2-t1)*(s1-p)/s1 )
+  return(t)
+}
+
+n=25
+
+y.vals  =  1 - (1:n)/(n+1)
+
+longevity = draw.from.2.str.lines.S.curve(n, 
+                            x=c(.90,60,105))
+longevity = sort(longevity)
+
+segments(0, y.vals , longevity, y.vals, lwd=0.5, col="grey25")
 
 ```
 
 
-length-biased sampling ... correcting
+### Galton's data on family heights
 
-**Exercises**
+The background to these data can be found [here](http://www.medicine.mcgill.ca/epidemiology/hanley/galton/)
 
-1. Ages Books
+So that he could combine the father's and mother's heights into a single 'mid-parent' height, against which to correlate the offspring height, Francis Galton was keen to establish that height plays a very small part in marriage selection.
 
-2. Galton F + M
+Here are the [heights of 205 sets of parents](http://www.medicine.mcgill.ca/epidemiology/hanley/c613/parents.txt), with families numbered 1-135, 136A, 136-204. They are takem directly from [his notebook](http://www.medicine.mcgill.ca/epidemiology/hanley/galton/notebook/image-html/1_page_1.html). [See JH's notes on why 7 families are ommitted. Several authors have since extracted the data from JH's webiste, but some (e.g. the authors of the `mosaic` package) extracted the incomplete version. The Galton dataset in the
+[`HistData` package](https://cran.r-project.org/web/packages/HistData/HistData.pdf) has all of the families.]
 
+1. Categorize each father's height into one of 3 subgroups (shortest 1/4, middle 1/2, tallest 1/4). Do likewise for mothers. Then, [as Galton did](http://www.biostat.mcgill.ca/hanley/statbook/GaltonHeightCouples.png), obtain the 2-way frequency distribution and visually assess whether 
+you agree with the conclusion "we may therefor regard... " he draws [following his Table 9](http://www.biostat.mcgill.ca/hanley/statbook/GaltonHeightCouples.png) 
 
-3. Height differences of random M-F pairs
+2. Calculate the variance Var[F] and Var[M] of the fathers' [F] and mothers' [M] heights respectively. Then create a new variable consisting of the sum of F and M, and calculate Var[F+M]. Comment. Galton called this a "shrewder" test than the "ruder" (coarser) one he used in 1. If the two were unrelated (this is a stronger quality than 'uncorrelated'), what would you expect? If the variance of the sum is greater than the sum of the variances of the parts, what does it suggest.
 
-4.  Box minus bowl
+3. What if he had subtracted them and calculated the variance of the difefrences?
 
-5. car parking  fixed and variable
+4. When Galton first analyzed these data in 1885-1886, Galton and Pearson hadn't yet invented the correlation coefficient. Calculate this coefficient and see how it compares with your impressions in 1 and 2.
+
+5. Compare this correlation with the correlation between parental ages in the Penrose dataset.
+
+### Height differences of random M-F pairs
+
+Some  new-to-statistics (and even some not so new-to) students reason that because the average male is 4-5 inches taller than the average female, the heights of randomly formed M-F pairs would be positively correlated. 
+
+1. In Galton's parental data, in how many of the couples was the man the taller member of the couple?
+
+2. If you scrambled his data, so as to pair a random father with a random mother, how often would this be the case? you would need to do it several times to get a sense of the proportion.
+
+3. Explain to these new-to-statistics students why their high correlation based on 4-5 inch average difference is not correct. 
+
+4. Instead of simulating this probability, how otherwsie would you arrive at the probability/propprtion? If you chose to use a 'model', 
+to do so, address the issue of how critical your assumptions are, and whether this approach is robust.
+
+5. data from NHIS on this topic
+
+6. caveats.
+
+7. why did Pearson get correlations that were so much stronger.
+
+###  Box minus bowl
+
+### car parking  fixed and variable
+
+### Correcting length-biased sampling 
+
 
  
  =====================
@@ -379,21 +436,16 @@ length-biased sampling ... correcting
  
 ## Other Exercises (under construction)
 
-
-Variation with and without constraints
-
+**Exercises**
 
 
+###  Box minus bowl
 
--3- "Duplicate Numbers" [mini-version of birthday problem]
-To appreciate the high probability of duplicate birthdays, take a simpler case of drawing single digit numbers at random from a Random Number Table or spreadsheet until one gets a duplicate. (also, try actually doing it to see how many draws it takes)
-a Calculate the probability that in 5 draws one will not obtain a duplicate, i.e., the probability of a sequence
-1st# ;
-2nd# [≠ 1st#]
-3rd# [≠ 2nd# ≠ 1st#]
-4th# [≠ 3rd# ≠ 2nd# ≠ 1st#]
-5th# [≠ 4th# ≠3rd# ≠ 2nd# ≠ 1st#]
-b Calculate, by successive subtractions* or otherwise, the probability that the first duplicate will show up on the [Y =] 2nd, 3rd, ...11th draw. Plot the frequency distribution of the # draws, Y, until a duplicate.
+### car parking  fixed and variable
+
+
+
+Variation with and without constraints  Pearson vs Fisher
 
 
  Ice Breakup Dates
@@ -467,11 +519,7 @@ cbind with ...
 https://www.adn.com/alaska-news/2019/04/14/nenana-ice-classic-tripod-goes-down-setting-record-for-earliest-river-break-up/
 
 
-
-
-
 time trends
-
 
 morning vs afternoon ?
 
