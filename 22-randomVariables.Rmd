@@ -13,7 +13,7 @@ So, the **specific objectives** are to truly understand
 
 * why it is that, when dealing with the sum  of two or more independent random variables, it is not their standard deviations that sum (add), but rather their variances.
 
-* likewise, why it is that, when dealing with the **difference**  of two independent random variables, or some **linear combination** of $n$ independent random variables involving positive and negative weights, **why the component variances add**, and **with what weights**. 
+* likewise, when dealing with the **difference**  of two independent random variables, or some **linear combination** of $n$ independent random variables involving positive and negative weights, why it is that **the component variances add**, and **with what weights**. 
 
 ## Random Variables
 
@@ -65,7 +65,7 @@ The ordered pairs {y, Probability($Y$ = $y$) } , where $y$ ranges over the possi
 
 EXAMPLES
 
-(Note: the only reason we start with lotteries is that we can give the exact (mathematically-known) probabilities of each possible result. In most of the other examples, the probabilities will be context-specific.)
+(Note: the only reason we start with lotteries is that we can give the exact, mathematically-known, probabilities of each possible result. In most of the other examples, the probabilities will be context-specific, and seldom knowable with full exactness.)
 
 * Y = Winnings on a $1 wager on la Quotidienne 3
 (same distribution for exact order and any order)
@@ -90,7 +90,7 @@ Y = the person's Blood Group
 `.................... =====`  
 `....ALL ............ 1.000`  
 
-* In a 1911 census, of all households with at least 1 child aged 12 or under, the proportions of households that had 1, 2, ... children.
+* In a 1911 census, of all households with at least 1 child aged 12 or under, the proportions of households that had 1, 2, ... children. [We ignore for now any errors in recording ages]
 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F}
@@ -117,7 +117,7 @@ cbind(n.children,proportion.of.women)
 
 ```
 
-* Choose a random word and count how many characters it contains  
+* Choose a random word and count how many characters (letters) it contains  
 Y =  Number of characters in word
 
 `.... y . Probability(Y = y)`

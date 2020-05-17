@@ -6,17 +6,32 @@ The **'computing' objectives** are to learn how to use `R` to put series of obse
 
 The **'statistical' objective** of this exercise is to understand the concept of a distribution of a numerical characteristic (here an amount of elapsed time), and the various numbers describing its 'central' location and spread, and other 'landmarks'. You will also be introduced (in the next section) to 2 functions that give a more complete description of a distribution.
 
-## Example 
+## Background to two datasets 
 
-Later on we will examine [climate trends using unusual datasets](http://www.medicine.mcgill.ca/epidemiology/hanley/c678/index.html#anthropometricData), which suggest that over the last few centuries, winter tends to end earlier, and plants tend to flower earlier.
+### Climate
+
+Later on, when we get to regression models, we will examine [climate trends using unusual datasets](http://www.medicine.mcgill.ca/epidemiology/hanley/c678/index.html#anthropometricData), which suggest that over the last few centuries, winter tends to end earlier, and plants tend to flower earlier.
 
 One such dataset arose as part of a long-running contest, the [Nenana Ice Classic](http://www.nenanaakiceclassic.com)
 More [here](http://www.john-daly.com/nenana.htm).
 
-Here is the [2020 brochure](http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/Nenana2020Brochure.pdf). There is still time to compete this year, but it looks like you need to be in Alaska to find and fill out  a ticket, and  the organizers ask for your mailing address, not your email one!
+Here is the [2020 brochure](http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/Nenana2020Brochure.pdf). When this exercise was constructed, in March 2020, is was time to compete this year, but it looked like you needed to be in Alaska to find and fill out  a ticket, and  the organizers asked for your mailing address, not your email one!
+
+### Ages of Cars
+
+One measure of the state of, and confidence in, a country's economy is the monthly, or quarterly or yearly, numbers of new car registrations, such as these data from
+government 
+[e.g., ](https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=2310006701) and commercial sources, e.g., for
+[Canada](https://tradingeconomics.com/canada/car-registrations),
+[the USA](https://tradingeconomics.com/united-states/car-registrations), and the 
+[UK](https://tradingeconomics.com/united-kingdom/car-registrations).
+
+Another, which we will explore here, is the age distribution of all registered cars. (Because it is the only one we could find with detailed age data) we will examine a dataset ('VEH0126') that contains the numbers, as of the end of 2019, of Licensed vehicles by make and model and year of manufacture, produced by the [UK Department for Transport](https://www.gov.uk/government/statistical-data-sets/all-vehicles-veh01) 
 
 
-## Statistical Task
+## Statistical/Computing Tasks
+
+### Guesses re Date of Ice Breakup
 
 You are asked to approximate and carefully examine the distribution of guesses in 2018, contained in the Book of Guesses for that year. The full book is available  as the 7th tab in the [2020 website](http://www.nenanaakiceclassic.com). If the full book takes too  long to load, here are some 
 [excerpts from the book](http://www.medicine.mcgill.ca/epidemiology/hanley/bios691/SampledPages.pdf).
@@ -29,9 +44,15 @@ It would be tedious to try to apply optical character recognition (OCR) to each 
 
 2. By determining the 1st, 2nd, ... , 98th, 99th percentiles. These are specific examples of 'quantiles', or q's. The q-th quantile is the value (here the elapsed number of days since the beginning of 2018) such that a proportion q of all guesses are below this value, and 1-q are above it. [ In `R`, if 40% of the guesses were below 110.2 days, we would write this as qGuessDistribution(p=0.4) = 110.2 days. Thus, if we were dealing with the 40th percentile of a  Gaussian distribution with mean 130 and standard deviation 15, we would write `qnorm(p=0.4, mean = 130, sd = 15)`. ] Once you have determined them, plot the 99 p's (on the vertical axis) against the 99 (elapsed) times on the horizontal axis. [see the spreadsheet].
 
-Before we get to the actual Exercises in subsection 2.2, an orientation...
+### How old are the cars on UK roads?
 
-### The p and q functions: an orientation
+Below, you are asked to approximate and carefully examine the age distribution of all of the cars registered in 2019, contained in the Book of Guesses for that year. Since the datafile (which you can open in OpenOffice or in Excel) has separate sheets for different types of vehicles (cars, motorcycles, buses, etc.) you will need to save the 'cars' sheet as a '.csv' (comma separated values) file. Besides some header material (which you can skip using the 'skip' argument in the `read.csv' command in `R`) it has as may rows as there are models  (approx 40,000), and a 'count' column for every year of manufacture, back to 1900 or so, as well as a total across all of these years.  
+
+
+Before we get to the actual Exercises, an orientation ...
+
+
+## The p and q functions: an orientation
 
 The '**p**' function  tells us, for a given value of the characteristic, what **p**roportion of the distribution lies to the left of this specified value.
 
@@ -157,6 +178,8 @@ The main points concerning the **shape of a distribution of individual values** 
 
 ## Exercises
 
+### Guesses in Nenana Ice Classic
+
 Refer again to the guesses about the time of the ice-breakup.
 
 1. Once you have determined the 72 (cumulative) proportions (p's) associated with the 72 half-days, plot them on the vertical axis against the numbers of elapsed days since the beginning of the year on the horizontal axis. Thus the horizontal axis runs from 92 + 10 = 102 days to 92 + 30 + 15 = 137 days.
@@ -225,6 +248,17 @@ https://www.all-about-psychology.com/the-wisdom-of-crowds.html
 
 http://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf
 
+
+### Exercise Ages of Cars
+
+Datafile VEH0126 (Licensed vehicles by make and model and year of manufacture: United Kingdom) file is an 'ODS'  (OpenDocument Spreadsheet) formatted file fdownloadable from  
+
+
+VEH0126: Licensed vehicles by make and model and year of manufacture: United Kingdom (ODS, 3.8MB)
+
+https://www.gov.uk/government/statistical-data-sets/all-vehicles-veh01
+
+https://www.gov.uk/government/statistical-data-sets/all-vehicles-veh01
 
 ## SUMMARY
 
