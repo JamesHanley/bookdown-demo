@@ -49,6 +49,19 @@ First, before we get to differences, an example of the sampling variability of s
 
 The sex-specific panels below shows examples of the sums of the lengths of 10 baby names, placed side by side. (each row includes 9 blank spaces, so that doesn't change the variability: it just shifts all the sums by 9.)  The fact that they are not randomly ordered, bur rather ordered by popularity, doesn't matter that much, since -- as the subsequent graph shows -- popularity is not strongly related to the length of the name. Had we randomly ordered them, we would still see the 'jagged' line endings and the same anount of variation. (Ignore for now the last column, which shows a type of sampling that is to be discouraged, or that, if used, needs post-hoc adjustment of the results).
 
+
+### Ages of UK cars
+
+Refer to the exercise, and the dataset, in the first computing session.
+
+1. Using the year-of-manufacture frequency distribution you derived back then, canculate the mean year, and thus the mean age.
+
+2. From first principles, i.e., using devaitions from  the mean year, calculate the variance -- and thus the SD -- of the distribution.
+
+3. Without actually converting every year-of-manufacture to an age, calculate the standard deviation of the ages.
+
+4. Even though the frequency distribution is not symmetric, how could the SD (or an estimate of it) be of help if you had to estimate the mean age from just a random sample of registered cars.
+
 ### Lengths of Babies' Names
 
 **The 500 most popular baby names, Quebec, 2013-1018**
@@ -383,6 +396,101 @@ segments(0, y.vals , longevity, y.vals, lwd=0.5, col="grey25")
 
 ```
 
+### Variable-length (parallel) parking spaces
+
+When setting up parallel parking on city streets, and out of necessity if spaces have individual parking meters, many municipalities use painted rectangles of a fixed dimension.
+We haven't been able to find universal guidelines for these dimensions -- cities tend to adopt their own,  such as the [ones here](https://www.rochford.gov.uk/sites/default/files/planning_parking_standards_design_and_good_practice.pdf).
+
+Some authorities, [e.g. ](http://www.portphillip.vic.gov.au/line-marking-parking-spaces.htm) have pointed to a waste of space when these fixed-size spaces are used. Indeed JH has seen, in Melbourne, Australia, a street where drivers were asked to park in order, starting from the from end of a block, keeping just 1 metre from the car in front, until the entire block filled up.
+
+To see how many additional cars can be accommodated by this scheme, lets compare how this system compares with a fixed-length box of 6.5 meters. Imagine a city block, 130 metres long, that contains 20 fixed-length parking spots. What if it were converted to the 'just fill up from the one end' system with no boundaries?
+See the example below.
+
+To study this, we have used the most popular makes and models of cars in the UK car-registrations database (déjà vu). For each model, we were able to find its length (in mm) from [this database](https://www.cars-data.com/en/). In instances where the length of a car model changed over time, to reduce the otherwise-lengthy programming and computer-intensive data-extraction, we selected a 'middle' length.
+
+In the resulting [data file](http://www.biostat.mcgill.ca/hanley/statbook/LengthsMostPopularCars.txt), each of the 448 rows 
+gives the make and the model, as well as its frequency in the car-registrations database, and its length in millimetres.
+
+1. Read the data into an `R dataframe` using
+
+2. Select  25 cars randomly from the just-described frequency distribution, and determine whether, parked a meter apart, they fit into the 130-m long space. Repeat the simulation a sufficient number of times to approach the probablity that this system would provide at least 5 additional spaces. 
+
+3. In a future exercise, we will approach this probability calculation by modelling rather than simulation. Can you imagine what model we will use? _Hint_: have a look at the distribution (over your simulations) of the total/mean length of 25 randomly selected cars.
+
+4. This same approach could be used to plan how many people it is safe to have in an elevator that can safely cary a load of say 1000 Km. Does it matter that the shape of the 'weight' distribution has a different shape than the car-lengths distribution? Are there any other factors that come into play here that not present in the car-sampling example? If they are, how will the affect teh calculations? 
+
+5. By the way, what shape does the car-lengths distribution have?
+and how would you summarize it?
+
+6. Suggest ways to measure/who the relation between car-length and popularity.
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F,fig.cap="Parking"}
+
+ds=read.table("http://www.biostat.mcgill.ca/hanley/statbook/LengthsMostPopularCars.txt",as.is=TRUE)
+str(ds)
+
+```
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="30 simulations of the possible gains from using variable-length (parallel) parking spaces.  Shown are 20 fixed-length spaces, each of length 6.5m. In each simulation, 20 cars are selected randomly from the just-described frequency distribution, and their lengths are shown as red lines within the fixed-length parking spaces, and as blues lines, with 1m spacing, in the variable-length scheme."}
+
+# plot(ds$Length.mm,log(ds$No.Registered),cex=0.5,pch=19)
+
+N.SIMS=30
+
+LENGTHS = ds$Length.mm/1000
+Probs = ds$No.Registered/sum(ds$No.Registered)
+
+E.LENGTH = sum(LENGTHS*Probs)
+VAR = sum( (LENGTHS-E.LENGTH)^2 * Probs )
+SD = sqrt(VAR)
+
+N = 20
+
+W=6.5
+
+for(n in 20:30){
+ mu = mean=n*E.LENGTH + n-1
+ prob.fit = pnorm(N*6.5,mean=mu,sd=sqrt(n)*SD)
+ #print(round(c(n,E.LENGTH,mu,SD,prob.fit),2))
+}
+
+par(mfrow=c(1,1),mar = c(5,5,0,0)) 
+
+plot(-10,-10,xlim=c(0.5,N+1),ylim=c(0.01,1.01)*N.SIMS,
+     xlab="Fixed-dimension Parking Spaces",
+     ylab="Simulation No.",
+     xaxp=c(1,N,N-1),
+     cex.axis=1.5,cex.lab=1.5,col="white")
+
+abline(v=1/2 + 0:N,lwd=0.75,col="lightblue")
+
+gaps=(0:(n-1))/W
+
+n = N
+
+for(sim in 1:N.SIMS){
+  
+  lengths = sample(LENGTHS,size=n,prob=Probs)/W
+  ends    = gaps+cumsum(lengths)
+  starts  = ends - lengths
+  arrows(starts+1/2, rep(sim,n), 
+           ends+1/2, rep(sim,n),col="blue", 
+           lwd =1.25,
+           length=0.05,angle=20, code=1
+         )
+  starts = 0:(n-1)
+  ends    = starts+lengths
+  arrows(starts+1/2, rep(sim-0.35,n), 
+           ends+1/2,   
+         rep(sim-0.35,n),col="red",
+         lwd =1.25,
+         length=0.05,angle=20, code=1)
+}
+
+```
+
+
 
 ### Galton's data on family heights
 
@@ -441,10 +549,6 @@ https://fivethirtyeight.com/features/how-common-is-it-for-a-man-to-be-shorter-th
 
 **Exercises**
 
-
-###  Box minus bowl
-
-### car parking  fixed and variable
 
 
 
