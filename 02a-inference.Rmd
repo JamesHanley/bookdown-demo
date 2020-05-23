@@ -293,6 +293,9 @@ probabilities  have a 'long-run' or 'in large numbers of similar instances' inte
 
 * But the focus is less on where we start, and more on **how much we have learned** from the new data.
 
+Bayes' rule: Guide (at several levels)
+
+ref: https://arbital.com/p/bayes_rule/?l=1zq
 
 
 ### Example: parameter is a proportion
