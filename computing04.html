@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-05-20" />
+<meta name="date" content="2020-05-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -275,9 +275,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="18.2.4" data-path="computing04.html"><a href="computing04.html#variable-length-parallel-parking-spaces"><i class="fa fa-check"></i><b>18.2.4</b> Variable-length (parallel) parking spaces</a></li>
 <li class="chapter" data-level="18.2.5" data-path="computing04.html"><a href="computing04.html#galtons-data-on-family-heights"><i class="fa fa-check"></i><b>18.2.5</b> Galton’s data on family heights</a></li>
 <li class="chapter" data-level="18.2.6" data-path="computing04.html"><a href="computing04.html#height-differences-of-random-m-f-pairs"><i class="fa fa-check"></i><b>18.2.6</b> Height differences of random M-F pairs</a></li>
-<li class="chapter" data-level="18.2.7" data-path="computing04.html"><a href="computing04.html#box-minus-bowl"><i class="fa fa-check"></i><b>18.2.7</b> Box minus bowl</a></li>
-<li class="chapter" data-level="18.2.8" data-path="computing04.html"><a href="computing04.html#car-parking-fixed-and-variable"><i class="fa fa-check"></i><b>18.2.8</b> car parking fixed and variable</a></li>
-<li class="chapter" data-level="18.2.9" data-path="computing04.html"><a href="computing04.html#correcting-length-biased-sampling"><i class="fa fa-check"></i><b>18.2.9</b> Correcting length-biased sampling</a></li>
+<li class="chapter" data-level="18.2.7" data-path="computing04.html"><a href="computing04.html#telling-the-sexes-apart"><i class="fa fa-check"></i><b>18.2.7</b> Telling the sexes apart</a></li>
+<li class="chapter" data-level="18.2.8" data-path="computing04.html"><a href="computing04.html#box-minus-bowl"><i class="fa fa-check"></i><b>18.2.8</b> Box minus bowl</a></li>
+<li class="chapter" data-level="18.2.9" data-path="computing04.html"><a href="computing04.html#car-parking-fixed-and-variable"><i class="fa fa-check"></i><b>18.2.9</b> car parking fixed and variable</a></li>
+<li class="chapter" data-level="18.2.10" data-path="computing04.html"><a href="computing04.html#correcting-length-biased-sampling"><i class="fa fa-check"></i><b>18.2.10</b> Correcting length-biased sampling</a></li>
 </ul></li>
 <li class="chapter" data-level="18.3" data-path="computing04.html"><a href="computing04.html#other-exercises-under-construction-1"><i class="fa fa-check"></i><b>18.3</b> Other Exercises (under construction)</a><ul>
 <li class="chapter" data-level="18.3.1" data-path="computing04.html"><a href="computing04.html#the-2018-book-of-guesses-1"><i class="fa fa-check"></i><b>18.3.1</b> The 2018 Book of Guesses</a></li>
@@ -316,7 +317,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><p>repeating a procedure for subsets of a dataframe: <code>by</code></p></li>
 <li><p>extracting the first or last parts of a vector, matrix, table, or data frame: <code>head</code> and <code>tail</code></p></li>
-<li><p>removing duplicate elements/rows rfrom a vector, data frame or array: <code>unique</code></p></li>
+<li><p>removing duplicate elements/rows from a vector, data frame or array: <code>unique</code></p></li>
 <li><p>plotting: <code>plot</code></p></li>
 <li><p>adding one or more straight lines through the current plot: <code>abline</code></p></li>
 <li><p>joining multiple (x,y) points with line segments: <code>lines</code></p></li>
@@ -457,9 +458,9 @@ ds =<span class="st"> </span><span class="kw">read.table</span>(
 ## 5502   LOGAN       636      5 2018      M    2
 ## 5503    LIAM       629      4 2018      M    3</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-90"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-90-1.png" alt="Frequency distribution of the 500 most popular names for babies born in Quebec in 2018. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma. 2. Alice, .. 1. William, 2. Logan, ... ). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column." width="864" />
+<img src="statbook_files/figure-html/unnamed-chunk-90-1.png" alt="The lines show the frequency distributions of the popularity (ranks) of the 500 most popular names for babies born in Quebec in 2018. For example, more than 600 girls and more than 700 boys had the most popular name, while fewer than half this many babies had the 25th  most popular name. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma  2. Alice, .. 1. William, 2. Logan, ...). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column." width="864" />
 <p class="caption">
-Figure 18.1: Frequency distribution of the 500 most popular names for babies born in Quebec in 2018. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma. 2. Alice, .. 1. William, 2. Logan, … ). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by ‘sticking a pin’ (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column.
+Figure 18.1: The lines show the frequency distributions of the popularity (ranks) of the 500 most popular names for babies born in Quebec in 2018. For example, more than 600 girls and more than 700 boys had the most popular name, while fewer than half this many babies had the 25th most popular name. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma 2. Alice, .. 1. William, 2. Logan, …). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by ‘sticking a pin’ (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column.
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">0</span>)) <span class="co"># splits graph into 2 x 1 grid</span>
@@ -660,16 +661,16 @@ Figure 18.3: Lifetables based on mortality rates of Quebec males (blue) and fema
 <div id="variable-length-parallel-parking-spaces" class="section level3">
 <h3><span class="header-section-number">18.2.4</span> Variable-length (parallel) parking spaces</h3>
 <p>When setting up parallel parking on city streets, and out of necessity if spaces have individual parking meters, many municipalities use painted rectangles of a fixed dimension. We haven’t been able to find universal guidelines for these dimensions – cities tend to adopt their own, such as the <a href="https://www.rochford.gov.uk/sites/default/files/planning_parking_standards_design_and_good_practice.pdf">ones here</a>.</p>
-<p>Some authorities, <a href="http://www.portphillip.vic.gov.au/line-marking-parking-spaces.htm">e.g.</a> have pointed to a waste of space when these fixed-size spaces are used. Indeed JH has seen, in Melbourne, Australia, a street where drivers were asked to park in order, starting from the from end of a block, keeping just 1 metre from the car in front, until the entire block filled up.</p>
-<p>To see how many additional cars can be accommodated by this scheme, lets compare how this system compares with a fixed-length box of 6.5 meters. Imagine a city block, 130 metres long, that contains 20 fixed-length parking spots. What if it were converted to the ‘just fill up from the one end’ system with no boundaries? See the example below.</p>
+<p><a href="http://www.portphillip.vic.gov.au/line-marking-parking-spaces.htm">Some authorities</a> have pointed to a waste of space when these fixed-size spaces are used. Indeed JH has seen, in Melbourne, Australia, a street where drivers were asked to park in order, starting from the from end of a block, keeping just 1 metre from the car in front, until the entire block filled up.</p>
+<p>To see how many additional cars can be accommodated by this scheme, let’s compare how this system compares with a fixed-length box of 6.5 meters. Imagine a city block, 130 metres long, that contains 20 fixed-length parking spots. What if it were converted to the ‘just fill up from the one end’ system with no boundaries? See the example below.</p>
 <p>To study this, we have used the most popular makes and models of cars in the UK car-registrations database (déjà vu). For each model, we were able to find its length (in mm) from <a href="https://www.cars-data.com/en/">this database</a>. In instances where the length of a car model changed over time, to reduce the otherwise-lengthy programming and computer-intensive data-extraction, we selected a ‘middle’ length.</p>
-<p>In the resulting <a href="http://www.biostat.mcgill.ca/hanley/statbook/LengthsMostPopularCars.txt">data file</a>, each of the 448 rows gives the make and the model, as well as its frequency in the car-registrations database, and its length in millimetres.</p>
+<p>In the resulting <a href="http://www.biostat.mcgill.ca/hanley/statbook/LengthsMostPopularCars.txt">data file</a>, each of the 448 rows gives the make and the model, as well as its frequency in the car-registrations database, and its length in millimetres. [The datafile also contains the width, height and mass, which we will use elsewhere to investigate a ‘body mass index’ for cars]</p>
 <ol style="list-style-type: decimal">
 <li><p>Read the data into an <code>R dataframe</code> using</p></li>
 <li><p>Select 25 cars randomly from the just-described frequency distribution, and determine whether, parked a meter apart, they fit into the 130-m long space. Repeat the simulation a sufficient number of times to approach the probablity that this system would provide at least 5 additional spaces.</p></li>
 <li><p>In a future exercise, we will approach this probability calculation by modelling rather than simulation. Can you imagine what model we will use? <em>Hint</em>: have a look at the distribution (over your simulations) of the total/mean length of 25 randomly selected cars.</p></li>
-<li><p>This same approach could be used to plan how many people it is safe to have in an elevator that can safely cary a load of say 1000 Km. Does it matter that the shape of the ‘weight’ distribution has a different shape than the car-lengths distribution? Are there any other factors that come into play here that not present in the car-sampling example? If they are, how will the affect teh calculations?</p></li>
-<li><p>By the way, what shape does the car-lengths distribution have? and how would you summarize it?</p></li>
+<li><p>This same approach could be used to plan how many people it is safe to have in an elevator that can safely carry a load of say 1000 Km. Does it matter that the shape of the ‘weight’ distribution has a different shape than the car-lengths distribution? Are there any other factors that come into play here that not present in the car-sampling example? If they are, how will the affect the calculations?</p></li>
+<li><p>By the way, what shape does the car-lengths distribution have? How would you summarize the distribution?</p></li>
 <li><p>Suggest ways to measure/who the relation between car-length and popularity.</p></li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ds=<span class="kw">read.table</span>(<span class="st">&quot;http://www.biostat.mcgill.ca/hanley/statbook/LengthsMostPopularCars.txt&quot;</span>,<span class="dt">as.is=</span><span class="ot">TRUE</span>)
@@ -712,14 +713,23 @@ Figure 18.4: 30 simulations of the possible gains from using variable-length (pa
 </ol>
 <p><a href="https://fivethirtyeight.com/features/how-common-is-it-for-a-man-to-be-shorter-than-his-partner/" class="uri">https://fivethirtyeight.com/features/how-common-is-it-for-a-man-to-be-shorter-than-his-partner/</a></p>
 </div>
+<div id="telling-the-sexes-apart" class="section level3">
+<h3><span class="header-section-number">18.2.7</span> Telling the sexes apart</h3>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-96"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-96-1.png" alt="Birthweights of US males and females born in 2018. Each entry represents the median of the birthweights in a (variable-length) birthweight interval containing 1 percent of the births" width="864" />
+<p class="caption">
+Figure 18.5: Birthweights of US males and females born in 2018. Each entry represents the median of the birthweights in a (variable-length) birthweight interval containing 1 percent of the births
+</p>
+</div>
+</div>
 <div id="box-minus-bowl" class="section level3">
-<h3><span class="header-section-number">18.2.7</span> Box minus bowl</h3>
+<h3><span class="header-section-number">18.2.8</span> Box minus bowl</h3>
 </div>
 <div id="car-parking-fixed-and-variable" class="section level3">
-<h3><span class="header-section-number">18.2.8</span> car parking fixed and variable</h3>
+<h3><span class="header-section-number">18.2.9</span> car parking fixed and variable</h3>
 </div>
 <div id="correcting-length-biased-sampling" class="section level3">
-<h3><span class="header-section-number">18.2.9</span> Correcting length-biased sampling</h3>
+<h3><span class="header-section-number">18.2.10</span> Correcting length-biased sampling</h3>
 <p>=====================</p>
 </div>
 </div>
