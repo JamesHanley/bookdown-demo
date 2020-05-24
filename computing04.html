@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-05-23" />
+<meta name="date" content="2020-05-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -275,7 +275,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="18.2.4" data-path="computing04.html"><a href="computing04.html#variable-length-parallel-parking-spaces"><i class="fa fa-check"></i><b>18.2.4</b> Variable-length (parallel) parking spaces</a></li>
 <li class="chapter" data-level="18.2.5" data-path="computing04.html"><a href="computing04.html#galtons-data-on-family-heights"><i class="fa fa-check"></i><b>18.2.5</b> Galton’s data on family heights</a></li>
 <li class="chapter" data-level="18.2.6" data-path="computing04.html"><a href="computing04.html#height-differences-of-random-m-f-pairs"><i class="fa fa-check"></i><b>18.2.6</b> Height differences of random M-F pairs</a></li>
-<li class="chapter" data-level="18.2.7" data-path="computing04.html"><a href="computing04.html#telling-the-sexes-apart"><i class="fa fa-check"></i><b>18.2.7</b> Telling the sexes apart</a></li>
+<li class="chapter" data-level="18.2.7" data-path="computing04.html"><a href="computing04.html#same-sex-or-opposite-sex"><i class="fa fa-check"></i><b>18.2.7</b> Same-sex or opposite-sex?</a></li>
 <li class="chapter" data-level="18.2.8" data-path="computing04.html"><a href="computing04.html#box-minus-bowl"><i class="fa fa-check"></i><b>18.2.8</b> Box minus bowl</a></li>
 <li class="chapter" data-level="18.2.9" data-path="computing04.html"><a href="computing04.html#car-parking-fixed-and-variable"><i class="fa fa-check"></i><b>18.2.9</b> car parking fixed and variable</a></li>
 <li class="chapter" data-level="18.2.10" data-path="computing04.html"><a href="computing04.html#correcting-length-biased-sampling"><i class="fa fa-check"></i><b>18.2.10</b> Correcting length-biased sampling</a></li>
@@ -713,14 +713,47 @@ Figure 18.4: 30 simulations of the possible gains from using variable-length (pa
 </ol>
 <p><a href="https://fivethirtyeight.com/features/how-common-is-it-for-a-man-to-be-shorter-than-his-partner/" class="uri">https://fivethirtyeight.com/features/how-common-is-it-for-a-man-to-be-shorter-than-his-partner/</a></p>
 </div>
-<div id="telling-the-sexes-apart" class="section level3">
-<h3><span class="header-section-number">18.2.7</span> Telling the sexes apart</h3>
+<div id="same-sex-or-opposite-sex" class="section level3">
+<h3><span class="header-section-number">18.2.7</span> Same-sex or opposite-sex?</h3>
+<p>This exercise is modeleled on one JH used in the <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/homegrown_exercises_06.pdf#page=3">607 course in 2001,</a> but now using data from all <a href="https://www.cdc.gov/nchs/data_access/vitalstatsonline.htm">US births in 2018</a></p>
+<p>The birthweights with a panel pertain to infants of the same sex, but different panels may pertain to different sexes.</p>
+<p>By eye, by comparing <strong>all</strong> the entries in one panel with all of those in another, you may be able to discern if two panels have different means (or medians). But what can you conclude if you take <strong>just a sample</strong> from each of 2 panels and perform a formal null hypothesis test using the difference in the sample means or the sample medians, or the ranks?</p>
+<p>In 2001, students were asked to perform tests of the following 4 (obviously overlapping, so not completely independent) contrasts:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mu_A\)</span> vs. <span class="math inline">\(\mu_B\)</span> <span class="math inline">\(\quad\)</span> 2. <span class="math inline">\(\mu_C\)</span> vs. <span class="math inline">\(\mu_D\)</span> <span class="math inline">\(\quad\)</span> 3. <span class="math inline">\(\mu_A\)</span> vs. <span class="math inline">\(\mu_D\)</span> <span class="math inline">\(\quad\)</span> 4. <span class="math inline">\(\mu_B\)</span> vs. <span class="math inline">\(\mu_C\)</span></li>
+</ol>
+<p>They were asked to use new (fresh) samples of size <span class="math inline">\(n\)</span> = 4 and <span class="math inline">\(n\)</span> = 4 for each of the 4 tests.</p>
+<p>These sample sizes will (rightly) strike you as being way to small to reliably distinguish two populations whose means are not that far apart. Indeed, <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=1">most of the students in 2001 were unable to correctly identify the opposite-sex panels</a></p>
+<p>But, when it comes to distinguishing same-sex panels from opposite-sex panels of <strong>adult heights</strong>, most of the students in 2001 <strong>were able</strong> to <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=2">correctly identify the opposite-sex panels</a>, with only a few mistaking the same-sex panels for opposite-sex ones.</p>
+<p>Although it makes no sense, they – like so many textbooks start with – were told that the Population Standard Deviation (<span class="math inline">\(\sigma\)</span>) was known. The main reason for being allowed this ‘inside knowledge’ (typically reserved for Gods and Oracles) was that it made the computation of the (z-) test statistic easier: students only had compute the two sample means, easily done by hand, and avoided having to compute sample standard deviations. For now, we will do the same, but later will also go on and carry out real-world tests that don’t rely on ‘inside’ information about standars deviations. [After all, if you know the Population Standard Deviation, then you must already know the Population Mean.]</p>
+<p><strong>‘ARITHMETIC’ of Testing if panels ‘1’ and ‘2’ have same mean</strong></p>
+<ul>
+<li><p><strong><em>Null Hypothesis</em></strong>: H<span class="math inline">\(_0: \ \mu_1 = \mu_2\)</span> [same sex, or, technically speaking, same mean]</p></li>
+<li><p><strong><em>Alternative Hypothesis</em></strong> H<span class="math inline">\(_{alt}: \mu_1 \ne \mu_2\)</span> [different means, thus opposite sexes]</p></li>
+<li><p><strong><em>Data</em></strong>: sample means <span class="math inline">\(\bar{y}_1\)</span> and <span class="math inline">\(\bar{y}_2,\)</span> bases on sample sizes <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span></p></li>
+<li><p><strong><em>Test Statistic</em></strong>: <span class="math display">\[z = (\bar{y}_1- \bar{y}_2) / SD[\bar{y}_1 - \bar{y}_2],\]</span> where <span class="math display">\[SD[\bar{y}_1 - \bar{y}_2] = \sqrt{\sigma^2_1/n_1 + \sigma^2_2/n_2} \ .\]</span></p></li>
+<li><p><strong><em>Probability, P</em></strong> that, under <span class="math inline">\(H_0\)</span>, the test statistic would exceed the absolute value of the observed <span class="math inline">\(z\)</span> statistic. [the absolute value is used when H<span class="math inline">\(_{alt}\)</span> is ‘2-sided’.]</p></li>
+<li><p><strong><em>Pre-specified probability</em>, <span class="math inline">\(\alpha\)</span>,</strong> below which H<span class="math inline">\(_0\)</span> is ‘<em>rejected</em>’. [by convention, it is often taken to be 0.05; we will use <span class="math inline">\(\alpha\)</span> = 0.10, so that our simulations are almost sure to yield some ‘false positives’]</p></li>
+</ul>
+<p>In the case where <span class="math inline">\(n_1 = n_2 = 4\)</span>, and <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\(\sigma_2\)</span> are known, we can work out ahead of time what minimum difference between <span class="math inline">\(\bar{y}_1\)</span> and <span class="math inline">\(\bar{y}_2\)</span> would lead us to reject the null (same-sex, or same mean) hypothesis. With <span class="math inline">\(\alpha\)</span> = 0.10, the ’critical value of <span class="math inline">\(z\)</span> is <span class="math inline">\(\pm\)</span> 1.645, i.e, the two sample means would need to be at least 1.645 <span class="math inline">\(\times SD[\bar{y}_1 - \bar{y}_2]\)</span> apart.</p>
+<p>In this simplified and somewhat unrealistic example, where we don’t know if we are in the same-sex or opposite sex scenario, we don’t know whether we should use <span class="math inline">\(\sigma_F\)</span> = 574 grams and <span class="math inline">\(\sigma_M\)</span> = 600 grams, or 574 and 574, or 601 and 601. So we will use a ‘compromise’ <span class="math inline">\(\sigma_1\)</span> = <span class="math inline">\(\sigma_2\)</span> = 587. Substituting these into the <span class="math inline">\(SD[\bar{y}_1 - \bar{y}_2]\)</span> formula yields an SD of <span class="math inline">\(\sqrt{587^2/4 + 587^2/4}\)</span> = 415 grams. Thus the critical distance between the two sample means needs to be <code>1.645</code> <span class="math inline">\(\times\)</span> 415 = 683 grams.</p>
+<p>For interest, here is what the critical distance is for other sample sizes: <span class="math inline">\(n_1 = n_2 = 16:\)</span> 341 grams;  <span class="math inline">\(n_1 = n_2 = 64:\)</span> 171 grams;  <span class="math inline">\(n_1 = n_2 = 256:\)</span> 85 grams.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-96"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-96-1.png" alt="Birthweights of US males and females born in 2018. Each entry represents the median of the birthweights in a (variable-length) birthweight interval containing 1 percent of the births" width="864" />
+<img src="statbook_files/figure-html/unnamed-chunk-96-1.png" alt="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled." width="864" />
 <p class="caption">
-Figure 18.5: Birthweights of US males and females born in 2018. Each entry represents the median of the birthweights in a (variable-length) birthweight interval containing 1 percent of the births
+Figure 18.5: Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%, Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q’s are scrambled.
 </p>
 </div>
+<p><strong>Exercises</strong></p>
+<ol style="list-style-type: decimal">
+<li>…</li>
+</ol>
+<p>To help with rapid compilation of results in class, circle below which contrasts yielded “statistically significant” differences and BRING YOUR 8 DECISIONS TO CLASS.</p>
+<p>Birthweights Adult Heights “Arithmetic” of Testing if 2 panels have same mean Bvs.C B vs. C</p>
+<ol start="2" style="list-style-type: decimal">
+<li>…</li>
+</ol>
+<p>On class, I will ‘play god’ and tell you which contrasts belong in which rows. In practice, you may not be able to unequivocally determine the truth – or it may take a lot more work. And determining how big a difference is takes even more work. Results of statistical tests [columns] performed by students in relation to real situations[rows]</p>
 </div>
 <div id="box-minus-bowl" class="section level3">
 <h3><span class="header-section-number">18.2.8</span> Box minus bowl</h3>
