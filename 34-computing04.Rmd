@@ -536,39 +536,89 @@ to do so, address the issue of how critical your assumptions are, and whether th
 
 https://fivethirtyeight.com/features/how-common-is-it-for-a-man-to-be-shorter-than-his-partner/
 
-### Telling the sexes apart
+### Same-sex or opposite-sex?
+
+This exercise is modeleled on one JH used in the [607 course in 2001,](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/homegrown_exercises_06.pdf#page=3) but now using data from all [US births in 2018](https://www.cdc.gov/nchs/data_access/vitalstatsonline.htm)
+
+ The birthweights with a panel pertain to infants of the same sex, but different panels may pertain to different sexes.
+ 
+By eye, by comparing **all** the entries in one panel with all of those in another, you may be able to discern if two panels have different means (or medians). But what can you conclude if you take **just a sample** from each of 2 panels and perform a formal null hypothesis test using the difference in the sample means or  the sample medians, or the ranks? 
+
+In 2001, students were asked to perform tests of the following 4 (obviously overlapping, so not completely independent) contrasts:
+
+1. $\mu_A$ vs. $\mu_B$ $\quad$ 2. $\mu_C$ vs. $\mu_D$ $\quad$ 3. $\mu_A$ vs. $\mu_D$ $\quad$ 4. $\mu_B$ vs. $\mu_C$
+
+They were asked to use new (fresh) samples of size $n$ = 4 and $n$ = 4 for each of the 4 tests.
+
+These sample sizes will (rightly) strike you as being way to small to reliably distinguish two populations whose means are not that far apart. Indeed, [most of the students in 2001 were unable to correctly identify the 
+opposite-sex panels](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=1) 
+
+But, when it comes to distinguishing same-sex panels from   opposite-sex panels of **adult heights**, most of the students in 2001 **were able** to [correctly identify the opposite-sex panels](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=2), with only a few mistaking the same-sex panels for opposite-sex ones.   
+
+Although it makes no sense, they -- like so many textbooks start with --  were told that the Population Standard Deviation ($\sigma$) was known. The main reason for being allowed this 'inside knowledge' (typically reserved for Gods and Oracles) 
+was that it made the computation of the (z-) test statistic easier:  students only had compute the two sample means, easily done by hand, and avoided having to compute sample standard deviations. For now, we will do the same, but later will also go on and carry out  real-world tests that don't rely on 'inside' information about standars deviations. [After all, if you know the Population Standard Deviation, then you must already know the Population Mean.]  
+
+**'ARITHMETIC' of Testing if panels '1' and '2' have same mean**
+
+* **_Null Hypothesis_**: H$_0: \ \mu_1 = \mu_2$ [same sex, or, technically speaking, same mean] 
+
+* **_Alternative Hypothesis_** H$_{alt}: \mu_1 \ne \mu_2$ [different means, thus opposite sexes]
+
+* **_Data_**: sample means $\bar{y}_1$ and  $\bar{y}_2,$ bases on sample sizes $n_1$ and $n_2$
+
+* **_Test Statistic_**: 
+$$z = (\bar{y}_1- \bar{y}_2) / SD[\bar{y}_1 - \bar{y}_2],$$ where $$SD[\bar{y}_1 - \bar{y}_2] = \sqrt{\sigma^2_1/n_1 + \sigma^2_2/n_2} \ .$$
+
+* **_Probability, P_** that, under $H_0$, the test statistic would exceed the absolute value of the observed $z$ statistic. [the absolute value is used when H$_{alt}$ is '2-sided'.]
+
+* **_Pre-specified probability_, $\alpha$,** below which H$_0$ is '_rejected_'. [by convention, it is often taken to be 0.05; we will use $\alpha$ = 0.10, so that our simulations are almost sure to yield some 'false positives']
+
+In the case where $n_1 = n_2 = 4$, and $\sigma_1$ and $\sigma_2$ are known, we can work out ahead of time what minimum difference between $\bar{y}_1$ and $\bar{y}_2$
+would lead us to reject the null (same-sex, or same mean) hypothesis. With $\alpha$ = 0.10, the 'critical value of $z$ is $\pm$ 1.645, i.e, the two sample means would need to be at least 1.645 $\times SD[\bar{y}_1 - \bar{y}_2]$  apart.
+
+In this simplified and somewhat unrealistic example, where we don't know if we are in the same-sex or opposite sex scenario, we don't know whether we should use  $\sigma_F$ = 574 grams and $\sigma_M$ = 600 grams, or 574  and 574, or 601 and 601. So we will  use a 'compromise' $\sigma_1$ = $\sigma_2$ = 587. Substituting these into the  $SD[\bar{y}_1 - \bar{y}_2]$ formula yields an SD of $\sqrt{587^2/4 + 587^2/4}$ = `r round(587*sqrt(1/4+1/4))` grams. Thus the critical distance between the two sample means needs to be `1.645` $\times$ 415 = `r round(1.645*415)` grams.
+
+For interest, here is what the critical distance is for other sample sizes: $n_1 = n_2 = 16:$ 341 grams; \ $n_1 = n_2 = 64:$ 171 grams; \ $n_1 = n_2 = 256:$ 85 grams.
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F, fig.cap="Birthweights of US males and females born in 2018. Each entry represents the median of the birthweights in a (variable-length) birthweight interval containing 1 percent of the births"}
+```{r,eval=T, echo=F, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F, fig.cap="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled."}
 
-F=c(
-1250,1720,1960,2123,2230,2320,2381,2440,2495,2540,
-2580,2610,2645,2679,2705,2730,2750,2778,2800,2820,
-2835,2860,2872,2892,2910,2920,2945,2951,2975,2984,
-3005,3010,3031,3040,3060,3065,3085,3090,3110,3119,
-3130,3147,3152,3170,3175,3192,3204,3215,3230,3235,
-3250,3260,3274,3289,3294,3310,3317,3330,3345,3355,
-3370,3376,3395,3402,3418,3430,3440,3459,3465,3485,
-3490,3510,3520,3540,3547,3570,3578,3600,3610,3629,
-3644,3657,3680,3700,3714,3740,3760,3780,3800,3827,
-3856,3884,3915,3954,3997,4040,4096,4167,4255,4420)
+#ds$Sex: F
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#    227    2920    3240    3203    3560    8165 
+#ds$Sex: M
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#    227    3015    3364    3317    3690    8165 
+# aggregate(ds$BirthWeight,by=list(ds$Sex),sd)
+#       F 573.5224
+#       M 600.9757
+# 
 
-M=c(
-1272,1755,2012,2173,2292,2381,2455,2520,2575,2620,
-2665,2699,2735,2770,2795,2821,2850,2870,2892,2920,
-2940,2952,2977,2995,3010,3033,3045,3062,3080,3090,
-3110,3120,3140,3149,3170,3175,3195,3204,3220,3232,
-3245,3260,3270,3289,3291,3310,3317,3335,3345,3360,
-3374,3380,3400,3402,3420,3430,3444,3459,3465,3485,
-3490,3510,3515,3533,3544,3560,3572,3584,3600,3610,
-3629,3640,3657,3669,3685,3700,3714,3730,3742,3767,
-3780,3799,3820,3830,3856,3880,3900,3920,3941,3969,
-3997,4030,4060,4102,4140,4195,4250,4317,4420,4575)
+Q=matrix(c(
+ 862,1540,1871,2060,2185,2285,2355,2420,2475,2523,
+2567,2608,2637,2665,2693,2722,2750,2775,2792,2810,
+2835,2855,2867,2891,2905,2920,2940,2950,2970,2980,
+3000,3010,3030,3035,3055,3062,3080,3090,3105,3118,
+3130,3145,3150,3170,3175,3190,3203,3210,3230,3232,
+3250,3260,3270,3289,3290,3310,3317,3330,3345,3353,
+3370,3375,3395,3402,3417,3430,3440,3459,3465,3485,
+3490,3510,3520,3540,3550,3570,3580,3600,3610,3629,
+3650,3660,3685,3701,3720,3742,3770,3790,3810,3836,
+3865,3895,3930,3969,4010,4060,4120,4200,4320,4564,
+ 878,1560,1905,2102,2240,2350,2430,2495,2552,2608,
+ 2645,2690,2722,2750,2780,2810,2835,2863,2890,2910,
+ 2930,2948,2974,2990,3005,3030,3040,3060,3070,3090,
+ 3104,3119,3135,3147,3160,3175,3190,3204,3216,3232,
+ 3240,3260,3265,3285,3290,3310,3317,3330,3345,3355,
+ 3371,3378,3395,3402,3420,3430,3440,3459,3462,3480,
+ 3489,3506,3515,3530,3544,3558,3572,3580,3600,3610,
+ 3629,3640,3657,3670,3685,3700,3714,3732,3744,3770,
+ 3780,3799,3820,3840,3856,3884,3905,3930,3950,3980,
+ 4008,4040,4080,4111,4160,4210,4280,4360,4479,4725),
+100,2)
 
 par(mfrow=c(1,1),mar = c(0,0,0,0)) 
 
-Q = matrix(round(qnorm((1:100)/101,3250,500)),
-           100,2)
 L = c(0.03,0.97)
 plot(-10,-10,xlim=L,ylim=L,
      xlab="",ylab="",col="white",
@@ -583,7 +633,8 @@ P = matrix(LETTERS[c(3,1,4,2)],2,2)
 for( i.r in 1:2){
   yc = 0.25 + (i.r==2)*0.5
   for(i.c in 1:2){
-    w = sample(F)
+    if(i.r==i.c)  w = sample(Q[,1]) + (i.r==1) - (i.r==2)
+    if(i.r!=i.c)  w = sample(Q[,2]) + (i.r==1) - (i.r==2)
     xc = 0.25 + (i.c==2)*0.5
     rect(xc-1/4,yc-1/4,xc+1/4,yc+1/4)
     text(xc-1/4,yc+1/4,P[i.r,i.c],adj=c(-0.5,1.5))
@@ -593,6 +644,7 @@ for( i.r in 1:2){
       for(i.cc in 1:10){
         ii=ii+1
         txt = toString(w[ii])
+        if(nchar(txt)==3) txt = paste(" ",txt)
         text(xc+(i.cc-5.75+0.5*(i.cc > 5))*dx,
              yc+(i.rr-5.75+0.5*(i.rr > 5))*dy,txt,
              cex=0.725,family="mono")
@@ -604,6 +656,23 @@ for( i.r in 1:2){
 
 ```
 
+**Exercises**
+
+1. ...
+
+To help with rapid compilation of results in class, circle below which contrasts yielded "statistically significant" differences and BRING YOUR 8 DECISIONS TO CLASS.
+
+
+ Birthweights
+Adult Heights
+"Arithmetic" of Testing if 2 panels have same mean
+Bvs.C B vs. C
+
+
+2. ...
+
+On class, I will 'play god' and tell you which contrasts belong in which rows. In practice, you may not be able to unequivocally determine the truth -- or it may take a lot more work. And determining how big a difference is takes even more work.
+Results of statistical tests [columns] performed by students in relation to real situations[rows]
 
 ###  Box minus bowl
 
