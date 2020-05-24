@@ -80,7 +80,7 @@ by(ds,list(g=ds$Gender,y=ds$Year),head,n=3)
 
 ```
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=18, fig.width=9, warning=FALSE, message=F,fig.cap="The lines show the frequency distributions of the popularity (ranks) of the 500 most popular names for babies born in Quebec in 2018. For example, more than 600 girls and more than 700 boys had the most popular name, while fewer than half this many babies had the 25th  most popular name. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma  2. Alice, .. 1. William, 2. Logan, ...). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column."}
+```{r,eval=T, echo=F, fig.align="center", fig.height=18, fig.width=9, warning=FALSE, message=F,fig.cap="The closely spaced vertical lines show the frequency distributions of the popularity (ranks) of the 500 most popular names for babies born in Quebec in 2018. For example, more than 600 girls and more than 700 boys had the most popular name, while fewer than half this many babies had the 25th  most popular name. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma  2. Alice, .. 1. William, 2. Logan, ...). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the black ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column."}
 
 
 par(mfrow=c(2,1),mar = c(0,0,1,0))
@@ -102,18 +102,19 @@ for( year in max(ds$Year) ) {
   S = matrix(NA,n.rows,2)
   
   plot(d$Rank, d$Frequency,
-       ylim=c(-0.025,1.03)*ymax,col=COL,
+       ylim=c(-0.03,1.03)*ymax,col=COL,
        xlim=c(-12,525),
-     type="l", lwd=1,main=toString(year),
+     type="h", main=toString(year),
      xaxt = "n", yaxt="n" , xlab="", ylab="",
-     frame = FALSE)
+     frame = FALSE, lwd=0.125)
   
-  segments(0,0,0,ymax, col=COL)
-  segments(0,5,500,5, col=COL)
+  #segments(0,0,0,ymax, col=COL)
+  segments(0,0,500,0, col=COL)
   for(rank in c(1, seq(25,500,25) ) ) {
-     text(rank,1, toString(rank),cex=0.75,col=COL)
+     text(rank,-3, toString(rank),
+          adj=c(0.5,1),cex=0.75,col=COL)
   }
-  text(250,-10, "Rank [1: Most Popular]",adj=c(0.5,1),cex=1,col=COL)
+  text(250,-20, "Rank [1: Most Popular]",adj=c(0.5,1),cex=1,col=COL)
   
   for(fr in c(1, seq(0,ymax,50) ) ) {
      text(-5,fr, toString(fr),cex=0.75,
@@ -538,25 +539,25 @@ https://fivethirtyeight.com/features/how-common-is-it-for-a-man-to-be-shorter-th
 
 ### Same-sex or opposite-sex?
 
-This exercise is modeleled on one JH used in the [607 course in 2001,](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/homegrown_exercises_06.pdf#page=3) but now using data from all [US births in 2018](https://www.cdc.gov/nchs/data_access/vitalstatsonline.htm)
+This exercise is modelled on one JH used in the [607 course in 2001,](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/homegrown_exercises_06.pdf#page=3) but now using data from all [US births in 2018](https://www.cdc.gov/nchs/data_access/vitalstatsonline.htm)
 
- The birthweights with a panel pertain to infants of the same sex, but different panels may pertain to different sexes.
+ The birthweights within a panel pertain to infants of the same sex, but different panels may pertain to different sexes.
  
 By eye, by comparing **all** the entries in one panel with all of those in another, you may be able to discern if two panels have different means (or medians). But what can you conclude if you take **just a sample** from each of 2 panels and perform a formal null hypothesis test using the difference in the sample means or  the sample medians, or the ranks? 
 
-In 2001, students were asked to perform tests of the following 4 (obviously overlapping, so not completely independent) contrasts:
+In 2001, students were asked to perform tests of the following **4** (obviously overlapping, so not completely independent) **contrasts**:
 
 1. $\mu_A$ vs. $\mu_B$ $\quad$ 2. $\mu_C$ vs. $\mu_D$ $\quad$ 3. $\mu_A$ vs. $\mu_D$ $\quad$ 4. $\mu_B$ vs. $\mu_C$
 
-They were asked to use new (fresh) samples of size $n$ = 4 and $n$ = 4 for each of the 4 tests.
+They were asked to use new (fresh, independent) samples of size $n$ = 4 and $n$ = 4 for each of the 4 tests.
 
-These sample sizes will (rightly) strike you as being way to small to reliably distinguish two populations whose means are not that far apart. Indeed, [most of the students in 2001 were unable to correctly identify the 
+These sample sizes will (rightly) strike you as being much too small to reliably distinguish two populations whose means are not that far apart. Indeed, [most of the students in 2001 were unable to correctly identify the 
 opposite-sex panels](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=1) 
 
-But, when it comes to distinguishing same-sex panels from   opposite-sex panels of **adult heights**, most of the students in 2001 **were able** to [correctly identify the opposite-sex panels](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=2), with only a few mistaking the same-sex panels for opposite-sex ones.   
+But, when it comes to distinguishing same-sex panels from opposite-sex panels of **adult heights**, most of the students in 2001 **were able** to [correctly identify the opposite-sex panels](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=2), with only a few mistaking the same-sex panels for opposite-sex ones [we are in charge of controlling the latter errors, whereas (with $n$ fixed) _Nature_ is in charge of the success rate with the former].   
 
-Although it makes no sense, they -- like so many textbooks start with --  were told that the Population Standard Deviation ($\sigma$) was known. The main reason for being allowed this 'inside knowledge' (typically reserved for Gods and Oracles) 
-was that it made the computation of the (z-) test statistic easier:  students only had compute the two sample means, easily done by hand, and avoided having to compute sample standard deviations. For now, we will do the same, but later will also go on and carry out  real-world tests that don't rely on 'inside' information about standars deviations. [After all, if you know the Population Standard Deviation, then you must already know the Population Mean.]  
+Although it isn't realistic, students -- like so many textbooks start with --  were told that the Population Standard Deviation ($\sigma$) was known. The main reason for being allowed this 'inside knowledge' (typically reserved for Gods and Oracles) 
+was that it made the computation of the (z-) test statistic easier:  students only had compute the two sample means, easily done by hand, and avoided having to compute sample standard deviations. [It also fits with the practice of teaching the simpler _z_-tests, with their fixed quantiles, first, and then moving to the sample-size-dependent _t_-based quantiles later]. For now, we will do the same, but later will also go on and carry out  real-world tests that don't rely on 'inside' information about standard deviations. [After all, if you know the Population Standard Deviation, then you must already know the Population Mean.]  
 
 **'ARITHMETIC' of Testing if panels '1' and '2' have same mean**
 
@@ -578,7 +579,36 @@ would lead us to reject the null (same-sex, or same mean) hypothesis. With $\alp
 
 In this simplified and somewhat unrealistic example, where we don't know if we are in the same-sex or opposite sex scenario, we don't know whether we should use  $\sigma_F$ = 574 grams and $\sigma_M$ = 600 grams, or 574  and 574, or 601 and 601. So we will  use a 'compromise' $\sigma_1$ = $\sigma_2$ = 587. Substituting these into the  $SD[\bar{y}_1 - \bar{y}_2]$ formula yields an SD of $\sqrt{587^2/4 + 587^2/4}$ = `r round(587*sqrt(1/4+1/4))` grams. Thus the critical distance between the two sample means needs to be `1.645` $\times$ 415 = `r round(1.645*415)` grams.
 
-For interest, here is what the critical distance is for other sample sizes: $n_1 = n_2 = 16:$ 341 grams; \ $n_1 = n_2 = 64:$ 171 grams; \ $n_1 = n_2 = 256:$ 85 grams.
+For interest, here is what the critical distance would be for other sample sizes: $n_1 = n_2 = 16:$ 341 grams; \ $n_1 = n_2 = 64:$ 171 grams; \ $n_1 = n_2 = 256:$ 85 grams. [Notice the _root of n_ law in action.]
+
+Whereas, as an individual 'investigator', you might be luck or unlucky in which of the 4 comparisons you get right, the real issue is the **probabilities of getting them right**. That is why in 2001 JH had each student in the large 707 class , and why he tabulated their results, so we got a better sense of waht these probabilities are. And better still, in 2020, you alone can use the computer to get an even better sense.
+
+We will use the same 2 x 2 table used in 2001, where the 2 rows  are the 2 truths, i.e, the comparions was in fact a same-sex or opposite-sex comparison, and the 2 columns are the two possible 'results' of the statistical test, i.e., it was 'negative', with a P-value $\ge$  0.1, (the diffrence in the sample means  was not 'statistically significant') ; or 'positive'  with a P-value $<$  0.1, the difference was 'statistically significant', large enough that the null hypothesis of same-sex populations (same-population-means) was 'rejected'.
+
+When you review each test result, you can only classify them by column, by 'engatibe' or 'positive'. And in real life, that would be as far as you can go, since your are not privy to the 'truth'. But, here, we have the _luxury of knowing_ which comparisons are of each type, so we can croos-classify the results, and examine the avearge performance of these tests. In this way, we get a feel for the probabilities that they will perfrtom they way we  want them to, and can see how the probabilities are modified by the amount of effort (sample size) we are willing to employ, as well as how small/large a signal, and how small/large the noise, we are up against.
+
+So, for now, in your one set of 4 hand-worked examples, you can put the 4 test results into two columns. Below, when we will do  a lar ge number of tests, we will reveal which comparisons are of which type, so you can doubly-classift them.
+
+**Exercises**
+
+1.  For each of the 4 contrasts listed above, use a 'reproducible' random selection method to choose 4 infants from each of the two specified panels. [Note: since each entry represents almost 200,000 infects, the sampling from the 100 values (quantiles) should be with replacement. This may not matter a lot when you are sampling just 4 infants, but if you were sampling 16 or 64 or 256, it would matter] Compute the difference between the sample meansNote which contrasts yielded 'statistically significant' differences (i.e. differences of 6xx: these can be the first entries in your 2 x 2 table below, once the 'identities'truth' is revealed.
+
+
+**Cross-classification of results of statistical tests [columns] in relation to real situations[rows]**
+
+
+
+|             |           |               | Test Result   |             |  Total |
+|:------------|----------:|--------------:|--------------:|------------:|-------:|
+|             |           | 'Negative'    |               | 'Positive'  |        |
+|             |           |  $P \ge 0.1$  |               | $P \lt 0.1$ |        |
+|             |  -------- |               |               |             |        |
+|             |  SAME-SEX |  A            |               |           C |        |
+|  **TRUTH**  |           |               |               |             |        |
+|             |  OPPOSITE |  B            |               |           D |        |
+|             |  -------- |  . . . . .    |               |             |        |
+|             |  TOTAL    |  $n_{neg.}$   |               |  $n_{pos.}$ |   N    |
+
 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F, fig.cap="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled."}
@@ -658,7 +688,7 @@ for( i.r in 1:2){
 
 **Exercises**
 
-1. ...
+2. ...
 
 To help with rapid compilation of results in class, circle below which contrasts yielded "statistically significant" differences and BRING YOUR 8 DECISIONS TO CLASS.
 
@@ -671,8 +701,7 @@ Bvs.C B vs. C
 
 2. ...
 
-On class, I will 'play god' and tell you which contrasts belong in which rows. In practice, you may not be able to unequivocally determine the truth -- or it may take a lot more work. And determining how big a difference is takes even more work.
-Results of statistical tests [columns] performed by students in relation to real situations[rows]
+
 
 ###  Box minus bowl
 
@@ -681,7 +710,6 @@ Results of statistical tests [columns] performed by students in relation to real
 ### Correcting length-biased sampling 
 
 
- 
  =====================
  
  

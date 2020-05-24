@@ -3,6 +3,7 @@ title: "Introduction to Statistical Analysis: a regression-from-the-outset  appr
 author: "Sahir, Shirin and Jim"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+runtime: shiny
 output: bookdown::gitbook 
 documentclass: book
 bibliography: [book.bib, packages.bib]
