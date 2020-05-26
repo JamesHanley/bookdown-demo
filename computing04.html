@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-05-24" />
+<meta name="date" content="2020-05-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -694,7 +694,7 @@ Figure 18.4: 30 simulations of the possible gains from using variable-length (pa
 <ol style="list-style-type: decimal">
 <li><p>Categorize each father’s height into one of 3 subgroups (shortest 1/4, middle 1/2, tallest 1/4). Do likewise for mothers. Then, <a href="http://www.biostat.mcgill.ca/hanley/statbook/GaltonHeightCouples.png">as Galton did</a>, obtain the 2-way frequency distribution and visually assess whether you agree with the conclusion “we may therefor regard…” he draws <a href="http://www.biostat.mcgill.ca/hanley/statbook/GaltonHeightCouples.png">following his Table 9</a></p></li>
 <li><p>Calculate the variance Var[F] and Var[M] of the fathers’ [F] and mothers’ [M] heights respectively. Then create a new variable consisting of the sum of F and M, and calculate Var[F+M]. Comment. Galton called this a “shrewder” test than the “ruder” (coarser) one he used in 1. If the two were unrelated (this is a stronger quality than ‘uncorrelated’), what would you expect? If the variance of the sum is greater than the sum of the variances of the parts, what does it suggest.</p></li>
-<li><p>What if he had subtracted them and calculated the variance of the difefrences?</p></li>
+<li><p>What if he had subtracted them and calculated the variance of the differences?</p></li>
 <li><p>When Galton first analyzed these data in 1885-1886, Galton and Pearson hadn’t yet invented the correlation coefficient. Calculate this coefficient and see how it compares with your impressions in 1 and 2.</p></li>
 <li><p>Compare this correlation with the correlation between parental ages in the Penrose dataset.</p></li>
 </ol>
@@ -715,14 +715,23 @@ Figure 18.4: 30 simulations of the possible gains from using variable-length (pa
 </div>
 <div id="same-sex-or-opposite-sex" class="section level3">
 <h3><span class="header-section-number">18.2.7</span> Same-sex or opposite-sex?</h3>
-<p>This exercise is modelled on one JH used in the <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/homegrown_exercises_06.pdf#page=3">607 course in 2001,</a> but now using data from all <a href="https://www.cdc.gov/nchs/data_access/vitalstatsonline.htm">US births in 2018</a></p>
-<p>The birthweights within a panel pertain to infants of the same sex, but different panels may pertain to different sexes.</p>
+<p>This 4-panel exercise is modelled on one JH used in the <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/homegrown_exercises_06.pdf#page=3">607 course in 2001,</a> but now using data from all <a href="https://www.cdc.gov/nchs/data_access/vitalstatsonline.htm">US births in 2018</a></p>
+<p>The data are in this data.frame, and shown in 4 panels numbered A-D. The birthweights within a panel pertain to infants of the same sex, but different panels may pertain to different sexes.</p>
+<pre><code>## &#39;data.frame&#39;:    400 obs. of  2 variables:
+##  $ Panel      : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
+##  $ Birthweight: int  2809 2186 2607 3231 3484 2836 863 3329 3628 3551 ...</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-98"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-98-1.png" alt="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled." width="864" />
+<p class="caption">
+Figure 18.5: Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%, Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q’s are scrambled.
+</p>
+</div>
 <p>By eye, by comparing <strong>all</strong> the entries in one panel with all of those in another, you may be able to discern if two panels have different means (or medians). But what can you conclude if you take <strong>just a sample</strong> from each of 2 panels and perform a formal null hypothesis test using the difference in the sample means or the sample medians, or the ranks?</p>
 <p>In 2001, students were asked to perform tests of the following <strong>4</strong> (obviously overlapping, so not completely independent) <strong>contrasts</strong>:</p>
 <ol style="list-style-type: decimal">
 <li><span class="math inline">\(\mu_A\)</span> vs. <span class="math inline">\(\mu_B\)</span> <span class="math inline">\(\quad\)</span> 2. <span class="math inline">\(\mu_C\)</span> vs. <span class="math inline">\(\mu_D\)</span> <span class="math inline">\(\quad\)</span> 3. <span class="math inline">\(\mu_A\)</span> vs. <span class="math inline">\(\mu_D\)</span> <span class="math inline">\(\quad\)</span> 4. <span class="math inline">\(\mu_B\)</span> vs. <span class="math inline">\(\mu_C\)</span></li>
 </ol>
-<p>They were asked to use new (fresh, independent) samples of size <span class="math inline">\(n\)</span> = 4 and <span class="math inline">\(n\)</span> = 4 for each of the 4 tests.</p>
+<p>They were asked to use new (fresh, independent) <strong>samples of size <span class="math inline">\(n\)</span> = 4</strong> and <span class="math inline">\(n\)</span> = <strong>4</strong> for each of the 4 tests.</p>
 <p>These sample sizes will (rightly) strike you as being much too small to reliably distinguish two populations whose means are not that far apart. Indeed, <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=1">most of the students in 2001 were unable to correctly identify the opposite-sex panels</a></p>
 <p>But, when it comes to distinguishing same-sex panels from opposite-sex panels of <strong>adult heights</strong>, most of the students in 2001 <strong>were able</strong> to <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=2">correctly identify the opposite-sex panels</a>, with only a few mistaking the same-sex panels for opposite-sex ones [we are in charge of controlling the latter errors, whereas (with <span class="math inline">\(n\)</span> fixed) <em>Nature</em> is in charge of the success rate with the former].</p>
 <p>Although it isn’t realistic, students – like so many textbooks start with – were told that the Population Standard Deviation (<span class="math inline">\(\sigma\)</span>) was known. The main reason for being allowed this ‘inside knowledge’ (typically reserved for Gods and Oracles) was that it made the computation of the (z-) test statistic easier: students only had compute the two sample means, easily done by hand, and avoided having to compute sample standard deviations. [It also fits with the practice of teaching the simpler <em>z</em>-tests, with their fixed quantiles, first, and then moving to the sample-size-dependent <em>t</em>-based quantiles later]. For now, we will do the same, but later will also go on and carry out real-world tests that don’t rely on ‘inside’ information about standard deviations. [After all, if you know the Population Standard Deviation, then you must already know the Population Mean.]</p>
@@ -738,15 +747,15 @@ Figure 18.4: 30 simulations of the possible gains from using variable-length (pa
 <p>In the case where <span class="math inline">\(n_1 = n_2 = 4\)</span>, and <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\(\sigma_2\)</span> are known, we can work out ahead of time what minimum difference between <span class="math inline">\(\bar{y}_1\)</span> and <span class="math inline">\(\bar{y}_2\)</span> would lead us to reject the null (same-sex, or same mean) hypothesis. With <span class="math inline">\(\alpha\)</span> = 0.10, the ’critical value of <span class="math inline">\(z\)</span> is <span class="math inline">\(\pm\)</span> 1.645, i.e, the two sample means would need to be at least 1.645 <span class="math inline">\(\times SD[\bar{y}_1 - \bar{y}_2]\)</span> apart.</p>
 <p>In this simplified and somewhat unrealistic example, where we don’t know if we are in the same-sex or opposite sex scenario, we don’t know whether we should use <span class="math inline">\(\sigma_F\)</span> = 574 grams and <span class="math inline">\(\sigma_M\)</span> = 600 grams, or 574 and 574, or 601 and 601. So we will use a ‘compromise’ <span class="math inline">\(\sigma_1\)</span> = <span class="math inline">\(\sigma_2\)</span> = 587. Substituting these into the <span class="math inline">\(SD[\bar{y}_1 - \bar{y}_2]\)</span> formula yields an SD of <span class="math inline">\(\sqrt{587^2/4 + 587^2/4}\)</span> = 415 grams. Thus the critical distance between the two sample means needs to be <code>1.645</code> <span class="math inline">\(\times\)</span> 415 = 683 grams.</p>
 <p>For interest, here is what the critical distance would be for other sample sizes: <span class="math inline">\(n_1 = n_2 = 16:\)</span> 341 grams;  <span class="math inline">\(n_1 = n_2 = 64:\)</span> 171 grams;  <span class="math inline">\(n_1 = n_2 = 256:\)</span> 85 grams. [Notice the <em>root of n</em> law in action.]</p>
-<p>Whereas, as an individual ‘investigator’, you might be luck or unlucky in which of the 4 comparisons you get right, the real issue is the <strong>probabilities of getting them right</strong>. That is why in 2001 JH had each student in the large 707 class , and why he tabulated their results, so we got a better sense of waht these probabilities are. And better still, in 2020, you alone can use the computer to get an even better sense.</p>
+<p>Whereas, as an individual ‘investigator’, you might be luck or unlucky in which of the 4 comparisons you get right, the real issue is the <strong>probabilities of getting them right</strong>. In 2001 JH had each student in the large 607 class try to distinguish the panels, and he tabulated their results so that we can get a better sense of what these probabilities are. And better still, in 2020, you alone can use the computer to get an even better sense.</p>
 <p>We will use the same 2 x 2 table used in 2001, where the 2 rows are the 2 truths, i.e, the comparions was in fact a same-sex or opposite-sex comparison, and the 2 columns are the two possible ‘results’ of the statistical test, i.e., it was ‘negative’, with a P-value <span class="math inline">\(\ge\)</span> 0.1, (the diffrence in the sample means was not ‘statistically significant’) ; or ‘positive’ with a P-value <span class="math inline">\(&lt;\)</span> 0.1, the difference was ‘statistically significant’, large enough that the null hypothesis of same-sex populations (same-population-means) was ‘rejected’.</p>
-<p>When you review each test result, you can only classify them by column, by ‘engatibe’ or ‘positive’. And in real life, that would be as far as you can go, since your are not privy to the ‘truth’. But, here, we have the <em>luxury of knowing</em> which comparisons are of each type, so we can croos-classify the results, and examine the avearge performance of these tests. In this way, we get a feel for the probabilities that they will perfrtom they way we want them to, and can see how the probabilities are modified by the amount of effort (sample size) we are willing to employ, as well as how small/large a signal, and how small/large the noise, we are up against.</p>
-<p>So, for now, in your one set of 4 hand-worked examples, you can put the 4 test results into two columns. Below, when we will do a lar ge number of tests, we will reveal which comparisons are of which type, so you can doubly-classift them.</p>
+<p>When you review each test result, you can only classify it by column, by ‘negative’ or ‘positive’. And in real life, that would be as far as you can go, since your are not privy to the ‘truth’. But, here, we have the <em>luxury of knowing</em> which comparisons are of each type, so we can cross-classify the results, and also examine the average performance of these tests over many may applications. In this way, we get a feel for the probabilities that they will perfrtom they way we want them to, and can see how the probabilities are modified by the amount of effort (sample size) we are willing to employ, as well as how small/large a signal, and how small/large the noise, we are up against.</p>
+<p>So, for now, in your one set of 4 hand-worked examples, you can put the 4 test results into two columns. Below, when we will do a large number of tests, we will reveal which comparisons are of which type, so you can doubly-classify them.</p>
 <p><strong>Exercises</strong></p>
 <ol style="list-style-type: decimal">
-<li>For each of the 4 contrasts listed above, use a ‘reproducible’ random selection method to choose 4 infants from each of the two specified panels. [Note: since each entry represents almost 200,000 infects, the sampling from the 100 values (quantiles) should be with replacement. This may not matter a lot when you are sampling just 4 infants, but if you were sampling 16 or 64 or 256, it would matter] Compute the difference between the sample meansNote which contrasts yielded ‘statistically significant’ differences (i.e. differences of 6xx: these can be the first entries in your 2 x 2 table below, once the ‘identities’truth’ is revealed.</li>
+<li>For each of the 4 contrasts listed above, use a ‘reproducible’ random selection method to choose 4 infants from each of the two specified panels. [Note: since each entry represents almost 200,000 infects, the sampling from the 100 values (quantiles) should be with replacement. This may not matter a lot when you are sampling just 4 infants, but if you were sampling 16 or 64 or 256, it would matter]. For each contrast, compute the difference between the sample means and note whether it was a ‘statistically significant’ difference (i.e. one of 683 grams or more. These 4 ‘test tesults’ can be the first entries in your 2 x 2 table below, once the identity of each 4 panel (the ‘truth’) is revealed.</li>
 </ol>
-<p><strong>Cross-classification of results of statistical tests [columns] in relation to real situations[rows]</strong></p>
+<p><strong>(2-way) distribution of results of statistical tests [columns] in relation to real situations[rows]</strong></p>
 <table>
 <thead>
 <tr class="header">
@@ -777,7 +786,7 @@ Figure 18.4: 30 simulations of the possible gains from using variable-length (pa
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="right">——–</td>
+<td align="right"></td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right"></td>
@@ -786,9 +795,9 @@ Figure 18.4: 30 simulations of the possible gains from using variable-length (pa
 <tr class="even">
 <td align="left"></td>
 <td align="right">SAME-SEX</td>
-<td align="right">A</td>
+<td align="right"><span class="math inline">\(number\)</span></td>
 <td align="right"></td>
-<td align="right">C</td>
+<td align="right"><span class="math inline">\(number\)</span></td>
 <td align="right"></td>
 </tr>
 <tr class="odd">
@@ -802,43 +811,255 @@ Figure 18.4: 30 simulations of the possible gains from using variable-length (pa
 <tr class="even">
 <td align="left"></td>
 <td align="right">OPPOSITE</td>
-<td align="right">B</td>
+<td align="right"><span class="math inline">\(number\)</span></td>
 <td align="right"></td>
-<td align="right">D</td>
+<td align="right"><span class="math inline">\(number\)</span></td>
 <td align="right"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="right">——–</td>
-<td align="right">. . . . .</td>
+<td align="right">………</td>
+<td align="right">………</td>
+<td align="right"></td>
+<td align="right">………</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">TOTAL</td>
+<td align="right"><span class="math inline">\(no._{neg.}\)</span></td>
+<td align="right"></td>
+<td align="right"><span class="math inline">\(no._{pos.}\)</span></td>
+<td align="right">TOTAL</td>
+</tr>
+</tbody>
+</table>
+<p>The following <code>R code</code> can simulate the results obtained by many many investigators. For now, the ‘many’ is just 40, close to the numbers performed by students in 2001. Although this number can only give a rough idea, using sample sizes of size 4 doesn’t look that promising! No matter which contrast, only about 10% of the statistical tests are ‘positive’. Since we set the <span class="math inline">\(\alpha\)</span> value, we expect that about 10% of tests are positive when we are testing two same-sex panels, but we would hope that a far greater % would be positive when we are testing opposite-sex panels.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SimulateOppositeSexTests=<span class="st"> </span><span class="cf">function</span>(Values,
+        <span class="dt">n.simulated.investigations =</span> <span class="dv">40</span>, 
+        <span class="dt">n =</span> <span class="dv">4</span>,
+        <span class="dt">SD.individuals =</span> <span class="dv">583</span>,
+        <span class="dt">contrasts =</span> 
+          <span class="kw">t</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>),<span class="dv">2</span>,<span class="dv">4</span>)) ) {
+  
+   n.contrasts =<span class="st"> </span><span class="kw">dim</span>(contrasts)[<span class="dv">1</span>]
+
+   <span class="co"># n.simulated.investigations   per contrast  *** MODIFY ***</span>
+   <span class="co"># n =  sample size from each of 2 contrasted panels *** MODIFY ***</span>
+
+   results =<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>,n.simulated.investigations,n.contrasts)
+        
+   alpha=<span class="fl">0.10</span> <span class="co"># set by us</span>
+
+   <span class="co"># SD.individuals = xxx,  not usual to KNOW the population SD</span>
+
+   SD.Mean.diff =<span class="st"> </span>SD.individuals <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span>n<span class="op">+</span><span class="dv">1</span><span class="op">/</span>n) <span class="co"># variance(diff) = Sum of Vars. </span>
+
+   critical.diff =<span class="st"> </span><span class="kw">abs</span>( <span class="kw">qnorm</span>(alpha<span class="op">/</span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span>SD.Mean.diff )
+   <span class="co">#print( aggregate(Values, by=list(P=ds$Panel), mean) )</span>
+   <span class="co">#print( aggregate(Values, by=list(P=ds$Panel), sd) )</span>
+   <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n.simulated.investigations){
+        <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n.contrasts){
+              pair =<span class="st"> </span>contrasts[j,]
+              sample.mean =<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>,<span class="dv">2</span>)
+              <span class="cf">for</span>(pair.member <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>){
+                    all.values.this.panel =<span class="st"> </span>Values[
+                         ds<span class="op">$</span>Panel<span class="op">==</span>pair[pair.member] ]
+                    sample.mean[pair.member] =<span class="st"> </span>
+<span class="st">                         </span><span class="kw">mean</span>( <span class="kw">sample</span>(<span class="dt">x=</span>all.values.this.panel, 
+                            <span class="dt">size=</span>n, <span class="dt">replace =</span> <span class="ot">TRUE</span>)    )
+              }
+              difference =<span class="st"> </span>sample.mean[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>sample.mean[<span class="dv">2</span>] 
+              sig.difference =<span class="st"> </span>( <span class="kw">abs</span>(difference) <span class="op">&gt;</span><span class="st"> </span>critical.diff )
+              results[i,j] =<span class="st"> </span>sig.difference
+         } <span class="co"># end of contrasts</span>
+    } <span class="co"># end of investigation</span>
+
+    txt =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;/&quot;</span>,<span class="kw">toString</span>(n.simulated.investigations))
+
+    DIGITS =<span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">log</span>(n.simulated.investigations,<span class="dt">base=</span><span class="dv">10</span>))
+    positives =<span class="st"> </span><span class="kw">format</span>( <span class="kw">apply</span>(results,<span class="dv">2</span>,sum), <span class="dt">digits =</span> DIGITS)
+    
+    <span class="kw">cat</span>(<span class="kw">paste</span>(<span class="st">&quot;samples of size:&quot;</span>,<span class="kw">toString</span>(n)))  
+
+    <span class="kw">noquote</span>( <span class="kw">cbind</span>( contrasts[,<span class="dv">1</span>],<span class="kw">rep</span>(<span class="st">&quot; vs. &quot;</span>,n.contrasts),
+                contrasts[,<span class="dv">2</span>], <span class="kw">rep</span>(<span class="st">&quot;  &quot;</span>,n.contrasts), positives,
+                <span class="kw">rep</span>(txt,n.contrasts)  ) )
+
+} <span class="co"># end function</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">SimulateOppositeSexTests</span>(ds<span class="op">$</span>Birthweight,
+        <span class="dt">n.simulated.investigations =</span> <span class="dv">50</span>, 
+        <span class="dt">n =</span> <span class="dv">4</span>,
+        <span class="dt">SD.individuals =</span> <span class="dv">583</span>,
+        <span class="dt">contrasts =</span> 
+          <span class="kw">t</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>),<span class="dv">2</span>,<span class="dv">4</span>)))</code></pre></div>
+<pre><code>## samples of size: 4</code></pre>
+<pre><code>##                   positives     
+## [1,] A  vs.  B    4         / 50
+## [2,] C  vs.  D    6         / 50
+## [3,] A  vs.  D    7         / 50
+## [4,] B  vs.  C    2         / 50</code></pre>
+<p><strong>Exercises - continued</strong></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Cross-classify the above results into the following 2 x 2 table, <a href="http://www.biostat.mcgill.ca/hanley/statbook/4panelsOfSexSpecificBirthWeights.txt">knowing which pairs of panels are same-sex and which are opposite-sex</a> to tell you which row of the table a contrast belong to.</p></li>
+<li><p>Run the <code>R code</code> yourself, but with a much larger number of simulated investigations. Cross-classify your results. Even though you know there must be some non-zero difference in the sex-specific means population means, why are the results so dismal? See also the <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf">results in 2001</a>.</p></li>
+<li><p>How much better is the performance if you increase the <span class="math inline">\(n\)</span> to 64? 256?</p></li>
+</ol>
+<p><strong>(2-way) distribution of results of statistical tests [columns] in relation to real situations[rows]</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right"></th>
+<th align="right"></th>
+<th align="right">Test Result</th>
+<th align="right"></th>
+<th align="right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="right"></td>
+<td align="right">‘Negative’</td>
+<td align="right"></td>
+<td align="right">‘Positive’</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right"></td>
+<td align="right"><span class="math inline">\(P \ge 0.1\)</span></td>
+<td align="right"></td>
+<td align="right"><span class="math inline">\(P \lt 0.1\)</span></td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right"></td>
+<td align="right"></td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="right">TOTAL</td>
-<td align="right"><span class="math inline">\(n_{neg.}\)</span></td>
+<td align="right">SAME-SEX</td>
+<td align="right"><span class="math inline">\(number\)</span></td>
 <td align="right"></td>
-<td align="right"><span class="math inline">\(n_{pos.}\)</span></td>
-<td align="right">N</td>
+<td align="right"><span class="math inline">\(number\)</span></td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>TRUTH</strong></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">OPPOSITE</td>
+<td align="right"><span class="math inline">\(number\)</span></td>
+<td align="right"></td>
+<td align="right"><span class="math inline">\(number\)</span></td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right">………</td>
+<td align="right">………</td>
+<td align="right"></td>
+<td align="right">………</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">TOTAL</td>
+<td align="right"><span class="math inline">\(no._{neg.}\)</span></td>
+<td align="right"></td>
+<td align="right"><span class="math inline">\(no._{pos.}\)</span></td>
+<td align="right">TOTAL</td>
 </tr>
 </tbody>
 </table>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-96"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-96-1.png" alt="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled." width="864" />
+<p><strong>Exercises - continued</strong></p>
+<p><strong>CAN YOU TELL THE GROWN-UPS APART?</strong></p>
+<p>The following panels are 100 sex-specific quantiles of weight (kg) of the US Population aged 20-29 years in <a href="https://www2.census.gov/library/publications/2010/compendia/statab/130ed/tables/11s0205.pdf">2007 to 2008, based on NHANES surveys</a>. JH used interpolation (and a small bit of extrapolation at the lower edges) to create the 100 quantiles, <span class="math inline">\(Q_{0.005}\)</span>, <span class="math inline">\(Q_{0.015}\)</span>, <span class="math inline">\(\dots\)</span> <span class="math inline">\(Q_{0.995}\)</span>.</p>
+<p>Aagin, they are identified as A-D, with the weights within a panel pertain to 20-29 year olds of the same sex, but different panels may pertain to different sexes. The layout is not necessarily the same as it was above for birthweights!</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Cross-classify the above results into the following 2 x 2 table, <a href="http://www.biostat.mcgill.ca/hanley/statbook/4panelsOfSexSpecificBiorthWeights.txt">knowing which pairs of panels are same-sex and which are opposite-sex</a> to tell you which row of the table a contrast belong to.</li>
+</ol>
+<pre><code>## &#39;data.frame&#39;:    400 obs. of  2 variables:
+##  $ Panel    : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
+##  $ Weight.Kg: num  62.5 47.5 113.5 149.5 108.5 ...</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-102"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-102-1.png" alt="Measured weights of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled, and 'jittered'." width="864" />
 <p class="caption">
-Figure 18.5: Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%, Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q’s are scrambled.
+Figure 18.6: Measured weights of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%, Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q’s are scrambled, and ‘jittered’.
 </p>
 </div>
-<p><strong>Exercises</strong></p>
-<ol start="2" style="list-style-type: decimal">
-<li>…</li>
+<p>By eye, by comparing <strong>all</strong> the entries in one panel with all of those in another, you can readily tell if two panels have different means (or medians). But what can you conclude if you take <strong>just a sample of size 4</strong> from each of 2 panels and perform a formal null hypothesis test using the difference in the sample means or the sample medians, or the ranks?</p>
+<p><strong>Exercises - continued</strong></p>
+<p>Your are asked to perform tests of the following <strong>4</strong> <strong>contrasts</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mu_A\)</span> vs. <span class="math inline">\(\mu_C\)</span> <span class="math inline">\(\quad\)</span> 2. <span class="math inline">\(\mu_B\)</span> vs. <span class="math inline">\(\mu_D\)</span> <span class="math inline">\(\quad\)</span> 3. <span class="math inline">\(\mu_A\)</span> vs. <span class="math inline">\(\mu_D\)</span> <span class="math inline">\(\quad\)</span> 4. <span class="math inline">\(\mu_B\)</span> vs. <span class="math inline">\(\mu_C\)</span></li>
 </ol>
-<p>To help with rapid compilation of results in class, circle below which contrasts yielded “statistically significant” differences and BRING YOUR 8 DECISIONS TO CLASS.</p>
-<p>Birthweights Adult Heights “Arithmetic” of Testing if 2 panels have same mean Bvs.C B vs. C</p>
-<ol start="2" style="list-style-type: decimal">
-<li>…</li>
+<p>using new (fresh, independent) <strong>samples of size <span class="math inline">\(n\)</span> = 4</strong> and <span class="math inline">\(n\)</span> = <strong>4</strong> for each of the 4 tests.</p>
+<ul>
+<li>NB: 1 and 2 are not the same as 1 and 2 for birthweight above.</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Start by manually performing the 4 tests. Begin by calculating what the critical distance between the two sample means needs to be. Use a ‘common’ <span class="math inline">\(\sigma\)</span> = 21.4 Kg for each sex. [Again, it should be obvious why having this ‘insider’ information is not realistic! It is just to simplify the test to its essentials; later, in practice, we will use ‘plug-in’ values instead of the ‘real’ <span class="math inline">\(\sigma\)</span> and use a larger (<span class="math inline">\(n\)</span>-based) multiplier to allow for using ‘estimated’, and thus ‘uncertain’, <span class="math inline">\(\sigma\)</span>’s.] How confident are you in the results of these tests? (Remember, you KNOW that males are heavier than females; that is ‘prior’ information that the test doesn’t know: it just uses the data you give it.)</p></li>
+<li><p>Run the same <code>R code</code> you ran above, with a large number of simulated investigations. <strong>In real life, you don’t get to see ‘what might have been’</strong>; you just get to see the one pair of samples you selected. But here the (<strong>simulated</strong>) ‘long-run’ perfomance gives you sense of how sensitive your test procedure is [you already know how specific it is, by your choice of <span class="math inline">\(\alpha\)</span>]. Then, using <a href="http://www.biostat.mcgill.ca/hanley/statbook/4panelsOfSexSpecificAdultWeights.txt">this key</a> cross-classify your results. How much better did the test do here, than it did with birthweights? Even though the <span class="math inline">\(n\)</span>’s are still just 4 each, why are they better?</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">SimulateOppositeSexTests</span>(ds<span class="op">$</span>Weight.Kg,
+        <span class="dt">n.simulated.investigations =</span> <span class="dv">50</span>, 
+        <span class="dt">n =</span> <span class="dv">4</span>,
+        <span class="dt">SD.individuals =</span> <span class="fl">21.4</span>,
+        <span class="dt">contrasts =</span> 
+          <span class="kw">t</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;C&quot;</span>, <span class="st">&quot;B&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>),<span class="dv">2</span>,<span class="dv">4</span>)))</code></pre></div>
+<pre><code>## samples of size: 4</code></pre>
+<pre><code>##                   positives     
+## [1,] A  vs.  C     9        / 50
+## [2,] B  vs.  D     8        / 50
+## [3,] A  vs.  D    13        / 50
+## [4,] B  vs.  C     5        / 50</code></pre>
+<p><strong>CAN YOU TELL THE 20-SOMETHINGS APART BY THEIR <em>HEIGHTS</em>?</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ds =<span class="st"> </span><span class="kw">read.table</span>(
+  <span class="st">&quot;http://www.biostat.mcgill.ca/hanley/statbook/USheights100Qs20072008.txt&quot;</span>,
+  <span class="dt">as.is=</span><span class="ot">TRUE</span>)
+<span class="kw">str</span>(ds)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    400 obs. of  2 variables:
+##  $ Panel    : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
+##  $ Height.cm: int  175 173 168 181 186 189 179 171 161 169 ...</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-105"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-105-1.png" alt="Measured heights (in cm) of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled." width="864" />
+<p class="caption">
+Figure 18.7: Measured heights (in cm) of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%, Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q’s are scrambled.
+</p>
+</div>
+<p>Here are the test results</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">SimulateOppositeSexTests</span>(ds<span class="op">$</span>Height.cm,
+        <span class="dt">n.simulated.investigations =</span> <span class="dv">50</span>, 
+        <span class="dt">n =</span> <span class="dv">4</span>,
+        <span class="dt">SD.individuals =</span> <span class="fl">7.3</span>,
+        <span class="dt">contrasts =</span> 
+          <span class="kw">t</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;C&quot;</span>, <span class="st">&quot;B&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>),<span class="dv">2</span>,<span class="dv">4</span>)))</code></pre></div>
+<pre><code>## samples of size: 4</code></pre>
+<pre><code>##                   positives     
+## [1,] A  vs.  C     9        / 50
+## [2,] B  vs.  D     5        / 50
+## [3,] A  vs.  D    32        / 50
+## [4,] B  vs.  C    32        / 50</code></pre>
+<p><strong>Exercises - continued</strong></p>
+<ol start="8" style="list-style-type: decimal">
+<li><p>Using the (common) SD of 7.3 cm, carry out 4 manually-calculated tests of the same 4 contrasts as for adult weights.</p></li>
+<li><p>(although the computer-simulated ones are giving you a sense that height is a more sensitive distinguisher/separator of the sexes than adult weight is, carry out a larger set of simulated tests to be sure.</p></li>
+<li><p>Statistically speaking, why is height a more sensitive distinguisher/separator of the sexes? so? <em>Hint</em>: how far apart are the mean heights (a) in cms (b) as a percentage of the SD of the individuals of a given sex? What are the corresponding perecenatges in the case of birthweights? adult weights? What we are fetting at here is the <strong>signal-to-noise ratio</strong> or <strong>Effect Size</strong> <span class="math display">\[ \frac{Signal}{Noise} = \frac{\mu_1 - \mu_2}{\sigma}.\]</span></p></li>
+<li><p>In 2001, when it came to distinguishing same-sex panels from opposite-sex panels of <strong>adult heights</strong>, most of the students in 2001 <strong>were able</strong> to <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=2">correctly identify the opposite-sex panels</a>, with only a few mistaking the same-sex panels for opposite-sex ones [we are in charge of controlling the latter errors, whereas (with <span class="math inline">\(n\)</span> fixed)</p></li>
+<li><p>Biologically speaking, why is height is a more sensitive distinguisher/separator of the sexes? <em>Nature</em> versus <em>Nurture</em>?</p></li>
 </ol>
 </div>
 <div id="box-minus-bowl" class="section level3">
