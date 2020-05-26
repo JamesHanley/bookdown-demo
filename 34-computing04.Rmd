@@ -509,7 +509,7 @@ you agree with the conclusion "we may therefor regard... " he draws [following h
 
 2. Calculate the variance Var[F] and Var[M] of the fathers' [F] and mothers' [M] heights respectively. Then create a new variable consisting of the sum of F and M, and calculate Var[F+M]. Comment. Galton called this a "shrewder" test than the "ruder" (coarser) one he used in 1. If the two were unrelated (this is a stronger quality than 'uncorrelated'), what would you expect? If the variance of the sum is greater than the sum of the variances of the parts, what does it suggest.
 
-3. What if he had subtracted them and calculated the variance of the difefrences?
+3. What if he had subtracted them and calculated the variance of the differences?
 
 4. When Galton first analyzed these data in 1885-1886, Galton and Pearson hadn't yet invented the correlation coefficient. Calculate this coefficient and see how it compares with your impressions in 1 and 2.
 
@@ -539,9 +539,81 @@ https://fivethirtyeight.com/features/how-common-is-it-for-a-man-to-be-shorter-th
 
 ### Same-sex or opposite-sex?
 
-This exercise is modelled on one JH used in the [607 course in 2001,](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/homegrown_exercises_06.pdf#page=3) but now using data from all [US births in 2018](https://www.cdc.gov/nchs/data_access/vitalstatsonline.htm)
+This 4-panel exercise is modelled on one JH used in the [607 course in 2001,](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/homegrown_exercises_06.pdf#page=3) but now using data from all [US births in 2018](https://www.cdc.gov/nchs/data_access/vitalstatsonline.htm)
 
- The birthweights within a panel pertain to infants of the same sex, but different panels may pertain to different sexes.
+The data are in this data.frame, and shown in 4 panels numbered A-D. The birthweights within a panel pertain to infants of the same sex, but different panels may pertain to different sexes.
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F, fig.cap="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled."}
+
+ds = read.table(
+  "http://www.biostat.mcgill.ca/hanley/statbook/USbirthweights100Qs2018.txt",
+  as.is=TRUE)
+str(ds)
+
+```
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F}
+
+Four.panels= function(Values){
+
+   par(mfrow=c(1,1),mar = c(0,0,0,0)) 
+
+   L = c(0.03,0.97)
+   plot(-10,-10,xlim=L,ylim=L,
+     xlab="",ylab="",col="white",
+     frame=FALSE)
+
+   dx=0.043; dy =dx
+
+   P = matrix(LETTERS[c(3,1,4,2)],2,2)
+   
+   Type="Birth"
+   if( (Values[1] %% 1) == 0.5) Type="AdultW"
+   if( min(Values) > 100 & max(Values) < 200) Type="AdultH"
+
+  for( i.r in 1:2){
+      yc = 0.25 + (i.r==2)*0.5
+      for(i.c in 1:2){
+          if(i.r==1 & i.c==1)  Y = Values[ds$Panel=="C"]
+          if(i.r==1 & i.c==2)  Y = Values[ds$Panel=="D"]
+          if(i.r==2 & i.c==1)  Y = Values[ds$Panel=="A"]
+          if(i.r==2 & i.c==2)  Y = Values[ds$Panel=="B"]
+          xc = 0.25 + (i.c==2)*0.5
+          rect(xc-1/4,yc-1/4,xc+1/4,yc+1/4)
+          text(xc-1/4,yc+1/4,P[i.r,i.c],adj=c(-0.5,1.5))
+    
+          ii=0
+          for(i.rr in 1:10){
+              for(i.cc in 1:10){
+                  ii=ii+1
+                  txt = toString(Y[ii])
+                  if(Type=="Birth" & nchar(txt)==3) txt = paste(" ",txt)
+                  if(Type=="AdultW" & nchar(txt)==4) txt = paste(" ",txt)
+                  text(xc+(i.cc-5.75+0.5*(i.cc > 5))*dx +
+                         (Type=="AdultW")*dx/2,
+                     yc+(i.rr-5.75+0.5*(i.rr > 5))*dy,txt,
+                     cex=0.65 + 0.3 *(Type=="AdultH") +
+                               0.15*(Type=="Birth"),
+                     family="mono",
+                     adj=c(0.5+0.5*(Type=="AdultW"),0.5))
+               } # i.cc
+           } # i.rr
+       } # i.c
+    } # i.r
+}
+
+```
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F, fig.cap="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled."}
+
+ 
+Four.panels(ds$Birthweight)
+
+```
+
  
 By eye, by comparing **all** the entries in one panel with all of those in another, you may be able to discern if two panels have different means (or medians). But what can you conclude if you take **just a sample** from each of 2 panels and perform a formal null hypothesis test using the difference in the sample means or  the sample medians, or the ranks? 
 
@@ -549,7 +621,7 @@ In 2001, students were asked to perform tests of the following **4** (obviously 
 
 1. $\mu_A$ vs. $\mu_B$ $\quad$ 2. $\mu_C$ vs. $\mu_D$ $\quad$ 3. $\mu_A$ vs. $\mu_D$ $\quad$ 4. $\mu_B$ vs. $\mu_C$
 
-They were asked to use new (fresh, independent) samples of size $n$ = 4 and $n$ = 4 for each of the 4 tests.
+They were asked to use new (fresh, independent) **samples of size $n$ = 4** and $n$ = **4** for each of the 4 tests.
 
 These sample sizes will (rightly) strike you as being much too small to reliably distinguish two populations whose means are not that far apart. Indeed, [most of the students in 2001 were unable to correctly identify the 
 opposite-sex panels](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=1) 
@@ -581,126 +653,243 @@ In this simplified and somewhat unrealistic example, where we don't know if we a
 
 For interest, here is what the critical distance would be for other sample sizes: $n_1 = n_2 = 16:$ 341 grams; \ $n_1 = n_2 = 64:$ 171 grams; \ $n_1 = n_2 = 256:$ 85 grams. [Notice the _root of n_ law in action.]
 
-Whereas, as an individual 'investigator', you might be luck or unlucky in which of the 4 comparisons you get right, the real issue is the **probabilities of getting them right**. That is why in 2001 JH had each student in the large 707 class , and why he tabulated their results, so we got a better sense of waht these probabilities are. And better still, in 2020, you alone can use the computer to get an even better sense.
+Whereas, as an individual 'investigator', you might be luck or unlucky in which of the 4 comparisons you get right, the real issue is the **probabilities of getting them right**. In 2001 JH had each student in the large 607 class try to distinguish the panels, and  he tabulated their results so that we can get a better sense of what these probabilities are. And better still, in 2020, you alone can use the computer to get an even better sense.
 
 We will use the same 2 x 2 table used in 2001, where the 2 rows  are the 2 truths, i.e, the comparions was in fact a same-sex or opposite-sex comparison, and the 2 columns are the two possible 'results' of the statistical test, i.e., it was 'negative', with a P-value $\ge$  0.1, (the diffrence in the sample means  was not 'statistically significant') ; or 'positive'  with a P-value $<$  0.1, the difference was 'statistically significant', large enough that the null hypothesis of same-sex populations (same-population-means) was 'rejected'.
 
-When you review each test result, you can only classify them by column, by 'engatibe' or 'positive'. And in real life, that would be as far as you can go, since your are not privy to the 'truth'. But, here, we have the _luxury of knowing_ which comparisons are of each type, so we can croos-classify the results, and examine the avearge performance of these tests. In this way, we get a feel for the probabilities that they will perfrtom they way we  want them to, and can see how the probabilities are modified by the amount of effort (sample size) we are willing to employ, as well as how small/large a signal, and how small/large the noise, we are up against.
+When you review each test result, you can only classify it by column, by 'negative' or 'positive'. And in real life, that would be as far as you can go, since your are not privy to the 'truth'. But, here, we have the _luxury of knowing_ which comparisons are of each type, so we can cross-classify the results, and also examine the average performance of these tests over many may applications. In this way, we get a feel for the probabilities that they will perfrtom they way we  want them to, and can see how the probabilities are modified by the amount of effort (sample size) we are willing to employ, as well as how small/large a signal, and how small/large the noise, we are up against.
 
-So, for now, in your one set of 4 hand-worked examples, you can put the 4 test results into two columns. Below, when we will do  a lar ge number of tests, we will reveal which comparisons are of which type, so you can doubly-classift them.
+So, for now, in your one set of 4 hand-worked examples, you can put the 4 test results into two columns. Below, when we will do  a large number of tests, we will reveal which comparisons are of which type, so you can doubly-classify them.
 
 **Exercises**
 
-1.  For each of the 4 contrasts listed above, use a 'reproducible' random selection method to choose 4 infants from each of the two specified panels. [Note: since each entry represents almost 200,000 infects, the sampling from the 100 values (quantiles) should be with replacement. This may not matter a lot when you are sampling just 4 infants, but if you were sampling 16 or 64 or 256, it would matter] Compute the difference between the sample meansNote which contrasts yielded 'statistically significant' differences (i.e. differences of 6xx: these can be the first entries in your 2 x 2 table below, once the 'identities'truth' is revealed.
+1.  For each of the 4 contrasts listed above, use a 'reproducible' random selection method to choose 4 infants from each of the two specified panels. [Note: since each entry represents almost 200,000 infects, the sampling from the 100 values (quantiles) should be with replacement. This may not matter a lot when you are sampling just 4 infants, but if you were sampling 16 or 64 or 256, it would matter]. For each contrast, compute the difference between the sample means and note whether it was a 'statistically significant' difference (i.e. one of 683 grams or more. These 4 'test tesults'  can be the first entries in your 2 x 2 table below, once the identity of each 4 panel (the 'truth') is revealed.
 
 
-**Cross-classification of results of statistical tests [columns] in relation to real situations[rows]**
-
-
-
-|             |           |               | Test Result   |             |  Total |
-|:------------|----------:|--------------:|--------------:|------------:|-------:|
-|             |           | 'Negative'    |               | 'Positive'  |        |
-|             |           |  $P \ge 0.1$  |               | $P \lt 0.1$ |        |
-|             |  -------- |               |               |             |        |
-|             |  SAME-SEX |  A            |               |           C |        |
-|  **TRUTH**  |           |               |               |             |        |
-|             |  OPPOSITE |  B            |               |           D |        |
-|             |  -------- |  . . . . .    |               |             |        |
-|             |  TOTAL    |  $n_{neg.}$   |               |  $n_{pos.}$ |   N    |
+**(2-way) distribution of results of statistical tests [columns] in relation to real situations[rows]**
 
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F, fig.cap="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled."}
+|             |             |               | Test Result   |             |  Total |
+|:------------|------------:|--------------:|--------------:|------------:|-------:|
+|             |             | 'Negative'    |               | 'Positive'  |        |
+|             |             |  $P \ge 0.1$  |               | $P \lt 0.1$ |        |
+|             |             |               |               |             |        |
+|             |  SAME-SEX   |  $number$     |               |    $number$ |        |
+| **TRUTH**   |             |               |               |             |        |
+|             |  OPPOSITE   |  $number$     |               |    $number$ |        |
+|             |  .........  |  .........    |               |  .........  |        |
+|             |  TOTAL      |  $no._{neg.}$   |               |  $no._{pos.}$ |   TOTAL    |
 
-#ds$Sex: F
-#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#    227    2920    3240    3203    3560    8165 
-#ds$Sex: M
-#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#    227    3015    3364    3317    3690    8165 
-# aggregate(ds$BirthWeight,by=list(ds$Sex),sd)
-#       F 573.5224
-#       M 600.9757
-# 
 
-Q=matrix(c(
- 862,1540,1871,2060,2185,2285,2355,2420,2475,2523,
-2567,2608,2637,2665,2693,2722,2750,2775,2792,2810,
-2835,2855,2867,2891,2905,2920,2940,2950,2970,2980,
-3000,3010,3030,3035,3055,3062,3080,3090,3105,3118,
-3130,3145,3150,3170,3175,3190,3203,3210,3230,3232,
-3250,3260,3270,3289,3290,3310,3317,3330,3345,3353,
-3370,3375,3395,3402,3417,3430,3440,3459,3465,3485,
-3490,3510,3520,3540,3550,3570,3580,3600,3610,3629,
-3650,3660,3685,3701,3720,3742,3770,3790,3810,3836,
-3865,3895,3930,3969,4010,4060,4120,4200,4320,4564,
- 878,1560,1905,2102,2240,2350,2430,2495,2552,2608,
- 2645,2690,2722,2750,2780,2810,2835,2863,2890,2910,
- 2930,2948,2974,2990,3005,3030,3040,3060,3070,3090,
- 3104,3119,3135,3147,3160,3175,3190,3204,3216,3232,
- 3240,3260,3265,3285,3290,3310,3317,3330,3345,3355,
- 3371,3378,3395,3402,3420,3430,3440,3459,3462,3480,
- 3489,3506,3515,3530,3544,3558,3572,3580,3600,3610,
- 3629,3640,3657,3670,3685,3700,3714,3732,3744,3770,
- 3780,3799,3820,3840,3856,3884,3905,3930,3950,3980,
- 4008,4040,4080,4111,4160,4210,4280,4360,4479,4725),
-100,2)
 
-par(mfrow=c(1,1),mar = c(0,0,0,0)) 
+The  following `R code` can simulate the results obtained by many many investigators. For now, the 'many' is just 40, close to the numbers performed by students in 2001. Although this number can only give a rough idea, using sample sizes of size 4 doesn't look that promising! No matter which contrast, only about 10% of the statistical tests are 'positive'. Since we set the $\alpha$ value, we expect that about 10% of tests are positive when we are testing two same-sex panels, but we would hope that a far greater % would be positive when we are testing opposite-sex panels.
 
-L = c(0.03,0.97)
-plot(-10,-10,xlim=L,ylim=L,
-     xlab="",ylab="",col="white",
-     frame=FALSE)
-#abline(v=0.5); abline(h=0.5)
 
-#points(c(0.25,0.25,0.75,0.75),
-#       c(0.25,0.75,0.25,0.75),pch=19)
-dx=0.043; dy =dx
+```{r,eval=T, echo=T, warning=FALSE, message=F}
 
-P = matrix(LETTERS[c(3,1,4,2)],2,2)
-for( i.r in 1:2){
-  yc = 0.25 + (i.r==2)*0.5
-  for(i.c in 1:2){
-    if(i.r==i.c)  w = sample(Q[,1]) + (i.r==1) - (i.r==2)
-    if(i.r!=i.c)  w = sample(Q[,2]) + (i.r==1) - (i.r==2)
-    xc = 0.25 + (i.c==2)*0.5
-    rect(xc-1/4,yc-1/4,xc+1/4,yc+1/4)
-    text(xc-1/4,yc+1/4,P[i.r,i.c],adj=c(-0.5,1.5))
+SimulateOppositeSexTests= function(Values,
+        n.simulated.investigations = 40, 
+        n = 4,
+        SD.individuals = 583,
+        contrasts = 
+          t(matrix(c("A","B", "C","D","A","D","B","C"),2,4)) ) {
+  
+   n.contrasts = dim(contrasts)[1]
+
+   # n.simulated.investigations   per contrast  *** MODIFY ***
+   # n =  sample size from each of 2 contrasted panels *** MODIFY ***
+
+   results = matrix(NA,n.simulated.investigations,n.contrasts)
+        
+   alpha=0.10 # set by us
+
+   # SD.individuals = xxx,  not usual to KNOW the population SD
+
+   SD.Mean.diff = SD.individuals * sqrt(1/n+1/n) # variance(diff) = Sum of Vars. 
+
+   critical.diff = abs( qnorm(alpha/2) * SD.Mean.diff )
+   #print( aggregate(Values, by=list(P=ds$Panel), mean) )
+   #print( aggregate(Values, by=list(P=ds$Panel), sd) )
+   for(i in 1:n.simulated.investigations){
+	    for (j in 1:n.contrasts){
+		      pair = contrasts[j,]
+		      sample.mean = rep(NA,2)
+		      for(pair.member in 1:2){
+			        all.values.this.panel = Values[
+			             ds$Panel==pair[pair.member] ]
+			        sample.mean[pair.member] = 
+			             mean( sample(x=all.values.this.panel, 
+			                size=n, replace = TRUE)    )
+		      }
+		      difference = sample.mean[1] - sample.mean[2] 
+		      sig.difference = ( abs(difference) > critical.diff )
+		      results[i,j] = sig.difference
+	     } # end of contrasts
+    } # end of investigation
+
+    txt = paste("/",toString(n.simulated.investigations))
+
+    DIGITS = ceiling(log(n.simulated.investigations,base=10))
+    positives = format( apply(results,2,sum), digits = DIGITS)
     
-    ii=0
-    for(i.rr in 1:10){
-      for(i.cc in 1:10){
-        ii=ii+1
-        txt = toString(w[ii])
-        if(nchar(txt)==3) txt = paste(" ",txt)
-        text(xc+(i.cc-5.75+0.5*(i.cc > 5))*dx,
-             yc+(i.rr-5.75+0.5*(i.rr > 5))*dy,txt,
-             cex=0.725,family="mono")
-      }
-    }
-  }
-}
+    cat(paste("samples of size:",toString(n)))  
+
+    noquote( cbind( contrasts[,1],rep(" vs. ",n.contrasts),
+                contrasts[,2], rep("  ",n.contrasts), positives,
+                rep(txt,n.contrasts)  ) )
+
+} # end function
 
 
 ```
 
-**Exercises**
 
-2. ...
+```{r,eval=T, echo=T, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F, fig.cap="Tests of Opposite-Sex Panels (Null = Same- Sex)."}
 
-To help with rapid compilation of results in class, circle below which contrasts yielded "statistically significant" differences and BRING YOUR 8 DECISIONS TO CLASS.
+SimulateOppositeSexTests(ds$Birthweight,
+        n.simulated.investigations = 50, 
+        n = 4,
+        SD.individuals = 583,
+        contrasts = 
+          t(matrix(c("A","B", "C","D","A","D","B","C"),2,4)))
+
+```
+
+**Exercises - continued**
+
+2. Cross-classify the above results into the following 2 x 2 table, [knowing which pairs of panels are same-sex and which are opposite-sex](http://www.biostat.mcgill.ca/hanley/statbook/4panelsOfSexSpecificBirthWeights.txt) to tell you which row of the table a contrast belong to.
+
+3. Run the `R code` yourself, but with a much larger number of simulated investigations. Cross-classify your results. Even though you know there must be some non-zero difference in the sex-specific means population means, why are the results so dismal?  See also the [results in 
+2001](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf).
+
+4. How much better is the performance if you increase the $n$ to  64?  256?
 
 
- Birthweights
-Adult Heights
-"Arithmetic" of Testing if 2 panels have same mean
-Bvs.C B vs. C
+**(2-way) distribution of results of statistical tests [columns] in relation to real situations[rows]**
 
 
-2. ...
 
+|             |             |               | Test Result   |             |  Total |
+|:------------|------------:|--------------:|--------------:|------------:|-------:|
+|             |             | 'Negative'    |               | 'Positive'  |        |
+|             |             |  $P \ge 0.1$  |               | $P \lt 0.1$ |        |
+|             |             |               |               |             |        |
+|             |  SAME-SEX   |  $number$     |               |   $number$  |        |
+| **TRUTH**   |             |               |               |             |        |
+|             |  OPPOSITE   |  $number$     |               |   $number$  |        |
+|             |  .........  |  .........    |               |  .........  |        |
+|             |  TOTAL      |  $no._{neg.}$   |               |  $no._{pos.}$ |   TOTAL   |
+
+
+**Exercises - continued** 
+
+**CAN YOU TELL THE GROWN-UPS APART?** 
+
+The following panels are 100 sex-specific quantiles of weight (kg) of the  US Population aged 20-29 years in [2007 to 2008, based on NHANES surveys](https://www2.census.gov/library/publications/2010/compendia/statab/130ed/tables/11s0205.pdf). JH used interpolation (and a small bit of extrapolation at the lower edges) to create the 100 quantiles, $Q_{0.005}$, $Q_{0.015}$, $\dots$ $Q_{0.995}$.
+
+Aagin, they are identified as A-D, with the weights within a panel pertain to 20-29 year olds of the same sex, but different panels may pertain to different sexes. The layout is not necessarily the same as it was above for birthweights!
+
+
+5.  Cross-classify the above results into the following 2 x 2 table, [knowing which pairs of panels are same-sex and which are opposite-sex](http://www.biostat.mcgill.ca/hanley/statbook/4panelsOfSexSpecificBiorthWeights.txt) to tell you which row of the table a contrast belong to.
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F}
+
+
+ds = read.table(
+  "http://www.biostat.mcgill.ca/hanley/statbook/USweights100Qs20072008.txt",
+  as.is=TRUE)
+str(ds)
+
+```
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F, fig.cap="Measured weights of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled, and 'jittered'."}
+
+Four.panels(ds$Weight.Kg)
+
+```
+
+
+By eye, by comparing **all** the entries in one panel with all of those in another, you can readily tell if two panels have different means (or medians). But what can you conclude if you take **just a sample of size 4** from each of 2 panels and perform a formal null hypothesis test using the difference in the sample means or  the sample medians, or the ranks? 
+
+
+
+**Exercises - continued** 
+
+Your are asked to perform tests of the following **4** **contrasts**:
+
+1. $\mu_A$ vs. $\mu_C$ $\quad$ 2. $\mu_B$ vs. $\mu_D$ $\quad$ 3. $\mu_A$ vs. $\mu_D$ $\quad$ 4. $\mu_B$ vs. $\mu_C$
+
+using new (fresh, independent) **samples of size $n$ = 4** and $n$ = **4** for each of the 4 tests.
+
+* NB: 1 and 2 are not the same as 1 and 2 for birthweight above.
+
+6. Start by manually performing the 4 tests. Begin by calculating what the critical distance between the two sample means needs to be. Use a 'common' $\sigma$ = 21.4 Kg for each sex. [Again, it should be obvious why having this 'insider' information is not realistic! It is just to simplify the test to its essentials; later, in practice, we will use 'plug-in' values instead of the 'real' $\sigma$ and use a larger ($n$-based) multiplier to allow for using 'estimated', and thus 'uncertain', $\sigma$'s.] How confident are you in the results of these tests? (Remember, you KNOW that males are heavier than females; that is 'prior' information that the test doesn't know: it just uses the data you give it.)
+
+7. Run the same `R code` you ran above, with a large number of simulated investigations. **In real life, you don't get to see 'what might have been'**; you just get to see the one pair of samples you  selected. But here the (**simulated**) 'long-run' perfomance gives you sense of how sensitive your test procedure is [you already know how specific it is, by your choice of $\alpha$]. Then, using [this key](http://www.biostat.mcgill.ca/hanley/statbook/4panelsOfSexSpecificAdultWeights.txt) cross-classify your results. How much better did the test do here, than it did with birthweights?   Even though the $n$'s are still just 4 each, why are they better? 
+
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F, fig.cap="Tests of Opposite-Sex Panels (Null = Same- Sex)."}
+
+SimulateOppositeSexTests(ds$Weight.Kg,
+        n.simulated.investigations = 50, 
+        n = 4,
+        SD.individuals = 21.4,
+        contrasts = 
+          t(matrix(c("A","C", "B","D","A","D","B","C"),2,4)))
+
+```
+
+**CAN YOU TELL THE 20-SOMETHINGS APART BY THEIR _HEIGHTS_?** 
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F}
+
+
+ds = read.table(
+  "http://www.biostat.mcgill.ca/hanley/statbook/USheights100Qs20072008.txt",
+  as.is=TRUE)
+str(ds)
+
+```
+
+
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F, fig.cap="Measured heights (in cm) of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled."}
+
+Four.panels(ds$Height.cm)
+
+```
+Here are the test results
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=6.5, fig.width=9, warning=FALSE, message=F, fig.cap="Tests of Opposite-Sex Panels (Null = Same- Sex)."}
+
+SimulateOppositeSexTests(ds$Height.cm,
+        n.simulated.investigations = 50, 
+        n = 4,
+        SD.individuals = 7.3,
+        contrasts = 
+          t(matrix(c("A","C", "B","D","A","D","B","C"),2,4)))
+
+```
+
+
+
+**Exercises - continued** 
+
+8. Using the (common) SD of 7.3 cm, carry out 4 manually-calculated tests of the same 4 contrasts as for adult weights.
+
+9. (although the computer-simulated ones are giving you a sense that height is a more sensitive distinguisher/separator of the sexes than adult weight is, carry out a larger set of simulated tests to be sure.
+
+10. Statistically speaking, why  is height a more sensitive distinguisher/separator of the sexes? so? _Hint_: how far apart are the mean heights (a) in cms (b) as a percentage of the  SD of the individuals of a given sex? What are the corresponding perecenatges in the case of birthweights? adult weights? What we are fetting at here is the **signal-to-noise ratio** or **Effect Size**
+$$ \frac{Signal}{Noise} = \frac{\mu_1 - \mu_2}{\sigma}.$$ 
+
+11. In 2001, when it came to distinguishing same-sex panels from opposite-sex panels of **adult heights**, most of the students in 2001 **were able** to [correctly identify the opposite-sex panels](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=2), with only a few mistaking the same-sex panels for opposite-sex ones [we are in charge of controlling the latter errors, whereas (with $n$ fixed)
+
+12. Biologically speaking, why is height is a more sensitive distinguisher/separator of the sexes?  _Nature_ versus _Nurture_?
 
 
 ###  Box minus bowl
