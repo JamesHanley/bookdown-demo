@@ -409,24 +409,358 @@ m =<span class="st"> </span><span class="kw">matrix</span>(zeros.and.ones,n<span
 <p><strong>The Binomial Distribution is a model for the (sampling) variability of a proportion or count in a randomly selected sample</strong></p>
 <p><strong>The Binomial Distribution: what it is</strong></p>
 <ul>
-<li><p>The <span class="math inline">\(n+1\)</span> probabilities <span class="math inline">\(p_{0}, p_{1}, ..., p_{y}, ..., p_{n}\)</span> of observing <span class="math inline">\(0, 1, 2, \dots , n\)</span> ``positives’’ in <span class="math inline">\(n\)</span> independent realizations of a Bernoulli random variable <span class="math inline">\(Y\)</span>with probability, <span class="math inline">\(\pi,\)</span> that Y=1, and (1-<span class="math inline">\(\pi\)</span>) that it is 0. The number is the sum of <span class="math inline">\(n\)</span> independen Bernoulli random variables with the same probability, such as in s.r.s of <span class="math inline">\(n\)</span> individuals.</p></li>
+<li><p>The <span class="math inline">\(n+1\)</span> probabilities <span class="math inline">\(p_{0}, p_{1}, ..., p_{y}, ..., p_{n}\)</span> of observing <span class="math inline">\(y\)</span> = <span class="math inline">\(0, 1, 2, \dots , n\)</span> ‘positives’ in <span class="math inline">\(n\)</span> independent realizations of a Bernoulli random variable <span class="math inline">\(Y\)</span>with probability, <span class="math inline">\(\pi,\)</span> that Y=1, and (1-<span class="math inline">\(\pi\)</span>) that it is 0. The number is the sum of <span class="math inline">\(n\)</span> independen Bernoulli random variables with the same probability, such as in s.r.s of <span class="math inline">\(n\)</span> individuals.</p></li>
 <li><p>Each of the <span class="math inline">\(n\)</span> observed elements is binary (0 or 1)</p></li>
-<li><p>There are <span class="math inline">\(2^{n}\)</span> possible <em>sequences</em> … but only <span class="math inline">\(n+1\)</span> possible <em>values</em>, i.e. <span class="math inline">\(0/n,\;1/n,\;\dots ,\;n/n\)</span> can think of <span class="math inline">\(y\)</span> as sum of <span class="math inline">\(n\)</span> Bernoulli r. v.’s. [Better to work in same scale as parameter. i.e., (0,1). not the (0,n), count, scale.]</p></li>
+<li><p>There are <span class="math inline">\(2^{n}\)</span> possible <em>sequences</em> … but only <span class="math inline">\(n+1\)</span> possible <em>values</em>, i.e. <span class="math inline">\(0/n,\;1/n,\;\dots ,\;n/n\)</span> can think of <span class="math inline">\(y\)</span> as sum of <span class="math inline">\(n\)</span> Bernoulli r. v.’s. [Later on, in ptractive, we will work in the same scale as parameter. i.e., (0,1). not the (0,n) ‘count’ scale.]</p></li>
 <li>Apart from <span class="math inline">\(n\)</span>, the probabilities <span class="math inline">\(p_{0}\)</span> to <span class="math inline">\(p_{n}\)</span> depend on only 1 parameter:</li>
-<li>the probability that a selected individual will be ‘+ve’ i.e.,</li>
-<li><p>the proportion of ‘+ve’ individuals in sampled population</p></li>
-<li><p>Usually denote this (un-knowable) proportion by <span class="math inline">\(\pi\)</span> (or sometimes by the more generic <span class="math inline">\(\theta\)</span>)</p></li>
-<li>B&amp;M use <span class="math inline">\(p\)</span> for  proportion and <span class="math inline">\(\hat{p}\)</span> or ‘<span class="math inline">\(p\)</span>-hat’ for observed prop.n in a <em>sample</em>.</li>
-<li>Others use the letter <span class="math inline">\(\pi\)</span> for the population value (parameter) and <span class="math inline">\(p\)</span> for sample proportion.</li>
-<li>`Greek for parameter’ make the distinction clearer.</li>
-<li>Some textbooks are not consistent, using <span class="math inline">\(p\)</span> for the population proportion and <span class="math inline">\(\mu\)</span> for population mean.</li>
-<li>Baldi and Moore use the Arabic letter <span class="math inline">\(p\)</span> and the Greek letter <span class="math inline">\(\mu\)</span> (mu)!</li>
-<li><p>Some authors (e.g., Miettinen) use UPPER-CASE letters, [e.g. <span class="math inline">\(P\)</span>, <span class="math inline">\(M\)</span>] for PARAMETERS and lower-case letters [e.g., <span class="math inline">\(p\)</span>, <span class="math inline">\(m\)</span>] for statistics (<em>estimates} of parameters</em>).</p></li>
+<li>the probability that a selected individual will be ‘positive’ i.e., have the trait of interest</li>
+<li><p>the proportion of ‘positive’ individuals in the sampled population</p></li>
+<li>Usually we denote this (un-knowable) proportion by <span class="math inline">\(\pi\)</span> (or sometimes by the more generic <span class="math inline">\(\theta\)</span>)</li>
+<li>Textbooks are not consistent (see below); we try to use Greek letters for parameters,</li>
+<li><p>Note Miettinen’s use of UPPER-CASE letters, [e.g. <span class="math inline">\(P\)</span>, <span class="math inline">\(M\)</span>] for <em>PARAMETERS</em> and lower-case letters [e.g., <span class="math inline">\(p\)</span>, <span class="math inline">\(m\)</span>] for <em>statistics</em> (<em>estimates} of parameters</em>).</p></li>
 </ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Author(s)</th>
+<th align="center">PARAMETER</th>
+<th align="center">Statistic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Clayton and Hills</td>
+<td align="center"><span class="math inline">\(\pi\)</span></td>
+<td align="center"><span class="math inline">\(p = D/n\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Moore and McCabe, Baldi and Moore</td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="center"><span class="math inline">\(\hat{p} = y/n\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Miettinen</td>
+<td align="center"><span class="math inline">\(P\)</span></td>
+<td align="center"><span class="math inline">\(p = y/n\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">This book</td>
+<td align="center"><span class="math inline">\(\pi\)</span></td>
+<td align="center"><span class="math inline">\(p = D/n\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Shorthand: <span class="math inline">\(Y \sim Binomial(n, \pi)\)</span> or <span class="math inline">\(y \sim Binomial(n, \pi)\)</span></li>
+</ul>
+<p><strong>How it arises</strong></p>
+<ul>
+<li>Sample Surveys</li>
+<li>Clinical Trials</li>
+<li>Pilot studies</li>
+<li>Genetics</li>
+<li>Epidemiology</li>
+</ul>
+<p><strong>Uses</strong></p>
+<ul>
+<li>to make inferences about <span class="math inline">\(\pi\)</span> from observed proportion <span class="math inline">\(p = y/n\)</span>.</li>
+<li><p>to make inferences in more complex situations, e.g. …</p></li>
+<li><p>Prevalence Difference: <span class="math inline">\(\pi_{index.category}\)</span> - <span class="math inline">\(\pi_{reference.category}\)</span></p></li>
+<li><p>Risk Difference (RD): <span class="math inline">\(\pi_{index.category}\)</span> - <span class="math inline">\(\pi_{reference.category}\)</span></p></li>
+<li><p>Risk Ratio, or its synonym Relative Risk (RR): <span class="math inline">\(\frac{\pi_{index.category}}{\pi_{reference.category}}\)</span></p></li>
+<li><p>Odds Ratio (OR): <span class="math inline">\(\frac{\pi_{index.category}/(1-\pi_{index.category})}{  \pi_{reference.category}/(1-\pi_{reference.category}) }\)</span></p></li>
+<li><p>Trend in several <span class="math inline">\(\pi\)</span>’s</p></li>
+</ul>
+<p><strong>Requirements for <span class="math inline">\(Y\)</span> to have a Binomial<span class="math inline">\((n, \pi)\)</span> distribution</strong></p>
+<ul>
+<li><p>Each element in the ‘population’ is 0 or 1, but we are only interested in estimating the proportion (<span class="math inline">\(\pi\)</span>) of 1’s; we are not interested in individuals.</p></li>
+<li><p>Fixed sample size <span class="math inline">\(n\)</span>.</p></li>
+<li><p>Elements selected at random and independent of each other; each element in population has the same probability of being sampled: i.e., we have <span class="math inline">\(n\)</span> independent Bernoulli random variables with the same expectation (statisticians say ‘<em>i.i.d</em>’ or ‘<em>independent and identically distributed</em>’).</p></li>
+<li><p>It helps to distinguish the population values, say <span class="math inline">\(Y_1\)</span> to <span class="math inline">\(Y_N\)</span>, from the <span class="math inline">\(n\)</span> sampled values <span class="math inline">\(y_1\)</span> to <span class="math inline">\(y_n\)</span>. Denote by <span class="math inline">\(y_i\)</span> the value of the <span class="math inline">\(i\)</span>-th sampled element. Prob[<span class="math inline">\(y_i\)</span> = 1] is constant (it is <span class="math inline">\(\pi\)</span>) across <span class="math inline">\(i\)</span>. In the <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Mean-Quantile/inside_outside.pdf">What proportion of our time do we spend indoors?</a> example, it is the <strong>random/blind sampling</strong> of the temporal and spatial patterns of 0s and 1s that <strong>makes <span class="math inline">\(y_1\)</span> to <span class="math inline">\(y_n\)</span> independent of each other</strong>. The <span class="math inline">\(Y\)</span>’s, the elements in the population can be related to each other [e.g. there can be a peculiar spatial distribution of persons] but if elements are chosen at random, the chance that the value of the <span class="math inline">\(i\)</span>-th element chosen is a 1 cannot depend on the value of <span class="math inline">\(y_{i−1}\)</span> or any other <span class="math inline">\(y\)</span>: the sampling is ‘blind’ to the spatial location of the 1’s and 0s.</p></li>
+</ul>
+<p><strong>Binomial probabilities, illustrated using a Binomial Tree</strong></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-68"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-68-1.png" alt="From 5 (independent and identically distributed) Bernoulli observations to Binomial(n=5), with the Bernoulli probability left unspecified. There are 2 to the power n possible (distinct) sequences of 0's and 1's, each with its probability. We are not interested in these 2 to the power n probabilities, but in the probability that the sample  contains y 1's and (n-y) 0's. There are only (n+1) possibilities for y, namely 0 to n. Fortunately, each of the n.choose.y sequences that lead to the same sum or count y, has the same probability. So we group the 2.to.power.n sequences into (n+1) sets, according to the sum or count. Each sequence in the set with  y 1's and (n-y) 0's has the same probability, namely  the prob.to.the.power.y times (1-prob).to.the.power.(n-y). Thus, in lieu of adding all such probabilities, we simply multiply this  probability by the number, n.choose-y -- shown in black -- of unique sequences in the set. Check: the frequencies in black add to 2.to.power.n. Nowadays, the (n+1) probabilities are easily obtained by supplying a value for the 'prob' argument in the R function dbinom(), instead of  computing the binomial coefficient n.choose-y by hand." width="864" />
+<p class="caption">
+Figure 13.2: From 5 (independent and identically distributed) Bernoulli observations to Binomial(n=5), with the Bernoulli probability left unspecified. There are 2 to the power n possible (distinct) sequences of 0’s and 1’s, each with its probability. We are not interested in these 2 to the power n probabilities, but in the probability that the sample contains y 1’s and (n-y) 0’s. There are only (n+1) possibilities for y, namely 0 to n. Fortunately, each of the n.choose.y sequences that lead to the same sum or count y, has the same probability. So we group the 2.to.power.n sequences into (n+1) sets, according to the sum or count. Each sequence in the set with y 1’s and (n-y) 0’s has the same probability, namely the prob.to.the.power.y times (1-prob).to.the.power.(n-y). Thus, in lieu of adding all such probabilities, we simply multiply this probability by the number, n.choose-y – shown in black – of unique sequences in the set. Check: the frequencies in black add to 2.to.power.n. Nowadays, the (n+1) probabilities are easily obtained by supplying a value for the ‘prob’ argument in the R function dbinom(), instead of computing the binomial coefficient n.choose-y by hand.
+</p>
+</div>
+<p><strong>Does the Binomial Distribution apply if… ?</strong></p>
+<table style="width:44%;">
+<colgroup>
+<col width="27%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">Interested in:</td>
+<td align="right"><span class="math inline">\(\pi\)</span></td>
+<td align="left">the proportion of 16 year old girls in Quebec protected against rubella</td>
+</tr>
+<tr class="even">
+<td align="left">Choose:</td>
+<td align="right"><span class="math inline">\(n\)</span> = 100</td>
+<td align="left">girls: 20 at random from each of 5 randomly selected schools [‘cluster’ sample]</td>
+</tr>
+<tr class="odd">
+<td align="left">Count</td>
+<td align="right"><span class="math inline">\(y\)</span></td>
+<td align="left">how many of the <span class="math inline">\(n\)</span> = 100 are protected</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"><span class="math inline">\(\bullet\)</span> Is <span class="math inline">\(y ~ \sim Binomial(n=100, \ \pi)\)</span> ?</td>
+</tr>
+<tr class="odd">
+<td align="left">………….</td>
+<td align="right">………..</td>
+<td align="left">………………………………………………………</td>
+</tr>
+<tr class="even">
+<td align="left">‘SMAC’:</td>
+<td align="right"><span class="math inline">\(\pi\)</span></td>
+<td align="left">Chemistry Auto-analyzer with n = 18 channels. Critertion for ‘positivity’ set so that Prob[‘abnormal’ result in Healthy person] = 0.03 for each of 18 chemistries tested</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">Count</td>
+<td align="right"><span class="math inline">\(y\)</span></td>
+<td align="left">(In 1 patient) how many of <span class="math inline">\(n\)</span> = 18 give abnormal result.</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"><span class="math inline">\(\bullet\)</span> Is <span class="math inline">\(y ~ \sim Binomial(n=18, \ \pi=0.03)\)</span> ? <a href="https://www.amazon.ca/Biostatistics-Clinical-Medicine-Joseph-Ingelfinger/dp/0023597216">credit: Ingelfinger textbook</a></td>
+</tr>
+<tr class="odd">
+<td align="left">………….</td>
+<td align="right">………..</td>
+<td align="left">………………………………………………………</td>
+</tr>
+<tr class="even">
+<td align="left">………….</td>
+<td align="right">………..</td>
+<td align="left">………………………………………………………</td>
+</tr>
+<tr class="odd">
+<td align="left">Sex Ratio:</td>
+<td align="right"><span class="math inline">\(n=4\)</span></td>
+<td align="left">children in each family</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right"><span class="math inline">\(y\)</span></td>
+<td align="left">number of girls in family</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"><span class="math inline">\(\bullet\)</span> Is <span class="math inline">\(y ~ \sim Binomial(n=4, \ \pi=0.49)\)</span> ?</td>
+</tr>
+<tr class="even">
+<td align="left">………….</td>
+<td align="right">………..</td>
+<td align="left">………………………………………………………</td>
+</tr>
+<tr class="odd">
+<td align="left">Interested in:</td>
+<td align="right"><span class="math inline">\(\pi_u\)</span></td>
+<td align="left">proportion in ‘usual’ exercise classes and in</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right"><span class="math inline">\(\pi_e\)</span></td>
+<td align="left">expt’l. exercise classes who ‘stay the course’</td>
+</tr>
+<tr class="odd">
+<td align="left">Randomly</td>
+<td align="right">4</td>
+<td align="left">classes of</td>
+</tr>
+<tr class="even">
+<td align="left">Allocate</td>
+<td align="right">25</td>
+<td align="left">students each to usual course</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right"><span class="math inline">\(n_u = 4 \times 25 = 100\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right"><span class="math inline">\(n_e\)</span> = 4</td>
+<td align="left">classes of</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">25</td>
+<td align="left">students each to experimental course</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right"><span class="math inline">\(n_e = 4 \times 25 =100\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Count</td>
+<td align="right"><span class="math inline">\(y_u\)</span></td>
+<td align="left">how many of the <span class="math inline">\(n_u\)</span> = 100 complete course</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right"><span class="math inline">\(y_e\)</span></td>
+<td align="left">how many of the <span class="math inline">\(n_e\)</span> = 100 complete course</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"><span class="math inline">\(\bullet\)</span> Is <span class="math inline">\(y_u ~ \sim Binomial(n = 100, \ \pi_u)\)</span> ?</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"><span class="math inline">\(\bullet\)</span> Is <span class="math inline">\(y_e ~ \sim Binomial(n = 100, \ \pi_e)\)</span> ?</td>
+</tr>
+<tr class="odd">
+<td align="left">………….</td>
+<td align="right">………..</td>
+<td align="left">………………………………………………………</td>
+</tr>
+<tr class="even">
+<td align="left">Pilot Study:</td>
+<td align="right"></td>
+<td align="left">To estimate proportion <span class="math inline">\(\pi\)</span> of population that is eligible and willing to participate in long-term research study, keep recruiting until obtain</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right"><span class="math inline">\(y\)</span> = 5</td>
+<td align="left">who are. Have to approach <span class="math inline">\(n\)</span> to get <span class="math inline">\(y\)</span>.</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"><span class="math inline">\(\bullet\)</span> Is <span class="math inline">\(y ~ \sim Binomial(n, \ \pi)\)</span> ?</td>
+</tr>
+<tr class="odd">
+<td align="left">………….</td>
+<td align="right">………..</td>
+<td align="left">………………………………………………………</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Calculating Binomial probabilities</strong></p>
+<p><em>Exactly</em></p>
+<ul>
+<li><p>probability mass function (p.m.f.) :</p></li>
+<li><p>formula: <span class="math inline">\(Prob[y] = \  ^n C _y \ \pi^y \  (1 − \pi)^{n−y}\)</span>.</p></li>
+<li><p>recursively: <span class="math inline">\(Prob[0] = (1−\pi)^n\)</span>;    <span class="math inline">\(Prob[y] = \frac{n−y+1}{y} \times \frac{\pi}{1-\pi} \times Prob[y−1]\)</span>.</p></li>
+<li>Statistical Packages:</li>
+<li><p>R functions <code>dbinom()</code>, <code>pbinom()</code>, <code>qbinom()</code><br />
+probability mass, distribution/cdf, and quantile functions.</p></li>
+<li><p>Stata function <code>Binomial(n,k,p)</code></p></li>
+<li><p>SAS <code>PROBBNML(p, n, y)</code> function</p></li>
+<li><p>Spreadsheet — Excel function <code>BINOMDIST(y, n, π, cumulative)</code></p></li>
+<li><p>Tables: CRC; Fisher and Yates; Biometrika Tables; Documenta Geigy</p></li>
+</ul>
+<p><em>Using an approximation</em></p>
+<ul>
+<li><p>Poisson Distribution (<span class="math inline">\(n\)</span> large; small <span class="math inline">\(\pi\)</span>)</p></li>
+<li><p><strong>Normal (Gaussian) Distribution</strong> (<span class="math inline">\(n\)</span> large or midrange <span class="math inline">\(\pi\)</span>, so that the expecetd value, <span class="math inline">\(n \times \pi\)</span>, is sufficiently far ‘in from’ the ‘edges’ of the scale, i.e., sufficiently far in from 0 and from <span class="math inline">\(n\)</span>, so that a Gaussian distribution doesn’t flow past one of the edges. The Normal approximation is good for when you don’t have access to software or Tables, e.g, on a plane, or when the internet is down, or the battery on your phone or laptop had run out, or it takes too long to boot up Windows!).<br />
+To use the Normal approximatiom, be aware of the <strong>scale you are working in</strong>, .e.g., if say <span class="math inline">\(n = 10\)</span>, whether the summary is a <strong>count</strong> or a <strong>proportion</strong> or a <strong>percentage</strong>.</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="right"></th>
+<th align="left">r.v.</th>
+<th align="right">e.g.</th>
+<th align="center">E</th>
+<th align="center">S.D.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><strong>count</strong>:</td>
+<td align="left"><span class="math inline">\(y\)</span></td>
+<td align="right">2</td>
+<td align="center"><span class="math inline">\(n \times \pi\)</span></td>
+<td align="center"><span class="math inline">\(\{n \times \pi \times (1-\pi) \}^{1/2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="left"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center">i.e., <span class="math inline">\(n^{1/2} \times \sigma_{Bernoulli}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="left"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"><strong>proportion</strong>:</td>
+<td align="left"><span class="math inline">\(p=y/n\)</span></td>
+<td align="right">0.2</td>
+<td align="center"><span class="math inline">\(\pi\)</span></td>
+<td align="center"><span class="math inline">\(\{\pi \times (1-\pi) / n \}^{1/2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="left"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center">i.e., <span class="math inline">\(\sigma_{Bernoulli} / n^{1/2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="left"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="right"><strong>percentage</strong>:</td>
+<td align="left"><span class="math inline">\(100p\%\)</span></td>
+<td align="right">20%</td>
+<td align="center"><span class="math inline">\(100 \times \pi\)</span></td>
+<td align="center"><span class="math inline">\(100 \times SD[p]\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Exercise: deMoivre 1738</p>
+<p>dark <a href="https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula" class="uri">https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula</a></p>
+<p><a href="https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-4" class="uri">https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-4</a></p>
+<p>car sppeds <a href="https://purr.purdue.edu/publications/2671/1" class="uri">https://purr.purdue.edu/publications/2671/1</a></p>
 <p>Hypergeometric</p>
 <p>Non-Central Hypergeometric</p>
 <p>Chi-square</p>
 <p>===</p>
+<p>EXERCISES</p>
+<p>ADD YOUR OWN SEARCH RESULTS to table above</p>
+<p>Hydroxychloroquine uniformity table.</p>
 <p>few for differences</p>
 <p>woolf</p>
 <p>normal</p>
