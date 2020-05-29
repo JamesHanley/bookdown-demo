@@ -3,21 +3,209 @@
 
 ## Objectives
 
-This **central** chapter addresses a **fundamental concept**, namely the **variance of a random variable**. It gives the laws governing the variance of a sum of 2, or (especially) $n$ random variables  -- and even more importantly -- the laws governing **the variance of a difference of two random variables.** The latter is  central, not just to simple contrasts involving just 2 sample means or proportions, but also in the much wider world of regression, since the variance (sampling variability) of any regression slope can be viewed as the **variance of a linear combination of** random 'errors', or random deviations, or **random variables**.   So, if there is one 'master' formula to pay attention to and to 'own', it is the one for the variance of a linear combination of random variables. All others are special cases of this.
+Distributions of individual values take their shapes and spreads from the features of the setting, and thus do not follow any general laws. The shapes and the spreads of distributions of statistical summaries and parameter estimates made from aggregates of individual observations tend to be more regular and more predictable, and thus more law-abiding.  
 
-So, the **specific objectives** are to truly understand
+So, the **specific objectives** in this chapter are to truly understand
 
-* the concept of  a random variable.
+* the distinction between a natural and  investigator-made distributions, and between  observable and  conceptual ones.
 
-* the concept of the (expectation and) variance of a random variable.
+* why we should  automatically associate certain distributions with certain types of random variables
 
-* why it is that, when dealing with the sum  of two or more independent random variables, it is not their standard deviations that sum (add), but rather their variances.
+* why we need to understand the pre-requisites for random variables following the distributions they do
 
-* likewise, why it is that, when dealing with the **difference**  of two independent random variables, or some **linear combination** of $n$ independent random variables involving positive and negative weights, **why the component variances add**, and **with what weights**. 
+* why we rely so much on the Normal distribution, and why it  is so 'Central' to statistical inference concerning parameters.
+
+* why the pre-occupation with  checking 'Normality' (Gaussian-ness) is misguided
+
+* why Normality is not even relevant when the 'variable' is not 'random', and appears on the right hand side of a regression model.
+
+* the few contexts where shape does matter
 
 ## Named Distributions
 
-Gaussian Bernoulli-Binomial  Poisson
+In historical order
+
+Bernoulli, and scaled Bernoulli
+
+Binomial
+
+Normal
+
+beta
+
+Poisson
+
+t
+
+Wilcoxon
+
+=======
+
+To get a full list of the named distributions available in `R` you can use the following command: `help(Distributions)`
+
+
+### Bernoulli
+
+The simplest random variable is one that take just 2 possible values, such as  YES/NO, MALE/FEMALE, 0/1, ON/OFF, POSITIVE/NEGATIVE, PRESENT/ABSENT, EXISTS/DOES NOT, etc.
+
+This random variable $Y$ is governed by just one parameter, namely the probability, $\pi$, that it takes on the YES (or '1') value. Of course you can reverse the scale, and speak about the probability of a NO (or '0') result.
+
+It is too bad that when [Wikipedia](https://en.wikipedia.org/wiki/Bernoulli_distribution), which has a unified way of showing the main features of statistical distributions, does not follow its own principles and show a graph of various versions of a Bernoulli distribution. So here is such a graph. 
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=2, fig.width=9, warning=FALSE, message=F,fig.cap="Various Bernoulli random variables/distributions. We continue our convention of using the letter Y (instead of X) as the generic name for a random variable. Moreover, in keeping with this view, all of the selected Bernoulli distributions are plotted with their 2 possible values shown on the vertical axis."}
+
+par(mfrow=c(1,1),mar = c(0,0,1,0))
+
+plot(-10,-10,xlim=c(1,17),ylim=c(-0.1,1.1))
+
+Dx = 1.75
+for(Pos in (1:9)){
+   
+   segments(Pos*Dx,0,Pos*Dx,1)
+   prob = Pos/10
+   arrows(Pos*Dx-Dx/6, prob, Pos*Dx, prob,
+          length=0.06, angle=25)
+   if(Pos==1){ 
+      text(Pos*Dx, 0.5, "Y", adj=c(1.5,0.5))
+      text(Pos*Dx, 1, "1", adj=c(1.25,0.5))
+      text(Pos*Dx, 0, "0", adj=c(1.25,0.5))
+      }
+   segments(Pos*Dx,1,Pos*Dx+ prob,1,lwd=1.5)
+   segments(Pos*Dx,0,Pos*Dx+ (1-prob),0)
+   text(Pos*Dx + prob, 1, 
+                       toString(prob), 
+                       adj=c(-0.25,0.5),
+                       cex=0.65,font=2)
+   text(Pos*Dx + 1-prob, 0, 
+                       toString(1-prob), 
+                       adj=c(-0.25,0.5),
+                       cex=0.65)
+}
+
+```
+
+Please, when reading the Wikipedia entry, replace all instances of $X$ and $x$ by $Y$ and $y$. Note also that we will use $\pi$ where Wikipedia, and some textbooks, use $p$. As much as we can, we use Greek letters for parameters and Roman letters for their empirical (sample) counterparts. Also, to be  consistent, if the random variable itslef is called $Y$, then it makes sense to use $y$ as the possible relaizations of it, rather than the illogical $k$ that Wikipedia uses.]
+
+In the sidebar, Wikipedia shows the probability mass function (_pmf_, the probabilities that go with the possible $Y$ values) in two separate rows, but in the text the _pmf_ is also shown more concisely, as (in our notation)
+
+$$f(y) = \pi^y (1-\pi)^{1-y}, \ \ y = 0, 1.$$
+If we wish to align with how the `R` software names features of distributions, we might want to switch from $f$ to $d$. `R` uses $d$ because it harmonizes with the probability $d$ensity function (_pdf_) notation that its uses for random variables on an interval scale, even though some  statistical 'purists' see that as mixing terminology: they use the term probablility mass function for discrete random variables, and probablity density function for ones on an interval scale.
+
+$$d_{Bernoulli}(y) = \pi^y (1-\pi)^{1-y}.$$
+
+Sadly, Bernoulli does not get its own entry in `R`'s list of named distributions, presumably because it is a special case of a binomial distribution, one where $n$ = 1. 
+So we have to call `dbinom(x,size,prob)` to get the
+density (probability mass) function of the binomial distribution with parameters `size` ($n$) and `prob` ($\pi$), and set $n$ to 1. 
+
+The 3 arguments to  `dbinom(x,size,prob)` are:
+
+* `x`: a vector of quantiles (here just 0 or/and 1),
+* `size`: the number of 'trials' (our '$n$', so 1 for Bernoulli),
+and 
+* `prob`: the probability of 'success' on each 'trial'. We think of it as the probability that a realization of $Y4, i.e, $y$ will equal 1, or as $\pi.$)
+
+Thus, `dbinom(x=0,size=1,prob=0.3)` yields `r dbinom(x=0,size=1,prob=0.3)`, while `dbinom(x=1,size=1,prob=0.3)` yields `r dbinom(x=1,size=1,prob=0.3)` and `dbinom(x=c(0,1),size=1,prob=0.3)` yields the vector `r dbinom(x=c(0,1),size=1,prob=0.3)`.
+
+Incidentally, please do not adopt the convention that $x$ (or our $y$) is the number of ‘successes’ in $n$ trials. It is the number of 'positives' in a sample of $n$ independent draws from a population in which a proportion $\pi$ are positive.
+
+**_Expectation (E) and Variance (V)_ of a Bernoulli random variable.**
+
+Shortening $Prob(Y=y)$ to $P_y$, we have
+
+* From first principles, 
+ $$E[Y] = 0 \times P_0 + 1 \times P_1 = 0 \times (1-\pi) + 1 \times \pi = \pi,$$
+while
+ $$V[Y] = (0-\pi)^2 \times P_0 + (1-\pi)^2 \times P_1  = \pi^2(1-\pi) + (1-\pi)^2\pi =  \underline{\pi(1-\pi)}.$$
+
+This functional form for the ('unit') variance is not entirely surprising: it is obvious from the selected distributions whon that the most concentrated Bernoulli distributions are the ones where the proportion $(\pi)$ of Y = 1 values is either close to 1 or to zero, and that the most spread out Bernoulli distributions are the ones where $\pi$ is close to 1/2. And, and a function of $\pi$, the Variance must be symmetric about $\pi$ = 1/2.   
+
+The fact that the greatest uncertainty ('entropy', lack of order or predictability) is when $\pi$ = 1/2 is one of the factors that makes sports contests more engaging when teams or players  are well matched. Later, when we come to study what influences the imprecision of sample surveys, we will see that for a given sample size, the imprecision is largest when  $\pi$ is closer to 1/2.  
+
+**Why focus on the variance of a Bernoulli random variable?** because, later, when we use the more intesting binomial distribution, we can call on first prionciples to recall what its expection and variance are. A Binomial random variable is the sum of $n$ independently distributed Bernoulli random variables, all with the same expectation $\pi$ and unit variance $\pi(1-\pi).$ Thus its expectation ($E$) and variance  ($V$) are the sums of these 'unit' versions, i.e., $E[binom.sum] = n \times \pi$ and $V[binom.sum] =  n \times \pi(1-\pi).$ Moreover, again from first principles, we can deduce that if instead of a sample _sum_, we are interested in a sample _mean_ (here the _mean_ of the 0's and 1's is the sample _proportion_), its expected value is 
+$$\boxed{\boxed{E[binom.prop'n] = \frac{n \pi}{n} = \pi; \   V[.] = \frac{n  \pi(1-\pi))}{n^2} = \frac{\pi(1-\pi)}{n}; \ SD[.] = \frac{\sqrt{\pi(1-\pi)}}{ \sqrt{n}} = \frac{\sigma_{0,1}}{\sqrt{n}} } }  $$  
+
+Note here the generic way we write the SD of the sampling distribution of a sample proportion, in the same way that we write the SD of the sampling distribution of a sample mean, as $\sigma_u/\sqrt{n},$ where $\sigma_u$ is the 'unit' SD, the standard deviation of the  values of _individuals_. The individual values in the case of a Bernoulli randomn variable are just 0s and 1s, and their SD is $\sqrt{\pi(1-\pi)}.$ We call this SD the SD of the 0'1 and 1's, or $\sigma_{0,1}$ for short.
+
+Notice how, even though it might look nicer and simpler to compute, and involves just 1 square root calculation, we did not write the SD of a binomial proportion as  
+$$SD[binom.proportion] = \sqrt{\frac{\pi(1-\pi)}{ n} }.$$ 
+We choose instead to use the $\sigma/\sqrt{n}$ version, to show that it has the same _form_ as the SD for the sampling distribution of a sample mean. Now that we no longer need to  savw keystrokes on a hand caloculator, we should move away from  computational forms and focus instead on the intuitive form.  Sadly, many textbooks re-use the same concept in disjoint chapters without telling readers they are cases of the same SD formula. 
+
+There is a lot to be gained by thinking of proportions as means, but where the $Y$ values are just 0's and 1's. You can use the  `R code` below to simulate a very large number of 0's and 1's, and calculate their variance. The  `sd` function in `R` doesn't know or care that the values you supply it are limited to just 0s and 1s, or spread along an interval. Better still don't use the `rbinom` function; instead use the `sample` function, with replacement.
+
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=2, fig.width=9, warning=FALSE, message=F,fig.cap="Various Bernoulli random variables/distributions. We continue our convention of using the letter Y (instead of X) as the generic name for a random variable. Moreover, in keeping with this view, all of the selected Bernoulli distributions are plotted with their 2 possible values shown on the vertical axis."}
+
+n = 750
+
+zeros.and.ones = sample(0:1, n , 
+   prob=c(0.2, 0.8),replace=TRUE )
+
+m = matrix(zeros.and.ones,n/75,75)
+noquote(apply(m,1,paste,collapse=""))
+
+sum(zeros.and.ones)/n
+round( sd(zeros.and.ones),4)
+
+```
+
+Try the above code with a larger $n$ and a different $\pi$ and convince yourself that the variance (and thus the SD) of the individual 0 and 1 values (a) have nothing to do with how many there are and everything to do with what proportion of them are of each type and (b)  are larger when the proportions are close to each other, and smaller when they are not. 
+
+**Scaled-Bernoulli random variables**
+
+**Could we get by without studying the Binomial Distribution?** The answer is 'for most applications, yes.' The reason is that in in most cases, we are able to use a Gaussian (Normal) approximation to the binomial distribution. Thus, all we need are its expectation and variance (standard deviation):  we don't need the `dbinom()` probability mass function, or the `pbinom()` that gives the cumulative distribution function and thus the tail areas, or the `qbinom()` function that gives the quantiles. But sometimes we deal with situations where the binomial distributions are not symmetric and close-enough-to-Gaussian.
+
+we will come back to how the binomial distribution led to the [deMoivre's derivation](https://en.wikipedia.org/wiki/De_Moivre–Laplace_theorem) of a 'Gaussian distribution -- in 1738, almost 4 decades before Gauss was born.
+
+
+https://fivethirtyeight.com/features/what-if-god-were-a-giant-game-of-plinko/
+
+
+===
+
+### Binomial
+
+**The Binomial Distribution is a  model for the (sampling) variability of a proportion or count in a randomly selected sample**
+
+**The Binomial Distribution: what it is**
+
+* The $n+1$ probabilities $p_{0}, p_{1}, ..., p_{y}, ..., p_{n}$ of observing $0, 1, 2, \dots , n$ ``positives''  in $n$ independent realizations of a Bernoulli random variable $Y$with probability, $\pi,$ that Y=1, and (1-$\pi$) that it is 0. The number is the sum of $n$ independen Bernoulli random variables with the same probability, such as in s.r.s of $n$ individuals.
+    
+* Each of the $n$ observed elements is binary (0 or 1)
+
+* There are $2^{n}$ possible _sequences_ ... but only $n+1$ possible _values_, i.e. $0/n,\;1/n,\;\dots ,\;n/n$  can think of $y$ as sum of $n$ Bernoulli r. v.'s. [Better to work in same scale as  parameter. i.e., (0,1). not the  (0,n), count, scale.]
+        
+* Apart from  $n$, the probabilities $p_{0}$ to $p_{n}$ depend on only 1 parameter:
+   +  the probability that a selected individual will be '+ve'  i.e.,
+   + the proportion of '+ve' individuals in sampled population
+
+*  Usually denote this (un-knowable) proportion by $\pi$ (or sometimes by the more generic $\theta$) 
+
+   + B\&M use $p$ for \textit{population} proportion and $\hat{p}$ or '$p$-hat' for observed prop.n in a _sample_.
+   + Others use the  letter $\pi$ for the population value (parameter) and $p$ for  sample proportion.
+   + `Greek for parameter' make the distinction clearer.
+   + Some textbooks are not consistent, using $p$ for the population proportion and $\mu$ for population mean.
+   + Baldi and Moore use  the Arabic letter $p$ and the Greek letter $\mu$ (mu)!
+   + Some authors (e.g., Miettinen) use UPPER-CASE letters, [e.g. $P$, $M$] for PARAMETERS and lower-case letters [e.g., $p$, $m$] for statistics (_estimates} of parameters_).
+
+
+Hypergeometric
+
+Non-Central Hypergeometric
+
+Chi-square
+
+===
+
+few for differences
+
+woolf
+
+normal
+
+transformations
+
 
 ## Exercises
 

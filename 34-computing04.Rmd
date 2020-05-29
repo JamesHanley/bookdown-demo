@@ -2,31 +2,48 @@
 
 ## Objectives
 
-The **'computing' objective** is to learn how to use `R` to simulate variation by (Monte Carlo) simulation. Tasks and `R` Functions/structures used include 
+The **'computing' objective** is to learn how to use `R` to simulate variation by (Monte Carlo) simulation. Tasks and `R` Functions/structures used include
 
-* repeating a procedure for subsets of a dataframe: `by`  
+* Read a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file" `read.table( )`
 
-* extracting  the first or last parts of a vector, matrix, table, or data frame: `head` and `tail`
+* Compactly display the internal `str`ucture of an R object, e.g. the abbreviated contents of (possibly nested) lists: `str( )`
+
+* repeating a procedure for subsets of a dataframe: `by( )`
+
+* loops using `for` . See [here](
+https://www.datacamp.com/community/tutorials/tutorial-on-loops-in-r?utm_source=adwords_ppc&utm_campaignid=1655852085&utm_adgroupid=61045433942&utm_device=c&utm_keyword=%2Bfor%20%2Br&utm_matchtype=b&utm_network=g&utm_adpostion=&utm_creative=318880582248&utm_targetid=aud-392016246653:kwd-310330089735&utm_loc_interest_ms=&utm_loc_physical_ms=9000568&gclid=EAIaIQobChMIhMf41qfU6QIVT_DACh1Oegu5EAAYASAAEgLBa_D_BwE).
+
+* rescaling a vector `v` so that it sums to 1: `v = v / sum(v)`
+
+* adding elements of a vector or (say) a product of 2 vectors, or a square of a vector: `sum( )
+
+* compute the mean and standard deviation of the numbers in a vector: `mean()` and `sd( )`
+
+* computing the mean and SD of a (population) frequency distribution from first principles using the scaled frequencies as probabilities: `sum(values*probabilities)`
+ 
+* extracting  the first or last parts of a vector, matrix, table, or data frame: `head( )` and `tail( )`
 
 *  removing duplicate elements/rows from a vector, data frame or array: `unique`
 
-* plotting: `plot`
+* plotting: `plot( )`
 
-* adding one or more straight lines through the current plot: `abline`
+* adding one or more straight lines through the current plot: `abline( )`
 
-* joining multiple (x,y) points with line segments: `lines`
+* joining multiple (x,y) points with line segments: `lines( )`
 
 * Splitting data into subsets, computing summary statistics for each, and returning the result in a convenient form: `aggregate`
 
-* sampling from a  set of values: `sample`
+* sampling from a  set of values: `sample( )`
 
-* summing the values in a vector: `sum` 
+* summing the values in a vector: `sum( )` 
 
-* applying a function to each of the rows or columns of a matrix, or to some slices of higher-dimensional array: `apply`  
+* applying a function to each of the rows or columns of a matrix, or to some slices of higher-dimensional array: `apply( )`  
 
-* computing the mean, variance and sd of  a vector: `mean`, `var`, `sd`
+* computing the mean, variance and sd of  a vector: `mean( )`, `var( )`, `sd( )`
 
-* defining a (homemade) function to 'automate' a procedure `function` 
+* defining a (homemade) function to 'automate' a procedure `function`
+
+* tabulating the values in a vector, or crosstabulating the values in 2 or more vectors: `table( )`
 
 The **'statistical' objective** of this exercise is to learn-by-seeing some of the laws that describe/quantify the **variation** (variance, SD) of the sum, and more importantly, the **difference of 2 random variables**. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don't get to see the individuals -- or collections of individuals -- that were nor selected, the laws are based on the theory of mathematical statistics, and thus not easy to visualize/imagine. So, we will use  simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising 'reasons why' they take the form they do.
 
@@ -54,7 +71,7 @@ The sex-specific panels below shows examples of the sums of the lengths of 10 ba
 
 Refer to the exercise, and the dataset, in the first computing session.
 
-1. Using the year-of-manufacture frequency distribution you derived back then, canculate the mean year, and thus the mean age.
+1. Using the year-of-manufacture frequency distribution you derived back then, calculate the mean year, and thus the mean age.
 
 2. From first principles, i.e., using devaitions from  the mean year, calculate the variance -- and thus the SD -- of the distribution.
 
@@ -406,15 +423,14 @@ We haven't been able to find universal guidelines for these dimensions -- cities
 
 [Some authorities ](http://www.portphillip.vic.gov.au/line-marking-parking-spaces.htm) have pointed to a waste of space when these fixed-size spaces are used. Indeed JH has seen, in Melbourne, Australia, a street where drivers were asked to park in order, starting from the from end of a block, keeping just 1 metre from the car in front, until the entire block filled up.
 
-To see how many additional cars can be accommodated by this scheme, let's compare how this system compares with a fixed-length box of 6.5 meters. Imagine a city block, 130 metres long, that contains 20 fixed-length parking spots. What if it were converted to the 'just fill up from the one end' system with no boundaries?
-See the example below.
+To see how many additional cars can be accommodated by this scheme, let's compare how this system compares with a fixed-length box of 6.5 meters. Imagine a city block, 130 metres long, that contains $N$ = 20 fixed-length parking spots. What if it were converted to the 'just fill up from the one end' system with no boundaries? See the example below.
 
 To study this, we have used the most popular makes and models of cars in the UK car-registrations database (déjà vu). For each model, we were able to find its length (in mm) from [this database](https://www.cars-data.com/en/). In instances where the length of a car model changed over time, to reduce the otherwise-lengthy programming and computer-intensive data-extraction, we selected a 'middle' length.
 
-In the resulting [data file](http://www.biostat.mcgill.ca/hanley/statbook/LengthsMostPopularCars.txt), each of the 448 rows 
+In the resulting [data file](http://www.biostat.mcgill.ca/hanley/statbook/DimensionsOfPopularCars.txt), each of the 508 rows 
 gives the make and the model, as well as its frequency in the car-registrations database, and its length in millimetres. [The datafile also contains the width, height and  mass, which we will use elsewhere to investigate a 'body mass index' for cars]
 
-1. Read the data into an `R dataframe` using
+1. Read the data into an `R dataframe`.
 
 2. Select  25 cars randomly from the just-described frequency distribution, and determine whether, parked a meter apart, they fit into the 130-m long space. Repeat the simulation a sufficient number of times to approach the probablity that this system would provide at least 5 additional spaces. 
 
@@ -430,12 +446,12 @@ How would you summarize the distribution?
 
 ```{r,eval=T, echo=T, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F,fig.cap="Parking"}
 
-ds=read.table("http://www.biostat.mcgill.ca/hanley/statbook/LengthsMostPopularCars.txt",as.is=TRUE)
+ds=read.table("http://www.biostat.mcgill.ca/hanley/statbook/DimensionsOfPopularCars.txt",as.is=TRUE)
 str(ds)
 
 ```
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="30 simulations of the possible gains from using variable-length (parallel) parking spaces.  Shown are 20 fixed-length spaces, each of length 6.5m. In each simulation, 20 cars are selected randomly from the just-described frequency distribution, and their lengths are shown as red lines within the fixed-length parking spaces, and as blues lines, with 1m spacing, in the variable-length scheme."}
+```{r,eval=T, echo=T, fig.align="center", fig.height=6, fig.width=9, warning=FALSE, message=F, fig.cap="30 simulations of the possible gains from using variable-length (parallel) parking spaces.  Shown are 20 fixed-length spaces, each of length 6.5m. In each simulation, 20 cars are selected randomly from the just-described frequency distribution, and their lengths are shown as red lines within the fixed-length parking spaces, and as blues lines, with 1m spacing, in the variable-length scheme."}
 
 # plot(ds$Length.mm,log(ds$No.Registered),cex=0.5,pch=19)
 
@@ -884,13 +900,14 @@ SimulateOppositeSexTests(ds$Height.cm,
 
 9. (although the computer-simulated ones are giving you a sense that height is a more sensitive distinguisher/separator of the sexes than adult weight is, carry out a larger set of simulated tests to be sure.
 
-10. Statistically speaking, why  is height a more sensitive distinguisher/separator of the sexes? so? _Hint_: how far apart are the mean heights (a) in cms (b) as a percentage of the  SD of the individuals of a given sex? What are the corresponding perecenatges in the case of birthweights? adult weights? What we are fetting at here is the **signal-to-noise ratio** or **Effect Size**
+10. Statistically speaking, why  is height a more sensitive distinguisher/separator of the sexes? _Hint_: how far apart are the mean heights (a) in cms (b) as a percentage of the  SD of the individuals of a given sex? What are the corresponding perecenatges in the case of birthweights? adult weights? What we are fetting at here is the **signal-to-noise ratio** or **Effect Size**
 $$ \frac{Signal}{Noise} = \frac{\mu_1 - \mu_2}{\sigma}.$$ 
 
-11. In 2001, when it came to distinguishing same-sex panels from opposite-sex panels of **adult heights**, most of the students in 2001 **were able** to [correctly identify the opposite-sex panels](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=2), with only a few mistaking the same-sex panels for opposite-sex ones [we are in charge of controlling the latter errors, whereas (with $n$ fixed)
+11. In 2001, when it came to distinguishing same-sex panels from opposite-sex panels of **adult heights**, a clear majority (63/76) of the students **were able** to [correctly identify the opposite-sex panels](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=2), with only a few (8/75) mistaking the same-sex panels for opposite-sex ones. To try to answer why we do not do as well with our data, compute the sex-specific means and SD's of the 100 quantiles, and compare the effect sizes with those in 2001. You might also make boxplots to see if the shapes of the data differ [JH doesn't remember how he made the 100 values in 2001, but for sure the ones above are closer to the real shapes.] To save you manually extracting them, the [data from 2001 can be found here](http://www.biostat.mcgill.ca/hanley/statbook/BirthweightsAdultHeights2001class.txt).
 
-12. Biologically speaking, why is height is a more sensitive distinguisher/separator of the sexes?  _Nature_ versus _Nurture_?
+12. Statistically speaking, why are the 'false positive rates' about the same with the new data and the 2001 data. _Hint_: Who determines them?
 
+13. Biologically speaking, why is adult height a more sensitive distinguisher/separator of the sexes than  adult weight? _Hint_: think about the relative roles of _Nature_ and _Nurture_ -- and while you are on this topic, look up the origins of the Nature versus Nurture phrase.
 
 ###  Box minus bowl
 
