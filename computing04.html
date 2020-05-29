@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-05-26" />
+<meta name="date" content="2020-05-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -206,7 +206,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="13" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>13</b> Distributions</a><ul>
 <li class="chapter" data-level="13.1" data-path="distributions.html"><a href="distributions.html#objectives-2"><i class="fa fa-check"></i><b>13.1</b> Objectives</a></li>
-<li class="chapter" data-level="13.2" data-path="distributions.html"><a href="distributions.html#named-distributions"><i class="fa fa-check"></i><b>13.2</b> Named Distributions</a></li>
+<li class="chapter" data-level="13.2" data-path="distributions.html"><a href="distributions.html#named-distributions"><i class="fa fa-check"></i><b>13.2</b> Named Distributions</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="distributions.html"><a href="distributions.html#bernoulli"><i class="fa fa-check"></i><b>13.2.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="13.2.2" data-path="distributions.html"><a href="distributions.html#binomial"><i class="fa fa-check"></i><b>13.2.2</b> Binomial</a></li>
+</ul></li>
 <li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#exercises-3"><i class="fa fa-check"></i><b>13.3</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>III Part III</b></span></li>
@@ -315,18 +318,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">18.1</span> Objectives</h2>
 <p>The <strong>‘computing’ objective</strong> is to learn how to use <code>R</code> to simulate variation by (Monte Carlo) simulation. Tasks and <code>R</code> Functions/structures used include</p>
 <ul>
-<li><p>repeating a procedure for subsets of a dataframe: <code>by</code></p></li>
-<li><p>extracting the first or last parts of a vector, matrix, table, or data frame: <code>head</code> and <code>tail</code></p></li>
+<li><p>Read a file in table format and creates a data frame from it, with cases corresponding to lines and variables to fields in the file&quot; <code>read.table( )</code></p></li>
+<li><p>Compactly display the internal <code>str</code>ucture of an R object, e.g. the abbreviated contents of (possibly nested) lists: <code>str( )</code></p></li>
+<li><p>repeating a procedure for subsets of a dataframe: <code>by( )</code></p></li>
+<li><p>loops using <code>for</code> . See <a href="https://www.datacamp.com/community/tutorials/tutorial-on-loops-in-r?utm_source=adwords_ppc&amp;utm_campaignid=1655852085&amp;utm_adgroupid=61045433942&amp;utm_device=c&amp;utm_keyword=%2Bfor%20%2Br&amp;utm_matchtype=b&amp;utm_network=g&amp;utm_adpostion=&amp;utm_creative=318880582248&amp;utm_targetid=aud-392016246653:kwd-310330089735&amp;utm_loc_interest_ms=&amp;utm_loc_physical_ms=9000568&amp;gclid=EAIaIQobChMIhMf41qfU6QIVT_DACh1Oegu5EAAYASAAEgLBa_D_BwE">here</a>.</p></li>
+<li><p>rescaling a vector <code>v</code> so that it sums to 1: <code>v = v / sum(v)</code></p></li>
+<li><p>adding elements of a vector or (say) a product of 2 vectors, or a square of a vector: `sum( )</p></li>
+<li><p>compute the mean and standard deviation of the numbers in a vector: <code>mean()</code> and <code>sd( )</code></p></li>
+<li><p>computing the mean and SD of a (population) frequency distribution from first principles using the scaled frequencies as probabilities: <code>sum(values*probabilities)</code></p></li>
+<li><p>extracting the first or last parts of a vector, matrix, table, or data frame: <code>head( )</code> and <code>tail( )</code></p></li>
 <li><p>removing duplicate elements/rows from a vector, data frame or array: <code>unique</code></p></li>
-<li><p>plotting: <code>plot</code></p></li>
-<li><p>adding one or more straight lines through the current plot: <code>abline</code></p></li>
-<li><p>joining multiple (x,y) points with line segments: <code>lines</code></p></li>
+<li><p>plotting: <code>plot( )</code></p></li>
+<li><p>adding one or more straight lines through the current plot: <code>abline( )</code></p></li>
+<li><p>joining multiple (x,y) points with line segments: <code>lines( )</code></p></li>
 <li><p>Splitting data into subsets, computing summary statistics for each, and returning the result in a convenient form: <code>aggregate</code></p></li>
-<li><p>sampling from a set of values: <code>sample</code></p></li>
-<li><p>summing the values in a vector: <code>sum</code></p></li>
-<li><p>applying a function to each of the rows or columns of a matrix, or to some slices of higher-dimensional array: <code>apply</code></p></li>
-<li><p>computing the mean, variance and sd of a vector: <code>mean</code>, <code>var</code>, <code>sd</code></p></li>
+<li><p>sampling from a set of values: <code>sample( )</code></p></li>
+<li><p>summing the values in a vector: <code>sum( )</code></p></li>
+<li><p>applying a function to each of the rows or columns of a matrix, or to some slices of higher-dimensional array: <code>apply( )</code></p></li>
+<li><p>computing the mean, variance and sd of a vector: <code>mean( )</code>, <code>var( )</code>, <code>sd( )</code></p></li>
 <li><p>defining a (homemade) function to ‘automate’ a procedure <code>function</code></p></li>
+<li><p>tabulating the values in a vector, or crosstabulating the values in 2 or more vectors: <code>table( )</code></p></li>
 </ul>
 <p>The <strong>‘statistical’ objective</strong> of this exercise is to learn-by-seeing some of the laws that describe/quantify the <strong>variation</strong> (variance, SD) of the sum, and more importantly, the <strong>difference of 2 random variables</strong>. The laws are the same no matter whether the difference is in some characteristic of 2 randomly selected individuals or in some statistic (an aggregate of individual values). Since we don’t get to see the individuals – or collections of individuals – that were nor selected, the laws are based on the theory of mathematical statistics, and thus not easy to visualize/imagine. So, we will use simulations (virtual thought experiments) to help us motivate and remember the laws, and to bring out the possibly-surprising ‘reasons why’ they take the form they do.</p>
 <p>The take-home message is that if the two random quantities involved in the difference are statistically independent of each other, the possible variations in the difference are larger than the ones in each of the two components, and that <strong>Variances Add; SDs don’t</strong>. The <strong>variance of a sum or difference is equal to the sum of the (variances of the) parts</strong></p>
@@ -350,7 +361,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">18.2.1</span> Ages of UK cars</h3>
 <p>Refer to the exercise, and the dataset, in the first computing session.</p>
 <ol style="list-style-type: decimal">
-<li><p>Using the year-of-manufacture frequency distribution you derived back then, canculate the mean year, and thus the mean age.</p></li>
+<li><p>Using the year-of-manufacture frequency distribution you derived back then, calculate the mean year, and thus the mean age.</p></li>
 <li><p>From first principles, i.e., using devaitions from the mean year, calculate the variance – and thus the SD – of the distribution.</p></li>
 <li><p>Without actually converting every year-of-manufacture to an age, calculate the standard deviation of the ages.</p></li>
 <li><p>Even though the frequency distribution is not symmetric, how could the SD (or an estimate of it) be of help if you had to estimate the mean age from just a random sample of registered cars.</p></li>
@@ -457,8 +468,8 @@ ds =<span class="st"> </span><span class="kw">read.table</span>(
 ## 5501 WILLIAM       739      7 2018      M    1
 ## 5502   LOGAN       636      5 2018      M    2
 ## 5503    LIAM       629      4 2018      M    3</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-90"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-90-1.png" alt="The closely spaced vertical lines show the frequency distributions of the popularity (ranks) of the 500 most popular names for babies born in Quebec in 2018. For example, more than 600 girls and more than 700 boys had the most popular name, while fewer than half this many babies had the 25th  most popular name. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma  2. Alice, .. 1. William, 2. Logan, ...). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the black ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-92"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-92-1.png" alt="The closely spaced vertical lines show the frequency distributions of the popularity (ranks) of the 500 most popular names for babies born in Quebec in 2018. For example, more than 600 girls and more than 700 boys had the most popular name, while fewer than half this many babies had the 25th  most popular name. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma  2. Alice, .. 1. William, 2. Logan, ...). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the black ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column." width="864" />
 <p class="caption">
 Figure 18.1: The closely spaced vertical lines show the frequency distributions of the popularity (ranks) of the 500 most popular names for babies born in Quebec in 2018. For example, more than 600 girls and more than 700 boys had the most popular name, while fewer than half this many babies had the 25th most popular name. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma 2. Alice, .. 1. William, 2. Logan, …). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by ‘sticking a pin’ (indicated by the black ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column.
 </p>
@@ -485,8 +496,8 @@ Figure 18.1: The closely spaced vertical lines show the frequency distributions 
          <span class="kw">toString</span>( <span class="kw">round</span>( <span class="dv">100</span><span class="op">*</span><span class="kw">cumsum</span>(Fr)<span class="op">/</span><span class="dv">3000</span>) [i] ),
          <span class="dt">adj =</span> <span class="kw">c</span>(<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">0.1</span>), <span class="dt">cex=</span><span class="fl">0.75</span> )
  }</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-91"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-91-1.png" alt="For girls (red) and boys (blue) separately, the mean ranks of names with  a given length are plotted against the length. Each dot in a column is a name. The relative densities of the dots in a column indicates how common these name lengths are." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-93"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-93-1.png" alt="For girls (red) and boys (blue) separately, the mean ranks of names with  a given length are plotted against the length. Each dot in a column is a name. The relative densities of the dots in a column indicates how common these name lengths are." width="864" />
 <p class="caption">
 Figure 18.2: For girls (red) and boys (blue) separately, the mean ranks of names with a given length are plotted against the length. Each dot in a column is a name. The relative densities of the dots in a column indicates how common these name lengths are.
 </p>
@@ -651,8 +662,8 @@ longevity =<span class="st"> </span><span class="kw">draw.from.2.str.lines.S.cur
 longevity =<span class="st"> </span><span class="kw">sort</span>(longevity)
 
 <span class="kw">segments</span>(<span class="dv">0</span>, y.vals , longevity, y.vals, <span class="dt">lwd=</span><span class="fl">0.5</span>, <span class="dt">col=</span><span class="st">&quot;grey25&quot;</span>)</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-93"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-93-1.png" alt="Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data. The horizontal 'lifelines' are sorted by length, having been randomly drawn from a simplified survival distribution -- just to illustrate the use of the sort and segments functions in R." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-95"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-95-1.png" alt="Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data. The horizontal 'lifelines' are sorted by length, having been randomly drawn from a simplified survival distribution -- just to illustrate the use of the sort and segments functions in R." width="864" />
 <p class="caption">
 Figure 18.3: Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data. The horizontal ‘lifelines’ are sorted by length, having been randomly drawn from a simplified survival distribution – just to illustrate the use of the sort and segments functions in R.
 </p>
@@ -662,25 +673,81 @@ Figure 18.3: Lifetables based on mortality rates of Quebec males (blue) and fema
 <h3><span class="header-section-number">18.2.4</span> Variable-length (parallel) parking spaces</h3>
 <p>When setting up parallel parking on city streets, and out of necessity if spaces have individual parking meters, many municipalities use painted rectangles of a fixed dimension. We haven’t been able to find universal guidelines for these dimensions – cities tend to adopt their own, such as the <a href="https://www.rochford.gov.uk/sites/default/files/planning_parking_standards_design_and_good_practice.pdf">ones here</a>.</p>
 <p><a href="http://www.portphillip.vic.gov.au/line-marking-parking-spaces.htm">Some authorities</a> have pointed to a waste of space when these fixed-size spaces are used. Indeed JH has seen, in Melbourne, Australia, a street where drivers were asked to park in order, starting from the from end of a block, keeping just 1 metre from the car in front, until the entire block filled up.</p>
-<p>To see how many additional cars can be accommodated by this scheme, let’s compare how this system compares with a fixed-length box of 6.5 meters. Imagine a city block, 130 metres long, that contains 20 fixed-length parking spots. What if it were converted to the ‘just fill up from the one end’ system with no boundaries? See the example below.</p>
+<p>To see how many additional cars can be accommodated by this scheme, let’s compare how this system compares with a fixed-length box of 6.5 meters. Imagine a city block, 130 metres long, that contains <span class="math inline">\(N\)</span> = 20 fixed-length parking spots. What if it were converted to the ‘just fill up from the one end’ system with no boundaries? See the example below.</p>
 <p>To study this, we have used the most popular makes and models of cars in the UK car-registrations database (déjà vu). For each model, we were able to find its length (in mm) from <a href="https://www.cars-data.com/en/">this database</a>. In instances where the length of a car model changed over time, to reduce the otherwise-lengthy programming and computer-intensive data-extraction, we selected a ‘middle’ length.</p>
-<p>In the resulting <a href="http://www.biostat.mcgill.ca/hanley/statbook/LengthsMostPopularCars.txt">data file</a>, each of the 448 rows gives the make and the model, as well as its frequency in the car-registrations database, and its length in millimetres. [The datafile also contains the width, height and mass, which we will use elsewhere to investigate a ‘body mass index’ for cars]</p>
+<p>In the resulting <a href="http://www.biostat.mcgill.ca/hanley/statbook/DimensionsOfPopularCars.txt">data file</a>, each of the 508 rows gives the make and the model, as well as its frequency in the car-registrations database, and its length in millimetres. [The datafile also contains the width, height and mass, which we will use elsewhere to investigate a ‘body mass index’ for cars]</p>
 <ol style="list-style-type: decimal">
-<li><p>Read the data into an <code>R dataframe</code> using</p></li>
+<li><p>Read the data into an <code>R dataframe</code>.</p></li>
 <li><p>Select 25 cars randomly from the just-described frequency distribution, and determine whether, parked a meter apart, they fit into the 130-m long space. Repeat the simulation a sufficient number of times to approach the probablity that this system would provide at least 5 additional spaces.</p></li>
 <li><p>In a future exercise, we will approach this probability calculation by modelling rather than simulation. Can you imagine what model we will use? <em>Hint</em>: have a look at the distribution (over your simulations) of the total/mean length of 25 randomly selected cars.</p></li>
 <li><p>This same approach could be used to plan how many people it is safe to have in an elevator that can safely carry a load of say 1000 Km. Does it matter that the shape of the ‘weight’ distribution has a different shape than the car-lengths distribution? Are there any other factors that come into play here that not present in the car-sampling example? If they are, how will the affect the calculations?</p></li>
 <li><p>By the way, what shape does the car-lengths distribution have? How would you summarize the distribution?</p></li>
 <li><p>Suggest ways to measure/who the relation between car-length and popularity.</p></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ds=<span class="kw">read.table</span>(<span class="st">&quot;http://www.biostat.mcgill.ca/hanley/statbook/LengthsMostPopularCars.txt&quot;</span>,<span class="dt">as.is=</span><span class="ot">TRUE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ds=<span class="kw">read.table</span>(<span class="st">&quot;http://www.biostat.mcgill.ca/hanley/statbook/DimensionsOfPopularCars.txt&quot;</span>,<span class="dt">as.is=</span><span class="ot">TRUE</span>)
 <span class="kw">str</span>(ds)</code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    448 obs. of  3 variables:
-##  $ Make.Model   : chr  &quot;ABARTH 500&quot; &quot;ABARTH 595&quot; &quot;ALFA ROMEO 147&quot; &quot;ALFA ROMEO 156&quot; ...
-##  $ No.Registered: int  5561 16300 5059 2503 6444 2268 5327 27605 3499 1492 ...
-##  $ Length.mm    : int  3657 3660 4223 4438 4660 4413 4643 4351 4394 4299 ...</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-95"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-95-1.png" alt="30 simulations of the possible gains from using variable-length (parallel) parking spaces.  Shown are 20 fixed-length spaces, each of length 6.5m. In each simulation, 20 cars are selected randomly from the just-described frequency distribution, and their lengths are shown as red lines within the fixed-length parking spaces, and as blues lines, with 1m spacing, in the variable-length scheme." width="864" />
+<pre><code>## &#39;data.frame&#39;:    508 obs. of  6 variables:
+##  $ Make.Model   : chr  &quot;ABARTH 500&quot; &quot;ABARTH 595&quot; &quot;ABARTH 695&quot; &quot;ABARTH PUNTO&quot; ...
+##  $ No.Registered: int  5561 16300 523 703 5059 2503 6444 2268 5327 27605 ...
+##  $ Length.mm    : int  3657 3660 3660 4065 4170 4438 4661 4413 4643 4351 ...
+##  $ Width.mm     : int  1627 1627 1627 1721 1729 1743 1830 1830 1873 1798 ...
+##  $ Height.mm    : int  1485 1485 1485 1478 1442 1430 1422 1372 1436 1465 ...
+##  $ Weight.Kg    : int  1085 1050 1050 1185 1185 1285 1540 1420 1349 1280 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot(ds$Length.mm,log(ds$No.Registered),cex=0.5,pch=19)</span>
+
+N.SIMS=<span class="dv">30</span>
+
+LENGTHS =<span class="st"> </span>ds<span class="op">$</span>Length.mm<span class="op">/</span><span class="dv">1000</span>
+Probs =<span class="st"> </span>ds<span class="op">$</span>No.Registered<span class="op">/</span><span class="kw">sum</span>(ds<span class="op">$</span>No.Registered)
+
+E.LENGTH =<span class="st"> </span><span class="kw">sum</span>(LENGTHS<span class="op">*</span>Probs)
+VAR =<span class="st"> </span><span class="kw">sum</span>( (LENGTHS<span class="op">-</span>E.LENGTH)<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>Probs )
+SD =<span class="st"> </span><span class="kw">sqrt</span>(VAR)
+
+N =<span class="st"> </span><span class="dv">20</span>
+
+W=<span class="fl">6.5</span>
+
+<span class="cf">for</span>(n <span class="cf">in</span> <span class="dv">20</span><span class="op">:</span><span class="dv">30</span>){
+ mu =<span class="st"> </span>mean=n<span class="op">*</span>E.LENGTH <span class="op">+</span><span class="st"> </span>n<span class="op">-</span><span class="dv">1</span>
+ prob.fit =<span class="st"> </span><span class="kw">pnorm</span>(N<span class="op">*</span><span class="fl">6.5</span>,<span class="dt">mean=</span>mu,<span class="dt">sd=</span><span class="kw">sqrt</span>(n)<span class="op">*</span>SD)
+ <span class="co">#print(round(c(n,E.LENGTH,mu,SD,prob.fit),2))</span>
+}
+
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">0</span>)) 
+
+<span class="kw">plot</span>(<span class="op">-</span><span class="dv">10</span>,<span class="op">-</span><span class="dv">10</span>,<span class="dt">xlim=</span><span class="kw">c</span>(<span class="fl">0.5</span>,N<span class="op">+</span><span class="dv">1</span>),<span class="dt">ylim=</span><span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">1.01</span>)<span class="op">*</span>N.SIMS,
+     <span class="dt">xlab=</span><span class="st">&quot;Fixed-dimension Parking Spaces&quot;</span>,
+     <span class="dt">ylab=</span><span class="st">&quot;Simulation No.&quot;</span>,
+     <span class="dt">xaxp=</span><span class="kw">c</span>(<span class="dv">1</span>,N,N<span class="op">-</span><span class="dv">1</span>),
+     <span class="dt">cex.axis=</span><span class="fl">1.5</span>,<span class="dt">cex.lab=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="st">&quot;white&quot;</span>)
+
+<span class="kw">abline</span>(<span class="dt">v=</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">0</span><span class="op">:</span>N,<span class="dt">lwd=</span><span class="fl">0.75</span>,<span class="dt">col=</span><span class="st">&quot;lightblue&quot;</span>)
+
+gaps=(<span class="dv">0</span><span class="op">:</span>(n<span class="op">-</span><span class="dv">1</span>))<span class="op">/</span>W
+
+n =<span class="st"> </span>N
+
+<span class="cf">for</span>(sim <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N.SIMS){
+  
+  lengths =<span class="st"> </span><span class="kw">sample</span>(LENGTHS,<span class="dt">size=</span>n,<span class="dt">prob=</span>Probs)<span class="op">/</span>W
+  ends    =<span class="st"> </span>gaps<span class="op">+</span><span class="kw">cumsum</span>(lengths)
+  starts  =<span class="st"> </span>ends <span class="op">-</span><span class="st"> </span>lengths
+  <span class="kw">arrows</span>(starts<span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="kw">rep</span>(sim,n), 
+           ends<span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="kw">rep</span>(sim,n),<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, 
+           <span class="dt">lwd =</span><span class="fl">1.25</span>,
+           <span class="dt">length=</span><span class="fl">0.05</span>,<span class="dt">angle=</span><span class="dv">20</span>, <span class="dt">code=</span><span class="dv">1</span>
+         )
+  starts =<span class="st"> </span><span class="dv">0</span><span class="op">:</span>(n<span class="op">-</span><span class="dv">1</span>)
+  ends    =<span class="st"> </span>starts<span class="op">+</span>lengths
+  <span class="kw">arrows</span>(starts<span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="kw">rep</span>(sim<span class="op">-</span><span class="fl">0.35</span>,n), 
+           ends<span class="op">+</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>,   
+         <span class="kw">rep</span>(sim<span class="op">-</span><span class="fl">0.35</span>,n),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,
+         <span class="dt">lwd =</span><span class="fl">1.25</span>,
+         <span class="dt">length=</span><span class="fl">0.05</span>,<span class="dt">angle=</span><span class="dv">20</span>, <span class="dt">code=</span><span class="dv">1</span>)
+}</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-97"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-97-1.png" alt="30 simulations of the possible gains from using variable-length (parallel) parking spaces.  Shown are 20 fixed-length spaces, each of length 6.5m. In each simulation, 20 cars are selected randomly from the just-described frequency distribution, and their lengths are shown as red lines within the fixed-length parking spaces, and as blues lines, with 1m spacing, in the variable-length scheme." width="864" />
 <p class="caption">
 Figure 18.4: 30 simulations of the possible gains from using variable-length (parallel) parking spaces. Shown are 20 fixed-length spaces, each of length 6.5m. In each simulation, 20 cars are selected randomly from the just-described frequency distribution, and their lengths are shown as red lines within the fixed-length parking spaces, and as blues lines, with 1m spacing, in the variable-length scheme.
 </p>
@@ -720,8 +787,8 @@ Figure 18.4: 30 simulations of the possible gains from using variable-length (pa
 <pre><code>## &#39;data.frame&#39;:    400 obs. of  2 variables:
 ##  $ Panel      : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
 ##  $ Birthweight: int  2809 2186 2607 3231 3484 2836 863 3329 3628 3551 ...</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-98"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-98-1.png" alt="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-100"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-100-1.png" alt="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled." width="864" />
 <p class="caption">
 Figure 18.5: Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%, Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q’s are scrambled.
 </p>
@@ -994,8 +1061,8 @@ Figure 18.5: Birthweights of US males and females born in 2018. In each panel, e
 <pre><code>## &#39;data.frame&#39;:    400 obs. of  2 variables:
 ##  $ Panel    : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
 ##  $ Weight.Kg: num  62.5 47.5 113.5 149.5 108.5 ...</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-102"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-102-1.png" alt="Measured weights of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled, and 'jittered'." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-104"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-104-1.png" alt="Measured weights of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled, and 'jittered'." width="864" />
 <p class="caption">
 Figure 18.6: Measured weights of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%, Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q’s are scrambled, and ‘jittered’.
 </p>
@@ -1034,8 +1101,8 @@ Figure 18.6: Measured weights of US males and females aged 20-29 in 2007-2008. I
 <pre><code>## &#39;data.frame&#39;:    400 obs. of  2 variables:
 ##  $ Panel    : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
 ##  $ Height.cm: int  175 173 168 181 186 189 179 171 161 169 ...</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-105"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-105-1.png" alt="Measured heights (in cm) of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-107"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-107-1.png" alt="Measured heights (in cm) of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled." width="864" />
 <p class="caption">
 Figure 18.7: Measured heights (in cm) of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%, Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q’s are scrambled.
 </p>
@@ -1057,9 +1124,10 @@ Figure 18.7: Measured heights (in cm) of US males and females aged 20-29 in 2007
 <ol start="8" style="list-style-type: decimal">
 <li><p>Using the (common) SD of 7.3 cm, carry out 4 manually-calculated tests of the same 4 contrasts as for adult weights.</p></li>
 <li><p>(although the computer-simulated ones are giving you a sense that height is a more sensitive distinguisher/separator of the sexes than adult weight is, carry out a larger set of simulated tests to be sure.</p></li>
-<li><p>Statistically speaking, why is height a more sensitive distinguisher/separator of the sexes? so? <em>Hint</em>: how far apart are the mean heights (a) in cms (b) as a percentage of the SD of the individuals of a given sex? What are the corresponding perecenatges in the case of birthweights? adult weights? What we are fetting at here is the <strong>signal-to-noise ratio</strong> or <strong>Effect Size</strong> <span class="math display">\[ \frac{Signal}{Noise} = \frac{\mu_1 - \mu_2}{\sigma}.\]</span></p></li>
-<li><p>In 2001, when it came to distinguishing same-sex panels from opposite-sex panels of <strong>adult heights</strong>, most of the students in 2001 <strong>were able</strong> to <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=2">correctly identify the opposite-sex panels</a>, with only a few mistaking the same-sex panels for opposite-sex ones [we are in charge of controlling the latter errors, whereas (with <span class="math inline">\(n\)</span> fixed)</p></li>
-<li><p>Biologically speaking, why is height is a more sensitive distinguisher/separator of the sexes? <em>Nature</em> versus <em>Nurture</em>?</p></li>
+<li><p>Statistically speaking, why is height a more sensitive distinguisher/separator of the sexes? <em>Hint</em>: how far apart are the mean heights (a) in cms (b) as a percentage of the SD of the individuals of a given sex? What are the corresponding perecenatges in the case of birthweights? adult weights? What we are fetting at here is the <strong>signal-to-noise ratio</strong> or <strong>Effect Size</strong> <span class="math display">\[ \frac{Signal}{Noise} = \frac{\mu_1 - \mu_2}{\sigma}.\]</span></p></li>
+<li><p>In 2001, when it came to distinguishing same-sex panels from opposite-sex panels of <strong>adult heights</strong>, a clear majority (63/76) of the students <strong>were able</strong> to <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch06/telling_sexes_apart.pdf#page=2">correctly identify the opposite-sex panels</a>, with only a few (8/75) mistaking the same-sex panels for opposite-sex ones. To try to answer why we do not do as well with our data, compute the sex-specific means and SD’s of the 100 quantiles, and compare the effect sizes with those in 2001. You might also make boxplots to see if the shapes of the data differ [JH doesn’t remember how he made the 100 values in 2001, but for sure the ones above are closer to the real shapes.] To save you manually extracting them, the <a href="http://www.biostat.mcgill.ca/hanley/statbook/BirthweightsAdultHeights2001class.txt">data from 2001 can be found here</a>.</p></li>
+<li><p>Statistically speaking, why are the ‘false positive rates’ about the same with the new data and the 2001 data. <em>Hint</em>: Who determines them?</p></li>
+<li><p>Biologically speaking, why is adult height a more sensitive distinguisher/separator of the sexes than adult weight? <em>Hint</em>: think about the relative roles of <em>Nature</em> and <em>Nurture</em> – and while you are on this topic, look up the origins of the Nature versus Nurture phrase.</p></li>
 </ol>
 </div>
 <div id="box-minus-bowl" class="section level3">

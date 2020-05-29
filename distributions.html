@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-05-26" />
+<meta name="date" content="2020-05-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -206,7 +206,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="13" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>13</b> Distributions</a><ul>
 <li class="chapter" data-level="13.1" data-path="distributions.html"><a href="distributions.html#objectives-2"><i class="fa fa-check"></i><b>13.1</b> Objectives</a></li>
-<li class="chapter" data-level="13.2" data-path="distributions.html"><a href="distributions.html#named-distributions"><i class="fa fa-check"></i><b>13.2</b> Named Distributions</a></li>
+<li class="chapter" data-level="13.2" data-path="distributions.html"><a href="distributions.html#named-distributions"><i class="fa fa-check"></i><b>13.2</b> Named Distributions</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="distributions.html"><a href="distributions.html#bernoulli"><i class="fa fa-check"></i><b>13.2.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="13.2.2" data-path="distributions.html"><a href="distributions.html#binomial"><i class="fa fa-check"></i><b>13.2.2</b> Binomial</a></li>
+</ul></li>
 <li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#exercises-3"><i class="fa fa-check"></i><b>13.3</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>III Part III</b></span></li>
@@ -313,18 +316,122 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 13</span> Distributions</h1>
 <div id="objectives-2" class="section level2">
 <h2><span class="header-section-number">13.1</span> Objectives</h2>
-<p>This <strong>central</strong> chapter addresses a <strong>fundamental concept</strong>, namely the <strong>variance of a random variable</strong>. It gives the laws governing the variance of a sum of 2, or (especially) <span class="math inline">\(n\)</span> random variables – and even more importantly – the laws governing <strong>the variance of a difference of two random variables.</strong> The latter is central, not just to simple contrasts involving just 2 sample means or proportions, but also in the much wider world of regression, since the variance (sampling variability) of any regression slope can be viewed as the <strong>variance of a linear combination of</strong> random ‘errors’, or random deviations, or <strong>random variables</strong>. So, if there is one ‘master’ formula to pay attention to and to ‘own’, it is the one for the variance of a linear combination of random variables. All others are special cases of this.</p>
-<p>So, the <strong>specific objectives</strong> are to truly understand</p>
+<p>Distributions of individual values take their shapes and spreads from the features of the setting, and thus do not follow any general laws. The shapes and the spreads of distributions of statistical summaries and parameter estimates made from aggregates of individual observations tend to be more regular and more predictable, and thus more law-abiding.</p>
+<p>So, the <strong>specific objectives</strong> in this chapter are to truly understand</p>
 <ul>
-<li><p>the concept of a random variable.</p></li>
-<li><p>the concept of the (expectation and) variance of a random variable.</p></li>
-<li><p>why it is that, when dealing with the sum of two or more independent random variables, it is not their standard deviations that sum (add), but rather their variances.</p></li>
-<li><p>likewise, why it is that, when dealing with the <strong>difference</strong> of two independent random variables, or some <strong>linear combination</strong> of <span class="math inline">\(n\)</span> independent random variables involving positive and negative weights, <strong>why the component variances add</strong>, and <strong>with what weights</strong>.</p></li>
+<li><p>the distinction between a natural and investigator-made distributions, and between observable and conceptual ones.</p></li>
+<li><p>why we should automatically associate certain distributions with certain types of random variables</p></li>
+<li><p>why we need to understand the pre-requisites for random variables following the distributions they do</p></li>
+<li><p>why we rely so much on the Normal distribution, and why it is so ‘Central’ to statistical inference concerning parameters.</p></li>
+<li><p>why the pre-occupation with checking ‘Normality’ (Gaussian-ness) is misguided</p></li>
+<li><p>why Normality is not even relevant when the ‘variable’ is not ‘random’, and appears on the right hand side of a regression model.</p></li>
+<li><p>the few contexts where shape does matter</p></li>
 </ul>
 </div>
 <div id="named-distributions" class="section level2">
 <h2><span class="header-section-number">13.2</span> Named Distributions</h2>
-<p>Gaussian Bernoulli-Binomial Poisson</p>
+<p>In historical order</p>
+<p>Bernoulli, and scaled Bernoulli</p>
+<p>Binomial</p>
+<p>Normal</p>
+<p>beta</p>
+<p>Poisson</p>
+<p>t</p>
+<p>Wilcoxon</p>
+<p>=======</p>
+<p>To get a full list of the named distributions available in <code>R</code> you can use the following command: <code>help(Distributions)</code></p>
+<div id="bernoulli" class="section level3">
+<h3><span class="header-section-number">13.2.1</span> Bernoulli</h3>
+<p>The simplest random variable is one that take just 2 possible values, such as YES/NO, MALE/FEMALE, 0/1, ON/OFF, POSITIVE/NEGATIVE, PRESENT/ABSENT, EXISTS/DOES NOT, etc.</p>
+<p>This random variable <span class="math inline">\(Y\)</span> is governed by just one parameter, namely the probability, <span class="math inline">\(\pi\)</span>, that it takes on the YES (or ‘1’) value. Of course you can reverse the scale, and speak about the probability of a NO (or ‘0’) result.</p>
+<p>It is too bad that when <a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Wikipedia</a>, which has a unified way of showing the main features of statistical distributions, does not follow its own principles and show a graph of various versions of a Bernoulli distribution. So here is such a graph.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-66"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-66-1.png" alt="Various Bernoulli random variables/distributions. We continue our convention of using the letter Y (instead of X) as the generic name for a random variable. Moreover, in keeping with this view, all of the selected Bernoulli distributions are plotted with their 2 possible values shown on the vertical axis." width="864" />
+<p class="caption">
+Figure 13.1: Various Bernoulli random variables/distributions. We continue our convention of using the letter Y (instead of X) as the generic name for a random variable. Moreover, in keeping with this view, all of the selected Bernoulli distributions are plotted with their 2 possible values shown on the vertical axis.
+</p>
+</div>
+<p>Please, when reading the Wikipedia entry, replace all instances of <span class="math inline">\(X\)</span> and <span class="math inline">\(x\)</span> by <span class="math inline">\(Y\)</span> and <span class="math inline">\(y\)</span>. Note also that we will use <span class="math inline">\(\pi\)</span> where Wikipedia, and some textbooks, use <span class="math inline">\(p\)</span>. As much as we can, we use Greek letters for parameters and Roman letters for their empirical (sample) counterparts. Also, to be consistent, if the random variable itslef is called <span class="math inline">\(Y\)</span>, then it makes sense to use <span class="math inline">\(y\)</span> as the possible relaizations of it, rather than the illogical <span class="math inline">\(k\)</span> that Wikipedia uses.]</p>
+<p>In the sidebar, Wikipedia shows the probability mass function (<em>pmf</em>, the probabilities that go with the possible <span class="math inline">\(Y\)</span> values) in two separate rows, but in the text the <em>pmf</em> is also shown more concisely, as (in our notation)</p>
+<p><span class="math display">\[f(y) = \pi^y (1-\pi)^{1-y}, \ \ y = 0, 1.\]</span> If we wish to align with how the <code>R</code> software names features of distributions, we might want to switch from <span class="math inline">\(f\)</span> to <span class="math inline">\(d\)</span>. <code>R</code> uses <span class="math inline">\(d\)</span> because it harmonizes with the probability <span class="math inline">\(d\)</span>ensity function (<em>pdf</em>) notation that its uses for random variables on an interval scale, even though some statistical ‘purists’ see that as mixing terminology: they use the term probablility mass function for discrete random variables, and probablity density function for ones on an interval scale.</p>
+<p><span class="math display">\[d_{Bernoulli}(y) = \pi^y (1-\pi)^{1-y}.\]</span></p>
+<p>Sadly, Bernoulli does not get its own entry in <code>R</code>’s list of named distributions, presumably because it is a special case of a binomial distribution, one where <span class="math inline">\(n\)</span> = 1. So we have to call <code>dbinom(x,size,prob)</code> to get the density (probability mass) function of the binomial distribution with parameters <code>size</code> (<span class="math inline">\(n\)</span>) and <code>prob</code> (<span class="math inline">\(\pi\)</span>), and set <span class="math inline">\(n\)</span> to 1.</p>
+<p>The 3 arguments to <code>dbinom(x,size,prob)</code> are:</p>
+<ul>
+<li><code>x</code>: a vector of quantiles (here just 0 or/and 1),</li>
+<li><code>size</code>: the number of ‘trials’ (our ‘<span class="math inline">\(n\)</span>’, so 1 for Bernoulli), and</li>
+<li><code>prob</code>: the probability of ‘success’ on each ‘trial’. We think of it as the probability that a realization of $Y4, i.e, <span class="math inline">\(y\)</span> will equal 1, or as <span class="math inline">\(\pi.\)</span>)</li>
+</ul>
+<p>Thus, <code>dbinom(x=0,size=1,prob=0.3)</code> yields 0.7, while <code>dbinom(x=1,size=1,prob=0.3)</code> yields 0.3 and <code>dbinom(x=c(0,1),size=1,prob=0.3)</code> yields the vector 0.7, 0.3.</p>
+<p>Incidentally, please do not adopt the convention that <span class="math inline">\(x\)</span> (or our <span class="math inline">\(y\)</span>) is the number of ‘successes’ in <span class="math inline">\(n\)</span> trials. It is the number of ‘positives’ in a sample of <span class="math inline">\(n\)</span> independent draws from a population in which a proportion <span class="math inline">\(\pi\)</span> are positive.</p>
+<p><strong><em>Expectation (E) and Variance (V)</em> of a Bernoulli random variable.</strong></p>
+<p>Shortening <span class="math inline">\(Prob(Y=y)\)</span> to <span class="math inline">\(P_y\)</span>, we have</p>
+<ul>
+<li>From first principles, <span class="math display">\[E[Y] = 0 \times P_0 + 1 \times P_1 = 0 \times (1-\pi) + 1 \times \pi = \pi,\]</span> while <span class="math display">\[V[Y] = (0-\pi)^2 \times P_0 + (1-\pi)^2 \times P_1  = \pi^2(1-\pi) + (1-\pi)^2\pi =  \underline{\pi(1-\pi)}.\]</span></li>
+</ul>
+<p>This functional form for the (‘unit’) variance is not entirely surprising: it is obvious from the selected distributions whon that the most concentrated Bernoulli distributions are the ones where the proportion <span class="math inline">\((\pi)\)</span> of Y = 1 values is either close to 1 or to zero, and that the most spread out Bernoulli distributions are the ones where <span class="math inline">\(\pi\)</span> is close to 1/2. And, and a function of <span class="math inline">\(\pi\)</span>, the Variance must be symmetric about <span class="math inline">\(\pi\)</span> = 1/2.</p>
+<p>The fact that the greatest uncertainty (‘entropy’, lack of order or predictability) is when <span class="math inline">\(\pi\)</span> = 1/2 is one of the factors that makes sports contests more engaging when teams or players are well matched. Later, when we come to study what influences the imprecision of sample surveys, we will see that for a given sample size, the imprecision is largest when <span class="math inline">\(\pi\)</span> is closer to 1/2.</p>
+<p><strong>Why focus on the variance of a Bernoulli random variable?</strong> because, later, when we use the more intesting binomial distribution, we can call on first prionciples to recall what its expection and variance are. A Binomial random variable is the sum of <span class="math inline">\(n\)</span> independently distributed Bernoulli random variables, all with the same expectation <span class="math inline">\(\pi\)</span> and unit variance <span class="math inline">\(\pi(1-\pi).\)</span> Thus its expectation (<span class="math inline">\(E\)</span>) and variance (<span class="math inline">\(V\)</span>) are the sums of these ‘unit’ versions, i.e., <span class="math inline">\(E[binom.sum] = n \times \pi\)</span> and <span class="math inline">\(V[binom.sum] = n \times \pi(1-\pi).\)</span> Moreover, again from first principles, we can deduce that if instead of a sample <em>sum</em>, we are interested in a sample <em>mean</em> (here the <em>mean</em> of the 0’s and 1’s is the sample <em>proportion</em>), its expected value is <span class="math display">\[\boxed{\boxed{E[binom.prop&#39;n] = \frac{n \pi}{n} = \pi; \   V[.] = \frac{n  \pi(1-\pi))}{n^2} = \frac{\pi(1-\pi)}{n}; \ SD[.] = \frac{\sqrt{\pi(1-\pi)}}{ \sqrt{n}} = \frac{\sigma_{0,1}}{\sqrt{n}} } }  \]</span></p>
+<p>Note here the generic way we write the SD of the sampling distribution of a sample proportion, in the same way that we write the SD of the sampling distribution of a sample mean, as <span class="math inline">\(\sigma_u/\sqrt{n},\)</span> where <span class="math inline">\(\sigma_u\)</span> is the ‘unit’ SD, the standard deviation of the values of <em>individuals</em>. The individual values in the case of a Bernoulli randomn variable are just 0s and 1s, and their SD is <span class="math inline">\(\sqrt{\pi(1-\pi)}.\)</span> We call this SD the SD of the 0’1 and 1’s, or <span class="math inline">\(\sigma_{0,1}\)</span> for short.</p>
+<p>Notice how, even though it might look nicer and simpler to compute, and involves just 1 square root calculation, we did not write the SD of a binomial proportion as<br />
+<span class="math display">\[SD[binom.proportion] = \sqrt{\frac{\pi(1-\pi)}{ n} }.\]</span> We choose instead to use the <span class="math inline">\(\sigma/\sqrt{n}\)</span> version, to show that it has the same <em>form</em> as the SD for the sampling distribution of a sample mean. Now that we no longer need to savw keystrokes on a hand caloculator, we should move away from computational forms and focus instead on the intuitive form. Sadly, many textbooks re-use the same concept in disjoint chapters without telling readers they are cases of the same SD formula.</p>
+<p>There is a lot to be gained by thinking of proportions as means, but where the <span class="math inline">\(Y\)</span> values are just 0’s and 1’s. You can use the <code>R code</code> below to simulate a very large number of 0’s and 1’s, and calculate their variance. The <code>sd</code> function in <code>R</code> doesn’t know or care that the values you supply it are limited to just 0s and 1s, or spread along an interval. Better still don’t use the <code>rbinom</code> function; instead use the <code>sample</code> function, with replacement.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n =<span class="st"> </span><span class="dv">750</span>
+
+zeros.and.ones =<span class="st"> </span><span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">1</span>, n , 
+   <span class="dt">prob=</span><span class="kw">c</span>(<span class="fl">0.2</span>, <span class="fl">0.8</span>),<span class="dt">replace=</span><span class="ot">TRUE</span> )
+
+m =<span class="st"> </span><span class="kw">matrix</span>(zeros.and.ones,n<span class="op">/</span><span class="dv">75</span>,<span class="dv">75</span>)
+<span class="kw">noquote</span>(<span class="kw">apply</span>(m,<span class="dv">1</span>,paste,<span class="dt">collapse=</span><span class="st">&quot;&quot;</span>))</code></pre></div>
+<pre><code>##  [1] 111111111110011111111111111111101111111110011101010111111011011101001000110
+##  [2] 110011111111111111111111001011111011100111011101111101011101111111111111011
+##  [3] 011011110111111111101111011111110111011111000111011111101110111101101011101
+##  [4] 110100011111111111011111111011111111111111111101101101111110010011111111111
+##  [5] 101111011111101011111111110111011110110111111110011011011010111111010111111
+##  [6] 111110111111110010101111111111111101111110001111111111100110110111110110111
+##  [7] 011111101111110111111111110111111110011101111111101111110111111111111110011
+##  [8] 111110111101010111111111110101101110111010111100111101010110101001001010100
+##  [9] 110111100111111100111001111111101111111110101010110101101111111111000111111
+## [10] 011111011111111011111101111111011010001011111010101101111000100111111011111</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(zeros.and.ones)<span class="op">/</span>n</code></pre></div>
+<pre><code>## [1] 0.7786667</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>( <span class="kw">sd</span>(zeros.and.ones),<span class="dv">4</span>)</code></pre></div>
+<pre><code>## [1] 0.4154</code></pre>
+<p>Try the above code with a larger <span class="math inline">\(n\)</span> and a different <span class="math inline">\(\pi\)</span> and convince yourself that the variance (and thus the SD) of the individual 0 and 1 values (a) have nothing to do with how many there are and everything to do with what proportion of them are of each type and (b) are larger when the proportions are close to each other, and smaller when they are not.</p>
+<p><strong>Scaled-Bernoulli random variables</strong></p>
+<p><strong>Could we get by without studying the Binomial Distribution?</strong> The answer is ‘for most applications, yes.’ The reason is that in in most cases, we are able to use a Gaussian (Normal) approximation to the binomial distribution. Thus, all we need are its expectation and variance (standard deviation): we don’t need the <code>dbinom()</code> probability mass function, or the <code>pbinom()</code> that gives the cumulative distribution function and thus the tail areas, or the <code>qbinom()</code> function that gives the quantiles. But sometimes we deal with situations where the binomial distributions are not symmetric and close-enough-to-Gaussian.</p>
+<p>we will come back to how the binomial distribution led to the <a href="https://en.wikipedia.org/wiki/De_Moivre–Laplace_theorem">deMoivre’s derivation</a> of a ’Gaussian distribution – in 1738, almost 4 decades before Gauss was born.</p>
+<p><a href="https://fivethirtyeight.com/features/what-if-god-were-a-giant-game-of-plinko/" class="uri">https://fivethirtyeight.com/features/what-if-god-were-a-giant-game-of-plinko/</a></p>
+<p>===</p>
+</div>
+<div id="binomial" class="section level3">
+<h3><span class="header-section-number">13.2.2</span> Binomial</h3>
+<p><strong>The Binomial Distribution is a model for the (sampling) variability of a proportion or count in a randomly selected sample</strong></p>
+<p><strong>The Binomial Distribution: what it is</strong></p>
+<ul>
+<li><p>The <span class="math inline">\(n+1\)</span> probabilities <span class="math inline">\(p_{0}, p_{1}, ..., p_{y}, ..., p_{n}\)</span> of observing <span class="math inline">\(0, 1, 2, \dots , n\)</span> ``positives’’ in <span class="math inline">\(n\)</span> independent realizations of a Bernoulli random variable <span class="math inline">\(Y\)</span>with probability, <span class="math inline">\(\pi,\)</span> that Y=1, and (1-<span class="math inline">\(\pi\)</span>) that it is 0. The number is the sum of <span class="math inline">\(n\)</span> independen Bernoulli random variables with the same probability, such as in s.r.s of <span class="math inline">\(n\)</span> individuals.</p></li>
+<li><p>Each of the <span class="math inline">\(n\)</span> observed elements is binary (0 or 1)</p></li>
+<li><p>There are <span class="math inline">\(2^{n}\)</span> possible <em>sequences</em> … but only <span class="math inline">\(n+1\)</span> possible <em>values</em>, i.e. <span class="math inline">\(0/n,\;1/n,\;\dots ,\;n/n\)</span> can think of <span class="math inline">\(y\)</span> as sum of <span class="math inline">\(n\)</span> Bernoulli r. v.’s. [Better to work in same scale as parameter. i.e., (0,1). not the (0,n), count, scale.]</p></li>
+<li>Apart from <span class="math inline">\(n\)</span>, the probabilities <span class="math inline">\(p_{0}\)</span> to <span class="math inline">\(p_{n}\)</span> depend on only 1 parameter:</li>
+<li>the probability that a selected individual will be ‘+ve’ i.e.,</li>
+<li><p>the proportion of ‘+ve’ individuals in sampled population</p></li>
+<li><p>Usually denote this (un-knowable) proportion by <span class="math inline">\(\pi\)</span> (or sometimes by the more generic <span class="math inline">\(\theta\)</span>)</p></li>
+<li>B&amp;M use <span class="math inline">\(p\)</span> for  proportion and <span class="math inline">\(\hat{p}\)</span> or ‘<span class="math inline">\(p\)</span>-hat’ for observed prop.n in a <em>sample</em>.</li>
+<li>Others use the letter <span class="math inline">\(\pi\)</span> for the population value (parameter) and <span class="math inline">\(p\)</span> for sample proportion.</li>
+<li>`Greek for parameter’ make the distinction clearer.</li>
+<li>Some textbooks are not consistent, using <span class="math inline">\(p\)</span> for the population proportion and <span class="math inline">\(\mu\)</span> for population mean.</li>
+<li>Baldi and Moore use the Arabic letter <span class="math inline">\(p\)</span> and the Greek letter <span class="math inline">\(\mu\)</span> (mu)!</li>
+<li><p>Some authors (e.g., Miettinen) use UPPER-CASE letters, [e.g. <span class="math inline">\(P\)</span>, <span class="math inline">\(M\)</span>] for PARAMETERS and lower-case letters [e.g., <span class="math inline">\(p\)</span>, <span class="math inline">\(m\)</span>] for statistics (<em>estimates} of parameters</em>).</p></li>
+</ul>
+<p>Hypergeometric</p>
+<p>Non-Central Hypergeometric</p>
+<p>Chi-square</p>
+<p>===</p>
+<p>few for differences</p>
+<p>woolf</p>
+<p>normal</p>
+<p>transformations</p>
+</div>
 </div>
 <div id="exercises-3" class="section level2">
 <h2><span class="header-section-number">13.3</span> Exercises</h2>
