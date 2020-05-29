@@ -170,25 +170,479 @@ https://fivethirtyeight.com/features/what-if-god-were-a-giant-game-of-plinko/
 
 **The Binomial Distribution: what it is**
 
-* The $n+1$ probabilities $p_{0}, p_{1}, ..., p_{y}, ..., p_{n}$ of observing $0, 1, 2, \dots , n$ ``positives''  in $n$ independent realizations of a Bernoulli random variable $Y$with probability, $\pi,$ that Y=1, and (1-$\pi$) that it is 0. The number is the sum of $n$ independen Bernoulli random variables with the same probability, such as in s.r.s of $n$ individuals.
+* The $n+1$ probabilities $p_{0}, p_{1}, ..., p_{y}, ..., p_{n}$ of observing $y$ = $0, 1, 2, \dots , n$ 'positives'  in $n$ independent realizations of a Bernoulli random variable $Y$with probability, $\pi,$ that Y=1, and (1-$\pi$) that it is 0. The number is the sum of $n$ independen Bernoulli random variables with the same probability, such as in s.r.s of $n$ individuals.
     
 * Each of the $n$ observed elements is binary (0 or 1)
 
-* There are $2^{n}$ possible _sequences_ ... but only $n+1$ possible _values_, i.e. $0/n,\;1/n,\;\dots ,\;n/n$  can think of $y$ as sum of $n$ Bernoulli r. v.'s. [Better to work in same scale as  parameter. i.e., (0,1). not the  (0,n), count, scale.]
+* There are $2^{n}$ possible _sequences_ ... but only $n+1$ possible _values_, i.e. $0/n,\;1/n,\;\dots ,\;n/n$  can think of $y$ as sum of $n$ Bernoulli r. v.'s. [Later on, in ptractive, we will work in the same scale as  parameter. i.e., (0,1). not the  (0,n) 'count' scale.]
         
 * Apart from  $n$, the probabilities $p_{0}$ to $p_{n}$ depend on only 1 parameter:
-   +  the probability that a selected individual will be '+ve'  i.e.,
-   + the proportion of '+ve' individuals in sampled population
+   +  the probability that a selected individual will be 'positive'  i.e., have the trait of interest
+   + the proportion of 'positive' individuals in the sampled population
 
-*  Usually denote this (un-knowable) proportion by $\pi$ (or sometimes by the more generic $\theta$) 
+*  Usually we denote this (un-knowable) proportion by $\pi$ (or sometimes by the more generic $\theta$) 
+   + Textbooks are not consistent (see below); we try to use Greek letters for parameters,
+   + Note Miettinen's  use of UPPER-CASE letters, [e.g. $P$, $M$] for _PARAMETERS_ and lower-case letters [e.g., $p$, $m$] for _statistics_ (_estimates} of parameters_).
 
-   + B\&M use $p$ for \textit{population} proportion and $\hat{p}$ or '$p$-hat' for observed prop.n in a _sample_.
-   + Others use the  letter $\pi$ for the population value (parameter) and $p$ for  sample proportion.
-   + `Greek for parameter' make the distinction clearer.
-   + Some textbooks are not consistent, using $p$ for the population proportion and $\mu$ for population mean.
-   + Baldi and Moore use  the Arabic letter $p$ and the Greek letter $\mu$ (mu)!
-   + Some authors (e.g., Miettinen) use UPPER-CASE letters, [e.g. $P$, $M$] for PARAMETERS and lower-case letters [e.g., $p$, $m$] for statistics (_estimates} of parameters_).
 
+|   Author(s)          | PARAMETER     | Statistic    | 
+|:------------------|   :----:      |   :----:     |  
+|Clayton and Hills  |   $\pi$       |  $p = D/n$    |  
+|Moore and McCabe, Baldi and Moore  |   $p$    |  $\hat{p} = y/n$    |
+|Miettinen          |   $P$         |  $p = y/n$    |
+| This book         |    $\pi$      | $p = D/n$  |
+
+* Shorthand: $Y \sim Binomial(n, \pi)$ or $y \sim Binomial(n, \pi)$
+
+**How it arises**
+
+* Sample Surveys 
+* Clinical Trials 
+* Pilot studies
+* Genetics
+* Epidemiology 
+
+**Uses**
+
+* to make inferences about $\pi$ from observed proportion $p = y/n$.
+* to make inferences in more complex situations, e.g. ...
+
+   + Prevalence Difference: $\pi_{index.category}$ - $\pi_{reference.category}$
+   
+   + Risk Difference (RD): $\pi_{index.category}$ - $\pi_{reference.category}$
+   
+   + Risk Ratio, or its synonym Relative Risk (RR): $\frac{\pi_{index.category}}{\pi_{reference.category}}$ 
+   
+   + Odds Ratio (OR): $\frac{\pi_{index.category}/(1-\pi_{index.category})}{
+   \pi_{reference.category}/(1-\pi_{reference.category}) }$
+   
+   + Trend in several $\pi$'s
+
+
+**Requirements for $Y$ to have a Binomial$(n, \pi)$ distribution**
+
+* Each element in the 'population' is 0 or 1, but we are only interested in estimating the proportion ($\pi$) of 1’s; we are not interested in individuals.
+
+* Fixed sample size $n$.
+
+* Elements selected at random and independent of each other; each element in population has the same probability of being sampled: i.e., we have $n$ independent Bernoulli random variables with the same expectation (statisticians say '_i.i.d_' or '_independent and identically distributed_').
+
+*  It helps to distinguish the population values, say $Y_1$ to $Y_N$, from the $n$ sampled values $y_1$ to $y_n$.
+Denote by $y_i$ the value of the $i$-th sampled element. Prob[$y_i$ = 1] is constant (it is $\pi$) across $i$.
+In the [What proportion of our time do we spend indoors?](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Mean-Quantile/inside_outside.pdf) example, it is the **random/blind sampling** of the temporal and spatial patterns of 0s and 1s that **makes $y_1$ to $y_n$ independent of each other**. The $Y$'s, the elements in the population can be related to each other [e.g. there can be a peculiar spatial distribution of persons] but if elements are chosen at random, the chance that the value of the $i$-th element chosen is a 1 cannot depend on the value of $y_{i−1}$ or any other $y$: the sampling is 'blind' to the spatial location of the 1’s and 0s.
+
+
+**Binomial probabilities, illustrated using a Binomial Tree**
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F,fig.cap="From 5 (independent and identically distributed) Bernoulli observations to Binomial(n=5), with the Bernoulli probability left unspecified. There are 2 to the power n possible (distinct) sequences of 0's and 1's, each with its probability. We are not interested in these 2 to the power n probabilities, but in the probability that the sample  contains y 1's and (n-y) 0's. There are only (n+1) possibilities for y, namely 0 to n. Fortunately, each of the n.choose.y sequences that lead to the same sum or count y, has the same probability. So we group the 2.to.power.n sequences into (n+1) sets, according to the sum or count. Each sequence in the set with  y 1's and (n-y) 0's has the same probability, namely  the prob.to.the.power.y times (1-prob).to.the.power.(n-y). Thus, in lieu of adding all such probabilities, we simply multiply this  probability by the number, n.choose-y -- shown in black -- of unique sequences in the set. Check: the frequencies in black add to 2.to.power.n. Nowadays, the (n+1) probabilities are easily obtained by supplying a value for the 'prob' argument in the R function dbinom(), instead of  computing the binomial coefficient n.choose-y by hand."}
+
+
+par(mfrow=c(2,1),mar = rep(0.001,4) )
+
+
+s =c(-1,1)
+COL=c("red","blue")
+p=0.4
+
+plot(c(0,8.5),c(-1,40),col="white",xaxt="n")
+
+y5=1:32
+y4=apply(matrix(y5,2,16),2,mean)
+arrows(4,rep(y4,each=2), 5, y5,
+ col=rep(COL,16),
+  length=0.06, angle=25)
+text(4.5,0,"5th")
+
+y3=apply(matrix(y4,2,8),2,mean)
+arrows(3,rep(y3,each=2), 4, y4,
+ col=rep(COL,16),
+  length=0.06, angle=25)
+text(3.5,0,"4th")
+ 
+y2=apply(matrix(y3,2,4),2,mean)
+arrows(2,rep(y2,each=2), 3, y3,
+ col=rep(COL,8),
+  length=0.06, angle=25)
+text(2.5,0,"3rd")
+
+y1=apply(matrix(y2,2,2),2,mean)
+arrows(1,rep(y1,each=2), 2, y2,
+ col=rep(COL,4),
+  length=0.06, angle=25)
+text(1.5,0,"2nd")
+
+arrows(0,mean(y5), 1, y1,
+ col=COL,
+  length=0.06, angle=25)
+text(0.5,0,"1st")
+
+
+C=c("red","blue")
+for(i in 31:0){
+	r = as.integer(intToBits(y5[i])[5:1] ) 
+	points(5+(1:5)/10,rep(i+1,5),col=C[r+1],
+	pch=19,cex=0.5)	
+}
+
+text(0.8,38,"",adj=c(0,0))
+	
+	
+	text(0,38,expression(
+	      paste(
+	      "The ", 2^n,
+" possible sequences of n independent Bernoulli observations")),
+	      adj=c(0,0),cex=1.25)
+	
+	text(5.7,36,
+"With n=5, 32 possible sequences.
+
+In the next panel, sequences leading
+to the same positive:negative
+(RED/blue) 'split' are grouped.
+
+The number of sequences leading
+to the same split is shown in black.
+
+With n=5,
+there are 6 possible splits
+
+The probability of a given split
+is the probability of any one 
+of the sequences leading to it,
+multiplied by the number of such 
+sequences.",
+cex=1.0,adj=c(0,1))
+	
+    
+     text(0,35,
+      expression(paste(
+        "Prob[ i-th observation is BLUE, i.e. = 1 ] = ",
+         pi)
+      ),col="blue",adj=c(0,0.5)
+    )
+
+#######
+     
+plot(c(0,7.0),c(-6.7,6.5),col="white",
+     xaxt="n",yaxt="n")
+ for (y1 in s){
+	arrows(0, 0, p, p*y1,
+	  col=COL[(y1+3)/2],length=0.07,
+	  angle=20, lwd = 1+ (y1==1) )
+	if(y1>0) text(p/2, y1/2,
+		  expression(pi),
+		  adj=c(0.5,0.0),col="blue")
+	if(y1<0) text(p/2, y1/2,
+		  expression(1 - pi),
+		  adj=c(0.5,1),col="red")
+	
+	
+	for (y2 in s){
+	  
+	  	  arrows(1,y1,1+p,y1+y2*p,
+	      col=COL[(y2+3)/2],
+	      length=0.07,angle=20,
+	      lwd = 1+ (y2==1) )
+	  for (y3 in s){
+	  	arrows(2,y1+y2,2+p,y1+y2+y3*p,
+	      col=COL[(y3+3)/2],
+	      length=0.07,angle=20,
+	      lwd = 1+ (y3==1) )
+	    for (y4 in s){
+	  	  arrows(3,y1+y2+y3,3+p,y1+y2+y3+y4*p,
+	      col=COL[(y4+3)/2],
+	      length=0.07,angle=20,
+	      lwd = 1+ (y4==1) )
+	      for (y5 in s){
+	  	   
+	  	   arrows(4,y1+y2+y3+y4,4+p,y1+y2+y3+y4+y5*p,
+	         col=COL[(y5+3)/2],
+	         length=0.07,angle=20,
+	         lwd = 1+ (y5==1) )
+          } # y5
+        } # y4
+      } # y3
+    } #y2
+ } #y1
+
+	    
+    N=c(1,2,1)	  
+	for(ss in 2:1){
+		y = ss*1 - (2-ss)*1
+		C = N[ss+1]
+		text(1+(p)/2, 
+		     y-0.2,expression(pi),
+		     col="blue", adj=c(0.5,1))
+	}
+	
+    N=c(1,3,3,1)	  
+	for(ss in 3:1){
+		y = ss*1 - (3-ss)*1
+		C = N[ss+1]
+		text(2+(p)/2, 
+		     y-0.2,expression(pi),
+		     col="blue", adj=c(0.5,1))
+	}
+	N=c(1,4,6,4,1)	  
+	for(ss in 4:1){
+		y = ss*1 - (4-ss)*1
+		C = N[ss+1]
+		text(3+(p)/2, 
+		     y-0.2,expression(pi),
+		     col="blue", adj=c(0.5,1))
+	}
+	N=c(1,5,10,10,5,1)	  
+	for(ss in 5:1){
+		y = ss*1 - (5-ss)*1
+		C = N[ss+1]
+		text(4+(p)/2, 
+		     y-0.2,expression(pi),
+		     col="blue", adj=c(0.5,1))
+	}
+	
+
+	   text(0.0, 5.5,
+"1,2,3, ... 10: Number of sequences that yield the
+indicated split (can obtain from nCy or Pascal's Triangle).
+All sequences leading to the split are equiprobable.",
+	 adj=c(0,0.5),cex=1.05)
+	 
+	 text(6,6,"Binomial Probabilities*")
+  text(6.9,-6.25,"* in R: dbinom(0:5,size=5,prob=0.xx)",
+  family="mono", adj=c(1,1),,cex=1.25)
+  
+  text(0,0,"1", adj=c(1,0.5))
+
+ 	N=c(1,1)	  
+	for(ss in 1:0){
+		y = ss*1 - (1-ss)*1
+		C = N[ss+1]
+		text(1-(1-p)/1.2, 
+		     y*(p+1)/2,toString(C),adj=c(0,0.5))
+	}		
+	points( (p+1)/2, (p+1)/2,
+		  cex=1,pch=19,col="blue")
+    points( (p+1)/2, -(p+1)/2,
+		  cex=1,pch=19,col="red")
+		  
+		  
+	N=c(1,2,1)	  
+	for(s in 2:0){
+		y = s*1 - (2-s)*1
+		C = N[s+1]
+		text(2-(1-p)/1.5, 
+		     y*(p+1)/2,toString(C),adj=c(1,0.5))
+	}	
+		  
+    points( 1+(p+1)/2, 1+(p+1)/2+p/2,
+		  cex=1,pch=19,col="blue")
+	points( 1+(p+1)/2, 1+(p+1)/2-p/2,
+		  cex=1,pch=19,col="blue")
+		  
+    points( 1+(p+1)/2, p/2,
+		  cex=1,pch=19,col="blue")
+	points( 1+(p+1)/2, -p/2,
+		  cex=1,pch=19,col="red")
+		  
+	points( 1+(p+1)/2, -1-(p+1)/2+p/2,
+		  cex=1,pch=19,col="red")
+	points( 1+(p+1)/2, -1-(p+1)/2-p/2,
+		  cex=1,pch=19,col="red")
+		  
+	N=c(1,3,3,1)	  
+	for(ss in 3:0){
+		if(ss==3) COL=rep("blue",4)
+		if(ss==2) COL[3]="red"
+		if(ss==1) COL[2]="red"
+		if(ss==0) COL[1]="red"
+		y = ss*1 - (3-ss)*1
+		points( 2+(p+1.1)/2      , y+0.1,
+		  cex=1,pch=19,col=COL[1])
+		points( 2+(p+1.1)/2 -0.08,  y-0.2,
+		  cex=1,pch=19,col=COL[2])
+		points( 2+(p+1.1)/2 +0.08,  y-0.2,
+		  cex=1,pch=19,col=COL[3])
+		
+	}
+	
+	N=c(1,3,3,1)	  
+	for(ss in 3:0){
+		y = ss*1 - (3-ss)*1
+		C = N[ss+1]
+		text(3-(1-p)/1.5, 
+		     y-0.2,toString(C),adj=c(1,0.5))
+	}
+	
+	N=c(1,4,6,4,1)	  
+	for(ss in 4:0){
+		if(ss==4) COL=rep("blue",4)
+		if(ss==3) COL[4]="red"
+		if(ss==2) COL[3]="red"
+		if(ss==1) COL[2]="red"
+		if(ss==0) COL[1]="red"
+		y = ss*1 - (4-ss)*1
+		points( 3+(p+1.1)/2 - 0.06, y-0.2,
+		  cex=1,pch=19,col=COL[1])
+		points( 3+(p+1.1)/2 +0.06,  y-0.2,
+		  cex=1,pch=19,col=COL[2])
+		points( 3+(p+1.1)/2 -0.06,  y+0.2,
+		  cex=1,pch=19,col=COL[3])
+		points( 3+(p+1.1)/2 +0.06,  y+0.2,
+		  cex=1,pch=19,col=COL[4])
+		    
+		text(4-(1-p)/1.5, 
+		     y-0.2,toString(N[ss+1]),adj=c(1,0.5))
+	}
+	
+		  
+	N=c(1,5,10,10,5,1)	  
+	for(ss in 5:0){
+		if(ss==5) COL=rep("blue",5)
+		if(ss==4) COL[5]="red"
+		if(ss==3) COL[4]="red"
+		if(ss==2) COL[3]="red"
+		if(ss==1) COL[2]="red"
+		if(ss==0) COL[1]="red"
+		y = ss*1 - (5-ss)*1
+		
+		text(5-(1-p)/1.24, 
+		     y,toString(N[ss+1]),adj=c(1,0.5))
+		
+		points( 4+(p+1.1)/2 - 0.12, y,
+		  cex=1,pch=19,col=COL[1])
+		points( 4+(p+1.1)/2 +0.12,  y,
+		  cex=1,pch=19,col=COL[2])
+		points( 4+(p+1.1)/2 ,  y+0.40,
+		  cex=1,pch=19,col=COL[3])
+		points( 4+(p+1.1)/2 ,  y-0.40,
+		  cex=1,pch=19,col=COL[4])
+		points( 4+(p+1.1)/2 ,  y,
+		  cex=1,pch=19,col=COL[5])
+
+		C = N[ss+1]
+		text(4.75+(p+1.6)/2, y,
+		  substitute(
+		    paste(coef, 
+		     phantom(0),
+		     scriptstyle(x),
+		     phantom(0)),
+		    list(coef=C,y=s,rest=3-ss)
+		  ),
+		  adj=c(1,0.8)
+		)
+		
+		text(4.7+(p+1.6)/2+0.4, y,
+		  substitute(
+		    paste( pi^y, phantom(0)),
+		    list(coef=C,y=ss,rest=5-ss)
+		  ),col="blue",
+		  adj=c(1,0.5)
+		)
+		
+		text(4.7+(p+1.6)/2+0.4, y,
+		  substitute(
+		    paste( (1-pi)^rest),
+		    list(coef=C,y=ss,rest=5-ss)
+		  ),col="red",
+		  adj=c(0,0.5)
+		)
+		
+	}
+	
+	
+```
+
+**Does the Binomial Distribution apply if... ?**
+
+
+|             |      |      | 
+|:------------------|   ----:      |   :----     |  
+|Interested in:      |   $\pi$    |  the proportion of 16 year old girls in Quebec  protected against rubella  |
+|Choose:  | $n$ = 100    | girls: 20 at random from each of 5 randomly selected schools ['cluster' sample] |
+|Count | $y$ | how many of the $n$ = 100 are protected|
+| | | $\bullet$ Is $y ~ \sim Binomial(n=100, \ \pi)$ ? | 
+| ............. | ........... | ............................................................... |
+|'SMAC':      |   $\pi$    | Chemistry Auto-analyzer with n = 18 channels. Critertion for 'positivity' set so that Prob['abnormal' result in Healthy person] = 0.03 for each of 18 chemistries tested |  
+| | |  |
+|Count | $y$ | (In 1 patient) how many of $n$ = 18 give abnormal result.
+|
+| | | $\bullet$ Is $y ~ \sim Binomial(n=18, \ \pi=0.03)$ ? [credit:  Ingelfinger textbook](https://www.amazon.ca/Biostatistics-Clinical-Medicine-Joseph-Ingelfinger/dp/0023597216) | 
+| ............. | ........... | ............................................................... |
+| ............. | ........... | ............................................................... |
+|Sex Ratio:      |   $n=4$    | children in each family |  
+| | $y$ | number of girls in family |
+| | | $\bullet$ Is $y ~ \sim Binomial(n=4, \ \pi=0.49)$ ? | 
+| ............. | ........... | ............................................................... |
+|Interested in:      |    $\pi_u$   | proportion in 'usual' exercise classes and in |
+|   |    $\pi_e$   | expt'l. exercise classes who 'stay the course' |
+| Randomly| 4 | classes of |
+| Allocate|25 | students each to usual course |
+| | $n_u = 4 \times 25 = 100$ | |
+| | | |
+|  | $n_e$ = 4 | classes of |
+|  |25 | students each to experimental course |
+| | $n_e = 4 \times 25 =100$ | |
+| | | |
+|Count | $y_u$ | how many of the $n_u$ = 100 complete course|
+|      | $y_e$ | how many of the $n_e$ = 100 complete course|
+| | | $\bullet$ Is $y_u ~ \sim Binomial(n = 100, \ \pi_u)$ ? |
+| | | $\bullet$ Is $y_e ~ \sim Binomial(n = 100, \ \pi_e)$ ? |
+| ............. | ........... | ............................................................... |
+|Pilot Study:      |       | To estimate proportion $\pi$ of population that is eligible and willing to participate in long-term research study, keep recruiting until obtain |
+| | $y$ = 5 | who are. Have to approach $n$ to get $y$.
+| | | $\bullet$ Is $y ~ \sim Binomial(n, \ \pi)$ ? | 
+| ............. | ........... | ............................................................... |
+
+**Calculating Binomial probabilities**
+
+_Exactly_
+
+* probability mass function (p.m.f.) :
+
+   + formula: $Prob[y] = \  ^n C _y \ \pi^y \  (1 − \pi)^{n−y}$.
+   
+   + recursively: $Prob[0] = (1−\pi)^n$; \ \  $Prob[y] = \frac{n−y+1}{y} \times \frac{\pi}{1-\pi} \times Prob[y−1]$.
+   
+* Statistical Packages:
+   + R functions `dbinom()`, `pbinom()`, `qbinom()`  
+   probability mass, distribution/cdf, and quantile functions.
+
+   + Stata function `Binomial(n,k,p)`
+   
+   + SAS `PROBBNML(p, n, y)` function
+   
+* Spreadsheet — Excel function `BINOMDIST(y, n, π, cumulative)`
+
+* Tables: CRC; Fisher and Yates; Biometrika Tables; Documenta Geigy
+
+_Using an approximation_
+
+* Poisson Distribution ($n$ large; small $\pi$)
+
+* **Normal (Gaussian) Distribution** ($n$ large or midrange $\pi$, so that the expecetd value, $n \times \pi$, is sufficiently far 'in from' the 'edges' of the scale, i.e., sufficiently  far in from 0 and from $n$, so that a Gaussian distribution doesn't flow past one of the edges. The Normal approximation is good for when you don't have access to software or Tables, e.g, on a plane, or when the internet is down, or the battery on your phone or laptop had run out, or it takes too long to boot up Windows!).  
+To use the Normal approximatiom, be aware of the **scale you are working in**, .e.g., if say $n = 10$, whether the summary is a **count** or a **proportion** or a **percentage**.
+
+
+|   | r.v.  | e.g.  | E  | S.D. |
+|----: |  :----      |   ---:  | :--: | :---: |  
+| **count**: |  $y$   |  2 | $n \times \pi$ | $\{n \times \pi \times (1-\pi) \}^{1/2}$ |
+| | | | | i.e., $n^{1/2} \times \sigma_{Bernoulli}$ |
+| | | | | |                                  
+| **proportion**:   | $p=y/n$  | 0.2 | $\pi$ | $\{\pi \times (1-\pi) / n \}^{1/2}$ |
+| | | | | i.e., $\sigma_{Bernoulli} / n^{1/2}$ |
+| | | | | |
+| **percentage**: | $100p\%$ | 20\% | $100 \times \pi$ | $100 \times SD[p]$ |
+
+
+Exercise: deMoivre 1738
+
+
+dark https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula
+
+https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-4
+
+car sppeds https://purr.purdue.edu/publications/2671/1
 
 Hypergeometric
 
@@ -197,6 +651,12 @@ Non-Central Hypergeometric
 Chi-square
 
 ===
+
+EXERCISES
+
+ADD YOUR OWN SEARCH RESULTS to table above
+
+Hydroxychloroquine uniformity table.
 
 few for differences
 
