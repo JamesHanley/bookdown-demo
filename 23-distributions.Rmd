@@ -620,7 +620,7 @@ _Using an approximation_
 
 * Poisson Distribution ($n$ large; small $\pi$)
 
-* **Normal (Gaussian) Distribution** ($n$ large or midrange $\pi$, so that the expecetd value, $n \times \pi$, is sufficiently far 'in from' the 'edges' of the scale, i.e., sufficiently  far in from 0 and from $n$, so that a Gaussian distribution doesn't flow past one of the edges. The Normal approximation is good for when you don't have access to software or Tables, e.g, on a plane, or when the internet is down, or the battery on your phone or laptop had run out, or it takes too long to boot up Windows!).  
+* **Normal (Gaussian) Distribution** ($n$ large or midrange $\pi$, so that the expected value, $n \times \pi$, is sufficiently far 'in from' the 'edges' of the scale, i.e., sufficiently  far in from 0 and from $n$, so that a Gaussian distribution doesn't flow past one of the edges. The Normal approximation is good for when you don't have access to software or Tables, e.g, on a plane, or when the internet is down, or the battery on your phone or laptop had run out, or it takes too long to boot up Windows!).  
 To use the Normal approximatiom, be aware of the **scale you are working in**, .e.g., if say $n = 10$, whether the summary is a **count** or a **proportion** or a **percentage**.
 
 
@@ -634,8 +634,11 @@ To use the Normal approximatiom, be aware of the **scale you are working in**, .
 | | | | | |
 | **percentage**: | $100p\%$ | 20\% | $100 \times \pi$ | $100 \times SD[p]$ |
 
+The first person to suggest an approximation, using what we now call the 'Normal' or 'Gaussian' of 'Laplace-Gaussian' distribution, was 
+[deMoivre, in 1738](http://www.biostat.mcgill.ca/hanley/statbook/TheDoctrineOfChancesAnnotated.pdf). There is a debate among historians as to whether this marks the first description of the Normal distribution: the piece does not explicitly point to the probability density function  $\frac{1}{\sigma \sqrt{2 \pi}} \times exp[-z^2/2\sigma^2],$  but it does highlight the role of the quantity $(1/2) \times \sqrt{n}$, the standard deviation of the sum of $n$ independent Bernoulli random variables, eah with expectation 1/2 and thus  a 'unit' standard deviation of 1/2, and also the SD quantity $\sqrt{\pi(1-\pi)}$ $\times$ $\sqrt{n}$ in the more general case. DeMoivre arrived at the familiar '68-95-99.7 rule' : the percentages of a normal distribution that lie within 1, 2 and 3 SD's of its mean.
 
-Exercise: deMoivre 1738
+
+https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982
 
 
 dark https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula
