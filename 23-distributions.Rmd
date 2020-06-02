@@ -156,10 +156,7 @@ Try the above code with a larger $n$ and a different $\pi$ and convince yourself
 
 **Could we get by without studying the Binomial Distribution?** The answer is 'for most applications, yes.' The reason is that in in most cases, we are able to use a Gaussian (Normal) approximation to the binomial distribution. Thus, all we need are its expectation and variance (standard deviation):  we don't need the `dbinom()` probability mass function, or the `pbinom()` that gives the cumulative distribution function and thus the tail areas, or the `qbinom()` function that gives the quantiles. But sometimes we deal with situations where the binomial distributions are not symmetric and close-enough-to-Gaussian.
 
-we will come back to how the binomial distribution led to the [deMoivre's derivation](https://en.wikipedia.org/wiki/De_Moivre–Laplace_theorem) of a 'Gaussian distribution -- in 1738, almost 4 decades before Gauss was born.
-
-
-https://fivethirtyeight.com/features/what-if-god-were-a-giant-game-of-plinko/
+Below we recount how, in 1738, almost 4 decades before Gauss was born, when summing the probabilities of a binomial distribution with a large $n$, [deMoivre](https://en.wikipedia.org/wiki/De_Moivre–Laplace_theorem) effectively used the as-yet unrecognized 'Gaussian' distribution as a very accurate approximation. Without calling it this, he relied on the standard deviation of the binomial distribution. 
 
 
 ===
@@ -553,6 +550,10 @@ All sequences leading to the split are equiprobable.",
 	
 ```
 
+If you rotate the binomial tree to the right by 90 degrees, and use your imagination, you can see how it resembles the [quincunx](https://en.wikipedia.org/wiki/Quincunx) constructed by [Francis Galton](https://en.wikipedia.org/wiki/Bean_machine). He used it to show how the Central Linit Theorem, applied to the sum of several 'Bernoulli deflections to the right and left',  makes a Binomial distribution approach a Gaussian one. Several [games](https://en.wikipedia.org/wiki/Bean_machine#Games) and game shows are built on this pinball machine, for example, [Plinko](https://fivethirtyeight.com/features/what-if-god-were-a-giant-game-of-plinko/) and, more recently, [The Wall](https://www.nbc.com/the-wall?nbc=1).
+Galton's quincunx has its own cottage industry, and versions of it often displayed in Science Museums. The present authors inherited a low tech version of the [Galton Board](http://www.galtonboard.com), where the 'shot' are turnip seeds, from former  McGill [Professor -- and early teacher of course 607 -- FDK Liddell](https://www.mcgill.ca/medicine/staff-resources/inmemoriam/2003). 
+
+
 **Does the Binomial Distribution apply if... ?**
 
 
@@ -635,7 +636,110 @@ To use the Normal approximatiom, be aware of the **scale you are working in**, .
 | **percentage**: | $100p\%$ | 20\% | $100 \times \pi$ | $100 \times SD[p]$ |
 
 The first person to suggest an approximation, using what we now call the 'Normal' or 'Gaussian' of 'Laplace-Gaussian' distribution, was 
-[deMoivre, in 1738](http://www.biostat.mcgill.ca/hanley/statbook/TheDoctrineOfChancesAnnotated.pdf). There is a debate among historians as to whether this marks the first description of the Normal distribution: the piece does not explicitly point to the probability density function  $\frac{1}{\sigma \sqrt{2 \pi}} \times exp[-z^2/2\sigma^2],$  but it does highlight the role of the quantity $(1/2) \times \sqrt{n}$, the standard deviation of the sum of $n$ independent Bernoulli random variables, eah with expectation 1/2 and thus  a 'unit' standard deviation of 1/2, and also the SD quantity $\sqrt{\pi(1-\pi)}$ $\times$ $\sqrt{n}$ in the more general case. DeMoivre arrived at the familiar '68-95-99.7 rule' : the percentages of a normal distribution that lie within 1, 2 and 3 SD's of its mean.
+[deMoivre, in 1738](http://www.biostat.mcgill.ca/hanley/statbook/TheDoctrineOfChancesAnnotated.pdf). There is a debate among historians as to whether this marks the first description of the Normal distribution: the piece does not explicitly point to the probability density function  $\frac{1}{\sigma \sqrt{2 \pi}} \times exp[-z^2/2\sigma^2],$  but it does highlight the role of the quantity $(1/2) \times \sqrt{n}$, the standard deviation of the sum of $n$ independent Bernoulli random variables, each with expectation 1/2 and thus  a 'unit' standard deviation of 1/2, and also the SD quantity $\sqrt{\pi(1-\pi)}$ $\times$ $\sqrt{n}$ in the more general case. DeMoivre arrived at the familiar '68-95-99.7 rule' : the percentages of a normal distribution that lie within 1, 2 and 3 SD's of its mean.
+
+
+**Factors that modulate the shapes of  Binomial distributions**
+
+* size of $n$: the larger the n, the more symmetric
+
+* value of $\pi$: the closer to 1/2, the more symmetric
+
+In these small-$n$ contexts, only those distribtions where $\pi$ is close to 0.5 are reasonably symmetric. 
+
+
+In larger-$n$ contexts (see below), as long as there is 'room' for them to be,  binomial distribtions where the expected value $E = n \times \pi$ is at least 5-10 'in from the edges' (i.e. to the right of 0, or the left of $n$, are reasonably symmetric. 
+
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F}
+
+showBinomials = function(n=5,d.n=1){
+  
+    par(mfrow=c(1,1),mar = c(0,0,1,0))
+
+    plot(-10,-10,xlim=c(-0.1,1.1),ylim=c(-0.12,1.12)*n,,frame=FALSE)
+
+    Dx = 0.1
+
+    yy = 0:n 
+    
+    yyy = seq(0,n,d.n)
+    
+    
+
+    text(-0.04,  1.11*n, expression(paste(pi,":")), adj=c(0,0),cex=1.5,font=2)
+    text(-0.04, -0.11*n, expression(paste(pi,":")), adj=c(0,1),cex=1.5,font=2)
+
+    if(n > 5 & (n-5)> 5){
+        segments(Dx/2,   5, 1-Dx, 5, col="lightblue",   
+                 lty="dotted", lwd=1.5)
+        segments(Dx/2, n-5, 1-Dx, n-5, col="lightblue",
+                 lty="dotted", lwd=1.5)
+    } 
+    if(n > 10){
+        segments(Dx/2,   10, 1-Dx,   10, col="lightblue",
+                 lty="dotted", lwd=2)
+        segments(Dx/2, n-10, 1-Dx, n-10, col="lightblue",
+                 lty="dotted", lwd=2)
+    } 
+    for(P in seq(Dx,1-Dx,Dx)){
+        if(P %in% seq(Dx,1-Dx,Dx)) {
+            text(P-Dx/2,  1.11*n, toString(P), adj=c(0,0))
+            text(P-Dx/2, -0.11*n, toString(P), adj=c(0,1))
+        }
+        rect(P-Dx/2, -1/2, P+Dx/2, n+1/2, border="grey85")
+        if(P==Dx){ 
+           text(P -Dx, 0.5*n, "Y", adj=c(1.5,0.5))
+           text(1-P+Dx,   0.5*n, "Y", adj=c(0,0.5))
+           for(y in yy) {
+              if( y %in% yyy ){
+              text(P-Dx/1.5, y, toString(y), 
+                   adj=c(1.25,0.5))
+              text(1-Dx + Dx/1.5   , y, toString(y), 
+                   adj=c(0,   0.5) )
+              }
+           }
+        }
+    xx = dbinom(yy,n,P ) * Dx * sqrt(n/5)
+    E = n*P ; COL=col="grey55"
+    if( ( E >= 5 & E <=  (n-5) )  ) {
+        COL = "blue"
+    }
+    rect(rep(P,n+1)-Dx/2, yy-0.1, rep(P,n+1)+xx - Dx/2, yy+0.1, 
+              border=NA, col=COL )
+    
+    if( COL=="blue") {
+       points(P-Dx/1.75,E, pch=19, cex=0.5, col=COL)
+       text(P-Dx/1.75,E, expression(mu), 
+            cex=1,adj=c(1.5,0.5),font=2, col=COL)
+      
+    } 
+    }
+  
+}
+
+
+```
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F,fig.cap="Binomial random variables/distributions, where n = 5, and the Bernoulli expectation (probability) is smaller (left panels) or larger (right panels)."}
+
+showBinomials(n=5,d.n=1)
+
+```
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F,fig.cap="Various Binomial random variables/distributions, where n = 20. The dotted horizontal lines in light blue are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units from the (0,n) boundaries are shown in blue."}
+
+showBinomials(n=20,d.n=2)
+
+```
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=4, fig.width=9, warning=FALSE, message=F,fig.cap="Various Binomial random variables/distributions, where n = 50. The blue dotted lines are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units in from the (0,n) boundaries are shown in blue"}
+
+showBinomials(n=50,d.n=5)
+
+```
 
 
 https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982
@@ -672,71 +776,108 @@ transformations
 
 ## Exercises
 
-3. Above you saw the possible outcomes of the **6/49** game. You could also put the possibilities into this 2 x 2 table
+### Clusters of Miscarriages [based on article by L Abenhaim] 
 
-Frequencies of numbers selected/not selected by you (rows) and drawn/not by Loto Machine (columns)
+Assume that:
 
-|        |       |      |      |      |      |      |  |
-|-----:|-------:|-------:|-------:|-----:|-----:|:----:|:----:|:----:|
-|        |       |       |     | LOTO |      |      |      |   |
-|        |       |       |   Yes |      | No   |      | ALL     |    |
-|        |       |       |      |      |      |      |    |
-|        |       | .      | ........     | ........     |  ........    |   .   |    |
-|        |  Yes  | : |   y   |      | 6-y  |  !   |  6  |    |
-|  YOU   |       |       |      |      |      |      |    |
-|        |  No   | : | 6 - y |      | 37+y |   :  |  43    |    |
-|        |    |  .  |  ........    | ........  |  ........    |  .    |    |
-|        | ALL   |  |  6   |      | 43   |      |  49  |    |
+* 15\% of all pregnancies end in a recognized spontaneous abortion (miscarriage) -- this is probably a conservative estimate.
+* Across North America, there are 1,000 large companies. In each of them, 10 females who work all day with computer terminals become pregnant within the course of a year [the number who get pregnant would vary, but assume for the sake of this exercise that it is exactly 10 in each company].
+*There is no relationship between working with computers and the risk of miscarriage.
+* a ``cluster'' of miscarriages is defined as ``at least 5 of 10 females in the same company suffering a miscarriage within a year''
 
-3. continued
+Exercise: Calculate the number of 'clusters' of miscarriages one would expect in the 1,000 companies. _Hint_: begin with the probability  of a cluster. 
 
-   + Use  your searching skills to find the formal statistical name for the distribution of $Y$, which can take on the values $y$ = 0, 1, $\dots$, 6. 
-   + Likewise, find the name of the `R` functions (`d??p?r` , `p??p?r`, `q??p?r` and `r??p?r`) that allow you to obtain the 7 probabilities, the 7 cumulative provabilities, the quantiles, and the `r??p?r` function that draws random values from this distribution.
-   + Even with knowing what the full (numerical) probability distribution of $Y$ is, it is possible, just from the marginal totals for the 2 x 2 table, to calculate the expected value of $Y.$ Do so. (_Hint_: look up 'expected values for r x c tables')
-   + Just by imagining what the full probablility distibution on the integers 0 to 6 must look like [or by looking at the material earlier on this page], come up with an approximate value of the variance of Y. [If you look up this distribution in Wikipedia, you wiull find the exact formula for it.]  
-   
-4. The chapter on inference possible relates  the '**Lady Tasting Tea**' story. You could put the possible outcomes of the trial into this 2 x 2 table involving 8 cups of tea, into which the milk had been poured first in 4 instances, and second in the other 4. The lady was told there were 4 of each, so she indicated the 4 into which she jusged the milk was poured 1st, and the 4 into which she judged the milk was poured 2nd.  
+### 'Prone-ness' to Miscarriages ? 
 
-Frequencies of the correctness/incorrectness of the replies by the lady (rows) in relation to the truth arranged by experimenter (columns)
+Some studies suggest that the chance of a pregnancy ending in a spontaneous abortion is approximately 30%.
+
+1. On this basis, if a woman becomes pregnant 4 times, what does the binomial distribution give as her chance of having 0,1,2,3 or 4 spontaneous abortions?
+2. On this basis, if 70 women each become pregnant 4 times, what number of them would you expect to suffer 0,1,2,3 or 4 spontaneous abortions?  (Think of the answers in (i) as proportions of women).
+3. Compare these theoretically expected numbers out of 70 with the following observed data on 70 women, each of whom had 4 pregnancies:
+
+| | | | | | |
+|--: | :--: | :--: | :--: | :--: | :--: |
+| No. of spontaneous abortions: | 0 | 1 | 2 | 3 | 4 |
+| No. of women with this many abortions: |  23 | 28 | 7 | 6 | 6 |
+
+4. Why don't the expected numbers agree very well with the observed numbers?  i.e. which assumption(s) of the Binomial Distribution are possibly being violated?  (Note that the overall rate of spontaneous abortions in the observed data is in fact 84 out of 280 pregnancies or 30%)
+
+### Automated Chemistries (from Ingelfinger et al)
+
+At the Beth Israel Hospital in Boston, an automated clinical chemistry analyzer is used to give 18 routinely ordered chemical determinations on one order (glucose, BUN, creatinine, ..., iron). The ``normal'' values for these 18 tests were established by the concentrations of these chemicals in the sera of a large sample of healthy volunteers. The normal range was defined so that an average of 3% of the values found in these healthy subjects fell outside.
+
+1. Using the binomial formula [even if it is na\"{\i}ve to do so here], compute the probability that a healthy subject will have normal values on all 18 tests. Also calculate the probability of 2 or more abnormal values.
+2. Which of the requirements for the binomial distribution are definitely satisfied, and which ones may not be?
+3. Among 82 normal employees at the hospital, 52/82 (64%) had all normal tests, 19/82 (23%) had 1 abnormal test and 11/82 (13%) had 2 or more abnormal tests. Compare these observed percentages with the theoretical distribution obtained from calculations using the binomial distribution. Comment on the closeness of the fit.
+
+### Binomial or Opportunistic? (Capitalization on chance... multiple looks at data) 
+
+[Question from Ingelfinger et al. textbook] Mrs A has mild diabetes controlled by diet.  Blood values vary rapidly, so think of each day as a new (independent) situation.
+Her morning urine sugar test is negative 80% of the time and positive (+) 20% of the time. [It is never graded higher than +]. 
+
+1. At her regular visits to her physician, the physician always asks about last 5 days. At this particular visit, she tells the physician that the test has been + on each of the last 5 days.  
+What is the probability that this would occur if her condition has remained unchanged? Does this observation give reason to think that her condition has changed?
+
+2. Is the situation different if she observes, _between_ visits, that the test is positive on 5 successive days and phones to express her concern?
+
+### Can one influence the sex of a baby?
+
+This question was prompted by this  [article](http://www.biostat.mcgill.ca/hanley/statbook/SexRatioOvulationNEJM1979.pdf)  in an 1979 issue of the New England Journal of Medicine.
+
+1. Consider a binomial variable with $n = 145$ and $\pi = 0.528$. Calculate the SD of, and therefore a measure of the variation in, the proportions that one would observe in different samples of 145 if $\pi$ = 0.528. [In other words, the SD of the sampling distribution of the sample proportion.]  
+
+The following is abstracted from that NEJM article:
+
+> The baby's sex was studied in births to Jewish women who observed the orthodox ritual of sexual separation each month and who resumed intercourse within two days of ovulation. The proportion of male babies was 95/145 or 65.5% (!!) in the offspring of those women who resumed intercourse two days after ovulation (the  overall percentage of male babies born to the 3658 women who had resumed intercourse within two days of ovulation [i.e. days -2, -1, 0, 1 and 2]  was 52.8%).  
+
+2. How does the SD you calculated above help you judge the findings?  And why did you _not_ have to substitute the $p=0.655$ into the SD formula, and call it an SE of $p$?
+
+### It's the 3rd week of the course: it must be Binomial 
+
+In which of the following would $Y$ _**not**_ have a Binomial distribution?  Why?
+
+1. The pool of potential jurors for a murder case contains 100 persons chosen at random from the adult residents of a large city.  Each person in the pool is asked whether he or she opposes the death penalty; $Y$ is the number who say 'Yes.'
+2. $Y$ = number of women listed in different random samples of size 20 from the 1990 directory of statisticians.
+3. $Y$ = number of occasions, out of a randomly selected sample of 100 occasions during the year, in which you were indoors.  (One might use this design to estimate what proportion of time you spend indoors)
+4. $Y$ = number of months of the year in which it snows in Montreal.
+5. $Y$ = Number, out of 60 occupants of 30 randomly chosen cars, wearing seatbelts.
+6. $Y$ = Number, out of 60 occupants of 60 randomly chosen cars, wearing seatbelts.
+7. $Y$ = Number, out of a department's 10 microcomputers and 4 printers, that are going to fail in their first year.
+8. $Y$ = Number, out of simple random sample of 100 individuals, that are left-handed.
+9. $Y$ = Number, out of 5000 randomly selected from mothers giving birth each month in Quebec, who will test HIV positive.    
+10. You observe the sex of the next 50 children born at a local hospital; $Y$ is the number of girls among them.
+11. A couple decides to continue to have children until their first girl is born; $Y$ is the total number of children the couple has.
+12. You want to know what percent of married people believe that mothers of young children should not be employed outside the home.  You plan to interview 50 people, and for the sake of convenience you decide to interview both the husband and the wife in 25 married couples.  The random variable $Y$ is the number among the 50 persons interviewed who think mothers should not be employed.
 
 
-|        |       |      |      |      |      |      |  |
-|-----:|-------:|-------:|-------:|-----:|-----:|:----:|:----:|:----:|
-|        |       |       |     | TRUTH |      |      |      |   |
-|        |       |       |   Milk 1st |      | Milk 2nd   |      | ALL     |    |
-|        |       |       |      |      |      |      |    |
-|        |       | .      | ........     | ........     |  ........    |   .   |    |
-|        |  Milk 1st  | : |   y   |      | 4-y  |  :   |  4 cups  |    |
-|  LADY   |       |       |      |      |      |      |    |
-|        |  Milk 2nd   | : | 4 - y |      | 4+y |   :  |  4 cups    |    |
-|        |    |  .  |  ........    | ........  |  ........    |  .    |    |
-|        | ALL   |  |  4 cups   |      | 4 cups   |      |  8 cups  |    |
+### Tests of intuition
 
-4. continued
+* A coin will be tossed either 2 times or 20 times.  You will win $2.00 if the number of heads is equal to the number of tails, no more and no less.  Which is correct? (i) 2 tosses is better. (ii) 100 tosses is better. (iii) Both offer the same chance of winning.
 
-   + Use the `R` function `d??p?r` to obtain, under the null hypothesis, the 5 probabilities for $y$.
-   + Under this null, what is the probability of getting **at least 3** correct?
-   + What if 12 cups (6 and 6) were used? What then would be the probability of getting **at least 5** correct? **all 6**?
-
-5. **Saving** on the numbers of binary yests **by pooling**. When a binary blood test [one that yields a positive ('+ve') or negative ('-ve') result] gives +ve results in only a small proportion, $\pi,$ of blood samples, it may be possible to economize on the costs of testing by pooling m blood samples, according to the following procedure: (i) each blood sample is divided into two portions; one portion is kept in reserve while the other is pooled with the corresponding portions from $m$ - 1 other blood samples (ii) if the result of a single test on the pooled bloods is -ve, each of the $m$ individual blood samples are considered -ve; if the result is +ve, then the $m$ reserve bloods are individually tested.
-   
-   + With $m$ = 20 and $\pi$ = 0.1, calculate the expected number of tests required to determine the status of eack of the blood samples. (_Hint_: a tree diagram may help)
+* Hospital A has 100 births a year, hospital B has 2500. In which hospital is it more that at least 55\% of births in one year will be boys.
 
 
+### CI for proportion when observe 0/n or n/n
+
+Oncologists often first try out new experimental agents on patients with metastatic disease who have failed all standard therapies.
+One (old) rule for deciding to abandon an experimental agent was: if it was tried on 14 successive patients, but did not show anti-tumour in any of them, i.e. if it `struck out' in all 14, yielding a response rate of 0/14.
+
+Their reasoning is that this poor result ``rules out'' (with 95\% confidence) the possibility that it would be active in more than 20\% of future patients.
+In other words, the data are incompatible with any $\pi > 20\%.$
+
+Check out their rule, by computing/obtaining a 95\% 1-sided CI for $\pi.$ 
+
+[Use a 1-sided CI if one is interested in putting just an \textit{\underline{upper}} bound on the probability of benefit or risk: e.g., what is upper bound on $\pi = $ probability of getting HIV from HIV-infected dentist? See JAMA article 
+``If Nothing Goes Wrong, Is Everything All Right? Interpreting Zero Numerators''  by Hanley and Lippman-Hand
+
+http://www.epi.mcgill.ca/hanley/Reprints/If\_Nothing\_Goes\_1983.pdf
+
+and the `rule of $3/n$' for a 1-sided 95\% CI.
+See also the second example (with sample size 4 !) in the section `in defense of (some) small studies'
+in this article
+http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/Place\_of\_statistical\_1989.pdf
 
 
-12. No. copies of wild type if frequency is 1/5. Mean/Var.? 
 
 
-
-https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/phasing-penny.html
-
-simulation
-
-http://www2.ku.edu/~kuwpaper/2013Papers/201309.pdf
-
-https://www-jstor-org.proxy3.library.mcgill.ca/stable/pdf/3552184.pdf?refreqid=excelsior%3A86597fff2392f0b0d698235434d88c3a
-
-
-Galton's way of showing that the heights of the married couples in his dataset were virtually uncorrelated -- for computing exercise
 
