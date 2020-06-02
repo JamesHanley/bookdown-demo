@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-06-01" />
+<meta name="date" content="2020-06-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,7 +210,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.2.1" data-path="distributions.html"><a href="distributions.html#bernoulli"><i class="fa fa-check"></i><b>13.2.1</b> Bernoulli</a></li>
 <li class="chapter" data-level="13.2.2" data-path="distributions.html"><a href="distributions.html#binomial"><i class="fa fa-check"></i><b>13.2.2</b> Binomial</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#exercises-3"><i class="fa fa-check"></i><b>13.3</b> Exercises</a></li>
+<li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#exercises-3"><i class="fa fa-check"></i><b>13.3</b> Exercises</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="distributions.html"><a href="distributions.html#clusters-of-miscarriages-based-on-article-by-l-abenhaim"><i class="fa fa-check"></i><b>13.3.1</b> Clusters of Miscarriages [based on article by L Abenhaim]</a></li>
+<li class="chapter" data-level="13.3.2" data-path="distributions.html"><a href="distributions.html#prone-ness-to-miscarriages"><i class="fa fa-check"></i><b>13.3.2</b> ‘Prone-ness’ to Miscarriages ?</a></li>
+<li class="chapter" data-level="13.3.3" data-path="distributions.html"><a href="distributions.html#automated-chemistries-from-ingelfinger-et-al"><i class="fa fa-check"></i><b>13.3.3</b> Automated Chemistries (from Ingelfinger et al)</a></li>
+<li class="chapter" data-level="13.3.4" data-path="distributions.html"><a href="distributions.html#binomial-or-opportunistic-capitalization-on-chance-multiple-looks-at-data"><i class="fa fa-check"></i><b>13.3.4</b> Binomial or Opportunistic? (Capitalization on chance… multiple looks at data)</a></li>
+<li class="chapter" data-level="13.3.5" data-path="distributions.html"><a href="distributions.html#can-one-influence-the-sex-of-a-baby"><i class="fa fa-check"></i><b>13.3.5</b> Can one influence the sex of a baby?</a></li>
+<li class="chapter" data-level="13.3.6" data-path="distributions.html"><a href="distributions.html#its-the-3rd-week-of-the-course-it-must-be-binomial"><i class="fa fa-check"></i><b>13.3.6</b> It’s the 3rd week of the course: it must be Binomial</a></li>
+<li class="chapter" data-level="13.3.7" data-path="distributions.html"><a href="distributions.html#tests-of-intuition"><i class="fa fa-check"></i><b>13.3.7</b> Tests of intuition</a></li>
+<li class="chapter" data-level="13.3.8" data-path="distributions.html"><a href="distributions.html#ci-for-proportion-when-observe-0n-or-nn"><i class="fa fa-check"></i><b>13.3.8</b> CI for proportion when observe 0/n or n/n</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>III Part III</b></span></li>
 <li class="chapter" data-level="14" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>14</b> Mathematics</a><ul>
@@ -400,8 +409,7 @@ m =<span class="st"> </span><span class="kw">matrix</span>(zeros.and.ones,n<span
 <p>Try the above code with a larger <span class="math inline">\(n\)</span> and a different <span class="math inline">\(\pi\)</span> and convince yourself that the variance (and thus the SD) of the individual 0 and 1 values (a) have nothing to do with how many there are and everything to do with what proportion of them are of each type and (b) are larger when the proportions are close to each other, and smaller when they are not.</p>
 <p><strong>Scaled-Bernoulli random variables</strong></p>
 <p><strong>Could we get by without studying the Binomial Distribution?</strong> The answer is ‘for most applications, yes.’ The reason is that in in most cases, we are able to use a Gaussian (Normal) approximation to the binomial distribution. Thus, all we need are its expectation and variance (standard deviation): we don’t need the <code>dbinom()</code> probability mass function, or the <code>pbinom()</code> that gives the cumulative distribution function and thus the tail areas, or the <code>qbinom()</code> function that gives the quantiles. But sometimes we deal with situations where the binomial distributions are not symmetric and close-enough-to-Gaussian.</p>
-<p>we will come back to how the binomial distribution led to the <a href="https://en.wikipedia.org/wiki/De_Moivre–Laplace_theorem">deMoivre’s derivation</a> of a ’Gaussian distribution – in 1738, almost 4 decades before Gauss was born.</p>
-<p><a href="https://fivethirtyeight.com/features/what-if-god-were-a-giant-game-of-plinko/" class="uri">https://fivethirtyeight.com/features/what-if-god-were-a-giant-game-of-plinko/</a></p>
+<p>Below we recount how, in 1738, almost 4 decades before Gauss was born, when summing the probabilities of a binomial distribution with a large <span class="math inline">\(n\)</span>, <a href="https://en.wikipedia.org/wiki/De_Moivre–Laplace_theorem">deMoivre</a> effectively used the as-yet unrecognized ‘Gaussian’ distribution as a very accurate approximation. Without calling it this, he relied on the standard deviation of the binomial distribution.</p>
 <p>===</p>
 </div>
 <div id="binomial" class="section level3">
@@ -485,6 +493,7 @@ m =<span class="st"> </span><span class="kw">matrix</span>(zeros.and.ones,n<span
 Figure 13.2: From 5 (independent and identically distributed) Bernoulli observations to Binomial(n=5), with the Bernoulli probability left unspecified. There are 2 to the power n possible (distinct) sequences of 0’s and 1’s, each with its probability. We are not interested in these 2 to the power n probabilities, but in the probability that the sample contains y 1’s and (n-y) 0’s. There are only (n+1) possibilities for y, namely 0 to n. Fortunately, each of the n.choose.y sequences that lead to the same sum or count y, has the same probability. So we group the 2.to.power.n sequences into (n+1) sets, according to the sum or count. Each sequence in the set with y 1’s and (n-y) 0’s has the same probability, namely the prob.to.the.power.y times (1-prob).to.the.power.(n-y). Thus, in lieu of adding all such probabilities, we simply multiply this probability by the number, n.choose-y – shown in black – of unique sequences in the set. Check: the frequencies in black add to 2.to.power.n. Nowadays, the (n+1) probabilities are easily obtained by supplying a value for the ‘prob’ argument in the R function dbinom(), instead of computing the binomial coefficient n.choose-y by hand.
 </p>
 </div>
+<p>If you rotate the binomial tree to the right by 90 degrees, and use your imagination, you can see how it resembles the <a href="https://en.wikipedia.org/wiki/Quincunx">quincunx</a> constructed by <a href="https://en.wikipedia.org/wiki/Bean_machine">Francis Galton</a>. He used it to show how the Central Linit Theorem, applied to the sum of several ‘Bernoulli deflections to the right and left’, makes a Binomial distribution approach a Gaussian one. Several <a href="https://en.wikipedia.org/wiki/Bean_machine#Games">games</a> and game shows are built on this pinball machine, for example, <a href="https://fivethirtyeight.com/features/what-if-god-were-a-giant-game-of-plinko/">Plinko</a> and, more recently, <a href="https://www.nbc.com/the-wall?nbc=1">The Wall</a>. Galton’s quincunx has its own cottage industry, and versions of it often displayed in Science Museums. The present authors inherited a low tech version of the <a href="http://www.galtonboard.com">Galton Board</a>, where the ‘shot’ are turnip seeds, from former McGill <a href="https://www.mcgill.ca/medicine/staff-resources/inmemoriam/2003">Professor – and early teacher of course 607 – FDK Liddell</a>.</p>
 <p><strong>Does the Binomial Distribution apply if… ?</strong></p>
 <table style="width:44%;">
 <colgroup>
@@ -750,7 +759,32 @@ To use the Normal approximatiom, be aware of the <strong>scale you are working i
 </tr>
 </tbody>
 </table>
-<p>The first person to suggest an approximation, using what we now call the ‘Normal’ or ‘Gaussian’ of ‘Laplace-Gaussian’ distribution, was <a href="http://www.biostat.mcgill.ca/hanley/statbook/TheDoctrineOfChancesAnnotated.pdf">deMoivre, in 1738</a>. There is a debate among historians as to whether this marks the first description of the Normal distribution: the piece does not explicitly point to the probability density function <span class="math inline">\(\frac{1}{\sigma \sqrt{2 \pi}} \times exp[-z^2/2\sigma^2],\)</span> but it does highlight the role of the quantity <span class="math inline">\((1/2) \times \sqrt{n}\)</span>, the standard deviation of the sum of <span class="math inline">\(n\)</span> independent Bernoulli random variables, eah with expectation 1/2 and thus a ‘unit’ standard deviation of 1/2, and also the SD quantity <span class="math inline">\(\sqrt{\pi(1-\pi)}\)</span> <span class="math inline">\(\times\)</span> <span class="math inline">\(\sqrt{n}\)</span> in the more general case. DeMoivre arrived at the familiar ‘68-95-99.7 rule’ : the percentages of a normal distribution that lie within 1, 2 and 3 SD’s of its mean.</p>
+<p>The first person to suggest an approximation, using what we now call the ‘Normal’ or ‘Gaussian’ of ‘Laplace-Gaussian’ distribution, was <a href="http://www.biostat.mcgill.ca/hanley/statbook/TheDoctrineOfChancesAnnotated.pdf">deMoivre, in 1738</a>. There is a debate among historians as to whether this marks the first description of the Normal distribution: the piece does not explicitly point to the probability density function <span class="math inline">\(\frac{1}{\sigma \sqrt{2 \pi}} \times exp[-z^2/2\sigma^2],\)</span> but it does highlight the role of the quantity <span class="math inline">\((1/2) \times \sqrt{n}\)</span>, the standard deviation of the sum of <span class="math inline">\(n\)</span> independent Bernoulli random variables, each with expectation 1/2 and thus a ‘unit’ standard deviation of 1/2, and also the SD quantity <span class="math inline">\(\sqrt{\pi(1-\pi)}\)</span> <span class="math inline">\(\times\)</span> <span class="math inline">\(\sqrt{n}\)</span> in the more general case. DeMoivre arrived at the familiar ‘68-95-99.7 rule’ : the percentages of a normal distribution that lie within 1, 2 and 3 SD’s of its mean.</p>
+<p><strong>Factors that modulate the shapes of Binomial distributions</strong></p>
+<ul>
+<li><p>size of <span class="math inline">\(n\)</span>: the larger the n, the more symmetric</p></li>
+<li><p>value of <span class="math inline">\(\pi\)</span>: the closer to 1/2, the more symmetric</p></li>
+</ul>
+<p>In these small-<span class="math inline">\(n\)</span> contexts, only those distribtions where <span class="math inline">\(\pi\)</span> is close to 0.5 are reasonably symmetric.</p>
+<p>In larger-<span class="math inline">\(n\)</span> contexts (see below), as long as there is ‘room’ for them to be, binomial distribtions where the expected value <span class="math inline">\(E = n \times \pi\)</span> is at least 5-10 ‘in from the edges’ (i.e. to the right of 0, or the left of <span class="math inline">\(n\)</span>, are reasonably symmetric.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-70"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-70-1.png" alt="Binomial random variables/distributions, where n = 5, and the Bernoulli expectation (probability) is smaller (left panels) or larger (right panels)." width="864" />
+<p class="caption">
+Figure 13.3: Binomial random variables/distributions, where n = 5, and the Bernoulli expectation (probability) is smaller (left panels) or larger (right panels).
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-71"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-71-1.png" alt="Various Binomial random variables/distributions, where n = 20. The dotted horizontal lines in light blue are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units from the (0,n) boundaries are shown in blue." width="864" />
+<p class="caption">
+Figure 13.4: Various Binomial random variables/distributions, where n = 20. The dotted horizontal lines in light blue are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units from the (0,n) boundaries are shown in blue.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-72"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-72-1.png" alt="Various Binomial random variables/distributions, where n = 50. The blue dotted lines are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units in from the (0,n) boundaries are shown in blue" width="864" />
+<p class="caption">
+Figure 13.5: Various Binomial random variables/distributions, where n = 50. The blue dotted lines are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units in from the (0,n) boundaries are shown in blue
+</p>
+</div>
 <p><a href="https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982" class="uri">https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982</a></p>
 <p>dark <a href="https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula" class="uri">https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula</a></p>
 <p><a href="https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-4" class="uri">https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-4</a></p>
@@ -770,252 +804,116 @@ To use the Normal approximatiom, be aware of the <strong>scale you are working i
 </div>
 <div id="exercises-3" class="section level2">
 <h2><span class="header-section-number">13.3</span> Exercises</h2>
-<ol start="3" style="list-style-type: decimal">
-<li>Above you saw the possible outcomes of the <strong>6/49</strong> game. You could also put the possibilities into this 2 x 2 table</li>
+<div id="clusters-of-miscarriages-based-on-article-by-l-abenhaim" class="section level3">
+<h3><span class="header-section-number">13.3.1</span> Clusters of Miscarriages [based on article by L Abenhaim]</h3>
+<p>Assume that:</p>
+<ul>
+<li>15% of all pregnancies end in a recognized spontaneous abortion (miscarriage) – this is probably a conservative estimate.</li>
+<li>Across North America, there are 1,000 large companies. In each of them, 10 females who work all day with computer terminals become pregnant within the course of a year [the number who get pregnant would vary, but assume for the sake of this exercise that it is exactly 10 in each company]. *There is no relationship between working with computers and the risk of miscarriage.</li>
+<li>a <code>cluster'' of miscarriages is defined as</code>at least 5 of 10 females in the same company suffering a miscarriage within a year’’</li>
+</ul>
+<p>Exercise: Calculate the number of ‘clusters’ of miscarriages one would expect in the 1,000 companies. <em>Hint</em>: begin with the probability of a cluster.</p>
+</div>
+<div id="prone-ness-to-miscarriages" class="section level3">
+<h3><span class="header-section-number">13.3.2</span> ‘Prone-ness’ to Miscarriages ?</h3>
+<p>Some studies suggest that the chance of a pregnancy ending in a spontaneous abortion is approximately 30%.</p>
+<ol style="list-style-type: decimal">
+<li>On this basis, if a woman becomes pregnant 4 times, what does the binomial distribution give as her chance of having 0,1,2,3 or 4 spontaneous abortions?</li>
+<li>On this basis, if 70 women each become pregnant 4 times, what number of them would you expect to suffer 0,1,2,3 or 4 spontaneous abortions? (Think of the answers in (i) as proportions of women).</li>
+<li>Compare these theoretically expected numbers out of 70 with the following observed data on 70 women, each of whom had 4 pregnancies:</li>
 </ol>
-<p>Frequencies of numbers selected/not selected by you (rows) and drawn/not by Loto Machine (columns)</p>
 <table>
 <tbody>
 <tr class="odd">
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">LOTO</td>
-<td align="right"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
+<td align="right">No. of spontaneous abortions:</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
 </tr>
 <tr class="even">
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">Yes</td>
-<td align="right"></td>
-<td align="right">No</td>
-<td align="center"></td>
-<td align="center">ALL</td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">.</td>
-<td align="right">……..</td>
-<td align="right">……..</td>
-<td align="right">……..</td>
-<td align="center">.</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="right"></td>
-<td align="right">Yes</td>
-<td align="right">:</td>
-<td align="right">y</td>
-<td align="right"></td>
-<td align="right">6-y</td>
-<td align="center">!</td>
+<td align="right">No. of women with this many abortions:</td>
+<td align="center">23</td>
+<td align="center">28</td>
+<td align="center">7</td>
 <td align="center">6</td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="right">YOU</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="right"></td>
-<td align="right">No</td>
-<td align="right">:</td>
-<td align="right">6 - y</td>
-<td align="right"></td>
-<td align="right">37+y</td>
-<td align="center">:</td>
-<td align="center">43</td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">.</td>
-<td align="right">……..</td>
-<td align="right">……..</td>
-<td align="right">……..</td>
-<td align="center">.</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="right"></td>
-<td align="right">ALL</td>
-<td align="right"></td>
-<td align="right">6</td>
-<td align="right"></td>
-<td align="right">43</td>
-<td align="center"></td>
-<td align="center">49</td>
-<td align="center"></td>
-</tr>
-</tbody>
-</table>
-<ol start="3" style="list-style-type: decimal">
-<li>continued</li>
-</ol>
-<ul>
-<li>Use your searching skills to find the formal statistical name for the distribution of <span class="math inline">\(Y\)</span>, which can take on the values <span class="math inline">\(y\)</span> = 0, 1, <span class="math inline">\(\dots\)</span>, 6.</li>
-<li>Likewise, find the name of the <code>R</code> functions (<code>d??p?r</code> , <code>p??p?r</code>, <code>q??p?r</code> and <code>r??p?r</code>) that allow you to obtain the 7 probabilities, the 7 cumulative provabilities, the quantiles, and the <code>r??p?r</code> function that draws random values from this distribution.</li>
-<li>Even with knowing what the full (numerical) probability distribution of <span class="math inline">\(Y\)</span> is, it is possible, just from the marginal totals for the 2 x 2 table, to calculate the expected value of <span class="math inline">\(Y.\)</span> Do so. (<em>Hint</em>: look up ‘expected values for r x c tables’)</li>
-<li>Just by imagining what the full probablility distibution on the integers 0 to 6 must look like [or by looking at the material earlier on this page], come up with an approximate value of the variance of Y. [If you look up this distribution in Wikipedia, you wiull find the exact formula for it.]</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li>The chapter on inference possible relates the ‘<strong>Lady Tasting Tea</strong>’ story. You could put the possible outcomes of the trial into this 2 x 2 table involving 8 cups of tea, into which the milk had been poured first in 4 instances, and second in the other 4. The lady was told there were 4 of each, so she indicated the 4 into which she jusged the milk was poured 1st, and the 4 into which she judged the milk was poured 2nd.</li>
-</ol>
-<p>Frequencies of the correctness/incorrectness of the replies by the lady (rows) in relation to the truth arranged by experimenter (columns)</p>
-<table>
-<tbody>
-<tr class="odd">
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">TRUTH</td>
-<td align="right"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">Milk 1st</td>
-<td align="right"></td>
-<td align="right">Milk 2nd</td>
-<td align="center"></td>
-<td align="center">ALL</td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">.</td>
-<td align="right">……..</td>
-<td align="right">……..</td>
-<td align="right">……..</td>
-<td align="center">.</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="right"></td>
-<td align="right">Milk 1st</td>
-<td align="right">:</td>
-<td align="right">y</td>
-<td align="right"></td>
-<td align="right">4-y</td>
-<td align="center">:</td>
-<td align="center">4 cups</td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="right">LADY</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="right"></td>
-<td align="right">Milk 2nd</td>
-<td align="right">:</td>
-<td align="right">4 - y</td>
-<td align="right"></td>
-<td align="right">4+y</td>
-<td align="center">:</td>
-<td align="center">4 cups</td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">.</td>
-<td align="right">……..</td>
-<td align="right">……..</td>
-<td align="right">……..</td>
-<td align="center">.</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="right"></td>
-<td align="right">ALL</td>
-<td align="right"></td>
-<td align="right">4 cups</td>
-<td align="right"></td>
-<td align="right">4 cups</td>
-<td align="center"></td>
-<td align="center">8 cups</td>
-<td align="center"></td>
+<td align="center">6</td>
 </tr>
 </tbody>
 </table>
 <ol start="4" style="list-style-type: decimal">
-<li>continued</li>
+<li>Why don’t the expected numbers agree very well with the observed numbers? i.e. which assumption(s) of the Binomial Distribution are possibly being violated? (Note that the overall rate of spontaneous abortions in the observed data is in fact 84 out of 280 pregnancies or 30%)</li>
 </ol>
+</div>
+<div id="automated-chemistries-from-ingelfinger-et-al" class="section level3">
+<h3><span class="header-section-number">13.3.3</span> Automated Chemistries (from Ingelfinger et al)</h3>
+<p>At the Beth Israel Hospital in Boston, an automated clinical chemistry analyzer is used to give 18 routinely ordered chemical determinations on one order (glucose, BUN, creatinine, …, iron). The ``normal’’ values for these 18 tests were established by the concentrations of these chemicals in the sera of a large sample of healthy volunteers. The normal range was defined so that an average of 3% of the values found in these healthy subjects fell outside.</p>
+<ol style="list-style-type: decimal">
+<li>Using the binomial formula [even if it is na&quot;{}ve to do so here], compute the probability that a healthy subject will have normal values on all 18 tests. Also calculate the probability of 2 or more abnormal values.</li>
+<li>Which of the requirements for the binomial distribution are definitely satisfied, and which ones may not be?</li>
+<li>Among 82 normal employees at the hospital, 52/82 (64%) had all normal tests, 19/82 (23%) had 1 abnormal test and 11/82 (13%) had 2 or more abnormal tests. Compare these observed percentages with the theoretical distribution obtained from calculations using the binomial distribution. Comment on the closeness of the fit.</li>
+</ol>
+</div>
+<div id="binomial-or-opportunistic-capitalization-on-chance-multiple-looks-at-data" class="section level3">
+<h3><span class="header-section-number">13.3.4</span> Binomial or Opportunistic? (Capitalization on chance… multiple looks at data)</h3>
+<p>[Question from Ingelfinger et al. textbook] Mrs A has mild diabetes controlled by diet. Blood values vary rapidly, so think of each day as a new (independent) situation. Her morning urine sugar test is negative 80% of the time and positive (+) 20% of the time. [It is never graded higher than +].</p>
+<ol style="list-style-type: decimal">
+<li><p>At her regular visits to her physician, the physician always asks about last 5 days. At this particular visit, she tells the physician that the test has been + on each of the last 5 days.<br />
+What is the probability that this would occur if her condition has remained unchanged? Does this observation give reason to think that her condition has changed?</p></li>
+<li><p>Is the situation different if she observes, <em>between</em> visits, that the test is positive on 5 successive days and phones to express her concern?</p></li>
+</ol>
+</div>
+<div id="can-one-influence-the-sex-of-a-baby" class="section level3">
+<h3><span class="header-section-number">13.3.5</span> Can one influence the sex of a baby?</h3>
+<p>This question was prompted by this <a href="http://www.biostat.mcgill.ca/hanley/statbook/SexRatioOvulationNEJM1979.pdf">article</a> in an 1979 issue of the New England Journal of Medicine.</p>
+<ol style="list-style-type: decimal">
+<li>Consider a binomial variable with <span class="math inline">\(n = 145\)</span> and <span class="math inline">\(\pi = 0.528\)</span>. Calculate the SD of, and therefore a measure of the variation in, the proportions that one would observe in different samples of 145 if <span class="math inline">\(\pi\)</span> = 0.528. [In other words, the SD of the sampling distribution of the sample proportion.]</li>
+</ol>
+<p>The following is abstracted from that NEJM article:</p>
+<blockquote>
+<p>The baby’s sex was studied in births to Jewish women who observed the orthodox ritual of sexual separation each month and who resumed intercourse within two days of ovulation. The proportion of male babies was 95/145 or 65.5% (!!) in the offspring of those women who resumed intercourse two days after ovulation (the overall percentage of male babies born to the 3658 women who had resumed intercourse within two days of ovulation [i.e. days -2, -1, 0, 1 and 2] was 52.8%).</p>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>How does the SD you calculated above help you judge the findings? And why did you <em>not</em> have to substitute the <span class="math inline">\(p=0.655\)</span> into the SD formula, and call it an SE of <span class="math inline">\(p\)</span>?</li>
+</ol>
+</div>
+<div id="its-the-3rd-week-of-the-course-it-must-be-binomial" class="section level3">
+<h3><span class="header-section-number">13.3.6</span> It’s the 3rd week of the course: it must be Binomial</h3>
+<p>In which of the following would <span class="math inline">\(Y\)</span> <em><strong>not</strong></em> have a Binomial distribution? Why?</p>
+<ol style="list-style-type: decimal">
+<li>The pool of potential jurors for a murder case contains 100 persons chosen at random from the adult residents of a large city. Each person in the pool is asked whether he or she opposes the death penalty; <span class="math inline">\(Y\)</span> is the number who say ‘Yes.’</li>
+<li><span class="math inline">\(Y\)</span> = number of women listed in different random samples of size 20 from the 1990 directory of statisticians.</li>
+<li><span class="math inline">\(Y\)</span> = number of occasions, out of a randomly selected sample of 100 occasions during the year, in which you were indoors. (One might use this design to estimate what proportion of time you spend indoors)</li>
+<li><span class="math inline">\(Y\)</span> = number of months of the year in which it snows in Montreal.</li>
+<li><span class="math inline">\(Y\)</span> = Number, out of 60 occupants of 30 randomly chosen cars, wearing seatbelts.</li>
+<li><span class="math inline">\(Y\)</span> = Number, out of 60 occupants of 60 randomly chosen cars, wearing seatbelts.</li>
+<li><span class="math inline">\(Y\)</span> = Number, out of a department’s 10 microcomputers and 4 printers, that are going to fail in their first year.</li>
+<li><span class="math inline">\(Y\)</span> = Number, out of simple random sample of 100 individuals, that are left-handed.</li>
+<li><span class="math inline">\(Y\)</span> = Number, out of 5000 randomly selected from mothers giving birth each month in Quebec, who will test HIV positive.<br />
+</li>
+<li>You observe the sex of the next 50 children born at a local hospital; <span class="math inline">\(Y\)</span> is the number of girls among them.</li>
+<li>A couple decides to continue to have children until their first girl is born; <span class="math inline">\(Y\)</span> is the total number of children the couple has.</li>
+<li>You want to know what percent of married people believe that mothers of young children should not be employed outside the home. You plan to interview 50 people, and for the sake of convenience you decide to interview both the husband and the wife in 25 married couples. The random variable <span class="math inline">\(Y\)</span> is the number among the 50 persons interviewed who think mothers should not be employed.</li>
+</ol>
+</div>
+<div id="tests-of-intuition" class="section level3">
+<h3><span class="header-section-number">13.3.7</span> Tests of intuition</h3>
 <ul>
-<li>Use the <code>R</code> function <code>d??p?r</code> to obtain, under the null hypothesis, the 5 probabilities for <span class="math inline">\(y\)</span>.</li>
-<li>Under this null, what is the probability of getting <strong>at least 3</strong> correct?</li>
-<li>What if 12 cups (6 and 6) were used? What then would be the probability of getting <strong>at least 5</strong> correct? <strong>all 6</strong>?</li>
+<li><p>A coin will be tossed either 2 times or 20 times. You will win $2.00 if the number of heads is equal to the number of tails, no more and no less. Which is correct? (i) 2 tosses is better. (ii) 100 tosses is better. (iii) Both offer the same chance of winning.</p></li>
+<li><p>Hospital A has 100 births a year, hospital B has 2500. In which hospital is it more that at least 55% of births in one year will be boys.</p></li>
 </ul>
-<ol start="5" style="list-style-type: decimal">
-<li><strong>Saving</strong> on the numbers of binary yests <strong>by pooling</strong>. When a binary blood test [one that yields a positive (‘+ve’) or negative (‘-ve’) result] gives +ve results in only a small proportion, <span class="math inline">\(\pi,\)</span> of blood samples, it may be possible to economize on the costs of testing by pooling m blood samples, according to the following procedure: (i) each blood sample is divided into two portions; one portion is kept in reserve while the other is pooled with the corresponding portions from <span class="math inline">\(m\)</span> - 1 other blood samples (ii) if the result of a single test on the pooled bloods is -ve, each of the <span class="math inline">\(m\)</span> individual blood samples are considered -ve; if the result is +ve, then the <span class="math inline">\(m\)</span> reserve bloods are individually tested.</li>
-</ol>
-<ul>
-<li>With <span class="math inline">\(m\)</span> = 20 and <span class="math inline">\(\pi\)</span> = 0.1, calculate the expected number of tests required to determine the status of eack of the blood samples. (<em>Hint</em>: a tree diagram may help)</li>
-</ul>
-<ol start="12" style="list-style-type: decimal">
-<li>No. copies of wild type if frequency is 1/5. Mean/Var.?</li>
-</ol>
-<p><a href="https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/phasing-penny.html" class="uri">https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/phasing-penny.html</a></p>
-<p>simulation</p>
-<p><a href="http://www2.ku.edu/~kuwpaper/2013Papers/201309.pdf" class="uri">http://www2.ku.edu/~kuwpaper/2013Papers/201309.pdf</a></p>
-<p><a href="https://www-jstor-org.proxy3.library.mcgill.ca/stable/pdf/3552184.pdf?refreqid=excelsior%3A86597fff2392f0b0d698235434d88c3a">https://www-jstor-org.proxy3.library.mcgill.ca/stable/pdf/3552184.pdf?refreqid=excelsior%3A86597fff2392f0b0d698235434d88c3a</a></p>
-<p>Galton’s way of showing that the heights of the married couples in his dataset were virtually uncorrelated – for computing exercise</p>
+</div>
+<div id="ci-for-proportion-when-observe-0n-or-nn" class="section level3">
+<h3><span class="header-section-number">13.3.8</span> CI for proportion when observe 0/n or n/n</h3>
+<p>Oncologists often first try out new experimental agents on patients with metastatic disease who have failed all standard therapies. One (old) rule for deciding to abandon an experimental agent was: if it was tried on 14 successive patients, but did not show anti-tumour in any of them, i.e. if it `struck out’ in all 14, yielding a response rate of 0/14.</p>
+<p>Their reasoning is that this poor result ``rules out’’ (with 95% confidence) the possibility that it would be active in more than 20% of future patients. In other words, the data are incompatible with any <span class="math inline">\(\pi &gt; 20\%.\)</span></p>
+<p>Check out their rule, by computing/obtaining a 95% 1-sided CI for <span class="math inline">\(\pi.\)</span></p>
+<p>[Use a 1-sided CI if one is interested in putting just an  bound on the probability of benefit or risk: e.g., what is upper bound on $= $ probability of getting HIV from HIV-infected dentist? See JAMA article ``If Nothing Goes Wrong, Is Everything All Right? Interpreting Zero Numerators’’ by Hanley and Lippman-Hand</p>
+<p><a href="http://www.epi.mcgill.ca/hanley/Reprints/If\_Nothing\_Goes\_1983.pdf" class="uri">http://www.epi.mcgill.ca/hanley/Reprints/If\_Nothing\_Goes\_1983.pdf</a></p>
+<p>and the <code>rule of $3/n$' for a 1-sided 95\% CI. See also the second example (with sample size 4 !) in the section</code>in defense of (some) small studies’ in this article <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/Place\_of\_statistical\_1989.pdf" class="uri">http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/Place\_of\_statistical\_1989.pdf</a></p>
 
+</div>
 </div>
 </div>
 

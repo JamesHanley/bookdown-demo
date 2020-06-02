@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-06-01" />
+<meta name="date" content="2020-06-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,7 +210,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.2.1" data-path="distributions.html"><a href="distributions.html#bernoulli"><i class="fa fa-check"></i><b>13.2.1</b> Bernoulli</a></li>
 <li class="chapter" data-level="13.2.2" data-path="distributions.html"><a href="distributions.html#binomial"><i class="fa fa-check"></i><b>13.2.2</b> Binomial</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#exercises-3"><i class="fa fa-check"></i><b>13.3</b> Exercises</a></li>
+<li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#exercises-3"><i class="fa fa-check"></i><b>13.3</b> Exercises</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="distributions.html"><a href="distributions.html#clusters-of-miscarriages-based-on-article-by-l-abenhaim"><i class="fa fa-check"></i><b>13.3.1</b> Clusters of Miscarriages [based on article by L Abenhaim]</a></li>
+<li class="chapter" data-level="13.3.2" data-path="distributions.html"><a href="distributions.html#prone-ness-to-miscarriages"><i class="fa fa-check"></i><b>13.3.2</b> ‘Prone-ness’ to Miscarriages ?</a></li>
+<li class="chapter" data-level="13.3.3" data-path="distributions.html"><a href="distributions.html#automated-chemistries-from-ingelfinger-et-al"><i class="fa fa-check"></i><b>13.3.3</b> Automated Chemistries (from Ingelfinger et al)</a></li>
+<li class="chapter" data-level="13.3.4" data-path="distributions.html"><a href="distributions.html#binomial-or-opportunistic-capitalization-on-chance-multiple-looks-at-data"><i class="fa fa-check"></i><b>13.3.4</b> Binomial or Opportunistic? (Capitalization on chance… multiple looks at data)</a></li>
+<li class="chapter" data-level="13.3.5" data-path="distributions.html"><a href="distributions.html#can-one-influence-the-sex-of-a-baby"><i class="fa fa-check"></i><b>13.3.5</b> Can one influence the sex of a baby?</a></li>
+<li class="chapter" data-level="13.3.6" data-path="distributions.html"><a href="distributions.html#its-the-3rd-week-of-the-course-it-must-be-binomial"><i class="fa fa-check"></i><b>13.3.6</b> It’s the 3rd week of the course: it must be Binomial</a></li>
+<li class="chapter" data-level="13.3.7" data-path="distributions.html"><a href="distributions.html#tests-of-intuition"><i class="fa fa-check"></i><b>13.3.7</b> Tests of intuition</a></li>
+<li class="chapter" data-level="13.3.8" data-path="distributions.html"><a href="distributions.html#ci-for-proportion-when-observe-0n-or-nn"><i class="fa fa-check"></i><b>13.3.8</b> CI for proportion when observe 0/n or n/n</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>III Part III</b></span></li>
 <li class="chapter" data-level="14" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>14</b> Mathematics</a><ul>
@@ -392,8 +401,8 @@ In a (<strong>current</strong>) life table, one takes <strong>current</strong> (
 <code>Pr[Die after 70th birthday] = 0.wwww</code><br />
 <code>Pr{Die after 80th birthday] = 0.zzzz</code><br />
 <code>Pr[die between 70 and 80] = difference</code></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-82"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-82-1.png" alt="Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is 'bottom-up' rather than the conventional 'top-down' format, and side by side, in the spirit of population 'pyramids'. Also unusually, the 'survival surve' for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.  " width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-86"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-86-1.png" alt="Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is 'bottom-up' rather than the conventional 'top-down' format, and side by side, in the spirit of population 'pyramids'. Also unusually, the 'survival surve' for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.  " width="864" />
 <p class="caption">
 Figure 17.1: Life Tables based on abbreviated data from 1990 given in above table. The tabular orientation is ‘bottom-up’ rather than the conventional ‘top-down’ format, and side by side, in the spirit of population ‘pyramids’. Also unusually, the ‘survival surve’ for males has the surviving proportion on the horizonatl axis, and the ages on the vertiacl axis. But if you were to rotate it by 90 degrees to the right, it would have conventional survival curve orentation.
 </p>
@@ -534,7 +543,7 @@ prob.at.least.<span class="fl">1.</span>duplicate =<span class="st"> </span><spa
 <span class="kw">text</span>(<span class="dv">35</span>,prob.all.n.different[<span class="dv">35</span>],
      <span class="st">&quot;Prob. all n are different&quot;</span>,
      <span class="dt">cex=</span><span class="fl">1.5</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="op">-</span><span class="fl">0.25</span>))</code></pre></div>
-<p><img src="statbook_files/figure-html/unnamed-chunk-86-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-90-1.png" width="864" style="display: block; margin: auto;" /></p>
 <p><strong>Why is the probability so much higher than you would naively think?</strong></p>
 <p>If in a class of 30, we ask you what the probability is, you are likley to reason like this …</p>
 <blockquote>
@@ -555,7 +564,7 @@ prob.at.least.<span class="fl">1.</span>duplicate =<span class="st"> </span><spa
       <span class="dt">xlab=</span><span class="st">&quot;Days of Year (1=Jan 1, 366=Dec 31)&quot;</span>)
 <span class="kw">abline</span>(<span class="dt">h=</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>(<span class="dv">365</span><span class="op">:</span><span class="dv">366</span>)))
 <span class="kw">abline</span>(<span class="dt">v=</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">366</span>,<span class="dv">30</span>),<span class="dt">col=</span><span class="st">&quot;lightblue&quot;</span>)</code></pre></div>
-<p><img src="statbook_files/figure-html/unnamed-chunk-87-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-91-1.png" width="864" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample.of.<span class="dv">30</span> =<span class="st"> </span><span class="kw">sample</span>(all.birthdays<span class="op">$</span>Birthday,<span class="dv">30</span>,<span class="dt">replace=</span><span class="ot">TRUE</span>)
 
 <span class="kw">noquote</span>(sample.of.<span class="dv">30</span>)</code></pre></div>

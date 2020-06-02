@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-06-01" />
+<meta name="date" content="2020-06-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,7 +210,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.2.1" data-path="distributions.html"><a href="distributions.html#bernoulli"><i class="fa fa-check"></i><b>13.2.1</b> Bernoulli</a></li>
 <li class="chapter" data-level="13.2.2" data-path="distributions.html"><a href="distributions.html#binomial"><i class="fa fa-check"></i><b>13.2.2</b> Binomial</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#exercises-3"><i class="fa fa-check"></i><b>13.3</b> Exercises</a></li>
+<li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#exercises-3"><i class="fa fa-check"></i><b>13.3</b> Exercises</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="distributions.html"><a href="distributions.html#clusters-of-miscarriages-based-on-article-by-l-abenhaim"><i class="fa fa-check"></i><b>13.3.1</b> Clusters of Miscarriages [based on article by L Abenhaim]</a></li>
+<li class="chapter" data-level="13.3.2" data-path="distributions.html"><a href="distributions.html#prone-ness-to-miscarriages"><i class="fa fa-check"></i><b>13.3.2</b> ‘Prone-ness’ to Miscarriages ?</a></li>
+<li class="chapter" data-level="13.3.3" data-path="distributions.html"><a href="distributions.html#automated-chemistries-from-ingelfinger-et-al"><i class="fa fa-check"></i><b>13.3.3</b> Automated Chemistries (from Ingelfinger et al)</a></li>
+<li class="chapter" data-level="13.3.4" data-path="distributions.html"><a href="distributions.html#binomial-or-opportunistic-capitalization-on-chance-multiple-looks-at-data"><i class="fa fa-check"></i><b>13.3.4</b> Binomial or Opportunistic? (Capitalization on chance… multiple looks at data)</a></li>
+<li class="chapter" data-level="13.3.5" data-path="distributions.html"><a href="distributions.html#can-one-influence-the-sex-of-a-baby"><i class="fa fa-check"></i><b>13.3.5</b> Can one influence the sex of a baby?</a></li>
+<li class="chapter" data-level="13.3.6" data-path="distributions.html"><a href="distributions.html#its-the-3rd-week-of-the-course-it-must-be-binomial"><i class="fa fa-check"></i><b>13.3.6</b> It’s the 3rd week of the course: it must be Binomial</a></li>
+<li class="chapter" data-level="13.3.7" data-path="distributions.html"><a href="distributions.html#tests-of-intuition"><i class="fa fa-check"></i><b>13.3.7</b> Tests of intuition</a></li>
+<li class="chapter" data-level="13.3.8" data-path="distributions.html"><a href="distributions.html#ci-for-proportion-when-observe-0n-or-nn"><i class="fa fa-check"></i><b>13.3.8</b> CI for proportion when observe 0/n or n/n</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>III Part III</b></span></li>
 <li class="chapter" data-level="14" data-path="math.html"><a href="math.html"><i class="fa fa-check"></i><b>14</b> Mathematics</a><ul>
@@ -468,8 +477,8 @@ ds =<span class="st"> </span><span class="kw">read.table</span>(
 ## 5501 WILLIAM       739      7 2018      M    1
 ## 5502   LOGAN       636      5 2018      M    2
 ## 5503    LIAM       629      4 2018      M    3</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-93"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-93-1.png" alt="The closely spaced vertical lines show the frequency distributions of the popularity (ranks) of the 500 most popular names for babies born in Quebec in 2018. For example, more than 600 girls and more than 700 boys had the most popular name, while fewer than half this many babies had the 25th  most popular name. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma  2. Alice, .. 1. William, 2. Logan, ...). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the black ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-97"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-97-1.png" alt="The closely spaced vertical lines show the frequency distributions of the popularity (ranks) of the 500 most popular names for babies born in Quebec in 2018. For example, more than 600 girls and more than 700 boys had the most popular name, while fewer than half this many babies had the 25th  most popular name. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma  2. Alice, .. 1. William, 2. Logan, ...). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by 'sticking a pin' (indicated by the black ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column." width="864" />
 <p class="caption">
 Figure 18.1: The closely spaced vertical lines show the frequency distributions of the popularity (ranks) of the 500 most popular names for babies born in Quebec in 2018. For example, more than 600 girls and more than 700 boys had the most popular name, while fewer than half this many babies had the 25th most popular name. Also shown are the names themselves, arranged row-wise, starting from the most popular (1. Emma 2. Alice, .. 1. William, 2. Logan, …). For each row, the two values shown in plain type are the sum/mean of the lengths of the 10 names in the row. The last number, in italics, is the length of 1 name selected from the row, by ‘sticking a pin’ (indicated by the black ^ symbol), at random in one of the letters in the row, and selecting the name that the pin landed on. The values in bold at the foot of each column are the mean and SD of the values in the column.
 </p>
@@ -496,8 +505,8 @@ Figure 18.1: The closely spaced vertical lines show the frequency distributions 
          <span class="kw">toString</span>( <span class="kw">round</span>( <span class="dv">100</span><span class="op">*</span><span class="kw">cumsum</span>(Fr)<span class="op">/</span><span class="dv">3000</span>) [i] ),
          <span class="dt">adj =</span> <span class="kw">c</span>(<span class="fl">0.5</span>,<span class="op">-</span><span class="fl">0.1</span>), <span class="dt">cex=</span><span class="fl">0.75</span> )
  }</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-94"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-94-1.png" alt="For girls (red) and boys (blue) separately, the mean ranks of names with  a given length are plotted against the length. Each dot in a column is a name. The relative densities of the dots in a column indicates how common these name lengths are." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-98"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-98-1.png" alt="For girls (red) and boys (blue) separately, the mean ranks of names with  a given length are plotted against the length. Each dot in a column is a name. The relative densities of the dots in a column indicates how common these name lengths are." width="864" />
 <p class="caption">
 Figure 18.2: For girls (red) and boys (blue) separately, the mean ranks of names with a given length are plotted against the length. Each dot in a column is a name. The relative densities of the dots in a column indicates how common these name lengths are.
 </p>
@@ -662,8 +671,8 @@ longevity =<span class="st"> </span><span class="kw">draw.from.2.str.lines.S.cur
 longevity =<span class="st"> </span><span class="kw">sort</span>(longevity)
 
 <span class="kw">segments</span>(<span class="dv">0</span>, y.vals , longevity, y.vals, <span class="dt">lwd=</span><span class="fl">0.5</span>, <span class="dt">col=</span><span class="st">&quot;grey25&quot;</span>)</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-96"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-96-1.png" alt="Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data. The horizontal 'lifelines' are sorted by length, having been randomly drawn from a simplified survival distribution -- just to illustrate the use of the sort and segments functions in R." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-100"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-100-1.png" alt="Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data. The horizontal 'lifelines' are sorted by length, having been randomly drawn from a simplified survival distribution -- just to illustrate the use of the sort and segments functions in R." width="864" />
 <p class="caption">
 Figure 18.3: Lifetables based on mortality rates of Quebec males (blue) and females(red) in 2018. See above for source of the data. The horizontal ‘lifelines’ are sorted by length, having been randomly drawn from a simplified survival distribution – just to illustrate the use of the sort and segments functions in R.
 </p>
@@ -746,8 +755,8 @@ n =<span class="st"> </span>N
          <span class="dt">lwd =</span><span class="fl">1.25</span>,
          <span class="dt">length=</span><span class="fl">0.05</span>,<span class="dt">angle=</span><span class="dv">20</span>, <span class="dt">code=</span><span class="dv">1</span>)
 }</code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-98"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-98-1.png" alt="30 simulations of the possible gains from using variable-length (parallel) parking spaces.  Shown are 20 fixed-length spaces, each of length 6.5m. In each simulation, 20 cars are selected randomly from the just-described frequency distribution, and their lengths are shown as red lines within the fixed-length parking spaces, and as blues lines, with 1m spacing, in the variable-length scheme." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-102"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-102-1.png" alt="30 simulations of the possible gains from using variable-length (parallel) parking spaces.  Shown are 20 fixed-length spaces, each of length 6.5m. In each simulation, 20 cars are selected randomly from the just-described frequency distribution, and their lengths are shown as red lines within the fixed-length parking spaces, and as blues lines, with 1m spacing, in the variable-length scheme." width="864" />
 <p class="caption">
 Figure 18.4: 30 simulations of the possible gains from using variable-length (parallel) parking spaces. Shown are 20 fixed-length spaces, each of length 6.5m. In each simulation, 20 cars are selected randomly from the just-described frequency distribution, and their lengths are shown as red lines within the fixed-length parking spaces, and as blues lines, with 1m spacing, in the variable-length scheme.
 </p>
@@ -787,8 +796,8 @@ Figure 18.4: 30 simulations of the possible gains from using variable-length (pa
 <pre><code>## &#39;data.frame&#39;:    400 obs. of  2 variables:
 ##  $ Panel      : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
 ##  $ Birthweight: int  2809 2186 2607 3231 3484 2836 863 3329 3628 3551 ...</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-101"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-101-1.png" alt="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-105"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-105-1.png" alt="Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q's are scrambled." width="864" />
 <p class="caption">
 Figure 18.5: Birthweights of US males and females born in 2018. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%, Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the births of that sex. In each panel, the Q’s are scrambled.
 </p>
@@ -1061,8 +1070,8 @@ Figure 18.5: Birthweights of US males and females born in 2018. In each panel, e
 <pre><code>## &#39;data.frame&#39;:    400 obs. of  2 variables:
 ##  $ Panel    : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
 ##  $ Weight.Kg: num  62.5 47.5 113.5 149.5 108.5 ...</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-105"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-105-1.png" alt="Measured weights of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled, and 'jittered'." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-109"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-109-1.png" alt="Measured weights of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled, and 'jittered'." width="864" />
 <p class="caption">
 Figure 18.6: Measured weights of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%, Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q’s are scrambled, and ‘jittered’.
 </p>
@@ -1101,8 +1110,8 @@ Figure 18.6: Measured weights of US males and females aged 20-29 in 2007-2008. I
 <pre><code>## &#39;data.frame&#39;:    400 obs. of  2 variables:
 ##  $ Panel    : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
 ##  $ Height.cm: int  175 173 168 181 186 189 179 171 161 169 ...</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-108"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-108-1.png" alt="Measured heights (in cm) of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled." width="864" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-112"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-112-1.png" alt="Measured heights (in cm) of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%,  Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q's are scrambled." width="864" />
 <p class="caption">
 Figure 18.7: Measured heights (in cm) of US males and females aged 20-29 in 2007-2008. In each panel, each entry is one of the 100 (sex-specific) quantiles Q0.5%, Q1.5%, Q2.5%, Q49.5%, Q50.5%, etc, up to Q99.5%, so you can think of it as representing 1 percent of the population of that sex. In each panel, the Q’s are scrambled.
 </p>
