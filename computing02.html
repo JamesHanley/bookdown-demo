@@ -358,10 +358,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Now imagine taking a random sample of <span class="math inline">\(n\)</span> of these copies, and computing the sum and the mean of the <span class="math inline">\(n\)</span> lengths.</strong></p>
 <p>Although it is possible to mathematically enumerate/calculate the exact probalities that the sum or mean of the lengths of the <span class="math inline">\(n\)</span> copies takes on the various possible values, we will instead use <code>R</code> to approximate the probabilities by simulation. The probabilities in the following Figure are based on large enough numbers of simulations that – while they don’t show the <em>perfect</em> symmetry they would exhibit if we worked them out mathematically – they give quite close approximations.</p>
 <p>The panels in the following figure shows the probability of obtaining various possible sums and various possible sample means. Clearly, the patterns of the probabilities are strong functions of <span class="math inline">\(n.\)</span></p>
-<p><img src="statbook_files/figure-html/unnamed-chunk-78-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-81-1.png" width="864" style="display: block; margin: auto;" /></p>
 <p>Instead of a 2-point error distribution, the next Figure shows how variable the sample totals and sample means would be if the errors were distributed a bit differently, as in the first row below. There, a quarter of the measurements have errors of +<span class="math inline">\(\sqrt{2} \approx\)</span> +1.4cm, half have no error, and a quarter have errors of -<span class="math inline">\(\sqrt{2} \approx\)</span> -1.4cm. Thus the error variance, the average of the squared deviations, is <span class="math display">\[\sigma_e^2 = \frac{1}{4} \times (-1.4)^2  +  \frac{1}{2} \times (0)^2 +  \frac{1}{4} \times (1.4)^2 = 1,\]</span> so that the standard deviation is again <span class="math inline">\(\sigma_e = 1.\)</span></p>
 <p>The row- (i.e., n-) specific distributions in the two Figures are not exactly the same. For example, the possible means in samples of size <span class="math inline">\(n\)</span> = 2 have a 3-point distribution in the first one, but a 5-point distribution in the second one. But, as you will be asked to verify in the exercises below, the row-specific variances are the same in the two figures.</p>
-<p><img src="statbook_files/figure-html/unnamed-chunk-79-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-82-1.png" width="864" style="display: block; margin: auto;" /></p>
 <p>More important than this are the statistical laws governing how widely the sums deviate from <span class="math inline">\(\mu_{sum}\)</span> = <span class="math inline">\(n \times\)</span> 100cm, and the means deviate from <span class="math inline">\(\mu\)</span> = 100cm. Clearly, the possible <strong>sums</strong> of 5 copies have a <strong>wider</strong> spread than the possible sums of 2, and the sums of 10 a wider spread than the sums of 5. Conversely, the <strong>means</strong> of 5 copies have a <strong>narrower</strong> spread than the means of 2, and the means of 10 a narrower spread than the means of 5.</p>
 <p><strong>Instead of just telling you what the laws are, we ask you to use <code>R</code> to discover them yourself.</strong></p>
 <div id="discovering-the-laws-via-this-computing-exercise" class="section level4">
@@ -551,7 +551,7 @@ sample.sizes =<span class="st"> </span><span class="kw">c</span>(<span class="dv
 ## [2,]   44    3    8   69   14   34   11   33   61    22</code></pre>
 <pre><code>## The first panel shows the age-distribution of the entire population.
 ## The remaining ones show the  distributions of the sample sums and means.</code></pre>
-<p><img src="statbook_files/figure-html/unnamed-chunk-82-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-85-1.png" width="864" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exercises-5" class="section level4">
 <h4><span class="header-section-number">16.3.2.2</span> Exercises</h4>
@@ -664,7 +664,7 @@ sample.sizes =<span class="st"> </span><span class="kw">c</span>(<span class="dv
 ## [2,]  130  130  170  150  130  200  220  150</code></pre>
 <pre><code>## The first panel shows the weight-distribution of the entire population.
 ## The remaining ones show the  distributions of the sample sums and means.</code></pre>
-<p><img src="statbook_files/figure-html/unnamed-chunk-84-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-87-1.png" width="864" style="display: block; margin: auto;" /></p>
 <div id="exercises-6" class="section level4">
 <h4><span class="header-section-number">16.3.3.1</span> Exercises</h4>
 <ol style="list-style-type: decimal">
@@ -678,7 +678,7 @@ sample.sizes =<span class="st"> </span><span class="kw">c</span>(<span class="dv
 <h2><span class="header-section-number">16.4</span> When these Laws don’t apply</h2>
 <p>In these panels, it’s the same elevator, and the same population. <strong>But what’s going on with these elevator-loads?</strong> Is the safe to have a load of 25?</p>
 <p>```</p>
-<p><img src="statbook_files/figure-html/unnamed-chunk-86-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><img src="statbook_files/figure-html/unnamed-chunk-89-1.png" width="864" style="display: block; margin: auto;" /></p>
 </div>
 <div id="summary-3" class="section level2">
 <h2><span class="header-section-number">16.5</span> SUMMARY</h2>
