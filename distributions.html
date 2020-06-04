@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-06-02" />
+<meta name="date" content="2020-06-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -209,6 +209,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.2" data-path="distributions.html"><a href="distributions.html#named-distributions"><i class="fa fa-check"></i><b>13.2</b> Named Distributions</a><ul>
 <li class="chapter" data-level="13.2.1" data-path="distributions.html"><a href="distributions.html#bernoulli"><i class="fa fa-check"></i><b>13.2.1</b> Bernoulli</a></li>
 <li class="chapter" data-level="13.2.2" data-path="distributions.html"><a href="distributions.html#binomial"><i class="fa fa-check"></i><b>13.2.2</b> Binomial</a></li>
+<li class="chapter" data-level="13.2.3" data-path="distributions.html"><a href="distributions.html#poisson"><i class="fa fa-check"></i><b>13.2.3</b> Poisson</a></li>
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#exercises-3"><i class="fa fa-check"></i><b>13.3</b> Exercises</a><ul>
 <li class="chapter" data-level="13.3.1" data-path="distributions.html"><a href="distributions.html#clusters-of-miscarriages-based-on-article-by-l-abenhaim"><i class="fa fa-check"></i><b>13.3.1</b> Clusters of Miscarriages [based on article by L Abenhaim]</a></li>
@@ -785,6 +786,84 @@ Figure 13.4: Various Binomial random variables/distributions, where n = 20. The 
 Figure 13.5: Various Binomial random variables/distributions, where n = 50. The blue dotted lines are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units in from the (0,n) boundaries are shown in blue
 </p>
 </div>
+<p>Back when binomial computations were difficult, and the normal approximation was not accurate, there was another approximation that saved labour, and in particular, avoided having to deal with the very large numbers involved in the <span class="math inline">\(^nC_y\)</span> binomial coefficients (even if built into a hand calculator, these can be problematic when <span class="math inline">\(n\)</span> is large).</p>
+<p><a href="http://www.biostat.mcgill.ca/hanley/statbook/Poisson1837Excerpts.pdf">Poisson</a>, in 1837, having shown how to use the Normal distribution for binomial (and the closely-related negative binomial) calculations, devoted 1 small section (81) of less than 2 pages, to the case where (in our notation) <strong>one of the two chances <span class="math inline">\(\pi\)</span> or <span class="math inline">\((1-\pi)\)</span> <em>‘est très petite’</em></strong> [Poisson’s <span class="math inline">\(q\)</span> is our <span class="math inline">\(\pi\)</span>, his <span class="math inline">\(\mu\)</span> is our <span class="math inline">\(n\)</span>, his <span class="math inline">\(\omega\)</span> is our <span class="math inline">\(\mu\)</span>, and his <span class="math inline">\(n\)</span> is our <span class="math inline">\(y\)</span>]. In our notation, he arrived at <span class="math display">\[Prob[y \ or \ fewer \ events] = \bigg(1 + \frac{\mu}{1!} + \frac{\mu^2}{2!} + \dots + \frac{\mu^y}{y!} \bigg) \  e^{-\mu}.\]</span></p>
+<p>In the last of his just three paragraphs on this digression, he notes the probability <span class="math inline">\(e^{-\mu}\)</span> of no event, and <span class="math inline">\(1 - e^{-\mu}\)</span> of at least 1. He also calculates that, when <span class="math inline">\(\mu\)</span> = 1, the chance is very close to 1 in 100 million that more than <span class="math inline">\(y\)</span> = 10 events would occur in a very large series of trials (of length <span class="math inline">\(n\)</span>), where the probability is 1/<span class="math inline">\(n\)</span> in each trial. Although he give little emphasis to his formula, and no real application, it is Poisson’s name that is now undividely associated with this formula.</p>
+<p>Below are some examples of how well it approximates a Binomial in the ‘corner’ where <span class="math inline">\(\pi\)</span> is very small and <span class="math inline">\(n\)</span> is very large. If, of course, the product, <span class="math inline">\(\mu = n \times \pi\)</span> , reaches double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions, and – if one has ready acccess to the tail areas of a Normal distribution – with less effort. Today, of course, unless you are limited to a hand calculator when the internet and R and paper tables are nor available, you would not need to use any approximation, Normal or Poisson, to a binomial.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-74"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-74-1.png" alt="Various Binomial random variables/distributions, with large n's and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the 'lowee corner of the Bimonial distribution with large n's and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions." width="864" />
+<p class="caption">
+Figure 13.6: Various Binomial random variables/distributions, with large n’s and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the ’lowee corner of the Bimonial distribution with large n’s and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions.
+</p>
+</div>
+<p><strong>Direct applications of the Poisson distribution</strong> today have little direct connection with a large number of Bernoulli trials with a small expecation per trial, or with providing computational shortcuts. Although Poisson did not appreciate it at the time, today his distribution has to do with the distribution of counts of events in a given amount of space or time. However, most mathematical statistics textbooks still derive the Poisson distribution as the limiting case of a Binomial. Below, we will take a broader view, emphasize the ‘time’ dimension, and give a littel more history. We will also focus on when the Poisson distribution is too narrow, and an inappropriate model for counts. We will repeat the earlier message that just becasue a random variable involbs counts doesn’t make its distribution Poisson. The best example of this is the falancy of treating the distributions of white bllood cell, or CD4 cell concentrations as if there were observed counts.</p>
+</div>
+<div id="poisson" class="section level3">
+<h3><span class="header-section-number">13.2.3</span> Poisson</h3>
+<p>model for (Sampling) Variability of a Count in a given amount of ‘experience’</p>
+<p><strong>The Poisson Distribution: what it is, and some of its features</strong></p>
+<ul>
+<li><p>The (infinite number of) probabilities <span class="math inline">\(P_{0}, P_{1}, ..., P_{y}, ...,\)</span> of observing <span class="math inline">\(Y = 0, 1, 2, \dots , y, \dots\)</span> ‘events’/‘instances’ in a given amount of ‘experience.’</p></li>
+<li><p>These probabilities, <span class="math inline">\(Prob[Y = y]\)</span>, or <span class="math inline">\(P_{Y}[y]\)</span>’s, or <span class="math inline">\(P_{y}\)</span>’s for short, are governed by a single parameter, the mean <span class="math inline">\(E[Y] = \mu.\)</span></p></li>
+<li><p><span class="math inline">\(P[y]= \exp[-\mu]\: \frac{\mu^{y}}{y!};\)</span>  in <code>R</code>: <code>dpois( )</code> – too bad <span class="math inline">\(\mu\)</span> is referred to as <code>lambda</code>.</p></li>
+<li><p>Shorthand: <span class="math inline">\(Y\sim\; \textrm{Poisson}(\mu)\)</span>.</p></li>
+<li><p><span class="math inline">\(\sigma^2_Y = \textrm{Variance}[Y] = \mu \ ; \ \ \sigma_Y = \sqrt{\mu_{Y}}.\)</span></p></li>
+<li><p>It can be approximated by <span class="math inline">\(N(\mu, \: \sigma_{Y} = \mu^{1/2})\)</span> when <span class="math inline">\(\mu &gt;&gt; 10\)</span>.</p></li>
+<li><p>It is open-ended (unlike Binomial), but in practice, has finite range.</p></li>
+<li><p>Poisson data are sometimes called ‘numerator only’: (unlike in the Binomial) you may not ‘see’ or count ‘non-events’: but there is (an invisible) denominator ‘behind’ the number of ‘wrong number’ phone calls you receive.</p></li>
+</ul>
+<p><strong>How it arises / derivations</strong></p>
+<ul>
+<li><p>Count of events (items) that occur randomly, with low homogeneous intensity, in time, space, or ‘item’-time (e.g. person–time).</p></li>
+<li><p>As a limiting case of a Binomial(<span class="math inline">\(n,\pi\)</span>) when <span class="math inline">\(n \rightarrow \infty\textrm{ and } \pi \rightarrow 0,\)</span> but <span class="math inline">\(n \times \pi = \mu\)</span> is finite. [Poisson, in 1837, derived it as an approximation to the closely-related negative binomial distribution.]</p></li>
+<li><p><span class="math inline">\(Y\sim Poisson(\mu_{Y}) \Leftrightarrow T \textrm{ time between events}\sim \: \textrm{Exponential}(\mu_{T} = 1/\mu_{Y}).\)</span> Here is <a href="http://www.epi.mcgill.ca/hanley/bios601/Intensity-Rate/Randomness_poisson.pdf">one attempt to explain this</a> and here is <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/Accromath-2015-1-4.pdf">another</a> together with this <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Mean-Quantile/forAccromathBackTranslate.pdf">translation and additional annotation</a></p></li>
+<li><p>As the sum of <span class="math inline">\(\ge 2\)</span> <em>independent</em> Poisson rv’s, with the same <strong>or different</strong> <span class="math inline">\(\mu\)</span>’s:</p></li>
+<li><p><span class="math inline">\(Y_{1} \sim \textrm{Poisson}(\mu_{1}) \: \: Y_{2} \sim \textrm{Poisson}(\mu_{2}) \Rightarrow Y = Y_{1} + Y_{2} \sim \textrm{Poisson}(\mu_{1}+\mu_{2}).\)</span></p></li>
+<li><p>Examples: numbers of asbestos fibres, deaths from horse kicks, needle-stick or other percutaneous injuries, bus-driver accidents, twin-pairs, radioactive disintegrations, flying-bomb hits*, white blood cells, typographical errors, ‘wrong numbers’, cancers; chocolate chips, radioactive emissions in nuclear medicine, cell occupants – in a given volume, area, line-length, population-time, time, etc. <a href="http://www.epi.mcgill.ca/hanley/bios601/Intensity-Rate/">* included in</a></p></li>
+</ul>
+<p><strong>Some History</strong> (see <a href="http://www.epi.mcgill.ca/hanley/statbook/HaightHistorical.pdf">Haight</a> ).</p>
+<ul>
+<li><p>1718 deMoivre : the series <span class="math inline">\(e^{-\mu} \bigg(1 + \frac{\mu}{1!} + \frac{\mu^2}{2!} + \dots \bigg)\)</span> appears.</p></li>
+<li><p>1837 Poisson (see above)</p></li>
+<li><p>1860 <a href="https://en.wikipedia.org/wiki/Simon_Newcomb">Simon Newcomb</a>, a Canadian-born ‘astronomer, applied mathematician and autodidactic polymath who who was Professor of Mathematics in the United States Navy and at Johns Hopkins University, <a href="http://www.epi.mcgill.ca/hanley/statbook/Newcomb1860.pdf">derives the ’Poisson’ Law ’from scratch’</a> as a limiting case of the Binomial, and applies it to the determination of the ’probability that, if the stars were scattered at random over the heavens, any small space selected at random would contain <span class="math inline">\(s\)</span> stars.’</p></li>
+<li><p>1878 <a href="http://www.biostat.mcgill.ca/hanley/statbook/Abbe1878.pdf">Abbe</a> determined the number of cells one needed to count in order to achieve a sufficiently small ‘probable error’ for an estimated blood cell concentration.</p></li>
+<li><p>1905 <a href="http://www.biostat.mcgill.ca/hanley/statbook/SchweidlerPremiercongres1905.pdf">Schweidler</a> provided error calculations for counting radioactive transformations.</p></li>
+<li><p>1989 <a href="http://www.biostat.mcgill.ca/hanley/statbook/dasGesetzDerKeinemZaklenBortkiewicz.pdf">Bortkewitsch book</a>, with many examples, and tables of the Poisson Distribution.</p></li>
+<li><p>1907 <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/Student_counting.pdf">‘Student’</a> derived the Poisson distribution from scratch (as a liniting case of the binomial) and provided error calculations for measuring yeast cells in beer.</p></li>
+<li><p>1909 Erlang, a Danish engineer concerned with the theory of telephone traffic, developed the Poisson Law by an elegant argument based on the steady state behaviour of the beginning and terminations of calls. Here are the original <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/ErlangInDanish1909.pdf">Danish version</a> and a <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/Erlang1909.pdf">translation</a>. This <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/ErlangSimpleProofPoisson.pdf#page=14">‘simple explanation’</a> in the English translation of a 1920 article has a critical cut and paste typographical error. The original <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/38MatematiskTidsskrift1920.pdf">Danish version</a> has it correct.</p></li>
+<li><p>1910 <a href="https://www.physics.mcgill.ca/museum/rutherfordcollection.html">Rutherford</a> (having departed McGill in 1907) and Geiger (of the ‘counter’), physicists, and Bateman, a mathematician, developed the <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/RutherfordGeigerBateman1910.pdf">Poisson Law by an time-based argument</a> expressed as a differential equation, a Law that agreed with the empirical distibution in their large particle-counting experiment.</p></li>
+<li><p>1946 <a href="https://www.actuaries.org.uk/system/files/documents/pdf/0481.pdf">Flying-bomb attacks on London during WW II</a>, along with 2019 Update: <a href="https://www.significancemagazine.com/10-news/627-finalists-announced-for-early-career-writing-award?highlight=WyJib21icyIsImJvbWJzJyJd">Significance Magazine Early-career Writing Award</a> announcement and <a href="https://www.significancemagazine.com/10-news/635-a-world-war-ii-investigation-updated-for-the-modern-era?highlight=WyJzaGF3Iiwic2hhdydzIl0=">intro to</a> and <a href="https://rss.onlinelibrary.wiley.com/doi/10.1111/j.1740-9713.2019.01315.x">full article</a>.</p></li>
+<li><p>Commentators</p></li>
+<li><p><a href="http://www.biostat.mcgill.ca/hanley/statbook/Newbold1927.pdf">Newbold</a> gives a lot of credit to deMoivre.</p></li>
+<li><p><a href="http://www.biostat.mcgill.ca/hanley/statbook/HaightHistorical.pdf">Haight</a> is the mots comprehensive.</p></li>
+<li><p><a href="http://www.biostat.mcgill.ca/hanley/statbook/StiglerPoisson.pdf">Stigler</a> is a bit more nuanced.</p></li>
+</ul>
+<p>%%%%%%%%%%%%%%%%%%%%%%%%%%%</p>
+<p>Events in Population-Time randomly generated from intensities that are constant within (2 squares high by 2 squares wide) `panels’, but vary between such panels. In Epidemiology, each square might represent a number of units of population-time, and each dot an event.}</p>
+<p>Events in Time: 10 examples [1/row], randomly generated from constant over time intensities. Simulated with 1000 Bernoulli<span class="math inline">\((\tiny{\textrm{small }\pi})\)</span>’s per time unit.}</p>
+<p><strong>Does the Poisson Distribution apply to<span class="math inline">\(\dots\)</span>?</strong></p>
+<ul>
+<li>Yearly variations in numbers of  killed in plane crashes? </li>
+<li>Daily variations in numbers of births?</li>
+<li>Daily variations in numbers of deaths [extra variation over the seasons]</li>
+<li>Daily variations in numbers of traffic accidents [variation over the seasons, and days of week, and with weather etc.]</li>
+<li>Daily variations in numbers of deaths in France in summer 2002 &amp; 2003</li>
+<li>Variations across cookies/pizzas in numbers of chocolate chips/olives.</li>
+<li>Variations across days of year in numbers of deaths from sudden infant death syndrome. See </li>
+</ul>
+<p><strong>Calculating Poisson probabilities:</strong></p>
+<ul>
+<li>Exactly</li>
+<li><code>R: dpois, ppois, qpois rpois</code> mass/cum./quant./rand<br />
+</li>
+<li>`SAS: POISSON;</li>
+<li>`Stata: <br />
+</li>
+<li><p>Spreadsheet — Excel function <code>POISSON}</code> (<span class="math inline">\(y, \mu\)</span>, cumulative)</p></li>
+<li><p>Using Gaussian Approximations to distribution of <span class="math inline">\(y\)</span> or transforms of it: described below, under Inference.</p></li>
+<li><p>In ‘the old days’ i.e. in the years BC (<strong>B</strong>efore <strong>C</strong>omputers’), Poisson <em>tail probabilities</em> were often calculated using links to the tail areas of other better-tabulated continuous distributions, such as the Chi-Square distribution.</p></li>
+</ul>
+<p>========</p>
 <p><a href="https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982" class="uri">https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982</a></p>
 <p>dark <a href="https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula" class="uri">https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula</a></p>
 <p><a href="https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-4" class="uri">https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-4</a></p>
