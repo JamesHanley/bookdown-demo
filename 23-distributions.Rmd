@@ -978,9 +978,7 @@ for(panel in 1:2){
              "   Variance:",
              toString(round(Var,2))
                ),
-        adj=c(1,0) )
-   
-
+        adj=c(1,0))
 }
 
 ```
