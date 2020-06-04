@@ -889,41 +889,160 @@ Y_{2} \sim \textrm{Poisson}(\mu_{2}) \Rightarrow Y = Y_{1} + Y_{2} \sim \textrm{
 **Some History** (see [Haight](http://www.epi.mcgill.ca/hanley/statbook/HaightHistorical.pdf) ).
 
 * 1718 deMoivre : the series   $e^{-\mu} \bigg(1 + \frac{\mu}{1!} + \frac{\mu^2}{2!} + \dots \bigg)$ appears.
-
 * 1837 Poisson (see above)
-
 * 1860 [Simon Newcomb](https://en.wikipedia.org/wiki/Simon_Newcomb), a Canadian-born  'astronomer, applied mathematician and autodidactic polymath who  who was Professor of Mathematics in the United States Navy and at Johns Hopkins University, [derives the 'Poisson' Law 'from scratch'](http://www.epi.mcgill.ca/hanley/statbook/Newcomb1860.pdf) as a limiting case of the Binomial, and  applies it to the determination of the 'probability that, if the stars were scattered at random over the heavens, any small space selected at random would contain $s$ stars.' 
-
 * 1878 [Abbe](http://www.biostat.mcgill.ca/hanley/statbook/Abbe1878.pdf) determined the number of cells one needed to count in order to achieve a sufficiently small 'probable error' for an estimated blood cell concentration.
-
 * 1905 [Schweidler](http://www.biostat.mcgill.ca/hanley/statbook/SchweidlerPremiercongres1905.pdf) provided error calculations for counting radioactive transformations.
-
 * 1989 [Bortkewitsch book](http://www.biostat.mcgill.ca/hanley/statbook/dasGesetzDerKeinemZaklenBortkiewicz.pdf), with many examples, and tables of the Poisson Distribution. 
-
 * 1907 ['Student'](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/Student_counting.pdf) derived the Poisson distribution from scratch (as a liniting case of the binomial) and provided error calculations for measuring yeast cells in beer.
-
 * 1909 Erlang, a Danish engineer concerned with the theory of telephone traffic, developed the Poisson Law by an elegant argument based on the steady state behaviour of the beginning and terminations of calls.
 Here are the original [Danish version](http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/ErlangInDanish1909.pdf) and a  [translation](http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/Erlang1909.pdf). This ['simple explanation'](http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/ErlangSimpleProofPoisson.pdf#page=14) in the English translation of a 1920 article has a critical cut and paste typographical error. The original [Danish version](http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/38MatematiskTidsskrift1920.pdf) has it correct.
-
-
 * 1910 [Rutherford](https://www.physics.mcgill.ca/museum/rutherfordcollection.html) (having departed McGill in 1907) and Geiger (of the 'counter'), physicists, and  Bateman, a mathematician, developed the [Poisson Law by an time-based argument](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/RutherfordGeigerBateman1910.pdf)  expressed as a differential equation, a Law that agreed with the empirical distibution in their large particle-counting experiment.
-
 * 1946 [Flying-bomb attacks on London during WW II](https://www.actuaries.org.uk/system/files/documents/pdf/0481.pdf), along with 2019 Update: [Significance Magazine Early-career Writing Award](https://www.significancemagazine.com/10-news/627-finalists-announced-for-early-career-writing-award?highlight=WyJib21icyIsImJvbWJzJyJd) announcement and [intro to](https://www.significancemagazine.com/10-news/635-a-world-war-ii-investigation-updated-for-the-modern-era?highlight=WyJzaGF3Iiwic2hhdydzIl0=) and [full article](https://rss.onlinelibrary.wiley.com/doi/10.1111/j.1740-9713.2019.01315.x). 
-
-
 * Commentators
-
    + [Newbold](http://www.biostat.mcgill.ca/hanley/statbook/Newbold1927.pdf) gives a lot of credit to deMoivre.
-
    + [Haight](http://www.biostat.mcgill.ca/hanley/statbook/HaightHistorical.pdf) is the mots comprehensive.
-
    + [Stigler](http://www.biostat.mcgill.ca/hanley/statbook/StiglerPoisson.pdf) is a bit more nuanced.
 
 
+The foolowing tow distributions are taken from 'Student's 1907 article 
+
+>This theoretical work was tested on four distributions which had been counted over the whole 400 squares of the haemocytometer. The particles counted were yeast cells which were killed by adding a little mercuric chloride to the water in which they had been shaken up. A small quantity of this was mixed with a 10% solution of gelatine, and after being well stirred up drops were put on the haemacytometer. This was then put on a plate of glass kept at a temperature just above the setting point of gelatine and allowed to cool slowly till the gelatine had set. Four different concentrations were used. [The full description can be found here.](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/Student_counting.pdf#page=6)
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=4.5, fig.width=9, warning=FALSE, message=F,fig.cap="Examples of distributions of Yeast Cells over 1 sq. mm. divided into 400 squares. The data in the right panel are based on the 400 counts in Table 1 of Student's article (concentration IV), while those in the left panel are simulated to match the reported mean (1.32 per square) and variance (1.28) for the 400 counts at concentration II. Note that it appears that Student calculated the variance using a divisor of n rather than n-1."}
+
+y.4=t(matrix(c(
+2,2,4,4,4,5,2,4,7,7,4,7,5,2,8,6,7,4,3,4,
+3,3,2,4,2,5,4,2,8,6,3,6,6,10,8,3,5,6,4,4,
+7,9,5,2,7,4,4,2,4,4,4,3,5,6,5,4,1,4,2,6,
+4,1,4,7,3,2,3,5,8,2,9,5,3,9,5,5,2,4,3,4,
+4,1,5,9,3,4,4,6,6,5,4,6,5,5,4,3,5,9,6,4,
+4,4,5,10,4,4,3,8,3,2,1,4,1,5,6,4,2,3,3,3,
+3,7,4,5,1,8,5,7,9,5,8,9,5,6,6,4,3,7,4,4,
+7,5,6,3,6,7,4,5,8,6,3,3,4,3,7,4,4,4,5,3,
+8,10,6,3,3,6,5,2,5,3,11,3,7,4,7,3,5,5,3,4,
+1,3,7,2,5,5,5,3,3,4,6,5,6,1,6,4,4,4,6,4,
+4,2,5,4,8,6,3,4,6,5,2,6,6,1,2,2,2,5,2,2,
+5,9,3,5,6,4,6,5,7,1,3,6,5,4,2,8,9,5,4,3,
+2,2,11,4,6,6,4,6,2,5,3,5,7,2,6,5,5,1,2,7,
+5,12,5,8,2,4,2,1,6,4,5,1,2,9,1,3,4,7,3,6,
+5,6,5,4,4,5,2,7,6,2,7,3,5,4,4,5,4,7,5,4,
+8,4,6,6,5,3,3,5,7,4,5,5,5,6,10,2,3,8,3,5,
+6,6,4,2,6,6,7,5,4,5,8,6,7,6,4,2,6,1,1,4,
+7,2,5,7,4,6,4,5,1,5,10,8,7,5,4,6,4,4,7,5,
+4,3,1,6,2,5,3,3,3,7,4,3,7,8,4,7,3,1,4,4,
+7,6,7,2,4,5,1,3,12,4,2,2,8,7,6,7,6,3,5,4),20,20))
+
+par(mfrow=c(1,2),mar = c(0,0,1,0))
+
+for(panel in 1:2){
+  
+   plot(-100,-100,
+     xlim=c(0,20),
+     ylim=c(0,20.9),
+     xaxt="n", yaxt="n", frame=FALSE)
+   segments(0,seq(0,20),20,seq(0,20),col="lightblue",lwd=0.5)
+   segments(seq(0,20),0,seq(0,20),20,col="lightblue",lwd=0.5)
+  
+   if(panel==1){
+          set.seed(1016)
+          y.m = matrix(0,20,20)
+          cell.no = 1:400
+          no.visits = sample(cell.no, 400*1.3225, 
+                       prob=  rep(1/400,400),
+                       replace = TRUE)
+          f=table(no.visits)
+          y.m[ as.numeric( dimnames(f)$no.visits ) ] = f
+   }
+   
+   if(panel==2) y.m = y.4
+   
+   Mean = mean(as.vector(y.m)) 
+   Var = (399/400)*var(as.vector(y.m))
+
+   for (i.r in 1:20){
+      for(i.c in 1:20){
+        
+         y =y.m [i.r,i.c]
+        #text(i.c-1/2, 21-i.r-1/2, toString(y),
+        #     col="grey25", cex=0.5 )
+        yy = 21-i.r + runif(y,-1,0)
+        xx = i.c + runif(y,-1,0)
+        points(xx,yy,cex=0.2)
+        
+      }
+   }
+   text(20,20.25,paste(
+             "Mean per square:",
+             toString(round(Mean,2)),
+             "   Variance:",
+             toString(round(Var,2))
+               ),
+        adj=c(1,0) )
+   
+
+}
+
+```
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F,fig.cap="Examples of distributions of events in space -- or in population time if you think of the horizontal axis as the passage of time, and the verytical axis as a fixed-size (but dynamic) population, or as several (say age-) strata with fixed sizes."}
+
+par(mfrow=c(1,1),mar = c(0,0,1,0))
+
+w=20;h=10;
+
+plot(0:w, 0:w/2, "s",col = "white",
+    xlab="time",
+    ylab="population")
+
+for (i in 0:w)  abline(v= i,   col ="lightgray", lty="dashed")
+for (j in 0:h)  abline(h= j,   col ="lightgray", lty="dashed")
+
+for (i in seq(0,w,2))  abline(v= i,   col ="lightgray", lty="solid")
+for (j in seq(0,h,2))  abline(h= j,   col ="lightgray", lty="solid")
 
 
+x=c(); y=c();
+for (i in 1:w) {
+  for (j in 1:h) {
+  n=rpois(1,2*exp(0.015*2*floor((i+1)/2)+0.030*2*floor((j+1)/2)))
+  if (n>0) { x=c(x, (i-1) + runif(n) ) ; y=c(y, (j-1) + runif(n) ) }
+}
+}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
+points(x,y,cex=0.5)
+
+# 1 d
+
+strips = 10;
+
+w=20 ; d.w = 0.001; n.trials = w/d.w; lambda = 0.7; p = lambda*d.w ;
+
+x=c(); y=c();
+
+for (strip in 1: strips) {
+  for (i in 1:n.trials) {
+    if (runif(1) < p) { x=c(x, i*d.w ) ; y=c(y, strip/strips) }
+  }
+}
+
+par(yaxt = "n")
+
+```
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F,fig.cap="Various Binomial random variables/distributions, with large n's and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the 'lowee corner of the Bimonial distribution with large n's and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions."}
+
+plot(0:w, (0:w)/w, "s",col = "white",
+    xlab="time",
+    ylab=" ", frame.plot=F )
+
+for (strip in 1: strips) abline(h= strip/strips,   col ="lightgray")
+for (i in 0:w)  abline(v= i,   col ="lightgray")
+    
+points(x,y,cex=0.5)
+
+```
+
 
 Events in Population-Time randomly generated from intensities that are constant within (2 squares high by 2 squares wide) `panels', but vary between such panels. In Epidemiology, each square might represent a number of units of population-time, and each dot an event.}
 
