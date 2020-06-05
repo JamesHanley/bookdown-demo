@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 20 DALITE | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
+  <title>Chapter 14 1 d | Introduction to Statistical Analysis: a regression-from-the-outset approach</title>
   <meta name="description" content="A regression-from-the-outset based approach" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 20 DALITE | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta property="og:title" content="Chapter 14 1 d | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 20 DALITE | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
+  <meta name="twitter:title" content="Chapter 14 1 d | Introduction to Statistical Analysis: a regression-from-the-outset approach" />
   
   <meta name="twitter:description" content="A regression-from-the-outset based approach" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="computing04.html"/>
-
+<link rel="prev" href="distributions.html"/>
+<link rel="next" href="math.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -324,23 +324,181 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dalite" class="section level1">
-<h1><span class="header-section-number">Chapter 20</span> DALITE</h1>
-<div id="aim" class="section level2">
-<h2><span class="header-section-number">20.1</span> Aim</h2>
+<div id="d" class="section level1">
+<h1><span class="header-section-number">Chapter 14</span> 1 d</h1>
+<p>strips = 10;</p>
+<p>w=20 ; d.w = 0.001; n.trials = w/d.w; lambda = 0.7; p = lambda*d.w ;</p>
+<p>x=c(); y=c();</p>
+<p>for (strip in 1: strips) { for (i in 1:n.trials) { if (runif(1) &lt; p) { x=c(x, i*d.w ) ; y=c(y, strip/strips) } } }</p>
+<p>par(yaxt = “n”)</p>
+<p>r,eval=T, echo=F, fig.align=“center”, fig.height=7, fig.width=9, warning=FALSE, message=F,fig.cap=“Various Binomial random variables/distributions, with large n’s and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the ’lowee corner of the Bimonial distribution with large n’s and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions.”}</p>
+<p>plot(0:w, (0:w)/w, “s”,col = “white”, xlab=“time”, ylab=&quot; “, frame.plot=F )</p>
+<p>for (strip in 1: strips) abline(h= strip/strips, col =“lightgray”) for (i in 0:w) abline(v= i, col =“lightgray”)</p>
+<p>points(x,y,cex=0.5)</p>
+<p>Events in Population-Time randomly generated from intensities that are constant within (2 squares high by 2 squares wide) `panels’, but vary between such panels. In Epidemiology, each square might represent a number of units of population-time, and each dot an event.}</p>
+<p>Events in Time: 10 examples [1/row], randomly generated from constant over time intensities. Simulated with 1000 Bernoulli<span class="math inline">\((\tiny{\textrm{small }\pi})\)</span>’s per time unit.}</p>
+<p><strong>Does the Poisson Distribution apply to<span class="math inline">\(\dots\)</span>?</strong></p>
+<ul>
+<li>Yearly variations in numbers of  killed in plane crashes? </li>
+<li>Daily variations in numbers of births?</li>
+<li>Daily variations in numbers of deaths [extra variation over the seasons]</li>
+<li>Daily variations in numbers of traffic accidents [variation over the seasons, and days of week, and with weather etc.]</li>
+<li>Daily variations in numbers of deaths in France in summer 2002 &amp; 2003</li>
+<li>Variations across cookies/pizzas in numbers of chocolate chips/olives.</li>
+<li>Variations across days of year in numbers of deaths from sudden infant death syndrome. See </li>
+</ul>
+<p><strong>Calculating Poisson probabilities:</strong></p>
+<ul>
+<li>Exactly</li>
+<li><code>R: dpois, ppois, qpois rpois</code> mass/cum./quant./rand<br />
+</li>
+<li>`SAS: POISSON;</li>
+<li>`Stata: <br />
+</li>
+<li><p>Spreadsheet — Excel function <code>POISSON}</code> (<span class="math inline">\(y, \mu\)</span>, cumulative)</p></li>
+<li><p>Using Gaussian Approximations to distribution of <span class="math inline">\(y\)</span> or transforms of it: described below, under Inference.</p></li>
+<li><p>In ‘the old days’ i.e. in the years BC (<strong>B</strong>efore <strong>C</strong>omputers’), Poisson <em>tail probabilities</em> were often calculated using links to the tail areas of other better-tabulated continuous distributions, such as the Chi-Square distribution.</p></li>
+</ul>
+<p>========</p>
+<p><a href="https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982" class="uri">https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982</a></p>
+<p>dark <a href="https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula" class="uri">https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula</a></p>
+<p><a href="https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-4" class="uri">https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-4</a></p>
+<p>car sppeds <a href="https://purr.purdue.edu/publications/2671/1" class="uri">https://purr.purdue.edu/publications/2671/1</a></p>
+<p>Hypergeometric</p>
+<p>Non-Central Hypergeometric</p>
+<p>Chi-square</p>
+<p>===</p>
+<p>EXERCISES</p>
+<p>ADD YOUR OWN SEARCH RESULTS to table above</p>
+<p>Hydroxychloroquine uniformity table.</p>
+<p>few for differences</p>
+<p>woolf</p>
+<p>normal</p>
+<p>transformations</p>
+<div id="exercises-3" class="section level2">
+<h2><span class="header-section-number">14.1</span> Exercises</h2>
+<div id="clusters-of-miscarriages-based-on-article-by-l-abenhaim" class="section level3">
+<h3><span class="header-section-number">14.1.1</span> Clusters of Miscarriages [based on article by L Abenhaim]</h3>
+<p>Assume that:</p>
+<ul>
+<li>15% of all pregnancies end in a recognized spontaneous abortion (miscarriage) – this is probably a conservative estimate.</li>
+<li>Across North America, there are 1,000 large companies. In each of them, 10 females who work all day with computer terminals become pregnant within the course of a year [the number who get pregnant would vary, but assume for the sake of this exercise that it is exactly 10 in each company]. *There is no relationship between working with computers and the risk of miscarriage.</li>
+<li>a <code>cluster'' of miscarriages is defined as</code>at least 5 of 10 females in the same company suffering a miscarriage within a year’’</li>
+</ul>
+<p>Exercise: Calculate the number of ‘clusters’ of miscarriages one would expect in the 1,000 companies. <em>Hint</em>: begin with the probability of a cluster.</p>
 </div>
-<div id="how-it-works" class="section level2">
-<h2><span class="header-section-number">20.2</span> How it works</h2>
+<div id="prone-ness-to-miscarriages" class="section level3">
+<h3><span class="header-section-number">14.1.2</span> ‘Prone-ness’ to Miscarriages ?</h3>
+<p>Some studies suggest that the chance of a pregnancy ending in a spontaneous abortion is approximately 30%.</p>
+<ol style="list-style-type: decimal">
+<li>On this basis, if a woman becomes pregnant 4 times, what does the binomial distribution give as her chance of having 0,1,2,3 or 4 spontaneous abortions?</li>
+<li>On this basis, if 70 women each become pregnant 4 times, what number of them would you expect to suffer 0,1,2,3 or 4 spontaneous abortions? (Think of the answers in (i) as proportions of women).</li>
+<li>Compare these theoretically expected numbers out of 70 with the following observed data on 70 women, each of whom had 4 pregnancies:</li>
+</ol>
+<table>
+<tbody>
+<tr class="odd">
+<td align="right">No. of spontaneous abortions:</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="right">No. of women with this many abortions:</td>
+<td align="center">23</td>
+<td align="center">28</td>
+<td align="center">7</td>
+<td align="center">6</td>
+<td align="center">6</td>
+</tr>
+</tbody>
+</table>
+<ol start="4" style="list-style-type: decimal">
+<li>Why don’t the expected numbers agree very well with the observed numbers? i.e. which assumption(s) of the Binomial Distribution are possibly being violated? (Note that the overall rate of spontaneous abortions in the observed data is in fact 84 out of 280 pregnancies or 30%)</li>
+</ol>
+</div>
+<div id="automated-chemistries-from-ingelfinger-et-al" class="section level3">
+<h3><span class="header-section-number">14.1.3</span> Automated Chemistries (from Ingelfinger et al)</h3>
+<p>At the Beth Israel Hospital in Boston, an automated clinical chemistry analyzer is used to give 18 routinely ordered chemical determinations on one order (glucose, BUN, creatinine, …, iron). The ``normal’’ values for these 18 tests were established by the concentrations of these chemicals in the sera of a large sample of healthy volunteers. The normal range was defined so that an average of 3% of the values found in these healthy subjects fell outside.</p>
+<ol style="list-style-type: decimal">
+<li>Using the binomial formula [even if it is na&quot;{}ve to do so here], compute the probability that a healthy subject will have normal values on all 18 tests. Also calculate the probability of 2 or more abnormal values.</li>
+<li>Which of the requirements for the binomial distribution are definitely satisfied, and which ones may not be?</li>
+<li>Among 82 normal employees at the hospital, 52/82 (64%) had all normal tests, 19/82 (23%) had 1 abnormal test and 11/82 (13%) had 2 or more abnormal tests. Compare these observed percentages with the theoretical distribution obtained from calculations using the binomial distribution. Comment on the closeness of the fit.</li>
+</ol>
+</div>
+<div id="binomial-or-opportunistic-capitalization-on-chance-multiple-looks-at-data" class="section level3">
+<h3><span class="header-section-number">14.1.4</span> Binomial or Opportunistic? (Capitalization on chance… multiple looks at data)</h3>
+<p>[Question from Ingelfinger et al. textbook] Mrs A has mild diabetes controlled by diet. Blood values vary rapidly, so think of each day as a new (independent) situation. Her morning urine sugar test is negative 80% of the time and positive (+) 20% of the time. [It is never graded higher than +].</p>
+<ol style="list-style-type: decimal">
+<li><p>At her regular visits to her physician, the physician always asks about last 5 days. At this particular visit, she tells the physician that the test has been + on each of the last 5 days.<br />
+What is the probability that this would occur if her condition has remained unchanged? Does this observation give reason to think that her condition has changed?</p></li>
+<li><p>Is the situation different if she observes, <em>between</em> visits, that the test is positive on 5 successive days and phones to express her concern?</p></li>
+</ol>
+</div>
+<div id="can-one-influence-the-sex-of-a-baby" class="section level3">
+<h3><span class="header-section-number">14.1.5</span> Can one influence the sex of a baby?</h3>
+<p>This question was prompted by this <a href="http://www.biostat.mcgill.ca/hanley/statbook/SexRatioOvulationNEJM1979.pdf">article</a> in an 1979 issue of the New England Journal of Medicine.</p>
+<ol style="list-style-type: decimal">
+<li>Consider a binomial variable with <span class="math inline">\(n = 145\)</span> and <span class="math inline">\(\pi = 0.528\)</span>. Calculate the SD of, and therefore a measure of the variation in, the proportions that one would observe in different samples of 145 if <span class="math inline">\(\pi\)</span> = 0.528. [In other words, the SD of the sampling distribution of the sample proportion.]</li>
+</ol>
+<p>The following is abstracted from that NEJM article:</p>
+<blockquote>
+<p>The baby’s sex was studied in births to Jewish women who observed the orthodox ritual of sexual separation each month and who resumed intercourse within two days of ovulation. The proportion of male babies was 95/145 or 65.5% (!!) in the offspring of those women who resumed intercourse two days after ovulation (the overall percentage of male babies born to the 3658 women who had resumed intercourse within two days of ovulation [i.e. days -2, -1, 0, 1 and 2] was 52.8%).</p>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>How does the SD you calculated above help you judge the findings? And why did you <em>not</em> have to substitute the <span class="math inline">\(p=0.655\)</span> into the SD formula, and call it an SE of <span class="math inline">\(p\)</span>?</li>
+</ol>
+</div>
+<div id="its-the-3rd-week-of-the-course-it-must-be-binomial" class="section level3">
+<h3><span class="header-section-number">14.1.6</span> It’s the 3rd week of the course: it must be Binomial</h3>
+<p>In which of the following would <span class="math inline">\(Y\)</span> <em><strong>not</strong></em> have a Binomial distribution? Why?</p>
+<ol style="list-style-type: decimal">
+<li>The pool of potential jurors for a murder case contains 100 persons chosen at random from the adult residents of a large city. Each person in the pool is asked whether he or she opposes the death penalty; <span class="math inline">\(Y\)</span> is the number who say ‘Yes.’</li>
+<li><span class="math inline">\(Y\)</span> = number of women listed in different random samples of size 20 from the 1990 directory of statisticians.</li>
+<li><span class="math inline">\(Y\)</span> = number of occasions, out of a randomly selected sample of 100 occasions during the year, in which you were indoors. (One might use this design to estimate what proportion of time you spend indoors)</li>
+<li><span class="math inline">\(Y\)</span> = number of months of the year in which it snows in Montreal.</li>
+<li><span class="math inline">\(Y\)</span> = Number, out of 60 occupants of 30 randomly chosen cars, wearing seatbelts.</li>
+<li><span class="math inline">\(Y\)</span> = Number, out of 60 occupants of 60 randomly chosen cars, wearing seatbelts.</li>
+<li><span class="math inline">\(Y\)</span> = Number, out of a department’s 10 microcomputers and 4 printers, that are going to fail in their first year.</li>
+<li><span class="math inline">\(Y\)</span> = Number, out of simple random sample of 100 individuals, that are left-handed.</li>
+<li><span class="math inline">\(Y\)</span> = Number, out of 5000 randomly selected from mothers giving birth each month in Quebec, who will test HIV positive.<br />
+</li>
+<li>You observe the sex of the next 50 children born at a local hospital; <span class="math inline">\(Y\)</span> is the number of girls among them.</li>
+<li>A couple decides to continue to have children until their first girl is born; <span class="math inline">\(Y\)</span> is the total number of children the couple has.</li>
+<li>You want to know what percent of married people believe that mothers of young children should not be employed outside the home. You plan to interview 50 people, and for the sake of convenience you decide to interview both the husband and the wife in 25 married couples. The random variable <span class="math inline">\(Y\)</span> is the number among the 50 persons interviewed who think mothers should not be employed.</li>
+</ol>
+</div>
+<div id="tests-of-intuition" class="section level3">
+<h3><span class="header-section-number">14.1.7</span> Tests of intuition</h3>
+<ul>
+<li><p>A coin will be tossed either 2 times or 20 times. You will win $2.00 if the number of heads is equal to the number of tails, no more and no less. Which is correct? (i) 2 tosses is better. (ii) 100 tosses is better. (iii) Both offer the same chance of winning.</p></li>
+<li><p>Hospital A has 100 births a year, hospital B has 2500. In which hospital is it more that at least 55% of births in one year will be boys.</p></li>
+</ul>
+</div>
+<div id="ci-for-proportion-when-observe-0n-or-nn" class="section level3">
+<h3><span class="header-section-number">14.1.8</span> CI for proportion when observe 0/n or n/n</h3>
+<p>Oncologists often first try out new experimental agents on patients with metastatic disease who have failed all standard therapies. One (old) rule for deciding to abandon an experimental agent was: if it was tried on 14 successive patients, but did not show anti-tumour in any of them, i.e. if it `struck out’ in all 14, yielding a response rate of 0/14.</p>
+<p>Their reasoning is that this poor result ``rules out’’ (with 95% confidence) the possibility that it would be active in more than 20% of future patients. In other words, the data are incompatible with any <span class="math inline">\(\pi &gt; 20\%.\)</span></p>
+<p>Check out their rule, by computing/obtaining a 95% 1-sided CI for <span class="math inline">\(\pi.\)</span></p>
+<p>[Use a 1-sided CI if one is interested in putting just an  bound on the probability of benefit or risk: e.g., what is upper bound on $= $ probability of getting HIV from HIV-infected dentist? See JAMA article ``If Nothing Goes Wrong, Is Everything All Right? Interpreting Zero Numerators’’ by Hanley and Lippman-Hand</p>
+<p><a href="http://www.epi.mcgill.ca/hanley/Reprints/If\_Nothing\_Goes\_1983.pdf" class="uri">http://www.epi.mcgill.ca/hanley/Reprints/If\_Nothing\_Goes\_1983.pdf</a></p>
+<p>and the <code>rule of $3/n$' for a 1-sided 95\% CI. See also the second example (with sample size 4 !) in the section</code>in defense of (some) small studies’ in this article <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/Place\_of\_statistical\_1989.pdf" class="uri">http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/Place\_of\_statistical\_1989.pdf</a></p>
 
 </div>
 </div>
+</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="computing04.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="math.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -371,7 +529,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/41-dalite.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/23-distributions.Rmd",
 "text": "Edit"
 },
 "history": {
