@@ -904,12 +904,22 @@ Here are the original [Danish version](http://www.medicine.mcgill.ca/epidemiolog
    + [Haight](http://www.biostat.mcgill.ca/hanley/statbook/HaightHistorical.pdf) is the mots comprehensive.
    + [Stigler](http://www.biostat.mcgill.ca/hanley/statbook/StiglerPoisson.pdf) is a bit more nuanced.
 
+**Distribution of particles in volumes**
 
-The foolowing tow distributions are taken from 'Student's 1907 article 
+
+The following two distributions are taken from 'Student's 1907 article on **counting yeast cells** under a haemocytometer, an instrument for visual counting of the number of cells in a blood sample or other fluid under a microscope. In the article, he derived what today we would call the Poisson distribution, and offered guidance on how many fields/cells to count in order the ensure a small enough margin of error when estimating a concentration.
+
+Student's main messages
+
+>The same accuracy is obtained by counting the same number of
+particles whatever the dilution. Hence the most accurate way is to dilute the solution to the point at which the particles may be counted most rapidly, and to count as many as time permits.
+
+> The standard deviation of the mean number of particles per unit volume is $\sqrt{m/M},$ where $m$ is the mean number and M the number of unit volumes counted.
+
 
 >This theoretical work was tested on four distributions which had been counted over the whole 400 squares of the haemocytometer. The particles counted were yeast cells which were killed by adding a little mercuric chloride to the water in which they had been shaken up. A small quantity of this was mixed with a 10% solution of gelatine, and after being well stirred up drops were put on the haemacytometer. This was then put on a plate of glass kept at a temperature just above the setting point of gelatine and allowed to cool slowly till the gelatine had set. Four different concentrations were used. [The full description can be found here.](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/Student_counting.pdf#page=6)
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=4.5, fig.width=9, warning=FALSE, message=F,fig.cap="Examples of distributions of Yeast Cells over 1 sq. mm. divided into 400 squares. The data in the right panel are based on the 400 counts in Table 1 of Student's article (concentration IV), while those in the left panel are simulated to match the reported mean (1.32 per square) and variance (1.28) for the 400 counts at concentration II. Note that it appears that Student calculated the variance using a divisor of n rather than n-1."}
+```{r,eval=T, echo=F, fig.align="center", fig.height=4.5, fig.width=9, warning=FALSE, message=F,fig.cap="Examples of distributions of Yeast Cells over 1 sq. mm. divided into 400 squares. The data in the right panel are based on the 400 counts in Table 1 of Student's article (concentration IV), while those in the left panel are simulated to match the reported mean (1.32 per square) and variance (1.28) for the 400 counts at concentration II. It appears that Student calculated the variance using a divisor of n rather than n-1."}
 
 y.4=t(matrix(c(
 2,2,4,4,4,5,2,4,7,7,4,7,5,2,8,6,7,4,3,4,
@@ -964,8 +974,6 @@ for(panel in 1:2){
       for(i.c in 1:20){
         
          y =y.m [i.r,i.c]
-        #text(i.c-1/2, 21-i.r-1/2, toString(y),
-        #     col="grey25", cex=0.5 )
         yy = 21-i.r + runif(y,-1,0)
         xx = i.c + runif(y,-1,0)
         points(xx,yy,cex=0.2)
@@ -973,7 +981,7 @@ for(panel in 1:2){
       }
    }
    text(20,20.25,paste(
-             "Mean per square:",
+             "Mean number of cells per square:",
              toString(round(Mean,2)),
              "   Variance:",
              toString(round(Var,2))
@@ -983,32 +991,100 @@ for(panel in 1:2){
 
 ```
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=3, fig.width=9, warning=FALSE, message=F,fig.cap="Examples of distributions of events in space -- or in population time if you think of the horizontal axis as the passage of time, and the verytical axis as a fixed-size (but dynamic) population, or as several (say age-) strata with fixed sizes."}
+The data in the panel on the right panel can be [viewed at the bottom of this page.](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/Student_counting.pdf#page=10)
+
+Student took care to avoid 'clumping' of cells, and other artifacts, and measured the (as they turned out to be, small) correlations between the nunber of cells on a square and the number in each of the four cells nearest it.
+
+He noticed that in both concentrations I and III the variance was greater than the mean, due to an [to us, slight] excess (of the "observed") over the calculated ("fitted") among the high numbers in the tail of the distribution. [Mean = 0.6825, variance 0.8117 in I; Mean = 1.80; variance = 1.96 in III].   He has pointed out earlier in the article that the budding of the yeast cell increases these high numbers, and there is also probably a tendency to stick together in groups which was not altogether abolished even by vigorous shaking.
+
+He also tested the observed frequency distribution of the 400 counts (they varied from 0 to 6 in the left panel, and 1 to 12 in the right panel) against the expected numbers of 0's, 1's, 2's, etc. under the (Poisson) law using a $\chi^2$ goodness of fit statistic, and found them to be reasonable. 'The p-values, 0.04, 0.68, 0.25 and 0.64, though not particularly high,
+are not at all unlikely in four trials, supposing our theoretical law to hold, and we are not likely to be very far wrong in assuming it to do so.'
+
+Clearly, the narrow pure-Poisson variation we see in Student's counts is a tribute to his 'vigorous shaking' that produced the randomness. [Think about how you would ensure this with raisins in dough, or chocolate chips in cookies.]
+
+**Distribution of events in time intervals**
+
+This next example -- on **counting** [alpha-radiation disintegrations](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/RutherfordGeigerBateman1910.pdf) -- has the same element of randomness, but in the **time dimension**. Here is Rutherford's description:
+
+> The source of radiation was a small disk coated with polonium, which was placed inside an exhausted tube, closed at one end by a zinc sulphide screen. The scintillations were counted in the usual way by means of a microscope on an area of about one sq. mm. of screen. During the timo of counting (5 days), in order to correct for the decay, the polonium was moved daily closer to the screen in order that the average number of $\alpha$ particles impinging on the screen should be nearly constant. The scintillations were recorded on a chronograph tape by closing an electric circuit by hand at the instant of each scintillation. Time-marks at intervals of one half-minute were also automatically recorded on iho same tape.  
+After the eye was rested, scintillations were counted from 3 to 5 minutes. The motor running the tape was then stopped and the eye rested for several minutes ; then another interval of counting, and so on. It was found possible to count 2000 scintillations a day, and in all 10,000 were recorded. The records on the tape were then systematically examined. The length of tape corresponding to half-minute marks was subdivided into four equal parts by means of a celluloid film marked with five parallel lines at equal distances. By slanting the film at different angles, the outside lines were made to pass through the time-marks, and thee number of scintillations between the lines corresponding to 1/8 minute intervals were counted through the film. By this method correction was made for slow variations in the speed of the motor during the long interval required by the observations.
+
+
+
+The following is meant to look like the marks on a 5-minute strip on the paper tape described by Rutherford. 
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F,fig.cap="Simulated  distributions of events (scintillations produced  by a radioactive source) over a 5-minute time-span. Each 1/8th of a minute is shown is a different colour. The counts in each 7.5 second bin are shown at the bottom."}
 
 par(mfrow=c(1,1),mar = c(0,0,1,0))
 
-w=20;h=10;
+r = .20
 
-plot(0:w, 0:w/2, "s",col = "white",
-    xlab="time",
-    ylab="population")
+Mins = 5  # minutes
+# each min divided in 600
 
-for (i in 0:w)  abline(v= i,   col ="lightgray", lty="dashed")
-for (j in 0:h)  abline(h= j,   col ="lightgray", lty="dashed")
+angle = seq(3*pi/2,3*pi/2+ 2*Mins*pi,pi/300)
+t = length(angle)
 
-for (i in seq(0,w,2))  abline(v= i,   col ="lightgray", lty="solid")
-for (j in seq(0,h,2))  abline(h= j,   col ="lightgray", lty="solid")
+ANGLE = seq(3*pi/2,3*pi/2+10*pi,pi/8)
 
+dy = angle/( max(angle)-min(angle) )
 
-x=c(); y=c();
-for (i in 1:w) {
-  for (j in 1:h) {
-  n=rpois(1,2*exp(0.015*2*floor((i+1)/2)+0.030*2*floor((j+1)/2)))
-  if (n>0) { x=c(x, (i-1) + runif(n) ) ; y=c(y, (j-1) + runif(n) ) }
+MIN = ceiling( (1:length(angle))/600 )
+      
+s = r*sin(-angle) - dy
+c = cos(angle)
+
+YLIM = range(s)*c(1.1,1)
+XLIM = 1.075*range(c)
+
+plot(c,s,type="l" , col="white",
+     xlim=XLIM, ylim=YLIM)
+     
+i = 1
+for(m in 1:Mins){
+	for(eighth in 1:8)  {
+		ii = i + 75 
+		lines(c[i:ii],s[i:ii], col=eighth, 
+		      lwd=1.25 + 1.25*( (eighth %% 2)==0 ) )
+		sec = 60*(eighth-1)/8
+		LR = -0.5*(sec > 0  & sec < 30) + 
+		     1.25*(sec> 30) + 0.5*(sec==0)
+		UD = 1.5*(sec > 15  & sec <  45) - 
+		     0.5*(sec <= 15 | sec >=  45)
+		txt = paste(toString(m-1),":", toString(sec),sep="")
+		text(c[i],s[i], txt,adj=c(LR,UD),cex=0.8)
+		i = ii
+		
+	}
 }
+txt = paste(toString(Mins),":00",sep="")
+text(c[i],s[i], txt,adj=c(0,0),cex=0.8)
+
+random = sample(c(TRUE,FALSE),t,
+                prob=c(30/600,570/600),
+                replace = TRUE )
+random[length(random)] = FALSE
+points(c[random],s[random],pch=19,cex=0.65)
+
+f=rep(0,Mins*8+1) 
+tab = aggregate(random,by=list(
+   ceiling( (1:length(random))/75 ) ),sum)
+f[as.numeric( dimnames(tab)[[1]] ) ] = tab$x
+
+print(mean(f[1:40]))
+
+Dx = ( XLIM[2]-XLIM[1]) / (Mins*9) 
+for(i in 1: (Mins*8) ){
+  text(XLIM[1] + (i+2)*Dx, YLIM[1],
+       toString(f[i]) , adj=c(1,-0.5),family="mono")
+  
+  if( (i %% 8) == 0 ) text(XLIM[1] + (i+2.5)*Dx, YLIM[1],
+       "|" , adj=c(1,-1.5),family="mono")
 }
 
-points(x,y,cex=0.5)
+```
+
+
 
 # 1 d
 
@@ -1026,9 +1102,8 @@ for (strip in 1: strips) {
 
 par(yaxt = "n")
 
-```
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F,fig.cap="Various Binomial random variables/distributions, with large n's and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the 'lowee corner of the Bimonial distribution with large n's and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions."}
+r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F,fig.cap="Various Binomial random variables/distributions, with large n's and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the 'lowee corner of the Bimonial distribution with large n's and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions."}
 
 plot(0:w, (0:w)/w, "s",col = "white",
     xlab="time",
@@ -1039,7 +1114,6 @@ for (i in 0:w)  abline(v= i,   col ="lightgray")
     
 points(x,y,cex=0.5)
 
-```
 
 
 Events in Population-Time randomly generated from intensities that are constant within (2 squares high by 2 squares wide) `panels', but vary between such panels. In Epidemiology, each square might represent a number of units of population-time, and each dot an event.}
