@@ -1070,7 +1070,7 @@ tab = aggregate(random,by=list(
    ceiling( (1:length(random))/75 ) ),sum)
 f[as.numeric( dimnames(tab)[[1]] ) ] = tab$x
 
-print(mean(f[1:40]))
+#print(mean(f[1:40]))
 
 Dx = ( XLIM[2]-XLIM[1]) / (Mins*9) 
 for(i in 1: (Mins*8) ){
@@ -1082,41 +1082,6 @@ for(i in 1: (Mins*8) ){
 }
 
 ```
-
-
-# 1 d
-
-strips = 10;
-
-w=20 ; d.w = 0.001; n.trials = w/d.w; lambda = 0.7; p = lambda*d.w ;
-
-x=c(); y=c();
-
-for (strip in 1: strips) {
-  for (i in 1:n.trials) {
-    if (runif(1) < p) { x=c(x, i*d.w ) ; y=c(y, strip/strips) }
-  }
-}
-
-par(yaxt = "n")
-
-
-r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F,fig.cap="Various Binomial random variables/distributions, with large n's and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the 'lowee corner of the Bimonial distribution with large n's and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions."}
-
-plot(0:w, (0:w)/w, "s",col = "white",
-    xlab="time",
-    ylab=" ", frame.plot=F )
-
-for (strip in 1: strips) abline(h= strip/strips,   col ="lightgray")
-for (i in 0:w)  abline(v= i,   col ="lightgray")
-    
-points(x,y,cex=0.5)
-
-
-
-Events in Population-Time randomly generated from intensities that are constant within (2 squares high by 2 squares wide) `panels', but vary between such panels. In Epidemiology, each square might represent a number of units of population-time, and each dot an event.}
-
-Events in Time: 10 examples [1/row], randomly generated from constant over time intensities. Simulated with 1000 Bernoulli$(\tiny{\textrm{small }\pi})$'s per time unit.}
 
 **Does the Poisson Distribution apply to$\dots$?**
 
@@ -1141,6 +1106,20 @@ France. New Eng J Med Nov 20, 2003, pp2077-2078.
 ibid. see Resources.}
 * Variations across cookies/pizzas in numbers of chocolate chips/olives.
 * Variations across days of year in numbers of deaths from sudden infant death syndrome. See \url{http://www.biostat.mcgill.ca/hanley/bios601/Intensity-Rate/AlcoholSIDS.pdf}
+
+
+
+
+
+[See](https://www.jstor.org/stable/1403193?seq=1)
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=7.5, fig.width=9, warning=FALSE, message=F,fig.cap="Section 12 of Bortkewitsch1898 book on the Poisson Distribution."}
+
+
+knitr::include_graphics('images/Bortkewitsch1898section12.jpg')
+
+```
 
 
 **Calculating Poisson probabilities:**
