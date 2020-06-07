@@ -834,7 +834,6 @@ showBinomialLimit = function(MU=c(0.5,2.5,7.5,15)){
 
 ```
 
-
 ```{r,eval=T, echo=F, fig.align="center", fig.height=5, fig.width=9, warning=FALSE, message=F,fig.cap="Various Binomial random variables/distributions, with large n's and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the 'lowee corner of the Bimonial distribution with large n's and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions."}
 
    showBinomialLimit(MU=c(0.5,2.5,5,10))
@@ -1085,6 +1084,15 @@ for(i in 1: (Mins*8) ){
 ```
 
 
+https://www.jstor.org/stable/1403193?seq=1
+
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F,fig.cap="Section 12 of Bortkewitsch1898 book on the Poisson Distribution."}
+
+
+knitr::include_graphics('images/Bortkewitsch1898section12.jpg')
+
+```
 
 # 1 d
 
