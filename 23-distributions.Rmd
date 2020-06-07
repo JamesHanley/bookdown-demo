@@ -1087,7 +1087,7 @@ for(i in 1: (Mins*8) ){
 https://www.jstor.org/stable/1403193?seq=1
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F,fig.cap="Section 12 of Bortkewitsch1898 book on the Poisson Distribution."}
+```{r,eval=T, echo=F, fig.align="center", fig.height=7.5, fig.width=9, warning=FALSE, message=F,fig.cap="Section 12 of Bortkewitsch1898 book on the Poisson Distribution."}
 
 
 knitr::include_graphics('images/Bortkewitsch1898section12.jpg')
