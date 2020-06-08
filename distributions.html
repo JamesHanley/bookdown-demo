@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-06-07" />
+<meta name="date" content="2020-06-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -343,9 +343,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In historical order</p>
 <p>Bernoulli, and scaled Bernoulli</p>
 <p>Binomial</p>
+<p>Poisson</p>
 <p>Normal</p>
 <p>beta</p>
-<p>Poisson</p>
 <p>t</p>
 <p>Wilcoxon</p>
 <p>=======</p>
@@ -796,7 +796,7 @@ Figure 13.5: Various Binomial random variables/distributions, where n = 50. The 
 Figure 13.6: Various Binomial random variables/distributions, with large n’s and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the ’lowee corner of the Bimonial distribution with large n’s and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions.
 </p>
 </div>
-<p><strong>Direct applications of the Poisson distribution</strong> today have little direct connection with a large number of Bernoulli trials with a small expecation per trial, or with providing computational shortcuts. Although Poisson did not appreciate it at the time, today his distribution has to do with the distribution of counts of events in a given amount of space or time. However, most mathematical statistics textbooks still derive the Poisson distribution as the limiting case of a Binomial. Below, we will take a broader view, emphasize the ‘time’ dimension, and give a littel more history. We will also focus on when the Poisson distribution is too narrow, and an inappropriate model for counts. We will repeat the earlier message that just becasue a random variable involbs counts doesn’t make its distribution Poisson. The best example of this is the falancy of treating the distributions of white bllood cell, or CD4 cell concentrations as if there were observed counts.</p>
+<p><strong>Direct applications of the Poisson distribution</strong> today have little direct connection with a large number of Bernoulli trials with a small expecation per trial, or with providing computational shortcuts. Although Poisson did not appreciate it at the time, today his distribution has to do with the distribution of counts of events in a given amount of space or time. However, most mathematical statistics textbooks still derive the Poisson distribution as the limiting case of a Binomial. Below, we will take a broader view, emphasize the ‘time’ dimension, and give a littel more history. We will also focus on when the Poisson distribution is too narrow, and an inappropriate model for counts. We will repeat the earlier message that <strong>just because a random variable involves counts doesn’t make its distribution Poisson</strong>. The best example of this is the falancy of treating the distributions of white bllood cell, or CD4 cell concentrations as if there were observed counts.</p>
 </div>
 <div id="poisson" class="section level3">
 <h3><span class="header-section-number">13.2.3</span> Poisson</h3>
@@ -860,6 +860,12 @@ Figure 13.7: Examples of distributions of Yeast Cells over 1 sq. mm. divided int
 <p>Student took care to avoid ‘clumping’ of cells, and other artifacts, and measured the (as they turned out to be, small) correlations between the nunber of cells on a square and the number in each of the four cells nearest it.</p>
 <p>He noticed that in both concentrations I and III the variance was greater than the mean, due to an [to us, slight] excess (of the “observed”) over the calculated (“fitted”) among the high numbers in the tail of the distribution. [Mean = 0.6825, variance 0.8117 in I; Mean = 1.80; variance = 1.96 in III]. He has pointed out earlier in the article that the budding of the yeast cell increases these high numbers, and there is also probably a tendency to stick together in groups which was not altogether abolished even by vigorous shaking.</p>
 <p>He also tested the observed frequency distribution of the 400 counts (they varied from 0 to 6 in the left panel, and 1 to 12 in the right panel) against the expected numbers of 0’s, 1’s, 2’s, etc. under the (Poisson) law using a <span class="math inline">\(\chi^2\)</span> goodness of fit statistic, and found them to be reasonable. ‘The p-values, 0.04, 0.68, 0.25 and 0.64, though not particularly high, are not at all unlikely in four trials, supposing our theoretical law to hold, and we are not likely to be very far wrong in assuming it to do so.’</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-76"></span>
+<img src="images/StudentPoissonFits.png" alt="Fits of Poisson Frequencies to the 4 sets of yeast cell counts made by Student." width="690" />
+<p class="caption">
+Figure 13.8: Fits of Poisson Frequencies to the 4 sets of yeast cell counts made by Student.
+</p>
+</div>
 <p>Clearly, the narrow pure-Poisson variation we see in Student’s counts is a tribute to his ‘vigorous shaking’ that produced the randomness. [Think about how you would ensure this with raisins in dough, or chocolate chips in cookies.]</p>
 <p><strong>Distribution of events in time intervals</strong></p>
 <p>This next example – on <strong>counting</strong> <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/RutherfordGeigerBateman1910.pdf">alpha-radiation disintegrations</a> – has the same element of randomness, but in the <strong>time dimension</strong>. Here is Rutherford’s description:</p>
@@ -867,28 +873,11 @@ Figure 13.7: Examples of distributions of Yeast Cells over 1 sq. mm. divided int
 <p>The source of radiation was a small disk coated with polonium, which was placed inside an exhausted tube, closed at one end by a zinc sulphide screen. The scintillations were counted in the usual way by means of a microscope on an area of about one sq. mm. of screen. During the timo of counting (5 days), in order to correct for the decay, the polonium was moved daily closer to the screen in order that the average number of <span class="math inline">\(\alpha\)</span> particles impinging on the screen should be nearly constant. The scintillations were recorded on a chronograph tape by closing an electric circuit by hand at the instant of each scintillation. Time-marks at intervals of one half-minute were also automatically recorded on iho same tape.<br />
 After the eye was rested, scintillations were counted from 3 to 5 minutes. The motor running the tape was then stopped and the eye rested for several minutes ; then another interval of counting, and so on. It was found possible to count 2000 scintillations a day, and in all 10,000 were recorded. The records on the tape were then systematically examined. The length of tape corresponding to half-minute marks was subdivided into four equal parts by means of a celluloid film marked with five parallel lines at equal distances. By slanting the film at different angles, the outside lines were made to pass through the time-marks, and thee number of scintillations between the lines corresponding to 1/8 minute intervals were counted through the film. By this method correction was made for slow variations in the speed of the motor during the long interval required by the observations.</p>
 </blockquote>
-<p>The following is meant to look like the marks on a 5-minute strip on the paper tape described by Rutherford.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-76"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-76-1.png" alt="Simulated  distributions of events (scintillations produced  by a radioactive source) over a 5-minute time-span. Each 1/8th of a minute is shown is a different colour. The counts in each 7.5 second bin are shown at the bottom." width="864" />
-<p class="caption">
-Figure 13.8: Simulated distributions of events (scintillations produced by a radioactive source) over a 5-minute time-span. Each 1/8th of a minute is shown is a different colour. The counts in each 7.5 second bin are shown at the bottom.
-</p>
-</div>
-<p><strong>Does the Poisson Distribution apply to<span class="math inline">\(\dots\)</span>?</strong></p>
-<ul>
-<li>Yearly variations in numbers of  killed in plane crashes? </li>
-<li>Daily variations in numbers of births?</li>
-<li>Daily variations in numbers of deaths [extra variation over the seasons]</li>
-<li>Daily variations in numbers of traffic accidents [variation over the seasons, and days of week, and with weather etc.]</li>
-<li>Daily variations in numbers of deaths in France in summer 2002 &amp; 2003</li>
-<li>Variations across cookies/pizzas in numbers of chocolate chips/olives.</li>
-<li>Variations across days of year in numbers of deaths from sudden infant death syndrome. See </li>
-</ul>
-<p><a href="https://www.jstor.org/stable/1403193?seq=1">See</a></p>
+<p>The black dots on the winding line are meant to look like the marks on a 5-minute strip of the paper tape described by Rutherford.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-77"></span>
-<img src="images/Bortkewitsch1898section12.jpg" alt="Section 12 of Bortkewitsch1898 book on the Poisson Distribution." width="974" />
+<img src="statbook_files/figure-html/unnamed-chunk-77-1.png" alt="Simulated  distributions of events (scintillations produced  by a radioactive source) over a 5-minute time-span. Each 1/8th of a minute is shown is a different colour. The counts in each 7.5 second bin are shown at the bottom." width="864" />
 <p class="caption">
-Figure 13.9: Section 12 of Bortkewitsch1898 book on the Poisson Distribution.
+Figure 13.9: Simulated distributions of events (scintillations produced by a radioactive source) over a 5-minute time-span. Each 1/8th of a minute is shown is a different colour. The counts in each 7.5 second bin are shown at the bottom.
 </p>
 </div>
 <p><strong>Calculating Poisson probabilities:</strong></p>
@@ -903,6 +892,24 @@ Figure 13.9: Section 12 of Bortkewitsch1898 book on the Poisson Distribution.
 <li><p>Using Gaussian Approximations to distribution of <span class="math inline">\(y\)</span> or transforms of it: described below, under Inference.</p></li>
 <li><p>In ‘the old days’ i.e. in the years BC (<strong>B</strong>efore <strong>C</strong>omputers’), Poisson <em>tail probabilities</em> were often calculated using links to the tail areas of other better-tabulated continuous distributions, such as the Chi-Square distribution.</p></li>
 </ul>
+<p><strong>From man-made and Nature’s randomness</strong></p>
+<p><strong>Does the Poisson Distribution apply to<span class="math inline">\(\dots\)</span>?</strong></p>
+<ul>
+<li>Yearly variations in numbers of  killed in plane crashes? </li>
+<li>Daily variations in numbers of births?</li>
+<li>Daily variations in numbers of deaths [extra variation over the seasons]</li>
+<li>Daily variations in numbers of traffic accidents [variation over the seasons, and days of week, and with weather etc.]</li>
+<li>Daily variations in numbers of deaths in France in summer 2002 &amp; 2003</li>
+<li>Variations across cookies/pizzas in numbers of chocolate chips/olives.</li>
+<li>Variations across days of year in numbers of deaths from sudden infant death syndrome. See </li>
+</ul>
+<p><a href="https://www.jstor.org/stable/1403193?seq=1">See</a></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-78"></span>
+<img src="images/Bortkewitsch1898section12.jpg" alt="Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers " width="974" />
+<p class="caption">
+Figure 13.10: Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers
+</p>
+</div>
 <p>========</p>
 <p><a href="https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982" class="uri">https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982</a></p>
 <p>dark <a href="https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula" class="uri">https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula</a></p>
