@@ -29,11 +29,11 @@ Bernoulli, and scaled Bernoulli
 
 Binomial
 
+Poisson
+
 Normal
 
 beta
-
-Poisson
 
 t
 
@@ -841,7 +841,7 @@ showBinomialLimit = function(MU=c(0.5,2.5,7.5,15)){
 ```
 
 **Direct applications of the Poisson distribution** today have little direct connection with a large number of Bernoulli trials with a small expecation per trial, or with providing computational shortcuts. Although Poisson did not appreciate it at the time,  today his distribution  has to do with the distribution of counts of events in a given amount of space or time. However, most mathematical statistics textbooks still derive the Poisson distribution as the limiting case of  a Binomial.
-Below, we will take a broader view, emphasize the 'time' dimension, and give a littel more history. We will also focus on when the Poisson distribution is too narrow, and an inappropriate model for counts. We will repeat the earlier message that just becasue a random variable involbs counts doesn't make its distribution Poisson. The best example of this is the falancy of  treating the distributions of white bllood cell, or CD4 cell concentrations as if there were observed counts. 
+Below, we will take a broader view, emphasize the 'time' dimension, and give a littel more history. We will also focus on when the Poisson distribution is too narrow, and an inappropriate model for counts. We will repeat the earlier message that **just because a random variable involves counts doesn't make its distribution Poisson**. The best example of this is the falancy of  treating the distributions of white bllood cell, or CD4 cell concentrations as if there were observed counts. 
 
 
 ### Poisson
@@ -999,6 +999,17 @@ He noticed that in both concentrations I and III the variance was greater than t
 He also tested the observed frequency distribution of the 400 counts (they varied from 0 to 6 in the left panel, and 1 to 12 in the right panel) against the expected numbers of 0's, 1's, 2's, etc. under the (Poisson) law using a $\chi^2$ goodness of fit statistic, and found them to be reasonable. 'The p-values, 0.04, 0.68, 0.25 and 0.64, though not particularly high,
 are not at all unlikely in four trials, supposing our theoretical law to hold, and we are not likely to be very far wrong in assuming it to do so.'
 
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F,fig.cap="Fits of Poisson Frequencies to the 4 sets of yeast cell counts made by Student."}
+
+
+knitr::include_graphics('images/StudentPoissonFits.png')
+
+```
+
+
+
+
 Clearly, the narrow pure-Poisson variation we see in Student's counts is a tribute to his 'vigorous shaking' that produced the randomness. [Think about how you would ensure this with raisins in dough, or chocolate chips in cookies.]
 
 **Distribution of events in time intervals**
@@ -1010,7 +1021,7 @@ After the eye was rested, scintillations were counted from 3 to 5 minutes. The m
 
 
 
-The following is meant to look like the marks on a 5-minute strip on the paper tape described by Rutherford. 
+The black dots on the winding line are meant to look like the marks on a 5-minute strip of the paper tape described by Rutherford. 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F,fig.cap="Simulated  distributions of events (scintillations produced  by a radioactive source) over a 5-minute time-span. Each 1/8th of a minute is shown is a different colour. The counts in each 7.5 second bin are shown at the bottom."}
 
@@ -1080,8 +1091,28 @@ for(i in 1: (Mins*8) ){
   if( (i %% 8) == 0 ) text(XLIM[1] + (i+2.5)*Dx, YLIM[1],
        "|" , adj=c(1,-1.5),family="mono")
 }
+      
+      
 
 ```
+
+
+
+**Calculating Poisson probabilities:**
+
+* Exactly
+   + `R: dpois, ppois, qpois rpois` mass/cum./quant./rand       
+   + `SAS: POISSON; 
+   + `Stata:  \url{www.ats.ucla.edu/ stat/stata/faq/pprob.htm}  
+   + Spreadsheet --- Excel function `POISSON}` ($y, \mu$, cumulative)
+
+* Using Gaussian Approximations to distribution of $y$ or transforms of it:
+described below, under Inference.
+
+* In 'the old days' i.e. in the years BC (**B**efore **C**omputers'), Poisson _tail probabilities_ were often calculated using links to the tail areas of other better-tabulated continuous distributions, such as the  Chi-Square distribution. 
+
+
+**From man-made and Nature's randomness**
 
 **Does the Poisson Distribution apply to$\dots$?**
 
@@ -1114,26 +1145,12 @@ ibid. see Resources.}
 [See](https://www.jstor.org/stable/1403193?seq=1)
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=7.5, fig.width=9, warning=FALSE, message=F,fig.cap="Section 12 of Bortkewitsch1898 book on the Poisson Distribution."}
+```{r,eval=T, echo=F, fig.align="center", fig.height=7.5, fig.width=9, warning=FALSE, message=F,fig.cap="Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers "}
 
 
 knitr::include_graphics('images/Bortkewitsch1898section12.jpg')
 
 ```
-
-
-**Calculating Poisson probabilities:**
-
-* Exactly
-   + `R: dpois, ppois, qpois rpois` mass/cum./quant./rand       
-   + `SAS: POISSON; 
-   + `Stata:  \url{www.ats.ucla.edu/ stat/stata/faq/pprob.htm}  
-   + Spreadsheet --- Excel function `POISSON}` ($y, \mu$, cumulative)
-
-* Using Gaussian Approximations to distribution of $y$ or transforms of it:
-described below, under Inference.
-
-* In 'the old days' i.e. in the years BC (**B**efore **C**omputers'), Poisson _tail probabilities_ were often calculated using links to the tail areas of other better-tabulated continuous distributions, such as the  Chi-Square distribution. 
 
 
 ========
