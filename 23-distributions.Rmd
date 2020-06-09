@@ -898,7 +898,7 @@ Y_{2} \sim \textrm{Poisson}(\mu_{2}) \Rightarrow Y = Y_{1} + Y_{2} \sim \textrm{
 Here are the original [Danish version](http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/ErlangInDanish1909.pdf) and a  [translation](http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/Erlang1909.pdf). This ['simple explanation'](http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/ErlangSimpleProofPoisson.pdf#page=14) in the English translation of a 1920 article has a critical cut and paste typographical error. The original [Danish version](http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/38MatematiskTidsskrift1920.pdf) has it correct.
 * 1910 [Rutherford](https://www.physics.mcgill.ca/museum/rutherfordcollection.html) (having departed McGill in 1907) and Geiger (of the 'counter'), physicists, and  Bateman, a mathematician, developed the [Poisson Law by an time-based argument](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/RutherfordGeigerBateman1910.pdf)  expressed as a differential equation, a Law that agreed with the empirical distibution in their large particle-counting experiment.
 * 1946 [Flying-bomb attacks on London during WW II](https://www.actuaries.org.uk/system/files/documents/pdf/0481.pdf), along with 2019 Update: [Significance Magazine Early-career Writing Award](https://www.significancemagazine.com/10-news/627-finalists-announced-for-early-career-writing-award?highlight=WyJib21icyIsImJvbWJzJyJd) announcement and [intro to](https://www.significancemagazine.com/10-news/635-a-world-war-ii-investigation-updated-for-the-modern-era?highlight=WyJzaGF3Iiwic2hhdydzIl0=) and [full article](https://rss.onlinelibrary.wiley.com/doi/10.1111/j.1740-9713.2019.01315.x). 
-* Commentators
+* Commentators:  
    + [Newbold](http://www.biostat.mcgill.ca/hanley/statbook/Newbold1927.pdf) gives a lot of credit to deMoivre.
    + [Haight](http://www.biostat.mcgill.ca/hanley/statbook/HaightHistorical.pdf) is the mots comprehensive.
    + [Stigler](http://www.biostat.mcgill.ca/hanley/statbook/StiglerPoisson.pdf) is a bit more nuanced.
@@ -1112,9 +1112,157 @@ described below, under Inference.
 * In 'the old days' i.e. in the years BC (**B**efore **C**omputers'), Poisson _tail probabilities_ were often calculated using links to the tail areas of other better-tabulated continuous distributions, such as the  Chi-Square distribution. 
 
 
-**From man-made and Nature's randomness**
+**Moving From man-made and Nature's randomness**
 
-**Does the Poisson Distribution apply to$\dots$?**
+**_Example 1_**, From [Bortkewitsch, 1898](http://www.biostat.mcgill.ca/hanley/statbook/dasGesetzDerKeinemZaklenBortkiewicz.pdf#page=51)
+
+The table below contains the numbers of boys (Knaben) and girls (Mädchen) under 10 years in Prussia in the period 1869-1893 who committed suicide.
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F}
+
+Jayr = 1869:1893
+
+n.boys =c(2, 3, 1, 4, 1, 4, 0, 3, 0, 1, 2, 6, 3, 4, 1, 0, 2, 2, 1, 1, 0, 2, 1, 1, 4)
+n.girls=c(1, 0, 1, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1)
+
+ds=data.frame(Jayr,n.boys,n.girls)
+
+cat("Generating the 'x' and 'l_x' columns on p. 17 of the book")
+
+( freq = table(ds$n.boys) )
+
+y = 0:8  # to align with Bortkewitsch's table of fitted frequencies
+
+Observed.freq = rep(0, length(y) )
+
+indices = as.numeric( dimnames(freq)[[1]] )
+
+Observed.freq[1 + indices] = freq
+
+Fitted.freq = round(length(ds$n.boys) * dpois(y, mean(ds$n.boys) ),1) 
+
+cbind(y, Observed.freq, Fitted.freq )
+
+
+```
+
+
+USA
+
+**_Example 2_**, From [Bortkewitsch, 1898](http://www.biostat.mcgill.ca/hanley/statbook/dasGesetzDerKeinemZaklenBortkiewicz.pdf#page=51)
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F}
+
+title="Female suicides in eight German states\n\nThe table below shows the number of female suicides in\nevery calendar year from 1881 to 1894 in the following states\n\na) Schaumburg-Lippe, b) Waldeck, c) Lubeck, d) Reufs a. L., \ne) Lippe, f) Schwarzburg-Rudolstadt, g) Mecklenburg- Strelitz\nh) Schwarzburg-Sondershausen.)\n\nsource: Allgemeines Statistisches Archiv, 4. Jahrgang, II. Hbd.,\n1896. Art. Der Selbstmord von G. v. Mayr, S. 718."
+
+cat(title)
+
+number.female.suicides = t( matrix(c(
+0, 2,	0, 2,  0, 0,  3, 3, 1, 3, 1, 3, 1,  1,
+2, 3,	1, 2,	 2, 0,  4, 1, 3, 1, 5, 3, 1,  3,
+3, 2,	1, 4,	 3, 0,  3, 2, 3, 4, 1, 1, 4,  6,
+5, 2, 3, 3,	 3, 6,  4, 1, 4, 2, 2, 1, 1,  0,
+4, 1,	1, 6,	 1, 4,  6, 0, 6, 4, 0, 3, 3,  2,
+5, 1, 8, 6,	 6, 3,  5, 7, 5, 7, 6, 5, 3,  5,
+1, 3,	4, 4, 10, 9,  4, 2, 8, 9, 4, 8, 6,  2,
+2, 5,	5, 2,  2, 4, 10, 2, 6, 9,	9, 4, 9, 10), 14,8 ) )
+
+colnames(number.female.suicides) = unlist(lapply(1881:1894,toString))
+
+rownames(number.female.suicides) = letters[1:8]
+
+tab = apply(number.female.suicides,1,table)
+
+freq=matrix(0,8,11)
+
+for(i.r in 1:8){
+  tble = tab[[i.r]]
+  indices = as.numeric(dimnames(tble)[[1]])
+  freq[i.r, indices+1] = tble
+}
+
+
+```
+
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F}
+
+
+print(as.table(number.female.suicides),zero.print = ".")
+
+```
+
+We turn Table 1 into one that indicates indirectly how many times in each row of table 1 (and in all lines taken together) the annual result 0, 1, 2, etc.
+occurs.
+
+```{r,eval=T, echo=T, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F}
+
+FREQ = as.table(freq)
+colnames(FREQ) = unlist(lapply((1:length(freq[1,])-1),toString))
+rownames(FREQ) = rownames(tab) 
+print(FREQ, zero.print = ".", print.gap=4)
+
+
+print( as.table(apply(freq,2,sum)) ,
+       zero.print = ".", print.gap= 4 )
+
+```
+
+The latter table shows the effective dispersion of the annual results.
+nisse expressed. The corresponding expected dispersion, calculated on the basis of the mean values, obtained by division
+of the numbers in the last column of Table 1 obtained by 14
+are like this:
+  
+The latter table If one looks at the last lines of tables 2 and 3, it shows
+themselves, with a few exceptions, which are due to this
+may have that the elements under consideration are very little
+numerous, a very satisfactory statistical match
+Experience with forecasting the theory.
+If you pull the x values') 0 - 2 into a first one, the x values 3 - 4
+in a second and the x values 5 and more in a third group
+together, it is found that the first group is expectant
+45.2, in reality 45 x values are omitted, to the second 33.8 or 35
+and on the third 33.0 resp. 32.
+A summary expression is found in the current example
+
+
+
+
+**3rd example**: The numbers of daily incidents for eleven professional
+cooperatives.
+In the table below are the for a 9 year period
+Numbers of work accidents with a daily outcome, which are at
+the professional associations concerned have occurred every year,
+introduced. Of those based on the Accident Insurance Act of
+On July 6, 1884, professional associations set up those
+for which the statistics show the smallest numbers of such accidents
+proves. The professional associations are not by their name,
+which are not important here, but according to the regulatory
+numbers with which they appear in the statistical publications')
+are provided.
+
+Number.work.accidents = t ( matrix( c(
+6, 8, 7,  5, 14, 8, 9, 4,  8,
+2, 2, 2,  1,  1, 3, 5, 3,  4,
+0, 1, 2,  2,  5, 0, 2, 7,  4,
+3, 3, 5,  3, 10, 2, 5, 4,  4,
+3, 9, 6, 11,  6, 8, 5, 4,  4,
+1, 2, 2,  3,  1, 1, 1, 4,  2,
+4, 8, 4,  3,  8, 3, 7, 4, 12,
+2, 5, 1,  3,  2, 0, 0, 6,  7,
+1, 3, 5,  4,  6, 7, 5, 8,  7,
+5, 6, 5,  5,  3, 4, 0, 8,  5,
+5, 5, 2,  2,  7, 5, 3, 6,  4),9,11) )
+
+
+
+flying-bombs
+
+Births
+
+
+
+**Does the Poisson Distribution apply to... ?**
 
 * Yearly variations in numbers of \textit{persons} killed in
 plane crashes? \footnote{Yearly variations in no.s of plane\textit{ crashes} may
