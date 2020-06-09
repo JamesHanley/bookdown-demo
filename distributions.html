@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-06-08" />
+<meta name="date" content="2020-06-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -833,7 +833,8 @@ Figure 13.6: Various Binomial random variables/distributions, with large n’s a
 <li>1909 Erlang, a Danish engineer concerned with the theory of telephone traffic, developed the Poisson Law by an elegant argument based on the steady state behaviour of the beginning and terminations of calls. Here are the original <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/ErlangInDanish1909.pdf">Danish version</a> and a <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/Erlang1909.pdf">translation</a>. This <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/ErlangSimpleProofPoisson.pdf#page=14">‘simple explanation’</a> in the English translation of a 1920 article has a critical cut and paste typographical error. The original <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/statbook/38MatematiskTidsskrift1920.pdf">Danish version</a> has it correct.</li>
 <li>1910 <a href="https://www.physics.mcgill.ca/museum/rutherfordcollection.html">Rutherford</a> (having departed McGill in 1907) and Geiger (of the ‘counter’), physicists, and Bateman, a mathematician, developed the <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/RutherfordGeigerBateman1910.pdf">Poisson Law by an time-based argument</a> expressed as a differential equation, a Law that agreed with the empirical distibution in their large particle-counting experiment.</li>
 <li>1946 <a href="https://www.actuaries.org.uk/system/files/documents/pdf/0481.pdf">Flying-bomb attacks on London during WW II</a>, along with 2019 Update: <a href="https://www.significancemagazine.com/10-news/627-finalists-announced-for-early-career-writing-award?highlight=WyJib21icyIsImJvbWJzJyJd">Significance Magazine Early-career Writing Award</a> announcement and <a href="https://www.significancemagazine.com/10-news/635-a-world-war-ii-investigation-updated-for-the-modern-era?highlight=WyJzaGF3Iiwic2hhdydzIl0=">intro to</a> and <a href="https://rss.onlinelibrary.wiley.com/doi/10.1111/j.1740-9713.2019.01315.x">full article</a>.</li>
-<li>Commentators</li>
+<li>Commentators:<br />
+</li>
 <li><a href="http://www.biostat.mcgill.ca/hanley/statbook/Newbold1927.pdf">Newbold</a> gives a lot of credit to deMoivre.</li>
 <li><a href="http://www.biostat.mcgill.ca/hanley/statbook/HaightHistorical.pdf">Haight</a> is the mots comprehensive.</li>
 <li><a href="http://www.biostat.mcgill.ca/hanley/statbook/StiglerPoisson.pdf">Stigler</a> is a bit more nuanced.</li>
@@ -892,8 +893,91 @@ Figure 13.9: Simulated distributions of events (scintillations produced by a rad
 <li><p>Using Gaussian Approximations to distribution of <span class="math inline">\(y\)</span> or transforms of it: described below, under Inference.</p></li>
 <li><p>In ‘the old days’ i.e. in the years BC (<strong>B</strong>efore <strong>C</strong>omputers’), Poisson <em>tail probabilities</em> were often calculated using links to the tail areas of other better-tabulated continuous distributions, such as the Chi-Square distribution.</p></li>
 </ul>
-<p><strong>From man-made and Nature’s randomness</strong></p>
-<p><strong>Does the Poisson Distribution apply to<span class="math inline">\(\dots\)</span>?</strong></p>
+<p><strong>Moving From man-made and Nature’s randomness</strong></p>
+<p><strong><em>Example 1</em></strong>, From <a href="http://www.biostat.mcgill.ca/hanley/statbook/dasGesetzDerKeinemZaklenBortkiewicz.pdf#page=51">Bortkewitsch, 1898</a></p>
+<p>The table below contains the numbers of boys (Knaben) and girls (Mädchen) under 10 years in Prussia in the period 1869-1893 who committed suicide.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Jayr =<span class="st"> </span><span class="dv">1869</span><span class="op">:</span><span class="dv">1893</span>
+
+n.boys =<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>)
+n.girls=<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)
+
+ds=<span class="kw">data.frame</span>(Jayr,n.boys,n.girls)
+
+<span class="kw">cat</span>(<span class="st">&quot;Generating the &#39;x&#39; and &#39;l_x&#39; columns on p. 17 of the book&quot;</span>)</code></pre></div>
+<pre><code>## Generating the &#39;x&#39; and &#39;l_x&#39; columns on p. 17 of the book</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">( <span class="dt">freq =</span> <span class="kw">table</span>(ds<span class="op">$</span>n.boys) )</code></pre></div>
+<pre><code>## 
+## 0 1 2 3 4 6 
+## 4 8 5 3 4 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y =<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">8</span>  <span class="co"># to align with Bortkewitsch&#39;s table of fitted frequencies</span>
+
+Observed.freq =<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">length</span>(y) )
+
+indices =<span class="st"> </span><span class="kw">as.numeric</span>( <span class="kw">dimnames</span>(freq)[[<span class="dv">1</span>]] )
+
+Observed.freq[<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>indices] =<span class="st"> </span>freq
+
+Fitted.freq =<span class="st"> </span><span class="kw">round</span>(<span class="kw">length</span>(ds<span class="op">$</span>n.boys) <span class="op">*</span><span class="st"> </span><span class="kw">dpois</span>(y, <span class="kw">mean</span>(ds<span class="op">$</span>n.boys) ),<span class="dv">1</span>) 
+
+<span class="kw">cbind</span>(y, Observed.freq, Fitted.freq )</code></pre></div>
+<pre><code>##       y Observed.freq Fitted.freq
+##  [1,] 0             4         3.5
+##  [2,] 1             8         6.9
+##  [3,] 2             5         6.8
+##  [4,] 3             3         4.4
+##  [5,] 4             4         2.2
+##  [6,] 5             0         0.8
+##  [7,] 6             1         0.3
+##  [8,] 7             0         0.1
+##  [9,] 8             0         0.0</code></pre>
+<p>USA</p>
+<p><strong><em>Example 2</em></strong>, From <a href="http://www.biostat.mcgill.ca/hanley/statbook/dasGesetzDerKeinemZaklenBortkiewicz.pdf#page=51">Bortkewitsch, 1898</a></p>
+<pre><code>## Female suicides in eight German states
+## 
+## The table below shows the number of female suicides in
+## every calendar year from 1881 to 1894 in the following states
+## 
+## a) Schaumburg-Lippe, b) Waldeck, c) Lubeck, d) Reufs a. L., 
+## e) Lippe, f) Schwarzburg-Rudolstadt, g) Mecklenburg- Strelitz
+## h) Schwarzburg-Sondershausen.)
+## 
+## source: Allgemeines Statistisches Archiv, 4. Jahrgang, II. Hbd.,
+## 1896. Art. Der Selbstmord von G. v. Mayr, S. 718.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">as.table</span>(number.female.suicides),<span class="dt">zero.print =</span> <span class="st">&quot;.&quot;</span>)</code></pre></div>
+<pre><code>##   1881 1882 1883 1884 1885 1886 1887 1888 1889 1890 1891 1892 1893 1894
+## a    .    2    .    2    .    .    3    3    1    3    1    3    1    1
+## b    2    3    1    2    2    .    4    1    3    1    5    3    1    3
+## c    3    2    1    4    3    .    3    2    3    4    1    1    4    6
+## d    5    2    3    3    3    6    4    1    4    2    2    1    1    .
+## e    4    1    1    6    1    4    6    .    6    4    .    3    3    2
+## f    5    1    8    6    6    3    5    7    5    7    6    5    3    5
+## g    1    3    4    4   10    9    4    2    8    9    4    8    6    2
+## h    2    5    5    2    2    4   10    2    6    9    9    4    9   10</code></pre>
+<p>We turn Table 1 into one that indicates indirectly how many times in each row of table 1 (and in all lines taken together) the annual result 0, 1, 2, etc. occurs.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FREQ =<span class="st"> </span><span class="kw">as.table</span>(freq)
+<span class="kw">colnames</span>(FREQ) =<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">lapply</span>((<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(freq[<span class="dv">1</span>,])<span class="op">-</span><span class="dv">1</span>),toString))
+<span class="kw">rownames</span>(FREQ) =<span class="st"> </span><span class="kw">rownames</span>(tab) 
+<span class="kw">print</span>(FREQ, <span class="dt">zero.print =</span> <span class="st">&quot;.&quot;</span>, <span class="dt">print.gap=</span><span class="dv">4</span>)</code></pre></div>
+<pre><code>##         0    1    2    3    4    5    6    7    8    9    10
+## [1,]    4    4    2    4    .    .    .    .    .    .     .
+## [2,]    1    4    3    4    1    1    .    .    .    .     .
+## [3,]    1    3    2    4    3    .    1    .    .    .     .
+## [4,]    1    3    3    3    2    1    1    .    .    .     .
+## [5,]    2    3    1    2    3    .    3    .    .    .     .
+## [6,]    .    1    .    2    .    5    3    2    1    .     .
+## [7,]    .    1    2    1    4    .    1    .    2    2     1
+## [8,]    .    .    4    .    2    2    1    .    .    3     2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>( <span class="kw">as.table</span>(<span class="kw">apply</span>(freq,<span class="dv">2</span>,sum)) ,
+       <span class="dt">zero.print =</span> <span class="st">&quot;.&quot;</span>, <span class="dt">print.gap=</span> <span class="dv">4</span> )</code></pre></div>
+<pre><code>##  A     B     C     D     E     F     G     H     I     J     K    
+##  9    19    17    20    15     9    10     2     3     5     3</code></pre>
+<p>The latter table shows the effective dispersion of the annual results. nisse expressed. The corresponding expected dispersion, calculated on the basis of the mean values, obtained by division of the numbers in the last column of Table 1 obtained by 14 are like this:</p>
+<p>The latter table If one looks at the last lines of tables 2 and 3, it shows themselves, with a few exceptions, which are due to this may have that the elements under consideration are very little numerous, a very satisfactory statistical match Experience with forecasting the theory. If you pull the x values’) 0 - 2 into a first one, the x values 3 - 4 in a second and the x values 5 and more in a third group together, it is found that the first group is expectant 45.2, in reality 45 x values are omitted, to the second 33.8 or 35 and on the third 33.0 resp. 32. A summary expression is found in the current example</p>
+<p><strong>3rd example</strong>: The numbers of daily incidents for eleven professional cooperatives. In the table below are the for a 9 year period Numbers of work accidents with a daily outcome, which are at the professional associations concerned have occurred every year, introduced. Of those based on the Accident Insurance Act of On July 6, 1884, professional associations set up those for which the statistics show the smallest numbers of such accidents proves. The professional associations are not by their name, which are not important here, but according to the regulatory numbers with which they appear in the statistical publications’) are provided.</p>
+<p>Number.work.accidents = t ( matrix( c( 6, 8, 7, 5, 14, 8, 9, 4, 8, 2, 2, 2, 1, 1, 3, 5, 3, 4, 0, 1, 2, 2, 5, 0, 2, 7, 4, 3, 3, 5, 3, 10, 2, 5, 4, 4, 3, 9, 6, 11, 6, 8, 5, 4, 4, 1, 2, 2, 3, 1, 1, 1, 4, 2, 4, 8, 4, 3, 8, 3, 7, 4, 12, 2, 5, 1, 3, 2, 0, 0, 6, 7, 1, 3, 5, 4, 6, 7, 5, 8, 7, 5, 6, 5, 5, 3, 4, 0, 8, 5, 5, 5, 2, 2, 7, 5, 3, 6, 4),9,11) )</p>
+<p>flying-bombs</p>
+<p>Births</p>
+<p><strong>Does the Poisson Distribution apply to… ?</strong></p>
 <ul>
 <li>Yearly variations in numbers of  killed in plane crashes? </li>
 <li>Daily variations in numbers of births?</li>
@@ -904,7 +988,7 @@ Figure 13.9: Simulated distributions of events (scintillations produced by a rad
 <li>Variations across days of year in numbers of deaths from sudden infant death syndrome. See </li>
 </ul>
 <p><a href="https://www.jstor.org/stable/1403193?seq=1">See</a></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-78"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-82"></span>
 <img src="images/Bortkewitsch1898section12.jpg" alt="Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers " width="974" />
 <p class="caption">
 Figure 13.10: Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers
