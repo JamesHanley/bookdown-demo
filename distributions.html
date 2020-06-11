@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-06-09" />
+<meta name="date" content="2020-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -220,6 +220,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.3.6" data-path="distributions.html"><a href="distributions.html#its-the-3rd-week-of-the-course-it-must-be-binomial"><i class="fa fa-check"></i><b>13.3.6</b> It’s the 3rd week of the course: it must be Binomial</a></li>
 <li class="chapter" data-level="13.3.7" data-path="distributions.html"><a href="distributions.html#tests-of-intuition"><i class="fa fa-check"></i><b>13.3.7</b> Tests of intuition</a></li>
 <li class="chapter" data-level="13.3.8" data-path="distributions.html"><a href="distributions.html#ci-for-proportion-when-observe-0n-or-nn"><i class="fa fa-check"></i><b>13.3.8</b> CI for proportion when observe 0/n or n/n</a></li>
+<li class="chapter" data-level="13.3.9" data-path="distributions.html"><a href="distributions.html#neg.-correlations-under-binomial-variation"><i class="fa fa-check"></i><b>13.3.9</b> neg. correlations … under-binomial variation</a></li>
+<li class="chapter" data-level="13.3.10" data-path="distributions.html"><a href="distributions.html#weights-of-offspring-pupstwins"><i class="fa fa-check"></i><b>13.3.10</b> weights of offspring (pups/twins)</a></li>
+<li class="chapter" data-level="13.3.11" data-path="distributions.html"><a href="distributions.html#suicides"><i class="fa fa-check"></i><b>13.3.11</b> suicides</a></li>
+<li class="chapter" data-level="13.3.12" data-path="distributions.html"><a href="distributions.html#horsekicks"><i class="fa fa-check"></i><b>13.3.12</b> horsekicks</a></li>
+<li class="chapter" data-level="13.3.13" data-path="distributions.html"><a href="distributions.html#visits-to-dentists-cochran"><i class="fa fa-check"></i><b>13.3.13</b> Visits to dentists (Cochran)</a></li>
+<li class="chapter" data-level="13.3.14" data-path="distributions.html"><a href="distributions.html#jhs-steps-per-day"><i class="fa fa-check"></i><b>13.3.14</b> JH’s steps per day</a></li>
+<li class="chapter" data-level="13.3.15" data-path="distributions.html"><a href="distributions.html#cd4-counts"><i class="fa fa-check"></i><b>13.3.15</b> CD4 counts</a></li>
+<li class="chapter" data-level="13.3.16" data-path="distributions.html"><a href="distributions.html#tweets"><i class="fa fa-check"></i><b>13.3.16</b> tweets</a></li>
+<li class="chapter" data-level="13.3.17" data-path="distributions.html"><a href="distributions.html#accidents"><i class="fa fa-check"></i><b>13.3.17</b> accidents</a></li>
+<li class="chapter" data-level="13.3.18" data-path="distributions.html"><a href="distributions.html#bootstrap"><i class="fa fa-check"></i><b>13.3.18</b> bootstrap</a></li>
+<li class="chapter" data-level="13.3.19" data-path="distributions.html"><a href="distributions.html#no.-of-seats-doors-cyclinders-in-cars"><i class="fa fa-check"></i><b>13.3.19</b> no. of seats / doors / cyclinders in cars</a></li>
+<li class="chapter" data-level="13.3.20" data-path="distributions.html"><a href="distributions.html#sex-ratio-in-accidents-fars"><i class="fa fa-check"></i><b>13.3.20</b> sex ratio in accidents (FARS)</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Part III</b></span></li>
@@ -330,7 +342,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>So, the <strong>specific objectives</strong> in this chapter are to truly understand</p>
 <ul>
 <li><p>the distinction between a natural and investigator-made distributions, and between observable and conceptual ones.</p></li>
-<li><p>why we should automatically associate certain distributions with certain types of random variables</p></li>
+<li><p>why we should not automatically associate certain distributions with certain types of random variables</p></li>
 <li><p>why we need to understand the pre-requisites for random variables following the distributions they do</p></li>
 <li><p>why we rely so much on the Normal distribution, and why it is so ‘Central’ to statistical inference concerning parameters.</p></li>
 <li><p>why the pre-occupation with checking ‘Normality’ (Gaussian-ness) is misguided</p></li>
@@ -340,8 +352,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="named-distributions" class="section level2">
 <h2><span class="header-section-number">13.2</span> Named Distributions</h2>
-<p>In historical order</p>
-<p>Bernoulli, and scaled Bernoulli</p>
+<p>(in historical order)</p>
+<p>Bernoulli [and scaled Bernoulli]</p>
 <p>Binomial</p>
 <p>Poisson</p>
 <p>Normal</p>
@@ -355,7 +367,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The simplest random variable is one that take just 2 possible values, such as YES/NO, MALE/FEMALE, 0/1, ON/OFF, POSITIVE/NEGATIVE, PRESENT/ABSENT, EXISTS/DOES NOT, etc.</p>
 <p>This random variable <span class="math inline">\(Y\)</span> is governed by just one parameter, namely the probability, <span class="math inline">\(\pi\)</span>, that it takes on the YES (or ‘1’) value. Of course you can reverse the scale, and speak about the probability of a NO (or ‘0’) result.</p>
 <p>It is too bad that when <a href="https://en.wikipedia.org/wiki/Bernoulli_distribution">Wikipedia</a>, which has a unified way of showing the main features of statistical distributions, does not follow its own principles and show a graph of various versions of a Bernoulli distribution. So here is such a graph.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-66"></span>
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-66"></span>
 <img src="statbook_files/figure-html/unnamed-chunk-66-1.png" alt="Various Bernoulli random variables/distributions. We continue our convention of using the letter Y (instead of X) as the generic name for a random variable. Moreover, in keeping with this view, all of the selected Bernoulli distributions are plotted with their 2 possible values shown on the vertical axis." width="864" />
 <p class="caption">
 Figure 13.1: Various Bernoulli random variables/distributions. We continue our convention of using the letter Y (instead of X) as the generic name for a random variable. Moreover, in keeping with this view, all of the selected Bernoulli distributions are plotted with their 2 possible values shown on the vertical axis.
@@ -381,7 +393,7 @@ Figure 13.1: Various Bernoulli random variables/distributions. We continue our c
 </ul>
 <p>This functional form for the (‘unit’) variance is not entirely surprising: it is obvious from the selected distributions whon that the most concentrated Bernoulli distributions are the ones where the proportion <span class="math inline">\((\pi)\)</span> of Y = 1 values is either close to 1 or to zero, and that the most spread out Bernoulli distributions are the ones where <span class="math inline">\(\pi\)</span> is close to 1/2. And, and a function of <span class="math inline">\(\pi\)</span>, the Variance must be symmetric about <span class="math inline">\(\pi\)</span> = 1/2.</p>
 <p>The fact that the greatest uncertainty (‘entropy’, lack of order or predictability) is when <span class="math inline">\(\pi\)</span> = 1/2 is one of the factors that makes sports contests more engaging when teams or players are well matched. Later, when we come to study what influences the imprecision of sample surveys, we will see that for a given sample size, the imprecision is largest when <span class="math inline">\(\pi\)</span> is closer to 1/2.</p>
-<p><strong>Why focus on the variance of a Bernoulli random variable?</strong> because, later, when we use the more intesting binomial distribution, we can call on first prionciples to recall what its expection and variance are. A Binomial random variable is the sum of <span class="math inline">\(n\)</span> independently distributed Bernoulli random variables, all with the same expectation <span class="math inline">\(\pi\)</span> and unit variance <span class="math inline">\(\pi(1-\pi).\)</span> Thus its expectation (<span class="math inline">\(E\)</span>) and variance (<span class="math inline">\(V\)</span>) are the sums of these ‘unit’ versions, i.e., <span class="math inline">\(E[binom.sum] = n \times \pi\)</span> and <span class="math inline">\(V[binom.sum] = n \times \pi(1-\pi).\)</span> Moreover, again from first principles, we can deduce that if instead of a sample <em>sum</em>, we are interested in a sample <em>mean</em> (here the <em>mean</em> of the 0’s and 1’s is the sample <em>proportion</em>), its expected value is <span class="math display">\[\boxed{\boxed{E[binom.prop&#39;n] = \frac{n \pi}{n} = \pi; \   V[.] = \frac{n  \pi(1-\pi))}{n^2} = \frac{\pi(1-\pi)}{n}; \ SD[.] = \frac{\sqrt{\pi(1-\pi)}}{ \sqrt{n}} = \frac{\sigma_{0,1}}{\sqrt{n}} } }  \]</span></p>
+<p><strong>Why focus on the <em>variance</em> of a Bernoulli random variable?</strong> because, later, when we use the more intesting binomial distribution, we can call on first prionciples to recall what its expectation and variance are. A Binomial random variable is the sum of <span class="math inline">\(n\)</span> independently distributed Bernoulli random variables, all with the same expectation <span class="math inline">\(\pi\)</span> and <strong>unit variance</strong> <span class="math inline">\(\pi(1-\pi).\)</span> Thus its expectation (<span class="math inline">\(E\)</span>) and variance (<span class="math inline">\(V\)</span>) are the <strong>sums of these ‘unit’ versions</strong>, i.e., <span class="math inline">\(E[binom.sum] = n \times \pi\)</span> and <span class="math inline">\(V[binom.sum] = n \times \pi(1-\pi).\)</span> Moreover, again from first principles, we can deduce that if instead of a sample <em>sum</em>, we are interested in a sample <em>mean</em> (here the <em>mean</em> of the 0’s and 1’s is the sample <em>proportion</em>), its expected value is <span class="math display">\[\boxed{\boxed{E[binom.prop&#39;n] = \frac{n \pi}{n} = \pi; \   V[.] = \frac{n  \pi(1-\pi))}{n^2} = \frac{\pi(1-\pi)}{n}; \ SD[.] = \frac{\sqrt{\pi(1-\pi)}}{ \sqrt{n}} = \frac{\sigma_{0,1}}{\sqrt{n}} } }  \]</span></p>
 <p>Note here the generic way we write the SD of the sampling distribution of a sample proportion, in the same way that we write the SD of the sampling distribution of a sample mean, as <span class="math inline">\(\sigma_u/\sqrt{n},\)</span> where <span class="math inline">\(\sigma_u\)</span> is the ‘unit’ SD, the standard deviation of the values of <em>individuals</em>. The individual values in the case of a Bernoulli randomn variable are just 0s and 1s, and their SD is <span class="math inline">\(\sqrt{\pi(1-\pi)}.\)</span> We call this SD the SD of the 0’1 and 1’s, or <span class="math inline">\(\sigma_{0,1}\)</span> for short.</p>
 <p>Notice how, even though it might look nicer and simpler to compute, and involves just 1 square root calculation, we did not write the SD of a binomial proportion as<br />
 <span class="math display">\[SD[binom.proportion] = \sqrt{\frac{\pi(1-\pi)}{ n} }.\]</span> We choose instead to use the <span class="math inline">\(\sigma/\sqrt{n}\)</span> version, to show that it has the same <em>form</em> as the SD for the sampling distribution of a sample mean. Now that we no longer need to savw keystrokes on a hand caloculator, we should move away from computational forms and focus instead on the intuitive form. Sadly, many textbooks re-use the same concept in disjoint chapters without telling readers they are cases of the same SD formula.</p>
@@ -408,7 +420,7 @@ m =<span class="st"> </span><span class="kw">matrix</span>(zeros.and.ones,n<span
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>( <span class="kw">sd</span>(zeros.and.ones),<span class="dv">4</span>)</code></pre></div>
 <pre><code>## [1] 0.4154</code></pre>
 <p>Try the above code with a larger <span class="math inline">\(n\)</span> and a different <span class="math inline">\(\pi\)</span> and convince yourself that the variance (and thus the SD) of the individual 0 and 1 values (a) have nothing to do with how many there are and everything to do with what proportion of them are of each type and (b) are larger when the proportions are close to each other, and smaller when they are not.</p>
-<p><strong>Scaled-Bernoulli random variables</strong></p>
+<p><strong>Scaled-Bernoulli random variables</strong> (to come)</p>
 <p><strong>Could we get by without studying the Binomial Distribution?</strong> The answer is ‘for most applications, yes.’ The reason is that in in most cases, we are able to use a Gaussian (Normal) approximation to the binomial distribution. Thus, all we need are its expectation and variance (standard deviation): we don’t need the <code>dbinom()</code> probability mass function, or the <code>pbinom()</code> that gives the cumulative distribution function and thus the tail areas, or the <code>qbinom()</code> function that gives the quantiles. But sometimes we deal with situations where the binomial distributions are not symmetric and close-enough-to-Gaussian.</p>
 <p>Below we recount how, in 1738, almost 4 decades before Gauss was born, when summing the probabilities of a binomial distribution with a large <span class="math inline">\(n\)</span>, <a href="https://en.wikipedia.org/wiki/De_Moivre–Laplace_theorem">deMoivre</a> effectively used the as-yet unrecognized ‘Gaussian’ distribution as a very accurate approximation. Without calling it this, he relied on the standard deviation of the binomial distribution.</p>
 <p>===</p>
@@ -488,13 +500,245 @@ m =<span class="st"> </span><span class="kw">matrix</span>(zeros.and.ones,n<span
 <li><p>It helps to distinguish the population values, say <span class="math inline">\(Y_1\)</span> to <span class="math inline">\(Y_N\)</span>, from the <span class="math inline">\(n\)</span> sampled values <span class="math inline">\(y_1\)</span> to <span class="math inline">\(y_n\)</span>. Denote by <span class="math inline">\(y_i\)</span> the value of the <span class="math inline">\(i\)</span>-th sampled element. Prob[<span class="math inline">\(y_i\)</span> = 1] is constant (it is <span class="math inline">\(\pi\)</span>) across <span class="math inline">\(i\)</span>. In the <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Mean-Quantile/inside_outside.pdf">What proportion of our time do we spend indoors?</a> example, it is the <strong>random/blind sampling</strong> of the temporal and spatial patterns of 0s and 1s that <strong>makes <span class="math inline">\(y_1\)</span> to <span class="math inline">\(y_n\)</span> independent of each other</strong>. The <span class="math inline">\(Y\)</span>’s, the elements in the population can be related to each other [e.g. there can be a peculiar spatial distribution of persons] but if elements are chosen at random, the chance that the value of the <span class="math inline">\(i\)</span>-th element chosen is a 1 cannot depend on the value of <span class="math inline">\(y_{i−1}\)</span> or any other <span class="math inline">\(y\)</span>: the sampling is ‘blind’ to the spatial location of the 1’s and 0s.</p></li>
 </ul>
 <p><strong>Binomial probabilities, illustrated using a Binomial Tree</strong></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-68"></span>
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-68"></span>
 <img src="statbook_files/figure-html/unnamed-chunk-68-1.png" alt="From 5 (independent and identically distributed) Bernoulli observations to Binomial(n=5), with the Bernoulli probability left unspecified. There are 2 to the power n possible (distinct) sequences of 0's and 1's, each with its probability. We are not interested in these 2 to the power n probabilities, but in the probability that the sample  contains y 1's and (n-y) 0's. There are only (n+1) possibilities for y, namely 0 to n. Fortunately, each of the n.choose.y sequences that lead to the same sum or count y, has the same probability. So we group the 2.to.power.n sequences into (n+1) sets, according to the sum or count. Each sequence in the set with  y 1's and (n-y) 0's has the same probability, namely  the prob.to.the.power.y times (1-prob).to.the.power.(n-y). Thus, in lieu of adding all such probabilities, we simply multiply this  probability by the number, n.choose-y -- shown in black -- of unique sequences in the set. Check: the frequencies in black add to 2.to.power.n. Nowadays, the (n+1) probabilities are easily obtained by supplying a value for the 'prob' argument in the R function dbinom(), instead of  computing the binomial coefficient n.choose-y by hand." width="864" />
 <p class="caption">
 Figure 13.2: From 5 (independent and identically distributed) Bernoulli observations to Binomial(n=5), with the Bernoulli probability left unspecified. There are 2 to the power n possible (distinct) sequences of 0’s and 1’s, each with its probability. We are not interested in these 2 to the power n probabilities, but in the probability that the sample contains y 1’s and (n-y) 0’s. There are only (n+1) possibilities for y, namely 0 to n. Fortunately, each of the n.choose.y sequences that lead to the same sum or count y, has the same probability. So we group the 2.to.power.n sequences into (n+1) sets, according to the sum or count. Each sequence in the set with y 1’s and (n-y) 0’s has the same probability, namely the prob.to.the.power.y times (1-prob).to.the.power.(n-y). Thus, in lieu of adding all such probabilities, we simply multiply this probability by the number, n.choose-y – shown in black – of unique sequences in the set. Check: the frequencies in black add to 2.to.power.n. Nowadays, the (n+1) probabilities are easily obtained by supplying a value for the ‘prob’ argument in the R function dbinom(), instead of computing the binomial coefficient n.choose-y by hand.
 </p>
 </div>
 <p>If you rotate the binomial tree to the right by 90 degrees, and use your imagination, you can see how it resembles the <a href="https://en.wikipedia.org/wiki/Quincunx">quincunx</a> constructed by <a href="https://en.wikipedia.org/wiki/Bean_machine">Francis Galton</a>. He used it to show how the Central Linit Theorem, applied to the sum of several ‘Bernoulli deflections to the right and left’, makes a Binomial distribution approach a Gaussian one. Several <a href="https://en.wikipedia.org/wiki/Bean_machine#Games">games</a> and game shows are built on this pinball machine, for example, <a href="https://fivethirtyeight.com/features/what-if-god-were-a-giant-game-of-plinko/">Plinko</a> and, more recently, <a href="https://www.nbc.com/the-wall?nbc=1">The Wall</a>. Galton’s quincunx has its own cottage industry, and versions of it often displayed in Science Museums. The present authors inherited a low tech version of the <a href="http://www.galtonboard.com">Galton Board</a>, where the ‘shot’ are turnip seeds, from former McGill <a href="https://www.mcgill.ca/medicine/staff-resources/inmemoriam/2003">Professor – and early teacher of course 607 – FDK Liddell</a>.</p>
+<p><strong>Calculating Binomial probabilities</strong></p>
+<p><em>Exactly</em></p>
+<ul>
+<li><p>probability mass function (p.m.f.) :</p></li>
+<li><p>formula: <span class="math inline">\(Prob[y] = \  ^n C _y \ \pi^y \  (1 − \pi)^{n−y}\)</span>.</p></li>
+<li><p>recursively: <span class="math inline">\(Prob[0] = (1−\pi)^n\)</span>;    <span class="math inline">\(Prob[y] = \frac{n−y+1}{y} \times \frac{\pi}{1-\pi} \times Prob[y−1]\)</span>.</p></li>
+<li>Statistical Packages:</li>
+<li><p>R functions <code>dbinom()</code>, <code>pbinom()</code>, <code>qbinom()</code><br />
+probability mass, distribution/cdf, and quantile functions.</p></li>
+<li><p>Stata function <code>Binomial(n,k,p)</code></p></li>
+<li><p>SAS <code>PROBBNML(p, n, y)</code> function</p></li>
+<li><p>Spreadsheet — Excel function <code>BINOMDIST(y, n, π, cumulative)</code></p></li>
+<li><p>Tables: CRC; Fisher and Yates; Biometrika Tables; Documenta Geigy</p></li>
+</ul>
+<p><em>Using an approximation</em></p>
+<ul>
+<li><p>Poisson Distribution (<span class="math inline">\(n\)</span> large; small <span class="math inline">\(\pi\)</span>)</p></li>
+<li><p><strong>Normal (Gaussian) Distribution</strong> (<span class="math inline">\(n\)</span> large or midrange <span class="math inline">\(\pi\)</span>, so that the expected value, <span class="math inline">\(n \times \pi\)</span>, is sufficiently far ‘in from’ the ‘edges’ of the scale, i.e., sufficiently far in from 0 and from <span class="math inline">\(n\)</span>, so that a Gaussian distribution doesn’t flow past one of the edges. The Normal approximation is good for when you don’t have access to software or Tables, e.g, on a plane, or when the internet is down, or the battery on your phone or laptop had run out, or it takes too long to boot up Windows!).<br />
+To use the Normal approximatiom, be aware of the <strong>scale you are working in</strong>, .e.g., if say <span class="math inline">\(n = 10\)</span>, whether the summary is a <strong>count</strong> or a <strong>proportion</strong> or a <strong>percentage</strong>.</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="right"></th>
+<th align="left">r.v.</th>
+<th align="right">e.g.</th>
+<th align="center">E</th>
+<th align="center">S.D.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><strong>count</strong>:</td>
+<td align="left"><span class="math inline">\(y\)</span></td>
+<td align="right">2</td>
+<td align="center"><span class="math inline">\(n \times \pi\)</span></td>
+<td align="center"><span class="math inline">\(\{n \times \pi \times (1-\pi) \}^{1/2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="left"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center">i.e., <span class="math inline">\(n^{1/2} \times \sigma_{Bernoulli}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="left"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="right"><strong>proportion</strong>:</td>
+<td align="left"><span class="math inline">\(p=y/n\)</span></td>
+<td align="right">0.2</td>
+<td align="center"><span class="math inline">\(\pi\)</span></td>
+<td align="center"><span class="math inline">\(\{\pi \times (1-\pi) / n \}^{1/2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="right"></td>
+<td align="left"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center">i.e., <span class="math inline">\(\sigma_{Bernoulli} / n^{1/2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="right"></td>
+<td align="left"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="right"><strong>percentage</strong>:</td>
+<td align="left"><span class="math inline">\(100p\%\)</span></td>
+<td align="right">20%</td>
+<td align="center"><span class="math inline">\(100 \times \pi\)</span></td>
+<td align="center"><span class="math inline">\(100 \times SD[p]\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The first person to suggest an approximation, using what we now call the ‘Normal’ or ‘Gaussian’ of ‘Laplace-Gaussian’ distribution, was <a href="http://www.biostat.mcgill.ca/hanley/statbook/TheDoctrineOfChancesAnnotated.pdf">deMoivre, in 1738</a>. There is a debate among historians as to whether this marks the first description of the Normal distribution: the piece does not explicitly point to the probability density function <span class="math inline">\(\frac{1}{\sigma \sqrt{2 \pi}} \times exp[-z^2/2\sigma^2],\)</span> but it does highlight the role of the quantity <span class="math inline">\((1/2) \times \sqrt{n}\)</span>, the standard deviation of the sum of <span class="math inline">\(n\)</span> independent Bernoulli random variables, each with expectation 1/2 and thus a ‘unit’ standard deviation of 1/2, and also the SD quantity <span class="math inline">\(\sqrt{\pi(1-\pi)}\)</span> <span class="math inline">\(\times\)</span> <span class="math inline">\(\sqrt{n}\)</span> in the more general case. DeMoivre arrived at the familiar ‘68-95-99.7 rule’ : the percentages of a normal distribution that lie within 1, 2 and 3 SD’s of its mean.</p>
+<p><strong>Factors that modulate the shapes of Binomial distributions</strong></p>
+<ul>
+<li><p>size of <span class="math inline">\(n\)</span>: the larger the n, the more symmetric</p></li>
+<li><p>value of <span class="math inline">\(\pi\)</span>: the closer to 1/2, the more symmetric</p></li>
+</ul>
+<p>In these small-<span class="math inline">\(n\)</span> contexts, only those distribtions where <span class="math inline">\(\pi\)</span> is close to 0.5 are reasonably symmetric.</p>
+<p>In larger-<span class="math inline">\(n\)</span> contexts (see below), as long as there is ‘room’ for them to be, binomial distribtions where the expected value <span class="math inline">\(E = n \times \pi\)</span> is at least 5-10 ‘in from the edges’ (i.e. to the right of 0, or the left of <span class="math inline">\(n\)</span>, are reasonably symmetric.</p>
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-70"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-70-1.png" alt="Binomial random variables/distributions, where n = 5, and the Bernoulli expectation (probability) is smaller (left panels) or larger (right panels)." width="864" />
+<p class="caption">
+Figure 13.3: Binomial random variables/distributions, where n = 5, and the Bernoulli expectation (probability) is smaller (left panels) or larger (right panels).
+</p>
+</div>
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-71"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-71-1.png" alt="Various Binomial random variables/distributions, where n = 20. The dotted horizontal lines in light blue are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units from the (0,n) boundaries are shown in blue." width="864" />
+<p class="caption">
+Figure 13.4: Various Binomial random variables/distributions, where n = 20. The dotted horizontal lines in light blue are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units from the (0,n) boundaries are shown in blue.
+</p>
+</div>
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-72"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-72-1.png" alt="Various Binomial random variables/distributions, where n = 50. The blue dotted lines are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units in from the (0,n) boundaries are shown in blue" width="864" />
+<p class="caption">
+Figure 13.5: Various Binomial random variables/distributions, where n = 50. The blue dotted lines are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units in from the (0,n) boundaries are shown in blue
+</p>
+</div>
+<p>Back when binomial computations were difficult, and the normal approximation was not accurate, there was another approximation that saved labour, and in particular, avoided having to deal with the very large numbers involved in the <span class="math inline">\(^nC_y\)</span> binomial coefficients (even if built into a hand calculator, these can be problematic when <span class="math inline">\(n\)</span> is large).</p>
+<p><a href="http://www.biostat.mcgill.ca/hanley/statbook/Poisson1837Excerpts.pdf">Poisson</a>, in 1837, having shown how to use the Normal distribution for binomial (and the closely-related negative binomial) calculations, devoted 1 small section (81) of less than 2 pages, to the case where (in our notation) <strong>one of the two chances <span class="math inline">\(\pi\)</span> or <span class="math inline">\((1-\pi)\)</span> <em>‘est très petite’</em></strong> [Poisson’s <span class="math inline">\(q\)</span> is our <span class="math inline">\(\pi\)</span>, his <span class="math inline">\(\mu\)</span> is our <span class="math inline">\(n\)</span>, his <span class="math inline">\(\omega\)</span> is our <span class="math inline">\(\mu\)</span>, and his <span class="math inline">\(n\)</span> is our <span class="math inline">\(y\)</span>]. In our notation, he arrived at <span class="math display">\[Prob[y \ or \ fewer \ events] = \bigg(1 + \frac{\mu}{1!} + \frac{\mu^2}{2!} + \dots + \frac{\mu^y}{y!} \bigg) \  e^{-\mu}.\]</span></p>
+<p>In the last of his just three paragraphs on this digression, he notes the probability <span class="math inline">\(e^{-\mu}\)</span> of no event, and <span class="math inline">\(1 - e^{-\mu}\)</span> of at least 1. He also calculates that, when <span class="math inline">\(\mu\)</span> = 1, the chance is very close to 1 in 100 million that more than <span class="math inline">\(y\)</span> = 10 events would occur in a very large series of trials (of length <span class="math inline">\(n\)</span>), where the probability is 1/<span class="math inline">\(n\)</span> in each trial. Although he give little emphasis to his formula, and no real application, it is Poisson’s name that is now undividely associated with this formula.</p>
+<p>Below are some examples of how well it approximates a Binomial in the ‘corner’ where <span class="math inline">\(\pi\)</span> is very small and <span class="math inline">\(n\)</span> is very large. If, of course, the product, <span class="math inline">\(\mu = n \times \pi\)</span> , reaches double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions, and – if one has ready acccess to the tail areas of a Normal distribution – with less effort. Today, of course, unless you are limited to a hand calculator when the internet and R and paper tables are nor available, you would not need to use any approximation, Normal or Poisson, to a binomial.</p>
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-74"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-74-1.png" alt="Various Binomial random variables/distributions, with large n's and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the 'lowee corner of the Bimonial distribution with large n's and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions." width="864" />
+<p class="caption">
+Figure 13.6: Various Binomial random variables/distributions, with large n’s and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the ’lowee corner of the Bimonial distribution with large n’s and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions.
+</p>
+</div>
+<p><strong>When the Binomial does not apply</strong></p>
+<p>It does not apply if one (or both) of the ‘<strong>i.i.d.</strong>’ (<strong>independent</strong> and <strong>identical</strong>) conditions do not hold. The first of these conditions is often the one that is absent.</p>
+<p>Two very nice <a href="http://www.biostat.mcgill.ca/hanley/statbook/CochranTable.png">examples</a> can be found in Cochran’s (old but still excellent) <a href="http://www.biostat.mcgill.ca/hanley/statbook/Cochran3rdEdition.png">textbook on sampling</a>. They were re-visited a few decades years ago in connection with what was (then) a new technique for dealing with <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/sim.pdf#page=2">correlated responses.</a></p>
+<p>The table shows, for each of the 30 randomly sampled households, the number of household members had visited a physician in the previous year. Can we base the precision of the observed proportion, 30/104 or 28%, on a binomial distribution where <span class="math inline">\(n\)</span> = 104?</p>
+<p>True, the ‘<em>n</em>’ in each household is not the same from household to household, but we can segregate the households by size, and carry out separate binomial calculations for each, all the time assuming a common binomial proportion across houdeholds.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">XLAB =<span class="st"> &quot;y: number in household who has visited an MD in last year&quot;</span>
+YLAB =<span class="st"> &quot;Number of Households</span><span class="ch">\n</span><span class="st">for which y persons visited an MD&quot;</span>
+
+<span class="kw">show.household.survey.data</span>(n.who.visited.md,XLAB,YLAB)</code></pre></div>
+<pre><code>## [1] No. persons with history/trait of interest: 30 / 104 ; Prop&#39;n: 0.29
+## [1]  
+## Below, the row labels are the household sizes.
+## Each column label is the number in a household with history/trait of interest.
+## The entries are how many households had the indicated configuration.
+## 
+##           0    1    2    3    4    5    6    7    Total
+## 1         1    .    .    .    .    .    .    .        1
+## 2         3    .    1    .    .    .    .    .        4
+## 3         7    2    1    2    .    .    .    .       12
+## 4         4    1    3    .    1    .    .    .        9
+## 5         .    .    1    .    .    1    .    .        2
+## 6         1    .    .    .    .    .    .    .        1
+## 7         1    .    .    .    .    .    .    .        1
+## Total    17    3    6    2    1    1    0    0       30
+## 
+## Same row/col meanings, but theoretical, binomial-based,
+## EXPECTED frequencies of households having these many persons
+##  who would have -- if all 128 persons were independently sampled
+## from a population where the proportion with 
+## the history/trait of interest was as above.
+## 
+##           0     1     2     3     4     5     6     7 Total
+## 1     0.712 0.288     .     .     .     .     .     .     1
+## 2     1.013 0.821 0.166     .     .     .     .     .     4
+## 3     1.081 1.314 0.533 0.072     .     .     .     .    12
+## 4     1.025 1.663 1.011 0.273 0.028     .     .     .     9
+## 5     0.912 1.849 1.499 0.608 0.123 0.010     .     .     2
+## 6     0.779 1.894 1.920 1.038 0.315 0.051 0.003     .     1
+## 7     0.646 1.834 2.231 1.507 0.611 0.149 0.020 0.001     1
+## Total 6.167 9.663 7.360 3.498 1.077 0.210 0.024 0.001    30
+## 
+## We will just assess the fit on the &#39;totals&#39;row:
+##  the numbers in the individual rows are too small to judge.
+## 
+##         0   1   2   3   4   5 6 7 Total
+## [1,] 17.0 3.0 6.0 2.0 1.0 1.0 0 0    30
+## [2,]  6.2 9.7 7.4 3.5 1.1 0.2 0 0    30
+## 
+## Better still, here is a picture:</code></pre>
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-76"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-76-1.png" alt="Of 30 randomly sampled households, (O)bserved  numbers of households, shown in grey, where 0, 1, .. in household had visited  a physician in the previous year. The 30 households contained 104 persons, 28 of whom had visited a physician in the previous year. Also shown, in blue are the (E)xpected numbers of households, assuming the data were generated from 104 independent Bernoulli random variables, each with the same  probability 28/104. The observed variance is considerably LARGER than that predicted by a binomial distribution. You would see this even if the individuals in the house were not from the same family. For example, if the occupants were students, the proportion of them with such a history would be different (?lower) than if the occupants were older: this is the 'non-identical probabilities' aspect. The other possibility, the 'non-independence' aspect, is that health status and the seeking medical care are affected by shared family factors, such as behaviours, attitudes, lifestyle, and insurance coverage." width="864" />
+<p class="caption">
+Figure 13.7: Of 30 randomly sampled households, (O)bserved numbers of households, shown in grey, where 0, 1, .. in household had visited a physician in the previous year. The 30 households contained 104 persons, 28 of whom had visited a physician in the previous year. Also shown, in blue are the (E)xpected numbers of households, assuming the data were generated from 104 independent Bernoulli random variables, each with the same probability 28/104. The observed variance is considerably LARGER than that predicted by a binomial distribution. You would see this even if the individuals in the house were not from the same family. For example, if the occupants were students, the proportion of them with such a history would be different (?lower) than if the occupants were older: this is the ‘non-identical probabilities’ aspect. The other possibility, the ‘non-independence’ aspect, is that health status and the seeking medical care are affected by shared family factors, such as behaviours, attitudes, lifestyle, and insurance coverage.
+</p>
+</div>
+<p>Cochran provides <a href="http://www.biostat.mcgill.ca/hanley/statbook/CochranHouseholdSurvey.png">this explanation</a> for the <strong>greater than binomial variation</strong> in the proportions</p>
+<blockquote>
+<p>The variance given by the ratio method, 0.00520, is much larger than that given by the binomial formula, 0.00197. For various reasons, families differ in the frequency with which their members consult a doctor. For the sample as a whole, the proportion who consult a doctor is only a little more than one in four, but there are several families in which every member has seen a doctor. Similar results would be obtained for any characteristic in which the members of the same family tend to act in the same way.</p>
+</blockquote>
+<p>Clearly, if we are dealing with an <strong>infectious disease</strong>, we would need to be very <strong>careful about our statistical model</strong> for the numbers in a family or household or care facility that are affected.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">XLAB =<span class="st"> &quot;y: number of males in household&quot;</span>
+YLAB=<span class="st">  &quot;Number of Households</span><span class="ch">\n</span><span class="st"> where y persons were male&quot;</span>
+<span class="kw">show.household.survey.data</span>(n.males,XLAB,YLAB)</code></pre></div>
+<pre><code>## [1] No. persons with history/trait of interest: 53 / 104 ; Prop&#39;n: 0.51
+## [1]  
+## Below, the row labels are the household sizes.
+## Each column label is the number in a household with history/trait of interest.
+## The entries are how many households had the indicated configuration.
+## 
+##          0     1    2    3    4    5    6    7    Total
+## 1        1     .    .    .    .    .    .    .        1
+## 2        .     4    .    .    .    .    .    .        4
+## 3        .     7    5    .    .    .    .    .       12
+## 4        .     1    3    5    .    .    .    .        9
+## 5        .     1    .    1    .    .    .    .        2
+## 6        .     .    .    1    .    .    .    .        1
+## 7        .     .    .    1    .    .    .    .        1
+## Total    1    13    8    8    0    0    0    0       30
+## 
+## Same row/col meanings, but theoretical, binomial-based,
+## EXPECTED frequencies of households having these many persons
+##  who would have -- if all 128 persons were independently sampled
+## from a population where the proportion with 
+## the history/trait of interest was as above.
+## 
+##           0     1     2     3     4     5     6     7 Total
+## 1     0.490 0.510     .     .     .     .     .     .     1
+## 2     0.481 1.000 0.519     .     .     .     .     .     4
+## 3     0.354 1.103 1.146 0.397     .     .     .     .    12
+## 4     0.231 0.962 1.499 1.038 0.270     .     .     .     9
+## 5     0.142 0.737 1.531 1.591 0.827 0.172     .     .     2
+## 6     0.083 0.520 1.352 1.873 1.460 0.607 0.105     .     1
+## 7     0.048 0.347 1.083 1.875 1.949 1.215 0.421 0.062     1
+## Total 1.829 5.178 7.130 6.775 4.505 1.994 0.526 0.062    30
+## 
+## We will just assess the fit on the &#39;totals&#39;row:
+##  the numbers in the individual rows are too small to judge.
+## 
+##        0    1   2   3   4 5   6   7 Total
+## [1,] 1.0 13.0 8.0 8.0 0.0 0 0.0 0.0    30
+## [2,] 1.8  5.2 7.1 6.8 4.5 2 0.5 0.1    30
+## 
+## Better still, here is a picture:</code></pre>
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-77"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-77-1.png" alt="Of 30 randomly sampled households, (O)bserved  numbers of households, shown in grey, where 0, 1, .. in household were male. The 30 households contained 104 persons, 53 of whom were male. Also shown, in blue are the (E)xpected numbers of households, assuming the data were generated from 104 independent Bernoulli random variables, each with the same  probability 53/104. The observed variance is considerably SMALLER than that predicted by a binomial distribution. You would see this even if the individuals in the house were not from the same family. For example, if the occupants were students, the proportion of them with such a history would be different (?lower) than if the occupants were older: this is the 'non-identical probabilities' aspect. The other possibility, the 'non-independence' aspect, is that health status and the seeking medical care are affected by shared family factors, such as behaviours, attitudes, lifestyle, and insurance coverage." width="864" />
+<p class="caption">
+Figure 13.8: Of 30 randomly sampled households, (O)bserved numbers of households, shown in grey, where 0, 1, .. in household were male. The 30 households contained 104 persons, 53 of whom were male. Also shown, in blue are the (E)xpected numbers of households, assuming the data were generated from 104 independent Bernoulli random variables, each with the same probability 53/104. The observed variance is considerably SMALLER than that predicted by a binomial distribution. You would see this even if the individuals in the house were not from the same family. For example, if the occupants were students, the proportion of them with such a history would be different (?lower) than if the occupants were older: this is the ‘non-identical probabilities’ aspect. The other possibility, the ‘non-independence’ aspect, is that health status and the seeking medical care are affected by shared family factors, such as behaviours, attitudes, lifestyle, and insurance coverage.
+</p>
+</div>
+<p>Cochran provides <a href="http://www.biostat.mcgill.ca/hanley/statbook/CochranHouseholdSurvey.png">this explanation</a> for the <strong>(unsually) less than binomial variation</strong> seen in this response variable.</p>
+<blockquote>
+<p>In estimating the proportion of males in the population, the results are different. By the same type of calculation, we find binomial formula: v(p) = 0.00240; ratio formula v(p) = 0.00114<br />
+Here the <strong>binomial formula overestimates the variance</strong>. The reason is interesting. Most households are set up as a result of a marriage, hence contain at least one male and one female. Consequently the proportion of males per family varies less from one half than would be expected from the binomial formula. None of the 30 families, except one with only one member, is composed entirely of males, or entirely of females. <strong>If the binomial distribution were applicable, with a true P of approximately one half, households with all members of the same sex would constitute one quarter of the households of size 3 and one eighth of the households of size 4. This property of the sex ratio has been discussed by Hansen and Hurwitz (1942). Other illustrations of the error committed by improper use of the binomial formula in sociological investigations have been given by <a href="http://www.biostat.mcgill.ca/hanley/statbook/Kish1957.pdf">Kish (1957)</a>.</strong></p>
+</blockquote>
 <p><strong>Does the Binomial Distribution apply if… ?</strong></p>
 <table style="width:44%;">
 <colgroup>
@@ -678,129 +922,16 @@ Figure 13.2: From 5 (independent and identically distributed) Bernoulli observat
 </tr>
 </tbody>
 </table>
-<p><strong>Calculating Binomial probabilities</strong></p>
-<p><em>Exactly</em></p>
-<ul>
-<li><p>probability mass function (p.m.f.) :</p></li>
-<li><p>formula: <span class="math inline">\(Prob[y] = \  ^n C _y \ \pi^y \  (1 − \pi)^{n−y}\)</span>.</p></li>
-<li><p>recursively: <span class="math inline">\(Prob[0] = (1−\pi)^n\)</span>;    <span class="math inline">\(Prob[y] = \frac{n−y+1}{y} \times \frac{\pi}{1-\pi} \times Prob[y−1]\)</span>.</p></li>
-<li>Statistical Packages:</li>
-<li><p>R functions <code>dbinom()</code>, <code>pbinom()</code>, <code>qbinom()</code><br />
-probability mass, distribution/cdf, and quantile functions.</p></li>
-<li><p>Stata function <code>Binomial(n,k,p)</code></p></li>
-<li><p>SAS <code>PROBBNML(p, n, y)</code> function</p></li>
-<li><p>Spreadsheet — Excel function <code>BINOMDIST(y, n, π, cumulative)</code></p></li>
-<li><p>Tables: CRC; Fisher and Yates; Biometrika Tables; Documenta Geigy</p></li>
-</ul>
-<p><em>Using an approximation</em></p>
-<ul>
-<li><p>Poisson Distribution (<span class="math inline">\(n\)</span> large; small <span class="math inline">\(\pi\)</span>)</p></li>
-<li><p><strong>Normal (Gaussian) Distribution</strong> (<span class="math inline">\(n\)</span> large or midrange <span class="math inline">\(\pi\)</span>, so that the expected value, <span class="math inline">\(n \times \pi\)</span>, is sufficiently far ‘in from’ the ‘edges’ of the scale, i.e., sufficiently far in from 0 and from <span class="math inline">\(n\)</span>, so that a Gaussian distribution doesn’t flow past one of the edges. The Normal approximation is good for when you don’t have access to software or Tables, e.g, on a plane, or when the internet is down, or the battery on your phone or laptop had run out, or it takes too long to boot up Windows!).<br />
-To use the Normal approximatiom, be aware of the <strong>scale you are working in</strong>, .e.g., if say <span class="math inline">\(n = 10\)</span>, whether the summary is a <strong>count</strong> or a <strong>proportion</strong> or a <strong>percentage</strong>.</p></li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th align="right"></th>
-<th align="left">r.v.</th>
-<th align="right">e.g.</th>
-<th align="center">E</th>
-<th align="center">S.D.</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right"><strong>count</strong>:</td>
-<td align="left"><span class="math inline">\(y\)</span></td>
-<td align="right">2</td>
-<td align="center"><span class="math inline">\(n \times \pi\)</span></td>
-<td align="center"><span class="math inline">\(\{n \times \pi \times (1-\pi) \}^{1/2}\)</span></td>
-</tr>
-<tr class="even">
-<td align="right"></td>
-<td align="left"></td>
-<td align="right"></td>
-<td align="center"></td>
-<td align="center">i.e., <span class="math inline">\(n^{1/2} \times \sigma_{Bernoulli}\)</span></td>
-</tr>
-<tr class="odd">
-<td align="right"></td>
-<td align="left"></td>
-<td align="right"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="right"><strong>proportion</strong>:</td>
-<td align="left"><span class="math inline">\(p=y/n\)</span></td>
-<td align="right">0.2</td>
-<td align="center"><span class="math inline">\(\pi\)</span></td>
-<td align="center"><span class="math inline">\(\{\pi \times (1-\pi) / n \}^{1/2}\)</span></td>
-</tr>
-<tr class="odd">
-<td align="right"></td>
-<td align="left"></td>
-<td align="right"></td>
-<td align="center"></td>
-<td align="center">i.e., <span class="math inline">\(\sigma_{Bernoulli} / n^{1/2}\)</span></td>
-</tr>
-<tr class="even">
-<td align="right"></td>
-<td align="left"></td>
-<td align="right"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="right"><strong>percentage</strong>:</td>
-<td align="left"><span class="math inline">\(100p\%\)</span></td>
-<td align="right">20%</td>
-<td align="center"><span class="math inline">\(100 \times \pi\)</span></td>
-<td align="center"><span class="math inline">\(100 \times SD[p]\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>The first person to suggest an approximation, using what we now call the ‘Normal’ or ‘Gaussian’ of ‘Laplace-Gaussian’ distribution, was <a href="http://www.biostat.mcgill.ca/hanley/statbook/TheDoctrineOfChancesAnnotated.pdf">deMoivre, in 1738</a>. There is a debate among historians as to whether this marks the first description of the Normal distribution: the piece does not explicitly point to the probability density function <span class="math inline">\(\frac{1}{\sigma \sqrt{2 \pi}} \times exp[-z^2/2\sigma^2],\)</span> but it does highlight the role of the quantity <span class="math inline">\((1/2) \times \sqrt{n}\)</span>, the standard deviation of the sum of <span class="math inline">\(n\)</span> independent Bernoulli random variables, each with expectation 1/2 and thus a ‘unit’ standard deviation of 1/2, and also the SD quantity <span class="math inline">\(\sqrt{\pi(1-\pi)}\)</span> <span class="math inline">\(\times\)</span> <span class="math inline">\(\sqrt{n}\)</span> in the more general case. DeMoivre arrived at the familiar ‘68-95-99.7 rule’ : the percentages of a normal distribution that lie within 1, 2 and 3 SD’s of its mean.</p>
-<p><strong>Factors that modulate the shapes of Binomial distributions</strong></p>
-<ul>
-<li><p>size of <span class="math inline">\(n\)</span>: the larger the n, the more symmetric</p></li>
-<li><p>value of <span class="math inline">\(\pi\)</span>: the closer to 1/2, the more symmetric</p></li>
-</ul>
-<p>In these small-<span class="math inline">\(n\)</span> contexts, only those distribtions where <span class="math inline">\(\pi\)</span> is close to 0.5 are reasonably symmetric.</p>
-<p>In larger-<span class="math inline">\(n\)</span> contexts (see below), as long as there is ‘room’ for them to be, binomial distribtions where the expected value <span class="math inline">\(E = n \times \pi\)</span> is at least 5-10 ‘in from the edges’ (i.e. to the right of 0, or the left of <span class="math inline">\(n\)</span>, are reasonably symmetric.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-70"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-70-1.png" alt="Binomial random variables/distributions, where n = 5, and the Bernoulli expectation (probability) is smaller (left panels) or larger (right panels)." width="864" />
-<p class="caption">
-Figure 13.3: Binomial random variables/distributions, where n = 5, and the Bernoulli expectation (probability) is smaller (left panels) or larger (right panels).
-</p>
-</div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-71"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-71-1.png" alt="Various Binomial random variables/distributions, where n = 20. The dotted horizontal lines in light blue are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units from the (0,n) boundaries are shown in blue." width="864" />
-<p class="caption">
-Figure 13.4: Various Binomial random variables/distributions, where n = 20. The dotted horizontal lines in light blue are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units from the (0,n) boundaries are shown in blue.
-</p>
-</div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-72"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-72-1.png" alt="Various Binomial random variables/distributions, where n = 50. The blue dotted lines are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units in from the (0,n) boundaries are shown in blue" width="864" />
-<p class="caption">
-Figure 13.5: Various Binomial random variables/distributions, where n = 50. The blue dotted lines are 5 and 10 units in from the (0,n) boundaries. The distributions where the expected value E or mean, mu ( = n * Bernoulli Probability) is at least 5 units in from the (0,n) boundaries are shown in blue
-</p>
-</div>
-<p>Back when binomial computations were difficult, and the normal approximation was not accurate, there was another approximation that saved labour, and in particular, avoided having to deal with the very large numbers involved in the <span class="math inline">\(^nC_y\)</span> binomial coefficients (even if built into a hand calculator, these can be problematic when <span class="math inline">\(n\)</span> is large).</p>
-<p><a href="http://www.biostat.mcgill.ca/hanley/statbook/Poisson1837Excerpts.pdf">Poisson</a>, in 1837, having shown how to use the Normal distribution for binomial (and the closely-related negative binomial) calculations, devoted 1 small section (81) of less than 2 pages, to the case where (in our notation) <strong>one of the two chances <span class="math inline">\(\pi\)</span> or <span class="math inline">\((1-\pi)\)</span> <em>‘est très petite’</em></strong> [Poisson’s <span class="math inline">\(q\)</span> is our <span class="math inline">\(\pi\)</span>, his <span class="math inline">\(\mu\)</span> is our <span class="math inline">\(n\)</span>, his <span class="math inline">\(\omega\)</span> is our <span class="math inline">\(\mu\)</span>, and his <span class="math inline">\(n\)</span> is our <span class="math inline">\(y\)</span>]. In our notation, he arrived at <span class="math display">\[Prob[y \ or \ fewer \ events] = \bigg(1 + \frac{\mu}{1!} + \frac{\mu^2}{2!} + \dots + \frac{\mu^y}{y!} \bigg) \  e^{-\mu}.\]</span></p>
-<p>In the last of his just three paragraphs on this digression, he notes the probability <span class="math inline">\(e^{-\mu}\)</span> of no event, and <span class="math inline">\(1 - e^{-\mu}\)</span> of at least 1. He also calculates that, when <span class="math inline">\(\mu\)</span> = 1, the chance is very close to 1 in 100 million that more than <span class="math inline">\(y\)</span> = 10 events would occur in a very large series of trials (of length <span class="math inline">\(n\)</span>), where the probability is 1/<span class="math inline">\(n\)</span> in each trial. Although he give little emphasis to his formula, and no real application, it is Poisson’s name that is now undividely associated with this formula.</p>
-<p>Below are some examples of how well it approximates a Binomial in the ‘corner’ where <span class="math inline">\(\pi\)</span> is very small and <span class="math inline">\(n\)</span> is very large. If, of course, the product, <span class="math inline">\(\mu = n \times \pi\)</span> , reaches double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions, and – if one has ready acccess to the tail areas of a Normal distribution – with less effort. Today, of course, unless you are limited to a hand calculator when the internet and R and paper tables are nor available, you would not need to use any approximation, Normal or Poisson, to a binomial.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-74"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-74-1.png" alt="Various Binomial random variables/distributions, with large n's and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the 'lowee corner of the Bimonial distribution with large n's and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions." width="864" />
-<p class="caption">
-Figure 13.6: Various Binomial random variables/distributions, with large n’s and small Bernoulli probabilities, together with the Poisson distributions with the corresponding means. The Poisson distrubution provides a good approximation in the ’lowee corner of the Bimonial distribution with large n’s and small probabilities. And, when the product, mu = n * probability, is in the double digits, the Normal approximation distribution provides and accurate approximation for both the Binomial and the Poisson distributions.
-</p>
-</div>
-<p><strong>Direct applications of the Poisson distribution</strong> today have little direct connection with a large number of Bernoulli trials with a small expecation per trial, or with providing computational shortcuts. Although Poisson did not appreciate it at the time, today his distribution has to do with the distribution of counts of events in a given amount of space or time. However, most mathematical statistics textbooks still derive the Poisson distribution as the limiting case of a Binomial. Below, we will take a broader view, emphasize the ‘time’ dimension, and give a littel more history. We will also focus on when the Poisson distribution is too narrow, and an inappropriate model for counts. We will repeat the earlier message that <strong>just because a random variable involves counts doesn’t make its distribution Poisson</strong>. The best example of this is the falancy of treating the distributions of white bllood cell, or CD4 cell concentrations as if there were observed counts.</p>
 </div>
 <div id="poisson" class="section level3">
 <h3><span class="header-section-number">13.2.3</span> Poisson</h3>
 <p>model for (Sampling) Variability of a Count in a given amount of ‘experience’</p>
+<p>Today, Poisson’s distribution is seldom used as a computational shortcut to a binomial probability. Although Poisson did not appreciate it at the time, today his distribution has to do with the <strong>distribution of counts of events in a given amount of space or time or population-time</strong>. However, most mathematical statistics textbooks still derive the Poisson distribution as the limiting case of a Binomial.</p>
+<p>:::: {.blackbox}</p>
+<p>Below, we will take a broader view, emphasize the ‘<strong>time</strong>’ dimension, and give some history. We will also focus on the many contexts when the Poisson distribution is <strong>too narrow</strong>, and thus an inappropriate model for counts. We will repeat the earlier message that <strong>just because a random variable involves counts doesn’t make its distribution Poisson</strong>. Examples of this include the fallacy of treating the distributions of white blood cell, or CD4 cell concentrations as if there were observed counts. And even if they are ‘real’ counts, the distribution (variability) of one’s step-counts acrross the day or across days, or of the numbers of births or deaths or car-crashes across the day, or across days, are usually far-from-Poisson.</p>
+<p><strong>Indeed, we will take the attitude that counts rarely follow a Poisson distribution.</strong></p>
+<p>::::</p>
+<p>.</p>
 <p><strong>The Poisson Distribution: what it is, and some of its features</strong></p>
 <ul>
 <li><p>The (infinite number of) probabilities <span class="math inline">\(P_{0}, P_{1}, ..., P_{y}, ...,\)</span> of observing <span class="math inline">\(Y = 0, 1, 2, \dots , y, \dots\)</span> ‘events’/‘instances’ in a given amount of ‘experience.’</p></li>
@@ -839,7 +970,7 @@ Figure 13.6: Various Binomial random variables/distributions, with large n’s a
 <li><a href="http://www.biostat.mcgill.ca/hanley/statbook/HaightHistorical.pdf">Haight</a> is the mots comprehensive.</li>
 <li><a href="http://www.biostat.mcgill.ca/hanley/statbook/StiglerPoisson.pdf">Stigler</a> is a bit more nuanced.</li>
 </ul>
-<p><strong>Distribution of particles in volumes</strong></p>
+<p><strong>DETAILED EXAMPLE 1: Distribution of particles in volumes</strong></p>
 <p>The following two distributions are taken from ’Student’s 1907 article on <strong>counting yeast cells</strong> under a haemocytometer, an instrument for visual counting of the number of cells in a blood sample or other fluid under a microscope. In the article, he derived what today we would call the Poisson distribution, and offered guidance on how many fields/cells to count in order the ensure a small enough margin of error when estimating a concentration.</p>
 <p>Student’s main messages</p>
 <blockquote>
@@ -851,36 +982,79 @@ Figure 13.6: Various Binomial random variables/distributions, with large n’s a
 <blockquote>
 <p>This theoretical work was tested on four distributions which had been counted over the whole 400 squares of the haemocytometer. The particles counted were yeast cells which were killed by adding a little mercuric chloride to the water in which they had been shaken up. A small quantity of this was mixed with a 10% solution of gelatine, and after being well stirred up drops were put on the haemacytometer. This was then put on a plate of glass kept at a temperature just above the setting point of gelatine and allowed to cool slowly till the gelatine had set. Four different concentrations were used. <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/Student_counting.pdf#page=6">The full description can be found here.</a></p>
 </blockquote>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-75"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-75-1.png" alt="Examples of distributions of Yeast Cells over 1 sq. mm. divided into 400 squares. The data in the right panel are based on the 400 counts in Table 1 of Student's article (concentration IV), while those in the left panel are simulated to match the reported mean (1.32 per square) and variance (1.28) for the 400 counts at concentration II. It appears that Student calculated the variance using a divisor of n rather than n-1." width="864" />
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-78"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-78-1.png" alt="Examples of distributions of Yeast Cells over 1 sq. mm. divided into 400 squares. The data in the right panel are based on the 400 counts in Table 1 of Student's article (concentration IV), while those in the left panel are simulated to match the reported mean (1.32 per square) and variance (1.28) for the 400 counts at concentration II. It appears that Student calculated the variance using a divisor of n rather than n-1." width="864" />
 <p class="caption">
-Figure 13.7: Examples of distributions of Yeast Cells over 1 sq. mm. divided into 400 squares. The data in the right panel are based on the 400 counts in Table 1 of Student’s article (concentration IV), while those in the left panel are simulated to match the reported mean (1.32 per square) and variance (1.28) for the 400 counts at concentration II. It appears that Student calculated the variance using a divisor of n rather than n-1.
+Figure 13.9: Examples of distributions of Yeast Cells over 1 sq. mm. divided into 400 squares. The data in the right panel are based on the 400 counts in Table 1 of Student’s article (concentration IV), while those in the left panel are simulated to match the reported mean (1.32 per square) and variance (1.28) for the 400 counts at concentration II. It appears that Student calculated the variance using a divisor of n rather than n-1.
 </p>
 </div>
 <p>The data in the panel on the right panel can be <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/Student_counting.pdf#page=10">viewed at the bottom of this page.</a></p>
 <p>Student took care to avoid ‘clumping’ of cells, and other artifacts, and measured the (as they turned out to be, small) correlations between the nunber of cells on a square and the number in each of the four cells nearest it.</p>
 <p>He noticed that in both concentrations I and III the variance was greater than the mean, due to an [to us, slight] excess (of the “observed”) over the calculated (“fitted”) among the high numbers in the tail of the distribution. [Mean = 0.6825, variance 0.8117 in I; Mean = 1.80; variance = 1.96 in III]. He has pointed out earlier in the article that the budding of the yeast cell increases these high numbers, and there is also probably a tendency to stick together in groups which was not altogether abolished even by vigorous shaking.</p>
 <p>He also tested the observed frequency distribution of the 400 counts (they varied from 0 to 6 in the left panel, and 1 to 12 in the right panel) against the expected numbers of 0’s, 1’s, 2’s, etc. under the (Poisson) law using a <span class="math inline">\(\chi^2\)</span> goodness of fit statistic, and found them to be reasonable. ‘The p-values, 0.04, 0.68, 0.25 and 0.64, though not particularly high, are not at all unlikely in four trials, supposing our theoretical law to hold, and we are not likely to be very far wrong in assuming it to do so.’</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-76"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-79"></span>
 <img src="images/StudentPoissonFits.png" alt="Fits of Poisson Frequencies to the 4 sets of yeast cell counts made by Student." width="690" />
 <p class="caption">
-Figure 13.8: Fits of Poisson Frequencies to the 4 sets of yeast cell counts made by Student.
+Figure 13.10: Fits of Poisson Frequencies to the 4 sets of yeast cell counts made by Student.
 </p>
 </div>
 <p>Clearly, the narrow pure-Poisson variation we see in Student’s counts is a tribute to his ‘vigorous shaking’ that produced the randomness. [Think about how you would ensure this with raisins in dough, or chocolate chips in cookies.]</p>
-<p><strong>Distribution of events in time intervals</strong></p>
+<p><strong>DETAILED EXAMPLE 2: Distribution of events in time intervals</strong></p>
 <p>This next example – on <strong>counting</strong> <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/RutherfordGeigerBateman1910.pdf">alpha-radiation disintegrations</a> – has the same element of randomness, but in the <strong>time dimension</strong>. Here is Rutherford’s description:</p>
 <blockquote>
 <p>The source of radiation was a small disk coated with polonium, which was placed inside an exhausted tube, closed at one end by a zinc sulphide screen. The scintillations were counted in the usual way by means of a microscope on an area of about one sq. mm. of screen. During the timo of counting (5 days), in order to correct for the decay, the polonium was moved daily closer to the screen in order that the average number of <span class="math inline">\(\alpha\)</span> particles impinging on the screen should be nearly constant. The scintillations were recorded on a chronograph tape by closing an electric circuit by hand at the instant of each scintillation. Time-marks at intervals of one half-minute were also automatically recorded on iho same tape.<br />
 After the eye was rested, scintillations were counted from 3 to 5 minutes. The motor running the tape was then stopped and the eye rested for several minutes ; then another interval of counting, and so on. It was found possible to count 2000 scintillations a day, and in all 10,000 were recorded. The records on the tape were then systematically examined. The length of tape corresponding to half-minute marks was subdivided into four equal parts by means of a celluloid film marked with five parallel lines at equal distances. By slanting the film at different angles, the outside lines were made to pass through the time-marks, and thee number of scintillations between the lines corresponding to 1/8 minute intervals were counted through the film. By this method correction was made for slow variations in the speed of the motor during the long interval required by the observations.</p>
 </blockquote>
 <p>The black dots on the winding line are meant to look like the marks on a 5-minute strip of the paper tape described by Rutherford.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-77"></span>
-<img src="statbook_files/figure-html/unnamed-chunk-77-1.png" alt="Simulated  distributions of events (scintillations produced  by a radioactive source) over a 5-minute time-span. Each 1/8th of a minute is shown is a different colour. The counts in each 7.5 second bin are shown at the bottom." width="864" />
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-80"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-80-1.png" alt="Simulated  distributions of events (scintillations produced  by a radioactive source) over a 5-minute time-span. Each 1/8th of a minute is shown is a different colour. The counts in each 7.5 second bin are shown at the bottom." width="864" />
 <p class="caption">
-Figure 13.9: Simulated distributions of events (scintillations produced by a radioactive source) over a 5-minute time-span. Each 1/8th of a minute is shown is a different colour. The counts in each 7.5 second bin are shown at the bottom.
+Figure 13.11: Simulated distributions of events (scintillations produced by a radioactive source) over a 5-minute time-span. Each 1/8th of a minute is shown is a different colour. The counts in each 7.5 second bin are shown at the bottom.
 </p>
 </div>
+<p>The <strong>full distribution</strong> (over 2608 intervals of 7.5 seconds duration each, i.e almost 5.5 hours in all), along with the fitted one, is <strong>graphed</strong> at the <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/RutherfordGeigerBateman1910.pdf#page=6">bottom of this page,</a> and <strong>tabulated</strong> <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/RutherfordGeigerBateman1910.pdf#page=5">on this page.</a>. For convenience, the two are combined in the following graph.</p>
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-81"></span>
+<img src="images/RutherfordTableFig.png" alt="Table and Figure from Rutherford, Geiger and Bateman, 1910." width="860" />
+<p class="caption">
+Figure 13.12: Table and Figure from Rutherford, Geiger and Bateman, 1910.
+</p>
+</div>
+<p>Today, we could rework his data, and replot his Figure using <code>R</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y =<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">14</span>; freq =<span class="kw">c</span>(<span class="dv">57</span>,<span class="dv">203</span>,<span class="dv">383</span>,<span class="dv">525</span>,<span class="dv">532</span>,<span class="dv">408</span>,<span class="dv">273</span>,<span class="dv">139</span>,<span class="dv">45</span>,<span class="dv">27</span>,<span class="dv">10</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>)
+
+<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>),<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">0</span>))
+
+<span class="kw">plot</span>(y,freq,
+  <span class="dt">ylab=</span><span class="st">&quot;Number of intervals&quot;</span>,
+  <span class="dt">xlab=</span><span class="st">&quot;y: number counted in 7.5 sec interval&quot;</span>,<span class="dt">type=</span><span class="st">&quot;h&quot;</span>,
+  <span class="dt">lend=</span><span class="st">&quot;butt&quot;</span>, <span class="dt">lwd=</span><span class="dv">16</span>,<span class="dt">col=</span><span class="st">&quot;grey75&quot;</span>, <span class="dt">cex.lab=</span><span class="fl">1.35</span>)
+
+n =<span class="st"> </span><span class="kw">sum</span>(freq)
+mean =<span class="st"> </span><span class="kw">sum</span>(freq<span class="op">*</span>y)<span class="op">/</span>n
+var =<span class="st">  </span><span class="kw">sum</span>(freq<span class="op">*</span>y<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>n <span class="op">-</span><span class="st"> </span>mean<span class="op">^</span><span class="dv">2</span>
+theoretical.freq =<span class="st"> </span><span class="kw">sum</span>(freq)<span class="op">*</span><span class="kw">dpois</span>(y,mean)
+
+<span class="kw">lines</span>(y,theoretical.freq, <span class="dt">type=</span><span class="st">&quot;h&quot;</span>,
+      <span class="dt">lend=</span><span class="st">&quot;butt&quot;</span>, <span class="dt">lwd=</span><span class="dv">6</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)
+
+<span class="kw">text</span>(<span class="dv">12</span>,<span class="dv">400</span>, <span class="kw">paste</span>(<span class="st">&quot;Mean(y): &quot;</span>,<span class="kw">toString</span>(<span class="kw">round</span>(mean,<span class="dv">2</span>)),
+           <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Var(y): &quot;</span>,<span class="kw">toString</span>(<span class="kw">round</span>(var,<span class="dv">2</span>)),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>), 
+     <span class="dt">adj=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">cex=</span><span class="fl">1.5</span>,<span class="dt">family=</span><span class="st">&quot;mono&quot;</span>  )
+
+<span class="kw">text</span>(<span class="dv">5</span>,theoretical.freq[<span class="dv">6</span>],<span class="st">&quot;E&quot;</span>,
+     <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">adj=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="fl">0.5</span>),<span class="dt">cex=</span><span class="fl">1.25</span>)
+<span class="kw">text</span>(<span class="dv">5</span>,freq[<span class="dv">6</span>],<span class="st">&quot;O&quot;</span>,
+     <span class="dt">col=</span><span class="st">&quot;grey65&quot;</span>, <span class="dt">adj=</span><span class="kw">c</span>(<span class="fl">1.6</span>,<span class="fl">0.5</span>),<span class="dt">cex=</span><span class="fl">1.25</span>)</code></pre></div>
+<div class="figure" style="text-align: left"><span id="fig:unnamed-chunk-82"></span>
+<img src="statbook_files/figure-html/unnamed-chunk-82-1.png" alt="Rutherford's Fig 1, replotted, and the discrete scale emphasized. O =' 'Observed' frequencies; E = 'Expected' or 'Theoretical' or 'Fitted' frequencies. Rutherford et al. derived the  theoretical distribution (blue) 'from scratch' by a very different method than Poisson (see 'Note' on pages 704-707 of their article), and made no reference to Poisson's formula." width="864" />
+<p class="caption">
+Figure 13.13: Rutherford’s Fig 1, replotted, and the discrete scale emphasized. O =‘’Observed’ frequencies; E = ‘Expected’ or ‘Theoretical’ or ‘Fitted’ frequencies. Rutherford et al. derived the theoretical distribution (blue) ‘from scratch’ by a very different method than Poisson (see ‘Note’ on pages 704-707 of their article), and made no reference to Poisson’s formula.
+</p>
+</div>
+<p><strong>2020 re-enactment</strong></p>
+<p>This <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Rutherford/minute-001.mp4">video</a> is JH’s ‘recreation’ of Rutherford and Geiger’s experiment. Since you are unlikely to be as motivated as their ‘counters’, the video is limited to a 7 second lead-in + 70 seconds of flashes. If you find it easier to count while listening rather than watching, here is an <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Rutherford/minute-001.wav">audio version.</a></p>
+<p>Rutherford et al. counted an average of 3.89 flashed per 7.5 seconds, or approx 0.5 per second. The video has 24 frames per second, so their average would be approx 1 per 48 frames. Thus in one frame, the expected number of flashes would be 1/48, and so one can approximate the process by modelling the result in each frame as the realization of a Bernoulli random variable, with prob = 1/48 (or slightly hogher if we wanted to more closely match their average of just over 31 flashes per minute). In theory, there could be 2 (or even 3) flashes in a 1/24 second interval, but (as we will see below when we examine the Poisson probabilities) the chances of these are small. (We could of course have make the video smoother, by having say 50 frames a second, and an average of 1 flash per 100 frames. This would diminish the chance of 2 or more flashes in a frame, but it would make the video file larger, and the higher frame rate would diminish the chance of seeing a flash in a single frame – we haven’t tested the limits of detection. We could also, of course, have put the – very occasional – 2 flashes in two locations in the same 1/24 sec frame.)</p>
+<p>1 per frame</p>
 <p><strong>Calculating Poisson probabilities:</strong></p>
 <ul>
 <li>Exactly</li>
@@ -988,10 +1162,10 @@ Fitted.freq =<span class="st"> </span><span class="kw">round</span>(<span class=
 <li>Variations across days of year in numbers of deaths from sudden infant death syndrome. See </li>
 </ul>
 <p><a href="https://www.jstor.org/stable/1403193?seq=1">See</a></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-82"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-87"></span>
 <img src="images/Bortkewitsch1898section12.jpg" alt="Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers " width="974" />
 <p class="caption">
-Figure 13.10: Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers
+Figure 13.14: Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers
 </p>
 </div>
 <p>========</p>
@@ -1122,6 +1296,43 @@ What is the probability that this would occur if her condition has remained unch
 <p>[Use a 1-sided CI if one is interested in putting just an  bound on the probability of benefit or risk: e.g., what is upper bound on $= $ probability of getting HIV from HIV-infected dentist? See JAMA article ``If Nothing Goes Wrong, Is Everything All Right? Interpreting Zero Numerators’’ by Hanley and Lippman-Hand</p>
 <p><a href="http://www.epi.mcgill.ca/hanley/Reprints/If\_Nothing\_Goes\_1983.pdf" class="uri">http://www.epi.mcgill.ca/hanley/Reprints/If\_Nothing\_Goes\_1983.pdf</a></p>
 <p>and the <code>rule of $3/n$' for a 1-sided 95\% CI. See also the second example (with sample size 4 !) in the section</code>in defense of (some) small studies’ in this article <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/Place\_of\_statistical\_1989.pdf" class="uri">http://www.medicine.mcgill.ca/epidemiology/hanley/Reprints/Place\_of\_statistical\_1989.pdf</a></p>
+</div>
+<div id="neg.-correlations-under-binomial-variation" class="section level3">
+<h3><span class="header-section-number">13.3.9</span> neg. correlations … under-binomial variation</h3>
+</div>
+<div id="weights-of-offspring-pupstwins" class="section level3">
+<h3><span class="header-section-number">13.3.10</span> weights of offspring (pups/twins)</h3>
+</div>
+<div id="suicides" class="section level3">
+<h3><span class="header-section-number">13.3.11</span> suicides</h3>
+</div>
+<div id="horsekicks" class="section level3">
+<h3><span class="header-section-number">13.3.12</span> horsekicks</h3>
+</div>
+<div id="visits-to-dentists-cochran" class="section level3">
+<h3><span class="header-section-number">13.3.13</span> Visits to dentists (Cochran)</h3>
+</div>
+<div id="jhs-steps-per-day" class="section level3">
+<h3><span class="header-section-number">13.3.14</span> JH’s steps per day</h3>
+</div>
+<div id="cd4-counts" class="section level3">
+<h3><span class="header-section-number">13.3.15</span> CD4 counts</h3>
+</div>
+<div id="tweets" class="section level3">
+<h3><span class="header-section-number">13.3.16</span> tweets</h3>
+</div>
+<div id="accidents" class="section level3">
+<h3><span class="header-section-number">13.3.17</span> accidents</h3>
+</div>
+<div id="bootstrap" class="section level3">
+<h3><span class="header-section-number">13.3.18</span> bootstrap</h3>
+</div>
+<div id="no.-of-seats-doors-cyclinders-in-cars" class="section level3">
+<h3><span class="header-section-number">13.3.19</span> no. of seats / doors / cyclinders in cars</h3>
+</div>
+<div id="sex-ratio-in-accidents-fars" class="section level3">
+<h3><span class="header-section-number">13.3.20</span> sex ratio in accidents (FARS)</h3>
+<p>swedish twins reared together/apart Swedish Adoption/Twin Study on Aging (SATSA), 1984, 1987, 1990, 1993, 2004, 2007, and 2010 Nancy L. Pedersen Karolinska Institutet (Sweden)</p>
 
 </div>
 </div>
