@@ -33,8 +33,6 @@ Poisson
 
 Normal
 
-beta
-
 t
 
 Wilcoxon
