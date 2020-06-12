@@ -926,11 +926,8 @@ Here the <strong>binomial formula overestimates the variance</strong>. The reaso
 <h3><span class="header-section-number">13.2.3</span> Poisson</h3>
 <p>model for (Sampling) Variability of a Count in a given amount of ‘experience’</p>
 <p>Today, Poisson’s distribution is seldom used as a computational shortcut to a binomial probability. Although Poisson did not appreciate it at the time, today his distribution has to do with the <strong>distribution of counts of events in a given amount of space or time or population-time</strong>. However, most mathematical statistics textbooks still derive the Poisson distribution as the limiting case of a Binomial.</p>
-<p>:::: {.blackbox}</p>
 <p>Below, we will take a broader view, emphasize the ‘<strong>time</strong>’ dimension, and give some history. We will also focus on the many contexts when the Poisson distribution is <strong>too narrow</strong>, and thus an inappropriate model for counts. We will repeat the earlier message that <strong>just because a random variable involves counts doesn’t make its distribution Poisson</strong>. Examples of this include the fallacy of treating the distributions of white blood cell, or CD4 cell concentrations as if there were observed counts. And even if they are ‘real’ counts, the distribution (variability) of one’s step-counts acrross the day or across days, or of the numbers of births or deaths or car-crashes across the day, or across days, are usually far-from-Poisson.</p>
 <p><strong>Indeed, we will take the attitude that counts rarely follow a Poisson distribution.</strong></p>
-<p>::::</p>
-<p>.</p>
 <p><strong>The Poisson Distribution: what it is, and some of its features</strong></p>
 <ul>
 <li><p>The (infinite number of) probabilities <span class="math inline">\(P_{0}, P_{1}, ..., P_{y}, ...,\)</span> of observing <span class="math inline">\(Y = 0, 1, 2, \dots , y, \dots\)</span> ‘events’/‘instances’ in a given amount of ‘experience.’</p></li>
@@ -1053,11 +1050,6 @@ Figure 13.13: Rutherford’s Fig 1, replotted, and the discrete scale emphasized
 <p><strong>2020 re-enactment</strong></p>
 <p>This <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Rutherford/minute-001.mp4">video</a> is JH’s ‘recreation’ of Rutherford and Geiger’s experiment. Since you are unlikely to be as motivated as their ‘counters’, the video is limited to a 7 second lead-in + 70 seconds of flashes. If you find it easier to count while listening rather than watching, here is an <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Rutherford/minute-001.wav">audio version.</a></p>
 <p>Rutherford et al. counted an average of 3.89 flashed per 7.5 seconds, or approx 0.5 per second. The video has 24 frames per second, so their average would be approx 1 per 48 frames. Thus in one frame, the expected number of flashes would be 1/48, and so one can approximate the process by modelling the result in each frame as the realization of a Bernoulli random variable, with prob = 1/48 (or slightly hogher if we wanted to more closely match their average of just over 31 flashes per minute). In theory, there could be 2 (or even 3) flashes in a 1/24 second interval, but (as we will see below when we examine the Poisson probabilities) the chances of these are small. (We could of course have make the video smoother, by having say 50 frames a second, and an average of 1 flash per 100 frames. This would diminish the chance of 2 or more flashes in a frame, but it would make the video file larger, and the higher frame rate would diminish the chance of seeing a flash in a single frame – we haven’t tested the limits of detection. We could also, of course, have put the – very occasional – 2 flashes in two locations in the same 1/24 sec frame.)</p>
-<p>1 per frame</p>
-<p>  </p>
-
-<p>:::: {.blackbox data-latex=“”} ::: {.center data-latex=“”} <strong>NOTICE!</strong> :::</p>
-<p>Thank you for noticing this <strong>new notice</strong>! Your noticing it has been noted, and <em>will be reported to the authorities</em>! ::::</p>
 <p><strong>Calculating Poisson probabilities:</strong></p>
 <ul>
 <li>Exactly</li>
