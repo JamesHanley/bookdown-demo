@@ -995,19 +995,11 @@ model for (Sampling) Variability of a Count in a given amount of 'experience'
 Today, Poisson's distribution is seldom used as a computational shortcut to a binomial probability. Although Poisson did not appreciate it at the time,  today his distribution  has to do with the **distribution of counts of events in a given amount of space or time or population-time**. However, most mathematical statistics textbooks still derive the Poisson distribution as the limiting case of  a Binomial.
 
 
-
-
-
-:::: {.blackbox}
-
-
 Below, we will take a broader view, emphasize the '**time**' dimension, and give some  history. We will also focus on the many contexts when the Poisson distribution is **too narrow**, and thus an inappropriate model for counts. We will repeat the earlier message that **just because a random variable involves counts doesn't make its distribution Poisson**. Examples of this include the fallacy of  treating the distributions of white blood cell, or CD4 cell concentrations as if there were observed counts. And even if they are 'real' counts, the distribution (variability) of one's step-counts acrross the day or across days, or of the numbers of births or deaths or car-crashes across the day, or across days, are usually far-from-Poisson.
 
 **Indeed, we will take the attitude that counts  rarely follow a Poisson distribution.** 
 
-::::
 
-.
 
 **The Poisson Distribution: what it is, and some of its features**
 
@@ -1304,28 +1296,6 @@ Rutherford and Geiger's experiment. Since you are unlikely to be as motivated as
 
 
 Rutherford et al. counted an average of 3.89 flashed per 7.5 seconds, or approx 0.5 per second. The video has 24 frames per second, so their average would be approx 1 per 48 frames. Thus in one frame, the expected number of flashes would be 1/48, and so one can approximate the process by modelling the result in each frame as the realization of a Bernoulli random variable, with prob = 1/48 (or slightly hogher if we wanted to more closely match their  average of just over 31 flashes per minute). In theory, there could be 2 (or even 3) flashes in a 1/24 second interval, but (as we will see below when we examine the Poisson probabilities) the chances of these are small. (We could of course have make the video smoother, by having say 50 frames a second, and an average of 1 flash per 100 frames. This would diminish the chance of 2 or more flashes in a frame,  but it would make the video file larger, and the higher frame rate would diminish the chance of seeing a flash in a single frame -- we haven't tested the limits of detection. We could also, of course, have put the -- very occasional -- 2 flashes in two locations in the same  1/24 sec frame.)
-
-1 per frame
-
-\usepackage{color}
-\usepackage{framed}
-\setlength{\fboxsep}{.8em}
-
-\newenvironment{blackbox}{
-  \definecolor{shadecolor}{rgb}{0, 0, 0}  % black
-  \color{white}
-  \begin{shaded}}
- {\end{shaded}}
- 
- 
-:::: {.blackbox data-latex=""}
-::: {.center data-latex=""}
-**NOTICE!**
-:::
-
-Thank you for noticing this **new notice**! Your noticing it has
-been noted, and _will be reported to the authorities_!
-::::
 
 **Calculating Poisson probabilities:**
 
