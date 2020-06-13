@@ -24,7 +24,7 @@
 <meta name="author" content="Sahir, Shirin and Jim" />
 
 
-<meta name="date" content="2020-06-12" />
+<meta name="date" content="2020-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,6 +210,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.2.1" data-path="distributions.html"><a href="distributions.html#bernoulli"><i class="fa fa-check"></i><b>13.2.1</b> Bernoulli</a></li>
 <li class="chapter" data-level="13.2.2" data-path="distributions.html"><a href="distributions.html#binomial"><i class="fa fa-check"></i><b>13.2.2</b> Binomial</a></li>
 <li class="chapter" data-level="13.2.3" data-path="distributions.html"><a href="distributions.html#poisson"><i class="fa fa-check"></i><b>13.2.3</b> Poisson</a></li>
+<li class="chapter" data-level="13.2.4" data-path="distributions.html"><a href="distributions.html#normal"><i class="fa fa-check"></i><b>13.2.4</b> Normal</a></li>
+<li class="chapter" data-level="13.2.5" data-path="distributions.html"><a href="distributions.html#hypergeometric"><i class="fa fa-check"></i><b>13.2.5</b> Hypergeometric</a></li>
+<li class="chapter" data-level="13.2.6" data-path="distributions.html"><a href="distributions.html#chi-square"><i class="fa fa-check"></i><b>13.2.6</b> Chi-square</a></li>
 </ul></li>
 <li class="chapter" data-level="13.3" data-path="distributions.html"><a href="distributions.html#exercises-3"><i class="fa fa-check"></i><b>13.3</b> Exercises</a><ul>
 <li class="chapter" data-level="13.3.1" data-path="distributions.html"><a href="distributions.html#clusters-of-miscarriages-based-on-article-by-l-abenhaim"><i class="fa fa-check"></i><b>13.3.1</b> Clusters of Miscarriages [based on article by L Abenhaim]</a></li>
@@ -948,6 +951,18 @@ Here the <strong>binomial formula overestimates the variance</strong>. The reaso
 <li><p><span class="math inline">\(Y_{1} \sim \textrm{Poisson}(\mu_{1}) \: \: Y_{2} \sim \textrm{Poisson}(\mu_{2}) \Rightarrow Y = Y_{1} + Y_{2} \sim \textrm{Poisson}(\mu_{1}+\mu_{2}).\)</span></p></li>
 <li><p>Examples: numbers of asbestos fibres, deaths from horse kicks, needle-stick or other percutaneous injuries, bus-driver accidents, twin-pairs, radioactive disintegrations, flying-bomb hits*, white blood cells, typographical errors, ‘wrong numbers’, cancers; chocolate chips, radioactive emissions in nuclear medicine, cell occupants – in a given volume, area, line-length, population-time, time, etc. <a href="http://www.epi.mcgill.ca/hanley/bios601/Intensity-Rate/">* included in</a></p></li>
 </ul>
+<p><strong>Calculating Poisson probabilities:</strong></p>
+<ul>
+<li>Exactly</li>
+<li><code>R: dpois, ppois, qpois rpois</code> mass/cum./quant./rand<br />
+</li>
+<li>`SAS: POISSON;</li>
+<li>`Stata: <br />
+</li>
+<li><p>Spreadsheet — Excel function <code>POISSON}</code> (<span class="math inline">\(y, \mu\)</span>, cumulative)</p></li>
+<li><p>Using Gaussian Approximations to distribution of <span class="math inline">\(y\)</span> or transforms of it: described below, under Inference.</p></li>
+<li><p>In ‘the old days’ i.e. in the years BC (<strong>B</strong>efore <strong>C</strong>omputers’), Poisson <em>tail probabilities</em> were often calculated using links to the tail areas of other better-tabulated continuous distributions, such as the Chi-Square distribution.</p></li>
+</ul>
 <p><strong>Some History</strong> (see <a href="http://www.epi.mcgill.ca/hanley/statbook/HaightHistorical.pdf">Haight</a> ).</p>
 <ul>
 <li>1718 deMoivre : the series <span class="math inline">\(e^{-\mu} \bigg(1 + \frac{\mu}{1!} + \frac{\mu^2}{2!} + \dots \bigg)\)</span> appears.</li>
@@ -966,7 +981,8 @@ Here the <strong>binomial formula overestimates the variance</strong>. The reaso
 <li><a href="http://www.biostat.mcgill.ca/hanley/statbook/HaightHistorical.pdf">Haight</a> is the mots comprehensive.</li>
 <li><a href="http://www.biostat.mcgill.ca/hanley/statbook/StiglerPoisson.pdf">Stigler</a> is a bit more nuanced.</li>
 </ul>
-<p><strong>DETAILED EXAMPLE 1: Distribution of particles in volumes</strong></p>
+<div id="detailed-example-1-distribution-of-particles-in-volumes" class="section level4">
+<h4><span class="header-section-number">13.2.3.1</span> <strong>DETAILED EXAMPLE 1: Distribution of particles in volumes</strong></h4>
 <p>The following two distributions are taken from ’Student’s 1907 article on <strong>counting yeast cells</strong> under a haemocytometer, an instrument for visual counting of the number of cells in a blood sample or other fluid under a microscope. In the article, he derived what today we would call the Poisson distribution, and offered guidance on how many fields/cells to count in order the ensure a small enough margin of error when estimating a concentration.</p>
 <p>Student’s main messages</p>
 <blockquote>
@@ -985,7 +1001,9 @@ Figure 13.9: Examples of distributions of Yeast Cells over 1 sq. mm. divided int
 </p>
 </div>
 <p>The data in the panel on the right panel can be <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/Student_counting.pdf#page=10">viewed at the bottom of this page.</a></p>
-<p>Student took care to avoid ‘clumping’ of cells, and other artifacts, and measured the (as they turned out to be, small) correlations between the nunber of cells on a square and the number in each of the four cells nearest it.</p>
+<p>If we were asked to randomly distribute items over the 400 squares and have the means and standard distribitions match the observed ones, but to do it without the aid of a formal statistical procedure, most of us would do a poor job. <strong>Humans are not very good at making up random sequences</strong>. (see elsewhere, in the computing exercises). JH tested this a few decades ago by asking elementary school students to mark six spots on a 6-49 ticket – when it uses to be mainly played using <a href="https://lottery.olg.ca/en-ca/lotto-games/lotto-649/about-lotto-649">paper tickets</a>, the 49 numbers were laid our as a 5 x 10 grid. They, and <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch01/lotto_numbers_selected.pdf">adults likewise</a>, tend to avoid the ‘border cells’ and choose more in the middle of the grid.</p>
+<p>Likewise, <strong>people are not good at detecting <em>non-randomness</em></strong>. (Without peeking at the statistical summaries under row A, or at row B or at row C, or elsewhere in the article) see if you can spot the non-randomness in one of the 3 panels (1969, 1970 1971) in <a href="http://www.biostat.mcgill.ca/hanley/statbook/LestWeForgetSelectiveServiceLotteries19172019.pdf#page=7">row (A) of Figure 4 in this article.</a>. Hint: one of the 3 has a problem. and see if you would make a good radiologist.</p>
+<p>Student shook the liquid vigorously and took care to avoid ‘clumping’ of cells, and other artifacts, and measured the (as they turned out to be, small) correlations between the nunber of cells on a square and the number in each of the four cells nearest it.</p>
 <p>He noticed that in both concentrations I and III the variance was greater than the mean, due to an [to us, slight] excess (of the “observed”) over the calculated (“fitted”) among the high numbers in the tail of the distribution. [Mean = 0.6825, variance 0.8117 in I; Mean = 1.80; variance = 1.96 in III]. He has pointed out earlier in the article that the budding of the yeast cell increases these high numbers, and there is also probably a tendency to stick together in groups which was not altogether abolished even by vigorous shaking.</p>
 <p>He also tested the observed frequency distribution of the 400 counts (they varied from 0 to 6 in the left panel, and 1 to 12 in the right panel) against the expected numbers of 0’s, 1’s, 2’s, etc. under the (Poisson) law using a <span class="math inline">\(\chi^2\)</span> goodness of fit statistic, and found them to be reasonable. ‘The p-values, 0.04, 0.68, 0.25 and 0.64, though not particularly high, are not at all unlikely in four trials, supposing our theoretical law to hold, and we are not likely to be very far wrong in assuming it to do so.’</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-79"></span>
@@ -995,7 +1013,9 @@ Figure 13.10: Fits of Poisson Frequencies to the 4 sets of yeast cell counts mad
 </p>
 </div>
 <p>Clearly, the narrow pure-Poisson variation we see in Student’s counts is a tribute to his ‘vigorous shaking’ that produced the randomness. [Think about how you would ensure this with raisins in dough, or chocolate chips in cookies.]</p>
-<p><strong>DETAILED EXAMPLE 2: Distribution of events in time intervals</strong></p>
+</div>
+<div id="detailed-example-2-distribution-of-events-in-time-intervals" class="section level4">
+<h4><span class="header-section-number">13.2.3.2</span> <strong>DETAILED EXAMPLE 2: Distribution of events in time intervals</strong></h4>
 <p>This next example – on <strong>counting</strong> <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/RutherfordGeigerBateman1910.pdf">alpha-radiation disintegrations</a> – has the same element of randomness, but in the <strong>time dimension</strong>. Here is Rutherford’s description:</p>
 <blockquote>
 <p>The source of radiation was a small disk coated with polonium, which was placed inside an exhausted tube, closed at one end by a zinc sulphide screen. The scintillations were counted in the usual way by means of a microscope on an area of about one sq. mm. of screen. During the timo of counting (5 days), in order to correct for the decay, the polonium was moved daily closer to the screen in order that the average number of <span class="math inline">\(\alpha\)</span> particles impinging on the screen should be nearly constant. The scintillations were recorded on a chronograph tape by closing an electric circuit by hand at the instant of each scintillation. Time-marks at intervals of one half-minute were also automatically recorded on iho same tape.<br />
@@ -1050,21 +1070,14 @@ Figure 13.13: Rutherford’s Fig 1, replotted, and the discrete scale emphasized
 <p><strong>2020 re-enactment</strong></p>
 <p>This <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Rutherford/minute-001.mp4">video</a> is JH’s ‘recreation’ of Rutherford and Geiger’s experiment. Since you are unlikely to be as motivated as their ‘counters’, the video is limited to a 7 second lead-in + 70 seconds of flashes. If you find it easier to count while listening rather than watching, here is an <a href="http://www.medicine.mcgill.ca/epidemiology/hanley/Rutherford/minute-001.wav">audio version.</a></p>
 <p>Rutherford et al. counted an average of 3.89 flashed per 7.5 seconds, or approx 0.5 per second. The video has 24 frames per second, so their average would be approx 1 per 48 frames. Thus in one frame, the expected number of flashes would be 1/48, and so one can approximate the process by modelling the result in each frame as the realization of a Bernoulli random variable, with prob = 1/48 (or slightly hogher if we wanted to more closely match their average of just over 31 flashes per minute). In theory, there could be 2 (or even 3) flashes in a 1/24 second interval, but (as we will see below when we examine the Poisson probabilities) the chances of these are small. (We could of course have make the video smoother, by having say 50 frames a second, and an average of 1 flash per 100 frames. This would diminish the chance of 2 or more flashes in a frame, but it would make the video file larger, and the higher frame rate would diminish the chance of seeing a flash in a single frame – we haven’t tested the limits of detection. We could also, of course, have put the – very occasional – 2 flashes in two locations in the same 1/24 sec frame.)</p>
-<p><strong>Calculating Poisson probabilities:</strong></p>
-<ul>
-<li>Exactly</li>
-<li><code>R: dpois, ppois, qpois rpois</code> mass/cum./quant./rand<br />
-</li>
-<li>`SAS: POISSON;</li>
-<li>`Stata: <br />
-</li>
-<li><p>Spreadsheet — Excel function <code>POISSON}</code> (<span class="math inline">\(y, \mu\)</span>, cumulative)</p></li>
-<li><p>Using Gaussian Approximations to distribution of <span class="math inline">\(y\)</span> or transforms of it: described below, under Inference.</p></li>
-<li><p>In ‘the old days’ i.e. in the years BC (<strong>B</strong>efore <strong>C</strong>omputers’), Poisson <em>tail probabilities</em> were often calculated using links to the tail areas of other better-tabulated continuous distributions, such as the Chi-Square distribution.</p></li>
-</ul>
-<p><strong>Moving From man-made and Nature’s randomness</strong></p>
+</div>
+<div id="from-biologicalphysics-laboratories-to-human-population-time" class="section level4">
+<h4><span class="header-section-number">13.2.3.3</span> <strong>FROM BIOLOGICAL/PHYSICS LABORATORIES to HUMAN POPULATION-TIME</strong></h4>
+<p>We should not automatically assume that because they also involve counts, the numbers of human events in various segments of population time wiull follow a nice tight single Poisson distribution. Student (Gosset) could distribute the yeast cells randomly by shaking them; and Rutherford could maintian the intensity of the stream of recorded atomic disintegrations constant by managing the distance between the source and the target. Such (experimental) controls are not possible in human situations that are affeceted by changing behavioural and environmental conditions.</p>
+<p>The first example from Bortkewitsch involve termporal variations in the counts of a quite rare condition – suicide, but there are several reasons not to equate these variations with those of Rutherford. First, they occurred over 25 years, rather than just within a total of just 5 hours spread over just five days. In that time, several things could have changed: the size of the source population might have changed somewhat; the economic and religious conditions are likely to have changed. there is the possibility of ‘copycat’ suicides, or multiple suicides. the attitudes to the reporting of suicide might have changed, and there must have been many more recorders/counters that the few that Rutherford used. Below, we will look at contemporary data from the USA, where many similar issues could be raised.</p>
+<p>Note an extra feature: these events emerged from (occurred on) 2 segments of the population time .. the female population-time and the male population-time. This would be like having two radiation-counting studies proceeding simulataneously, one using polonium, and another using radium. The expected rates (the expected numbers of events per unit time) would be different.</p>
 <p><strong><em>Example 1</em></strong>, From <a href="http://www.biostat.mcgill.ca/hanley/statbook/dasGesetzDerKeinemZaklenBortkiewicz.pdf#page=51">Bortkewitsch, 1898</a></p>
-<p>The table below contains the numbers of boys (Knaben) and girls (Mädchen) under 10 years in Prussia in the period 1869-1893 who committed suicide.</p>
+<p>The table below contains the numbers of boys (Knaben) and girls (Mädchen) under 10 years of age in Prussia in the period 1869-1893 who committed suicide.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Jayr =<span class="st"> </span><span class="dv">1869</span><span class="op">:</span><span class="dv">1893</span>
 
 n.boys =<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">4</span>)
@@ -1142,10 +1155,21 @@ Fitted.freq =<span class="st"> </span><span class="kw">round</span>(<span class=
 ##  9    19    17    20    15     9    10     2     3     5     3</code></pre>
 <p>The latter table shows the effective dispersion of the annual results. nisse expressed. The corresponding expected dispersion, calculated on the basis of the mean values, obtained by division of the numbers in the last column of Table 1 obtained by 14 are like this:</p>
 <p>The latter table If one looks at the last lines of tables 2 and 3, it shows themselves, with a few exceptions, which are due to this may have that the elements under consideration are very little numerous, a very satisfactory statistical match Experience with forecasting the theory. If you pull the x values’) 0 - 2 into a first one, the x values 3 - 4 in a second and the x values 5 and more in a third group together, it is found that the first group is expectant 45.2, in reality 45 x values are omitted, to the second 33.8 or 35 and on the third 33.0 resp. 32. A summary expression is found in the current example</p>
-<p><strong>3rd example</strong>: The numbers of daily incidents for eleven professional cooperatives. In the table below are the for a 9 year period Numbers of work accidents with a daily outcome, which are at the professional associations concerned have occurred every year, introduced. Of those based on the Accident Insurance Act of On July 6, 1884, professional associations set up those for which the statistics show the smallest numbers of such accidents proves. The professional associations are not by their name, which are not important here, but according to the regulatory numbers with which they appear in the statistical publications’) are provided.</p>
+<p><strong><em>Example 3</em></strong>, From <a href="http://www.biostat.mcgill.ca/hanley/statbook/dasGesetzDerKeinemZaklenBortkiewicz.pdf#page=55">Bortkewitsch, 1898</a></p>
+<p>The numbers of daily incidents for eleven professional cooperatives.</p>
+<p>In the table below are the for a 9 year period Numbers of work accidents with a daily outcome, which are at the professional associations concerned have occurred every year, introduced. Of those based on the Accident Insurance Act of On July 6, 1884, professional associations set up those for which the statistics show the smallest numbers of such accidents proves. The professional associations are not by their name, which are not important here, but according to the regulatory numbers with which they appear in the statistical publications’) are provided.</p>
 <p>Number.work.accidents = t ( matrix( c( 6, 8, 7, 5, 14, 8, 9, 4, 8, 2, 2, 2, 1, 1, 3, 5, 3, 4, 0, 1, 2, 2, 5, 0, 2, 7, 4, 3, 3, 5, 3, 10, 2, 5, 4, 4, 3, 9, 6, 11, 6, 8, 5, 4, 4, 1, 2, 2, 3, 1, 1, 1, 4, 2, 4, 8, 4, 3, 8, 3, 7, 4, 12, 2, 5, 1, 3, 2, 0, 0, 6, 7, 1, 3, 5, 4, 6, 7, 5, 8, 7, 5, 6, 5, 5, 3, 4, 0, 8, 5, 5, 5, 2, 2, 7, 5, 3, 6, 4),9,11) )</p>
-<p>flying-bombs</p>
-<p>Births</p>
+<p><strong><em>Example 4</em></strong>, Deaths from horse-kicks</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-87"></span>
+<img src="images/Bortkewitsch1898section12.jpg" alt="Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers " width="974" />
+<p class="caption">
+Figure 13.14: Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers
+</p>
+</div>
+<p><strong><em>Example 5</em></strong> V1 Flying-bomb hits in London, 1944</p>
+<p><strong><em>Example 6</em></strong> Daily Births</p>
+<p><strong><em>Example 7</em></strong> Monthly Deaths</p>
+<p><strong><em>Example 8</em></strong> Daily car crashes</p>
 <p><strong>Does the Poisson Distribution apply to… ?</strong></p>
 <ul>
 <li>Yearly variations in numbers of  killed in plane crashes? </li>
@@ -1157,20 +1181,22 @@ Fitted.freq =<span class="st"> </span><span class="kw">round</span>(<span class=
 <li>Variations across days of year in numbers of deaths from sudden infant death syndrome. See </li>
 </ul>
 <p><a href="https://www.jstor.org/stable/1403193?seq=1">See</a></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-87"></span>
-<img src="images/Bortkewitsch1898section12.jpg" alt="Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers " width="974" />
-<p class="caption">
-Figure 13.14: Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers
-</p>
-</div>
 <p>========</p>
 <p><a href="https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982" class="uri">https://en.wikipedia.org/wiki/Normal_distribution#CITEREFStigler1982</a></p>
 <p>dark <a href="https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula" class="uri">https://physics.stackexchange.com/questions/28563/hours-of-light-per-day-based-on-latitude-longitude-formula</a></p>
 <p><a href="https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-4" class="uri">https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-4</a></p>
 <p>car sppeds <a href="https://purr.purdue.edu/publications/2671/1" class="uri">https://purr.purdue.edu/publications/2671/1</a></p>
-<p>Hypergeometric</p>
+</div>
+</div>
+<div id="normal" class="section level3">
+<h3><span class="header-section-number">13.2.4</span> Normal</h3>
+</div>
+<div id="hypergeometric" class="section level3">
+<h3><span class="header-section-number">13.2.5</span> Hypergeometric</h3>
 <p>Non-Central Hypergeometric</p>
-<p>Chi-square</p>
+</div>
+<div id="chi-square" class="section level3">
+<h3><span class="header-section-number">13.2.6</span> Chi-square</h3>
 <p>===</p>
 <p>EXERCISES</p>
 <p>ADD YOUR OWN SEARCH RESULTS to table above</p>
