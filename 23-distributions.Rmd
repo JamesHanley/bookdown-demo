@@ -1038,6 +1038,22 @@ Y_{2} \sim \textrm{Poisson}(\mu_{2}) \Rightarrow Y = Y_{1} + Y_{2} \sim \textrm{
 'wrong numbers', cancers; chocolate chips, radioactive emissions in nuclear medicine, cell occupants -- in a given volume, area, line-length, population-time, time, etc.
 [* included in](http://www.epi.mcgill.ca/hanley/bios601/Intensity-Rate/)
 
+
+**Calculating Poisson probabilities:**
+
+* Exactly
+   + `R: dpois, ppois, qpois rpois` mass/cum./quant./rand       
+   + `SAS: POISSON; 
+   + `Stata:  \url{www.ats.ucla.edu/ stat/stata/faq/pprob.htm}  
+   + Spreadsheet --- Excel function `POISSON}` ($y, \mu$, cumulative)
+
+* Using Gaussian Approximations to distribution of $y$ or transforms of it:
+described below, under Inference.
+
+* In 'the old days' i.e. in the years BC (**B**efore **C**omputers'), Poisson _tail probabilities_ were often calculated using links to the tail areas of other better-tabulated continuous distributions, such as the  Chi-Square distribution. 
+
+
+
 **Some History** (see [Haight](http://www.epi.mcgill.ca/hanley/statbook/HaightHistorical.pdf) ).
 
 * 1718 deMoivre : the series   $e^{-\mu} \bigg(1 + \frac{\mu}{1!} + \frac{\mu^2}{2!} + \dots \bigg)$ appears.
@@ -1056,8 +1072,7 @@ Here are the original [Danish version](http://www.medicine.mcgill.ca/epidemiolog
    + [Haight](http://www.biostat.mcgill.ca/hanley/statbook/HaightHistorical.pdf) is the mots comprehensive.
    + [Stigler](http://www.biostat.mcgill.ca/hanley/statbook/StiglerPoisson.pdf) is a bit more nuanced.
 
-**DETAILED EXAMPLE 1: Distribution of particles in volumes**
-
+#### **DETAILED EXAMPLE 1: Distribution of particles in volumes**
 
 The following two distributions are taken from 'Student's 1907 article on **counting yeast cells** under a haemocytometer, an instrument for visual counting of the number of cells in a blood sample or other fluid under a microscope. In the article, he derived what today we would call the Poisson distribution, and offered guidance on how many fields/cells to count in order the ensure a small enough margin of error when estimating a concentration.
 
@@ -1145,12 +1160,20 @@ for(panel in 1:2){
 
 The data in the panel on the right panel can be [viewed at the bottom of this page.](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/Student_counting.pdf#page=10)
 
-Student took care to avoid 'clumping' of cells, and other artifacts, and measured the (as they turned out to be, small) correlations between the nunber of cells on a square and the number in each of the four cells nearest it.
+If we were asked to randomly distribute items over the 400 squares and have the means and standard distribitions match the observed ones, but to do it without the aid of a formal statistical procedure, most of us would do a poor job. **Humans are not very  good at making up random sequences**. (see elsewhere, in the computing exercises). JH tested this a few decades ago by asking elementary school students to mark six spots on a 6-49 ticket -- when it uses to be mainly played using [paper tickets](https://lottery.olg.ca/en-ca/lotto-games/lotto-649/about-lotto-649), the 49 numbers were  laid our as a 5 x 10 grid. They,
+and [adults  likewise](http://www.medicine.mcgill.ca/epidemiology/hanley/c607/ch01/lotto_numbers_selected.pdf), tend to avoid the 'border cells' and choose more in the middle of the grid.
+
+Likewise, **people are  not good at detecting _non-randomness_**. (Without peeking at the statistical summaries under row A, or at row B or at row C, or elsewhere in the article) see if you can spot the non-randomness in one of the 3 panels (1969, 1970 1971) in [row (A) of Figure 4 in this article.](http://www.biostat.mcgill.ca/hanley/statbook/LestWeForgetSelectiveServiceLotteries19172019.pdf#page=7). Hint: one of the 3 has a problem. and see if you would make a good radiologist.
+
+
+Student shook the liquid vigorously and took care to avoid 'clumping' of cells, and other artifacts, and measured the (as they turned out to be, small) correlations between the nunber of cells on a square and the number in each of the four cells nearest it.
 
 He noticed that in both concentrations I and III the variance was greater than the mean, due to an [to us, slight] excess (of the "observed") over the calculated ("fitted") among the high numbers in the tail of the distribution. [Mean = 0.6825, variance 0.8117 in I; Mean = 1.80; variance = 1.96 in III].   He has pointed out earlier in the article that the budding of the yeast cell increases these high numbers, and there is also probably a tendency to stick together in groups which was not altogether abolished even by vigorous shaking.
 
 He also tested the observed frequency distribution of the 400 counts (they varied from 0 to 6 in the left panel, and 1 to 12 in the right panel) against the expected numbers of 0's, 1's, 2's, etc. under the (Poisson) law using a $\chi^2$ goodness of fit statistic, and found them to be reasonable. 'The p-values, 0.04, 0.68, 0.25 and 0.64, though not particularly high,
-are not at all unlikely in four trials, supposing our theoretical law to hold, and we are not likely to be very far wrong in assuming it to do so.'
+are not at all unlikely in four trials, supposing our theoretical law to hold, and we are not likely to be very far wrong in assuming it to do so.' 
+
+
 
 
 ```{r,eval=T, echo=F, fig.align="center", fig.height=7, fig.width=9, warning=FALSE, message=F,fig.cap="Fits of Poisson Frequencies to the 4 sets of yeast cell counts made by Student."}
@@ -1160,12 +1183,9 @@ knitr::include_graphics('images/StudentPoissonFits.png')
 
 ```
 
-
-
-
 Clearly, the narrow pure-Poisson variation we see in Student's counts is a tribute to his 'vigorous shaking' that produced the randomness. [Think about how you would ensure this with raisins in dough, or chocolate chips in cookies.]
 
-**DETAILED EXAMPLE 2: Distribution of events in time intervals**
+####  **DETAILED EXAMPLE 2: Distribution of events in time intervals**
 
 This next example -- on **counting** [alpha-radiation disintegrations](http://www.medicine.mcgill.ca/epidemiology/hanley/bios601/Intensity-Rate/RutherfordGeigerBateman1910.pdf) -- has the same element of randomness, but in the **time dimension**. Here is Rutherford's description:
 
@@ -1297,25 +1317,19 @@ Rutherford and Geiger's experiment. Since you are unlikely to be as motivated as
 
 Rutherford et al. counted an average of 3.89 flashed per 7.5 seconds, or approx 0.5 per second. The video has 24 frames per second, so their average would be approx 1 per 48 frames. Thus in one frame, the expected number of flashes would be 1/48, and so one can approximate the process by modelling the result in each frame as the realization of a Bernoulli random variable, with prob = 1/48 (or slightly hogher if we wanted to more closely match their  average of just over 31 flashes per minute). In theory, there could be 2 (or even 3) flashes in a 1/24 second interval, but (as we will see below when we examine the Poisson probabilities) the chances of these are small. (We could of course have make the video smoother, by having say 50 frames a second, and an average of 1 flash per 100 frames. This would diminish the chance of 2 or more flashes in a frame,  but it would make the video file larger, and the higher frame rate would diminish the chance of seeing a flash in a single frame -- we haven't tested the limits of detection. We could also, of course, have put the -- very occasional -- 2 flashes in two locations in the same  1/24 sec frame.)
 
-**Calculating Poisson probabilities:**
+#### **FROM BIOLOGICAL/PHYSICS LABORATORIES to HUMAN POPULATION-TIME**
 
-* Exactly
-   + `R: dpois, ppois, qpois rpois` mass/cum./quant./rand       
-   + `SAS: POISSON; 
-   + `Stata:  \url{www.ats.ucla.edu/ stat/stata/faq/pprob.htm}  
-   + Spreadsheet --- Excel function `POISSON}` ($y, \mu$, cumulative)
+We should not automatically assume that because they also involve counts, the numbers of human events in various segments of population time wiull follow a nice tight single Poisson distribution. Student (Gosset)  could distribute the yeast cells randomly by shaking them; and Rutherford could maintian the intensity of the stream of recorded atomic disintegrations constant by managing the distance between the source and the target.  Such (experimental) controls are not possible in human situations that are affeceted by changing behavioural and environmental conditions.
 
-* Using Gaussian Approximations to distribution of $y$ or transforms of it:
-described below, under Inference.
+The first example from Bortkewitsch involve termporal variations in the counts of a quite rare condition -- suicide, but there are several reasons not to equate these variations with those of Rutherford. First, they occurred over 25 years, rather than just within a total of just 5 hours spread over just five days. In that time, several things could have changed: the size of the source population might have changed somewhat; the economic and religious conditions are likely to have changed. there is the possibility of 'copycat' suicides, or multiple suicides. the attitudes to the reporting of suicide might have changed, and there must have been many more recorders/counters that the few that Rutherford used. Below, we will look at contemporary data from the USA, where many similar issues could be raised.  
 
-* In 'the old days' i.e. in the years BC (**B**efore **C**omputers'), Poisson _tail probabilities_ were often calculated using links to the tail areas of other better-tabulated continuous distributions, such as the  Chi-Square distribution. 
+Note an extra feature: these events emerged from (occurred on) 2 segments of the population time  .. the female population-time and the male population-time. This would be like having two radiation-counting studies proceeding simulataneously, one using polonium, and another using radium. The expected rates (the expected numbers of events per unit time) would be different.
 
 
-**Moving From man-made and Nature's randomness**
 
 **_Example 1_**, From [Bortkewitsch, 1898](http://www.biostat.mcgill.ca/hanley/statbook/dasGesetzDerKeinemZaklenBortkiewicz.pdf#page=51)
 
-The table below contains the numbers of boys (Knaben) and girls (Mädchen) under 10 years in Prussia in the period 1869-1893 who committed suicide.
+The table below contains the numbers of boys (Knaben) and girls (Mädchen) under 10 years of age in Prussia in the period 1869-1893 who committed suicide.
 
 ```{r,eval=T, echo=T, fig.align="center", fig.height=8, fig.width=9, warning=FALSE, message=F}
 
@@ -1425,10 +1439,11 @@ and on the third 33.0 resp. 32.
 A summary expression is found in the current example
 
 
+**_Example 3_**, From [Bortkewitsch, 1898](http://www.biostat.mcgill.ca/hanley/statbook/dasGesetzDerKeinemZaklenBortkiewicz.pdf#page=55)
 
-
-**3rd example**: The numbers of daily incidents for eleven professional
+The numbers of daily incidents for eleven professional
 cooperatives.
+
 In the table below are the for a 9 year period
 Numbers of work accidents with a daily outcome, which are at
 the professional associations concerned have occurred every year,
@@ -1453,13 +1468,23 @@ Number.work.accidents = t ( matrix( c(
 5, 6, 5,  5,  3, 4, 0, 8,  5,
 5, 5, 2,  2,  7, 5, 3, 6,  4),9,11) )
 
+**_Example 4_**, Deaths from horse-kicks
+
+```{r,eval=T, echo=F, fig.align="center", fig.height=7.5, fig.width=9, warning=FALSE, message=F,fig.cap="Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers "}
 
 
-flying-bombs
+knitr::include_graphics('images/Bortkewitsch1898section12.jpg')
 
-Births
+```
 
 
+**_Example 5_** V1 Flying-bomb hits in London, 1944
+
+**_Example 6_** Daily Births
+
+**_Example 7_** Monthly Deaths
+
+**_Example 8_** Daily car crashes
 
 **Does the Poisson Distribution apply to... ?**
 
@@ -1492,12 +1517,7 @@ ibid. see Resources.}
 [See](https://www.jstor.org/stable/1403193?seq=1)
 
 
-```{r,eval=T, echo=F, fig.align="center", fig.height=7.5, fig.width=9, warning=FALSE, message=F,fig.cap="Section 12 of Bortkewitsch1898 book on the Poisson Distribution. The numbers "}
 
-
-knitr::include_graphics('images/Bortkewitsch1898section12.jpg')
-
-```
 
 
 ========
@@ -1511,11 +1531,13 @@ https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-017-0637-
 
 car sppeds https://purr.purdue.edu/publications/2671/1
 
-Hypergeometric
+### Normal
+
+### Hypergeometric
 
 Non-Central Hypergeometric
 
-Chi-square
+### Chi-square
 
 ===
 
